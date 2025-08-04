@@ -1,0 +1,12 @@
+export async function POST() {
+  console.log("Simple POST route hit!");
+  return new Response(
+    JSON.stringify({ message: "POST request successful!" }),
+    {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  );
+}
