@@ -11,6 +11,9 @@ module.exports = {
         primary: '#A052DE',
         accent: '#FFC857',
         background: '#F0F0F0',
+        'sales-green': '#00C853',
+        charcoal: '#121212',
+        'paper-white': '#FDFDFD',
       },
       fontFamily: {
         heading: ['Playfair Display', 'serif'],
@@ -19,7 +22,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-  ],
+  plugins: [require('@tailwindcss/typography')],
 }
