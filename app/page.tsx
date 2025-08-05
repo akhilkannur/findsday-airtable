@@ -37,7 +37,7 @@ export default async function Home() {
     <div className="bg-paper-white text-charcoal">
       <Header />
 
-      {/* HERO — magazine cover */}
+      {/* HERO */}
       <section className="py-32 px-4 bg-charcoal text-white">
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           <div className="lg:col-span-7 space-y-6">
@@ -49,10 +49,8 @@ export default async function Home() {
               <span className="text-sales-green">Curated Every&nbsp;Thursday.</span>
             </h1>
             <p className="max-w-xl text-lg text-gray-300">
-              No fluff—just the software that actually moves revenue, tested and annotated by the makers themselves.
+              No fluff—just the software that actually moves revenue, tested and annotated by the makers.
             </p>
-
-            {/* Newsletter */}
             <form className="mt-8 max-w-sm space-y-3">
               <input
                 type="email"
@@ -64,8 +62,6 @@ export default async function Home() {
               </button>
             </form>
           </div>
-
-          {/* large geometric drop number */}
           <div className="lg:col-span-5 flex items-center justify-center">
             <div className="relative w-64 h-64 border-4 border-sales-green flex items-center justify-center">
               <span className="text-8xl font-black text-sales-green">{latestDropNumber}</span>
@@ -74,7 +70,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* TOOLS — case-study cards */}
+      {/* TOOLS — bigger thumbnails + click to modal */}
       <section className="py-24 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="mb-12">
@@ -97,11 +93,11 @@ export default async function Home() {
                     className={`${theme} rounded-lg p-6 flex flex-col hover:scale-[1.02] transition-transform duration-200 cursor-pointer`}
                     onClick={() => window.open(`/tool/${tool.id}`, '_blank')}
                   >
-                    {/* Large hero image */}
-                    {tool.Image?.[0] ? (
+                    {/* Large thumbnail */}
+                    {(tool.fields as any).Image?.[0] ? (
                       <img
-                        src={tool.Image[0].url}
-                        alt={tool.Name as string}
+                        src={(tool.fields as any).Image[0].url}
+                        alt={tool.fields.Name as string}
                         className="w-full h-48 object-cover rounded-md mb-4"
                       />
                     ) : (
@@ -110,12 +106,12 @@ export default async function Home() {
                       </div>
                     )}
 
-                    <h3 className="text-2xl font-black mb-2">{tool.Name}</h3>
-                    <span className="text-xs font-bold uppercase mb-2">{tool.Category}</span>
-                    <p className="text-sm flex-grow opacity-90">{tool.Tagline}</p>
-                    {tool["Maker Quote"] && (
+                    <h3 className="text-2xl font-black mb-2">{tool.fields.Name}</h3>
+                    <span className="text-xs font-bold uppercase mb-2">{tool.fields.Category}</span>
+                    <p className="text-sm flex-grow opacity-90">{tool.fields.Tagline}</p>
+                    {tool.fields["Maker Quote"] && (
                       <blockquote className="text-xs italic opacity-80 mt-2">
-                        “{tool["Maker Quote"]}”
+                        “{tool.fields["Maker Quote"]}”
                       </blockquote>
                     )}
                   </div>
@@ -128,7 +124,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* MAKERS — portrait roster */}
+      {/* MAKERS */}
       <section className="py-24 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-5xl font-black mb-12">The Makers</h2>
@@ -177,7 +173,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* SPONSORS — billboard */}
+      {/* SPONSORS */}
       <section className="py-24 px-4">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-5xl font-black mb-12 text-center">Partners</h2>
@@ -205,7 +201,6 @@ export default async function Home() {
                     <h3 className="text-2xl font-black">{sponsor.fields.Name}</h3>
                     <p className="text-sm mt-2 opacity-80">{sponsor.fields.Blurb}</p>
                   </div>
-
                   {sponsor.fields["Website URL"] && (
                     <a
                       href={sponsor.fields["Website URL"]}
@@ -273,3 +268,4 @@ export default async function Home() {
     </div>
   )
 }
+
