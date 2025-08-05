@@ -103,7 +103,7 @@ export default async function Home() {
                   "bg-gray-100 text-charcoal border border-gray-200",
                   "bg-sales-green text-charcoal",
                 ];
-                const theme = cardThemes[tool.id % cardThemes.length];
+                const theme = cardThemes[Number(tool.id) % cardThemes.length];
                 return (
                   <div
                     key={tool.id}
