@@ -8,8 +8,13 @@ export async function generateStaticParams() {
   return records.map((r) => ({ id: r.id }))
 }
 
-export default async function ToolPage({ params }: { params: { id: string } }) {
-  const record = await base("Tools").find(params.id)
+interface Props {
+  params: Promise<{ id: string }>
+}
+
+export default async function ToolPage({ params }: Props) {
+  const { id } = await params
+  const record = await base("Tools").find(id)
   const tool = record.fields
 
   return (
@@ -21,7 +26,7 @@ export default async function ToolPage({ params }: { params: { id: string } }) {
       <h1 className="text-5xl font-black mb-4">{tool.Name}</h1>
 
       <div className="grid md:grid-cols-3 gap-8">
-        {/* left: image */}
+        {/* image */}
         <div className="md:col-span-1">
           {tool.Image?.[0] ? (
             <Image
@@ -38,7 +43,7 @@ export default async function ToolPage({ params }: { params: { id: string } }) {
           )}
         </div>
 
-        {/* right: story */}
+        {/* story */}
         <div className="md:col-span-2 space-y-4">
           <span className="inline-block bg-sales-green text-charcoal px-2 py-1 text-xs font-bold uppercase">
             {tool.Category}
