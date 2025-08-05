@@ -1,39 +1,52 @@
-k// app/page.tsx
+// app/page.tsx
 import Header from "../components/Header"
 import { base, type ToolRecord, type SponsorRecord, type MakerRecord } from "@/lib/airtableClient"
+import Image from "next/image"
 
 export const dynamic = "force-dynamic"
 
 async function getHomePageData() {
   try {
-    const latestDropNumber = await getLatestDropNumber();
-    const tools = await getToolsForLatestDrop();
+    const dropsRecords = await base("Drops")
+      .select({
+        sort: [{ field: "Drop Number", direction: "desc" }],
+        maxRecords: 1,
+      })
+      .firstPage()
+    const latestDropNumber = dropsRecords.length > 0 ? dropsRecords[0].fields["Drop Number"] : 1
 
-    const sponsorsRecords = await base("Sponsors")
-      .select({ maxRecords: 2 })
-      .firstPage();
+    const toolsRecords = await base("Tools")
+      .select({
+        filterByFormula: `{Drop Number} = ${latestDropNumber}`,
+        sort: [{ field: "Name", direction: "asc" }],
+      })
+      .firstPage()
+    const tools = toolsRecords.map((record) => ({
+      id: record.id,
+      fields: record.fields,
+    })) as ToolRecord[]
+
+    const sponsorsRecords = await base("Sponsors").select({ maxRecords: 2 }).firstPage()
     const sponsors = sponsorsRecords.map((record) => ({
       id: record.id,
       fields: record.fields,
-    })) as SponsorRecord[];
+    })) as SponsorRecord[]
 
-    const makersRecords = await base("Makers")
-      .select({ maxRecords: 5 })
-      .firstPage();
+    const makersRecords = await base("Makers").select({ maxRecords: 5 }).firstPage()
     const makers = makersRecords.map((record) => ({
       id: record.id,
       fields: record.fields,
-    })) as MakerRecord[];
+    })) as MakerRecord[]
 
-    return { tools, sponsors, makers, latestDropNumber };
+    return { tools, sponsors, makers, latestDropNumber }
   } catch (error) {
-    console.error("Error fetching data from Airtable:", error);
-    return { tools: [], sponsors: [], makers: [], latestDropNumber: 1 };
+    console.error("Error fetching data from Airtable:", error)
+    return { tools: [], sponsors: [], makers: [], latestDropNumber: 1 }
   }
 }
 
 export default async function Home() {
-  const { tools, sponsors, makers, latestDropNumber } = await getHomePageData();
+  const { tools, sponsors, makers, latestDropNumber } = await getHomePageData()
 
   return (
     <div className="bg-paper-white text-charcoal">
@@ -181,7 +194,7 @@ export default async function Home() {
           <h2 className="text-5xl font-black mb-12 text-center">Partners</h2>
           {sponsors.length ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {sponsors.map(((sponsor, idx) => (
+              {sponsors.map((sponsor, idx) => (
                 <div
                   key={sponsor.id}
                   className={`rounded-lg p-10 flex flex-col justify-between aspect-[16/9] ${
@@ -199,4 +212,72 @@ export default async function Home() {
                       <div className="h-12 border-b-2 border-current flex items-center font-bold mb-4">LOGO</div>
                     )}
                     <h3 className="text-2xl font-black">{sponsor.fields.Name}</h3>
-                    <p className="text-sm mt-2 opacity-80">{sponsor.fields.Blurb
+                    <p className="text-sm mt-2 opacity-80">{sponsor.fields.Blurb}</p>
+                  </div>
+                  {sponsor.fields["Website URL"] && (
+                    <a
+                      href={sponsor.fields["Website URL"]}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-auto text-xs font-bold uppercase underline-offset-4"
+                    >
+                      Visit Partner →
+                    </a>
+                  )}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-center text-gray-500">Partners loading…</p>
+          )}
+        </div>
+      </section>
+
+      {/* ARCHIVE */}
+      <section className="py-24 px-4 bg-gray-50">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-5xl font-black mb-12 text-center">Archive</h2>
+          <div className="space-y-3">
+            {[1, 2, 3, 4, 5].map((offset) => (
+              <div
+                key={offset}
+                className="border border-gray-300 rounded-lg p-6 flex justify-between items-center cursor-pointer hover:bg-charcoal hover:text-white transition"
+              >
+                <span className="font-black tracking-wider">
+                  DROP #{latestDropNumber - offset} —{" "}
+                  {new Date(Date.now() - offset * 7 * 24 * 60 * 60 * 1000).toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                  }).toUpperCase()}
+                </span>
+                <span className="text-2xl font-black">↓</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="bg-charcoal text-white py-16 px-4">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
+          <div>
+            <h3 className="text-3xl font-black">FINDSDAY</h3>
+            <p className="text-sm text-gray-400 mt-1">Curating revenue software. Every Thursday.</p>
+          </div>
+          <div className="flex space-x-4 mt-6 md:mt-0">
+            {["TW", "IG", "LI"].map((s) => (
+              <a
+                key={s}
+                href="#"
+                className="w-12 h-12 border border-gray-500 flex items-center justify-center text-xs font-bold hover:bg-sales-green hover:text-charcoal transition"
+              >
+                {s}
+              </a>
+            ))}
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
+}
