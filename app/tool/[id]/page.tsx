@@ -15,7 +15,16 @@ interface Props {
 export default async function ToolPage({ params }: Props) {
   const { id } = await params
   const record = await base("Tools").find(id)
-  const tool = record.fields
+  const f = record.fields
+
+  // safe helpers
+  const name = String(f.Name ?? "Untitled Tool")
+  const description = String(f.Description ?? "")
+  const category = String(f.Category ?? "")
+  const makerName = String(f["Maker Name"] ?? "")
+  const makerQuote = String(f["Maker Quote"] ?? "")
+  const website = String(f["Website URL"] ?? "")
+  const image = (f as any).Image?.[0]
 
   return (
     <main className="max-w-4xl mx-auto py-12 px-4">
@@ -23,15 +32,15 @@ export default async function ToolPage({ params }: Props) {
         ← Back
       </Link>
 
-      <h1 className="text-5xl font-black mb-4">{tool.Name}</h1>
+      <h1 className="text-5xl font-black mb-4">{name}</h1>
 
       <div className="grid md:grid-cols-3 gap-8">
-        {/* image */}
+        {/* Image */}
         <div className="md:col-span-1">
-          {tool.Image?.[0] ? (
+          {image ? (
             <Image
-              src={tool.Image[0].url}
-              alt={tool.Name as string}
+              src={image.url}
+              alt={name}
               width={800}
               height={450}
               className="rounded-lg object-cover"
@@ -43,25 +52,25 @@ export default async function ToolPage({ params }: Props) {
           )}
         </div>
 
-        {/* story */}
+        {/* Story */}
         <div className="md:col-span-2 space-y-4">
           <span className="inline-block bg-sales-green text-charcoal px-2 py-1 text-xs font-bold uppercase">
-            {tool.Category}
+            {category}
           </span>
-          <p className="text-lg leading-relaxed">{tool.Description}</p>
+          <p className="text-lg leading-relaxed">{description}</p>
 
-          {tool["Maker Name"] && (
+          {makerName && (
             <div className="mt-6 border-t pt-4">
               <h3 className="font-bold text-lg mb-1">Maker Story</h3>
               <p className="text-sm italic">
-                “{tool["Maker Quote"]}” — {tool["Maker Name"]}
+                “{makerQuote}” — {makerName}
               </p>
             </div>
           )}
 
-          {tool["Website URL"] && (
+          {website && (
             <a
-              href={tool["Website URL"] as string}
+              href={website}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block mt-4 bg-charcoal text-white px-6 py-3 rounded font-bold hover:bg-sales-green hover:text-charcoal transition"
