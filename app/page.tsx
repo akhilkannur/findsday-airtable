@@ -1,35 +1,39 @@
-// app/page.tsx
+k// app/page.tsx
 import Header from "../components/Header"
-import { base, getLatestDropNumber, getToolsForLatestDrop } from "@/lib/airtableClient"
+import { base, type ToolRecord, type SponsorRecord, type MakerRecord } from "@/lib/airtableClient"
 
 export const dynamic = "force-dynamic"
 
 async function getHomePageData() {
   try {
-    const latestDropNumber = await getLatestDropNumber()
-    const tools = await getToolsForLatestDrop()
+    const latestDropNumber = await getLatestDropNumber();
+    const tools = await getToolsForLatestDrop();
 
-    const sponsorsRecords = await base("Sponsors").select({ maxRecords: 2 }).firstPage()
+    const sponsorsRecords = await base("Sponsors")
+      .select({ maxRecords: 2 })
+      .firstPage();
     const sponsors = sponsorsRecords.map((record) => ({
       id: record.id,
       fields: record.fields,
-    })) as SponsorRecord[]
+    })) as SponsorRecord[];
 
-    const makersRecords = await base("Makers").select({ maxRecords: 5 }).firstPage()
+    const makersRecords = await base("Makers")
+      .select({ maxRecords: 5 })
+      .firstPage();
     const makers = makersRecords.map((record) => ({
       id: record.id,
       fields: record.fields,
-    })) as MakerRecord[]
+    })) as MakerRecord[];
 
-    return { tools, sponsors, makers, latestDropNumber }
+    return { tools, sponsors, makers, latestDropNumber };
   } catch (error) {
-    console.error("Error fetching data from Airtable:", error)
-    return { tools: [], sponsors: [], makers: [], latestDropNumber: 1 }
+    console.error("Error fetching data from Airtable:", error);
+    return { tools: [], sponsors: [], makers: [], latestDropNumber: 1 };
   }
 }
 
 export default async function Home() {
-  const { tools, sponsors, makers, latestDropNumber } = await getHomePageData()
+  const { tools, sponsors, makers, latestDropNumber } = await getHomePageData();
 
   return (
     <div className="bg-paper-white text-charcoal">
@@ -53,9 +57,9 @@ export default async function Home() {
               <input
                 type="email"
                 placeholder="you@company.com"
-                className="w-full bg-transparent border-b-2 border-gray-500 focus:border-sales-green py-2 text-white placeholder-gray-400 focus:outline-none transition-colors"
+                className="w-full bg-transparent border-b border-gray-500 focus:border-sales-green outline-none py-2"
               />
-              <button className="w-full bg-sales-green hover:bg-sales-green text-charcoal font-bold py-3 px-6 transition-colors tracking-widest uppercase">
+              <button className="w-full bg-sales-green text-charcoal font-bold py-3 uppercase tracking-widest text-sm">
                 Get the Drop
               </button>
             </form>
@@ -78,13 +82,13 @@ export default async function Home() {
 
           {tools.length ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {tools.map((tool, idx) => {
+              {tools.map((tool) => {
                 const cardThemes = [
                   "bg-charcoal text-white",
                   "bg-gray-100 text-charcoal border border-gray-200",
                   "bg-sales-green text-charcoal",
                 ]
-                const theme = cardThemes[idx % cardThemes.length]
+                const theme = cardThemes[tool.id % cardThemes.length]
                 return (
                   <div
                     key={tool.id}
@@ -177,7 +181,7 @@ export default async function Home() {
           <h2 className="text-5xl font-black mb-12 text-center">Partners</h2>
           {sponsors.length ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {sponsors.map((sponsor, idx) => (
+              {sponsors.map(((sponsor, idx) => (
                 <div
                   key={sponsor.id}
                   className={`rounded-lg p-10 flex flex-col justify-between aspect-[16/9] ${
@@ -195,11 +199,4 @@ export default async function Home() {
                       <div className="h-12 border-b-2 border-current flex items-center font-bold mb-4">LOGO</div>
                     )}
                     <h3 className="text-2xl font-black">{sponsor.fields.Name}</h3>
-                    <p className="text-sm mt-2 opacity-80">{sponsor.fields.Blurb}</p>
-                  </div>
-                  {sponsor.fields["Website URL"] && (
-                    <a
-                      href={sponsor.fields["Website URL"]}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-auto text-xs font-bold uppercase underline-offset-
+                    <p className="text-sm mt-2 opacity-80">{sponsor.fields.Blurb
