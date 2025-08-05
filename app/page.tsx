@@ -1,75 +1,31 @@
 // app/page.tsx
 import Header from "../components/Header"
 import { base, type ToolRecord, type SponsorRecord, type MakerRecord } from "@/lib/airtableClient"
-
-// Force this page to be dynamic and fetch data on each request
 export const dynamic = "force-dynamic"
 
-// Add this function to fetch data from Airtable
 async function getHomePageData() {
   try {
-    console.log("Fetching data from Airtable for homepage...")
-
-    // Get the latest drop number first
     const dropsRecords = await base("Drops")
-      .select({
-        sort: [{ field: "Drop Number", direction: "desc" }],
-        maxRecords: 1,
-      })
+      .select({ sort: [{ field: "Drop Number", direction: "desc" }], maxRecords: 1 })
       .firstPage()
+    const latestDropNumber =
+      dropsRecords.length > 0 && typeof dropsRecords[0].fields["Drop Number"] === "number"
+        ? dropsRecords[0].fields["Drop Number"]
+        : 1
 
-    // Ensure latestDropNumber is always a number
-    const latestDropNumber = dropsRecords.length > 0 && typeof dropsRecords[0].fields["Drop Number"] === 'number' 
-      ? dropsRecords[0].fields["Drop Number"] 
-      : 1
-
-    // Fetch tools for the latest drop
     const toolsRecords = await base("Tools")
-      .select({
-        filterByFormula: `{Drop Number} = ${latestDropNumber}`,
-        sort: [{ field: "Name", direction: "asc" }],
-      })
+      .select({ filterByFormula: `{Drop Number} = ${latestDropNumber}`, sort: [{ field: "Name", direction: "asc" }] })
       .firstPage()
+    const tools = toolsRecords.map((record) => ({ id: record.id, fields: record.fields })) as ToolRecord[]
 
-    const tools = toolsRecords.map((record) => ({
-      id: record.id,
-      fields: record.fields,
-    })) as ToolRecord[]
+    const sponsorsRecords = await base("Sponsors").select({ maxRecords: 2 }).firstPage()
+    const sponsors = sponsorsRecords.map((record) => ({ id: record.id, fields: record.fields })) as SponsorRecord[]
 
-    // Fetch sponsors
-    const sponsorsRecords = await base("Sponsors")
-      .select({
-        maxRecords: 2,
-      })
-      .firstPage()
-
-    const sponsors = sponsorsRecords.map((record) => ({
-      id: record.id,
-      fields: record.fields,
-    })) as SponsorRecord[]
-
-    // Fetch featured makers
-    const makersRecords = await base("Makers")
-      .select({
-        maxRecords: 5,
-      })
-      .firstPage()
-
-    const makers = makersRecords.map((record) => ({
-      id: record.id,
-      fields: record.fields,
-    })) as MakerRecord[]
-
-    console.log("Successfully fetched data from Airtable:", {
-      tools: tools.length,
-      sponsors: sponsors.length,
-      makers: makers.length,
-      latestDropNumber,
-    })
+    const makersRecords = await base("Makers").select({ maxRecords: 5 }).firstPage()
+    const makers = makersRecords.map((record) => ({ id: record.id, fields: record.fields })) as MakerRecord[]
 
     return { tools, sponsors, makers, latestDropNumber }
-  } catch (error) {
-    console.error("Error fetching data from Airtable:", error)
+  } catch {
     return { tools: [], sponsors: [], makers: [], latestDropNumber: 1 }
   }
 }
@@ -78,397 +34,253 @@ export default async function Home() {
   const { tools, sponsors, makers, latestDropNumber } = await getHomePageData()
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="bg-paper-white text-charcoal">
       <Header />
 
-      <main>
-        {/* Hero Section - Tobias Style */}
-        <section className="py-24 px-4 bg-black text-white">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-              <div className="lg:col-span-7">
-                <div className="mb-6">
-                  <span className="inline-block bg-yellow-400 text-black px-4 py-2 text-sm font-bold tracking-wider uppercase">
-                    Weekly Drops
-                  </span>
-                </div>
-                <h1 className="text-5xl lg:text-7xl font-black mb-8 leading-tight">
-                  THE BEST<br />
-                  NEW TOOLS.<br />
-                  <span className="text-yellow-400">EVERY THURSDAY.</span>
-                </h1>
-                <p className="text-xl text-gray-300 mb-12 max-w-lg leading-relaxed">
-                  Curated digital tools for modern teams. No fluff, just the essentials that matter.
-                </p>
-                
-                {/* Countdown Timer - Tobias Style */}
-                <div className="mb-12">
-                  <div className="bg-yellow-400 text-black px-8 py-4 inline-block">
-                    <div className="text-sm font-bold tracking-wider uppercase mb-1">Next Drop In</div>
-                    <div className="text-2xl font-black">3D 14H 22M</div>
-                  </div>
-                </div>
-                
-                {/* Newsletter Form - Minimal Tobias Style */}
-                <div className="border-2 border-white p-6 max-w-md">
-                  <h3 className="text-lg font-bold mb-4 tracking-wider uppercase">Stay Updated</h3>
-                  <form className="space-y-4">
-                    <input
-                      type="email"
-                      placeholder="YOUR EMAIL ADDRESS"
-                      className="w-full bg-transparent border-b-2 border-gray-400 focus:border-yellow-400 py-2 text-white placeholder-gray-400 focus:outline-none transition-colors"
-                    />
-                    <button
-                      type="submit"
-                      className="w-full bg-yellow-400 hover:bg-yellow-300 text-black font-bold py-3 px-6 transition-colors tracking-wider uppercase"
-                    >
-                      Subscribe
-                    </button>
-                  </form>
-                </div>
-              </div>
-              
-              {/* Minimal Geometric Illustration */}
-              <div className="lg:col-span-5">
-                <div className="relative">
-                  <div className="aspect-square bg-yellow-400 opacity-10"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-32 h-32 border-4 border-yellow-400 flex items-center justify-center">
-                      <div className="text-4xl font-black text-yellow-400">{latestDropNumber}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+      {/* HERO — magazine cover */}
+      <section className="py-32 px-4 bg-charcoal text-white">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+          <div className="lg:col-span-7 space-y-6">
+            <span className="inline-block bg-sales-green text-charcoal px-3 py-1 text-xs font-bold tracking-widest uppercase">
+              Weekly Pipeline Multipliers
+            </span>
+            <h1 className="text-6xl lg:text-7xl font-black leading-tight">
+              Five Fresh Sales Tools.<br />
+              <span className="text-sales-green">Curated Every&nbsp;Thursday.</span>
+            </h1>
+            <p className="max-w-xl text-lg text-gray-300">
+              No fluff—just the software that actually moves revenue, tested and annotated by the makers themselves.
+            </p>
+            {/* Newsletter */}
+            <form className="mt-8 max-w-sm space-y-3">
+              <input
+                type="email"
+                placeholder="you@company.com"
+                className="w-full bg-transparent border-b border-gray-500 focus:border-sales-green outline-none py-2"
+              />
+              <button className="w-full bg-sales-green text-charcoal font-bold py-3 uppercase tracking-widest text-sm">
+                Get the Drop
+              </button>
+            </form>
+          </div>
+
+          {/* large geometric drop number */}
+          <div className="lg:col-span-5 flex items-center justify-center">
+            <div className="relative w-64 h-64 border-4 border-sales-green flex items-center justify-center">
+              <span className="text-8xl font-black text-sales-green">{latestDropNumber}</span>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Tools Section - Square Cards, Tobias Style */}
-        <section className="py-24 px-4 bg-gray-50">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <div className="mb-4">
-                <span className="inline-block bg-black text-white px-4 py-2 text-sm font-bold tracking-wider uppercase">
-                  Drop #{latestDropNumber}
-                </span>
-              </div>
-              <h2 className="text-4xl lg:text-6xl font-black text-black mb-6">
-                THIS WEEK&apos;S<br />SELECTION
-              </h2>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                Handpicked tools that push boundaries and solve real problems.
-              </p>
-            </div>
-            
-            {tools.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
-                {tools.map((tool, index) => {
-                  // Tobias style: strategic use of color
-                  const colorClasses = [
-                    'bg-black text-white',
-                    'bg-white text-black border-2 border-black',
-                    'bg-yellow-400 text-black',
-                    'bg-white text-black border-2 border-black',
-                    'bg-black text-white'
-                  ]
-                  const cardClass = colorClasses[index % colorClasses.length]
-                  
-                  return (
-                    <div
-                      key={tool.id}
-                      className={`${cardClass} aspect-square p-6 hover:scale-105 transition-all duration-300 cursor-pointer group flex flex-col`}
-                    >
-                      {/* Tool Image - Square */}
-                      <div className="mb-4">
-                        {tool.fields.Image && tool.fields.Image[0] ? (
+      {/* TOOLS — case-study cards */}
+      <section className="py-24 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-12">
+            <span className="text-sm font-bold uppercase tracking-widest text-sales-green">Drop #{latestDropNumber}</span>
+            <h2 className="text-5xl font-black mt-2">This Week’s Selection</h2>
+          </div>
+
+          {tools.length ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {tools.map((tool, idx) => {
+                const cardThemes = [
+                  "bg-charcoal text-white",
+                  "bg-gray-100 text-charcoal border border-gray-200",
+                  "bg-sales-green text-charcoal",
+                ]
+                const theme = cardThemes[idx % cardThemes.length]
+                return (
+                  <div
+                    key={tool.id}
+                    className={`${theme} rounded-lg p-8 flex flex-col justify-between aspect-[4/5] hover:scale-[1.02] transition-transform duration-200`}
+                  >
+                    <div>
+                      <div className="flex items-start justify-between mb-4">
+                        {tool.fields.Image?.[0] ? (
                           <img
-                            src={tool.fields.Image[0].url || "/placeholder.svg"}
-                            alt={tool.fields.Name || "Tool"}
-                            className="w-12 h-12 object-cover"
+                            src={tool.fields.Image[0].url}
+                            alt={tool.fields.Name}
+                            className="w-16 h-16 object-contain rounded"
                           />
                         ) : (
-                          <div className={`w-12 h-12 border-2 ${cardClass.includes('bg-black') ? 'border-white' : 'border-black'} flex items-center justify-center`}>
-                            <span className="text-xs font-bold">TOOL</span>
+                          <div className="w-16 h-16 border-2 border-current flex items-center justify-center text-xs font-bold">
+                            LOGO
                           </div>
                         )}
+                        <span className="text-xs font-bold uppercase">{tool.fields.Category}</span>
                       </div>
-                      
-                      <div className="flex flex-col h-full">
-                        <h3 className="text-lg font-black mb-2 leading-tight">
-                          {tool.fields.Name || "UNNAMED TOOL"}
-                        </h3>
-                        
-                        <div className="mb-3">
-                          <span className={`inline-block px-2 py-1 text-xs font-bold tracking-wider uppercase ${
-                            cardClass.includes('bg-black') ? 'bg-white text-black' : 
-                            cardClass.includes('bg-yellow-400') ? 'bg-black text-yellow-400' : 'bg-black text-white'
-                          }`}>
-                            {tool.fields.Category || "OTHER"}
-                          </span>
-                        </div>
-                        
-                        <p className="text-sm mb-4 flex-grow opacity-80 leading-tight">
-                          {tool.fields.Tagline || "Revolutionary tool for modern workflows"}
-                        </p>
-                        
-                        {/* Maker Quote - Condensed */}
-                        {tool.fields["Maker Quote"] && tool.fields["Maker Name"] && (
-                          <div className="text-xs opacity-70 mb-4">
-                            <p className="italic mb-1">&quot;{tool.fields["Maker Quote"].slice(0, 60)}...&quot;</p>
-                            <p className="font-bold">— {tool.fields["Maker Name"]}</p>
-                          </div>
-                        )}
-                        
-                        {tool.fields["Website URL"] && (
-                          <div className="mt-auto">
-                            <a
-                              href={tool.fields["Website URL"]}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-xs font-bold tracking-wider uppercase hover:opacity-70 transition-opacity"
-                            >
-                              VISIT →
-                            </a>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
-            ) : (
-              <div className="text-center py-16">
-                <div className="w-24 h-24 bg-black mx-auto mb-6 flex items-center justify-center">
-                  <span className="text-yellow-400 text-2xl font-black">0</span>
-                </div>
-                <h3 className="text-2xl font-black text-black mb-2">LOADING TOOLS</h3>
-                <p className="text-gray-600">New drop coming soon.</p>
-              </div>
-            )}
-          </div>
-        </section>
 
-        {/* Sponsors Section - Square Cards */}
-        <section className="py-24 px-4 bg-white">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl lg:text-6xl font-black text-black mb-6">
-                PARTNERS
-              </h2>
-            </div>
-            
-            {sponsors.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
-                {sponsors.map((sponsor, index) => (
-                  <div 
-                    key={sponsor.id} 
-                    className={`aspect-square p-8 hover:scale-105 transition-all duration-300 cursor-pointer group flex flex-col ${
-                      index % 2 === 0 ? 'bg-black text-white' : 'bg-gray-50 text-black border-2 border-black'
-                    }`}
-                  >
-                    <div className="mb-6">
-                      {sponsor.fields.Logo && sponsor.fields.Logo[0] ? (
-                        <img
-                          src={sponsor.fields.Logo[0].url || "/placeholder.svg"}
-                          alt={sponsor.fields.Name || "Sponsor"}
-                          className="w-16 h-16 object-cover"
-                        />
-                      ) : (
-                        <div className={`w-16 h-16 border-2 ${index % 2 === 0 ? 'border-white' : 'border-black'} flex items-center justify-center`}>
-                          <span className="text-xs font-bold">LOGO</span>
-                        </div>
+                      <h3 className="text-2xl font-black mb-2">{tool.fields.Name}</h3>
+                      <p className="text-sm leading-snug opacity-90 mb-4">{tool.fields.Tagline}</p>
+                      {tool.fields["Maker Quote"] && (
+                        <blockquote className="text-xs italic opacity-80">
+                          “{tool.fields["Maker Quote"]}”
+                          {tool.fields["Maker Name"] && (
+                            <span className="block not-italic mt-1 font-bold">— {tool.fields["Maker Name"]}</span>
+                          )}
+                        </blockquote>
                       )}
                     </div>
-                    
-                    <h3 className="text-2xl font-black mb-4 leading-tight">
-                      {sponsor.fields.Name || "SPONSOR NAME"}
-                    </h3>
-                    
-                    <p className="text-sm opacity-80 mb-6 flex-grow leading-relaxed">
-                      {sponsor.fields.Blurb || "Strategic partner supporting innovation in digital tools and workflows."}
-                    </p>
-                    
-                    {sponsor.fields["Website URL"] && (
-                      <div className="mt-auto">
-                        <a
-                          href={sponsor.fields["Website URL"]}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-xs font-bold tracking-wider uppercase hover:opacity-70 transition-opacity"
-                        >
-                          VISIT PARTNER →
-                        </a>
-                      </div>
+
+                    {tool.fields["Website URL"] && (
+                      <a
+                        href={tool.fields["Website URL"]}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="self-start mt-4 text-xs font-bold uppercase tracking-widest underline underline-offset-4"
+                      >
+                        Visit →
+                      </a>
                     )}
                   </div>
-                ))}
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
-                {[1, 2].map((item) => (
-                  <div key={item} className={`aspect-square p-8 flex flex-col ${
-                    item % 2 === 0 ? 'bg-black text-white' : 'bg-gray-50 text-black border-2 border-black'
-                  }`}>
-                    <div className="mb-6">
-                      <div className={`w-16 h-16 border-2 ${item % 2 === 0 ? 'border-white' : 'border-black'} flex items-center justify-center`}>
-                        <span className="text-xs font-bold">LOGO</span>
-                      </div>
-                    </div>
-                    <h3 className="text-2xl font-black mb-4">PARTNER {item}</h3>
-                    <p className="text-sm opacity-80 flex-grow">Strategic partner supporting innovation.</p>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </section>
-
-        {/* Makers Section - Square Cards */}
-        <section className="py-24 px-4 bg-gray-50">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl lg:text-6xl font-black text-black mb-6">
-                THE MAKERS
-              </h2>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                Brilliant minds creating the future of digital tools.
-              </p>
+                )
+              })}
             </div>
-            
-            {makers.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
-                {makers.map((maker, index) => {
-                  const colorClasses = [
-                    'bg-yellow-400 text-black',
-                    'bg-black text-white',
-                    'bg-white text-black border-2 border-black',
-                    'bg-black text-white',
-                    'bg-white text-black border-2 border-black'
-                  ]
-                  const cardClass = colorClasses[index % colorClasses.length]
-                  
-                  return (
-                    <div 
-                      key={maker.id} 
-                      className={`${cardClass} aspect-square p-6 hover:scale-105 transition-all duration-300 cursor-pointer group flex flex-col`}
-                    >
-                      {/* Square Profile Photo */}
-                      <div className="mb-4">
-                        {maker.fields.Photo && maker.fields.Photo[0] ? (
-                          <img
-                            src={maker.fields.Photo[0].url || "/placeholder.svg"}
-                            alt={maker.fields.Name || "Maker"}
-                            className="w-16 h-16 object-cover"
-                          />
-                        ) : (
-                          <div className={`w-16 h-16 border-2 ${cardClass.includes('bg-black') ? 'border-white' : 'border-black'} flex items-center justify-center`}>
-                            <span className="text-xs font-bold">MAKER</span>
-                          </div>
-                        )}
-                      </div>
-                      
-                      <h3 className="text-lg font-black mb-2 leading-tight">
-                        {maker.fields.Name || "MAKER NAME"}
-                      </h3>
-                      
-                      <p className="text-xs opacity-80 mb-4 flex-grow leading-tight">
-                        {maker.fields.Bio ? maker.fields.Bio.slice(0, 80) + "..." : "Creative professional building next-generation tools for modern teams."}
-                      </p>
-                      
-                      {maker.fields["Profile Link"] && (
-                        <div className="mt-auto">
-                          <a
-                            href={maker.fields["Profile Link"]}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-xs font-bold tracking-wider uppercase hover:opacity-70 transition-opacity"
-                          >
-                            PROFILE →
-                          </a>
-                        </div>
-                      )}
-                    </div>
-                  )
-                })}
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
-                {[1, 2, 3, 4, 5].map((item) => {
-                  const colorClasses = [
-                    'bg-yellow-400 text-black',
-                    'bg-black text-white',
-                    'bg-white text-black border-2 border-black',
-                    'bg-black text-white',
-                    'bg-white text-black border-2 border-black'
-                  ]
-                  const cardClass = colorClasses[(item-1) % colorClasses.length]
-                  
-                  return (
-                    <div key={item} className={`${cardClass} aspect-square p-6 flex flex-col`}>
-                      <div className="mb-4">
-                        <div className={`w-16 h-16 border-2 ${cardClass.includes('bg-black') ? 'border-white' : 'border-black'} flex items-center justify-center`}>
-                          <span className="text-xs font-bold">MAKER</span>
-                        </div>
-                      </div>
-                      <h3 className="text-lg font-black mb-2">MAKER {item}</h3>
-                      <p className="text-xs opacity-80 flex-grow">Creative professional building tools.</p>
-                    </div>
-                  )
-                })}
-              </div>
-            )}
-          </div>
-        </section>
+          ) : (
+            <p className="text-center text-gray-500">Next drop loading…</p>
+          )}
+        </div>
+      </section>
 
-        {/* Archive Section - Minimalist */}
-        <section className="py-24 px-4 bg-white">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl lg:text-6xl font-black text-center text-black mb-16">
-              ARCHIVE
-            </h2>
-            <div className="space-y-2">
-              {[1, 2, 3, 4, 5].map((item) => (
-                <div key={item} className="border-2 border-black p-6 hover:bg-black hover:text-white transition-all duration-300 cursor-pointer group">
-                  <div className="flex justify-between items-center">
-                    <h3 className="text-lg font-black tracking-wider">
-                      DROP #{latestDropNumber - item} — {" "}
-                      {new Date(Date.now() - item * 7 * 24 * 60 * 60 * 1000).toLocaleDateString("en-US", {
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric",
-                      }).toUpperCase()}
-                    </h3>
-                    <div className="text-2xl font-black group-hover:rotate-180 transition-transform">
-                      ↓
-                    </div>
+      {/* MAKERS — portrait roster */}
+      <section className="py-24 px-4 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-5xl font-black mb-12">The Makers</h2>
+          {makers.length ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
+              {makers.map((maker, idx) => {
+                const cardThemes = ["bg-charcoal text-white", "bg-white text-charcoal border border-gray-200"]
+                const theme = cardThemes[idx % 2]
+                return (
+                  <div
+                    key={maker.id}
+                    className={`${theme} rounded-lg p-6 flex flex-col aspect-[3/4] hover:scale-[1.02] transition-transform duration-200`}
+                  >
+                    {maker.fields.Photo?.[0] ? (
+                      <img
+                        src={maker.fields.Photo[0].url}
+                        alt={maker.fields.Name}
+                        className="w-20 h-20 object-cover rounded-full mb-4"
+                      />
+                    ) : (
+                      <div className="w-20 h-20 border-2 border-current rounded-full mb-4 flex items-center justify-center text-xs font-bold">
+                        M
+                      </div>
+                    )}
+                    <h3 className="text-lg font-black">{maker.fields.Name}</h3>
+                    <p className="text-sm leading-snug mt-2 opacity-80 flex-grow">
+                      {maker.fields.Bio ? maker.fields.Bio.slice(0, 80) + "…" : ""}
+                    </p>
+                    {maker.fields["Profile Link"] && (
+                      <a
+                        href={maker.fields["Profile Link"]}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-4 text-xs font-bold uppercase underline underline-offset-4"
+                      >
+                        Profile →
+                      </a>
+                    )}
                   </div>
+                )
+              })}
+            </div>
+          ) : (
+            <p className="text-center text-gray-500">Makers loading…</p>
+          )}
+        </div>
+      </section>
+
+      {/* SPONSORS — billboard */}
+      <section className="py-24 px-4">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-5xl font-black mb-12 text-center">Partners</h2>
+          {sponsors.length ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              {sponsors.map((sponsor, idx) => (
+                <div
+                  key={sponsor.id}
+                  className={`rounded-lg p-10 flex flex-col justify-between aspect-[16/9] ${
+                    idx % 2 === 0 ? "bg-charcoal text-white" : "bg-gray-100 text-charcoal border border-gray-200"
+                  }`}
+                >
+                  <div>
+                    {sponsor.fields.Logo?.[0] ? (
+                      <img
+                        src={sponsor.fields.Logo[0].url}
+                        alt={sponsor.fields.Name}
+                        className="h-12 object-contain mb-4"
+                      />
+                    ) : (
+                      <div className="h-12 border-b-2 border-current flex items-center font-bold mb-4">LOGO</div>
+                    )}
+                    <h3 className="text-2xl font-black">{sponsor.fields.Name}</h3>
+                    <p className="text-sm mt-2 opacity-80">{sponsor.fields.Blurb}</p>
+                  </div>
+                  {sponsor.fields["Website URL"] && (
+                    <a
+                      href={sponsor.fields["Website URL"]}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 text-xs font-bold uppercase underline underline-offset-4 self-start"
+                    >
+                      Visit Partner →
+                    </a>
+                  )}
                 </div>
               ))}
             </div>
-          </div>
-        </section>
-      </main>
+          ) : (
+            <p className="text-center text-gray-500">Partners loading…</p>
+          )}
+        </div>
+      </section>
 
-      {/* Footer - Tobias Minimal Style */}
-      <footer className="bg-black text-white py-16 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h3 className="text-4xl font-black mb-4">FINDSDAY</h3>
-              <p className="text-gray-400 text-lg max-w-md">
-                Curating the future of digital tools. Every Thursday.
-              </p>
-            </div>
-            <div className="flex space-x-4 lg:justify-end">
-              {['TWITTER', 'INSTAGRAM', 'LINKEDIN'].map((social) => (
-                <a key={social} href="#" className="w-16 h-16 border-2 border-white hover:bg-yellow-400 hover:text-black hover:border-yellow-400 transition-colors flex items-center justify-center">
-                  <span className="text-xs font-bold">{social[0]}</span>
-                </a>
-              ))}
-            </div>
+      {/* ARCHIVE */}
+      <section className="py-24 px-4 bg-gray-50">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-5xl font-black mb-12 text-center">Archive</h2>
+          <div className="space-y-3">
+            {[1, 2, 3, 4, 5].map((offset) => (
+              <div
+                key={offset}
+                className="border border-gray-300 rounded-lg p-6 flex justify-between items-center cursor-pointer hover:bg-charcoal hover:text-white hover:border-sales-green transition"
+              >
+                <span className="font-black tracking-wider">
+                  DROP #{latestDropNumber - offset} —{" "}
+                  {new Date(Date.now() - offset * 7 * 24 * 60 * 60 * 1000).toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                  }).toUpperCase()}
+                </span>
+                <span className="text-2xl font-black">↓</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="bg-charcoal text-white py-16 px-4">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
+          <div>
+            <h3 className="text-3xl font-black">FINDSDAY</h3>
+            <p className="text-sm text-gray-400 mt-1">Curating revenue software. Every Thursday.</p>
+          </div>
+          <div className="flex space-x-4 mt-6 md:mt-0">
+            {["TW", "IG", "LI"].map((s) => (
+              <a
+                key={s}
+                href="#"
+                className="w-12 h-12 border border-gray-500 flex items-center justify-center text-xs font-bold hover:bg-sales-green hover:text-charcoal transition"
+              >
+                {s}
+              </a>
+            ))}
           </div>
         </div>
       </footer>
     </div>
   )
-}
