@@ -14,7 +14,7 @@ async function getHomePageData() {
         : 1
 
     const toolsRecords = await base("Tools")
-      .select({ filterByFormula: `{Drop Number} = ${latestDropNumber}`, sort: [{ field: "Name", direction: "asc" }] })
+      .select({ filterByFormula: `{Drop}`, sort: [{ field: "Name", direction: "asc" }] })
       .firstPage()
     const tools = toolsRecords.map((record) => ({ id: record.id, fields: record.fields })) as ToolRecord[]
 
