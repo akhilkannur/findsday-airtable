@@ -1,9 +1,8 @@
 // app/page.tsx
-import Header from "../components/Header"
-import { base, type ToolRecord, type SponsorRecord, type MakerRecord } from "@/lib/airtableClient"
-import Image from "next/image"
+import Header from "../components/Header";
+import { base, type ToolRecord, type SponsorRecord, type MakerRecord } from "@/lib/airtableClient";
 
-export const dynamic = "force-dynamic"
+export const dynamic = "force-dynamic";
 
 async function getHomePageData() {
   try {
@@ -12,41 +11,44 @@ async function getHomePageData() {
         sort: [{ field: "Drop Number", direction: "desc" }],
         maxRecords: 1,
       })
-      .firstPage()
-    const latestDropNumber = dropsRecords.length > 0 ? dropsRecords[0].fields["Drop Number"] : 1
+      .firstPage();
+    const latestDropNumber =
+      dropsRecords.length > 0 && typeof dropsRecords[0].fields["Drop Number"] === "number"
+        ? dropsRecords[0].fields["Drop Number"]
+        : 1;
 
     const toolsRecords = await base("Tools")
       .select({
         filterByFormula: `{Drop Number} = ${latestDropNumber}`,
         sort: [{ field: "Name", direction: "asc" }],
       })
-      .firstPage()
+      .firstPage();
     const tools = toolsRecords.map((record) => ({
       id: record.id,
       fields: record.fields,
-    })) as ToolRecord[]
+    })) as ToolRecord[];
 
-    const sponsorsRecords = await base("Sponsors").select({ maxRecords: 2 }).firstPage()
+    const sponsorsRecords = await base("Sponsors").select({ maxRecords: 2 }).firstPage();
     const sponsors = sponsorsRecords.map((record) => ({
       id: record.id,
       fields: record.fields,
-    })) as SponsorRecord[]
+    })) as SponsorRecord[];
 
-    const makersRecords = await base("Makers").select({ maxRecords: 5 }).firstPage()
+    const makersRecords = await base("Makers").select({ maxRecords: 5 }).firstPage();
     const makers = makersRecords.map((record) => ({
       id: record.id,
       fields: record.fields,
-    })) as MakerRecord[]
+    })) as MakerRecord[];
 
-    return { tools, sponsors, makers, latestDropNumber }
+    return { tools, sponsors, makers, latestDropNumber };
   } catch (error) {
-    console.error("Error fetching data from Airtable:", error)
-    return { tools: [], sponsors: [], makers: [], latestDropNumber: 1 }
+    console.error("Error fetching data from Airtable:", error);
+    return { tools: [], sponsors: [], makers: [], latestDropNumber: 1 };
   }
 }
 
 export default async function Home() {
-  const { tools, sponsors, makers, latestDropNumber } = await getHomePageData()
+  const { tools, sponsors, makers, latestDropNumber } = await getHomePageData();
 
   return (
     <div className="bg-paper-white text-charcoal">
@@ -85,7 +87,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* TOOLS — bigger thumbnails + click to modal */}
+      {/* TOOLS */}
       <section className="py-24 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="mb-12">
@@ -100,8 +102,8 @@ export default async function Home() {
                   "bg-charcoal text-white",
                   "bg-gray-100 text-charcoal border border-gray-200",
                   "bg-sales-green text-charcoal",
-                ]
-                const theme = cardThemes[tool.id % cardThemes.length]
+                ];
+                const theme = cardThemes[tool.id % cardThemes.length];
                 return (
                   <div
                     key={tool.id}
@@ -130,7 +132,7 @@ export default async function Home() {
                       </blockquote>
                     )}
                   </div>
-                )
+                );
               })}
             </div>
           ) : (
@@ -146,8 +148,8 @@ export default async function Home() {
           {makers.length ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
               {makers.map((maker, idx) => {
-                const cardThemes = ["bg-charcoal text-white", "bg-white text-charcoal border border-gray-200"]
-                const theme = cardThemes[idx % 2]
+                const cardThemes = ["bg-charcoal text-white", "bg-white text-charcoal border border-gray-200"];
+                const theme = cardThemes[idx % 2];
                 return (
                   <div
                     key={maker.id}
@@ -179,7 +181,7 @@ export default async function Home() {
                       </a>
                     )}
                   </div>
-                )
+                );
               })}
             </div>
           ) : (
@@ -279,5 +281,5 @@ export default async function Home() {
         </div>
       </footer>
     </div>
-  )
+  );
 }
