@@ -13,18 +13,27 @@ async function getHomePageData() {
       })
       .firstPage();
 
-    const latestDropRecord = dropsRecords.length > 0 ? dropsRecords[0] : null;
-    const latestDropNumber = latestDropRecord?.fields["Drop Number"] && typeof latestDropRecord.fields["Drop Number"] === "number"
-      ? latestDropRecord.fields["Drop Number"]
-      : 1;
+    // --- Determine Latest Drop Number and Record ID ---
+    let latestDropNumber = 1;
+    let latestDropRecordId = null;
+
+    if (dropsRecords.length > 0) {
+      const potentialDropNumber = dropsRecords[0].fields["Drop Number"];
+      if (typeof potentialDropNumber === "number" && !isNaN(potentialDropNumber)) {
+        latestDropNumber = potentialDropNumber;
+        // Get the ID of the Drop *record* itself
+        latestDropRecordId = dropsRecords[0].id;
+      }
+    }
 
     // --- Fetch Tools linked to the Latest Drop Record ---
     let toolsRecords = [];
-    if (latestDropRecord) {
-      // Use the ID of the Drop *record* to filter Tools
+    if (latestDropRecordId) {
+      // Use the Drop Record ID to filter, not the Drop Number field
+      // This assumes the link field in the 'Tools' table is named 'Drop'
       toolsRecords = await base("Tools")
         .select({
-          filterByFormula: `{Drop} = '${latestDropRecord.id}'`,
+          filterByFormula: `{Drop} = '${latestDropRecordId}'`,
           sort: [{ field: "Name", direction: "asc" }],
         })
         .firstPage();
@@ -35,14 +44,12 @@ async function getHomePageData() {
       fields: record.fields,
     })) as ToolRecord[];
 
-    // --- Fetch Sponsors ---
     const sponsorsRecords = await base("Sponsors").select({ maxRecords: 2 }).firstPage();
     const sponsors = sponsorsRecords.map((record) => ({
       id: record.id,
       fields: record.fields,
     })) as SponsorRecord[];
 
-    // --- Fetch Makers ---
     const makersRecords = await base("Makers").select({ maxRecords: 5 }).firstPage();
     const makers = makersRecords.map((record) => ({
       id: record.id,
@@ -52,7 +59,6 @@ async function getHomePageData() {
     return { tools, sponsors, makers, latestDropNumber };
   } catch (error) {
     console.error("Error fetching data from Airtable:", error);
-    // Return empty arrays on error to prevent crashes, but log the error
     return { tools: [], sponsors: [], makers: [], latestDropNumber: 1 };
   }
 }
@@ -121,7 +127,8 @@ export default async function Home() {
                     {tool.fields.Image?.[0] ? (
                       <img
                         src={tool.fields.Image[0].url}
-                        alt={tool.fields.Name as string || "Tool Image"}
+                        // Improved alt text
+                        alt={tool.fields.Name ? `${tool.fields.Name} screenshot or logo` : "Tool image"}
                         className="w-full h-48 object-cover rounded-md mb-4"
                       />
                     ) : (
@@ -163,7 +170,7 @@ export default async function Home() {
                     {maker.fields.Photo?.[0] ? (
                       <img
                         src={maker.fields.Photo[0].url}
-                        alt={maker.fields.Name || "Maker Photo"}
+                        alt={maker.fields.Name ? `${maker.fields.Name}'s profile photo` : "Maker photo"}
                         className="w-20 h-20 object-cover rounded-full mb-4"
                       />
                     ) : (
@@ -211,7 +218,7 @@ export default async function Home() {
                     {sponsor.fields.Logo?.[0] ? (
                       <img
                         src={sponsor.fields.Logo[0].url}
-                        alt={sponsor.fields.Name || "Sponsor Logo"}
+                        alt={sponsor.fields.Name ? `${sponsor.fields.Name} logo` : "Sponsor logo"}
                         className="h-12 object-contain mb-4"
                       />
                     ) : (
