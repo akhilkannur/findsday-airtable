@@ -45,7 +45,7 @@ fields: {
   "Updated At"?: string;
   Drop?: string[];
   Maker?: string[];
-}
+};
 }
 
 // Subscribers Table
@@ -55,7 +55,7 @@ fields: {
   Email?: string;
   "Subscribed At"?: string;
   Status?: "Active" | "Unsubscribed";
-}
+};
 }
 
 // Makers Table
@@ -71,7 +71,7 @@ fields: {
   Tools?: string[];
   "Maker Title"?: string; // Added this field
   "Maker Quote"?: string; // Added this field
-}
+};
 }
 
 // Sponsors Table
@@ -84,7 +84,7 @@ fields: {
   "Website URL"?: string;
   "Created At"?: string;
   "Updated At"?: string;
-}
+};
 }
 
 // Drops Table
@@ -97,7 +97,7 @@ fields: {
   "Tools Count"?: number;
   "Created At"?: string;
   "Updated At"?: string;
-}
+};
 }
 
 // Helper function to fetch the latest drop number
@@ -105,9 +105,9 @@ export async function getLatestDropNumber() {
 try {
   console.log("🔍 Fetching latest drop number...");
   const dropsRecords = await base("Drops")
-    .select({ 
-      sort: [{ field: "Drop Number", direction: "desc" }], 
-      maxRecords: 1 
+    .select({
+      sort: [{ field: "Drop Date", direction: "desc" }], // Changed from "Drop Number"
+      maxRecords: 1
     })
     .firstPage();
   
