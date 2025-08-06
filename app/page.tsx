@@ -10,50 +10,84 @@ async function getHomePageData() {
   try {
     console.log("Fetching home page data...");
 
-    // --- Fetch All Tools (temporarily replacing latest drop logic for debugging) ---
-    console.log("[DEBUG] Fetching all tools for display on homepage.");
-    const allToolsRecords = await base("Tools")
-      .select({
-        sort: [{ field: "Created At", direction: "desc" }], // Sort by creation date
-      })
-      .firstPage(); // Fetch only the first page for initial display
+    // Add more detailed error handling
+    let tools: ToolRecord[] = [];
+    let sponsors: SponsorRecord[] = [];
+    let makers: MakerRecord[] = [];
+    let latestDropNumber = 1;
 
-    const tools = allToolsRecords.map((record) => ({
-      id: record.id,
-      fields: record.fields,
-    })) as ToolRecord[];
-    console.log(`[DEBUG] Fetched ${tools.length} tools for homepage display.`);
+    // Fetch tools with error handling
+    try {
+      console.log("[DEBUG] Fetching all tools for display on homepage.");
+      const allToolsRecords = await base("Tools")
+        .select({
+          sort: [{ field: "Created At", direction: "desc" }],
+        })
+        .firstPage();
 
-    const sponsorsRecords = await base("Sponsors").select({ maxRecords: 2 }).firstPage();
-    const sponsors = sponsorsRecords.map((record) => ({
-      id: record.id,
-      fields: record.fields,
-    })) as SponsorRecord[];
-    console.log(`[DEBUG] Fetched ${sponsors.length} sponsors.`);
+      tools = allToolsRecords.map((record) => ({
+        id: record.id,
+        fields: record.fields,
+      })) as ToolRecord[];
+      console.log(`[DEBUG] Fetched ${tools.length} tools for homepage display.`);
+    } catch (error) {
+      console.error("❌ Error fetching tools:", error);
+    }
 
-    const makersRecords = await base("Makers").select({ maxRecords: 5 }).firstPage();
-    const makers = makersRecords.map((record) => ({
-      id: record.id,
-      fields: record.fields,
-    })) as MakerRecord[];
-    console.log(`[DEBUG] Fetched ${makers.length} makers.`);
+    // Fetch sponsors with error handling
+    try {
+      const sponsorsRecords = await base("Sponsors").select({ maxRecords: 2 }).firstPage();
+      sponsors = sponsorsRecords.map((record) => ({
+        id: record.id,
+        fields: record.fields,
+      })) as SponsorRecord[];
+      console.log(`[DEBUG] Fetched ${sponsors.length} sponsors.`);
+    } catch (error) {
+      console.error("❌ Error fetching sponsors:", error);
+    }
 
-    const latestDropNumber = await getLatestDropNumber(); 
+    // Fetch makers with error handling
+    try {
+      const makersRecords = await base("Makers").select({ maxRecords: 5 }).firstPage();
+      makers = makersRecords.map((record) => ({
+        id: record.id,
+        fields: record.fields,
+      })) as MakerRecord[];
+      console.log(`[DEBUG] Fetched ${makers.length} makers.`);
+    } catch (error) {
+      console.error("❌ Error fetching makers:", error);
+    }
+
+    // Fetch latest drop number with error handling
+    try {
+      latestDropNumber = await getLatestDropNumber();
+    } catch (error) {
+      console.error("❌ Error fetching latest drop number:", error);
+      latestDropNumber = 1;
+    }
 
     return { tools, sponsors, makers, latestDropNumber };
   } catch (error) {
-    console.error("❌ Error fetching data from Airtable:", error);
+    console.error("❌ Critical error in getHomePageData:", error);
     return { tools: [], sponsors: [], makers: [], latestDropNumber: 1 };
   }
 }
 
 export default async function Home() {
-  const { tools, sponsors, makers, latestDropNumber } = await getHomePageData();
+  // Add try-catch around the entire component
+  let pageData;
+  try {
+    pageData = await getHomePageData();
+  } catch (error) {
+    console.error("❌ Failed to load page data:", error);
+    pageData = { tools: [], sponsors: [], makers: [], latestDropNumber: 1 };
+  }
+
+  const { tools, sponsors, makers, latestDropNumber } = pageData;
 
   // Placeholder for abstract graphic in hero section
   const heroGraphicUrl = "/placeholder.svg?height=400&width=400";
   const footerGraphicUrl = "/placeholder.svg?height=40&width=40";
-
 
   return (
     <div className="bg-charcoal text-white min-h-screen">
@@ -102,14 +136,14 @@ export default async function Home() {
       <section className="py-24 px-4 bg-charcoal-light border-t border-b border-gray-800">
         <div className="max-w-7xl mx-auto">
           <div className="mb-12 flex justify-between items-center">
-            <h2 className="text-4xl font-bold text-white">New Releases (All Tools)</h2>
+            <h2 className="text-4xl font-bold text-white">New Releases</h2>
             <a href="#" className="text-gray-400 hover:text-accent-green transition-colors">
               View All →
             </a>
           </div>
           {tools.length ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {tools.slice(0, 2).map((tool) => ( // Displaying only first 2 tools for "New Releases"
+              {tools.slice(0, 2).map((tool) => (
                 <div
                   key={tool.id}
                   className="bg-charcoal-dark border border-gray-800 rounded-lg overflow-hidden cursor-pointer hover:shadow-lg transition-shadow duration-200"
@@ -137,7 +171,7 @@ export default async function Home() {
                     <p className="text-gray-400 text-base line-clamp-3">{tool.fields.Tagline || "No tagline available."}</p>
                     {tool.fields["Maker Quote"] && (
                       <blockquote className="text-sm italic text-gray-500 mt-4">
-                        “{tool.fields["Maker Quote"]}”
+                        "{tool.fields["Maker Quote"]}"
                       </blockquote>
                     )}
                   </div>
@@ -145,12 +179,15 @@ export default async function Home() {
               ))}
             </div>
           ) : (
-            <p className="text-center text-gray-500">No tools found. Please add tools in Airtable.</p>
+            <div className="text-center py-12">
+              <p className="text-gray-500 mb-4">Loading tools...</p>
+              <p className="text-sm text-gray-600">If this persists, please check your Airtable connection.</p>
+            </div>
           )}
         </div>
       </section>
 
-      {/* MAKERS (OUR READERS) - Now a card section */}
+      {/* MAKERS (OUR READERS) */}
       <section className="py-24 px-4 bg-charcoal-light border-t border-b border-gray-800">
         <div className="max-w-7xl mx-auto">
           <div className="mb-12 flex justify-between items-center">
@@ -185,7 +222,7 @@ export default async function Home() {
                   )}
                   {maker.fields["Maker Quote"] && (
                     <blockquote className="text-lg italic text-gray-500 mt-2 line-clamp-3">
-                      “{maker.fields["Maker Quote"]}”
+                      "{maker.fields["Maker Quote"]}"
                     </blockquote>
                   )}
                   {maker.fields["Profile Link"] && (
@@ -202,21 +239,23 @@ export default async function Home() {
               ))}
             </div>
           ) : (
-            <p className="text-center text-gray-500">Makers loading…</p>
+            <div className="text-center py-12">
+              <p className="text-gray-500">Loading makers...</p>
+            </div>
           )}
 
           {/* Testimonials */}
           <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-charcoal-dark border border-gray-800 p-6 rounded-lg shadow-md hover:border-accent-green transition-colors">
               <p className="text-lg italic text-gray-300">
-                “One of the only sales newsletters I open and read every single time 💯”
+                "One of the only sales newsletters I open and read every single time 💯"
               </p>
               <p className="text-sm font-bold text-gray-400 mt-4">MICHAEL RIDDERING</p>
               <p className="text-xs text-gray-500">FOUNDER @ INFLIGHT</p>
             </div>
             <div className="bg-charcoal-dark border border-gray-800 p-6 rounded-lg shadow-md hover:border-accent-green transition-colors">
               <p className="text-lg italic text-gray-300">
-                “I always look forward to a Findsday newsletter.”
+                "I always look forward to a Findsday newsletter."
               </p>
               <p className="text-sm font-bold text-gray-400 mt-4">ANDREW HOGAN</p>
               <p className="text-xs text-gray-500">HEAD OF INSIGHTS @ FIGMA</p>
@@ -265,7 +304,9 @@ export default async function Home() {
               ))}
             </div>
           ) : (
-            <p className="text-center text-gray-500">No sponsors found. Please add sponsors in Airtable.</p>
+            <div className="text-center py-12">
+              <p className="text-gray-500">Loading sponsors...</p>
+            </div>
           )}
         </div>
       </section>
