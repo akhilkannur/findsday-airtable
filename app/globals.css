@@ -3,9 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 240, 240, 240;
-  --background-end-rgb: 240, 240, 240;
+  /* New dark palette */
+  --charcoal: #121212;
+  --charcoal-light: #1a1a1a;
+  --charcoal-dark: #0a0a0a;
+  --accent-green: #00c853;
+  --accent-pink: #ec4899; /* A vibrant pink/purple */
+  --gray-text: #a0a0a0;
+
+  --foreground-rgb: 255, 255, 255; /* White text on dark background */
+  --background-start-rgb: 18, 18, 18; /* Charcoal */
+  --background-end-rgb: 10, 10, 10; /* Darker charcoal */
 }
 
 body {
@@ -20,17 +28,17 @@ body {
 
 @layer utilities {
   .btn-primary {
-    @apply bg-primary hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg transition-colors;
+    @apply bg-accent-pink hover:bg-accent-pink/80 text-charcoal font-bold py-2 px-6 rounded-lg transition-colors;
   }
   .card {
-    @apply bg-white shadow-md p-6 rounded-lg border border-gray-100;
+    @apply bg-charcoal-dark shadow-md p-6 rounded-lg border border-gray-800;
   }
-  
+
   /* Custom gradient animation */
   .animate-gradient-x {
     animation: gradient-x 15s ease infinite;
   }
-  
+
   /* Line clamp utilities */
   .line-clamp-2 {
     display: -webkit-box;
@@ -38,12 +46,19 @@ body {
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  
   .line-clamp-3 {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  /* Custom grid pattern for background */
+  .bg-grid-pattern {
+    background-image: 
+      linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 20px 20px; /* Adjust grid size as needed */
   }
 }
 
@@ -65,18 +80,15 @@ html {
 ::-webkit-scrollbar {
   width: 8px;
 }
-
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #1a1a1a; /* Darker track */
 }
-
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #A052DE, #EC4899);
+  background: linear-gradient(to bottom, #00c853, #ec4899); /* Green to Pink gradient */
   border-radius: 4px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #9333EA, #DB2777);
+  background: linear-gradient(to bottom, #00a042, #d13a87); /* Darker gradient on hover */
 }
 
 /* Backdrop blur fallback */
