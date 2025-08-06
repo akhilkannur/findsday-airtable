@@ -1,4 +1,4 @@
-// app/page.tsx
+// app/page.tsx - Diagnostic version
 import Header from "../components/Header";
 import { base, type ToolRecord, type SponsorRecord, type MakerRecord } from "@/lib/airtableClient";
 
@@ -6,47 +6,50 @@ export const dynamic = "force-dynamic";
 
 async function getHomePageData() {
   try {
-    console.log("🚀 Starting getHomePageData function");
-    console.log("🔑 Environment check:", {
-      hasApiKey: !!process.env.AIRTABLE_API_KEY,
-      hasBaseId: !!process.env.AIRTABLE_BASE_ID,
-      apiKeyLength: process.env.AIRTABLE_API_KEY?.length || 0,
-      baseId: process.env.AIRTABLE_BASE_ID
-    });
+    console.log("🚀 Starting diagnostic getHomePageData function");
 
-    // Step 1: Test basic connection
-    console.log("🔍 Testing basic Airtable connection...");
-    try {
-      const testRecords = await base("Drops").select({ maxRecords: 1 }).firstPage();
-      console.log("✅ Basic connection successful, test records:", testRecords.length);
-    } catch (testError) {
-      console.error("❌ Basic connection failed:", testError);
-      throw testError;
-    }
-
-    // Step 2: Fetch drops
-    console.log("📊 Fetching drops...");
-    const dropsRecords = await base("Drops")
+    // Step 1: Check what's actually in the Drops table
+    console.log("📊 Checking ALL drops in database...");
+    const allDropsRecords = await base("Drops")
       .select({
         sort: [{ field: "Drop Number", direction: "desc" }],
-        maxRecords: 1,
+        maxRecords: 10, // Get more drops to see what exists
       })
       .firstPage();
     
-    console.log("📊 Drops found:", dropsRecords.length);
-    if (dropsRecords.length > 0) {
-      console.log("📊 First drop record:", dropsRecords[0].fields);
-    }
+    console.log("📊 All drops found:", allDropsRecords.length);
+    allDropsRecords.forEach((drop, index) => {
+      console.log(`📊 Drop ${index + 1}:`, drop.fields);
+    });
 
     const latestDropNumber =
-      dropsRecords.length > 0 && typeof dropsRecords[0].fields["Drop Number"] === "number"
-        ? dropsRecords[0].fields["Drop Number"]
+      allDropsRecords.length > 0 && typeof allDropsRecords[0].fields["Drop Number"] === "number"
+        ? allDropsRecords[0].fields["Drop Number"]
         : 1;
 
-    console.log("📊 Latest drop number:", latestDropNumber);
+    console.log("📊 Latest drop number determined:", latestDropNumber);
 
-    // Step 3: Fetch tools with debugging
-    console.log("🛠️ Fetching tools for drop number:", latestDropNumber);
+    // Step 2: Check what's actually in the Tools table (without filter first)
+    console.log("🛠️ Checking ALL tools in database...");
+    const allToolsRecords = await base("Tools")
+      .select({
+        maxRecords: 10, // Get first 10 tools to see what exists
+        sort: [{ field: "Name", direction: "asc" }],
+      })
+      .firstPage();
+    
+    console.log("🛠️ All tools found:", allToolsRecords.length);
+    allToolsRecords.forEach((tool, index) => {
+      console.log(`🛠️ Tool ${index + 1}:`, {
+        name: tool.fields.Name,
+        dropNumber: tool.fields["Drop Number"],
+        category: tool.fields.Category,
+        allFields: Object.keys(tool.fields)
+      });
+    });
+
+    // Step 3: Now try to filter tools by the latest drop number
+    console.log(`🛠️ Filtering tools for drop number: ${latestDropNumber}`);
     const toolsRecords = await base("Tools")
       .select({
         filterByFormula: `{Drop Number} = ${latestDropNumber}`,
@@ -54,107 +57,99 @@ async function getHomePageData() {
       })
       .firstPage();
     
-    console.log("🛠️ Tools records found:", toolsRecords.length);
-    if (toolsRecords.length > 0) {
-      console.log("🛠️ First tool record:", toolsRecords[0].fields);
-    } else {
-      // If no tools found for latest drop, let's try fetching any tools
-      console.log("🔍 No tools for latest drop, checking all tools...");
-      const allToolsRecords = await base("Tools").select({ maxRecords: 5 }).firstPage();
-      console.log("🛠️ Total tools in database:", allToolsRecords.length);
-      if (allToolsRecords.length > 0) {
-        console.log("🛠️ Sample tool record:", allToolsRecords[0].fields);
-      }
-    }
+    console.log("🛠️ Filtered tools found:", toolsRecords.length);
     
     const tools = toolsRecords.map((record) => ({
       id: record.id,
       fields: record.fields,
     })) as ToolRecord[];
 
-    // Step 4: Fetch sponsors with debugging
-    console.log("🤝 Fetching sponsors...");
-    const sponsorsRecords = await base("Sponsors").select({ maxRecords: 2 }).firstPage();
+    // Step 4: Check sponsors
+    console.log("🤝 Checking sponsors...");
+    const sponsorsRecords = await base("Sponsors").select({ maxRecords: 10 }).firstPage();
     console.log("🤝 Sponsors found:", sponsorsRecords.length);
-    if (sponsorsRecords.length > 0) {
-      console.log("🤝 First sponsor record:", sponsorsRecords[0].fields);
-    }
+    sponsorsRecords.forEach((sponsor, index) => {
+      console.log(`🤝 Sponsor ${index + 1}:`, {
+        name: sponsor.fields.Name,
+        allFields: Object.keys(sponsor.fields)
+      });
+    });
     
-    const sponsors = sponsorsRecords.map((record) => ({
+    const sponsors = sponsorsRecords.slice(0, 2).map((record) => ({
       id: record.id,
       fields: record.fields,
     })) as SponsorRecord[];
 
-    // Step 5: Fetch makers with debugging
-    console.log("👨‍💻 Fetching makers...");
-    const makersRecords = await base("Makers").select({ maxRecords: 5 }).firstPage();
+    // Step 5: Check makers
+    console.log("👨‍💻 Checking makers...");
+    const makersRecords = await base("Makers").select({ maxRecords: 10 }).firstPage();
     console.log("👨‍💻 Makers found:", makersRecords.length);
-    if (makersRecords.length > 0) {
-      console.log("👨‍💻 First maker record:", makersRecords[0].fields);
-    }
+    makersRecords.forEach((maker, index) => {
+      console.log(`👨‍💻 Maker ${index + 1}:`, {
+        name: maker.fields.Name,
+        allFields: Object.keys(maker.fields)
+      });
+    });
     
-    const makers = makersRecords.map((record) => ({
+    const makers = makersRecords.slice(0, 5).map((record) => ({
       id: record.id,
       fields: record.fields,
     })) as MakerRecord[];
 
-    console.log("✅ Final results:", {
-      tools: tools.length,
-      sponsors: sponsors.length,
-      makers: makers.length,
+    console.log("✅ Final diagnostic results:", {
+      allDropsCount: allDropsRecords.length,
+      allToolsCount: allToolsRecords.length,
+      filteredToolsCount: tools.length,
+      sponsorsCount: sponsors.length,
+      makersCount: makers.length,
       latestDropNumber
     });
 
-    return { tools, sponsors, makers, latestDropNumber };
+    return { tools, sponsors, makers, latestDropNumber, allDropsRecords, allToolsRecords };
   } catch (error) {
     console.error("❌ ERROR in getHomePageData:", error);
-    
-    // Enhanced error logging
-    if (error instanceof Error) {
-      console.error("❌ Error details:", {
-        name: error.name,
-        message: error.message,
-        stack: error.stack
-      });
-    }
-    
-    // Check for common Airtable errors
-    if (typeof error === 'object' && error !== null) {
-      console.error("❌ Error object:", error);
-      
-      // Check for authentication errors
-      if ('statusCode' in error) {
-        console.error("❌ HTTP Status Code:", error.statusCode);
-      }
-      
-      if ('message' in error && typeof error.message === 'string') {
-        if (error.message.includes('authentication') || error.message.includes('unauthorized')) {
-          console.error("❌ AUTHENTICATION ERROR: Check your API key");
-        } else if (error.message.includes('not found') || error.message.includes('404')) {
-          console.error("❌ NOT FOUND ERROR: Check your base ID or table names");
-        }
-      }
-    }
-    
-    return { tools: [], sponsors: [], makers: [], latestDropNumber: 1 };
+    return { tools: [], sponsors: [], makers: [], latestDropNumber: 1, allDropsRecords: [], allToolsRecords: [] };
   }
 }
 
 export default async function Home() {
   console.log("🏠 Home component rendering...");
-  const { tools, sponsors, makers, latestDropNumber } = await getHomePageData();
+  const { tools, sponsors, makers, latestDropNumber, allDropsRecords, allToolsRecords } = await getHomePageData();
 
   return (
     <div className="bg-paper-white text-charcoal">
       <Header />
 
-      {/* Debug Info - Remove in production */}
-      <div className="bg-yellow-100 border border-yellow-400 p-4 text-sm text-yellow-800">
-        <strong>🐛 Debug Info:</strong> Tools: {tools.length}, Sponsors: {sponsors.length}, Makers: {makers.length}, Drop: {latestDropNumber}
-        <br />
-        <strong>Environment:</strong> API Key: {process.env.AIRTABLE_API_KEY ? '✅ Set' : '❌ Missing'}, Base ID: {process.env.AIRTABLE_BASE_ID ? '✅ Set' : '❌ Missing'}
-        <br />
-        <small>Check browser console and server logs for detailed debugging info</small>
+      {/* Enhanced Debug Info */}
+      <div className="bg-blue-100 border border-blue-400 p-4 text-sm text-blue-800 space-y-2">
+        <div><strong>🐛 Diagnostic Info:</strong></div>
+        <div>Tools: {tools.length}, Sponsors: {sponsors.length}, Makers: {makers.length}, Drop: {latestDropNumber}</div>
+        <div>Total Drops in DB: {allDropsRecords.length}, Total Tools in DB: {allToolsRecords.length}</div>
+        <div>Environment: API Key: {process.env.AIRTABLE_API_KEY ? '✅ Set' : '❌ Missing'}, Base ID: {process.env.AIRTABLE_BASE_ID ? '✅ Set' : '❌ Missing'}</div>
+        
+        {allDropsRecords.length > 0 && (
+          <div>
+            <strong>Available Drops:</strong>
+            {allDropsRecords.map((drop, i) => (
+              <span key={i} className="ml-2 bg-blue-200 px-2 py-1 rounded text-xs">
+                #{drop.fields["Drop Number"]}
+              </span>
+            ))}
+          </div>
+        )}
+        
+        {allToolsRecords.length > 0 && (
+          <div>
+            <strong>Sample Tools:</strong>
+            {allToolsRecords.slice(0, 3).map((tool, i) => (
+              <div key={i} className="ml-4 text-xs">
+                • {tool.fields.Name} (Drop: {tool.fields["Drop Number"] || 'Not set'})
+              </div>
+            ))}
+          </div>
+        )}
+        
+        <div className="text-xs">Check browser console for detailed field information</div>
       </div>
 
       {/* HERO */}
@@ -213,7 +208,6 @@ export default async function Home() {
                     className={`${theme} rounded-lg p-6 flex flex-col hover:scale-[1.02] transition-transform duration-200 cursor-pointer`}
                     onClick={() => window.open(`/tool/${tool.id}`, '_blank')}
                   >
-                    {/* Large thumbnail */}
                     {tool.fields.Image?.[0] ? (
                       <img
                         src={tool.fields.Image[0].url}
@@ -240,161 +234,56 @@ export default async function Home() {
             </div>
           ) : (
             <div className="text-center p-8 bg-red-50 border border-red-200 rounded-lg">
-              <p className="text-gray-500 mb-2">⚠️ No tools found</p>
-              <p className="text-sm text-red-600">
-                This could mean:
-                <br />• No tools exist for Drop #{latestDropNumber}
-                <br />• Airtable connection issues
-                <br />• Field name mismatches
-              </p>
+              <p className="text-gray-500 mb-2">⚠️ No tools found for Drop #{latestDropNumber}</p>
+              {allToolsRecords.length > 0 ? (
+                <div className="text-sm text-red-600">
+                  <p>Found {allToolsRecords.length} total tools in database, but none match Drop #{latestDropNumber}</p>
+                  <p className="mt-2">Available drop numbers in tools: {
+                    [...new Set(allToolsRecords.map(t => t.fields["Drop Number"]).filter(Boolean))]
+                    .map(n => `#${n}`).join(', ') || 'None set'
+                  }</p>
+                </div>
+              ) : (
+                <p className="text-sm text-red-600">No tools found in database at all</p>
+              )}
             </div>
           )}
         </div>
       </section>
 
-      {/* MAKERS */}
+      {/* MAKERS - Simplified for diagnostic */}
       <section className="py-24 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-5xl font-black mb-12">The Makers</h2>
           {makers.length ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
-              {makers.map((maker, idx) => {
-                const cardThemes = ["bg-charcoal text-white", "bg-white text-charcoal border border-gray-200"];
-                const theme = cardThemes[idx % 2];
-                return (
-                  <div
-                    key={maker.id}
-                    className={`${theme} rounded-lg p-6 flex flex-col aspect-[3/4] hover:scale-[1.02] transition-transform duration-200`}
-                  >
-                    {maker.fields.Photo?.[0] ? (
-                      <img
-                        src={maker.fields.Photo[0].url}
-                        alt={maker.fields.Name}
-                        className="w-20 h-20 object-cover rounded-full mb-4"
-                      />
-                    ) : (
-                      <div className="w-20 h-20 border-2 border-current rounded-full mb-4 flex items-center justify-center text-xs font-bold">
-                        M
-                      </div>
-                    )}
-                    <h3 className="text-lg font-black">{maker.fields.Name}</h3>
-                    <p className="text-sm leading-snug mt-2 opacity-80 flex-grow">
-                      {maker.fields.Bio ? maker.fields.Bio.slice(0, 80) + "…" : ""}
-                    </p>
-                    {maker.fields["Profile Link"] && (
-                      <a
-                        href={maker.fields["Profile Link"]}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-4 text-xs font-bold uppercase underline-offset-4"
-                      >
-                        Profile →
-                      </a>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
+            <p className="text-center">Found {makers.length} makers</p>
           ) : (
             <div className="text-center p-8 bg-red-50 border border-red-200 rounded-lg">
               <p className="text-gray-500 mb-2">⚠️ No makers found</p>
-              <p className="text-sm text-red-600">Check your Makers table in Airtable</p>
             </div>
           )}
         </div>
       </section>
 
-      {/* SPONSORS */}
+      {/* SPONSORS - Simplified for diagnostic */}
       <section className="py-24 px-4">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-5xl font-black mb-12 text-center">Partners</h2>
           {sponsors.length ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {sponsors.map((sponsor, idx) => (
-                <div
-                  key={sponsor.id}
-                  className={`rounded-lg p-10 flex flex-col justify-between aspect-[16/9] ${
-                    idx % 2 === 0 ? "bg-charcoal text-white" : "bg-gray-100 text-charcoal border border-gray-200"
-                  }`}
-                >
-                  <div>
-                    {sponsor.fields.Logo?.[0] ? (
-                      <img
-                        src={sponsor.fields.Logo[0].url}
-                        alt={sponsor.fields.Name}
-                        className="h-12 object-contain mb-4"
-                      />
-                    ) : (
-                      <div className="h-12 border-b-2 border-current flex items-center font-bold mb-4">LOGO</div>
-                    )}
-                    <h3 className="text-2xl font-black">{sponsor.fields.Name}</h3>
-                    <p className="text-sm mt-2 opacity-80">{sponsor.fields.Blurb}</p>
-                  </div>
-                  {sponsor.fields["Website URL"] && (
-                    <a
-                      href={sponsor.fields["Website URL"]}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-auto text-xs font-bold uppercase underline-offset-4"
-                    >
-                      Visit Partner →
-                    </a>
-                  )}
-                </div>
-              ))}
-            </div>
+            <p className="text-center">Found {sponsors.length} sponsors</p>
           ) : (
             <div className="text-center p-8 bg-red-50 border border-red-200 rounded-lg">
               <p className="text-gray-500 mb-2">⚠️ No partners found</p>
-              <p className="text-sm text-red-600">Check your Sponsors table in Airtable</p>
             </div>
           )}
-        </div>
-      </section>
-
-      {/* ARCHIVE */}
-      <section className="py-24 px-4 bg-gray-50">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-5xl font-black mb-12 text-center">Archive</h2>
-          <div className="space-y-3">
-            {[1, 2, 3, 4, 5].map((offset) => (
-              <div
-                key={offset}
-                className="border border-gray-300 rounded-lg p-6 flex justify-between items-center cursor-pointer hover:bg-charcoal hover:text-white transition"
-              >
-                <span className="font-black tracking-wider">
-                  DROP #{latestDropNumber - offset} —{" "}
-                  {new Date(Date.now() - offset * 7 * 24 * 60 * 60 * 1000).toLocaleDateString("en-US", {
-                    month: "short",
-                    day: "numeric",
-                    year: "numeric",
-                  }).toUpperCase()}
-                </span>
-                <span className="text-2xl font-black">↓</span>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
       {/* FOOTER */}
       <footer className="bg-charcoal text-white py-16 px-4">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
-          <div>
-            <h3 className="text-3xl font-black">FINDSDAY</h3>
-            <p className="text-sm text-gray-400 mt-1">Curating revenue software. Every Thursday.</p>
-          </div>
-          <div className="flex space-x-4 mt-6 md:mt-0">
-            {["TW", "IG", "LI"].map((s) => (
-              <a
-                key={s}
-                href="#"
-                className="w-12 h-12 border border-gray-500 flex items-center justify-center text-xs font-bold hover:bg-sales-green hover:text-charcoal transition"
-              >
-                {s}
-              </a>
-            ))}
-          </div>
+        <div className="max-w-6xl mx-auto text-center">
+          <h3 className="text-3xl font-black">FINDSDAY</h3>
+          <p className="text-sm text-gray-400 mt-1">Diagnostic Mode</p>
         </div>
       </footer>
     </div>
