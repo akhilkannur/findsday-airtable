@@ -1,7 +1,7 @@
 // app/page.tsx
 import Header from "../components/Header";
 import Airtable, { Record, FieldSet } from 'airtable';
-import { base, type ToolRecord, type SponsorRecord, type MakerRecord } from "@/lib/airtableClient";
+import { base, type ToolRecord, type SponsorRecord, type MakerRecord, getLatestDropNumber } from "@/lib/airtableClient";
 import Image from "next/image"; // Import Image component
 
 export const dynamic = "force-dynamic";
@@ -38,8 +38,7 @@ async function getHomePageData() {
     })) as MakerRecord[];
     console.log(`[DEBUG] Fetched ${makers.length} makers.`);
 
-    // For now, latestDropNumber will be a placeholder as we're not using the drop filtering
-    const latestDropNumber = 1; 
+    const latestDropNumber = await getLatestDropNumber(); 
 
     return { tools, sponsors, makers, latestDropNumber };
   } catch (error) {
