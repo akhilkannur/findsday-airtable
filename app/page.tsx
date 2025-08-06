@@ -38,16 +38,18 @@ async function getHomePageData() {
     let toolsRecords: Airtable.Record<FieldSet>[] = [];
     if (latestDropRecordId) {
       console.log(`Attempting to fetch tools for Drop Record ID: ${latestDropRecordId}`);
+      // IMPORTANT: This filter assumes your "Tools" table has a linked record field named "Drop"
+      // that links to records in your "Drops" table.
       const fetchedToolsRecords = await base("Tools")
         .select({
-          filterByFormula: `{Drop} = '${latestDropRecordId}'`, // Ensure 'Drop' is the linked record field name
+          filterByFormula: `{Drop} = '${latestDropRecordId}'`,
           sort: [{ field: "Name", direction: "asc" }],
         })
         .firstPage();
       toolsRecords = [...fetchedToolsRecords];
       console.log(`Fetched ${toolsRecords.length} tools for Drop Record ID: ${latestDropRecordId}`);
       if (toolsRecords.length === 0) {
-        console.log("No tools found linked to the latest drop. Check Airtable 'Tools' table 'Drop' field links.");
+        console.log("No tools found linked to the latest drop. Please ensure tools are linked to the latest drop in Airtable via the 'Drop' field.");
       }
     } else {
       console.log("No latest drop record ID available, skipping tool fetch.");
@@ -84,10 +86,6 @@ export default async function Home() {
 
   // Placeholder for abstract graphic in hero section
   const heroGraphicUrl = "/placeholder.svg?height=400&width=400";
-  const articleGraphic1Url = "/placeholder.svg?height=200&width=300";
-  const articleGraphic2Url = "/placeholder.svg?height=200&width=300";
-  const articleGraphic3Url = "/placeholder.svg?height=200&width=300";
-  const articleGraphic4Url = "/placeholder.svg?height=200&width=300";
   const footerGraphicUrl = "/placeholder.svg?height=40&width=40";
 
 
@@ -186,77 +184,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ARTICLES (Placeholder) */}
-      <section className="py-24 px-4 bg-charcoal">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-12 flex justify-between items-center">
-            <h2 className="text-4xl font-bold text-white">Articles</h2>
-            <a href="#" className="text-gray-400 hover:text-accent-green transition-colors">
-              View All →
-            </a>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Placeholder Article Card 1 */}
-            <div className="bg-charcoal-dark border border-gray-800 rounded-lg overflow-hidden cursor-pointer hover:shadow-lg transition-shadow duration-200">
-              <Image src={articleGraphic1Url || "/placeholder.svg"} alt="Article graphic" width={800} height={450} className="w-full h-48 object-cover" />
-              <div className="p-6">
-                <div className="flex items-center space-x-4 mb-3 text-sm text-gray-400">
-                  <span className="bg-gray-800 px-2 py-1 rounded-full text-xs font-bold uppercase text-accent-green">RESEARCH</span>
-                  <span>APR 30, 2025</span>
-                </div>
-                <h3 className="text-2xl font-bold text-white mb-2">You Can&apos;t Prompt This</h3>
-                <p className="text-gray-400 text-sm line-clamp-3">
-                  Exploring the limits of AI prompting and the unique human element in creative work.
-                </p>
-              </div>
-            </div>
-            {/* Placeholder Article Card 2 */}
-            <div className="bg-charcoal-dark border border-gray-800 rounded-lg overflow-hidden cursor-pointer hover:shadow-lg transition-shadow duration-200">
-              <Image src={articleGraphic2Url || "/placeholder.svg"} alt="Article graphic" width={800} height={450} className="w-full h-48 object-cover" />
-              <div className="p-6">
-                <div className="flex items-center space-x-4 mb-3 text-sm text-gray-400">
-                  <span className="bg-gray-800 px-2 py-1 rounded-full text-xs font-bold uppercase text-accent-green">BRANDING</span>
-                  <span>APR 11, 2025</span>
-                </div>
-                <h3 className="text-2xl font-bold text-white mb-2">Brand as product&apos;s secret weapon</h3>
-                <p className="text-gray-400 text-sm line-clamp-3">
-                  How strong branding can elevate a product beyond its features and functionalities.
-                </p>
-              </div>
-            </div>
-            {/* Placeholder Article Card 3 */}
-            <div className="bg-charcoal-dark border border-gray-800 rounded-lg overflow-hidden cursor-pointer hover:shadow-lg transition-shadow duration-200">
-              <Image src={articleGraphic3Url || "/placeholder.svg"} alt="Article graphic" width={800} height={450} className="w-full h-48 object-cover" />
-              <div className="p-6">
-                <div className="flex items-center space-x-4 mb-3 text-sm text-gray-400">
-                  <span className="bg-gray-800 px-2 py-1 rounded-full text-xs font-bold uppercase text-accent-green">COMMUNICATION</span>
-                  <span>MAY 5, 2022</span>
-                </div>
-                <h3 className="text-2xl font-bold text-white mb-2">Ideas from Developers on Handling UX Feedback</h3>
-                <p className="text-gray-400 text-sm line-clamp-3">
-                  Bridging the gap between development and user experience through effective communication.
-                </p>
-              </div>
-            </div>
-            {/* Placeholder Article Card 4 */}
-            <div className="bg-charcoal-dark border border-gray-800 rounded-lg overflow-hidden cursor-pointer hover:shadow-lg transition-shadow duration-200">
-              <Image src={articleGraphic4Url || "/placeholder.svg"} alt="Article graphic" width={800} height={450} className="w-full h-48 object-cover" />
-              <div className="p-6">
-                <div className="flex items-center space-x-4 mb-3 text-sm text-gray-400">
-                  <span className="bg-gray-800 px-2 py-1 rounded-full text-xs font-bold uppercase text-accent-green">RESEARCH</span>
-                  <span>MAR 8, 2022</span>
-                </div>
-                <h3 className="text-2xl font-bold text-white mb-2">Translating User Research Into Design</h3>
-                <p className="text-gray-400 text-sm line-clamp-3">
-                  Practical steps to effectively integrate user research findings into the design process.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* MAKERS (OUR READERS) */}
+      {/* MAKERS (OUR READERS) - Now a card section */}
       <section className="py-24 px-4 bg-charcoal-light border-t border-b border-gray-800">
         <div className="max-w-7xl mx-auto">
           <div className="mb-12 flex justify-between items-center">
@@ -266,23 +194,44 @@ export default async function Home() {
             </a>
           </div>
           {makers.length ? (
-            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-4 justify-items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {makers.map((maker) => (
-                <div key={maker.id} className="flex flex-col items-center text-center">
+                <div
+                  key={maker.id}
+                  className="bg-charcoal-dark border border-gray-800 rounded-lg p-6 flex flex-col items-center text-center cursor-pointer hover:shadow-lg transition-shadow duration-200"
+                >
                   {maker.fields.Photo?.[0] ? (
                     <Image
-                      src={maker.fields.Photo[0].url || "/placeholder.svg?height=80&width=80&query=maker profile photo"}
+                      src={maker.fields.Photo[0].url || "/placeholder.svg?height=120&width=120&query=maker profile photo"}
                       alt={maker.fields.Name ? `${maker.fields.Name}'s profile photo` : "Maker photo"}
-                      width={80}
-                      height={80}
-                      className="w-20 h-20 object-cover rounded-full border-2 border-gray-700"
+                      width={120}
+                      height={120}
+                      className="w-24 h-24 object-cover rounded-full border-2 border-gray-700 mb-4"
                     />
                   ) : (
-                    <div className="w-20 h-20 border-2 border-700 rounded-full flex items-center justify-center text-gray-500 text-xs font-bold">
+                    <div className="w-24 h-24 border-2 border-gray-700 rounded-full flex items-center justify-center text-gray-500 text-xl font-bold mb-4">
                       M
                     </div>
                   )}
-                  <p className="text-xs text-gray-400 mt-2">{maker.fields.Name || "Unknown"}</p>
+                  <h3 className="text-xl font-bold text-white mb-1">{maker.fields.Name || "Unknown Maker"}</h3>
+                  {maker.fields["Maker Title"] && (
+                    <p className="text-sm text-gray-400 mb-2">{maker.fields["Maker Title"]}</p>
+                  )}
+                  {maker.fields["Maker Quote"] && (
+                    <blockquote className="text-base italic text-gray-500 mt-2">
+                      “{maker.fields["Maker Quote"]}”
+                    </blockquote>
+                  )}
+                  {maker.fields["Profile Link"] && (
+                    <a
+                      href={maker.fields["Profile Link"]}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-accent-green hover:underline mt-4 text-sm"
+                    >
+                      View Profile →
+                    </a>
+                  )}
                 </div>
               ))}
             </div>
