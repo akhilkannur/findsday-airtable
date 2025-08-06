@@ -6,53 +6,156 @@ export const dynamic = "force-dynamic";
 
 async function getHomePageData() {
   try {
+    console.log("🚀 Starting getHomePageData function");
+    console.log("🔑 Environment check:", {
+      hasApiKey: !!process.env.AIRTABLE_API_KEY,
+      hasBaseId: !!process.env.AIRTABLE_BASE_ID,
+      apiKeyLength: process.env.AIRTABLE_API_KEY?.length || 0,
+      baseId: process.env.AIRTABLE_BASE_ID
+    });
+
+    // Step 1: Test basic connection
+    console.log("🔍 Testing basic Airtable connection...");
+    try {
+      const testRecords = await base("Drops").select({ maxRecords: 1 }).firstPage();
+      console.log("✅ Basic connection successful, test records:", testRecords.length);
+    } catch (testError) {
+      console.error("❌ Basic connection failed:", testError);
+      throw testError;
+    }
+
+    // Step 2: Fetch drops
+    console.log("📊 Fetching drops...");
     const dropsRecords = await base("Drops")
       .select({
         sort: [{ field: "Drop Number", direction: "desc" }],
         maxRecords: 1,
       })
       .firstPage();
+    
+    console.log("📊 Drops found:", dropsRecords.length);
+    if (dropsRecords.length > 0) {
+      console.log("📊 First drop record:", dropsRecords[0].fields);
+    }
+
     const latestDropNumber =
       dropsRecords.length > 0 && typeof dropsRecords[0].fields["Drop Number"] === "number"
         ? dropsRecords[0].fields["Drop Number"]
         : 1;
 
+    console.log("📊 Latest drop number:", latestDropNumber);
+
+    // Step 3: Fetch tools with debugging
+    console.log("🛠️ Fetching tools for drop number:", latestDropNumber);
     const toolsRecords = await base("Tools")
       .select({
         filterByFormula: `{Drop Number} = ${latestDropNumber}`,
         sort: [{ field: "Name", direction: "asc" }],
       })
       .firstPage();
+    
+    console.log("🛠️ Tools records found:", toolsRecords.length);
+    if (toolsRecords.length > 0) {
+      console.log("🛠️ First tool record:", toolsRecords[0].fields);
+    } else {
+      // If no tools found for latest drop, let's try fetching any tools
+      console.log("🔍 No tools for latest drop, checking all tools...");
+      const allToolsRecords = await base("Tools").select({ maxRecords: 5 }).firstPage();
+      console.log("🛠️ Total tools in database:", allToolsRecords.length);
+      if (allToolsRecords.length > 0) {
+        console.log("🛠️ Sample tool record:", allToolsRecords[0].fields);
+      }
+    }
+    
     const tools = toolsRecords.map((record) => ({
       id: record.id,
       fields: record.fields,
     })) as ToolRecord[];
 
+    // Step 4: Fetch sponsors with debugging
+    console.log("🤝 Fetching sponsors...");
     const sponsorsRecords = await base("Sponsors").select({ maxRecords: 2 }).firstPage();
+    console.log("🤝 Sponsors found:", sponsorsRecords.length);
+    if (sponsorsRecords.length > 0) {
+      console.log("🤝 First sponsor record:", sponsorsRecords[0].fields);
+    }
+    
     const sponsors = sponsorsRecords.map((record) => ({
       id: record.id,
       fields: record.fields,
     })) as SponsorRecord[];
 
+    // Step 5: Fetch makers with debugging
+    console.log("👨‍💻 Fetching makers...");
     const makersRecords = await base("Makers").select({ maxRecords: 5 }).firstPage();
+    console.log("👨‍💻 Makers found:", makersRecords.length);
+    if (makersRecords.length > 0) {
+      console.log("👨‍💻 First maker record:", makersRecords[0].fields);
+    }
+    
     const makers = makersRecords.map((record) => ({
       id: record.id,
       fields: record.fields,
     })) as MakerRecord[];
 
+    console.log("✅ Final results:", {
+      tools: tools.length,
+      sponsors: sponsors.length,
+      makers: makers.length,
+      latestDropNumber
+    });
+
     return { tools, sponsors, makers, latestDropNumber };
   } catch (error) {
-    console.error("Error fetching data from Airtable:", error);
+    console.error("❌ ERROR in getHomePageData:", error);
+    
+    // Enhanced error logging
+    if (error instanceof Error) {
+      console.error("❌ Error details:", {
+        name: error.name,
+        message: error.message,
+        stack: error.stack
+      });
+    }
+    
+    // Check for common Airtable errors
+    if (typeof error === 'object' && error !== null) {
+      console.error("❌ Error object:", error);
+      
+      // Check for authentication errors
+      if ('statusCode' in error) {
+        console.error("❌ HTTP Status Code:", error.statusCode);
+      }
+      
+      if ('message' in error && typeof error.message === 'string') {
+        if (error.message.includes('authentication') || error.message.includes('unauthorized')) {
+          console.error("❌ AUTHENTICATION ERROR: Check your API key");
+        } else if (error.message.includes('not found') || error.message.includes('404')) {
+          console.error("❌ NOT FOUND ERROR: Check your base ID or table names");
+        }
+      }
+    }
+    
     return { tools: [], sponsors: [], makers: [], latestDropNumber: 1 };
   }
 }
 
 export default async function Home() {
+  console.log("🏠 Home component rendering...");
   const { tools, sponsors, makers, latestDropNumber } = await getHomePageData();
 
   return (
     <div className="bg-paper-white text-charcoal">
       <Header />
+
+      {/* Debug Info - Remove in production */}
+      <div className="bg-yellow-100 border border-yellow-400 p-4 text-sm text-yellow-800">
+        <strong>🐛 Debug Info:</strong> Tools: {tools.length}, Sponsors: {sponsors.length}, Makers: {makers.length}, Drop: {latestDropNumber}
+        <br />
+        <strong>Environment:</strong> API Key: {process.env.AIRTABLE_API_KEY ? '✅ Set' : '❌ Missing'}, Base ID: {process.env.AIRTABLE_BASE_ID ? '✅ Set' : '❌ Missing'}
+        <br />
+        <small>Check browser console and server logs for detailed debugging info</small>
+      </div>
 
       {/* HERO */}
       <section className="py-32 px-4 bg-charcoal text-white">
@@ -92,18 +195,18 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="mb-12">
             <span className="text-sm font-bold uppercase tracking-widest text-sales-green">Drop #{latestDropNumber}</span>
-            <h2 className="text-5xl font-black mt-2">This Week’s Selection</h2>
+            <h2 className="text-5xl font-black mt-2">This Week's Selection</h2>
           </div>
 
           {tools.length ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {tools.map((tool) => {
+              {tools.map((tool, index) => {
                 const cardThemes = [
                   "bg-charcoal text-white",
                   "bg-gray-100 text-charcoal border border-gray-200",
                   "bg-sales-green text-charcoal",
                 ];
-                const theme = cardThemes[Number(tool.id) % cardThemes.length];
+                const theme = cardThemes[index % cardThemes.length];
                 return (
                   <div
                     key={tool.id}
@@ -111,9 +214,9 @@ export default async function Home() {
                     onClick={() => window.open(`/tool/${tool.id}`, '_blank')}
                   >
                     {/* Large thumbnail */}
-                    {(tool.fields as any).Image?.[0] ? (
+                    {tool.fields.Image?.[0] ? (
                       <img
-                        src={(tool.fields as any).Image[0].url}
+                        src={tool.fields.Image[0].url}
                         alt={tool.fields.Name as string}
                         className="w-full h-48 object-cover rounded-md mb-4"
                       />
@@ -128,7 +231,7 @@ export default async function Home() {
                     <p className="text-sm flex-grow opacity-90">{tool.fields.Tagline}</p>
                     {tool.fields["Maker Quote"] && (
                       <blockquote className="text-xs italic opacity-80 mt-2">
-                        “{tool.fields["Maker Quote"]}”
+                        "{tool.fields["Maker Quote"]}"
                       </blockquote>
                     )}
                   </div>
@@ -136,7 +239,15 @@ export default async function Home() {
               })}
             </div>
           ) : (
-            <p className="text-center text-gray-500">Next drop loading…</p>
+            <div className="text-center p-8 bg-red-50 border border-red-200 rounded-lg">
+              <p className="text-gray-500 mb-2">⚠️ No tools found</p>
+              <p className="text-sm text-red-600">
+                This could mean:
+                <br />• No tools exist for Drop #{latestDropNumber}
+                <br />• Airtable connection issues
+                <br />• Field name mismatches
+              </p>
+            </div>
           )}
         </div>
       </section>
@@ -185,7 +296,10 @@ export default async function Home() {
               })}
             </div>
           ) : (
-            <p className="text-center text-gray-500">Makers loading…</p>
+            <div className="text-center p-8 bg-red-50 border border-red-200 rounded-lg">
+              <p className="text-gray-500 mb-2">⚠️ No makers found</p>
+              <p className="text-sm text-red-600">Check your Makers table in Airtable</p>
+            </div>
           )}
         </div>
       </section>
@@ -230,7 +344,10 @@ export default async function Home() {
               ))}
             </div>
           ) : (
-            <p className="text-center text-gray-500">Partners loading…</p>
+            <div className="text-center p-8 bg-red-50 border border-red-200 rounded-lg">
+              <p className="text-gray-500 mb-2">⚠️ No partners found</p>
+              <p className="text-sm text-red-600">Check your Sponsors table in Airtable</p>
+            </div>
           )}
         </div>
       </section>
