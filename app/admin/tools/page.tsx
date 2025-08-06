@@ -12,8 +12,8 @@ interface ToolRecord {
     Description?: string
     Image?: Array<{ url: string }>
     "Website URL"?: string
-    "Drop Number"?: number
-    "Drop Date"?: string
+    "Drop Date"?: string;
+    "Drop Number (Rollup)"?: number; // Added for the new Rollup field
     "Maker Name"?: string
     "Maker Title"?: string
     "Maker Quote"?: string
@@ -21,6 +21,7 @@ interface ToolRecord {
     "Maker Profile Link"?: string
     "Created At"?: string
     "Updated At"?: string
+    Drop?: string[]; // This is the linked record field
     [key: string]: any
   }
 }
@@ -32,8 +33,11 @@ async function getAllTools() {
 
     const toolRecords = await base("Tools")
       .select({
+        // IMPORTANT: We are now sorting by the NEW Rollup field "Drop Number (Rollup)".
+        // This field must be created in your Airtable "Tools" table as a Rollup field
+        // that pulls the "Drop Number" from the linked "Drop" record.
         sort: [
-          { field: "Drop Number", direction: "desc" },
+          { field: "Drop Number (Rollup)", direction: "desc" }, // Use the new Rollup field
           { field: "Name", direction: "asc" },
         ],
       })
@@ -115,12 +119,6 @@ export default async function ToolsManagement() {
                       scope="col"
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
-                      Drop Info
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
                       Maker
                     </th>
                     <th
@@ -170,18 +168,12 @@ export default async function ToolsManagement() {
                           {tool.fields.Category || "Uncategorized"}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        <div>
-                          <div className="font-medium">Drop #{tool.fields["Drop Number"] || "N/A"}</div>
-                          <div className="text-gray-500">{tool.fields["Drop Date"] || "No date"}</div>
-                        </div>
-                      </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
                           <div className="flex-shrink-0 h-8 w-8">
                             {tool.fields["Maker Photo"] && tool.fields["Maker Photo"][0] ? (
                               <img
-                                src={tool.fields["Maker Photo"][0].url}
+                                src={tool.fields["Maker Photo"][0].url || "/placeholder.svg"}
                                 alt={tool.fields["Maker Name"] || "Maker"}
                                 className="w-8 h-8 rounded-full object-cover"
                               />

@@ -35,6 +35,7 @@ export interface ToolRecord {
     Image?: [{ url: string; filename: string; }];
     "Website URL"?: string;
     "Drop Date"?: string;
+    "Drop Number (Rollup)"?: number; // Added for the new Rollup field
     "Maker Name"?: string;
     "Maker Title"?: string;
     "Maker Quote"?: string;
@@ -42,7 +43,7 @@ export interface ToolRecord {
     "Maker Profile Link"?: string;
     "Created At"?: string;
     "Updated At"?: string;
-    Drop?: string[];
+    Drop?: string[]; // This is the linked record field
     Maker?: string[];
   };
 }
