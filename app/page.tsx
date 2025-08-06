@@ -15,30 +15,33 @@ async function getHomePageData() {
 
     // --- Determine Latest Drop Number and Record ID ---
     let latestDropNumber = 1;
-    let latestDropRecordId = null;
+    let latestDropRecordId = null; // <-- New variable
 
     if (dropsRecords.length > 0) {
       const potentialDropNumber = dropsRecords[0].fields["Drop Number"];
       if (typeof potentialDropNumber === "number" && !isNaN(potentialDropNumber)) {
         latestDropNumber = potentialDropNumber;
-        // Get the ID of the Drop *record* itself
-        latestDropRecordId = dropsRecords[0].id;
+        latestDropRecordId = dropsRecords[0].id; // <-- Store the record ID
       }
     }
 
     // --- Fetch Tools linked to the Latest Drop Record ---
-    let toolsRecords = [];
+    // --- This is the core fix ---
+    let toolsRecords = []; // Keep simple initialization like original
     if (latestDropRecordId) {
-      // Use the Drop Record ID to filter, not the Drop Number field
-      // This assumes the link field in the 'Tools' table is named 'Drop'
+      // Use the Drop Record ID to filter
+      // Assumes the link field in 'Tools' table is named 'Drop'
+      // This replaces the incorrect `{Drop Number} = ${latestDropNumber}` filter
       toolsRecords = await base("Tools")
         .select({
-          filterByFormula: `{Drop} = '${latestDropRecordId}'`,
+          filterByFormula: `{Drop} = '${latestDropRecordId}'`, // <-- Corrected filter
           sort: [{ field: "Name", direction: "asc" }],
         })
         .firstPage();
     }
+    // --- End of core fix ---
 
+    // --- The rest remains identical to your original Pasted_Text_1754477713482.txt ---
     const tools = toolsRecords.map((record) => ({
       id: record.id,
       fields: record.fields,
@@ -124,11 +127,10 @@ export default async function Home() {
                     onClick={() => window.open(`/tool/${tool.id}`, '_blank')}
                   >
                     {/* Large thumbnail */}
-                    {tool.fields.Image?.[0] ? (
+                    {(tool.fields as any).Image?.[0] ? (
                       <img
-                        src={tool.fields.Image[0].url}
-                        // Improved alt text
-                        alt={tool.fields.Name ? `${tool.fields.Name} screenshot or logo` : "Tool image"}
+                        src={(tool.fields as any).Image[0].url}
+                        alt={tool.fields.Name as string}
                         className="w-full h-48 object-cover rounded-md mb-4"
                       />
                     ) : (
@@ -170,7 +172,7 @@ export default async function Home() {
                     {maker.fields.Photo?.[0] ? (
                       <img
                         src={maker.fields.Photo[0].url}
-                        alt={maker.fields.Name ? `${maker.fields.Name}'s profile photo` : "Maker photo"}
+                        alt={maker.fields.Name}
                         className="w-20 h-20 object-cover rounded-full mb-4"
                       />
                     ) : (
@@ -218,7 +220,7 @@ export default async function Home() {
                     {sponsor.fields.Logo?.[0] ? (
                       <img
                         src={sponsor.fields.Logo[0].url}
-                        alt={sponsor.fields.Name ? `${sponsor.fields.Name} logo` : "Sponsor logo"}
+                        alt={sponsor.fields.Name}
                         className="h-12 object-contain mb-4"
                       />
                     ) : (
