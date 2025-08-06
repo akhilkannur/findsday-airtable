@@ -102,10 +102,10 @@ export interface DropRecord {
 // Helper function to fetch the latest drop number
 export async function getLatestDropNumber() {
   try {
-    console.log("🔍 Fetching latest drop number...");
+    console.log("🔍 Fetching latest drop number (simplified query for debugging)...");
     const dropsRecords = await base("Drops")
       .select({
-        sort: [{ field: "Drop Date", direction: "desc" }],
+        // Temporarily removed sort to isolate UNKNOWN_FIELD_NAME error source
         maxRecords: 1
       })
       .firstPage();
@@ -113,19 +113,32 @@ export async function getLatestDropNumber() {
     let dropNumber: number = 1; // Initialize with a default number
 
     if (dropsRecords.length > 0) {
-      const rawDropNumber = dropsRecords[0].fields["Drop Number"];
-      // Ensure the raw value is a number before assigning
+      const latestDropRecord = dropsRecords[0];
+      // Log the entire fields object to debug what Airtable is actually returning
+      console.log("DEBUG: Latest Drop Record fields received from Airtable:", latestDropRecord.fields);
+
+      // Safely access "Drop Number" using optional chaining and nullish coalescing
+      const rawDropNumber = latestDropRecord.fields?.["Drop Number"]; 
+      
       if (typeof rawDropNumber === 'number') {
         dropNumber = rawDropNumber;
+      } else if (typeof rawDropNumber === 'string' && !isNaN(parseInt(rawDropNumber))) {
+        // Attempt to parse if it's a string that looks like a number
+        dropNumber = parseInt(rawDropNumber);
+        console.warn("⚠️ 'Drop Number' field from Airtable was a string, parsed to number.");
       } else {
-        console.warn("⚠️ 'Drop Number' field from Airtable is not a number or is undefined, defaulting to 1.");
+        console.warn("⚠️ 'Drop Number' field from Airtable is not a number or parsable string, defaulting to 1. Raw value:", rawDropNumber);
       }
+    } else {
+      console.warn("⚠️ No records found in 'Drops' table, defaulting latest drop number to 1.");
     }
     
     console.log("📊 Latest drop number:", dropNumber);
     return dropNumber;
   } catch (error) {
     console.error("❌ Error fetching latest drop number:", error);
+    // If there's an error, it might be due to the field not existing or other API issues.
+    // We should still return a default to prevent the app from crashing.
     return 1;
   }
 }
