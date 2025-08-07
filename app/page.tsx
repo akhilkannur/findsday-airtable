@@ -69,6 +69,9 @@ if (pageDataError || !pageData) {
 
 const { featuredDrop, featuredTools, archivedDrops, sponsors, makers } = pageData;
 
+const firstSponsor = sponsors.length > 0 ? sponsors[0] : null;
+const remainingSponsors = sponsors.slice(1);
+
 return (
   <div className="bg-charcoal text-white min-h-screen">
     <Header />
@@ -125,32 +128,38 @@ return (
             </Link>
           )}
         </div>
-        <div className="flex flex-col gap-4"> {/* Changed from grid to flex col */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"> {/* Changed back to grid for card layout */}
           {featuredTools.length > 0 ? featuredTools.map((tool) => (
             <Link
               key={tool.id}
               href={`/tool/${tool.id}`}
-              className="flex items-center gap-4 bg-charcoal-dark border border-gray-800 rounded-lg p-4 hover:shadow-lg hover:border-accent-pink transition-all duration-200"
+              className="relative bg-charcoal-dark border border-gray-800 rounded-xl overflow-hidden flex flex-col justify-end p-6 pb-8 min-h-[300px] hover:shadow-lg hover:border-accent-pink transition-all duration-200 group"
+              style={{
+                backgroundImage: tool.fields.Image && tool.fields.Image[0] ? `url(${tool.fields.Image[0].url})` : 'none',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
             >
-              <div className="w-12 h-12 relative flex-shrink-0">
-                {tool.fields.Image && tool.fields.Image[0] ? (
-                  <Image
-                    src={tool.fields.Image[0].url || "/placeholder.svg"}
-                    alt={`${tool.fields.Name} icon`}
-                    fill
-                    className="object-cover rounded-full"
-                  />
-                ) : (
-                  <div className="w-full h-full bg-gray-700 rounded-full flex items-center justify-center text-xl text-gray-400">
-                    <FileText className="h-6 w-6" /> {/* Placeholder icon */}
+              {/* Overlay for text readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-charcoal-dark via-charcoal-dark/80 to-transparent rounded-xl"></div>
+              
+              {/* Content */}
+              <div className="relative z-10 flex flex-col h-full justify-end">
+                <span className="bg-gray-800 text-accent-green text-xs font-bold uppercase px-3 py-1 rounded-full self-start mb-2">
+                  {tool.fields.Category || "Tool"}
+                </span>
+                <h3 className="text-3xl font-bold text-white mb-2 leading-tight">
+                  {tool.fields.Name || "Unnamed Tool"}
+                </h3>
+                <p className="text-gray-400 text-base line-clamp-2 mb-4">
+                  {tool.fields.Tagline || tool.fields.Description || "No description available"}
+                </p>
+                {tool.fields["Website URL"] && (
+                  <div className="inline-flex items-center justify-center border border-gray-600 text-gray-300 px-4 py-2 rounded-full text-sm font-semibold group-hover:border-accent-pink group-hover:text-accent-pink transition-colors">
+                    Visit Website <ExternalLink className="ml-2 h-4 w-4" />
                   </div>
                 )}
               </div>
-              <div className="flex-1">
-                <h3 className="text-lg font-semibold text-white">{tool.fields.Name || "Unnamed Tool"}</h3>
-                <p className="text-sm text-gray-400 line-clamp-1">{tool.fields.Tagline || tool.fields.Description || "No description available"}</p>
-              </div>
-              <ExternalLink className="h-5 w-5 text-accent-pink flex-shrink-0" />
             </Link>
           )) : (
             <div className="col-span-full text-center py-12">
@@ -164,6 +173,41 @@ return (
       </div>
     </section>
 
+    {/* FIRST SPONSOR (between tools and makers) */}
+    {firstSponsor && (
+      <section className="py-24 px-4 bg-charcoal-light border-t border-b border-gray-800">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl font-bold text-white mb-12 text-center">Featured Sponsor</h2>
+          <a
+            key={firstSponsor.id}
+            href={firstSponsor.fields["Website URL"] || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-charcoal-dark border border-gray-800 rounded-lg p-6 flex flex-col md:flex-row items-center gap-6 cursor-pointer hover:shadow-lg hover:border-accent-pink transition-all duration-200"
+          >
+            <div className="w-28 h-28 relative flex-shrink-0">
+              {firstSponsor.fields.Logo && firstSponsor.fields.Logo[0] ? (
+                <Image
+                  src={firstSponsor.fields.Logo[0].url || "/placeholder.svg"}
+                  alt={`${firstSponsor.fields.Name} logo`}
+                  fill
+                  className="object-contain p-2 bg-gray-900 rounded-lg border border-gray-700"
+                />
+              ) : (
+                <div className="w-full h-full bg-gray-900 rounded-lg border border-gray-700 flex items-center justify-center">
+                  <span className="text-gray-500 text-xs">Logo</span>
+                </div>
+              )}
+            </div>
+            <div>
+              <h3 className="text-3xl font-bold text-white mb-2">{firstSponsor.fields.Name || "Sponsor"}</h3>
+              <p className="text-gray-400 text-base line-clamp-3">{firstSponsor.fields.Blurb || "Supporting the Findsday community"}</p>
+            </div>
+          </a>
+        </div>
+      </section>
+    )}
+
     {/* MAKERS */}
     <section className="py-24 px-4 bg-charcoal-light border-t border-b border-gray-800">
       <div className="max-w-7xl mx-auto">
@@ -175,9 +219,12 @@ return (
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {makers.length > 0 ? makers.map((maker) => (
-            <div
+            <Link
               key={maker.id}
-              className="bg-charcoal-dark border border-gray-800 rounded-lg p-6 flex flex-col items-center text-center cursor-pointer hover:shadow-lg hover:border-accent-pink transition-all duration-200"
+              href={maker.fields["Profile Link"] || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-charcoal-dark border border-gray-800 rounded-lg p-6 flex flex-col items-center text-center cursor-pointer hover:shadow-lg hover:border-accent-pink transition-all duration-200 group"
             >
               <div className="w-28 h-28 relative mb-4">
                 {maker.fields.Photo && maker.fields.Photo[0] ? (
@@ -195,12 +242,17 @@ return (
               </div>
               <h3 className="text-2xl font-bold text-white mb-1">{maker.fields.Name || "Unknown Maker"}</h3>
               <p className="text-base text-gray-400 mb-2">{maker.fields["Maker Title"] || "Maker"}</p>
-              {maker.fields["Maker Quote"] && (
-                <blockquote className="text-lg italic text-gray-500 mt-2 line-clamp-3">
-                  "{maker.fields["Maker Quote"]}"
-                </blockquote>
+              {maker.fields.Bio && ( // Use Bio field
+                <p className="text-lg italic text-gray-500 mt-2 line-clamp-3">
+                  {maker.fields.Bio}
+                </p>
               )}
-            </div>
+              {maker.fields["Profile Link"] && (
+                <div className="inline-flex items-center mt-4 text-accent-pink hover:text-accent-green transition-colors text-sm font-semibold">
+                  View Profile <ExternalLink className="ml-1 h-4 w-4" />
+                </div>
+              )}
+            </Link>
           )) : (
             <div className="col-span-full text-center py-12">
               <p className="text-gray-500 text-lg">No makers featured yet.</p>
@@ -208,74 +260,53 @@ return (
           )}
         </div>
 
-        {/* Testimonials */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-charcoal-dark border border-gray-800 p-6 rounded-lg shadow-md hover:border-accent-green transition-colors">
-            <p className="text-lg italic text-gray-300">
-              "One of the only sales newsletters I open and read every single time 💯"
-            </p>
-            <p className="text-sm font-bold text-gray-400 mt-4">MICHAEL RIDDERING</p>
-            <p className="text-xs text-gray-500">FOUNDER @ INFLIGHT</p>
-          </div>
-          <div className="bg-charcoal-dark border border-gray-800 p-6 rounded-lg shadow-md hover:border-accent-green transition-colors">
-            <p className="text-lg italic text-gray-300">
-              "I always look forward to a Findsday newsletter."
-            </p>
-            <p className="text-sm font-bold text-gray-400 mt-4">ANDREW HOGAN</p>
-            <p className="text-xs text-gray-500">HEAD OF INSIGHTS @ FIGMA</p>
-          </div>
-        </div>
+        {/* Removed Testimonials section */}
       </div>
     </section>
 
-    {/* SPONSORS */}
-    <section className="py-24 px-4 bg-charcoal">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-12 flex justify-between items-center">
-          <h2 className="text-4xl font-bold text-white">Our Valued Sponsors</h2>
-          <Link href="/admin" className="text-gray-400 hover:text-accent-green transition-colors">
-            Manage →
-          </Link>
+    {/* SPONSORS (Remaining) */}
+    {remainingSponsors.length > 0 && (
+      <section className="py-24 px-4 bg-charcoal">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-12 flex justify-between items-center">
+            <h2 className="text-4xl font-bold text-white">More Valued Sponsors</h2>
+            <Link href="/admin" className="text-gray-400 hover:text-accent-green transition-colors">
+              Manage →
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {remainingSponsors.map((sponsor) => (
+              <a
+                key={sponsor.id}
+                href={sponsor.fields["Website URL"] || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-charcoal-dark border border-gray-800 rounded-lg p-6 flex flex-col md:flex-row items-center gap-6 cursor-pointer hover:shadow-lg hover:border-accent-pink transition-all duration-200"
+              >
+                <div className="w-28 h-28 relative flex-shrink-0">
+                  {sponsor.fields.Logo && sponsor.fields.Logo[0] ? (
+                    <Image
+                      src={sponsor.fields.Logo[0].url || "/placeholder.svg"}
+                      alt={`${sponsor.fields.Name} logo`}
+                      fill
+                      className="object-contain p-2 bg-gray-900 rounded-lg border border-gray-700"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gray-900 rounded-lg border border-gray-700 flex items-center justify-center">
+                      <span className="text-gray-500 text-xs">Logo</span>
+                    </div>
+                  )}
+                </div>
+                <div>
+                  <h3 className="text-3xl font-bold text-white mb-2">{sponsor.fields.Name || "Sponsor"}</h3>
+                  <p className="text-gray-400 text-base line-clamp-3">{sponsor.fields.Blurb || "Supporting the Findsday community"}</p>
+                </div>
+              </a>
+            ))}
+          </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {sponsors.length > 0 ? sponsors.map((sponsor) => (
-            <a
-              key={sponsor.id}
-              href={sponsor.fields["Website URL"] || "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-charcoal-dark border border-gray-800 rounded-lg p-6 flex flex-col md:flex-row items-center gap-6 cursor-pointer hover:shadow-lg hover:border-accent-pink transition-all duration-200"
-            >
-              <div className="w-28 h-28 relative flex-shrink-0">
-                {sponsor.fields.Logo && sponsor.fields.Logo[0] ? (
-                  <Image
-                    src={sponsor.fields.Logo[0].url || "/placeholder.svg"}
-                    alt={`${sponsor.fields.Name} logo`}
-                    fill
-                    className="object-contain p-2 bg-gray-900 rounded-lg border border-gray-700"
-                  />
-                ) : (
-                  <div className="w-full h-full bg-gray-900 rounded-lg border border-gray-700 flex items-center justify-center">
-                    <span className="text-gray-500 text-xs">Logo</span>
-                  </div>
-                )}
-              </div>
-              <div>
-                <h3 className="text-3xl font-bold text-white mb-2">{sponsor.fields.Name || "Sponsor"}</h3>
-                <p className="text-gray-400 text-base line-clamp-3">{sponsor.fields.Blurb || "Supporting the Findsday community"}</p>
-              </div>
-            </a>
-          )) : (
-            <div className="col-span-full text-center py-12">
-              <p className="text-gray-500 text-lg">No sponsors yet.</p>
-              <Link href="/admin" className="text-accent-green hover:text-accent-pink transition-colors">
-                Add sponsors →
-              </Link>
-            </div>
-          )}
-        </div>
-      </div>
-    </section>
+      </section>
+    )}
 
     {/* ARCHIVE */}
     <section className="py-24 px-4 bg-charcoal">
@@ -286,7 +317,7 @@ return (
             View All →
           </Link>
         </div>
-        <div className="flex flex-col gap-4"> {/* Changed from space-y-3 to flex col gap-4 */}
+        <div className="flex flex-col gap-4">
           {archivedDrops.length > 0 ? archivedDrops.map((drop) => (
             <Link
               key={drop.id}
@@ -301,6 +332,11 @@ return (
                 <p className="text-sm text-gray-400">
                   {drop.fields["Drop Date"] ? new Date(drop.fields["Drop Date"]).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }) : "N/A"}
                 </p>
+                {drop.fields["Short Description"] && ( // Display short description
+                  <p className="text-xs text-gray-500 line-clamp-1 mt-1">
+                    {drop.fields["Short Description"]}
+                  </p>
+                )}
               </div>
               <ArrowRight className="h-5 w-5 text-accent-green flex-shrink-0" />
             </Link>

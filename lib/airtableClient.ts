@@ -63,7 +63,7 @@ export interface MakerRecord {
 id: string;
 fields: {
   Name?: string;
-  Bio?: string;
+  Bio?: string; // Added Bio field
   Photo?: [{ url: string; filename: string; }];
   "Profile Link"?: string;
   "Created At"?: string;
@@ -93,6 +93,7 @@ id: string;
 fields: {
   "Drop Number"?: number;
   "Drop Date"?: string;
+  "Short Description"?: string; // New field for drop short description
   Tools?: string[]; // Linked record IDs to Tools table
   "Tools Count"?: number;
   "Created At"?: string;

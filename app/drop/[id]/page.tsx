@@ -60,6 +60,7 @@ return (
 
 const dropNumber = drop.fields["Drop Number"];
 const dropDate = drop.fields["Drop Date"] ? new Date(drop.fields["Drop Date"]).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }) : "N/A";
+const dropShortDescription = drop.fields["Short Description"] || "No description available for this drop.";
 
 return (
 <div className="bg-charcoal text-white min-h-screen">
@@ -75,40 +76,47 @@ return (
     <h1 className="text-5xl font-bold text-white leading-tight text-balance mb-4">
       Drop #{dropNumber}
     </h1>
-    <p className="text-xl text-gray-400 mb-12">
+    <p className="text-xl text-gray-400 mb-2">
       Released on {dropDate}
+    </p>
+    <p className="text-lg text-gray-500 mb-12">
+      {dropShortDescription}
     </p>
 
     <section className="py-8">
       <h2 className="text-3xl font-bold text-white mb-8">Tools in this Drop ({tools.length})</h2>
-      <div className="flex flex-col gap-4"> {/* Changed from grid to flex col */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"> {/* Changed back to grid for card layout */}
         {tools.length > 0 ? tools.map((tool) => (
           <Link
             key={tool.id}
             href={`/tool/${tool.id}`}
-            className="flex items-center gap-4 bg-charcoal-dark border border-gray-800 rounded-lg p-4 hover:shadow-lg hover:border-accent-pink transition-all duration-200"
+            className="relative bg-charcoal-dark border border-gray-800 rounded-xl overflow-hidden flex flex-col justify-end p-6 pb-8 min-h-[300px] hover:shadow-lg hover:border-accent-pink transition-all duration-200 group"
+            style={{
+              backgroundImage: tool.fields.Image && tool.fields.Image[0] ? `url(${tool.fields.Image[0].url})` : 'none',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
           >
-            <div className="w-12 h-12 relative flex-shrink-0">
-              {tool.fields.Image && tool.fields.Image[0] ? (
-                <Image
-                  src={tool.fields.Image[0].url || "/placeholder.svg"}
-                  alt={`${tool.fields.Name} icon`}
-                  fill
-                  className="object-cover rounded-full"
-                />
-              ) : (
-                <div className="w-full h-full bg-gray-700 rounded-full flex items-center justify-center text-xl text-gray-400">
-                  <FileText className="h-6 w-6" /> {/* Placeholder icon */}
+            {/* Overlay for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-t from-charcoal-dark via-charcoal-dark/80 to-transparent rounded-xl"></div>
+            
+            {/* Content */}
+            <div className="relative z-10 flex flex-col h-full justify-end">
+              <span className="bg-gray-800 text-accent-green text-xs font-bold uppercase px-3 py-1 rounded-full self-start mb-2">
+                {tool.fields.Category || "Tool"}
+              </span>
+              <h3 className="text-3xl font-bold text-white mb-2 leading-tight">
+                {tool.fields.Name || "Unnamed Tool"}
+              </h3>
+              <p className="text-gray-400 text-base line-clamp-2 mb-4">
+                {tool.fields.Tagline || tool.fields.Description || "No description available"}
+              </p>
+              {tool.fields["Website URL"] && (
+                <div className="inline-flex items-center justify-center border border-gray-600 text-gray-300 px-4 py-2 rounded-full text-sm font-semibold group-hover:border-accent-pink group-hover:text-accent-pink transition-colors">
+                  Visit Website <ExternalLink className="ml-2 h-4 w-4" />
                 </div>
               )}
             </div>
-            <div className="flex-1">
-              <h3 className="text-lg font-semibold text-white">{tool.fields.Name || "Unnamed Tool"}</h3>
-              <p className="text-sm text-gray-400 line-clamp-1">{tool.fields.Tagline || tool.fields.Description || "No description available"}</p>
-            </div>
-            {tool.fields["Website URL"] && (
-              <ExternalLink className="h-5 w-5 text-accent-pink flex-shrink-0" />
-            )}
           </Link>
         )) : (
           <div className="col-span-full text-center py-12">

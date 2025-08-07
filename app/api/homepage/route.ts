@@ -35,7 +35,8 @@ export async function GET() {
     }
 
     try {
-      const sponsorsRecords = await base("Sponsors").select({ maxRecords: 3 }).firstPage();
+      // Fetch ALL sponsors now, not just maxRecords: 3
+      const sponsorsRecords = await base("Sponsors").select().all();
       sponsors = sponsorsRecords.map((record) => ({
         id: record.id,
         fields: record.fields,
