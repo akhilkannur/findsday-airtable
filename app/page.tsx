@@ -3,7 +3,6 @@
 
 import React, { useState, useEffect } from 'react';
 import Header from "../components/Header";
-// Removed ToolDetailModal import
 import { base, type ToolRecord, type SponsorRecord, type MakerRecord, type DropRecord, getFeaturedDropAndArchivedDrops } from "@/lib/airtableClient";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,8 +18,6 @@ export default function Home() {
   } | null>(null);
   const [loadingPageData, setLoadingPageData] = useState(true);
   const [pageDataError, setPageDataError] = useState<string | null>(null);
-
-  // Removed selectedToolId and isModalOpen states
 
   useEffect(() => {
     async function fetchHomePageData() {
@@ -46,8 +43,6 @@ export default function Home() {
     }
     fetchHomePageData();
   }, []);
-
-  // Removed handleToolCardClick and handleModalClose functions
 
   const heroGraphicUrl = "/placeholder.svg?height=400&width=400";
   const footerGraphicUrl = "/placeholder.svg?height=40&width=40";
@@ -124,9 +119,11 @@ export default function Home() {
             <h2 className="text-4xl font-bold text-white">
               {featuredDrop ? `Drop #${featuredDrop.fields["Drop Number"]} - ${new Date(featuredDrop.fields["Drop Date"] || '').toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}` : "No Featured Drop This Week"}
             </h2>
-            <Link href="/admin/tools" className="text-gray-400 hover:text-accent-green transition-colors">
-              View All Tools →
-            </Link>
+            {featuredDrop && (
+              <Link href={`/drop/${featuredDrop.id}`} className="text-gray-400 hover:text-accent-green transition-colors">
+                View All Tools →
+              </Link>
+            )}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {featuredTools.length > 0 ? featuredTools.map((tool) => (
@@ -134,7 +131,6 @@ export default function Home() {
                 key={tool.id}
                 className="bg-charcoal-dark border border-gray-800 rounded-lg overflow-hidden hover:shadow-lg hover:border-accent-pink transition-all duration-200 flex flex-col"
               >
-                {/* Changed div to Link for navigation */}
                 <Link href={`/tool/${tool.id}`} className="aspect-video relative w-full">
                   {tool.fields.Image && tool.fields.Image[0] ? (
                     <Image
@@ -158,7 +154,6 @@ export default function Home() {
                       <span>{new Date(tool.fields["Drop Date"]).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</span>
                     )}
                   </div>
-                  {/* Changed h3 to Link for navigation */}
                   <Link href={`/tool/${tool.id}`} className="text-2xl font-bold text-white mb-2 hover:text-accent-pink transition-colors">{tool.fields.Name || "Unnamed Tool"}</Link>
                   <p className="text-gray-400 text-base line-clamp-3">{tool.fields.Tagline || tool.fields.Description || "No description available"}</p>
                   {tool.fields["Website URL"] && (
@@ -167,7 +162,6 @@ export default function Home() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center mt-4 text-accent-pink hover:text-accent-green transition-colors text-sm font-semibold"
-                      // Removed onClick={(e) => e.stopPropagation()} as it's no longer needed
                     >
                       Visit Website <ExternalLink className="ml-1 h-4 w-4" />
                     </a>
@@ -310,8 +304,9 @@ export default function Home() {
           </div>
           <div className="space-y-3">
             {archivedDrops.length > 0 ? archivedDrops.map((drop) => (
-              <div
+              <Link
                 key={drop.id}
+                href={`/drop/${drop.id}`} // Link to the new drop detail page
                 className="border border-gray-800 rounded-lg p-6 flex justify-between items-center cursor-pointer hover:bg-charcoal-dark transition"
               >
                 <span className="font-bold tracking-wider text-gray-300">
@@ -323,7 +318,7 @@ export default function Home() {
                   }).toUpperCase()}
                 </span>
                 <span className="text-2xl font-bold text-accent-green">→</span>
-              </div>
+              </Link>
             )) : (
               <div className="text-center py-8">
                 <p className="text-gray-500">No archived drops found.</p>
@@ -374,8 +369,6 @@ export default function Home() {
           </div>
         </div>
       </footer>
-
-      {/* Removed Tool Detail Modal */}
     </div>
   );
 }
