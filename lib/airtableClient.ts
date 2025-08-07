@@ -93,10 +93,11 @@ export interface DropRecord {
   fields: {
     "Drop Number"?: number;
     "Drop Date"?: string;
-    Tools?: string[];
+    Tools?: string[]; // Linked record IDs to Tools table
     "Tools Count"?: number;
     "Created At"?: string;
     "Updated At"?: string;
+    "Is Featured"?: boolean; // New field for featuring drops
   };
 }
 
@@ -106,7 +107,7 @@ export async function getLatestDropNumber() {
     console.log("🔍 Fetching latest drop number (simplified query for debugging)...");
     const dropsRecords = await base("Drops")
       .select({
-        // Temporarily removed sort to isolate UNKNOWN_FIELD_NAME error source
+        sort: [{ field: "Drop Number", direction: "desc" }], // Sort by Drop Number
         maxRecords: 1
       })
       .firstPage();
@@ -143,6 +144,49 @@ export async function getLatestDropNumber() {
     return 1;
   }
 }
+
+// New helper function to get the featured drop and archived drops
+export async function getFeaturedDropAndArchivedDrops(): Promise<{ featuredDrop: DropRecord | null; archivedDrops: DropRecord[] }> {
+  try {
+    console.log("🔍 Fetching all drops to determine featured and archived drops...");
+    const allDrops = await base("Drops")
+      .select({
+        sort: [{ field: "Drop Date", direction: "desc" }], // Sort by date to prioritize latest if no feature is set
+      })
+      .all() as DropRecord[];
+
+    let featuredDrop: DropRecord | null = null;
+    let archivedDrops: DropRecord[] = [];
+
+    // Try to find a drop explicitly marked as featured
+    const featuredCandidates = allDrops.filter(drop => drop.fields["Is Featured"]);
+    if (featuredCandidates.length > 0) {
+      // If multiple are featured, pick the latest one by date
+      featuredDrop = featuredCandidates.sort((a, b) => {
+        const dateA = new Date(a.fields["Drop Date"] || 0).getTime();
+        const dateB = new Date(b.fields["Drop Date"] || 0).getTime();
+        return dateB - dateA;
+      })[0];
+    } else if (allDrops.length > 0) {
+      // If no drop is explicitly featured, pick the latest one by date
+      featuredDrop = allDrops[0];
+    }
+
+    // Populate archived drops (all drops except the featured one)
+    if (featuredDrop) {
+      archivedDrops = allDrops.filter(drop => drop.id !== featuredDrop?.id);
+    } else {
+      archivedDrops = allDrops; // If no featured drop, all are considered archived
+    }
+
+    console.log(`✅ Found featured drop: ${featuredDrop?.fields["Drop Number"] || 'None'}. Archived drops count: ${archivedDrops.length}`);
+    return { featuredDrop, archivedDrops };
+  } catch (error) {
+    console.error("❌ Error fetching featured and archived drops:", error);
+    return { featuredDrop: null, archivedDrops: [] };
+  }
+}
+
 
 // Helper function to test Airtable connection
 export async function testAirtableConnection() {

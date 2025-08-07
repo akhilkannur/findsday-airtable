@@ -1,7 +1,8 @@
 // app/page.tsx - Full homepage with Airtable integration
 import Header from "../components/Header";
-import { base, type ToolRecord, type SponsorRecord, type MakerRecord, getLatestDropNumber } from "@/lib/airtableClient";
+import { base, type ToolRecord, type SponsorRecord, type MakerRecord, type DropRecord, getFeaturedDropAndArchivedDrops } from "@/lib/airtableClient";
 import Image from "next/image";
+import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
@@ -9,27 +10,32 @@ async function getHomePageData() {
   try {
     console.log("Fetching home page data...");
 
-    let tools: ToolRecord[] = [];
+    let featuredDrop: DropRecord | null = null;
+    let featuredTools: ToolRecord[] = [];
+    let archivedDrops: DropRecord[] = [];
     let sponsors: SponsorRecord[] = [];
     let makers: MakerRecord[] = [];
-    let latestDropNumber = 1;
 
     try {
-      console.log("[DEBUG] Fetching all tools for display on homepage.");
-      const allToolsRecords = await base("Tools")
-        .select({
-          sort: [{ field: "Drop Number (Rollup)", direction: "desc" }, { field: "Name", direction: "asc" }],
-          maxRecords: 6, // Limit for homepage display
-        })
-        .firstPage();
+      const { featuredDrop: fetchedFeaturedDrop, archivedDrops: fetchedArchivedDrops } = await getFeaturedDropAndArchivedDrops();
+      featuredDrop = fetchedFeaturedDrop;
+      archivedDrops = fetchedArchivedDrops;
 
-      tools = allToolsRecords.map((record) => ({
-        id: record.id,
-        fields: record.fields,
-      })) as ToolRecord[];
-      console.log(`[DEBUG] Fetched ${tools.length} tools for homepage display.`);
+      if (featuredDrop && featuredDrop.fields.Tools && featuredDrop.fields.Tools.length > 0) {
+        console.log(`[DEBUG] Fetching tools for featured drop: ${featuredDrop.id}`);
+        // Fetch tools linked to the featured drop
+        const toolPromises = featuredDrop.fields.Tools.map(toolId => base("Tools").find(toolId));
+        const rawTools = await Promise.all(toolPromises);
+        featuredTools = rawTools.map(record => ({
+          id: record.id,
+          fields: record.fields,
+        })) as ToolRecord[];
+        console.log(`[DEBUG] Fetched ${featuredTools.length} tools for the featured drop.`);
+      } else {
+        console.log("[DEBUG] No featured drop or no tools linked to featured drop.");
+      }
     } catch (error) {
-      console.error("❌ Error fetching tools:", error);
+      console.error("❌ Error fetching drops or featured tools:", error);
     }
 
     try {
@@ -54,17 +60,10 @@ async function getHomePageData() {
       console.error("❌ Error fetching makers:", error);
     }
 
-    try {
-      latestDropNumber = await getLatestDropNumber();
-    } catch (error) {
-      console.error("❌ Error fetching latest drop number:", error);
-      latestDropNumber = 1;
-    }
-
-    return { tools, sponsors, makers, latestDropNumber };
+    return { featuredDrop, featuredTools, archivedDrops, sponsors, makers };
   } catch (error) {
     console.error("❌ Critical error in getHomePageData:", error);
-    return { tools: [], sponsors: [], makers: [], latestDropNumber: 1 };
+    return { featuredDrop: null, featuredTools: [], archivedDrops: [], sponsors: [], makers: [] };
   }
 }
 
@@ -74,10 +73,10 @@ export default async function Home() {
     pageData = await getHomePageData();
   } catch (error) {
     console.error("❌ Failed to load page data:", error);
-    pageData = { tools: [], sponsors: [], makers: [], latestDropNumber: 1 };
+    pageData = { featuredDrop: null, featuredTools: [], archivedDrops: [], sponsors: [], makers: [] };
   }
 
-  const { tools, sponsors, makers, latestDropNumber } = pageData;
+  const { featuredDrop, featuredTools, archivedDrops, sponsors, makers } = pageData;
 
   const heroGraphicUrl = "/placeholder.svg?height=400&width=400";
   const footerGraphicUrl = "/placeholder.svg?height=40&width=40";
@@ -125,23 +124,25 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* NEW RELEASES */}
+      {/* FEATURED DROP */}
       <section className="py-24 px-4 bg-charcoal-light border-t border-b border-gray-800">
         <div className="max-w-7xl mx-auto">
           <div className="mb-12 flex justify-between items-center">
-            <h2 className="text-4xl font-bold text-white">New Releases</h2>
-            <a href="/admin/tools" className="text-gray-400 hover:text-accent-green transition-colors">
-              View All →
-            </a>
+            <h2 className="text-4xl font-bold text-white">
+              {featuredDrop ? `Drop #${featuredDrop.fields["Drop Number"]} - ${new Date(featuredDrop.fields["Drop Date"] || '').toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}` : "No Featured Drop This Week"}
+            </h2>
+            <Link href="/admin/tools" className="text-gray-400 hover:text-accent-green transition-colors">
+              View All Tools →
+            </Link>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {tools.length > 0 ? tools.map((tool) => (
-              <a
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {featuredTools.length > 0 ? featuredTools.map((tool) => (
+              <Link
                 key={tool.id}
                 href={`/tool/${tool.id}`}
-                className="bg-charcoal-dark border border-gray-800 rounded-lg overflow-hidden cursor-pointer hover:shadow-lg hover:border-accent-pink transition-all duration-200"
+                className="bg-charcoal-dark border border-gray-800 rounded-lg overflow-hidden cursor-pointer hover:shadow-lg hover:border-accent-pink transition-all duration-200 flex flex-col"
               >
-                <div className="aspect-video relative">
+                <div className="aspect-video relative w-full">
                   {tool.fields.Image && tool.fields.Image[0] ? (
                     <Image
                       src={tool.fields.Image[0].url || "/placeholder.svg"}
@@ -155,7 +156,7 @@ export default async function Home() {
                     </div>
                   )}
                 </div>
-                <div className="p-6">
+                <div className="p-6 flex-1 flex flex-col">
                   <div className="flex items-center space-x-4 mb-3 text-sm text-gray-400">
                     <span className="bg-gray-800 px-2 py-1 rounded-full text-xs font-bold uppercase text-accent-green">
                       {tool.fields.Category || "Tool"}
@@ -167,13 +168,13 @@ export default async function Home() {
                   <h3 className="text-2xl font-bold text-white mb-2">{tool.fields.Name || "Unnamed Tool"}</h3>
                   <p className="text-gray-400 text-base line-clamp-3">{tool.fields.Tagline || tool.fields.Description || "No description available"}</p>
                 </div>
-              </a>
+              </Link>
             )) : (
               <div className="col-span-full text-center py-12">
-                <p className="text-gray-500 text-lg">No tools available yet.</p>
-                <a href="/admin" className="text-accent-green hover:text-accent-pink transition-colors">
+                <p className="text-gray-500 text-lg">No tools available for this drop yet.</p>
+                <Link href="/admin" className="text-accent-green hover:text-accent-pink transition-colors">
                   Add some tools to get started →
-                </a>
+                </Link>
               </div>
             )}
           </div>
@@ -185,9 +186,9 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="mb-12 flex justify-between items-center">
             <h2 className="text-4xl font-bold text-white">Meet the Makers</h2>
-            <a href="/admin" className="text-gray-400 hover:text-accent-green transition-colors">
+            <Link href="/admin" className="text-gray-400 hover:text-accent-green transition-colors">
               View All →
-            </a>
+            </Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {makers.length > 0 ? makers.map((maker) => (
@@ -249,9 +250,9 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="mb-12 flex justify-between items-center">
             <h2 className="text-4xl font-bold text-white">Our Valued Sponsors</h2>
-            <a href="/admin" className="text-gray-400 hover:text-accent-green transition-colors">
+            <Link href="/admin" className="text-gray-400 hover:text-accent-green transition-colors">
               Manage →
-            </a>
+            </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {sponsors.length > 0 ? sponsors.map((sponsor) => (
@@ -284,9 +285,9 @@ export default async function Home() {
             )) : (
               <div className="col-span-full text-center py-12">
                 <p className="text-gray-500 text-lg">No sponsors yet.</p>
-                <a href="/admin" className="text-accent-green hover:text-accent-pink transition-colors">
+                <Link href="/admin" className="text-accent-green hover:text-accent-pink transition-colors">
                   Add sponsors →
-                </a>
+                </Link>
               </div>
             )}
           </div>
@@ -298,33 +299,31 @@ export default async function Home() {
         <div className="max-w-4xl mx-auto">
           <div className="mb-12 flex justify-between items-center">
             <h2 className="text-4xl font-bold text-white">Archive</h2>
-            <a href="/admin/tools" className="text-gray-400 hover:text-accent-green transition-colors">
+            <Link href="/admin/tools" className="text-gray-400 hover:text-accent-green transition-colors">
               View All →
-            </a>
+            </Link>
           </div>
           <div className="space-y-3">
-            {Array.from({ length: 5 }, (_, i) => {
-              const dropNumber = Math.max(1, latestDropNumber - i);
-              const dropDate = new Date();
-              dropDate.setDate(dropDate.getDate() - (i * 7)); // Each drop is 7 days apart
-              
-              return (
-                <div
-                  key={dropNumber}
-                  className="border border-gray-800 rounded-lg p-6 flex justify-between items-center cursor-pointer hover:bg-charcoal-dark transition"
-                >
-                  <span className="font-bold tracking-wider text-gray-300">
-                    DROP #{dropNumber} —{" "}
-                    {dropDate.toLocaleDateString("en-US", {
-                      month: "short",
-                      day: "numeric",
-                      year: "numeric",
-                    }).toUpperCase()}
-                  </span>
-                  <span className="text-2xl font-bold text-accent-green">→</span>
-                </div>
-              );
-            })}
+            {archivedDrops.length > 0 ? archivedDrops.map((drop) => (
+              <div
+                key={drop.id}
+                className="border border-gray-800 rounded-lg p-6 flex justify-between items-center cursor-pointer hover:bg-charcoal-dark transition"
+              >
+                <span className="font-bold tracking-wider text-gray-300">
+                  DROP #{drop.fields["Drop Number"]} —{" "}
+                  {new Date(drop.fields["Drop Date"] || '').toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                  }).toUpperCase()}
+                </span>
+                <span className="text-2xl font-bold text-accent-green">→</span>
+              </div>
+            )) : (
+              <div className="text-center py-8">
+                <p className="text-gray-500">No archived drops found.</p>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -350,7 +349,7 @@ export default async function Home() {
               <li><a href="#" className="hover:text-accent-green transition-colors">Community</a></li>
             </ul>
             <ul className="space-y-2">
-              <li><a href="/admin" className="hover:text-accent-green transition-colors">Admin</a></li>
+              <li><Link href="/admin" className="hover:text-accent-green transition-colors">Admin</Link></li>
               <li><a href="#" className="hover:text-accent-green transition-colors">Media Kit</a></li>
               <li><a href="#" className="hover:text-accent-green transition-colors">Privacy & Terms</a></li>
             </ul>
