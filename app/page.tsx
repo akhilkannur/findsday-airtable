@@ -1,85 +1,115 @@
 // app/page.tsx - Full homepage with Airtable integration
+'use client'; // This page now needs client-side interactivity for the modal
+
+import React, { useState } from 'react';
 import Header from "../components/Header";
+import ToolDetailModal from "../components/ToolDetailModal"; // Import the new modal component
 import { base, type ToolRecord, type SponsorRecord, type MakerRecord, type DropRecord, getFeaturedDropAndArchivedDrops } from "@/lib/airtableClient";
 import Image from "next/image";
 import Link from "next/link";
+import { ExternalLink } from 'lucide-react'; // For the direct link icon
 
-export const dynamic = "force-dynamic";
+// Data fetching function (remains server-side, but called in a way compatible with client component)
+// We'll use a pattern where the data is fetched in a wrapper Server Component
+// and passed to a Client Component, or fetched client-side if truly dynamic.
+// For simplicity and to keep data fetching on the server, we'll fetch it here
+// and pass it down. This component will be a client component, so we need to
+// fetch data using useEffect or pass it as props from a parent server component.
+// Given the current structure, I'll make this page a client component and fetch
+// data using a useEffect, which is a common pattern for SPAs in Next.js [^2].
 
-async function getHomePageData() {
-  try {
-    console.log("Fetching home page data...");
+// However, the previous `getHomePageData` was an async function directly in the page.
+// To keep it a client component and still fetch data, we need to use `useState` and `useEffect`.
+// This is a common pattern for SPAs [^2].
 
-    let featuredDrop: DropRecord | null = null;
-    let featuredTools: ToolRecord[] = [];
-    let archivedDrops: DropRecord[] = [];
-    let sponsors: SponsorRecord[] = [];
-    let makers: MakerRecord[] = [];
+export default function Home() {
+  const [pageData, setPageData] = useState<{
+    featuredDrop: DropRecord | null;
+    featuredTools: ToolRecord[];
+    archivedDrops: DropRecord[];
+    sponsors: SponsorRecord[];
+    makers: MakerRecord[];
+  } | null>(null);
+  const [loadingPageData, setLoadingPageData] = useState(true);
+  const [pageDataError, setPageDataError] = useState<string | null>(null);
 
-    try {
-      const { featuredDrop: fetchedFeaturedDrop, archivedDrops: fetchedArchivedDrops } = await getFeaturedDropAndArchivedDrops();
-      featuredDrop = fetchedFeaturedDrop;
-      archivedDrops = fetchedArchivedDrops;
+  const [selectedToolId, setSelectedToolId] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-      if (featuredDrop && featuredDrop.fields.Tools && featuredDrop.fields.Tools.length > 0) {
-        console.log(`[DEBUG] Fetching tools for featured drop: ${featuredDrop.id}`);
-        // Fetch tools linked to the featured drop
-        const toolPromises = featuredDrop.fields.Tools.map(toolId => base("Tools").find(toolId));
-        const rawTools = await Promise.all(toolPromises);
-        featuredTools = rawTools.map(record => ({
-          id: record.id,
-          fields: record.fields,
-        })) as ToolRecord[];
-        console.log(`[DEBUG] Fetched ${featuredTools.length} tools for the featured drop.`);
-      } else {
-        console.log("[DEBUG] No featured drop or no tools linked to featured drop.");
+  useEffect(() => {
+    async function fetchHomePageData() {
+      setLoadingPageData(true);
+      setPageDataError(null);
+      try {
+        // This fetch will hit a serverless function or a route handler if we create one
+        // For now, we'll call the server-side function directly, which Next.js handles
+        // by making it a server action or API route under the hood if it's imported
+        // into a client component.
+        // However, directly importing and calling a server function in a client component's useEffect
+        // is not the standard way. The best practice is to fetch from an API route.
+        // Let's create a simple API route for homepage data if it's not already there.
+        // For now, I'll simulate the call to the server function.
+        // A better approach would be to have a /api/homepage route.
+        // For this specific case, since `getHomePageData` is already defined as async,
+        // and the page is now client, we need to adjust.
+        // Let's assume `getHomePageData` is now an API route or a Server Action.
+        // Since it's a complex data fetch, an API route is more appropriate.
+        // I will create a new API route `app/api/homepage/route.ts` to fetch all data.
+
+        const response = await fetch('/api/homepage');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        if (data.success) {
+          setPageData(data.data);
+        } else {
+          setPageDataError(data.message || 'Failed to load homepage data.');
+        }
+      } catch (e: any) {
+        setPageDataError(`Error loading homepage data: ${e.message}`);
+        console.error("Error loading homepage data:", e);
+      } finally {
+        setLoadingPageData(false);
       }
-    } catch (error) {
-      console.error("❌ Error fetching drops or featured tools:", error);
     }
+    fetchHomePageData();
+  }, []);
 
-    try {
-      const sponsorsRecords = await base("Sponsors").select({ maxRecords: 3 }).firstPage();
-      sponsors = sponsorsRecords.map((record) => ({
-        id: record.id,
-        fields: record.fields,
-      })) as SponsorRecord[];
-      console.log(`[DEBUG] Fetched ${sponsors.length} sponsors.`);
-    } catch (error) {
-      console.error("❌ Error fetching sponsors:", error);
-    }
+  const handleToolCardClick = (toolId: string) => {
+    setSelectedToolId(toolId);
+    setIsModalOpen(true);
+  };
 
-    try {
-      const makersRecords = await base("Makers").select({ maxRecords: 6 }).firstPage();
-      makers = makersRecords.map((record) => ({
-        id: record.id,
-        fields: record.fields,
-      })) as MakerRecord[];
-      console.log(`[DEBUG] Fetched ${makers.length} makers.`);
-    } catch (error) {
-      console.error("❌ Error fetching makers:", error);
-    }
-
-    return { featuredDrop, featuredTools, archivedDrops, sponsors, makers };
-  } catch (error) {
-    console.error("❌ Critical error in getHomePageData:", error);
-    return { featuredDrop: null, featuredTools: [], archivedDrops: [], sponsors: [], makers: [] };
-  }
-}
-
-export default async function Home() {
-  let pageData;
-  try {
-    pageData = await getHomePageData();
-  } catch (error) {
-    console.error("❌ Failed to load page data:", error);
-    pageData = { featuredDrop: null, featuredTools: [], archivedDrops: [], sponsors: [], makers: [] };
-  }
-
-  const { featuredDrop, featuredTools, archivedDrops, sponsors, makers } = pageData;
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    setSelectedToolId(null);
+  };
 
   const heroGraphicUrl = "/placeholder.svg?height=400&width=400";
   const footerGraphicUrl = "/placeholder.svg?height=40&width=40";
+
+  if (loadingPageData) {
+    return (
+      <div className="bg-charcoal text-white min-h-screen flex items-center justify-center">
+        <p className="text-lg text-gray-400">Loading Findsday...</p>
+      </div>
+    );
+  }
+
+  if (pageDataError || !pageData) {
+    return (
+      <div className="bg-charcoal text-white min-h-screen flex flex-col items-center justify-center p-8">
+        <h1 className="text-3xl font-bold text-red-500 mb-4">Error Loading Content</h1>
+        <p className="text-gray-400 text-center mb-6">{pageDataError || "Failed to load homepage data. Please check your Airtable connection and environment variables."}</p>
+        <Link href="/admin" className="bg-accent-pink text-charcoal font-bold py-2 px-4 rounded-lg hover:bg-accent-pink/80 transition-colors">
+          Go to Admin Dashboard
+        </Link>
+      </div>
+    );
+  }
+
+  const { featuredDrop, featuredTools, archivedDrops, sponsors, makers } = pageData;
 
   return (
     <div className="bg-charcoal text-white min-h-screen">
@@ -137,12 +167,11 @@ export default async function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {featuredTools.length > 0 ? featuredTools.map((tool) => (
-              <Link
+              <div
                 key={tool.id}
-                href={`/tool/${tool.id}`}
-                className="bg-charcoal-dark border border-gray-800 rounded-lg overflow-hidden cursor-pointer hover:shadow-lg hover:border-accent-pink transition-all duration-200 flex flex-col"
+                className="bg-charcoal-dark border border-gray-800 rounded-lg overflow-hidden hover:shadow-lg hover:border-accent-pink transition-all duration-200 flex flex-col"
               >
-                <div className="aspect-video relative w-full">
+                <div className="aspect-video relative w-full cursor-pointer" onClick={() => handleToolCardClick(tool.id)}>
                   {tool.fields.Image && tool.fields.Image[0] ? (
                     <Image
                       src={tool.fields.Image[0].url || "/placeholder.svg"}
@@ -165,10 +194,21 @@ export default async function Home() {
                       <span>{new Date(tool.fields["Drop Date"]).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</span>
                     )}
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">{tool.fields.Name || "Unnamed Tool"}</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2 cursor-pointer" onClick={() => handleToolCardClick(tool.id)}>{tool.fields.Name || "Unnamed Tool"}</h3>
                   <p className="text-gray-400 text-base line-clamp-3">{tool.fields.Tagline || tool.fields.Description || "No description available"}</p>
+                  {tool.fields["Website URL"] && (
+                    <a
+                      href={tool.fields["Website URL"]}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center mt-4 text-accent-pink hover:text-accent-green transition-colors text-sm font-semibold"
+                      onClick={(e) => e.stopPropagation()} // Prevent modal from opening when clicking this link
+                    >
+                      Visit Website <ExternalLink className="ml-1 h-4 w-4" />
+                    </a>
+                  )}
                 </div>
-              </Link>
+              </div>
             )) : (
               <div className="col-span-full text-center py-12">
                 <p className="text-gray-500 text-lg">No tools available for this drop yet.</p>
@@ -369,6 +409,73 @@ export default async function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Tool Detail Modal */}
+      <ToolDetailModal toolId={selectedToolId} isOpen={isModalOpen} onClose={handleModalClose} />
     </div>
   );
+}
+
+// New API route to fetch all homepage data for the client component
+// This replaces the direct server-side call in the client component's useEffect
+// and ensures data fetching is handled correctly for client components.
+// This function is placed here for context, but it will be in app/api/homepage/route.ts
+async function getHomePageDataForApi() {
+  try {
+    console.log("Fetching home page data for API...");
+
+    let featuredDrop: DropRecord | null = null;
+    let featuredTools: ToolRecord[] = [];
+    let archivedDrops: DropRecord[] = [];
+    let sponsors: SponsorRecord[] = [];
+    let makers: MakerRecord[] = [];
+
+    try {
+      const { featuredDrop: fetchedFeaturedDrop, archivedDrops: fetchedArchivedDrops } = await getFeaturedDropAndArchivedDrops();
+      featuredDrop = fetchedFeaturedDrop;
+      archivedDrops = fetchedArchivedDrops;
+
+      if (featuredDrop && featuredDrop.fields.Tools && featuredDrop.fields.Tools.length > 0) {
+        console.log(`[DEBUG] Fetching tools for featured drop: ${featuredDrop.id}`);
+        const toolPromises = featuredDrop.fields.Tools.map(toolId => base("Tools").find(toolId));
+        const rawTools = await Promise.all(toolPromises);
+        featuredTools = rawTools.map(record => ({
+          id: record.id,
+          fields: record.fields,
+        })) as ToolRecord[];
+        console.log(`[DEBUG] Fetched ${featuredTools.length} tools for the featured drop.`);
+      } else {
+        console.log("[DEBUG] No featured drop or no tools linked to featured drop.");
+      }
+    } catch (error) {
+      console.error("❌ Error fetching drops or featured tools:", error);
+    }
+
+    try {
+      const sponsorsRecords = await base("Sponsors").select({ maxRecords: 3 }).firstPage();
+      sponsors = sponsorsRecords.map((record) => ({
+        id: record.id,
+        fields: record.fields,
+      })) as SponsorRecord[];
+      console.log(`[DEBUG] Fetched ${sponsors.length} sponsors.`);
+    } catch (error) {
+      console.error("❌ Error fetching sponsors:", error);
+    }
+
+    try {
+      const makersRecords = await base("Makers").select({ maxRecords: 6 }).firstPage();
+      makers = makersRecords.map((record) => ({
+        id: record.id,
+        fields: record.fields,
+      })) as MakerRecord[];
+      console.log(`[DEBUG] Fetched ${makers.length} makers.`);
+    } catch (error) {
+      console.error("❌ Error fetching makers:", error);
+    }
+
+    return { featuredDrop, featuredTools, archivedDrops, sponsors, makers };
+  } catch (error) {
+    console.error("❌ Critical error in getHomePageDataForApi:", error);
+    return { featuredDrop: null, featuredTools: [], archivedDrops: [], sponsors: [], makers: [] };
+  }
 }
