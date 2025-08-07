@@ -70,7 +70,8 @@ export default async function ToolDetailPage({ params }: any) {
   const makerQuote = String(f?.["Maker Quote"] ?? "");
   const makerPhoto = f?.["Maker Photo"]?.[0]?.url;
   const makerProfileLink = String(f?.["Maker Profile Link"] ?? "");
-  const dropDate = f?.["Drop Date"] ? new Date(f["Drop Date"]).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }) : "N/A";
+  // Removed dropDate as per user request to remove "Launched" display
+  // const dropDate = f?.["Drop Date"] ? new Date(f["Drop Date"]).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }) : "N/A";
 
   return (
     <div className="bg-charcoal text-white min-h-screen">
@@ -96,7 +97,8 @@ export default async function ToolDetailPage({ params }: any) {
               <span className="bg-gray-800 px-2 py-1 rounded-full text-xs font-bold uppercase text-accent-green">
                 {category || "Tool"}
               </span>
-              <span>Launched: {dropDate}</span>
+              {/* Removed Launched date display */}
+              {/* <span>Launched: {dropDate}</span> */}
             </div>
 
             {/* Product Images Carousel */}
@@ -198,9 +200,10 @@ export default async function ToolDetailPage({ params }: any) {
               <p className="text-gray-400">
                 <span className="font-semibold text-white">Category:</span> {category || "N/A"}
               </p>
-              <p className="text-gray-400">
+              {/* Removed Launched date display */}
+              {/* <p className="text-gray-400">
                 <span className="font-semibold text-white">Launched:</span> {dropDate}
-              </p>
+              </p> */}
               {/* Add more info as needed, e.g., pricing, integrations */}
             </div>
           </div>
