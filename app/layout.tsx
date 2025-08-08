@@ -1,4 +1,5 @@
 // app/layout.tsx
+// Force new deployment - Latest SEO optimizations and build fixes applied
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
