@@ -2,6 +2,7 @@
   "name": "findsday-airtable",
   "version": "0.1.0",
   "private": true,
+  "description": "The Hottest Tool Drops. Every Thursday. - SEO optimized with latest fixes",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
