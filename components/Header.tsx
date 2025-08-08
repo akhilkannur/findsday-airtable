@@ -10,18 +10,11 @@ export default function Header() {
             <div className="w-8 h-8 bg-accent-green rounded-full"></div>
             <span className="text-xl font-bold text-white">UX TOOLS</span>
           </div>
-          <nav>
-            <ul className="flex space-x-6">
-              <li><Link href="#" className="text-gray-400 font-medium hover:text-accent-green transition-colors">DESIGN TOOLS</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-accent-green transition-colors">RESOURCES</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-accent-green transition-colors">ARTICLES</Link></li>
-              <li>
-                <button className="bg-accent-pink text-charcoal font-bold py-2 px-4 uppercase tracking-widest text-xs hover:bg-accent-pink/80 transition-colors">
-                  Subscribe
-                </button>
-              </li>
-            </ul>
-          </nav>
+          <div>
+            <button className="bg-accent-pink text-charcoal font-bold py-2 px-4 uppercase tracking-widest text-xs hover:bg-accent-pink/80 transition-colors">
+              Subscribe
+            </button>
+          </div>
         </div>
       </div>
     </header>
