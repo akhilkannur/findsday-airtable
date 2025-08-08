@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+// Force new deployment to fix Vercel build issues
 const nextConfig = {
   experimental: {
     serverActions: {
