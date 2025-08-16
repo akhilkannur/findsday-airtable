@@ -43,7 +43,7 @@ async function getHomePageData() {
       base("Makers")
         .select({
           maxRecords: 6,
-          fields: ["Name", "Photo", "Maker Title", "Bio", "Profile Link"], // Only fetch needed fields
+          fields: ["Name", "Photo", "Bio", "Profile Link"], // Only fetch needed fields
         })
         .firstPage(),
     ])
@@ -93,14 +93,18 @@ async function getHomePageData() {
       console.error("[v0] Error fetching sponsors:", sponsorsResult.reason)
     }
 
-    // Handle makers result
     if (makersResult.status === "fulfilled") {
+      console.log("[v0] Makers query successful, raw result:", makersResult.value.length, "records")
       makers = makersResult.value.map((record) => ({
         id: record.id,
         fields: record.fields,
       })) as MakerRecord[]
+      console.log("[v0] Processed makers data:", makers.length, "makers")
+      console.log("[v0] First maker sample:", makers[0]?.fields || "No makers found")
     } else {
-      console.error("[v0] Error fetching makers:", makersResult.reason)
+      console.error("[v0] Error fetching makers - Status:", makersResult.status)
+      console.error("[v0] Error fetching makers - Reason:", makersResult.reason)
+      console.error("[v0] This suggests the Makers table might not exist or has permission issues")
     }
 
     return { featuredDrop, featuredTools, archivedDrops, sponsors, makers }
@@ -345,7 +349,6 @@ export default async function Home() {
                   <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-1">
                     {maker.fields.Name || "Unknown Maker"}
                   </h3>
-                  <p className="text-sm sm:text-base text-gray-400 mb-2">{maker.fields["Maker Title"] || "Maker"}</p>
                   {maker.fields.Bio && (
                     <p className="text-sm sm:text-lg italic text-gray-500 mt-2 line-clamp-3">{maker.fields.Bio}</p>
                   )}
