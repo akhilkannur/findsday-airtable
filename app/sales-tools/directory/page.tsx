@@ -10,24 +10,24 @@ const LoadingSpinner = () => (
   <div className="flex items-center justify-center py-32">
     <div className="flex flex-col items-center space-y-8">
       <div className="relative">
-        <div className="w-12 h-12 border-4 border-gray-100 border-t-blue-500 rounded-full animate-spin"></div>
-        <Sparkles className="w-6 h-6 text-blue-500 absolute top-3 left-3 animate-pulse" />
+        <div className="w-12 h-12 border-4 border-gray-700 border-t-accent-green rounded-full animate-spin"></div>
+        <Sparkles className="w-6 h-6 text-accent-green absolute top-3 left-3 animate-pulse" />
       </div>
-      <p className="text-sm text-gray-500 font-medium tracking-wide">Discovering amazing tools...</p>
+      <p className="text-sm text-gray-400 font-medium tracking-wide">Discovering amazing tools...</p>
     </div>
   </div>
 )
 
 const ErrorDisplay = ({ error, onRetry }: { error: string; onRetry: () => void }) => (
   <div className="flex flex-col items-center justify-center py-32">
-    <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mb-6">
-      <div className="w-8 h-8 border-2 border-red-200 rounded-full"></div>
+    <div className="w-16 h-16 bg-red-900/20 rounded-full flex items-center justify-center mb-6">
+      <div className="w-8 h-8 border-2 border-red-400 rounded-full"></div>
     </div>
-    <h3 className="text-xl font-semibold text-gray-900 mb-4">Something went wrong</h3>
-    <p className="text-sm text-gray-600 text-center mb-8 max-w-md leading-relaxed">{error}</p>
+    <h3 className="text-xl font-semibold text-white mb-4">Something went wrong</h3>
+    <p className="text-sm text-gray-400 text-center mb-8 max-w-md leading-relaxed">{error}</p>
     <button
       onClick={onRetry}
-      className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+      className="bg-accent-green text-charcoal px-6 py-3 rounded-lg hover:bg-accent-green/80 transition-colors font-medium"
     >
       Try Again
     </button>
@@ -48,29 +48,22 @@ export default function DirectoryPage() {
       setLoading(true)
       setError(null)
       try {
-        console.log("[v0] Starting directory data fetch")
-
         const toolsResponse = await fetch("/api/directory")
-
-        console.log("[v0] API response status:", toolsResponse.status)
 
         if (!toolsResponse.ok) {
           const errorData = await toolsResponse.json()
-          console.log("[v0] API error response:", errorData)
           throw new Error(errorData.details || "Failed to fetch tools")
         }
 
         const toolsData = await toolsResponse.json()
-        console.log("[v0] Received tools data:", toolsData.length, "tools")
         setTools(toolsData)
 
         const uniqueCategories = [
           ...new Set(toolsData.map((tool: DirectoryToolRecord) => tool.fields.Category).filter(Boolean)),
         ].sort()
         setCategories(["All", ...uniqueCategories])
-        console.log("[v0] Categories found:", uniqueCategories)
       } catch (e: any) {
-        console.error("[v0] Error loading directory:", e)
+        console.error("Error loading directory:", e)
         setError(`${e.message}`)
       } finally {
         setLoading(false)
@@ -96,13 +89,13 @@ export default function DirectoryPage() {
   const getCategoryColor = (category: string) => {
     const colors = {
       CRM: "bg-blue-500 text-white",
-      "Lead Generation": "bg-emerald-500 text-white",
+      "Lead Generation": "bg-accent-green text-charcoal",
       Analytics: "bg-purple-500 text-white",
       Automation: "bg-orange-500 text-white",
-      Communication: "bg-pink-500 text-white",
+      Communication: "bg-accent-pink text-charcoal",
       "Sales Enablement": "bg-indigo-500 text-white",
       Productivity: "bg-teal-500 text-white",
-      Marketing: "bg-yellow-500 text-white",
+      Marketing: "bg-yellow-500 text-charcoal",
       "Customer Support": "bg-gray-600 text-white",
       Other: "bg-slate-500 text-white",
     }
@@ -110,20 +103,20 @@ export default function DirectoryPage() {
   }
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="bg-charcoal text-white min-h-screen">
       <Header />
 
       <div className="flex min-h-screen">
-        <aside className="w-80 bg-white border-r border-gray-200 flex-shrink-0 shadow-sm">
+        <aside className="w-80 bg-charcoal-dark border-r border-gray-800 flex-shrink-0 shadow-lg">
           <div className="p-8">
             <div className="mb-8">
               <div className="flex items-center space-x-3 mb-4">
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-                  <Sparkles className="w-5 h-5 text-white" />
+                <div className="w-10 h-10 bg-gradient-to-br from-accent-green to-accent-pink rounded-xl flex items-center justify-center">
+                  <Sparkles className="w-5 h-5 text-charcoal" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900">Sales Directory</h2>
-                  <p className="text-sm text-gray-500">{tools.length} curated tools</p>
+                  <h2 className="text-2xl font-bold text-white">Sales Directory</h2>
+                  <p className="text-sm text-gray-400">{tools.length} curated tools</p>
                 </div>
               </div>
             </div>
@@ -136,14 +129,14 @@ export default function DirectoryPage() {
                   placeholder="Search tools..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full pl-10 pr-4 py-3 bg-charcoal border border-gray-700 rounded-xl focus:ring-2 focus:ring-accent-green focus:border-accent-green transition-all text-white placeholder-gray-500"
                 />
               </div>
             </div>
 
             <div className="mb-8">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">Categories</h3>
+                <h3 className="text-sm font-semibold text-white uppercase tracking-wide">Categories</h3>
                 <Filter className="w-4 h-4 text-gray-400" />
               </div>
               <nav className="space-y-1">
@@ -156,14 +149,16 @@ export default function DirectoryPage() {
                       onClick={() => setSelectedCategory(category)}
                       className={`group flex items-center justify-between w-full text-left px-4 py-3 rounded-lg transition-all duration-200 ${
                         selectedCategory === category
-                          ? "bg-blue-50 text-blue-700 border border-blue-200"
-                          : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+                          ? "bg-accent-green/20 text-accent-green border border-accent-green/30"
+                          : "text-gray-300 hover:bg-gray-800 hover:text-white"
                       }`}
                     >
                       <span className="font-medium">{category}</span>
                       <span
                         className={`text-xs px-2 py-1 rounded-full ${
-                          selectedCategory === category ? "bg-blue-100 text-blue-600" : "bg-gray-100 text-gray-500"
+                          selectedCategory === category
+                            ? "bg-accent-green/20 text-accent-green"
+                            : "bg-gray-800 text-gray-400"
                         }`}
                       >
                         {toolCount}
@@ -175,12 +170,12 @@ export default function DirectoryPage() {
             </div>
 
             <div className="mb-8">
-              <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-4">View</h3>
-              <div className="flex bg-gray-100 rounded-lg p-1">
+              <h3 className="text-sm font-semibold text-white uppercase tracking-wide mb-4">View</h3>
+              <div className="flex bg-gray-800 rounded-lg p-1">
                 <button
                   onClick={() => setViewMode("grid")}
                   className={`flex items-center space-x-2 px-3 py-2 rounded-md transition-all flex-1 justify-center ${
-                    viewMode === "grid" ? "bg-white text-gray-900 shadow-sm" : "text-gray-600"
+                    viewMode === "grid" ? "bg-charcoal-dark text-white shadow-sm" : "text-gray-400"
                   }`}
                 >
                   <Grid className="w-4 h-4" />
@@ -189,7 +184,7 @@ export default function DirectoryPage() {
                 <button
                   onClick={() => setViewMode("list")}
                   className={`flex items-center space-x-2 px-3 py-2 rounded-md transition-all flex-1 justify-center ${
-                    viewMode === "list" ? "bg-white text-gray-900 shadow-sm" : "text-gray-600"
+                    viewMode === "list" ? "bg-charcoal-dark text-white shadow-sm" : "text-gray-400"
                   }`}
                 >
                   <List className="w-4 h-4" />
@@ -198,25 +193,25 @@ export default function DirectoryPage() {
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-100">
-              <div className="w-10 h-10 bg-blue-500 rounded-lg mb-4 flex items-center justify-center">
-                <Sparkles className="w-5 h-5 text-white" />
+            <div className="bg-gradient-to-br from-accent-green/10 to-accent-pink/10 rounded-xl p-6 border border-gray-700">
+              <div className="w-10 h-10 bg-accent-green rounded-lg mb-4 flex items-center justify-center">
+                <Sparkles className="w-5 h-5 text-charcoal" />
               </div>
-              <h4 className="font-semibold text-gray-900 mb-2">Curated Excellence</h4>
-              <p className="text-sm text-gray-600 leading-relaxed">
+              <h4 className="font-semibold text-white mb-2">Curated Excellence</h4>
+              <p className="text-sm text-gray-400 leading-relaxed">
                 Every tool is carefully selected and vetted by our team for quality and effectiveness.
               </p>
             </div>
           </div>
         </aside>
 
-        <main className="flex-1 p-8">
+        <main className="flex-1 p-8 bg-charcoal-light">
           <div className="mb-8">
             <div className="max-w-4xl">
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">Sales Tools Directory</h1>
-              <p className="text-xl text-gray-600 leading-relaxed mb-6 max-w-3xl">
-                Discover powerful sales tools that help modern teams close more deals, automate workflows, and drive
-                revenue growth.
+              <h1 className="text-4xl font-bold text-white mb-4">Sales Tools —</h1>
+              <p className="text-xl text-gray-400 leading-relaxed mb-6 max-w-3xl">
+                A curated collection of the finest sales tools, carefully selected for modern teams who value excellence
+                and efficiency.
               </p>
 
               <div className="flex flex-wrap gap-2 mb-6">
@@ -227,7 +222,7 @@ export default function DirectoryPage() {
                     className={`px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105 ${
                       selectedCategory === category
                         ? getCategoryColor(category) + " shadow-lg"
-                        : "bg-white text-gray-700 border border-gray-200 hover:border-gray-300"
+                        : "bg-charcoal-dark text-gray-300 border border-gray-700 hover:border-accent-green"
                     }`}
                   >
                     {category}
@@ -237,13 +232,13 @@ export default function DirectoryPage() {
 
               {!loading && !error && (
                 <div className="flex items-center justify-between">
-                  <p className="text-sm text-gray-500">
-                    Showing <span className="font-semibold text-gray-900">{filteredTools.length}</span>
+                  <p className="text-sm text-gray-400">
+                    Showing <span className="font-semibold text-white">{filteredTools.length}</span>
                     {filteredTools.length === 1 ? " tool" : " tools"}
                     {selectedCategory !== "All" && (
                       <span>
                         {" "}
-                        in <span className="font-semibold">{selectedCategory}</span>
+                        in <span className="font-semibold text-accent-green">{selectedCategory}</span>
                       </span>
                     )}
                   </p>
@@ -258,23 +253,22 @@ export default function DirectoryPage() {
             <ErrorDisplay error={error} onRetry={handleRetry} />
           ) : filteredTools.length === 0 ? (
             <div className="text-center py-20">
-              <div className="w-20 h-20 bg-gray-100 rounded-full mx-auto mb-6 flex items-center justify-center">
+              <div className="w-20 h-20 bg-gray-800 rounded-full mx-auto mb-6 flex items-center justify-center">
                 <Search className="w-8 h-8 text-gray-400" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">No tools found</h3>
-              <p className="text-gray-600 mb-6">Try adjusting your search or category filter.</p>
+              <h3 className="text-xl font-semibold text-white mb-2">No tools found</h3>
+              <p className="text-gray-400 mb-6">Try adjusting your search or category filter.</p>
               <button
                 onClick={() => {
                   setSelectedCategory("All")
                   setSearchQuery("")
                 }}
-                className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                className="bg-accent-green text-charcoal px-6 py-3 rounded-lg hover:bg-accent-green/80 transition-colors font-medium"
               >
                 Clear Filters
               </button>
             </div>
           ) : (
-            /* Enhanced responsive grid layout */
             <div className={viewMode === "grid" ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" : "space-y-4"}>
               {filteredTools.map((tool) => (
                 <DirectoryToolCard key={tool.id} tool={tool} viewMode={viewMode} />
@@ -286,4 +280,3 @@ export default function DirectoryPage() {
     </div>
   )
 }
-
