@@ -1,0 +1,26 @@
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
+import "./globals.css"
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+})
+
+export const metadata: Metadata = {
+  title: "Findsday - The Hottest Tool Drops. Every Thursday.",
+  description: "Your weekly source for the most anticipated sales tools and tech.",
+    generator: 'v0.app'
+}
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
+  return (
+    <html lang="en">
+      <body className={`${inter.variable} font-sans`}>{children}</body>
+    </html>
+  )
+}
