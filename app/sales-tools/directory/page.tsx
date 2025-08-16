@@ -6,7 +6,7 @@ import Header from "../../../components/Header"
 import DirectoryToolCard from "../../../components/DirectoryToolCard"
 import ToolModal from "../../../components/ToolModal"
 import type { DirectoryToolRecord } from "@/lib/airtableClient"
-import { Filter, Grid, List, Sparkles, Star } from "lucide-react"
+import { Filter, Sparkles, Star } from "lucide-react"
 
 const LoadingSpinner = () => (
   <div className="flex items-center justify-center py-32">
@@ -42,7 +42,6 @@ export default function DirectoryPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [selectedCategory, setSelectedCategory] = useState<string>("All")
-  const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
   const [selectedTool, setSelectedTool] = useState<DirectoryToolRecord | null>(null)
 
   const router = useRouter()
@@ -197,40 +196,6 @@ export default function DirectoryPage() {
                 })}
               </nav>
             </div>
-
-            <div className="mb-6 lg:mb-8">
-              <h3 className="text-xs lg:text-sm font-semibold text-white uppercase tracking-wide mb-4">View</h3>
-              <div className="flex bg-gray-800 rounded-lg p-1">
-                <button
-                  onClick={() => setViewMode("grid")}
-                  className={`flex items-center space-x-2 px-3 py-2 rounded-md transition-all flex-1 justify-center ${
-                    viewMode === "grid" ? "bg-charcoal-dark text-white shadow-sm" : "text-gray-400"
-                  }`}
-                >
-                  <Grid className="w-3 h-3 lg:w-4 lg:h-4" />
-                  <span className="text-xs lg:text-sm font-medium">Grid</span>
-                </button>
-                <button
-                  onClick={() => setViewMode("list")}
-                  className={`flex items-center space-x-2 px-3 py-2 rounded-md transition-all flex-1 justify-center ${
-                    viewMode === "list" ? "bg-charcoal-dark text-white shadow-sm" : "text-gray-400"
-                  }`}
-                >
-                  <List className="w-3 h-3 lg:w-4 lg:h-4" />
-                  <span className="text-xs lg:text-sm font-medium">List</span>
-                </button>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-accent-green/10 to-accent-pink/10 rounded-xl p-4 lg:p-6 border border-gray-700">
-              <div className="w-8 h-8 lg:w-10 lg:h-10 bg-accent-green rounded-lg mb-4 flex items-center justify-center">
-                <Sparkles className="w-4 h-4 lg:w-5 lg:h-5 text-charcoal" />
-              </div>
-              <h4 className="font-semibold text-white mb-2 text-sm lg:text-base">Curated Excellence</h4>
-              <p className="text-xs lg:text-sm text-gray-400 leading-relaxed">
-                Every tool is carefully selected and vetted by our team for quality and effectiveness.
-              </p>
-            </div>
           </div>
         </aside>
 
@@ -302,18 +267,12 @@ export default function DirectoryPage() {
                     <Star className="w-5 h-5 text-accent-green fill-current" />
                     <h2 className="text-xl lg:text-2xl font-bold text-white">Featured Tools</h2>
                   </div>
-                  <div
-                    className={
-                      viewMode === "grid"
-                        ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6"
-                        : "space-y-4"
-                    }
-                  >
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
                     {featuredTools.map((tool) => (
                       <DirectoryToolCard
                         key={tool.id}
                         tool={tool}
-                        viewMode={viewMode}
+                        viewMode="grid"
                         onToolClick={handleToolClick}
                         isFeatured={true}
                       />
@@ -327,18 +286,12 @@ export default function DirectoryPage() {
                   {featuredTools.length > 0 && (
                     <h2 className="text-xl lg:text-2xl font-bold text-white mb-6">All Tools</h2>
                   )}
-                  <div
-                    className={
-                      viewMode === "grid"
-                        ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6"
-                        : "space-y-4"
-                    }
-                  >
+                  <div className="space-y-4">
                     {regularTools.map((tool) => (
                       <DirectoryToolCard
                         key={tool.id}
                         tool={tool}
-                        viewMode={viewMode}
+                        viewMode="list"
                         onToolClick={handleToolClick}
                         isFeatured={false}
                       />
