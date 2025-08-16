@@ -1,4 +1,4 @@
-kimport type { DirectoryToolRecord } from "@/lib/airtableClient"
+import type { DirectoryToolRecord } from "@/lib/airtableClient"
 import Image from "next/image"
 import Link from "next/link"
 import { generateDirectoryToolUrl } from "@/lib/urlUtils"
