@@ -3,27 +3,31 @@
 @tailwind utilities;
 
 :root {
-  /* New dark palette */
+  /* Happy Hues Palette #17 */
+  --bg-primary: #fef6e4;
+  --bg-secondary: #f3d2c1;
+  --headline: #001858;
+  --paragraph: #172c66;
+  --button: #f582ae;
+  --accent-secondary: #8bd3dd;
+  --accent-tertiary: #f582ae;
+
+  /* Legacy variables for compatibility */
   --charcoal: #121212;
   --charcoal-light: #1a1a1a;
   --charcoal-dark: #0a0a0a;
   --accent-green: #00c853;
-  --accent-pink: #ec4899; /* A vibrant pink/purple */
+  --accent-pink: #ec4899;
   --gray-text: #a0a0a0;
 
-  --foreground-rgb: 255, 255, 255; /* White text on dark background */
-  --background-start-rgb: 18, 18, 18; /* Charcoal */
-  --background-end-rgb: 10, 10, 10; /* Darker charcoal */
+  --foreground-rgb: 0, 24, 88;
+  --background-start-rgb: 254, 246, 228;
+  --background-end-rgb: 243, 210, 193;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
 /* Mobile-specific improvements */
@@ -32,13 +36,18 @@ body {
     padding-left: 1rem;
     padding-right: 1rem;
   }
-  
+
   /* Prevent text overflow on mobile */
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     word-wrap: break-word;
     overflow-wrap: break-word;
   }
-  
+
   /* Ensure proper text sizing on mobile */
   .text-balance {
     text-wrap: balance;
@@ -74,52 +83,52 @@ body {
 
   /* Custom grid pattern for background */
   .bg-grid-pattern {
-    background-image: 
-      linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
-    background-size: 20px 20px; /* Adjust grid size as needed */
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
   }
-  
+
   /* Mobile text utilities */
   .text-responsive {
     @apply text-sm sm:text-base lg:text-lg;
   }
-  
+
   .text-responsive-lg {
     @apply text-base sm:text-lg lg:text-xl;
   }
-  
+
   .text-responsive-xl {
     @apply text-lg sm:text-xl lg:text-2xl;
   }
-  
+
   .text-responsive-2xl {
     @apply text-xl sm:text-2xl lg:text-3xl;
   }
-  
+
   .text-responsive-3xl {
     @apply text-2xl sm:text-3xl lg:text-4xl;
   }
-  
+
   .text-responsive-4xl {
     @apply text-3xl sm:text-4xl lg:text-5xl;
   }
-  
+
   .text-responsive-5xl {
     @apply text-4xl sm:text-5xl lg:text-6xl;
   }
-  
+
   .text-responsive-6xl {
     @apply text-5xl sm:text-6xl lg:text-7xl;
   }
-  
+
   .text-responsive-7xl {
     @apply text-6xl sm:text-7xl lg:text-8xl;
   }
 }
 
 @keyframes gradient-x {
-  0%, 100% {
+  0%,
+  100% {
     background-position: 0% 50%;
   }
   50% {
@@ -137,14 +146,14 @@ html {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #1a1a1a; /* Darker track */
+  background: #f3d2c1;
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #00c853, #ec4899); /* Green to Pink gradient */
+  background: linear-gradient(to bottom, #f582ae, #8bd3dd);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #00a042, #d13a87); /* Darker gradient on hover */
+  background: linear-gradient(to bottom, #f582ae, #8bd3dd);
 }
 
 /* Backdrop blur fallback */

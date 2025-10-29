@@ -32,27 +32,27 @@ export default function DirectoryToolCard({
 
   const getCategoryColor = (category: string) => {
     const colors = {
-      CRM: "bg-blue-500 text-white",
-      "Lead Generation": "bg-accent-green text-charcoal",
-      Analytics: "bg-purple-500 text-white",
-      Automation: "bg-orange-500 text-white",
-      Communication: "bg-accent-pink text-charcoal",
-      "Sales Enablement": "bg-indigo-500 text-white",
-      Productivity: "bg-teal-500 text-white",
-      Marketing: "bg-yellow-500 text-charcoal",
-      "Customer Support": "bg-gray-600 text-white",
-      Other: "bg-slate-500 text-white",
+      CRM: "bg-[#8bd3dd] text-[#001858]",
+      "Lead Generation": "bg-[#f582ae] text-white",
+      Analytics: "bg-[#f3d2c1] text-[#001858]",
+      Automation: "bg-[#8bd3dd] text-[#001858]",
+      Communication: "bg-[#f582ae] text-white",
+      "Sales Enablement": "bg-[#f3d2c1] text-[#001858]",
+      Productivity: "bg-[#8bd3dd] text-[#001858]",
+      Marketing: "bg-[#f582ae] text-white",
+      "Customer Support": "bg-[#f3d2c1] text-[#001858]",
+      Other: "bg-[#8bd3dd] text-[#001858]",
     }
-    return colors[category as keyof typeof colors] || "bg-gray-500 text-white"
+    return colors[category as keyof typeof colors] || "bg-[#f3d2c1] text-[#001858]"
   }
 
   if (!isGridMode) {
     return (
       <button
         onClick={handleClick}
-        className={`group flex items-center p-4 lg:p-6 bg-charcoal-dark border border-gray-800 rounded-xl hover:border-accent-pink hover:shadow-lg transition-all duration-300 w-full text-left ${className}`}
+        className={`group flex items-center p-4 lg:p-6 bg-white border border-[#f582ae]/20 rounded-xl hover:border-[#f582ae] hover:shadow-lg transition-all duration-300 w-full text-left ${className}`}
       >
-        <div className="flex-shrink-0 w-12 h-12 lg:w-16 lg:h-16 bg-gray-800 rounded-lg border border-gray-700 overflow-hidden mr-4 lg:mr-6">
+        <div className="flex-shrink-0 w-12 h-12 lg:w-16 lg:h-16 bg-[#f3d2c1] rounded-lg border border-[#f582ae]/30 overflow-hidden mr-4 lg:mr-6">
           {tool.fields.Logo && tool.fields.Logo[0] ? (
             <Image
               src={tool.fields.Logo[0].url || "/placeholder.svg"}
@@ -63,22 +63,22 @@ export default function DirectoryToolCard({
               loading="lazy"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center text-gray-400 text-lg lg:text-2xl">🔧</div>
+            <div className="w-full h-full flex items-center justify-center text-[#172c66] text-lg lg:text-2xl">🔧</div>
           )}
         </div>
 
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between mb-2">
             <div className="flex items-center space-x-2 min-w-0 flex-1">
-              <h3 className="font-semibold text-white text-base lg:text-lg group-hover:text-accent-green transition-colors truncate">
+              <h3 className="font-semibold text-[#001858] text-base lg:text-lg group-hover:text-[#f582ae] transition-colors truncate">
                 {tool.fields.Name || "Unnamed Tool"}
               </h3>
-              {isFeatured && <Star className="w-4 h-4 text-accent-green fill-current flex-shrink-0" />}
+              {isFeatured && <Star className="w-4 h-4 text-[#f582ae] fill-current flex-shrink-0" />}
             </div>
-            <ExternalLink className="w-4 h-4 lg:w-5 lg:h-5 text-gray-400 group-hover:text-accent-pink transition-colors flex-shrink-0 ml-2" />
+            <ExternalLink className="w-4 h-4 lg:w-5 lg:h-5 text-[#172c66] group-hover:text-[#f582ae] transition-colors flex-shrink-0 ml-2" />
           </div>
 
-          <p className="text-gray-400 text-sm mb-3 line-clamp-2">
+          <p className="text-[#172c66] text-sm mb-3 line-clamp-2">
             {tool.fields["Short Description"] || tool.fields.Description || "No description available"}
           </p>
 
@@ -91,12 +91,12 @@ export default function DirectoryToolCard({
               </span>
             )}
             {tool.fields["Pricing Model"] && (
-              <span className="bg-gray-800 text-gray-300 px-2 lg:px-3 py-1 text-xs font-medium rounded-full">
+              <span className="bg-[#fef6e4] text-[#172c66] px-2 lg:px-3 py-1 text-xs font-medium rounded-full border border-[#f582ae]/20">
                 {tool.fields["Pricing Model"]}
               </span>
             )}
             {tool.fields["Deal Available"] && (
-              <span className="bg-accent-green text-charcoal px-2 lg:px-3 py-1 text-xs font-medium rounded-full flex items-center gap-1">
+              <span className="bg-[#f582ae] text-white px-2 lg:px-3 py-1 text-xs font-medium rounded-full flex items-center gap-1">
                 <Zap className="w-3 h-3" />
                 Deal
               </span>
@@ -110,7 +110,7 @@ export default function DirectoryToolCard({
   return (
     <button
       onClick={handleClick}
-      className={`group relative bg-charcoal-dark border border-gray-800 rounded-xl overflow-hidden flex flex-col justify-end p-4 lg:p-6 min-h-[240px] lg:min-h-[280px] hover:shadow-lg hover:border-accent-pink transition-all duration-200 w-full text-left ${className}`}
+      className={`group relative bg-white border border-[#f582ae]/20 rounded-xl overflow-hidden flex flex-col justify-end p-4 lg:p-6 min-h-[240px] lg:min-h-[280px] hover:shadow-lg hover:border-[#f582ae] transition-all duration-200 w-full text-left ${className}`}
       style={{
         backgroundImage: tool.fields.Logo && tool.fields.Logo[0] ? `url(${tool.fields.Logo[0].url})` : "none",
         backgroundSize: "cover",
@@ -119,7 +119,7 @@ export default function DirectoryToolCard({
     >
       {tool.fields.Logo && tool.fields.Logo[0] && <link rel="preload" as="image" href={tool.fields.Logo[0].url} />}
 
-      <div className="absolute inset-0 bg-gradient-to-t from-charcoal-dark via-charcoal-dark/80 to-transparent rounded-xl"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent rounded-xl"></div>
 
       <div className="relative z-10 flex flex-col h-full justify-end">
         <div className="flex items-center justify-between mb-2">
@@ -130,26 +130,26 @@ export default function DirectoryToolCard({
               {tool.fields.Category}
             </span>
           )}
-          {isFeatured && <Star className="w-4 h-4 lg:w-5 lg:h-5 text-accent-green fill-current" />}
+          {isFeatured && <Star className="w-4 h-4 lg:w-5 lg:h-5 text-[#f582ae] fill-current" />}
         </div>
 
-        <h3 className="text-lg lg:text-xl font-bold text-white mb-2 leading-tight">
+        <h3 className="text-lg lg:text-xl font-bold text-[#001858] mb-2 leading-tight">
           {tool.fields.Name || "Unnamed Tool"}
         </h3>
 
-        <p className="text-gray-400 text-sm line-clamp-2 mb-4">
+        <p className="text-[#172c66] text-sm line-clamp-2 mb-4">
           {tool.fields["Short Description"] || tool.fields.Description || "No description available"}
         </p>
 
         <div className="flex items-center justify-between">
           {tool.fields["Website URL"] && (
-            <div className="inline-flex items-center justify-center border border-gray-600 text-gray-300 px-3 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-semibold group-hover:border-accent-pink group-hover:text-accent-pink transition-colors">
+            <div className="inline-flex items-center justify-center border border-[#f582ae] text-[#f582ae] px-3 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-semibold group-hover:bg-[#f582ae] group-hover:text-white transition-colors">
               Visit Website <ExternalLink className="ml-2 h-3 w-3 lg:h-4 lg:w-4" />
             </div>
           )}
 
           {tool.fields["Deal Available"] && (
-            <span className="bg-accent-green text-charcoal px-2 lg:px-3 py-1 text-xs font-bold rounded-full flex items-center gap-1">
+            <span className="bg-[#f582ae] text-white px-2 lg:px-3 py-1 text-xs font-bold rounded-full flex items-center gap-1">
               <Zap className="w-3 h-3" />
               Deal
             </span>
