@@ -31,72 +31,72 @@ export default function DirectoryToolCard({
   }
 
   const getCategoryColor = (category: string) => {
-    const colors = {
-      CRM: "bg-[#8bd3dd] text-[#001858]",
-      "Lead Generation": "bg-[#f582ae] text-white",
-      Analytics: "bg-[#f3d2c1] text-[#001858]",
-      Automation: "bg-[#8bd3dd] text-[#001858]",
-      Communication: "bg-[#f582ae] text-white",
-      "Sales Enablement": "bg-[#f3d2c1] text-[#001858]",
-      Productivity: "bg-[#8bd3dd] text-[#001858]",
-      Marketing: "bg-[#f582ae] text-white",
-      "Customer Support": "bg-[#f3d2c1] text-[#001858]",
-      Other: "bg-[#8bd3dd] text-[#001858]",
+    const colors: { [key: string]: string } = {
+      CRM: "bg-blue-100 text-blue-800",
+      "Lead Generation": "bg-green-100 text-green-800",
+      Analytics: "bg-yellow-100 text-yellow-800",
+      Automation: "bg-purple-100 text-purple-800",
+      Communication: "bg-pink-100 text-pink-800",
+      "Sales Enablement": "bg-indigo-100 text-indigo-800",
+      Productivity: "bg-gray-100 text-gray-800",
+      Marketing: "bg-red-100 text-red-800",
+      "Customer Support": "bg-orange-100 text-orange-800",
+      Other: "bg-gray-100 text-gray-800",
     }
-    return colors[category as keyof typeof colors] || "bg-[#f3d2c1] text-[#001858]"
+    return colors[category] || "bg-gray-100 text-gray-800"
   }
 
   if (!isGridMode) {
     return (
       <button
         onClick={handleClick}
-        className={`group flex items-center p-4 lg:p-6 bg-white border border-[#f582ae]/20 rounded-xl hover:border-[#f582ae] hover:shadow-lg transition-all duration-300 w-full text-left ${className}`}
+        className={`directory-tool-card-list ${className}`}
       >
-        <div className="flex-shrink-0 w-12 h-12 lg:w-16 lg:h-16 bg-[#f3d2c1] rounded-lg border border-[#f582ae]/30 overflow-hidden mr-4 lg:mr-6">
+        <div className="directory-tool-card-logo-container-list">
           {tool.fields.Logo && tool.fields.Logo[0] ? (
             <Image
               src={tool.fields.Logo[0].url || "/placeholder.svg"}
               alt={`${tool.fields.Name} logo`}
               width={64}
               height={64}
-              className="w-full h-full object-contain p-1 lg:p-2"
+              className="directory-tool-card-logo-list"
               loading="lazy"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center text-[#172c66] text-lg lg:text-2xl">🔧</div>
+            <div className="w-full h-full flex items-center justify-center text-gray-500 text-2xl">🔧</div>
           )}
         </div>
 
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between mb-2">
             <div className="flex items-center space-x-2 min-w-0 flex-1">
-              <h3 className="font-semibold text-[#001858] text-base lg:text-lg group-hover:text-[#f582ae] transition-colors truncate">
+              <h3 className="directory-tool-card-name-list truncate">
                 {tool.fields.Name || "Unnamed Tool"}
               </h3>
-              {isFeatured && <Star className="w-4 h-4 text-[#f582ae] fill-current flex-shrink-0" />}
+              {isFeatured && <Star className="w-4 h-4 text-blue-500 fill-current flex-shrink-0" />}
             </div>
-            <ExternalLink className="w-4 h-4 lg:w-5 lg:h-5 text-[#172c66] group-hover:text-[#f582ae] transition-colors flex-shrink-0 ml-2" />
+            <ExternalLink className="w-5 h-5 text-gray-400 group-hover:text-blue-500 transition-colors flex-shrink-0 ml-2" />
           </div>
 
-          <p className="text-[#172c66] text-sm mb-3 line-clamp-2">
+          <p className="directory-tool-card-description-list line-clamp-2">
             {tool.fields["Short Description"] || tool.fields.Description || "No description available"}
           </p>
 
           <div className="flex items-center gap-2 flex-wrap">
             {tool.fields.Category && (
               <span
-                className={`px-2 lg:px-3 py-1 text-xs font-medium rounded-full ${getCategoryColor(tool.fields.Category)}`}
+                className={`directory-tool-card-category-badge ${getCategoryColor(tool.fields.Category)}`}
               >
                 {tool.fields.Category}
               </span>
             )}
             {tool.fields["Pricing Model"] && (
-              <span className="bg-[#fef6e4] text-[#172c66] px-2 lg:px-3 py-1 text-xs font-medium rounded-full border border-[#f582ae]/20">
+              <span className="bg-gray-100 text-gray-600 px-3 py-1 text-xs font-medium rounded-md border border-gray-200">
                 {tool.fields["Pricing Model"]}
               </span>
             )}
             {tool.fields["Deal Available"] && (
-              <span className="bg-[#f582ae] text-white px-2 lg:px-3 py-1 text-xs font-medium rounded-full flex items-center gap-1">
+              <span className="bg-green-500 text-white px-3 py-1 text-xs font-medium rounded-md flex items-center gap-1">
                 <Zap className="w-3 h-3" />
                 Deal
               </span>
@@ -110,46 +110,46 @@ export default function DirectoryToolCard({
   return (
     <button
       onClick={handleClick}
-      className={`group relative bg-white border border-[#f582ae]/20 rounded-xl overflow-hidden flex flex-col justify-end p-4 lg:p-6 min-h-[240px] lg:min-h-[280px] hover:shadow-lg hover:border-[#f582ae] transition-all duration-200 w-full text-left ${className}`}
-      style={{
-        backgroundImage: tool.fields.Logo && tool.fields.Logo[0] ? `url(${tool.fields.Logo[0].url})` : "none",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
+      className={`directory-tool-card-grid ${className}`}
     >
-      {tool.fields.Logo && tool.fields.Logo[0] && <link rel="preload" as="image" href={tool.fields.Logo[0].url} />}
-
-      <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent rounded-xl"></div>
-
-      <div className="relative z-10 flex flex-col h-full justify-end">
+      {tool.fields.Logo && tool.fields.Logo[0] && 
+        <Image 
+          src={tool.fields.Logo[0].url} 
+          alt={`${tool.fields.Name} background`} 
+          layout="fill" 
+          className="directory-tool-card-grid-bg-image" 
+        />
+      }
+      <div className="directory-tool-card-grid-gradient"></div>
+      <div className="directory-tool-card-grid-content">
         <div className="flex items-center justify-between mb-2">
           {tool.fields.Category && (
             <span
-              className={`px-2 lg:px-3 py-1 text-xs font-bold uppercase rounded-full ${getCategoryColor(tool.fields.Category)}`}
+              className={`directory-tool-card-category-badge ${getCategoryColor(tool.fields.Category)}`}
             >
               {tool.fields.Category}
             </span>
           )}
-          {isFeatured && <Star className="w-4 h-4 lg:w-5 lg:h-5 text-[#f582ae] fill-current" />}
+          {isFeatured && <Star className="w-5 h-5 text-blue-500 fill-current" />}
         </div>
 
-        <h3 className="text-lg lg:text-xl font-bold text-[#001858] mb-2 leading-tight">
+        <h3 className="directory-tool-card-name-grid">
           {tool.fields.Name || "Unnamed Tool"}
         </h3>
 
-        <p className="text-[#172c66] text-sm line-clamp-2 mb-4">
+        <p className="directory-tool-card-description-grid">
           {tool.fields["Short Description"] || tool.fields.Description || "No description available"}
         </p>
 
         <div className="flex items-center justify-between">
           {tool.fields["Website URL"] && (
-            <div className="inline-flex items-center justify-center border border-[#f582ae] text-[#f582ae] px-3 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-semibold group-hover:bg-[#f582ae] group-hover:text-white transition-colors">
-              Visit Website <ExternalLink className="ml-2 h-3 w-3 lg:h-4 lg:w-4" />
+            <div className="directory-tool-card-visit-button">
+              Visit Website <ExternalLink className="ml-2 h-4 w-4" />
             </div>
           )}
 
           {tool.fields["Deal Available"] && (
-            <span className="bg-[#f582ae] text-white px-2 lg:px-3 py-1 text-xs font-bold rounded-full flex items-center gap-1">
+            <span className="bg-green-500 text-white px-3 py-1 text-xs font-bold rounded-md flex items-center gap-1">
               <Zap className="w-3 h-3" />
               Deal
             </span>
