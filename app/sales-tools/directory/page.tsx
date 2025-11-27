@@ -6,31 +6,30 @@ import Header from "../../../components/Header"
 import DirectoryToolCard from "../../../components/DirectoryToolCard"
 import ToolModal from "../../../components/ToolModal"
 import type { DirectoryToolRecord } from "@/lib/airtableClient"
-import { Filter, Sparkles, Star } from "lucide-react"
-import "./sales-directory.css"
+import { Filter, Sparkles, Star, Search } from "lucide-react"
 
 const LoadingSpinner = () => (
   <div className="flex items-center justify-center py-32">
     <div className="flex flex-col items-center space-y-8">
       <div className="relative">
-        <div className="w-12 h-12 border-4 border-gray-200 border-t-blue-500 rounded-full animate-spin"></div>
-        <Sparkles className="w-6 h-6 text-blue-500 absolute top-3 left-3 animate-pulse" />
+        <div className="w-12 h-12 border-4 border-gray-800 border-t-accent-pink rounded-full animate-spin"></div>
+        <Sparkles className="w-6 h-6 text-accent-pink absolute top-3 left-3 animate-pulse" />
       </div>
-      <p className="text-sm text-gray-700 font-medium tracking-wide">Discovering amazing tools...</p>
+      <p className="text-sm text-gray-400 font-medium tracking-wide">Discovering amazing tools...</p>
     </div>
   </div>
 )
 
 const ErrorDisplay = ({ error, onRetry }: { error: string; onRetry: () => void }) => (
   <div className="flex flex-col items-center justify-center py-32">
-    <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-6">
-      <div className="w-8 h-8 border-2 border-red-400 rounded-full"></div>
+    <div className="w-16 h-16 bg-red-900/20 rounded-full flex items-center justify-center mb-6">
+      <div className="w-8 h-8 border-2 border-red-500 rounded-full"></div>
     </div>
-    <h3 className="text-xl font-semibold text-gray-800 mb-4">Something went wrong</h3>
-    <p className="text-sm text-gray-600 text-center mb-8 max-w-md leading-relaxed">{error}</p>
+    <h3 className="text-xl font-semibold text-white mb-4">Something went wrong</h3>
+    <p className="text-sm text-gray-400 text-center mb-8 max-w-md leading-relaxed">{error}</p>
     <button
       onClick={onRetry}
-      className="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition-colors font-medium"
+      className="bg-accent-pink text-charcoal px-6 py-3 rounded-md hover:bg-accent-pink/80 transition-colors font-bold uppercase tracking-wide text-sm"
     >
       Try Again
     </button>
@@ -44,6 +43,7 @@ export default function DirectoryPage() {
   const [error, setError] = useState<string | null>(null)
   const [selectedCategory, setSelectedCategory] = useState<string>("All")
   const [selectedTool, setSelectedTool] = useState<DirectoryToolRecord | null>(null)
+  const [searchQuery, setSearchQuery] = useState("")
 
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -106,7 +106,13 @@ export default function DirectoryPage() {
 
   const filteredTools = tools.filter((tool) => {
     const matchesCategory = selectedCategory === "All" || tool.fields.Category === selectedCategory
-    return matchesCategory
+    const matchesSearch =
+      searchQuery === "" ||
+      tool.fields.Name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      tool.fields.Description?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      tool.fields["Short Description"]?.toLowerCase().includes(searchQuery.toLowerCase())
+    
+    return matchesCategory && matchesSearch
   })
 
   const featuredTools = filteredTools.filter((tool) => tool.fields.Featured === true)
@@ -129,30 +135,36 @@ export default function DirectoryPage() {
   }
 
   return (
-    <div className="sales-directory-page">
+    <div className="bg-charcoal text-white min-h-screen">
       <Header />
 
       <div className="flex flex-col lg:flex-row min-h-screen">
-        <aside className="w-full lg:w-80 sales-directory-sidebar flex-shrink-0">
-          <div className="p-4 lg:p-8">
-            <div className="mb-6 lg:mb-8">
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="w-8 h-8 lg:w-10 lg:h-10 sales-directory-title-icon flex items-center justify-center">
-                  <Sparkles className="w-4 h-4 lg:w-5 lg:h-5 text-white" />
-                </div>
-                <div>
-                  <h2 className="sales-directory-title">Sales Directory</h2>
-                  <p className="sales-directory-subtitle">{tools.length} curated tools</p>
-                </div>
+        {/* Sidebar */}
+        <aside className="w-full lg:w-80 flex-shrink-0 border-r border-gray-800 bg-charcoal-dark/50">
+          <div className="p-4 lg:p-8 sticky top-0">
+            <div className="mb-8">
+              <h2 className="text-xl font-bold text-white flex items-center gap-2 mb-6">
+                <Sparkles className="w-5 h-5 text-accent-pink" />
+                Directory
+              </h2>
+              
+              <div className="relative mb-6">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-4 h-4" />
+                <input 
+                  type="text" 
+                  placeholder="Search tools..." 
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full bg-charcoal border border-gray-700 rounded-lg py-2 pl-10 pr-4 text-sm text-white focus:border-accent-pink focus:outline-none transition-colors"
+                />
               </div>
-            </div>
 
-            <div className="mb-6 lg:mb-8">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="sales-directory-category-title">Categories</h3>
-                <Filter className="w-3 h-3 lg:w-4 lg:h-4 text-gray-600" />
+                <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider">Categories</h3>
+                <Filter className="w-3 h-3 text-gray-600" />
               </div>
-              <nav className="grid grid-cols-2 lg:grid-cols-1 gap-1 lg:space-y-1">
+              
+              <nav className="space-y-1 max-h-[calc(100vh-250px)] overflow-y-auto custom-scrollbar">
                 {categories.map((category) => {
                   const toolCount =
                     category === "All" ? tools.length : tools.filter((tool) => tool.fields.Category === category).length
@@ -160,13 +172,19 @@ export default function DirectoryPage() {
                     <button
                       key={category}
                       onClick={() => setSelectedCategory(category)}
-                      className={`sales-directory-category-button ${
-                        selectedCategory === category ? "selected" : ""
+                      className={`w-full flex items-center justify-between px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                        selectedCategory === category
+                          ? "bg-accent-pink text-charcoal shadow-[0_0_15px_rgba(236,72,153,0.3)]"
+                          : "text-gray-400 hover:text-white hover:bg-white/5"
                       }`}
                     >
-                      <span className="font-medium truncate">{category}</span>
+                      <span className="truncate">{category}</span>
                       <span
-                        className="sales-directory-category-count"
+                        className={`text-xs px-2 py-0.5 rounded-full ${
+                          selectedCategory === category
+                            ? "bg-charcoal/20 text-charcoal font-bold"
+                            : "bg-charcoal-dark text-gray-600"
+                        }`}
                       >
                         {toolCount}
                       </span>
@@ -178,106 +196,115 @@ export default function DirectoryPage() {
           </div>
         </aside>
 
-        <main className="flex-1 sales-directory-main">
-          <div className="mb-6 lg:mb-8">
-            <div className="max-w-4xl">
-              <h1 className="sales-directory-main-title">Sales Tools —</h1>
-              <p className="sales-directory-main-subtitle">
+        {/* Main Content */}
+        <main className="flex-1 p-4 lg:p-8 xl:p-12 bg-charcoal">
+          <div className="max-w-7xl mx-auto">
+            <div className="mb-10">
+              <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4 tracking-tight">
+                Sales Tools <span className="text-gray-600">Directory</span>
+              </h1>
+              <p className="text-lg text-gray-400 max-w-3xl">
                 A curated collection of the finest sales tools, carefully selected for modern teams who value excellence
                 and efficiency.
               </p>
-
-              <div className="flex flex-wrap gap-2 mb-6">
-                {categories.slice(1).map((category) => (
-                  <button
-                    key={category}
-                    onClick={() => setSelectedCategory(category)}
-                    className={`sales-directory-category-tag ${
-                      selectedCategory === category ? "selected" : ""
-                    }`}
-                  >
-                    {category}
-                  </button>
-                ))}
-              </div>
-
-              {!loading && !error && (
-                <div className="flex items-center justify-between">
-                  <p className="sales-directory-tool-count">
-                    Showing <span className="count">{filteredTools.length}</span>
-                    {filteredTools.length === 1 ? " tool" : " tools"}
-                    {selectedCategory !== "All" && (
-                      <span>
-                        {" "}
-                        in <span className="category">{selectedCategory}</span>
-                      </span>
-                    )}
-                  </p>
-                </div>
-              )}
             </div>
-          </div>
 
-          {loading ? (
-            <LoadingSpinner />
-          ) : error ? (
-            <ErrorDisplay error={error} onRetry={handleRetry} />
-          ) : filteredTools.length === 0 ? (
-            <div className="text-center py-20">
-              <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                <Sparkles className="w-8 h-8 text-blue-500" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">No tools found</h3>
-              <p className="text-gray-600 mb-6">Try adjusting your category filter.</p>
-              <button
-                onClick={() => setSelectedCategory("All")}
-                className="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition-colors font-medium"
-              >
-                Clear Filters
-              </button>
+            {/* Mobile Category Pills */}
+            <div className="lg:hidden flex overflow-x-auto gap-2 mb-8 pb-2 scrollbar-hide">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium transition-colors border ${
+                    selectedCategory === category
+                      ? "bg-accent-pink border-accent-pink text-charcoal"
+                      : "bg-charcoal-dark border-gray-700 text-gray-400"
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
             </div>
-          ) : (
-            <div className="space-y-8">
-              {featuredTools.length > 0 && (
-                <div>
-                  <div className="flex items-center space-x-2 mb-6">
-                    <Star className="w-5 h-5 text-blue-500 fill-current" />
-                    <h2 className="text-xl lg:text-2xl font-bold text-gray-800">Featured Tools</h2>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-                    {featuredTools.map((tool) => (
-                      <DirectoryToolCard
-                        key={tool.id}
-                        tool={tool}
-                        viewMode="grid"
-                        onToolClick={handleToolClick}
-                        isFeatured={true}
-                      />
-                    ))}
-                  </div>
-                </div>
-              )}
 
-              {regularTools.length > 0 && (
-                <div>
-                  {featuredTools.length > 0 && (
-                    <h2 className="text-xl lg:text-2xl font-bold text-gray-800 mb-6">All Tools</h2>
+            {!loading && !error && (
+              <div className="flex items-center justify-between mb-6 border-b border-gray-800 pb-4">
+                <p className="text-sm text-gray-500">
+                  Showing <span className="text-white font-bold">{filteredTools.length}</span>
+                  {filteredTools.length === 1 ? " tool" : " tools"}
+                  {selectedCategory !== "All" && (
+                    <span>
+                      {" "}
+                      in <span className="text-accent-green">{selectedCategory}</span>
+                    </span>
                   )}
-                  <div className="space-y-4">
-                    {regularTools.map((tool) => (
-                      <DirectoryToolCard
-                        key={tool.id}
-                        tool={tool}
-                        viewMode="list"
-                        onToolClick={handleToolClick}
-                        isFeatured={false}
-                      />
-                    ))}
-                  </div>
+                </p>
+              </div>
+            )}
+
+            {loading ? (
+              <LoadingSpinner />
+            ) : error ? (
+              <ErrorDisplay error={error} onRetry={handleRetry} />
+            ) : filteredTools.length === 0 ? (
+              <div className="text-center py-20 border border-dashed border-gray-800 rounded-xl bg-charcoal-dark/30">
+                <div className="w-20 h-20 bg-gray-800 rounded-full mx-auto mb-6 flex items-center justify-center">
+                  <Search className="w-8 h-8 text-gray-600" />
                 </div>
-              )}
-            </div>
-          )}
+                <h3 className="text-xl font-bold text-white mb-2">No tools found</h3>
+                <p className="text-gray-500 mb-6">Try adjusting your search or category filter.</p>
+                <button
+                  onClick={() => {
+                    setSelectedCategory("All")
+                    setSearchQuery("")
+                  }}
+                  className="text-accent-green hover:text-accent-pink transition-colors font-bold"
+                >
+                  Clear all filters
+                </button>
+              </div>
+            ) : (
+              <div className="space-y-12">
+                {featuredTools.length > 0 && (
+                  <div>
+                    <div className="flex items-center gap-2 mb-6">
+                      <Star className="w-5 h-5 text-accent-pink fill-current" />
+                      <h2 className="text-2xl font-bold text-white">Featured Tools</h2>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                      {featuredTools.map((tool) => (
+                        <DirectoryToolCard
+                          key={tool.id}
+                          tool={tool}
+                          viewMode="grid"
+                          onToolClick={handleToolClick}
+                          isFeatured={true}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {regularTools.length > 0 && (
+                  <div>
+                    {featuredTools.length > 0 && (
+                      <h2 className="text-2xl font-bold text-white mb-6 mt-8">All Tools</h2>
+                    )}
+                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                      {regularTools.map((tool) => (
+                        <DirectoryToolCard
+                          key={tool.id}
+                          tool={tool}
+                          viewMode="grid"
+                          onToolClick={handleToolClick}
+                          isFeatured={false}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
         </main>
       </div>
 
