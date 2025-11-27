@@ -145,32 +145,12 @@ export interface DirectoryToolRecord {
       | "Marketing"
       | "Customer Support"
       | "Other"
-    Description?: string
-    "Short Description"?: string // For card display
+    Description?: string // Detailed long text description
+    "Short Description"?: string // AI-generated brief description
     Logo?: [{ url: string; filename: string }]
     "Website URL"?: string
-    "Pricing Model"?: "Free" | "Freemium" | "Paid" | "Enterprise"
-    "Starting Price"?: string
-    "Deal Available"?: boolean // For showing deal badges
-    "Deal Description"?: string
-    "Deal URL"?: string
-    Tags?: string // Comma-separated tags
-    "Company Name"?: string
-    "Founded Year"?: number
-    "Team Size"?: string
-    Headquarters?: string
-    "Key Features"?: string // Multi-line text for detail page
-    "Use Cases"?: string // Multi-line text for detail page
-    Integrations?: string // Comma-separated list
-    Pros?: string // Multi-line text
-    Cons?: string // Multi-line text
-    "User Rating"?: number // 1-5 scale
-    "Review Count"?: number
-    Featured?: boolean // For highlighting certain tools
-    Sponsored?: boolean // For sponsored listings that appear at top
     Status?: "Active" | "Inactive" | "Coming Soon"
-    "Created At"?: string
-    "Updated At"?: string
+    Featured?: boolean // Checkbox to mark featured tools
   }
 }
 
@@ -326,8 +306,7 @@ export async function getDirectoryTools(options?: {
     const selectOptions: any = {
       filterByFormula: filterFormula,
       sort: [
-        { field: "Sponsored", direction: "desc" }, // Sponsored tools first
-        { field: "Featured", direction: "desc" }, // Then featured tools
+        { field: "Featured", direction: "desc" }, // Featured tools first
         { field: "Name", direction: "asc" }, // Then alphabetical
       ],
     }

@@ -4,7 +4,7 @@ import type React from "react"
 
 import type { DirectoryToolRecord } from "@/lib/airtableClient"
 import Image from "next/image"
-import { ExternalLink, Zap, Star } from "lucide-react"
+import { ExternalLink, Star } from "lucide-react"
 
 interface DirectoryToolCardProps {
   tool: DirectoryToolRecord
@@ -78,12 +78,6 @@ export default function DirectoryToolCard({
                 {tool.fields.Category}
               </span>
             )}
-            {tool.fields["Deal Available"] && (
-              <span className="bg-green-900/30 text-green-400 border border-green-900/50 px-2 py-0.5 text-xs font-medium rounded-md flex items-center gap-1">
-                <Zap className="w-3 h-3" />
-                Deal
-              </span>
-            )}
           </div>
         </div>
       </button>
@@ -137,13 +131,6 @@ export default function DirectoryToolCard({
             <div className="inline-flex items-center justify-center border border-gray-600 text-gray-300 px-3 py-1.5 rounded-full text-xs font-semibold group-hover:border-accent-pink group-hover:text-accent-pink transition-colors bg-charcoal-dark/50 backdrop-blur-sm">
               Visit Website <ExternalLink className="ml-2 h-3 w-3" />
             </div>
-
-            {tool.fields["Deal Available"] && (
-              <span className="bg-green-500 text-charcoal px-2 py-1 text-xs font-bold rounded flex items-center gap-1">
-                <Zap className="w-3 h-3 fill-current" />
-                DEAL
-              </span>
-            )}
           </div>
         </div>
       </div>
