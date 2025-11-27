@@ -14,17 +14,14 @@ export default function Header() {
           </div>
 
           <nav className="hidden md:flex items-center space-x-6">
-            <Link href="/directory" className="text-gray-300 hover:text-accent-green transition-colors font-medium">
+            <Link href="/sales-tools/directory" className="text-gray-300 hover:text-accent-green transition-colors font-medium">
               Directory
-            </Link>
-            <Link href="/admin" className="text-gray-300 hover:text-accent-green transition-colors font-medium">
-              Admin
             </Link>
           </nav>
 
           <div className="flex items-center space-x-4">
             <Link
-              href="/directory"
+              href="/sales-tools/directory"
               className="md:hidden text-gray-300 hover:text-accent-green transition-colors font-medium text-sm"
             >
               Directory
