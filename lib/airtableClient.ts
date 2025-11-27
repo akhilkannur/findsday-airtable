@@ -10,22 +10,45 @@ if (typeof window !== "undefined") {
   throw new Error("Airtable client should only be used on the server side")
 }
 
-if (!apiKey) {
-  throw new Error("AIRTABLE_API_KEY environment variable is required")
+// Lazy initialization of the Airtable base to prevent build failures
+// when environment variables are missing (e.g. during CI/CD builds)
+let baseInstance: Airtable.Base
+
+// Helper to safely get the base instance or throw if not configured
+const getBase = () => {
+  if (baseInstance) return baseInstance
+
+  if (!apiKey || !baseId) {
+    // During build time, we might not have env vars, so we return a mock
+    // that warns but doesn't crash immediately on import.
+    // However, if we try to USE it, it should fail.
+    console.warn("⚠️ AIRTABLE_API_KEY or AIRTABLE_BASE_ID is missing.")
+    
+    // Return a proxy that throws when used, or a dummy object if Proxy causes issues.
+    // Using a simple function that throws is safer for the 'base(tableName)' pattern.
+    const missingEnvHandler = ((tableName: string) => {
+      throw new Error(
+        `Cannot access Airtable table '${tableName}': AIRTABLE_API_KEY or AIRTABLE_BASE_ID environment variables are missing.`
+      )
+    }) as unknown as Airtable.Base
+    
+    // Add select/find methods to the handler to satisfy TypeScript if needed (though the cast above handles most)
+    return missingEnvHandler
+  }
+
+  Airtable.configure({
+    endpointUrl: "https://api.airtable.com",
+    apiKey: apiKey,
+  })
+
+  baseInstance = Airtable.base(baseId)
+  return baseInstance
 }
 
-if (!baseId) {
-  throw new Error("AIRTABLE_BASE_ID environment variable is required")
-}
-
-// Correct way to configure Airtable
-Airtable.configure({
-  endpointUrl: "https://api.airtable.com",
-  apiKey: apiKey,
-})
-
-// Create the base instance
-export const base = Airtable.base(baseId)
+// Export a wrapper function that mimics the Airtable base behavior
+export const base = ((tableName: string) => {
+  return getBase()(tableName)
+}) as unknown as Airtable.Base
 
 // Define types for our Airtable records based on your exact schema
 // Tools Table
