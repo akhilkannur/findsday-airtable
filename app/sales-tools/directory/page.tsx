@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import Header from "../../../components/Header"
 import DirectoryToolCard from "../../../components/DirectoryToolCard"
@@ -36,7 +36,7 @@ const ErrorDisplay = ({ error, onRetry }: { error: string; onRetry: () => void }
   </div>
 )
 
-export default function DirectoryPage() {
+function DirectoryContent() {
   const [tools, setTools] = useState<DirectoryToolRecord[]>([])
   const [categories, setCategories] = useState<string[]>([])
   const [loading, setLoading] = useState(true)
@@ -73,7 +73,10 @@ export default function DirectoryPage() {
         setTools(sortedTools)
 
         const uniqueCategories = [
-          ...new Set(toolsData.map((tool: DirectoryToolRecord) => tool.fields.Category).filter(Boolean)),
+          ...new Set(toolsData.map((tool: DirectoryToolRecord) => {
+             const cat = tool.fields.Category
+             return typeof cat === 'string' ? cat : String(cat || '') 
+          }).filter((c: string) => c !== '')),
         ].sort()
         setCategories(["All", ...uniqueCategories])
       } catch (e: any) {
@@ -310,5 +313,13 @@ export default function DirectoryPage() {
 
       {selectedTool && <ToolModal tool={selectedTool} onClose={handleCloseModal} />}
     </div>
+  )
+}
+
+export default function DirectoryPage() {
+  return (
+    <Suspense fallback={<LoadingSpinner />}>
+      <DirectoryContent />
+    </Suspense>
   )
 }
