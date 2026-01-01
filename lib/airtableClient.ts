@@ -147,6 +147,7 @@ export interface DirectoryToolRecord {
       | "Other"
     Description?: string // Detailed long text description
     "Short Description"?: string // AI-generated brief description
+    "Alternative To"?: string // The proprietary tool this is an alternative to
     Logo?: [{ url: string; filename: string }]
     "Website URL"?: string
     Status?: "Active" | "Inactive" | "Coming Soon"
