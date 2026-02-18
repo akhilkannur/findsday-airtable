@@ -4,7 +4,7 @@ import { getMcpTools } from "@/lib/tools"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Sales Tools with MCP Servers | Findsday",
+  title: "MCP Servers | Salestools Club",
   description:
     "Browse sales tools with MCP (Model Context Protocol) servers. Connect your sales stack to Claude, Cursor, and AI workflows.",
 }
@@ -14,8 +14,8 @@ export default function McpPage() {
 
   const getDifficultyColor = (diff: string) => {
     switch (diff) {
-      case "AI-Native": return "text-brand-purple"
-      case "Beginner-Friendly": return "text-terminal-green"
+      case "AI-Native": return "text-club-teal"
+      case "Beginner-Friendly": return "text-green-400"
       case "Technical": return "text-blue-400"
       case "Complex": return "text-orange-400"
       default: return "text-gray-500"
@@ -25,10 +25,10 @@ export default function McpPage() {
   return (
     <main className="mx-auto max-w-7xl px-6 py-24 sm:px-12 lg:px-24">
       <div className="mx-auto max-w-4xl text-center mb-32">
-        <div className="mb-10 inline-flex h-20 w-20 items-center justify-center rounded-3xl bg-brand-purple/10 text-brand-purple border border-brand-purple/20">
-          <Zap className="h-10 w-10 fill-brand-purple" />
+        <div className="mb-10 inline-flex h-20 w-20 items-center justify-center rounded-3xl bg-club-teal/10 text-club-teal border border-club-teal/20">
+          <Zap className="h-10 w-10 fill-club-teal" />
         </div>
-        <h1 className="text-5xl font-extrabold tracking-tight sm:text-7xl">
+        <h1 className="text-5xl font-extrabold tracking-tight sm:text-7xl italic font-heading">
           MCP Servers
         </h1>
         <p className="mt-8 text-xl text-gray-400 leading-relaxed max-w-3xl mx-auto">
@@ -42,7 +42,7 @@ export default function McpPage() {
           <Link
             key={tool.slug}
             href={`/tools/${tool.slug}`}
-            className="ghost-card group relative flex flex-col h-full"
+            className="club-card group relative flex flex-col h-full"
           >
             <div className="mb-8 flex items-start justify-between">
               <div className="flex items-center gap-4">
@@ -50,14 +50,14 @@ export default function McpPage() {
                   {tool.name.charAt(0)}
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-white group-hover:text-brand-purple transition-colors">
+                  <h3 className="text-lg font-bold text-white group-hover:text-club-teal transition-colors">
                     {tool.name}
                   </h3>
                   <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">{tool.category}</span>
                 </div>
               </div>
-              <div className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-purple text-white shadow-lg shadow-brand-purple/20">
-                <Zap className="h-3.5 w-3.5 fill-white" />
+              <div className="flex h-7 w-7 items-center justify-center rounded-full bg-club-teal text-black shadow-lg shadow-club-teal/20">
+                <Zap className="h-3.5 w-3.5 fill-black" />
               </div>
             </div>
 
@@ -85,7 +85,7 @@ export default function McpPage() {
         </p>
         <Link
           href="/submit"
-          className="mt-8 btn-ghost"
+          className="mt-8 btn-club"
         >
           Submit a tool <ArrowRight className="h-4 w-4" />
         </Link>

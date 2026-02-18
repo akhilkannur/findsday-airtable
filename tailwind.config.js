@@ -4,10 +4,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'ghost-dark': '#0f1115', // Neutral deep dark
-        'ghost-card': '#16191f', // Slightly lighter for cards
-        'brand-purple': '#a052de', // Ghost-like accent
-        'terminal-green': '#00FF41',
+        'club-dark': '#0f1115', 
+        'club-card': '#16191f',
+        'club-teal': '#2dd4bf', // Unique, fresh teal instead of overdone violet
         'paper-white': '#FDFDFD',
       },
       fontFamily: {

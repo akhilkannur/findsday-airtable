@@ -29,19 +29,19 @@ export default function SubmitPage() {
   })
 
   const inputClasses =
-    "w-full bg-white/5 border border-white/5 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:border-brand-purple focus:ring-1 focus:ring-brand-purple focus:outline-none transition-all"
+    "w-full bg-white/5 border border-white/5 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:border-club-teal focus:ring-1 focus:ring-club-teal focus:outline-none transition-all"
 
   return (
     <main className="px-6 py-24 sm:px-12 lg:px-24">
       <div className="mx-auto max-w-2xl">
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-extrabold tracking-tight sm:text-6xl">Submit a Tool</h1>
+          <h1 className="text-4xl font-extrabold tracking-tight sm:text-6xl italic font-heading">Submit Entry</h1>
           <p className="mt-6 text-lg text-gray-400">
-            Know a sales API or MCP server we&apos;re missing? Tell us about it.
+            Know a sales API or MCP server we&apos;re missing? Add it to the club.
           </p>
         </div>
 
-        <div className="bg-ghost-card rounded-3xl border border-white/5 p-8 sm:p-12">
+        <div className="bg-club-card rounded-3xl border border-white/5 p-8 sm:p-12">
           <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
             {/* Tool Name */}
             <div>
@@ -99,9 +99,9 @@ export default function SubmitPage() {
                 value={formData.category}
                 onChange={(e) => setFormData({ ...formData, category: e.target.value })}
               >
-                <option value="" className="bg-ghost-dark text-gray-500">Select a category</option>
+                <option value="" className="bg-club-dark text-gray-500">Select a category</option>
                 {CATEGORIES.map((cat) => (
-                  <option key={cat} value={cat} className="bg-ghost-dark text-white">
+                  <option key={cat} value={cat} className="bg-club-dark text-white">
                     {cat}
                   </option>
                 ))}
@@ -113,7 +113,7 @@ export default function SubmitPage() {
               <label className="flex items-center gap-3 cursor-pointer group">
                 <input
                   type="checkbox"
-                  className="h-5 w-5 rounded border-white/10 bg-white/5 text-brand-purple focus:ring-brand-purple transition-colors"
+                  className="h-5 w-5 rounded border-white/10 bg-white/5 text-club-teal focus:ring-club-teal transition-colors"
                   checked={formData.hasMcp}
                   onChange={(e) => setFormData({ ...formData, hasMcp: e.target.checked })}
                 />
@@ -123,7 +123,7 @@ export default function SubmitPage() {
               <label className="flex items-center gap-3 cursor-pointer group">
                 <input
                   type="checkbox"
-                  className="h-5 w-5 rounded border-white/10 bg-white/5 text-brand-purple focus:ring-brand-purple transition-colors"
+                  className="h-5 w-5 rounded border-white/10 bg-white/5 text-club-teal focus:ring-club-teal transition-colors"
                   checked={formData.hasAgentSkills}
                   onChange={(e) => setFormData({ ...formData, hasAgentSkills: e.target.checked })}
                 />
@@ -164,7 +164,7 @@ export default function SubmitPage() {
             {/* Submit */}
             <button
               type="submit"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white text-black font-bold rounded-full px-10 py-4 transition-all hover:bg-white/90 active:scale-[0.98]"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white text-black font-bold rounded-full px-10 py-4 transition-all hover:bg-club-teal hover:text-black active:scale-[0.98]"
             >
               <Send className="h-4 w-4" />
               Submit Tool
@@ -173,7 +173,7 @@ export default function SubmitPage() {
         </div>
 
         <p className="mt-10 text-center text-sm font-medium text-gray-500">
-          We review every submission within a week.
+          We review every submission within 24 hours.
         </p>
       </div>
     </main>

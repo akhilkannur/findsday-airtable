@@ -4,7 +4,7 @@ import { getAllTools, searchTools } from "@/lib/tools"
 import { Zap, Brain, ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "All Sales APIs & Tools | Findsday",
+  title: "The Registry | Salestools Club",
   description:
     "Browse the complete list of sales APIs and tools. Find the right integrations for your sales workflow.",
 }
@@ -20,8 +20,8 @@ export default async function ToolsPage({
 
   const getDifficultyColor = (diff: string) => {
     switch (diff) {
-      case "AI-Native": return "text-brand-purple"
-      case "Beginner-Friendly": return "text-terminal-green"
+      case "AI-Native": return "text-club-teal"
+      case "Beginner-Friendly": return "text-green-400"
       case "Technical": return "text-blue-400"
       case "Complex": return "text-orange-400"
       default: return "text-gray-500"
@@ -31,7 +31,7 @@ export default async function ToolsPage({
   return (
     <main className="mx-auto max-w-7xl px-6 py-24 sm:px-12 lg:px-24">
       <div className="mb-20 text-center sm:text-left">
-        <h1 className="text-5xl font-extrabold tracking-tight sm:text-7xl">
+        <h1 className="text-5xl font-extrabold tracking-tight sm:text-7xl italic font-heading">
           The Registry
         </h1>
         <p className="mt-6 text-xl text-gray-400 max-w-2xl">
@@ -42,7 +42,7 @@ export default async function ToolsPage({
       {q && (
         <div className="mb-12 flex items-center gap-3">
           <span className="text-sm font-bold text-gray-500 uppercase tracking-widest">Searching for:</span>
-          <span className="bg-brand-purple text-white px-4 py-1 rounded-full text-sm font-bold">&lsquo;{q}&rsquo;</span>
+          <span className="bg-club-teal text-black px-4 py-1 rounded-full text-sm font-bold">&lsquo;{q}&rsquo;</span>
         </div>
       )}
 
@@ -51,7 +51,7 @@ export default async function ToolsPage({
           <Link
             key={tool.slug}
             href={`/tools/${tool.slug}`}
-            className="ghost-card group flex flex-col h-full"
+            className="club-card group flex flex-col h-full"
           >
             <div className="mb-8 flex items-start justify-between">
               <div className="flex items-center gap-4">
@@ -59,13 +59,13 @@ export default async function ToolsPage({
                   {tool.name.charAt(0)}
                 </div>
                 <div>
-                  <h2 className="text-lg font-bold text-white group-hover:text-brand-purple transition-colors">{tool.name}</h2>
+                  <h2 className="text-lg font-bold text-white group-hover:text-club-teal transition-colors">{tool.name}</h2>
                   <p className="text-xs font-bold text-gray-500 uppercase tracking-widest">{tool.category}</p>
                 </div>
               </div>
               {tool.mcpReady && (
-                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-purple/10 text-brand-purple border border-brand-purple/20">
-                  <Zap className="h-3.5 w-3.5 fill-brand-purple" />
+                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-club-teal/10 text-club-teal border border-club-teal/20">
+                  <Zap className="h-3.5 w-3.5 fill-club-teal" />
                 </div>
               )}
             </div>
@@ -99,7 +99,7 @@ export default async function ToolsPage({
       {tools.length === 0 && (
         <div className="mt-32 text-center">
           <p className="text-xl font-bold text-gray-500">No tools found.</p>
-          <Link href="/tools" className="mt-6 inline-block text-brand-purple font-bold hover:underline">Clear search</Link>
+          <Link href="/tools" className="mt-6 inline-block text-club-teal font-bold hover:underline">Clear search</Link>
         </div>
       )}
     </main>

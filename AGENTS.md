@@ -1,7 +1,7 @@
-# Findsday: Agent Instructions (AGENTS.md)
+# Salestools Club: Agent Instructions (AGENTS.md)
 
 ## Core Vision
-Findsday is a directory for **"AI-Native Operators."** This is a specific, high-intent audience that is distinct from traditional developers.
+Salestools Club is a directory for **"AI-Native Operators."** This is a specific, high-intent audience that is distinct from traditional developers.
 
 ## The Ideal Customer Profile (ICP)
 The "AI-Native Operator" (The Tinkerer):

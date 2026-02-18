@@ -3,36 +3,37 @@
 @tailwind utilities;
 
 :root {
-  --ghost-dark: #0f1115;
-  --ghost-card: #16191f;
+  --club-dark: #0f1115;
+  --club-card: #16191f;
+  --club-teal: #2dd4bf;
   --paper-white: #fdfdfd;
 }
 
 body {
   color: var(--paper-white);
-  background-color: var(--ghost-dark);
+  background-color: var(--club-dark);
   font-family: var(--font-inter), sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
 @layer components {
-  .ghost-card {
-    @apply border border-white/5 bg-ghost-card rounded-2xl p-6 transition-all duration-300;
+  .club-card {
+    @apply border border-white/5 bg-club-card rounded-2xl p-6 transition-all duration-300;
   }
   
-  .ghost-card:hover {
+  .club-card:hover {
     @apply border-white/10 shadow-xl shadow-black/40;
   }
 
-  .btn-ghost {
+  .btn-club {
     @apply inline-flex items-center gap-2 bg-white text-black px-6 py-2.5 rounded-full font-bold text-sm transition-all hover:bg-white/90 active:scale-[0.98];
   }
 
-  .btn-ghost-outline {
+  .btn-club-outline {
     @apply inline-flex items-center gap-2 border border-white/10 text-white px-6 py-2.5 rounded-full font-bold text-sm transition-all hover:bg-white/5 active:scale-[0.98];
   }
 
-  .ghost-heading {
+  .club-heading {
     @apply font-sans tracking-tight text-white;
   }
 }
@@ -42,7 +43,7 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background-color: var(--ghost-dark);
+  background-color: var(--club-dark);
 }
 ::-webkit-scrollbar-thumb {
   background-color: #2a2e35;

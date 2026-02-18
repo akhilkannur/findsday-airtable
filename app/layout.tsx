@@ -16,21 +16,21 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: "Findsday — The modern directory for sales APIs and MCP servers.",
+  title: "Salestools Club — Every Sales API & MCP Server in one place.",
   description:
     "A curated collection of sales APIs, SDKs, and MCP servers. Find the tools to connect your sales stack to Claude and Cursor.",
   keywords:
     "sales API, MCP server, Model Context Protocol, Claude, Cursor, AI sales tools, CRM API, sales automation API",
   openGraph: {
-    title: "Findsday — Sales APIs & MCP Servers for AI Tinkerers",
+    title: "Salestools Club — Sales APIs & MCP Servers for AI Tinkerers",
     description:
       "A simple directory of sales APIs and MCP servers for people building with AI.",
     type: "website",
-    url: "https://findsday.com",
+    url: "https://salestools.club",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Findsday — Sales APIs & MCP Servers for AI Tinkerers",
+    title: "Salestools Club — Sales APIs & MCP Servers for AI Tinkerers",
     description:
       "Find the APIs, SDKs, and MCP servers that plug your sales stack into Claude and Cursor.",
   },
@@ -61,11 +61,11 @@ gtag('config', 'G-9LGNFH00R7');`,
           }}
         />
       </head>
-      <body className="font-sans bg-ghost-dark text-paper-white antialiased selection:bg-brand-purple/30">
-        <header className="sticky top-0 z-50 border-b border-white/5 bg-ghost-dark/80 backdrop-blur-lg">
+      <body className="font-sans bg-club-dark text-paper-white antialiased selection:bg-club-teal/30">
+        <header className="sticky top-0 z-50 border-b border-white/5 bg-club-dark/80 backdrop-blur-lg">
           <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
             <Link href="/" className="text-xl font-bold tracking-tight text-white hover:opacity-80 transition-opacity">
-              Findsday
+              Salestools Club
             </Link>
 
             {/* Desktop nav */}
@@ -98,17 +98,13 @@ gtag('config', 'G-9LGNFH00R7');`,
 
         {children}
 
-        <footer className="border-t border-white/5 bg-ghost-dark px-6 py-20">
+        <footer className="border-t border-white/5 bg-club-dark px-6 py-20">
           <div className="mx-auto grid max-w-7xl grid-cols-1 gap-16 md:grid-cols-4 lg:grid-cols-5">
             <div className="col-span-1 md:col-span-2 space-y-6">
-              <Link href="/" className="text-xl font-bold tracking-tight">Findsday</Link>
+              <Link href="/" className="text-xl font-bold tracking-tight">Salestools Club</Link>
               <p className="max-w-xs text-sm leading-relaxed text-gray-400">
                 A modern directory of sales APIs and MCP servers built for the new era of AI-native operators.
               </p>
-              <div className="flex gap-5 text-sm font-medium text-gray-500">
-                <a href="https://twitter.com/findsday" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Twitter</a>
-                <a href="https://github.com/findsday" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">GitHub</a>
-              </div>
             </div>
 
             <div className="space-y-6">
@@ -130,10 +126,10 @@ gtag('config', 'G-9LGNFH00R7');`,
             </div>
 
             <div className="space-y-6">
-              <h4 className="text-sm font-bold text-white uppercase tracking-wider">Build</h4>
+              <h4 className="text-sm font-bold text-white uppercase tracking-wider">Status</h4>
               <p className="text-xs font-medium text-gray-500 uppercase tracking-widest">
                 Version 1.0.0-Stable<br />
-                © {new Date().getFullYear()} Findsday
+                © {new Date().getFullYear()} Salestools Club
               </p>
             </div>
           </div>

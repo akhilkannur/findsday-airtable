@@ -6,16 +6,13 @@ import type { SalesTool } from "@/lib/types"
 import {
   ArrowLeft,
   ExternalLink,
-  Code,
-  Key,
-  Check,
-  X,
-  Plug,
   Github,
   Zap,
   Terminal,
   Sparkles,
   Brain,
+  Check,
+  Plug,
 } from "lucide-react"
 
 export async function generateStaticParams() {
@@ -32,16 +29,16 @@ export async function generateMetadata({
 
   if (!tool) {
     return {
-      title: "Tool Not Found | Findsday",
+      title: "Tool Not Found | Salestools Club",
       description: "The requested tool could not be located.",
     }
   }
 
   return {
-    title: `${tool.name} API & MCP Server | Findsday`,
+    title: `${tool.name} API & MCP Server | Salestools Club`,
     description: tool.oneLiner,
     alternates: {
-      canonical: `https://findsday.com/tools/${tool.slug}`,
+      canonical: `https://salestools.club/tools/${tool.slug}`,
     },
   }
 }
@@ -94,8 +91,8 @@ export default async function ToolDetailPage({
 
   const getDifficultyColor = (diff: string) => {
     switch (diff) {
-      case "AI-Native": return "text-white bg-brand-purple"
-      case "Beginner-Friendly": return "text-white bg-terminal-green"
+      case "AI-Native": return "text-white bg-club-teal"
+      case "Beginner-Friendly": return "text-white bg-green-500"
       case "Technical": return "text-white bg-blue-500"
       case "Complex": return "text-white bg-orange-500"
       default: return "text-gray-400 bg-white/10"
@@ -106,7 +103,7 @@ export default async function ToolDetailPage({
     <>
       <JsonLd tool={tool} />
 
-      <main className="min-h-screen bg-ghost-dark text-white pb-32">
+      <main className="min-h-screen bg-club-dark text-white pb-32">
         <div className="mx-auto max-w-5xl px-6 py-16 sm:px-12 sm:py-24">
           {/* Header Section */}
           <div className="mb-20">
@@ -124,7 +121,7 @@ export default async function ToolDetailPage({
                     {tool.name.charAt(0)}
                   </div>
                   <div>
-                    <h1 className="text-5xl font-extrabold tracking-tight sm:text-7xl">{tool.name}</h1>
+                    <h1 className="text-5xl font-extrabold tracking-tight sm:text-7xl italic font-heading">{tool.name}</h1>
                     <div className="mt-4 flex gap-3">
                       <span className="rounded-full bg-white/5 px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-gray-400">
                         {tool.category}
@@ -147,7 +144,7 @@ export default async function ToolDetailPage({
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-ghost-outline hover:border-white whitespace-nowrap"
+                    className="btn-club-outline hover:border-white whitespace-nowrap"
                   >
                     {link.label === "GitHub" ? (
                       <Github className="h-4 w-4" />
@@ -166,16 +163,16 @@ export default async function ToolDetailPage({
             <div className="lg:col-span-8 space-y-24">
               {/* Use Cases Section */}
               {tool.aiCapabilities && tool.aiCapabilities.length > 0 && (
-                <div className="rounded-3xl bg-ghost-card border border-white/5 p-12">
-                  <h2 className="flex items-center gap-4 text-3xl font-extrabold tracking-tight">
-                    <Sparkles className="h-8 w-8 text-brand-purple" /> Use Cases
+                <div className="rounded-3xl bg-club-card border border-white/5 p-12">
+                  <h2 className="flex items-center gap-4 text-3xl font-extrabold tracking-tight italic font-heading">
+                    <Sparkles className="h-8 w-8 text-club-teal" /> Use Cases
                   </h2>
                   <p className="mt-4 text-lg text-gray-400">What you can do with this tool and AI</p>
                   
                   <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
                     {tool.aiCapabilities.map((cap) => (
                       <div key={cap} className="flex items-center gap-5 rounded-2xl bg-white/5 p-6 transition-all hover:bg-white/10">
-                        <Check className="h-5 w-5 text-brand-purple shrink-0" />
+                        <Check className="h-5 w-5 text-club-teal shrink-0" />
                         <span className="text-sm font-bold text-white uppercase tracking-tight">{cap}</span>
                       </div>
                     ))}
@@ -185,14 +182,14 @@ export default async function ToolDetailPage({
 
               {/* Starter Prompt Section */}
               {tool.starterPrompt && (
-                <div className="rounded-3xl border border-brand-purple/20 bg-brand-purple/5 p-12">
-                  <h2 className="flex items-center gap-4 text-3xl font-extrabold tracking-tight">
-                    <Terminal className="h-8 w-8 text-brand-purple" /> Try this prompt
+                <div className="rounded-3xl border border-club-teal/20 bg-club-teal/5 p-12">
+                  <h2 className="flex items-center gap-4 text-3xl font-extrabold tracking-tight italic font-heading">
+                    <Terminal className="h-8 w-8 text-club-teal" /> Try this prompt
                   </h2>
                   <p className="mt-4 text-lg text-gray-400">Copy this into Claude or Cursor to start using the API</p>
                   
                   <div className="group relative mt-10">
-                    <div className="rounded-2xl bg-black/40 p-8 font-mono text-sm leading-relaxed text-brand-purple border border-white/5">
+                    <div className="rounded-2xl bg-black/40 p-8 font-mono text-sm leading-relaxed text-club-teal border border-white/5">
                       &quot;{tool.starterPrompt}&quot;
                     </div>
                   </div>
@@ -201,7 +198,7 @@ export default async function ToolDetailPage({
 
               {/* About */}
               <div className="prose prose-invert prose-lg max-w-none">
-                <h2 className="text-4xl font-extrabold tracking-tight">About {tool.name}</h2>
+                <h2 className="text-4xl font-extrabold tracking-tight italic font-heading">About {tool.name}</h2>
                 <div className="mt-10 text-gray-400 leading-relaxed whitespace-pre-line text-lg">
                   {tool.description}
                 </div>
@@ -210,7 +207,7 @@ export default async function ToolDetailPage({
               {/* Alternative To */}
               {tool.alternativeTo && tool.alternativeTo.length > 0 && (
                 <div className="border-t border-white/5 pt-16">
-                  <h2 className="text-3xl font-extrabold tracking-tight">Alternatives</h2>
+                  <h2 className="text-3xl font-extrabold tracking-tight italic font-heading">Alternatives</h2>
                   <div className="mt-10 flex flex-wrap gap-4">
                     {tool.alternativeTo.map((alt) => (
                       <span key={alt} className="rounded-xl border border-white/5 bg-white/5 px-6 py-3 text-sm font-bold text-gray-500 uppercase tracking-widest hover:border-white transition-colors cursor-default">
@@ -227,24 +224,24 @@ export default async function ToolDetailPage({
               <div className="sticky top-24 space-y-10">
                 {/* MCP Configuration Card */}
                 {tool.integrations.find(i => i.platform === "MCP" && i.mcpConfig) && (
-                  <div className="rounded-3xl bg-brand-purple p-10 text-white shadow-2xl shadow-brand-purple/20">
-                    <h3 className="flex items-center gap-3 text-2xl font-extrabold tracking-tight">
-                      <Zap className="h-6 w-6 fill-white" /> MCP Config
+                  <div className="rounded-3xl bg-club-teal p-10 text-black shadow-2xl shadow-club-teal/20">
+                    <h3 className="flex items-center gap-3 text-2xl font-extrabold tracking-tight italic font-heading">
+                      <Zap className="h-6 w-6 fill-black" /> MCP Config
                     </h3>
-                    <p className="mt-3 text-sm font-medium opacity-80 leading-relaxed">Add this to your Claude Desktop or Cursor settings</p>
-                    <div className="mt-8 rounded-2xl bg-black/20 p-6 font-mono text-[11px] text-white/90 overflow-x-auto border border-white/10">
+                    <p className="mt-3 text-sm font-bold opacity-70 leading-relaxed">Add this to your Claude Desktop or Cursor settings</p>
+                    <div className="mt-8 rounded-2xl bg-black/10 p-6 font-mono text-[11px] text-black/90 overflow-x-auto border border-black/5">
                       <pre className="whitespace-pre">{tool.integrations.find(i => i.platform === "MCP")?.mcpConfig}</pre>
                     </div>
                   </div>
                 )}
 
-                <div className="rounded-3xl bg-ghost-card border border-white/5 p-10">
-                  <h3 className="text-2xl font-extrabold tracking-tight">Technical details</h3>
+                <div className="rounded-3xl bg-club-card border border-white/5 p-10">
+                  <h3 className="text-2xl font-extrabold tracking-tight italic font-heading">Details</h3>
                   
                   <div className="mt-10 space-y-8">
                     <div className="flex items-center justify-between border-b border-white/5 pb-5">
                       <span className="text-sm font-bold text-gray-500">Protocol</span>
-                      <span className="text-sm font-mono text-brand-purple font-bold uppercase">{tool.apiType.join(' / ')}</span>
+                      <span className="text-sm font-mono text-club-teal font-bold uppercase">{tool.apiType.join(' / ')}</span>
                     </div>
                     
                     <div className="flex items-center justify-between border-b border-white/5 pb-5">
@@ -254,7 +251,7 @@ export default async function ToolDetailPage({
 
                     <div className="flex items-center justify-between border-b border-white/5 pb-5">
                       <span className="text-sm font-bold text-gray-500">Free Tier</span>
-                      <span className={tool.hasFreeTier ? 'text-sm font-bold text-brand-purple' : 'text-sm font-bold text-gray-600'}>
+                      <span className={tool.hasFreeTier ? 'text-sm font-bold text-club-teal' : 'text-sm font-bold text-gray-600'}>
                         {tool.hasFreeTier ? 'Available' : 'Paid only'}
                       </span>
                     </div>
@@ -274,7 +271,7 @@ export default async function ToolDetailPage({
 
                     <div className="flex items-center justify-between border-b border-white/5 pb-5">
                       <span className="text-sm font-bold text-gray-500">Webhooks</span>
-                      <span className={tool.hasWebhooks ? 'text-sm font-bold text-brand-purple' : 'text-sm font-bold text-gray-600'}>
+                      <span className={tool.hasWebhooks ? 'text-sm font-bold text-club-teal' : 'text-sm font-bold text-gray-600'}>
                         {tool.hasWebhooks ? 'Active' : 'No'}
                       </span>
                     </div>
@@ -282,7 +279,7 @@ export default async function ToolDetailPage({
                     <div className="flex items-center justify-between border-b border-white/5 pb-5">
                       <span className="text-sm font-bold text-gray-500">OpenAPI</span>
                       {tool.hasOpenApiSpec ? (
-                        <a href={tool.openApiSpecUrl} target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-brand-purple hover:underline underline-offset-4">
+                        <a href={tool.openApiSpecUrl} target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-club-teal hover:underline underline-offset-4">
                           View Spec
                         </a>
                       ) : (
@@ -293,7 +290,7 @@ export default async function ToolDetailPage({
 
                   {/* Agent Integrations List */}
                   <div className="mt-14 space-y-8">
-                    <h3 className="flex items-center gap-3 text-xl font-extrabold tracking-tight">
+                    <h3 className="flex items-center gap-3 text-xl font-extrabold tracking-tight italic font-heading">
                       <Plug className="h-5 w-5 text-gray-500" /> Integrations
                     </h3>
                     
