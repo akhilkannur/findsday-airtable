@@ -6,9 +6,9 @@ import { SearchBar } from "@/components/SearchBar"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Findsday — Sales APIs & MCP Servers for AI Tinkerers",
+  title: "Findsday — Every Sales API & MCP Server in one place.",
   description:
-    "Every sales API and MCP server in one directory. Find the APIs, SDKs, and MCP servers that plug your sales stack into Claude, Cursor, Gemini CLI, and any AI workflow.",
+    "A simple directory of sales APIs and MCP servers. Find the tools to plug your sales stack into Claude, Cursor, and any AI workflow.",
 }
 
 function getCategoryIcon(iconName: string) {
@@ -27,7 +27,7 @@ export default function Home() {
     "@type": "WebSite",
     name: "Findsday",
     url: "https://findsday.com",
-    description: "The directory of sales APIs and MCP servers for AI tinkerers.",
+    description: "The directory of sales APIs and MCP servers for people building with AI.",
     potentialAction: {
       "@type": "SearchAction",
       target: "https://findsday.com/tools?q={search_term_string}",
@@ -46,25 +46,25 @@ export default function Home() {
         {/* ── Hero ──────────────────────────────────────────── */}
         <section className="relative px-4 py-24 sm:px-6 sm:py-32 lg:px-8 lg:py-48">
           <div className="mx-auto max-w-5xl text-center">
-            <div className="mb-6 inline-flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-terminal-green">
+            <div className="mb-6 inline-flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-widest text-terminal-green">
               <span className="inline-block h-2 w-2 animate-pulse bg-terminal-green" />
-              Real-time Sales Infrastructure Registry
+              Build your AI sales stack
             </div>
-            <h1 className="font-heading text-5xl font-black italic leading-[0.9] tracking-tighter sm:text-7xl lg:text-9xl text-paper-white">
+            <h1 className="font-heading text-5xl font-black italic leading-[1.1] tracking-tighter sm:text-7xl lg:text-9xl text-paper-white">
               Every Sales API.<br />
-              <span className="text-terminal-green">One Ledger.</span>
+              <span className="text-terminal-green">In one place.</span>
             </h1>
-            <p className="mx-auto mt-8 max-w-2xl font-mono text-sm uppercase tracking-wider text-gray-500 sm:text-base">
-              Connecting high-intent sales infrastructure to autonomous agents and AI-native operators.
+            <p className="mx-auto mt-8 max-w-2xl text-lg text-gray-400 sm:text-xl">
+              A simple list of the APIs, SDKs, and MCP servers you need to connect your sales tools to Claude and Cursor.
             </p>
 
             <div className="mx-auto mt-12 max-w-xl">
               <SearchBar />
             </div>
 
-            <div className="mt-12 flex items-center justify-center gap-8 font-mono text-[10px] uppercase tracking-widest text-gray-600">
+            <div className="mt-12 flex items-center justify-center gap-8 font-mono text-xs uppercase tracking-widest text-gray-500">
               <div className="flex flex-col items-center">
-                <span className="text-paper-white font-bold">{allTools.length}+</span>
+                <span className="text-paper-white font-bold">{allTools.length}</span>
                 <span>Tools</span>
               </div>
               <div className="h-8 w-px bg-white/10" />
@@ -86,14 +86,14 @@ export default function Home() {
           <div className="mx-auto max-w-7xl">
             <div className="mb-16 flex items-end justify-between border-b border-white/10 pb-8">
               <div>
-                <h2 className="font-heading text-4xl font-black italic tracking-tighter sm:text-5xl">Featured Registry</h2>
-                <p className="mt-2 font-mono text-xs uppercase tracking-widest text-gray-500">Verified high-performance sales APIs</p>
+                <h2 className="font-heading text-4xl font-black italic tracking-tighter sm:text-5xl">Featured Tools</h2>
+                <p className="mt-2 text-sm text-gray-400">The most popular APIs for AI automation</p>
               </div>
               <Link
                 href="/tools"
                 className="btn-brutalist"
               >
-                View Full Registry <ArrowRight className="h-4 w-4" />
+                View All Tools <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
 
@@ -114,7 +114,7 @@ export default function Home() {
                         <h3 className="text-lg font-black tracking-tighter text-paper-white group-hover:text-terminal-green transition-colors">
                           {tool.name}
                         </h3>
-                        <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-gray-600">{tool.category}</span>
+                        <span className="text-xs font-medium text-gray-500">{tool.category}</span>
                       </div>
                     </div>
                     {tool.mcpReady && (
@@ -124,7 +124,7 @@ export default function Home() {
                     )}
                   </div>
 
-                  <p className="mb-8 font-mono text-xs uppercase leading-relaxed text-gray-500 line-clamp-2">{tool.oneLiner}</p>
+                  <p className="mb-8 text-sm text-gray-400 line-clamp-2">{tool.oneLiner}</p>
 
                   <div className="flex flex-wrap gap-2">
                     {tool.aiDifficulty && (
@@ -142,7 +142,7 @@ export default function Home() {
                     ))}
                     {tool.hasFreeTier && (
                       <span className="bg-terminal-green/10 border border-terminal-green/20 px-2 py-0.5 font-mono text-[9px] font-bold uppercase text-terminal-green">
-                        FREE_ACCESS
+                        FREE TIER
                       </span>
                     )}
                   </div>
@@ -155,9 +155,9 @@ export default function Home() {
         {/* ── Browse by Category ───────────────────────────── */}
         <section className="px-4 py-20 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl">
-            <div className="mb-16 border-b border-white/10 pb-8">
-              <h2 className="font-heading text-4xl font-black italic tracking-tighter sm:text-5xl text-center">Infrastructure Segments</h2>
-              <p className="mt-2 text-center font-mono text-xs uppercase tracking-widest text-gray-500">Categorized by operational output</p>
+            <div className="mb-16 border-b border-white/10 pb-8 text-center">
+              <h2 className="font-heading text-4xl font-black italic tracking-tighter sm:text-5xl">Browse Categories</h2>
+              <p className="mt-2 text-sm text-gray-400">Find tools for every part of your workflow</p>
             </div>
 
             <div className="grid grid-cols-1 gap-px bg-white/5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -174,11 +174,11 @@ export default function Home() {
                   <h3 className="text-lg font-black tracking-tighter text-paper-white group-hover:text-terminal-green transition-colors">
                     {cat.name}
                   </h3>
-                  <p className="mt-3 font-mono text-[10px] uppercase leading-relaxed tracking-wider text-gray-600 line-clamp-3">
+                  <p className="mt-3 text-xs leading-relaxed text-gray-500 line-clamp-3">
                     {cat.description}
                   </p>
                   <div className="mt-6 font-mono text-[9px] font-bold text-terminal-green">
-                    {cat.toolCount} TOOLS_REGISTERED
+                    {cat.toolCount} TOOLS
                   </div>
                 </Link>
               ))}
@@ -190,18 +190,18 @@ export default function Home() {
         <section className="border-y border-white/10 bg-terminal-green/5 px-4 py-24 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
             <div className="mb-6 inline-flex items-center gap-2 border border-terminal-green px-4 py-1 font-mono text-[10px] font-black uppercase text-terminal-green">
-              <Zap className="h-4 w-4 fill-terminal-green" /> MCP_ENABLED_ACCESS
+              <Zap className="h-4 w-4 fill-terminal-green" /> MCP Ready
             </div>
-            <h2 className="font-heading text-5xl font-black italic tracking-tighter sm:text-6xl text-paper-white">Zero-Config AI Connectivity</h2>
-            <p className="mx-auto mt-8 max-w-xl font-mono text-xs uppercase leading-loose tracking-widest text-gray-500">
-              The Model Context Protocol (MCP) is the new standard for autonomous operations. 
-              We've cataloged {mcpTools.length} tools that are ready for immediate agent deployment.
+            <h2 className="font-heading text-5xl font-black italic tracking-tighter sm:text-6xl text-paper-white">Connect to Claude in seconds.</h2>
+            <p className="mx-auto mt-8 max-w-xl text-lg text-gray-400">
+              The Model Context Protocol (MCP) lets AI assistants like Claude directly use your sales tools. 
+              Find the tools that are already ready to plug and play.
             </p>
             <Link
               href="/mcp"
               className="mt-12 btn-brutalist bg-terminal-green text-black hover:bg-black hover:text-terminal-green"
             >
-              Access MCP Ledger <ArrowRight className="h-4 w-4" />
+              Browse MCP Servers <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </section>
@@ -209,9 +209,9 @@ export default function Home() {
         {/* ── Use with AI Agents CTA ─────────────────────── */}
         <section className="border-b border-white/10 px-4 py-24 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
-            <h2 className="font-heading text-4xl font-black italic tracking-tighter sm:text-5xl">Human-to-Agent Translation</h2>
-            <p className="mt-6 font-mono text-xs uppercase tracking-widest text-gray-500">
-              Download skill files or query our registry via terminal to equip your agents with sales capabilities.
+            <h2 className="font-heading text-4xl font-black italic tracking-tighter sm:text-5xl">Use Findsday with your agents</h2>
+            <p className="mt-6 text-sm text-gray-400">
+              Query our database directly from your terminal or download the skill file to let your AI assistant find APIs for you.
             </p>
             <div className="mt-12 flex flex-col items-center gap-8 sm:flex-row sm:justify-center">
               <div className="flex items-center gap-4 border border-white/10 bg-black/50 px-6 py-4 font-mono text-xs text-terminal-green">
@@ -222,7 +222,7 @@ export default function Home() {
                 download
                 className="btn-brutalist border-accent-pink text-accent-pink hover:bg-accent-pink hover:text-black"
               >
-                Download Agent Skill File <ArrowRight className="h-4 w-4" />
+                Download Skill File <ArrowRight className="h-4 w-4" />
               </a>
             </div>
           </div>
@@ -231,15 +231,15 @@ export default function Home() {
         {/* ── Submit CTA ───────────────────────────────────── */}
         <section className="px-4 py-24 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="font-heading text-4xl font-black italic tracking-tighter text-paper-white">Add to the Registry</h2>
-            <p className="mt-6 font-mono text-xs uppercase tracking-widest text-gray-500">
-              Contribute to the most comprehensive ledger of AI-ready sales infrastructure.
+            <h2 className="font-heading text-4xl font-black italic tracking-tighter text-paper-white">Add a tool</h2>
+            <p className="mt-6 text-sm text-gray-400">
+              Help us build the most complete list of sales APIs and MCP servers.
             </p>
             <Link
               href="/submit"
               className="mt-10 btn-brutalist border-white text-white hover:bg-white hover:text-black"
             >
-              Submit API Entry <ArrowRight className="h-4 w-4" />
+              Submit a Tool <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </section>

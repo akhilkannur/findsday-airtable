@@ -4,9 +4,9 @@ import { getMcpTools } from "@/lib/tools"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Sales Tools with MCP Servers & Agent Integrations | Findsday",
+  title: "Sales Tools with MCP Servers | Findsday",
   description:
-    "Browse sales tools with MCP (Model Context Protocol) servers and agent integrations. Connect your sales stack to Claude, Cursor, and AI workflows.",
+    "Browse sales tools with MCP (Model Context Protocol) servers. Connect your sales stack to Claude, Cursor, and AI workflows.",
 }
 
 export default function McpPage() {
@@ -27,15 +27,15 @@ export default function McpPage() {
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-20 border-b border-white/10 pb-16 pt-12 text-center">
-          <div className="mb-8 inline-flex h-16 w-16 items-center justify-center border border-terminal-green bg-terminal-green/10 text-terminal-green shadow-[0_0_30px_rgba(0,255,65,0.1)]">
+          <div className="mb-8 inline-flex h-16 w-16 items-center justify-center border border-terminal-green bg-terminal-green/10 text-terminal-green">
             <Zap className="h-8 w-8 fill-terminal-green" />
           </div>
           <h1 className="font-heading text-6xl font-black italic tracking-tighter text-paper-white sm:text-8xl">
             MCP <span className="text-terminal-green">Servers</span>
           </h1>
-          <p className="mx-auto mt-8 max-w-2xl font-mono text-xs uppercase leading-loose tracking-widest text-gray-500">
-            The Model Context Protocol (MCP) is the universal bridge between LLMs and sales infrastructure.
-            Deploy these entries directly into your agent runtime for autonomous operations.
+          <p className="mx-auto mt-8 max-w-2xl text-lg text-gray-400 leading-relaxed">
+            The Model Context Protocol (MCP) lets AI assistants like Claude directly use your sales tools. 
+            No more manual exports or complicated API integrations.
           </p>
         </div>
 
@@ -57,15 +57,15 @@ export default function McpPage() {
                     <h3 className="text-lg font-black tracking-tighter text-paper-white group-hover:text-terminal-green transition-colors">
                       {tool.name}
                     </h3>
-                    <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-gray-600">{tool.category}</span>
+                    <span className="text-xs font-medium text-gray-500">{tool.category}</span>
                   </div>
                 </div>
                 <span className="flex items-center gap-1 border border-accent-pink/30 bg-accent-pink/10 px-2 py-1 text-[9px] font-bold text-accent-pink uppercase tracking-tighter">
-                  <Zap className="h-3 w-3 fill-accent-pink" /> MCP_READY
+                  <Zap className="h-3 w-3 fill-accent-pink" /> MCP READY
                 </span>
               </div>
 
-              <p className="mb-10 font-mono text-[11px] uppercase leading-relaxed text-gray-500 line-clamp-2">
+              <p className="mb-10 text-sm text-gray-400 line-clamp-2">
                 {tool.oneLiner}
               </p>
 
@@ -86,14 +86,14 @@ export default function McpPage() {
 
         {/* Bottom CTA */}
         <div className="mt-24 border-t border-white/10 pt-16 text-center">
-          <p className="font-mono text-[10px] uppercase tracking-widest text-gray-600">
-            The MCP ledger is updated every 24 hours. Know a tool we're missing?
+          <p className="text-sm text-gray-500">
+            More tools are adding MCP support every week. Know a tool we're missing?
           </p>
           <Link
             href="/submit"
             className="mt-8 btn-brutalist border-terminal-green bg-terminal-green text-black hover:bg-black hover:text-terminal-green"
           >
-            Submit Registry Entry <ArrowRight className="h-4 w-4" />
+            Submit a tool <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </div>

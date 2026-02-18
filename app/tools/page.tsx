@@ -6,7 +6,7 @@ import { Zap, Brain, ArrowRight } from "lucide-react"
 export const metadata: Metadata = {
   title: "All Sales APIs & Tools | Findsday",
   description:
-    "Browse the complete directory of sales APIs and tools. Find REST, GraphQL, and WebSocket APIs for prospecting, CRM, outreach, enrichment, and more.",
+    "Browse the complete list of sales APIs and tools. Find the right integrations for your sales workflow.",
 }
 
 export default async function ToolsPage({
@@ -22,16 +22,16 @@ export default async function ToolsPage({
     <main className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
       <div className="mb-16 border-b border-white/10 pb-12">
         <h1 className="font-heading text-6xl font-black italic tracking-tighter text-paper-white sm:text-8xl">
-          The Registry
+          The Tools
         </h1>
-        <p className="mt-4 font-mono text-xs uppercase tracking-[0.3em] text-gray-500">
-          Index of verified high-intent sales infrastructure
+        <p className="mt-4 text-lg text-gray-400">
+          A complete list of sales APIs and MCP servers.
         </p>
       </div>
 
       {q && (
-        <p className="mb-12 font-mono text-xs uppercase text-terminal-green">
-          Filtering by query: <span className="text-paper-white">&lsquo;{q}&rsquo;</span>
+        <p className="mb-12 text-sm text-gray-500">
+          Searching for: <span className="text-terminal-green font-bold">&lsquo;{q}&rsquo;</span>
         </p>
       )}
 
@@ -53,11 +53,11 @@ export default async function ToolsPage({
                     <Zap className="h-4 w-4 fill-terminal-green text-terminal-green" />
                   )}
                 </div>
-                <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-gray-600">{tool.category}</p>
+                <p className="text-xs font-bold text-gray-600 uppercase tracking-widest">{tool.category}</p>
               </div>
             </div>
 
-            <p className="mt-4 max-w-md font-mono text-[11px] uppercase leading-relaxed text-gray-500 sm:mt-0 sm:px-8">
+            <p className="mt-4 max-w-md text-sm text-gray-500 sm:mt-0 sm:px-8">
               {tool.oneLiner}
             </p>
 
@@ -84,8 +84,8 @@ export default async function ToolsPage({
       </div>
 
       {tools.length === 0 && (
-        <p className="mt-24 text-center font-mono text-sm uppercase text-gray-700">
-          Search returned 0 results. System reset required.
+        <p className="mt-24 text-center text-sm text-gray-600">
+          No tools found. Try searching for something else.
         </p>
       )}
     </main>
