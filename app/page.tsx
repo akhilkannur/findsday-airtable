@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowRight, Cpu, Zap, Server } from "lucide-react"
+import { ArrowRight, Code, Cpu, Zap, Server } from "lucide-react"
 import * as LucideIcons from "lucide-react"
 import { getFeaturedTools, getAllCategories, getMcpTools, getAllTools } from "@/lib/tools"
 import { SearchBar } from "@/components/SearchBar"
@@ -178,6 +178,31 @@ export default function Home() {
             >
               Browse MCP Servers <ArrowRight className="h-4 w-4" />
             </Link>
+          </div>
+        </section>
+
+        {/* ── Use with AI Agents CTA ─────────────────────── */}
+        <section className="border-t border-gray-800 bg-charcoal-dark px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-accent-pink/10 px-4 py-1.5 text-sm font-medium text-accent-pink">
+              <Code className="h-4 w-4" /> For AI Tinkerers
+            </div>
+            <h2 className="text-2xl font-bold sm:text-3xl">Use Findsday from Claude Code or any AI agent</h2>
+            <p className="mt-4 text-gray-400">
+              Query our API directly from your terminal or download the skill file to let your AI assistant find sales APIs for you.
+            </p>
+            <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+              <code className="rounded-lg bg-charcoal-light px-4 py-3 text-sm text-accent-green border border-gray-800">
+                curl findsday.com/api/tools?category=CRM
+              </code>
+              <a
+                href="/findsday-skill.md"
+                download
+                className="inline-flex items-center gap-2 rounded-lg bg-accent-pink px-6 py-3 font-semibold text-charcoal-dark transition-colors hover:bg-accent-pink/80"
+              >
+                Download Skill File <ArrowRight className="h-4 w-4" />
+              </a>
+            </div>
           </div>
         </section>
 
