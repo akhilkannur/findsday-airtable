@@ -5,9 +5,9 @@ import { getAllCategories } from "@/lib/tools"
 import type { LucideIcon } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Browse Categories | Findsday",
+  title: "Categories | Salestools Club",
   description:
-    "Browse sales API categories — prospecting, CRM, enrichment, outreach, scheduling, and more.",
+    "Find sales APIs by category — prospecting, CRM, enrichment, outreach, and more.",
 }
 
 function getCategoryIcon(iconName: string): LucideIcon {
@@ -21,11 +21,11 @@ export default function CategoriesPage() {
   return (
     <main className="mx-auto max-w-7xl px-6 py-24 sm:px-12 lg:px-24">
       <div className="mb-24 text-center sm:text-left">
-        <h1 className="text-5xl font-extrabold tracking-tight sm:text-7xl">
+        <h1 className="text-5xl font-extrabold tracking-tight sm:text-7xl italic font-heading">
           Categories
         </h1>
         <p className="mt-6 text-xl text-gray-400 max-w-2xl">
-          Find the right tools for every stage of your sales workflow.
+          Find the right tools for every part of your sales workflow.
         </p>
       </div>
 
@@ -37,7 +37,7 @@ export default function CategoriesPage() {
             <Link
               key={cat.slug}
               href={`/categories/${cat.slug}`}
-              className="group bg-ghost-card rounded-3xl p-10 border border-white/5 transition-all hover:border-white/20 hover:-translate-y-1"
+              className="group bg-club-card rounded-3xl p-10 border border-white/5 transition-all hover:border-white/20 hover:-translate-y-1"
             >
               <div className="mb-8 flex items-center justify-between">
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/5 border border-white/5 text-brand-purple">
@@ -46,7 +46,7 @@ export default function CategoriesPage() {
                 <span className="font-mono text-[10px] font-bold text-gray-700">0{idx + 1}</span>
               </div>
 
-              <h2 className="text-2xl font-bold text-white group-hover:text-brand-purple transition-colors">
+              <h2 className="text-2xl font-bold text-white group-hover:text-club-teal transition-colors">
                 {cat.name}
               </h2>
 
@@ -54,7 +54,7 @@ export default function CategoriesPage() {
                 {cat.description}
               </p>
 
-              <div className="mt-10 font-mono text-[10px] font-bold text-gray-600 uppercase tracking-widest">
+              <div className="mt-10 font-mono text-[10px] font-bold text-club-teal uppercase tracking-widest">
                 {cat.toolCount} TOOLS
               </div>
             </Link>

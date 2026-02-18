@@ -4,9 +4,9 @@ import { getAllTools, searchTools } from "@/lib/tools"
 import { Zap, Brain, ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "The Registry | Salestools Club",
+  title: "The Tools | Salestools Club",
   description:
-    "Browse the complete list of sales APIs and tools. Find the right integrations for your sales workflow.",
+    "A simple list of sales APIs and tools for people building with AI.",
 }
 
 export default async function ToolsPage({
@@ -32,10 +32,10 @@ export default async function ToolsPage({
     <main className="mx-auto max-w-7xl px-6 py-24 sm:px-12 lg:px-24">
       <div className="mb-20 text-center sm:text-left">
         <h1 className="text-5xl font-extrabold tracking-tight sm:text-7xl italic font-heading">
-          The Registry
+          The Tools
         </h1>
         <p className="mt-6 text-xl text-gray-400 max-w-2xl">
-          A complete index of verified sales APIs and MCP servers for AI automation.
+          The best sales APIs and MCP servers for your AI stack.
         </p>
       </div>
 

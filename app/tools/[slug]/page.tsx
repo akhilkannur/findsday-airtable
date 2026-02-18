@@ -229,7 +229,7 @@ export default async function ToolDetailPage({
                       <Zap className="h-6 w-6 fill-black" /> MCP Config
                     </h3>
                     <p className="mt-3 text-sm font-bold opacity-70 leading-relaxed">Add this to your Claude Desktop or Cursor settings</p>
-                    <div className="mt-8 rounded-2xl bg-black/10 p-6 font-mono text-[11px] text-black/90 overflow-x-auto border border-black/5">
+                    <div className="mt-8 rounded-2xl bg-black/20 p-6 font-mono text-[11px] text-black/90 overflow-x-auto border border-black/5">
                       <pre className="whitespace-pre">{tool.integrations.find(i => i.platform === "MCP")?.mcpConfig}</pre>
                     </div>
                   </div>

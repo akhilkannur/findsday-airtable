@@ -6,7 +6,7 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "MCP Servers | Salestools Club",
   description:
-    "Browse sales tools with MCP (Model Context Protocol) servers. Connect your sales stack to Claude, Cursor, and AI workflows.",
+    "Find sales tools with MCP (Model Context Protocol) support for Claude and Cursor.",
 }
 
 export default function McpPage() {
@@ -32,8 +32,7 @@ export default function McpPage() {
           MCP Servers
         </h1>
         <p className="mt-8 text-xl text-gray-400 leading-relaxed max-w-3xl mx-auto">
-          The Model Context Protocol (MCP) lets AI assistants like Claude directly use your sales tools. 
-          No more manual exports or complicated API integrations.
+          The fastest way to give your AI "hands". Plug these servers into Claude and start updating your CRM via chat.
         </p>
       </div>
 

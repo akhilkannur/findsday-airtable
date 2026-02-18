@@ -7,7 +7,7 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Salestools Club — Every Sales API & MCP Server in one place.",
   description:
-    "A simple directory of sales APIs and MCP servers. Find the tools to connect your sales stack to Claude and Cursor.",
+    "A simple list of the best sales APIs and MCP servers for people building with AI.",
 }
 
 function getCategoryIcon(iconName: string) {
@@ -22,9 +22,8 @@ export default function Home() {
 
   return (
     <main className="relative bg-club-dark text-white">
-      {/* ── Hero & Email Signup ──────────────────────────────── */}
+      {/* ── Hero ──────────────────────────────────────────── */}
       <section className="relative px-6 py-24 sm:px-12 sm:py-32 lg:px-24 overflow-hidden">
-        {/* Background Illustration Pattern */}
         <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 opacity-20 pointer-events-none">
           <svg width="600" height="600" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="300" cy="300" r="299.5" stroke="url(#paint0_linear)" strokeDasharray="10 10"/>
@@ -40,8 +39,7 @@ export default function Home() {
                 <stop offset="1" stopColor="#2dd4bf" stopOpacity="0" />
               </linearGradient>
               <linearGradient id="paint2_linear" x1="150" y1="150" x2="450" y2="450" gradientUnits="userSpaceOnUse">
-                <stop stopColor="#2dd4bf" />
-                <stop offset="1" stopColor="#2dd4bf" stopOpacity="0.2" />
+                <stop stopColor="#2dd4bf" stopOpacity="0.2" />
               </linearGradient>
             </defs>
           </svg>
@@ -50,14 +48,14 @@ export default function Home() {
         <div className="mx-auto max-w-4xl relative z-10">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/5 bg-white/5 px-4 py-1.5 font-mono text-[10px] font-bold uppercase tracking-widest text-club-teal">
             <Sparkles className="h-3 w-3 fill-club-teal" />
-            Build your AI sales stack
+            Connect your sales tools to AI
           </div>
           <h1 className="text-5xl font-extrabold tracking-tight sm:text-7xl lg:text-8xl">
             Every Sales API.<br />
             <span className="text-gray-500 italic font-heading font-light">In one place.</span>
           </h1>
           <p className="mt-10 max-w-2xl text-xl text-gray-400 sm:text-2xl leading-relaxed">
-            A curated collection of the APIs, SDKs, and MCP servers you need to connect your sales tools to Claude and Cursor.
+            A simple list of the APIs, SDKs, and MCP servers you need to build custom sales workflows with Claude and Cursor.
           </p>
 
           <div className="mt-14 max-w-md">
@@ -82,19 +80,19 @@ export default function Home() {
               </div>
             </form>
             <p className="mt-4 text-xs text-gray-500 font-medium uppercase tracking-widest px-6">
-              Join 500+ AI-Native operators.
+              Join 500+ builders using AI for sales.
             </p>
           </div>
         </div>
       </section>
 
-      {/* ── Featured Tools (Moved Up) ────────────────────── */}
+      {/* ── Featured Tools ───────────────────────────────── */}
       <section className="px-6 py-20 sm:px-12 lg:px-24 border-t border-white/5 bg-white/[0.01]">
         <div className="mx-auto max-w-7xl">
           <div className="mb-16 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
             <div>
-              <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl italic font-heading">The Registry</h2>
-              <p className="mt-3 text-lg text-gray-400">Essential building blocks for your automated engine.</p>
+              <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl italic font-heading">Featured Tools</h2>
+              <p className="mt-3 text-lg text-gray-400">The best APIs to start building with.</p>
             </div>
             <Link
               href="/tools"
@@ -120,7 +118,7 @@ export default function Home() {
                       <h3 className="text-xl font-bold text-white transition-colors group-hover:text-club-teal">
                         {tool.name}
                       </h3>
-                      <span className="text-sm font-medium text-gray-500 uppercase tracking-tight">{tool.category}</span>
+                      <span className="text-sm font-medium text-gray-500">{tool.category}</span>
                     </div>
                   </div>
                   {tool.mcpReady && (
@@ -157,8 +155,8 @@ export default function Home() {
       <section className="px-6 py-24 sm:px-12 lg:px-24">
         <div className="mx-auto max-w-7xl">
           <div className="mb-20 text-center sm:text-left">
-            <h2 className="text-3xl font-extrabold tracking-tight sm:text-5xl italic font-heading">Infrastructure Segments</h2>
-            <p className="mt-4 text-lg text-gray-400">Mapped to real-world sales outcomes.</p>
+            <h2 className="text-3xl font-extrabold tracking-tight sm:text-5xl italic font-heading">What do you need to do?</h2>
+            <p className="mt-4 text-lg text-gray-400">Find the right tools for every part of your sales process.</p>
           </div>
 
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -197,7 +195,6 @@ export default function Home() {
       {/* ── MCP CTA ──────────────────────────────── */}
       <section className="px-6 py-24 sm:px-12 lg:px-24">
         <div className="mx-auto max-w-5xl rounded-3xl bg-club-teal text-black p-12 sm:p-20 flex flex-col items-center text-center relative overflow-hidden">
-          {/* Abstract Pattern for Card */}
           <div className="absolute inset-0 opacity-10 pointer-events-none">
             <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
               <path d="M0 100 L100 0 L100 100 Z" fill="black" />
@@ -217,13 +214,13 @@ export default function Home() {
                 href="/mcp"
                 className="bg-black text-white px-10 py-4 rounded-full text-lg font-bold hover:opacity-90 transition-all shadow-2xl"
               >
-                Get MCP Servers
+                Browse MCP Servers
               </Link>
               <Link
                 href="/submit"
                 className="bg-white/20 backdrop-blur-md border border-black/10 px-10 py-4 rounded-full text-lg font-bold hover:bg-white/30 transition-colors"
               >
-                Submit Entry
+                Submit a tool
               </Link>
             </div>
           </div>
@@ -233,9 +230,9 @@ export default function Home() {
       {/* ── Use with AI Agents CTA ─────────────────────── */}
       <section className="px-6 py-24 sm:px-12 lg:px-24 border-t border-white/5 bg-white/[0.01]">
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl font-extrabold tracking-tight sm:text-5xl italic font-heading">Autonomous Integration</h2>
+          <h2 className="text-3xl font-extrabold tracking-tight sm:text-5xl italic font-heading">Equip your AI Agents</h2>
           <p className="mt-6 text-lg text-gray-400">
-            Equip your custom agents with standardized sales capabilities.
+            Let your AI assistant find and use the best sales tools for you.
           </p>
           <div className="mt-14 flex flex-col items-center gap-10 sm:flex-row sm:justify-center">
             <div className="flex items-center gap-5 bg-club-card border border-white/5 rounded-full px-8 py-5 font-mono text-sm shadow-xl">
