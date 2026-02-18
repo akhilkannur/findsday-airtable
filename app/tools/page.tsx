@@ -18,75 +18,89 @@ export default async function ToolsPage({
   const q = sp.q ?? ""
   const tools = q ? searchTools(q) : getAllTools()
 
+  const getDifficultyColor = (diff: string) => {
+    switch (diff) {
+      case "AI-Native": return "text-brand-purple"
+      case "Beginner-Friendly": return "text-terminal-green"
+      case "Technical": return "text-blue-400"
+      case "Complex": return "text-orange-400"
+      default: return "text-gray-500"
+    }
+  }
+
   return (
-    <main className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
-      <div className="mb-16 border-b border-white/10 pb-12">
-        <h1 className="font-heading text-6xl font-black italic tracking-tighter text-paper-white sm:text-8xl">
-          The Tools
+    <main className="mx-auto max-w-7xl px-6 py-24 sm:px-12 lg:px-24">
+      <div className="mb-20 text-center sm:text-left">
+        <h1 className="text-5xl font-extrabold tracking-tight sm:text-7xl">
+          The Registry
         </h1>
-        <p className="mt-4 text-lg text-gray-400">
-          A complete list of sales APIs and MCP servers.
+        <p className="mt-6 text-xl text-gray-400 max-w-2xl">
+          A complete index of verified sales APIs and MCP servers for AI automation.
         </p>
       </div>
 
       {q && (
-        <p className="mb-12 text-sm text-gray-500">
-          Searching for: <span className="text-terminal-green font-bold">&lsquo;{q}&rsquo;</span>
-        </p>
+        <div className="mb-12 flex items-center gap-3">
+          <span className="text-sm font-bold text-gray-500 uppercase tracking-widest">Searching for:</span>
+          <span className="bg-brand-purple text-white px-4 py-1 rounded-full text-sm font-bold">&lsquo;{q}&rsquo;</span>
+        </div>
       )}
 
-      <div className="grid grid-cols-1 gap-px bg-white/10">
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {tools.map((tool) => (
           <Link
             key={tool.slug}
             href={`/tools/${tool.slug}`}
-            className="group relative flex flex-col bg-banknote-black p-8 transition-all hover:bg-white/5 sm:flex-row sm:items-center sm:justify-between"
+            className="ghost-card group flex flex-col h-full"
           >
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center border border-white/10 bg-white/5 font-heading text-xl font-black italic text-terminal-green transition-colors group-hover:bg-terminal-green group-hover:text-black">
-                {tool.name.charAt(0)}
-              </div>
-              <div>
-                <div className="flex items-center gap-3">
-                  <h2 className="text-xl font-black tracking-tighter text-paper-white group-hover:text-terminal-green transition-colors">{tool.name}</h2>
-                  {tool.mcpReady && (
-                    <Zap className="h-4 w-4 fill-terminal-green text-terminal-green" />
-                  )}
+            <div className="mb-8 flex items-start justify-between">
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/5 border border-white/5 text-xl font-black group-hover:bg-white group-hover:text-black transition-all">
+                  {tool.name.charAt(0)}
                 </div>
-                <p className="text-xs font-bold text-gray-600 uppercase tracking-widest">{tool.category}</p>
+                <div>
+                  <h2 className="text-lg font-bold text-white group-hover:text-brand-purple transition-colors">{tool.name}</h2>
+                  <p className="text-xs font-bold text-gray-500 uppercase tracking-widest">{tool.category}</p>
+                </div>
               </div>
+              {tool.mcpReady && (
+                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-purple/10 text-brand-purple border border-brand-purple/20">
+                  <Zap className="h-3.5 w-3.5 fill-brand-purple" />
+                </div>
+              )}
             </div>
 
-            <p className="mt-4 max-w-md text-sm text-gray-500 sm:mt-0 sm:px-8">
+            <p className="text-sm leading-relaxed text-gray-400 line-clamp-3 mb-8">
               {tool.oneLiner}
             </p>
 
-            <div className="mt-6 flex flex-wrap items-center gap-3 sm:mt-0">
+            <div className="mt-auto pt-6 border-t border-white/5 flex flex-wrap items-center gap-3">
               {tool.aiDifficulty && (
-                <span className="border border-white/10 px-2 py-0.5 font-mono text-[9px] font-bold uppercase text-gray-400">
-                  <Brain className="mr-1 inline h-3 w-3" /> {tool.aiDifficulty}
+                <span className={`inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest ${getDifficultyColor(tool.aiDifficulty)}`}>
+                  <Brain className="h-3 w-3" /> {tool.aiDifficulty}
                 </span>
               )}
 
               {tool.apiType.map((api) => (
                 <span
                   key={api}
-                  className="border border-terminal-green/20 px-2 py-0.5 font-mono text-[9px] font-bold uppercase text-terminal-green"
+                  className="text-[10px] font-bold text-gray-600 uppercase tracking-widest"
                 >
                   {api}
                 </span>
               ))}
 
-              <ArrowRight className="h-4 w-4 text-gray-700 transition-all group-hover:translate-x-1 group-hover:text-terminal-green" />
+              <ArrowRight className="ml-auto h-4 w-4 text-gray-700 transition-all group-hover:translate-x-1 group-hover:text-white" />
             </div>
           </Link>
         ))}
       </div>
 
       {tools.length === 0 && (
-        <p className="mt-24 text-center text-sm text-gray-600">
-          No tools found. Try searching for something else.
-        </p>
+        <div className="mt-32 text-center">
+          <p className="text-xl font-bold text-gray-500">No tools found.</p>
+          <Link href="/tools" className="mt-6 inline-block text-brand-purple font-bold hover:underline">Clear search</Link>
+        </div>
       )}
     </main>
   )

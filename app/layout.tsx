@@ -16,15 +16,15 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: "Findsday — Sales APIs & MCP Servers for AI Tinkerers",
+  title: "Findsday — The modern directory for sales APIs and MCP servers.",
   description:
-    "The directory of sales tools with APIs and MCP servers. Find APIs, SDKs, and MCP servers to plug your sales stack into Claude, Cursor, Gemini CLI, and any AI workflow.",
+    "A curated collection of sales APIs, SDKs, and MCP servers. Find the tools to connect your sales stack to Claude and Cursor.",
   keywords:
     "sales API, MCP server, Model Context Protocol, Claude, Cursor, AI sales tools, CRM API, sales automation API",
   openGraph: {
     title: "Findsday — Sales APIs & MCP Servers for AI Tinkerers",
     description:
-      "Find the APIs, SDKs, and MCP servers that plug your sales stack into Claude, Cursor, and any AI workflow.",
+      "A simple directory of sales APIs and MCP servers for people building with AI.",
     type: "website",
     url: "https://findsday.com",
   },
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Findsday — Sales APIs & MCP Servers for AI Tinkerers",
     description:
-      "Find the APIs, SDKs, and MCP servers that plug your sales stack into Claude, Cursor, and any AI workflow.",
+      "Find the APIs, SDKs, and MCP servers that plug your sales stack into Claude and Cursor.",
   },
 }
 
@@ -61,25 +61,35 @@ gtag('config', 'G-9LGNFH00R7');`,
           }}
         />
       </head>
-      <body className="font-sans bg-banknote-black text-paper-white antialiased selection:bg-terminal-green selection:text-black">
-        <header className="sticky top-0 z-50 border-b border-white/10 bg-black/90 px-4 py-4 sm:px-6 lg:px-8">
-          <div className="mx-auto flex max-w-7xl items-center justify-between">
-            <Link href="/" className="font-heading text-2xl font-black italic tracking-tighter text-paper-white">
-              Findsday<span className="text-terminal-green text-sm not-italic ml-1">.com</span>
+      <body className="font-sans bg-ghost-dark text-paper-white antialiased selection:bg-brand-purple/30">
+        <header className="sticky top-0 z-50 border-b border-white/5 bg-ghost-dark/80 backdrop-blur-lg">
+          <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+            <Link href="/" className="text-xl font-bold tracking-tight text-white hover:opacity-80 transition-opacity">
+              Findsday
             </Link>
 
             {/* Desktop nav */}
-            <nav className="hidden items-center gap-8 md:flex">
+            <nav className="hidden items-center gap-10 md:flex">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-sm font-medium text-gray-400 transition-colors hover:text-terminal-green"
+                  className="text-[15px] font-medium text-gray-400 transition-colors hover:text-white"
                 >
                   {link.label}
                 </Link>
               ))}
             </nav>
+
+            {/* Desktop CTAs */}
+            <div className="hidden items-center gap-4 md:flex">
+              <Link href="/submit" className="text-[14px] font-bold text-white hover:opacity-80 transition-opacity">
+                Submit a tool
+              </Link>
+              <Link href="/tools" className="bg-white text-black px-5 py-2 rounded-full text-[14px] font-bold hover:bg-white/90 transition-colors">
+                Get started
+              </Link>
+            </div>
 
             {/* Mobile nav */}
             <MobileNav links={navLinks} />
@@ -88,74 +98,43 @@ gtag('config', 'G-9LGNFH00R7');`,
 
         {children}
 
-        <footer className="border-t border-white/10 bg-black px-4 py-16 sm:px-6 lg:px-8">
-          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 md:grid-cols-3">
-            <div className="space-y-6">
-              <span className="font-heading text-3xl font-black italic tracking-tighter">Findsday</span>
+        <footer className="border-t border-white/5 bg-ghost-dark px-6 py-20">
+          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-16 md:grid-cols-4 lg:grid-cols-5">
+            <div className="col-span-1 md:col-span-2 space-y-6">
+              <Link href="/" className="text-xl font-bold tracking-tight">Findsday</Link>
               <p className="max-w-xs text-sm leading-relaxed text-gray-400">
-                A simple directory of sales APIs and MCP servers for people building with AI.
+                A modern directory of sales APIs and MCP servers built for the new era of AI-native operators.
               </p>
-              <div className="font-mono text-[10px] uppercase text-gray-600">
-                Updated Daily // Build 0.1.0
+              <div className="flex gap-5 text-sm font-medium text-gray-500">
+                <a href="https://twitter.com/findsday" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Twitter</a>
+                <a href="https://github.com/findsday" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">GitHub</a>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-8 text-sm">
-              <div className="space-y-4">
-                <h4 className="font-bold text-gray-200">Directory</h4>
-                <ul className="space-y-2 text-gray-400">
-                  <li>
-                    <Link href="/tools" className="transition-colors hover:text-terminal-green">
-                      All Tools
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/categories" className="transition-colors hover:text-terminal-green">
-                      Categories
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/mcp" className="transition-colors hover:text-terminal-green">
-                      MCP Servers
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-              <div className="space-y-4">
-                <h4 className="font-bold text-gray-200">Links</h4>
-                <ul className="space-y-2 text-gray-400">
-                  <li>
-                    <Link href="/submit" className="transition-colors hover:text-terminal-green">
-                      Submit a Tool
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/about" className="transition-colors hover:text-terminal-green">
-                      About
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/privacy" className="transition-colors hover:text-terminal-green">
-                      Privacy
-                    </Link>
-                  </li>
-                </ul>
-              </div>
+            <div className="space-y-6">
+              <h4 className="text-sm font-bold text-white uppercase tracking-wider">Directory</h4>
+              <ul className="space-y-4 text-sm font-medium text-gray-400">
+                <li><Link href="/tools" className="hover:text-white transition-colors">All Tools</Link></li>
+                <li><Link href="/categories" className="hover:text-white transition-colors">Categories</Link></li>
+                <li><Link href="/mcp" className="hover:text-white transition-colors">MCP Servers</Link></li>
+              </ul>
             </div>
 
-            <div className="flex flex-col items-start space-y-6 md:items-end">
-              <div className="border border-terminal-green px-4 py-2 font-mono text-[10px] font-black uppercase text-terminal-green">
-                Status: Online
-              </div>
-              <div className="flex gap-6 text-sm text-gray-400">
-                <a href="https://twitter.com/findsday" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-terminal-green">
-                  Twitter
-                </a>
-                <a href="https://github.com/findsday" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-terminal-green">
-                  GitHub
-                </a>
-              </div>
-              <p className="text-xs text-gray-600">© {new Date().getFullYear()} Findsday</p>
+            <div className="space-y-6">
+              <h4 className="text-sm font-bold text-white uppercase tracking-wider">Resources</h4>
+              <ul className="space-y-4 text-sm font-medium text-gray-400">
+                <li><Link href="/submit" className="hover:text-white transition-colors">Submit Tool</Link></li>
+                <li><Link href="/about" className="hover:text-white transition-colors">About Project</Link></li>
+                <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
+              </ul>
+            </div>
+
+            <div className="space-y-6">
+              <h4 className="text-sm font-bold text-white uppercase tracking-wider">Build</h4>
+              <p className="text-xs font-medium text-gray-500 uppercase tracking-widest">
+                Version 1.0.0-Stable<br />
+                © {new Date().getFullYear()} Findsday
+              </p>
             </div>
           </div>
         </footer>

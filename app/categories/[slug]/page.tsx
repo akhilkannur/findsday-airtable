@@ -21,11 +21,11 @@ export async function generateMetadata({
   const category = getCategoryBySlug(slug)
 
   if (!category) {
-    return { title: "Segment Not Found | Findsday Registry" }
+    return { title: "Category Not Found | Findsday" }
   }
 
   return {
-    title: `${category.name} APIs & Infrastructure | Findsday`,
+    title: `${category.name} APIs & Tools | Findsday`,
     description: category.description,
   }
 }
@@ -46,62 +46,63 @@ export default async function CategoryDetailPage({
 
   const getDifficultyColor = (diff: string) => {
     switch (diff) {
-      case "AI-Native": return "text-accent-pink bg-accent-pink/10 border-accent-pink/20"
-      case "Beginner-Friendly": return "text-terminal-green bg-terminal-green/10 border-terminal-green/20"
-      case "Technical": return "text-blue-400 bg-blue-400/10 border-blue-400/20"
-      case "Complex": return "text-orange-400 bg-orange-400/10 border-orange-400/20"
-      default: return "text-gray-400 bg-gray-400/10 border-gray-400/20"
+      case "AI-Native": return "text-brand-purple"
+      case "Beginner-Friendly": return "text-terminal-green"
+      case "Technical": return "text-blue-400"
+      case "Complex": return "text-orange-400"
+      default: return "text-gray-500"
     }
   }
 
   return (
-    <main className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
-      <div className="mb-16 border-b border-white/10 pb-16 pt-12">
+    <main className="mx-auto max-w-7xl px-6 py-24 sm:px-12 lg:px-24">
+      <div className="mb-20">
         <Link
           href="/categories"
-          className="mb-12 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-gray-600 transition-colors hover:text-terminal-green"
+          className="mb-10 inline-flex items-center gap-2 text-sm font-bold text-gray-500 hover:text-white transition-colors"
         >
-          <ArrowLeft className="h-3.5 w-3.5" /> ESCAPE_TO_SEGMENTS
+          <ArrowLeft className="h-4 w-4" /> All Categories
         </Link>
 
-        <h1 className="mt-12 font-heading text-6xl font-black italic tracking-tighter text-paper-white sm:text-8xl">
+        <h1 className="mt-8 text-5xl font-extrabold tracking-tight sm:text-7xl">
           {category.name}
         </h1>
-        <p className="mt-8 max-w-2xl font-mono text-xs uppercase leading-loose tracking-widest text-gray-500">{category.description}</p>
+        <p className="mt-6 text-xl text-gray-400 max-w-3xl leading-relaxed">{category.description}</p>
       </div>
 
-      <div className="grid grid-cols-1 gap-px bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {tools.map((tool) => (
           <Link
             key={tool.slug}
             href={`/tools/${tool.slug}`}
-            className="group relative flex flex-col bg-banknote-black p-8 transition-all hover:bg-white/5"
+            className="ghost-card group flex flex-col h-full"
           >
-            {tool.mcpReady && (
-              <div className="absolute top-4 right-4 flex h-6 w-6 items-center justify-center rounded-full bg-terminal-green/20 text-terminal-green border border-terminal-green/30">
-                <Zap className="h-3.5 w-3.5 fill-terminal-green" />
+            <div className="mb-8 flex items-start justify-between">
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/5 border border-white/5 text-xl font-black group-hover:bg-white group-hover:text-black transition-all">
+                  {tool.name.charAt(0)}
+                </div>
+                <div>
+                  <h2 className="text-lg font-bold text-white group-hover:text-brand-purple transition-colors">
+                    {tool.name}
+                  </h2>
+                  <p className="text-xs font-bold text-gray-500 uppercase tracking-widest">ID: {tool.slug}</p>
+                </div>
               </div>
-            )}
-            
-            <div className="mb-8 flex items-start gap-4">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center border border-white/10 bg-white/5 font-heading text-xl font-black italic text-terminal-green transition-colors group-hover:bg-terminal-green group-hover:text-black">
-                {tool.name.charAt(0)}
-              </div>
-              <div>
-                <h2 className="text-xl font-black tracking-tighter text-paper-white group-hover:text-terminal-green transition-colors">
-                  {tool.name}
-                </h2>
-                <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-gray-600">ID: {tool.slug}</p>
-              </div>
+              {tool.mcpReady && (
+                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-purple/10 text-brand-purple border border-brand-purple/20">
+                  <Zap className="h-3.5 w-3.5 fill-brand-purple" />
+                </div>
+              )}
             </div>
 
-            <p className="mb-8 font-mono text-[11px] uppercase leading-relaxed text-gray-500 line-clamp-2">
+            <p className="text-sm leading-relaxed text-gray-400 line-clamp-3 mb-10">
               {tool.oneLiner}
             </p>
 
-            <div className="mt-auto flex flex-wrap items-center gap-3">
+            <div className="mt-auto pt-6 border-t border-white/5 flex flex-wrap items-center gap-3">
               {tool.aiDifficulty && (
-                <span className={`inline-flex items-center gap-1 border px-2 py-0.5 font-mono text-[9px] font-bold uppercase ${getDifficultyColor(tool.aiDifficulty)}`}>
+                <span className={`inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest ${getDifficultyColor(tool.aiDifficulty)}`}>
                   <Brain className="h-3 w-3" /> {tool.aiDifficulty}
                 </span>
               )}
@@ -109,7 +110,7 @@ export default async function CategoryDetailPage({
               {tool.apiType.map((api) => (
                 <span
                   key={api}
-                  className="border border-terminal-green/20 px-2 py-0.5 font-mono text-[9px] font-bold uppercase text-terminal-green"
+                  className="text-[10px] font-bold text-gray-600 uppercase tracking-widest"
                 >
                   {api}
                 </span>
@@ -120,9 +121,9 @@ export default async function CategoryDetailPage({
       </div>
 
       {tools.length === 0 && (
-        <p className="mt-24 text-center font-mono text-sm uppercase text-gray-700">
-          No entries registered for this segment.
-        </p>
+        <div className="mt-32 text-center">
+          <p className="text-xl font-bold text-gray-500">No tools in this category yet.</p>
+        </div>
       )}
     </main>
   )

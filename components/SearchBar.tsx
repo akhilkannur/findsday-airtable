@@ -18,14 +18,14 @@ export function SearchBar() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="relative w-full max-w-xl">
-      <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-500" />
+    <form onSubmit={handleSubmit} className="relative w-full">
+      <Search className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-500" />
       <input
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Search tools, APIs, MCP servers…"
-        className="w-full rounded-lg border border-gray-700 bg-charcoal-light py-3 pl-12 pr-4 text-white placeholder-gray-500 transition-colors focus:border-accent-green focus:outline-none"
+        className="w-full rounded-full border border-white/5 bg-white/5 py-4 pl-14 pr-6 text-lg text-white placeholder-gray-500 transition-all focus:bg-white/10 focus:border-white/10 focus:outline-none shadow-2xl shadow-black/20"
       />
     </form>
   )

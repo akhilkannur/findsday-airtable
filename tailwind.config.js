@@ -4,26 +4,21 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'banknote-black': '#050805', // Deep forest black
-        'terminal-green': '#00FF41', // Vibrant matrix/terminal green
+        'ghost-dark': '#0f1115', // Neutral deep dark
+        'ghost-card': '#16191f', // Slightly lighter for cards
+        'brand-purple': '#a052de', // Ghost-like accent
+        'terminal-green': '#00FF41',
         'paper-white': '#FDFDFD',
-        charcoal: '#121212',
-        'charcoal-light': '#1a1a1a',
-        'charcoal-dark': '#0a0a0a',
-        'accent-pink': '#ec4899',
       },
       fontFamily: {
+        sans: ['var(--font-inter)', 'sans-serif'],
         heading: ['var(--font-playfair)', 'serif'],
         mono: ['var(--font-geist-mono)', 'monospace'],
-        sans: ['var(--font-geist-sans)', 'sans-serif'],
       },
       borderRadius: {
-        'none': '0',
-        'sm': '2px',
-        DEFAULT: '0', // Sharp corners by default
-      },
-      borderWidth: {
-        DEFAULT: '1px',
+        'xl': '0.75rem',
+        '2xl': '1rem',
+        '3xl': '1.5rem',
       },
     },
   },

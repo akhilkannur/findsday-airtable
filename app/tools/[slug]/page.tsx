@@ -94,11 +94,11 @@ export default async function ToolDetailPage({
 
   const getDifficultyColor = (diff: string) => {
     switch (diff) {
-      case "AI-Native": return "text-accent-pink border-accent-pink/30 bg-accent-pink/10"
-      case "Beginner-Friendly": return "text-terminal-green border-terminal-green/30 bg-terminal-green/10"
-      case "Technical": return "text-blue-400 border-blue-400/30 bg-blue-400/10"
-      case "Complex": return "text-orange-400 border-orange-400/30 bg-orange-400/10"
-      default: return "text-gray-400 border-white/10 bg-white/5"
+      case "AI-Native": return "text-white bg-brand-purple"
+      case "Beginner-Friendly": return "text-white bg-terminal-green"
+      case "Technical": return "text-white bg-blue-500"
+      case "Complex": return "text-white bg-orange-500"
+      default: return "text-gray-400 bg-white/10"
     }
   }
 
@@ -106,48 +106,53 @@ export default async function ToolDetailPage({
     <>
       <JsonLd tool={tool} />
 
-      <main className="min-h-screen bg-banknote-black text-paper-white pb-24">
-        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <main className="min-h-screen bg-ghost-dark text-white pb-32">
+        <div className="mx-auto max-w-5xl px-6 py-16 sm:px-12 sm:py-24">
           {/* Header Section */}
-          <div className="mb-16 border-b border-white/10 pb-16 pt-12">
+          <div className="mb-20">
             <Link
               href="/tools"
-              className="mb-12 inline-flex items-center gap-2 text-sm text-gray-500 transition-colors hover:text-terminal-green"
+              className="mb-10 inline-flex items-center gap-2 text-sm font-bold text-gray-500 hover:text-white transition-colors"
             >
               <ArrowLeft className="h-4 w-4" /> Back to Tools
             </Link>
 
-            <div className="mt-12 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+            <div className="mt-12 flex flex-col gap-12 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <div className="flex flex-wrap items-center gap-4">
-                  <h1 className="font-heading text-6xl font-black italic tracking-tighter sm:text-8xl">{tool.name}</h1>
-                  <div className="flex gap-2">
-                    <span className="border border-white/10 bg-white/5 px-3 py-1 text-xs font-bold text-gray-400">
-                      {tool.category}
-                    </span>
-                    {tool.aiDifficulty && (
-                      <span className={`border px-3 py-1 text-xs font-bold uppercase ${getDifficultyColor(tool.aiDifficulty)}`}>
-                        <Brain className="mr-1.5 inline h-3 w-3" /> {tool.aiDifficulty}
+                <div className="flex flex-wrap items-center gap-5">
+                  <div className="flex h-20 w-20 items-center justify-center rounded-3xl bg-white text-black text-4xl font-black">
+                    {tool.name.charAt(0)}
+                  </div>
+                  <div>
+                    <h1 className="text-5xl font-extrabold tracking-tight sm:text-7xl">{tool.name}</h1>
+                    <div className="mt-4 flex gap-3">
+                      <span className="rounded-full bg-white/5 px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-gray-400">
+                        {tool.category}
                       </span>
-                    )}
+                      {tool.aiDifficulty && (
+                        <span className={`rounded-full px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest ${getDifficultyColor(tool.aiDifficulty)}`}>
+                          <Brain className="mr-1.5 inline h-3.5 w-3.5" /> {tool.aiDifficulty}
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
-                <p className="mt-8 max-w-2xl text-lg text-gray-400">{tool.oneLiner}</p>
+                <p className="mt-10 max-w-3xl text-xl text-gray-400 leading-relaxed">{tool.oneLiner}</p>
               </div>
 
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-4">
                 {actionLinks.map((link) => (
                   <a
                     key={link.label}
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-brutalist whitespace-nowrap"
+                    className="btn-ghost-outline hover:border-white whitespace-nowrap"
                   >
                     {link.label === "GitHub" ? (
-                      <Github className="h-3.5 w-3.5" />
+                      <Github className="h-4 w-4" />
                     ) : (
-                      <ExternalLink className="h-3.5 w-3.5" />
+                      <ExternalLink className="h-4 w-4" />
                     )}
                     {link.label}
                   </a>
@@ -156,21 +161,22 @@ export default async function ToolDetailPage({
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-16 lg:grid-cols-12">
-            {/* Left Column: Info & Use Cases */}
-            <div className="lg:col-span-8 space-y-20">
+          <div className="grid grid-cols-1 gap-20 lg:grid-cols-12">
+            {/* Left Column */}
+            <div className="lg:col-span-8 space-y-24">
               {/* Use Cases Section */}
               {tool.aiCapabilities && tool.aiCapabilities.length > 0 && (
-                <div className="border border-white/10 bg-black/40 p-10">
-                  <h2 className="flex items-center gap-3 font-heading text-3xl font-black italic tracking-tighter text-paper-white">
-                    <Sparkles className="h-6 w-6 text-terminal-green" /> Use Cases
+                <div className="rounded-3xl bg-ghost-card border border-white/5 p-12">
+                  <h2 className="flex items-center gap-4 text-3xl font-extrabold tracking-tight">
+                    <Sparkles className="h-8 w-8 text-brand-purple" /> Use Cases
                   </h2>
-                  <p className="mt-2 text-sm text-gray-400">What you can do with this tool and AI</p>
+                  <p className="mt-4 text-lg text-gray-400">What you can do with this tool and AI</p>
                   
-                  <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
+                  <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
                     {tool.aiCapabilities.map((cap) => (
-                      <div key={cap} className="flex items-center gap-4 border-l border-terminal-green bg-white/5 p-5 transition-colors hover:bg-terminal-green/5">
-                        <span className="text-sm font-bold text-gray-200 uppercase tracking-tight">{cap}</span>
+                      <div key={cap} className="flex items-center gap-5 rounded-2xl bg-white/5 p-6 transition-all hover:bg-white/10">
+                        <Check className="h-5 w-5 text-brand-purple shrink-0" />
+                        <span className="text-sm font-bold text-white uppercase tracking-tight">{cap}</span>
                       </div>
                     ))}
                   </div>
@@ -179,33 +185,35 @@ export default async function ToolDetailPage({
 
               {/* Starter Prompt Section */}
               {tool.starterPrompt && (
-                <div className="border border-accent-pink/20 bg-accent-pink/5 p-10">
-                  <h2 className="flex items-center gap-3 font-heading text-3xl font-black italic tracking-tighter text-paper-white">
-                    <Terminal className="h-6 w-6 text-accent-pink" /> Try this prompt
+                <div className="rounded-3xl border border-brand-purple/20 bg-brand-purple/5 p-12">
+                  <h2 className="flex items-center gap-4 text-3xl font-extrabold tracking-tight">
+                    <Terminal className="h-8 w-8 text-brand-purple" /> Try this prompt
                   </h2>
-                  <p className="mt-2 text-sm text-gray-400">Copy this into Claude or Cursor to start using the API</p>
+                  <p className="mt-4 text-lg text-gray-400">Copy this into Claude or Cursor to start using the API</p>
                   
-                  <div className="mt-8 font-mono text-sm leading-relaxed text-accent-pink border border-accent-pink/10 bg-black/40 p-8">
-                    &quot;{tool.starterPrompt}&quot;
+                  <div className="group relative mt-10">
+                    <div className="rounded-2xl bg-black/40 p-8 font-mono text-sm leading-relaxed text-brand-purple border border-white/5">
+                      &quot;{tool.starterPrompt}&quot;
+                    </div>
                   </div>
                 </div>
               )}
 
               {/* About */}
-              <div className="prose prose-invert max-w-none">
-                <h2 className="font-heading text-4xl font-black italic tracking-tighter text-paper-white">About</h2>
-                <div className="mt-8 text-gray-400 leading-relaxed whitespace-pre-line">
+              <div className="prose prose-invert prose-lg max-w-none">
+                <h2 className="text-4xl font-extrabold tracking-tight">About {tool.name}</h2>
+                <div className="mt-10 text-gray-400 leading-relaxed whitespace-pre-line text-lg">
                   {tool.description}
                 </div>
               </div>
 
               {/* Alternative To */}
               {tool.alternativeTo && tool.alternativeTo.length > 0 && (
-                <div className="border-t border-white/10 pt-12">
-                  <h2 className="font-heading text-3xl font-black italic tracking-tighter text-paper-white">Alternatives</h2>
-                  <div className="mt-6 flex flex-wrap gap-3">
+                <div className="border-t border-white/5 pt-16">
+                  <h2 className="text-3xl font-extrabold tracking-tight">Alternatives</h2>
+                  <div className="mt-10 flex flex-wrap gap-4">
                     {tool.alternativeTo.map((alt) => (
-                      <span key={alt} className="border border-white/10 px-4 py-2 text-xs font-bold text-gray-500 uppercase hover:border-terminal-green hover:text-terminal-green transition-colors cursor-default">
+                      <span key={alt} className="rounded-xl border border-white/5 bg-white/5 px-6 py-3 text-sm font-bold text-gray-500 uppercase tracking-widest hover:border-white transition-colors cursor-default">
                         {alt}
                       </span>
                     ))}
@@ -214,98 +222,98 @@ export default async function ToolDetailPage({
               )}
             </div>
 
-            {/* Right Column: API Details */}
+            {/* Right Column */}
             <div className="lg:col-span-4">
-              <div className="sticky top-24 space-y-8">
+              <div className="sticky top-24 space-y-10">
                 {/* MCP Configuration Card */}
                 {tool.integrations.find(i => i.platform === "MCP" && i.mcpConfig) && (
-                  <div className="border border-terminal-green/30 bg-terminal-green/5 p-8">
-                    <h3 className="flex items-center gap-2 font-heading text-2xl font-black italic tracking-tighter text-paper-white">
-                      <Zap className="h-5 w-5 text-terminal-green" /> MCP Config
+                  <div className="rounded-3xl bg-brand-purple p-10 text-white shadow-2xl shadow-brand-purple/20">
+                    <h3 className="flex items-center gap-3 text-2xl font-extrabold tracking-tight">
+                      <Zap className="h-6 w-6 fill-white" /> MCP Config
                     </h3>
-                    <p className="mt-2 text-xs text-gray-400 leading-relaxed">Add this to your Claude Desktop or Cursor settings</p>
-                    <div className="mt-6 border border-terminal-green/10 bg-black p-5 font-mono text-[10px] text-terminal-green/80 overflow-x-auto">
+                    <p className="mt-3 text-sm font-medium opacity-80 leading-relaxed">Add this to your Claude Desktop or Cursor settings</p>
+                    <div className="mt-8 rounded-2xl bg-black/20 p-6 font-mono text-[11px] text-white/90 overflow-x-auto border border-white/10">
                       <pre className="whitespace-pre">{tool.integrations.find(i => i.platform === "MCP")?.mcpConfig}</pre>
                     </div>
                   </div>
                 )}
 
-                <div className="border border-white/10 bg-white/5 p-8">
-                  <h3 className="font-heading text-2xl font-black italic tracking-tighter text-paper-white">Details</h3>
+                <div className="rounded-3xl bg-ghost-card border border-white/5 p-10">
+                  <h3 className="text-2xl font-extrabold tracking-tight">Technical details</h3>
                   
-                  <div className="mt-8 space-y-6 text-sm">
-                    <div className="flex justify-between border-b border-white/5 pb-3">
-                      <span className="text-gray-500 font-medium">Protocol</span>
-                      <span className="text-terminal-green font-mono text-xs">{tool.apiType.join(' // ')}</span>
+                  <div className="mt-10 space-y-8">
+                    <div className="flex items-center justify-between border-b border-white/5 pb-5">
+                      <span className="text-sm font-bold text-gray-500">Protocol</span>
+                      <span className="text-sm font-mono text-brand-purple font-bold uppercase">{tool.apiType.join(' / ')}</span>
                     </div>
                     
-                    <div className="flex justify-between border-b border-white/5 pb-3">
-                      <span className="text-gray-500 font-medium">Auth</span>
-                      <span className="text-paper-white text-xs">{tool.authMethod.join(' / ')}</span>
+                    <div className="flex items-center justify-between border-b border-white/5 pb-5">
+                      <span className="text-sm font-bold text-gray-500">Auth</span>
+                      <span className="text-sm font-bold text-white">{tool.authMethod.join(' / ')}</span>
                     </div>
 
-                    <div className="flex justify-between border-b border-white/5 pb-3">
-                      <span className="text-gray-500 font-medium">Free Tier</span>
-                      <span className={tool.hasFreeTier ? 'text-terminal-green font-bold' : 'text-gray-600'}>
+                    <div className="flex items-center justify-between border-b border-white/5 pb-5">
+                      <span className="text-sm font-bold text-gray-500">Free Tier</span>
+                      <span className={tool.hasFreeTier ? 'text-sm font-bold text-brand-purple' : 'text-sm font-bold text-gray-600'}>
                         {tool.hasFreeTier ? 'Available' : 'Paid only'}
                       </span>
                     </div>
 
-                    <div className="flex flex-col gap-3 border-b border-white/5 pb-3">
-                      <span className="text-gray-500 font-medium">SDKs</span>
-                      <div className="flex flex-wrap gap-2">
+                    <div className="space-y-4 border-b border-white/5 pb-5">
+                      <span className="text-sm font-bold text-gray-500">Official SDKs</span>
+                      <div className="flex flex-wrap gap-3">
                         {tool.sdkLanguages.length > 0 ? (
                           tool.sdkLanguages.map(lang => (
-                            <span key={lang} className="text-paper-white text-xs bg-white/5 px-2 py-0.5">{lang}</span>
+                            <span key={lang} className="rounded-lg bg-white/5 px-3 py-1.5 text-[11px] font-bold text-white uppercase tracking-widest">{lang}</span>
                           ))
                         ) : (
-                          <span className="text-gray-800 text-xs italic">Not listed</span>
+                          <span className="text-sm font-bold text-gray-800 italic">Not listed</span>
                         )}
                       </div>
                     </div>
 
-                    <div className="flex justify-between border-b border-white/5 pb-3">
-                      <span className="text-gray-500 font-medium">Webhooks</span>
-                      <span className={tool.hasWebhooks ? 'text-terminal-green font-bold' : 'text-gray-600'}>
+                    <div className="flex items-center justify-between border-b border-white/5 pb-5">
+                      <span className="text-sm font-bold text-gray-500">Webhooks</span>
+                      <span className={tool.hasWebhooks ? 'text-sm font-bold text-brand-purple' : 'text-sm font-bold text-gray-600'}>
                         {tool.hasWebhooks ? 'Active' : 'No'}
                       </span>
                     </div>
 
-                    <div className="flex justify-between border-b border-white/5 pb-3">
-                      <span className="text-gray-500 font-medium">OpenAPI</span>
+                    <div className="flex items-center justify-between border-b border-white/5 pb-5">
+                      <span className="text-sm font-bold text-gray-500">OpenAPI</span>
                       {tool.hasOpenApiSpec ? (
-                        <a href={tool.openApiSpecUrl} target="_blank" rel="noopener noreferrer" className="text-terminal-green hover:underline text-xs">
+                        <a href={tool.openApiSpecUrl} target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-brand-purple hover:underline underline-offset-4">
                           View Spec
                         </a>
                       ) : (
-                        <span className="text-gray-800 text-xs italic">No spec found</span>
+                        <span className="text-sm font-bold text-gray-800 italic">No spec found</span>
                       )}
                     </div>
                   </div>
 
                   {/* Agent Integrations List */}
-                  <div className="mt-12 border-t border-white/10 pt-8">
-                    <h3 className="flex items-center gap-2 font-heading text-xl font-black italic tracking-tighter text-paper-white">
-                      <Plug className="h-4 w-4" /> Agent Links
+                  <div className="mt-14 space-y-8">
+                    <h3 className="flex items-center gap-3 text-xl font-extrabold tracking-tight">
+                      <Plug className="h-5 w-5 text-gray-500" /> Integrations
                     </h3>
                     
                     {tool.integrations.length > 0 ? (
-                      <div className="mt-6 space-y-4">
+                      <div className="space-y-4">
                         {tool.integrations.map((integration, i) => (
                           <a
                             key={i}
                             href={integration.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group flex items-center justify-between border border-white/10 p-3 transition-colors hover:border-terminal-green"
+                            className="group flex items-center justify-between rounded-2xl border border-white/5 p-4 transition-all hover:bg-white/5 hover:border-white/20"
                           >
-                            <span className="text-xs font-bold text-paper-white uppercase tracking-wider">{integration.platform}</span>
-                            <ExternalLink className="h-3 w-3 text-gray-700 group-hover:text-terminal-green" />
+                            <span className="text-[11px] font-bold text-white uppercase tracking-widest">{integration.platform}</span>
+                            <ExternalLink className="h-4 w-4 text-gray-700 group-hover:text-white transition-colors" />
                           </a>
                         ))}
                       </div>
                     ) : (
-                      <p className="mt-4 text-xs italic text-gray-700">No agent integrations yet</p>
+                      <p className="text-sm font-bold text-gray-800 italic">No agent integrations yet</p>
                     )}
                   </div>
                 </div>
