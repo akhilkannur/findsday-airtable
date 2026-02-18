@@ -3,78 +3,70 @@
 @tailwind utilities;
 
 :root {
-  --charcoal: #121212;
-  --charcoal-light: #1a1a1a;
-  --charcoal-dark: #0a0a0a;
-  --accent-green: #00c853;
-  --accent-pink: #ec4899;
-  --gray-text: #a0a0a0;
+  --ghost-dark: #0f1115;
+  --ghost-card: #16191f;
+  --paper-white: #fdfdfd;
 }
 
 body {
-  color: #ffffff;
-  background: #0a0a0a;
+  color: var(--paper-white);
+  background-color: var(--ghost-dark);
+  font-family: var(--font-inter), sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Mobile-specific improvements */
-@media (max-width: 640px) {
-  .container {
-    padding-left: 1rem;
-    padding-right: 1rem;
+@layer components {
+  .ghost-card {
+    @apply border border-white/5 bg-ghost-card rounded-2xl p-6 transition-all duration-300;
+  }
+  
+  .ghost-card:hover {
+    @apply border-white/10 shadow-xl shadow-black/40;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 bg-white text-black px-6 py-2.5 rounded-full font-bold text-sm transition-all hover:bg-white/90 active:scale-[0.98];
   }
 
-  .text-balance {
-    text-wrap: balance;
-  }
-}
-
-@layer utilities {
-  .btn-primary {
-    @apply bg-accent-pink hover:bg-accent-pink/80 text-charcoal font-bold py-2 px-6 rounded-lg transition-colors;
-  }
-  .card {
-    @apply bg-charcoal-dark shadow-md p-6 rounded-lg border border-gray-800;
+  .btn-ghost-outline {
+    @apply inline-flex items-center gap-2 border border-white/10 text-white px-6 py-2.5 rounded-full font-bold text-sm transition-all hover:bg-white/5 active:scale-[0.98];
   }
 
-  .bg-grid-pattern {
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-    background-size: 20px 20px;
-  }
-
-  .line-clamp-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  .line-clamp-3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+  .ghost-heading {
+    @apply font-sans tracking-tight text-white;
   }
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
+/* Custom scrollbar - Clean Modern */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background-color: var(--ghost-dark);
 }
 ::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 4px;
+  background-color: #2a2e35;
+  border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background-color: #3f444d;
+}
+
+/* Line clamp utilities */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
 }
