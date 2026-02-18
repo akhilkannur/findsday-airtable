@@ -12,10 +12,13 @@ export type ToolCategory =
   | "Sales Engagement"
   | "Workflow Automation"
 
+export type AiDifficulty = "AI-Native" | "Beginner-Friendly" | "Technical" | "Complex"
+
 export interface AgentIntegration {
   platform: "MCP" | "OpenClaw" | "LangChain" | "CrewAI" | "Claude Skill" | "Custom"
   url: string
   label?: string // e.g., "Official MCP Server", "Community Plugin"
+  mcpConfig?: string // Copy-paste JSON for Claude Desktop/Cursor
 }
 
 export interface SalesTool {
@@ -37,6 +40,12 @@ export interface SalesTool {
   hasWebhooks: boolean
   hasOpenApiSpec: boolean
   openApiSpecUrl?: string
+
+  // AI-Native Operator Specifics
+  aiCapabilities: string[] // e.g., ["Search Leads", "Update CRM", "Record Meetings"]
+  aiDifficulty: AiDifficulty
+  starterPrompt?: string // "Claude, use this tool to..."
+  mcpReady: boolean
 
   // Agent integrations — all the ways to connect this tool to an AI agent
   integrations: AgentIntegration[]

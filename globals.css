@@ -3,86 +3,86 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 240, 240, 240;
-  --background-end-rgb: 240, 240, 240;
-
-  /* new magazine palette */
-  --sales-green: #00c853;
-  --charcoal: #121212;
+  --banknote-black: #050805;
+  --terminal-green: #00FF41;
   --paper-white: #fdfdfd;
+  --charcoal: #121212;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: var(--paper-white);
+  background-color: var(--banknote-black);
+  background-image: 
+    linear-gradient(rgba(0, 255, 65, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 65, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-attachment: fixed;
+  font-family: var(--font-inter), sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-@layer utilities {
-  .btn-primary {
-    @apply bg-primary hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg transition-colors;
+@layer components {
+  .brutalist-card {
+    @apply border border-white/10 bg-black/40 p-6 transition-all duration-300;
   }
-  .card {
-    @apply bg-white shadow-md p-6 rounded-lg border border-gray-100;
-  }
-
-  /* Custom gradient animation */
-  .animate-gradient-x {
-    animation: gradient-x 15s ease infinite;
+  
+  .brutalist-card:hover {
+    @apply border-terminal-green/50 bg-terminal-green/5 shadow-[0_0_30px_rgba(0,255,65,0.05)];
   }
 
-  /* Line clamp utilities */
-  .line-clamp-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+  .btn-brutalist {
+    @apply relative inline-flex items-center gap-2 border border-terminal-green px-6 py-2 font-mono text-sm font-bold uppercase text-terminal-green transition-all hover:bg-terminal-green hover:text-black active:translate-y-0.5;
   }
-  .line-clamp-3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+
+  .terminal-text {
+    @apply font-mono tracking-tighter;
+  }
+
+  .magazine-heading {
+    @apply font-heading text-paper-white;
   }
 }
 
-@keyframes gradient-x {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
+/* Technical Scanline Animation */
+.scanline {
+  width: 100%;
+  height: 2px;
+  background: rgba(0, 255, 65, 0.2);
+  position: absolute;
+  top: -2px;
+  left: 0;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0;
 }
 
-/* Smooth scroll behavior */
-html {
-  scroll-behavior: smooth;
+.brutalist-card:hover .scanline {
+  opacity: 1;
+  animation: scan 1.5s linear infinite;
 }
 
-/* Custom scrollbar */
+@keyframes scan {
+  0% { top: 0%; }
+  100% { top: 100%; }
+}
+
+/* Custom scrollbar - Industrial Style */
 ::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  width: 12px;
+  background-color: var(--banknote-black);
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #A052DE, #EC4899);
-  border-radius: 4px;
+  background-color: #333;
+  border: 3px solid var(--banknote-black);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #9333EA, #DB2777);
+  background-color: var(--terminal-green);
 }
 
-/* Backdrop blur fallback */
-@supports not (backdrop-filter: blur(10px)) {
-  .backdrop-blur-sm {
-    background-color: rgba(255, 255, 255, 0.9);
-  }
+/* Utility for invisible grid borders */
+.grid-lines {
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 100% 100%;
 }
