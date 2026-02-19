@@ -62,20 +62,20 @@ gtag('config', 'G-9LGNFH00R7');`,
           }}
         />
       </head>
-      <body className="font-sans bg-club-dark text-paper-white antialiased selection:bg-club-teal/30">
-        <header className="sticky top-0 z-50 border-b border-white/10 bg-club-dark/80 backdrop-blur-md">
+      <body className="font-sans bg-enjin-bg text-[#efefef] antialiased">
+        <header className="sticky top-0 z-50 border-b border-white/[0.05] bg-enjin-bg/80 backdrop-blur-xl">
           <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 sm:px-12 lg:px-24">
             <Link href="/" className="text-xl font-bold tracking-tighter text-white hover:opacity-80 transition-opacity">
               Salestools Club
             </Link>
 
             {/* Desktop nav */}
-            <nav className="hidden items-center gap-10 md:flex">
+            <nav className="hidden items-center gap-12 md:flex">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 transition-colors hover:text-white"
+                  className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-500 transition-colors hover:text-white"
                 >
                   {link.label}
                 </Link>
@@ -83,11 +83,11 @@ gtag('config', 'G-9LGNFH00R7');`,
             </nav>
 
             {/* Desktop CTAs */}
-            <div className="hidden items-center gap-6 md:flex">
-              <Link href="/submit" className="text-xs font-bold uppercase tracking-[0.2em] text-white hover:text-club-teal transition-colors">
+            <div className="hidden items-center gap-8 md:flex">
+              <Link href="/submit" className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-500 hover:text-white transition-colors">
                 Submit
               </Link>
-              <Link href="/tools" className="bg-white text-black px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-[0.1em] hover:bg-club-teal transition-all">
+              <Link href="/tools" className="btn-club !px-6 !py-2.5 !text-[10px]">
                 Get started
               </Link>
             </div>
@@ -99,36 +99,36 @@ gtag('config', 'G-9LGNFH00R7');`,
 
         {children}
 
-        <footer className="border-t border-white/10 bg-club-dark px-6 py-32 sm:px-12 lg:px-24">
-          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-20 md:grid-cols-4 lg:grid-cols-5">
-            <div className="col-span-1 md:col-span-2 space-y-8">
+        <footer className="border-t border-white/[0.05] bg-enjin-bg px-6 py-32 sm:px-12 lg:px-24">
+          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-24 md:grid-cols-4 lg:grid-cols-5">
+            <div className="col-span-1 md:col-span-2 space-y-10">
               <Link href="/" className="text-2xl font-bold tracking-tighter">Salestools Club</Link>
-              <p className="max-w-xs text-[15px] leading-relaxed text-gray-500">
+              <p className="max-w-xs text-lg leading-relaxed text-gray-600 font-medium">
                 A modern directory of sales APIs and MCP servers built for the new era of AI-native operators.
               </p>
             </div>
 
-            <div className="space-y-8">
-              <h4 className="text-[11px] font-bold text-white uppercase tracking-[0.3em]">Directory</h4>
-              <ul className="space-y-4 text-sm font-medium text-gray-400">
+            <div className="space-y-10">
+              <h4 className="text-[10px] font-bold text-white uppercase tracking-[0.4em]">Directory</h4>
+              <ul className="space-y-5 text-sm font-medium text-gray-600">
                 <li><Link href="/tools" className="hover:text-white transition-colors">All Tools</Link></li>
                 <li><Link href="/categories" className="hover:text-white transition-colors">Categories</Link></li>
                 <li><Link href="/mcp" className="hover:text-white transition-colors">MCP Servers</Link></li>
               </ul>
             </div>
 
-            <div className="space-y-8">
-              <h4 className="text-[11px] font-bold text-white uppercase tracking-[0.3em]">Resources</h4>
-              <ul className="space-y-4 text-sm font-medium text-gray-400">
+            <div className="space-y-10">
+              <h4 className="text-[10px] font-bold text-white uppercase tracking-[0.4em]">Resources</h4>
+              <ul className="space-y-5 text-sm font-medium text-gray-600">
                 <li><Link href="/submit" className="hover:text-white transition-colors">Submit Tool</Link></li>
                 <li><Link href="/about" className="hover:text-white transition-colors">About Project</Link></li>
                 <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
               </ul>
             </div>
 
-            <div className="space-y-8">
-              <h4 className="text-[11px] font-bold text-white uppercase tracking-[0.3em]">Status</h4>
-              <p className="text-[11px] font-bold text-gray-600 uppercase tracking-[0.2em] leading-loose">
+            <div className="space-y-10">
+              <h4 className="text-[10px] font-bold text-white uppercase tracking-[0.4em]">Status</h4>
+              <p className="text-[10px] font-bold text-gray-800 uppercase tracking-[0.3em] leading-loose">
                 Version 1.0.0-Stable<br />
                 © {new Date().getFullYear()} Salestools Club
               </p>

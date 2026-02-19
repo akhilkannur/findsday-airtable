@@ -21,32 +21,32 @@ export default function Home() {
   const mcpTools = getMcpTools()
 
   return (
-    <main className="relative bg-club-dark text-white">
+    <main className="relative min-h-screen bg-enjin-bg selection:bg-enjin-teal/30">
       {/* ── Hero ──────────────────────────────────────────── */}
-      <section className="relative px-6 py-32 sm:px-12 lg:px-24">
+      <section className="relative px-6 pt-32 pb-40 sm:px-12 lg:px-24">
         <div className="mx-auto max-w-5xl text-center">
-          <div className="mb-10 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-club-teal shadow-2xl">
-            <Sparkles className="h-3.5 w-3.5 fill-club-teal" />
+          <div className="mb-12 inline-flex items-center gap-2 rounded-full border border-white/5 bg-white/[0.03] px-5 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-enjin-teal">
+            <Sparkles className="h-3.5 w-3.5 fill-enjin-teal" />
             Connect your sales tools to AI
           </div>
-          <h1 className="text-6xl font-extrabold tracking-tight sm:text-8xl lg:text-[110px] leading-[0.9] text-white">
+          <h1 className="text-gradient text-7xl font-extrabold sm:text-8xl lg:text-[120px]">
             Every Sales API.<br />
-            <span className="text-gray-600 italic font-heading font-light">In one place.</span>
+            <span className="text-gray-700 italic font-heading font-light">In one place.</span>
           </h1>
-          <p className="mt-12 mx-auto max-w-2xl text-xl text-gray-400 sm:text-2xl leading-relaxed">
+          <p className="mt-16 mx-auto max-w-2xl text-xl text-gray-500 sm:text-2xl leading-relaxed font-medium">
             A simple list of the APIs, SDKs, and MCP servers you need to build custom sales workflows with Claude and Cursor.
           </p>
 
-          <div className="mt-16 mx-auto max-w-md">
+          <div className="mt-20 mx-auto max-w-md">
             <form className="relative group">
-              <div className="relative flex items-center bg-white/5 border border-white/10 rounded-full p-1.5 backdrop-blur-sm transition-all focus-within:border-club-teal/50 focus-within:ring-4 focus-within:ring-club-teal/10">
-                <div className="flex items-center pl-6 pr-3 text-gray-500">
+              <div className="relative flex items-center bg-white/[0.03] border border-white/10 rounded-full p-2 backdrop-blur-xl transition-all focus-within:border-enjin-teal/40">
+                <div className="flex items-center pl-6 pr-3 text-gray-600">
                   <Mail className="h-5 w-5" />
                 </div>
                 <input 
                   type="email" 
                   placeholder="Get the Sunday list..." 
-                  className="bg-transparent border-none text-white focus:ring-0 w-full py-3 text-lg placeholder-gray-600"
+                  className="bg-transparent border-none text-white focus:ring-0 w-full py-4 text-lg placeholder-gray-700"
                   required
                 />
                 <button 
@@ -57,7 +57,7 @@ export default function Home() {
                 </button>
               </div>
             </form>
-            <p className="mt-6 text-[11px] text-gray-500 font-bold uppercase tracking-[0.2em] opacity-60">
+            <p className="mt-8 text-[10px] text-gray-600 font-bold uppercase tracking-[0.4em]">
               Join 500+ builders using AI for sales.
             </p>
           </div>
@@ -65,48 +65,48 @@ export default function Home() {
       </section>
 
       {/* ── Featured Tools ───────────────────────────────── */}
-      <section className="px-6 py-24 sm:px-12 lg:px-24 border-t border-white/5">
+      <section className="px-6 py-32 sm:px-12 lg:px-24 border-t border-white/[0.05]">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-20 flex flex-col sm:flex-row sm:items-end justify-between gap-10">
+          <div className="mb-24 flex flex-col sm:flex-row sm:items-end justify-between gap-12">
             <div className="max-w-2xl">
-              <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl italic font-heading">Featured Tools</h2>
-              <p className="mt-4 text-xl text-gray-400 leading-relaxed">The best APIs to start building with.</p>
+              <h2 className="text-4xl font-extrabold sm:text-6xl text-gradient">Featured Tools</h2>
+              <p className="mt-6 text-xl text-gray-500 leading-relaxed font-medium">The best APIs to start building with.</p>
             </div>
             <Link
               href="/tools"
               className="btn-club-outline group"
             >
-              Browse all tools <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              Browse all <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
             {featuredTools.map((tool) => (
               <Link
                 key={tool.slug}
                 href={`/tools/${tool.slug}`}
                 className="club-card group flex flex-col"
               >
-                <div className="mb-10 flex items-start justify-between">
-                  <div className="flex items-center gap-5">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/[0.03] border border-white/10 text-2xl font-black text-white group-hover:bg-club-teal group-hover:text-black transition-all duration-500 shadow-inner">
+                <div className="mb-12 flex items-start justify-between">
+                  <div className="flex items-center gap-6">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-[20px] bg-white text-black text-2xl font-black group-hover:bg-enjin-teal transition-all duration-500">
                       {tool.name.charAt(0)}
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-white transition-colors group-hover:text-club-teal">
+                      <h3 className="text-2xl font-bold text-white transition-colors group-hover:text-enjin-teal">
                         {tool.name}
                       </h3>
-                      <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">{tool.category}</span>
+                      <span className="text-[10px] font-bold text-gray-600 uppercase tracking-widest mt-1 block">{tool.category}</span>
                     </div>
                   </div>
                   {tool.mcpReady && (
-                    <div className="badge-club border-club-teal/20 text-club-teal bg-club-teal/5">
-                      <Zap className="h-3 w-3 fill-club-teal" /> MCP
+                    <div className="badge-club border-enjin-teal/20 text-enjin-teal bg-enjin-teal/5">
+                      <Zap className="h-3 w-3 fill-enjin-teal" /> MCP
                     </div>
                   )}
                 </div>
 
-                <p className="mb-10 text-lg text-gray-400 leading-relaxed line-clamp-2">{tool.oneLiner}</p>
+                <p className="mb-12 text-lg text-gray-500 leading-relaxed line-clamp-2 font-medium">{tool.oneLiner}</p>
 
                 <div className="mt-auto flex flex-wrap gap-3">
                   {tool.aiDifficulty && (
@@ -125,40 +125,40 @@ export default function Home() {
       </section>
 
       {/* ── Categories ───────────────────────────── */}
-      <section className="px-6 py-32 sm:px-12 lg:px-24 bg-white/[0.01]">
+      <section className="px-6 py-40 sm:px-12 lg:px-24 border-t border-white/[0.05]">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-24 text-center">
-            <h2 className="text-4xl font-extrabold tracking-tight sm:text-6xl italic font-heading">What do you need to do?</h2>
-            <p className="mt-6 text-xl text-gray-400">Find the right tools for every part of your sales process.</p>
+          <div className="mb-32 text-center">
+            <h2 className="text-5xl font-extrabold sm:text-7xl text-gradient">What do you need to do?</h2>
+            <p className="mt-8 text-xl text-gray-500 font-medium">Find the right tools for every part of your sales process.</p>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {categories.slice(0, 8).map((cat, idx) => (
               <Link
                 key={cat.slug}
                 href={`/categories/${cat.slug}`}
-                className="group bg-club-card rounded-3xl p-10 border border-white/10 transition-all hover:border-club-teal/30 hover:-translate-y-2 hover:shadow-2xl hover:shadow-club-teal/5"
+                className="group bg-enjin-card border border-enjin-border rounded-[32px] p-12 transition-all hover:border-white/10 hover:-translate-y-2"
               >
-                <div className="mb-10 flex items-center justify-between">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/5 border border-white/10 group-hover:bg-club-teal/10 transition-colors">
+                <div className="mb-12 flex items-center justify-between">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-[20px] bg-white/[0.03] border border-white/5 group-hover:bg-enjin-teal/10 transition-colors">
                     {getCategoryIcon(cat.icon)}
                   </div>
-                  <span className="font-mono text-[10px] font-bold text-gray-700 tracking-[0.3em]">0{idx + 1}</span>
+                  <span className="font-mono text-[10px] font-bold text-gray-800 tracking-[0.4em]">0{idx + 1}</span>
                 </div>
-                <h3 className="text-2xl font-bold text-white group-hover:text-club-teal transition-colors">
+                <h3 className="text-2xl font-bold text-white group-hover:text-enjin-teal transition-colors">
                   {cat.name}
                 </h3>
-                <p className="mt-5 text-[15px] leading-relaxed text-gray-500 line-clamp-3">
+                <p className="mt-6 text-sm leading-relaxed text-gray-600 line-clamp-3 font-medium">
                   {cat.description}
                 </p>
-                <div className="mt-10 font-mono text-[11px] font-bold text-club-teal uppercase tracking-[0.2em]">
+                <div className="mt-12 font-mono text-[10px] font-bold text-enjin-teal uppercase tracking-[0.3em]">
                   {cat.toolCount} TOOLS
                 </div>
               </Link>
             ))}
           </div>
-          <div className="mt-20 text-center">
-            <Link href="/categories" className="btn-club-outline hover:border-white">
+          <div className="mt-24 text-center">
+            <Link href="/categories" className="btn-club-outline">
               All categories <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </div>

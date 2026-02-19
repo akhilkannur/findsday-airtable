@@ -4,20 +4,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'club-dark': '#0f1115', 
-        'club-card': '#16191f',
-        'club-teal': '#2dd4bf', // Unique, fresh teal instead of overdone violet
-        'paper-white': '#FDFDFD',
+        'enjin-bg': '#070707', 
+        'enjin-card': '#0e0e0e',
+        'enjin-teal': '#2dd4bf',
+        'enjin-border': 'rgba(255, 255, 255, 0.08)',
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'sans-serif'],
         heading: ['var(--font-playfair)', 'serif'],
         mono: ['var(--font-geist-mono)', 'monospace'],
-      },
-      borderRadius: {
-        'xl': '0.75rem',
-        '2xl': '1rem',
-        '3xl': '1.5rem',
       },
     },
   },
