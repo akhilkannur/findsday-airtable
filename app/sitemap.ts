@@ -1,7 +1,7 @@
 import { getAllSlugs, getAllCategorySlugs } from "@/lib/tools"
 import type { MetadataRoute } from "next"
 
-const BASE_URL = "https://findsday.com"
+const BASE_URL = "https://salestools.club"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const toolSlugs = getAllSlugs()
@@ -13,6 +13,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/categories`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.8 },
     { url: `${BASE_URL}/mcp`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.8 },
     { url: `${BASE_URL}/submit`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.5 },
+    { url: `${BASE_URL}/about`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.4 },
+    { url: `${BASE_URL}/privacy`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.3 },
   ]
 
   const toolPages = toolSlugs.map((slug) => ({

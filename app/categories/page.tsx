@@ -24,8 +24,8 @@ export default function CategoriesPage() {
         <h1 className="text-5xl font-extrabold tracking-tight sm:text-7xl italic font-heading">
           Categories
         </h1>
-        <p className="mt-6 text-xl text-gray-400 max-w-2xl">
-          Find the right tools for every part of your sales workflow.
+        <p className="mt-6 text-xl text-gray-400 max-w-3xl leading-relaxed">
+          Find the right tools for every part of your sales workflow. Explore prospecting, CRM, enrichment, and outreach APIs.
         </p>
       </div>
 
@@ -37,24 +37,24 @@ export default function CategoriesPage() {
             <Link
               key={cat.slug}
               href={`/categories/${cat.slug}`}
-              className="group bg-club-card rounded-3xl p-10 border border-white/5 transition-all hover:border-white/20 hover:-translate-y-1"
+              className="group bg-club-card rounded-3xl p-12 border border-white/10 transition-all hover:border-club-teal/30 hover:-translate-y-2 hover:shadow-2xl hover:shadow-club-teal/5 flex flex-col h-full"
             >
-              <div className="mb-8 flex items-center justify-between">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/5 border border-white/5 text-brand-purple">
-                  <Icon className="h-6 w-6" />
+              <div className="mb-10 flex items-center justify-between">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/[0.03] border border-white/10 group-hover:bg-club-teal/10 transition-colors">
+                  <Icon className="h-7 w-7 text-club-teal" />
                 </div>
-                <span className="font-mono text-[10px] font-bold text-gray-700">0{idx + 1}</span>
+                <span className="font-mono text-[10px] font-bold text-gray-700 tracking-[0.3em]">0{idx + 1}</span>
               </div>
 
-              <h2 className="text-2xl font-bold text-white group-hover:text-club-teal transition-colors">
+              <h2 className="text-2xl font-bold text-white group-hover:text-club-teal transition-colors tracking-tight">
                 {cat.name}
               </h2>
 
-              <p className="mt-4 text-sm leading-relaxed text-gray-500 line-clamp-3">
+              <p className="mt-5 text-sm leading-relaxed text-gray-500 line-clamp-3">
                 {cat.description}
               </p>
 
-              <div className="mt-10 font-mono text-[10px] font-bold text-club-teal uppercase tracking-widest">
+              <div className="mt-10 pt-10 border-t border-white/5 font-mono text-[11px] font-bold text-club-teal uppercase tracking-[0.2em]">
                 {cat.toolCount} TOOLS
               </div>
             </Link>

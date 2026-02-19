@@ -25,3 +25,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# research
+.venv/
+research_result.md
+research-blog-post.md
+future-of-web-blog.md
