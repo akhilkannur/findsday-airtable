@@ -8,6 +8,10 @@ module.exports = {
         'enjin-card': '#0e0e0e',
         'enjin-teal': '#2dd4bf',
         'enjin-border': 'rgba(255, 255, 255, 0.08)',
+        // Keeping club names for compatibility with existing code
+        'club-dark': '#070707',
+        'club-card': '#0e0e0e',
+        'club-teal': '#2dd4bf',
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'sans-serif'],

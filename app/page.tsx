@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 function getCategoryIcon(iconName: string) {
   const Icon = (LucideIcons as Record<string, React.ComponentType<{ className?: string }>>)[iconName]
-  return Icon ? <Icon className="h-6 w-6 text-club-teal" /> : <Cpu className="h-6 w-6 text-club-teal" />
+  return Icon ? <Icon className="h-6 w-6 text-enjin-teal" /> : <Cpu className="h-6 w-6 text-enjin-teal" />
 }
 
 export default function Home() {
@@ -166,34 +166,34 @@ export default function Home() {
       </section>
 
       {/* ── MCP CTA ──────────────────────────────── */}
-      <section className="px-6 py-24 sm:px-12 lg:px-24">
-        <div className="mx-auto max-w-5xl rounded-3xl bg-club-teal text-black p-12 sm:p-20 flex flex-col items-center text-center relative overflow-hidden">
-          <div className="absolute inset-0 opacity-10 pointer-events-none">
+      <section className="px-6 py-32 sm:px-12 lg:px-24 border-t border-white/[0.05]">
+        <div className="mx-auto max-w-5xl rounded-[40px] bg-enjin-teal text-black p-16 sm:p-24 flex flex-col items-center text-center relative overflow-hidden group shadow-2xl shadow-enjin-teal/10">
+          <div className="absolute inset-0 opacity-5 pointer-events-none group-hover:scale-110 transition-transform duration-1000">
             <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
               <path d="M0 100 L100 0 L100 100 Z" fill="black" />
             </svg>
           </div>
 
           <div className="relative z-10">
-            <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-3xl bg-black text-white shadow-xl">
-              <Zap className="h-8 w-8 fill-white" />
+            <div className="mb-10 flex h-20 w-20 items-center justify-center rounded-[24px] bg-black text-white shadow-2xl">
+              <Zap className="h-10 w-10 fill-white" />
             </div>
-            <h2 className="text-4xl font-extrabold tracking-tight sm:text-6xl italic font-heading">Model Context Protocol</h2>
-            <p className="mt-8 max-w-2xl text-lg sm:text-xl font-bold leading-relaxed">
+            <h2 className="text-5xl font-extrabold sm:text-7xl tracking-tighter leading-tight">Model Context Protocol</h2>
+            <p className="mt-10 max-w-2xl text-xl sm:text-2xl font-bold leading-relaxed">
               The fastest way to give your AI "hands". Plug these servers into Claude and start updating your CRM via chat.
             </p>
-            <div className="mt-12 flex flex-col sm:flex-row gap-4">
+            <div className="mt-16 flex flex-col sm:flex-row gap-6">
               <Link
                 href="/mcp"
-                className="bg-black text-white px-10 py-4 rounded-full text-lg font-bold hover:opacity-90 transition-all shadow-2xl"
+                className="bg-black text-white px-12 py-5 rounded-full text-sm font-bold uppercase tracking-widest hover:opacity-90 transition-all shadow-2xl"
               >
-                Browse MCP Servers
+                Browse Servers
               </Link>
               <Link
                 href="/submit"
-                className="bg-white/20 backdrop-blur-md border border-black/10 px-10 py-4 rounded-full text-lg font-bold hover:bg-white/30 transition-colors"
+                className="bg-white/20 backdrop-blur-md border border-black/10 px-12 py-5 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-white/30 transition-colors"
               >
-                Submit a tool
+                Submit Tool
               </Link>
             </div>
           </div>
@@ -201,23 +201,23 @@ export default function Home() {
       </section>
 
       {/* ── Use with AI Agents CTA ─────────────────────── */}
-      <section className="px-6 py-24 sm:px-12 lg:px-24 border-t border-white/5 bg-white/[0.01]">
+      <section className="px-6 py-40 sm:px-12 lg:px-24 border-t border-white/[0.05]">
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl font-extrabold tracking-tight sm:text-5xl italic font-heading">Equip your AI Agents</h2>
-          <p className="mt-6 text-lg text-gray-400">
+          <h2 className="text-5xl font-extrabold sm:text-7xl text-gradient">Equip your AI Agents</h2>
+          <p className="mt-8 text-xl text-gray-500 font-medium">
             Let your AI assistant find and use the best sales tools for you.
           </p>
-          <div className="mt-14 flex flex-col items-center gap-10 sm:flex-row sm:justify-center">
-            <div className="flex items-center gap-5 bg-club-card border border-white/5 rounded-full px-8 py-5 font-mono text-sm shadow-xl">
-              <span className="text-club-teal font-bold">$</span> 
-              <span className="text-white tracking-tight">curl salestools.club/api/tools</span>
+          <div className="mt-20 flex flex-col items-center gap-12 sm:flex-row sm:justify-center">
+            <div className="flex items-center gap-6 bg-white/[0.03] border border-white/[0.08] rounded-full px-10 py-6 font-mono text-sm shadow-2xl backdrop-blur-md">
+              <span className="text-enjin-teal font-bold">$</span> 
+              <span className="text-white tracking-tight opacity-80 font-medium">curl salestools.club/api/tools</span>
             </div>
             <a
               href="/salestools-skill.md"
               download
-              className="btn-club hover:bg-club-teal transition-all shadow-xl"
+              className="btn-club !py-6 !px-12 shadow-2xl shadow-enjin-teal/20"
             >
-              Download Skill File <ArrowRight className="h-4 w-4" />
+              Download Skill <ArrowRight className="h-4 w-4" />
             </a>
           </div>
         </div>
