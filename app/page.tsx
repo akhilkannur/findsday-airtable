@@ -97,7 +97,7 @@ export default function Home() {
               {/* Central AI Agent Node */}
               <circle cx="200" cy="200" r="48" fill="none" stroke="#121212" strokeWidth="3" strokeDasharray="8 4" className="animate-spin-slow" />
               <circle cx="200" cy="200" r="38" fill="none" stroke="#3B82F6" strokeWidth="2.5" />
-              <path d="M190 190 L210 210 M210 190 L190 210" stroke="#121212" strokeWidth="4" strokeLinecap="round" />
+              {/* Removed cross path */}
               <text x="200" y="205" textAnchor="middle" fill="#121212" fontSize="18" fontWeight="bold" fontFamily="monospace">AI</text>
 
               {/* Data Stream / Network Flow */}
@@ -130,9 +130,7 @@ export default function Home() {
               <path d="M350 350 L320 370 M350 350 L380 330" stroke="#121212" strokeWidth="1" opacity="0.4" />
             </svg>
             
-            {/* Abstract floating text labels to match aesthetic */}
-            <div className="absolute top-1/4 right-0 border border-ink-black/20 bg-white/80 px-2 py-1 text-[0.5rem] font-black uppercase tracking-widest rotate-6">MCP_PROTO</div>
-            <div className="absolute bottom-1/4 left-0 border border-ink-black/20 bg-white/80 px-2 py-1 text-[0.5rem] font-black uppercase tracking-widest -rotate-3 text-accent-blue">GTM_AUTOMATE</div>
+            {/* Removed abstract floating text labels */}
           </div>
         </div>
       </section>
