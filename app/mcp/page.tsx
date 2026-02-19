@@ -15,10 +15,10 @@ export default function McpPage() {
   return (
     <div className="flex flex-col">
       <section className="px-6 py-24 md:px-12 md:py-32 border-b border-dashed border-ink-black">
-        <div className="type-label mb-6 opacity-40">System Protocol</div>
+        <div className="type-label mb-6 opacity-40">Automation Layer</div>
         <h1 className="type-display mb-8">MCP Servers</h1>
         <p className="max-w-3xl text-xl font-medium opacity-60">
-          The fastest way to give your AI "hands". Plug these servers into Claude and start updating your CRM via chat.
+          The fastest way to give your AI "hands". Plug these servers into Claude Desktop or Cursor to update your CRM and search leads via chat.
         </p>
       </section>
 

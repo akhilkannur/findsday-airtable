@@ -21,10 +21,10 @@ export default function CategoriesPage() {
   return (
     <div className="flex flex-col">
       <section className="px-6 py-24 md:px-12 md:py-32 border-b border-dashed border-ink-black">
-        <div className="type-label mb-6 opacity-40">Module Infrastructure</div>
+        <div className="type-label mb-6 opacity-40">Tool Directory</div>
         <h1 className="type-display mb-8">Categories</h1>
         <p className="max-w-2xl text-xl font-medium opacity-60">
-          Find the right tools for every part of your sales workflow. Explore prospecting, CRM, enrichment, and outreach APIs.
+          Find the building blocks for every part of your automated sales engine. From prospecting data to outreach APIs.
         </p>
       </section>
 

@@ -22,22 +22,42 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* ── Hero ──────────────────────────────────────────── */}
-      <section className="px-6 py-24 md:px-12 md:py-32 border-b border-dashed border-ink-black max-w-4xl">
-        <div className="type-label mb-6 opacity-40">System Overview</div>
-        <h1 className="type-display mb-12">
-          According to our latest index, sales teams waste approximately <span className="border-b border-ink-black pb-1">20 hours</span> per week on manual data entry, contributing to 0.4% efficiency loss globally.
-        </h1>
-        <p className="max-w-[600px] text-lg font-medium opacity-60">
-          Optimized tools reduce friction. Select a module below to begin integration.
-        </p>
+      <section className="px-6 py-24 md:px-12 md:py-32 border-b border-dashed border-ink-black flex flex-col lg:flex-row gap-20 items-start">
+        <div className="max-w-4xl flex-grow">
+          <div className="type-label mb-6 opacity-40">Builder Directory</div>
+          <h1 className="type-display mb-12">
+            You use Claude and Cursor to build. We provide the <span className="border-b border-ink-black pb-1 font-bold">Lego blocks.</span> Every Sales API and MCP server you need to automate your stack.
+          </h1>
+          <p className="max-w-[600px] text-lg font-medium opacity-60">
+            Stop digging through messy dev docs. We find the tools that actually plug into your AI workflow so you can focus on building your sales engine.
+          </p>
+        </div>
+
+        <div className="w-full lg:w-[360px] border border-ink-black bg-white/20 p-8 shadow-[8px_8px_0px_rgba(18,18,18,0.05)]">
+          <div className="type-label mb-6 opacity-40">The Sunday List</div>
+          <form className="flex flex-col gap-4">
+            <input 
+              type="email" 
+              placeholder="Your email address..." 
+              className="w-full bg-white/60 border border-ink-black px-4 py-3 text-sm font-medium focus:bg-white focus:outline-none transition-all placeholder:text-gray-400"
+              required
+            />
+            <button type="submit" className="swiss-btn swiss-btn-primary w-full py-4 text-xs">
+              Get the tools <span>-></span>
+            </button>
+            <p className="text-[10px] font-bold uppercase tracking-[0.2em] opacity-40 mt-2 text-center">
+              Join 500+ AI-Native Operators.
+            </p>
+          </form>
+        </div>
       </section>
 
       {/* ── Featured Tools ───────────────────────────────── */}
       <section className="swiss-grid-bg px-6 py-12 md:px-12 md:py-16">
         <div className="mb-16 flex items-end justify-between border-b border-ink-black pb-8">
-          <div className="type-label opacity-40">Featured Modules</div>
+          <div className="type-label opacity-40">Operator Picks</div>
           <Link href="/tools" className="text-xs font-bold uppercase tracking-widest hover:underline">
-            View All ->
+            Browse All Tools ->
           </Link>
         </div>
 
