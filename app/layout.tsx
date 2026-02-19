@@ -170,33 +170,33 @@ gtag('config', 'G-9LGNFH00R7');`,
           <main className="flex flex-col">
             {children}
             
-            <footer className="mt-auto bg-[#1A1C16] border-t border-white/5 p-12 md:p-24 text-white">
+            <footer className="mt-auto bg-accent-blue border-t border-ink-black p-12 md:p-24 text-ink-black">
               <div className="max-w-7xl mx-auto grid grid-cols-1 gap-20 md:grid-cols-2 lg:grid-cols-4">
                 <div className="space-y-6">
                   <div className="text-xl font-black tracking-tighter uppercase italic">Salestools Club</div>
-                  <p className="text-sm leading-relaxed text-white/50">
+                  <p className="text-sm leading-relaxed opacity-70">
                     A modern directory of sales APIs and MCP servers built for the new era of AI-native operators.
                   </p>
                 </div>
                 <div className="space-y-6">
-                  <div className="type-label text-accent-blue opacity-100">Browse</div>
-                  <ul className="space-y-3 text-sm font-medium text-white/60">
-                    <li><Link href="/tools" className="hover:text-accent-blue transition-colors">Directory</Link></li>
-                    <li><Link href="/categories" className="hover:text-accent-blue transition-colors">Categories</Link></li>
-                    <li><Link href="/mcp" className="hover:text-accent-blue transition-colors">MCP Servers</Link></li>
+                  <div className="type-label opacity-60">Browse</div>
+                  <ul className="space-y-3 text-sm font-medium">
+                    <li><Link href="/tools" className="hover:underline transition-colors">Directory</Link></li>
+                    <li><Link href="/categories" className="hover:underline transition-colors">Categories</Link></li>
+                    <li><Link href="/mcp" className="hover:underline transition-colors">MCP Servers</Link></li>
                   </ul>
                 </div>
                 <div className="space-y-6">
-                  <div className="type-label text-accent-blue opacity-100">Documentation</div>
-                  <ul className="space-y-3 text-sm font-medium text-white/60">
-                    <li><Link href="/about" className="hover:text-accent-blue transition-colors">About Project</Link></li>
-                    <li><Link href="/privacy" className="hover:text-accent-blue transition-colors">Privacy Policy</Link></li>
-                    <li><Link href="/submit" className="hover:text-accent-blue transition-colors">Add Entry</Link></li>
+                  <div className="type-label opacity-60">Documentation</div>
+                  <ul className="space-y-3 text-sm font-medium">
+                    <li><Link href="/about" className="hover:underline transition-colors">About Project</Link></li>
+                    <li><Link href="/privacy" className="hover:underline transition-colors">Privacy Policy</Link></li>
+                    <li><Link href="/submit" className="hover:underline transition-colors">Add Entry</Link></li>
                   </ul>
                 </div>
                 <div className="space-y-6">
-                  <div className="type-label text-accent-blue opacity-100">Lego Blocks</div>
-                  <p className="text-[0.7rem] font-bold uppercase tracking-widest leading-loose text-white/30">
+                  <div className="type-label opacity-60">Registry</div>
+                  <p className="text-[0.7rem] font-bold uppercase tracking-widest leading-loose opacity-40">
                     v1.0.0-Stable<br />
                     © {new Date().getFullYear()} Salestools.club
                   </p>

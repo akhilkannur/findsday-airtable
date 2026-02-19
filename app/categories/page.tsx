@@ -28,7 +28,7 @@ export default function CategoriesPage() {
         </p>
       </section>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-px bg-ink-black border-b border-ink-black">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-px bg-ink-black/10 border-b border-ink-black/10">
         {categories.map((cat, idx) => {
           const Icon = getCategoryIcon(cat.icon)
 
