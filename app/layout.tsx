@@ -114,15 +114,15 @@ gtag('config', 'G-9LGNFH00R7');`,
             {children}
           </main>
           
-          <footer className="bg-accent-blue border-t-2 border-ink-black p-6 md:p-12 lg:p-24 text-ink-black">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 gap-y-10 gap-x-20 md:grid-cols-2 lg:grid-cols-4">
-              <div className="space-y-6">
+          <footer className="bg-accent-blue border-t-2 border-ink-black p-4 md:p-8 lg:p-12 text-ink-black">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 gap-y-6 gap-x-10 md:grid-cols-2 lg:grid-cols-4">
+              <div className="space-y-4">
                 <div className="text-2xl font-black tracking-tighter uppercase italic">Salestools Club</div>
                 <p className="text-sm font-bold leading-relaxed">
                   A curated directory of the best sales APIs and MCP servers for people building with Claude Code and other agentic tools.
                 </p>
               </div>
-              <div className="space-y-6">
+              <div className="space-y-4">
                 <div className="type-label text-ink-black font-black">Browse</div>
                 <ul className="space-y-3 text-sm font-bold">
                   <li><Link href="/tools" className="hover:text-accent-orange transition-colors">Tool Directory</Link></li>
@@ -130,7 +130,7 @@ gtag('config', 'G-9LGNFH00R7');`,
                   <li><Link href="/mcp" className="hover:text-accent-orange transition-colors">MCP Servers</Link></li>
                 </ul>
               </div>
-              <div className="space-y-6">
+              <div className="space-y-4">
                 <div className="type-label text-ink-black font-black">Documentation</div>
                 <ul className="space-y-3 text-sm font-bold">
                   <li><Link href="/about" className="hover:text-accent-orange transition-colors">About Project</Link></li>
@@ -138,7 +138,7 @@ gtag('config', 'G-9LGNFH00R7');`,
                   <li><Link href="/submit" className="hover:text-accent-orange transition-colors">Add Entry</Link></li>
                 </ul>
               </div>
-              <div className="space-y-6">
+              <div className="space-y-4">
                 <div className="type-label text-ink-black font-black">Registry</div>
                 <p className="text-[0.7rem] font-black uppercase tracking-widest leading-loose">
                   v1.0.0-Stable<br />
