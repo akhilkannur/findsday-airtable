@@ -1,7 +1,7 @@
 import Link from "next/link"
-import { ArrowRight, Cpu, Zap, Brain, Mail, Sparkles } from "lucide-react"
+import { ArrowRight, Cpu, Zap, Brain, Mail, Sparkles, ChevronRight } from "lucide-react"
 import * as LucideIcons from "lucide-react"
-import { getFeaturedTools, getAllCategories, getMcpTools, getAllTools } from "@/lib/tools"
+import { getFeaturedTools, getAllCategories, getAllTools } from "@/lib/tools"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -10,63 +10,52 @@ export const metadata: Metadata = {
     "A curated directory of the best sales APIs and MCP servers for people building with Claude Code, Cursor, and other agentic tools.",
 }
 
-function getCategoryIcon(iconName: string) {
-  const Icon = (LucideIcons as Record<string, React.ComponentType<{ className?: string }>>)[iconName]
-  return Icon ? <Icon className="h-6 w-6 text-accent-blue" /> : <Cpu className="h-6 w-6 text-accent-blue" />
-}
-
 function ToolCard({ tool }: { tool: any }) {
   return (
     <Link
       href={`/tools/${tool.slug}`}
-      className="swiss-card group relative bg-white/40 backdrop-blur-sm border-ink-black/10 hover:border-ink-black transition-all h-full flex flex-col p-4 min-h-[180px]"
+      className="group relative bg-white border border-ink-black/10 p-5 flex flex-col h-full transition-all hover:border-ink-black hover:shadow-[4px_4px_0px_#121212] min-h-[160px]"
     >
-      <div className="absolute -top-1 -right-1 h-2 w-2 bg-accent-blue opacity-0 group-hover:opacity-100 transition-opacity"></div>
-      
-      <div className="flex justify-between items-start">
-        <div className="h-9 w-9 flex items-center justify-center border border-ink-black bg-white group-hover:bg-accent-blue transition-colors font-bold text-sm shadow-[3px_3px_0px_rgba(18,18,18,0.05)]">
+      <div className="flex justify-between items-start mb-4">
+        <div className="h-8 w-8 flex items-center justify-center border border-ink-black bg-sage-bg group-hover:bg-accent-blue transition-colors font-bold text-xs shadow-[2px_2px_0px_#121212]">
           {tool.name.charAt(0)}
         </div>
+        {tool.mcpReady && (
+          <div className="flex items-center gap-1 text-[0.5rem] font-black text-accent-orange uppercase tracking-wider bg-accent-orange/5 px-1.5 py-0.5 border border-accent-orange/20 rounded-sm">
+            <div className="h-1 w-1 bg-accent-orange rounded-full animate-pulse"></div>
+            MCP
+          </div>
+        )}
       </div>
       
-      <div className="mt-4 text-base font-bold tracking-tight uppercase group-hover:text-accent-orange transition-colors line-clamp-1">{tool.name}</div>
-      <p className="mt-1 text-[0.7rem] font-medium opacity-60 line-clamp-2 min-h-[28px] leading-snug">
+      <h3 className="text-[0.8rem] font-black uppercase tracking-tight group-hover:text-accent-orange transition-colors line-clamp-1">{tool.name}</h3>
+      <p className="mt-1 text-[0.6rem] font-bold opacity-40 line-clamp-2 leading-normal flex-grow uppercase tracking-tight">
         {tool.oneLiner}
       </p>
 
-      <div className="mt-4 flex flex-wrap gap-1">
-        <span className="inline-flex items-center border border-ink-black px-1.5 py-0.5 rounded-full text-[0.55rem] font-medium uppercase tracking-wider bg-white/50">{tool.category}</span>
-        {tool.mcpReady && (
-          <span className="inline-flex items-center border border-accent-orange text-accent-orange px-1.5 py-0.5 rounded-full text-[0.55rem] font-medium uppercase tracking-wider gap-1">
-            <div className="h-1 w-1 bg-accent-orange rounded-full animate-pulse"></div>
-            MCP READY
-          </span>
-        )}
-      </div>
-
-      <div className="mt-auto pt-3 flex items-center justify-between border-t border-ink-black/5 border-dashed">
-        <div className="text-[0.5rem] font-bold uppercase tracking-widest opacity-40">View Node</div>
-        <div className="text-[0.5rem] font-bold uppercase group-hover:translate-x-1 transition-transform">-></div>
+      <div className="mt-4 pt-3 border-t border-dashed border-ink-black/10 flex items-center justify-between">
+        <span className="text-[0.5rem] font-bold opacity-30 uppercase tracking-[0.1em]">{tool.category}</span>
+        <ChevronRight className="h-2.5 w-2.5 opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-0.5 text-accent-blue" />
       </div>
     </Link>
   )
 }
 
 export default function Home() {
-  const featuredTools = getFeaturedTools().slice(0, 12) // 4 rows of 3
+  const featuredTools = getFeaturedTools().slice(0, 12)
   const allTools = getAllTools()
   const categories = getAllCategories()
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col max-w-[100vw] overflow-x-hidden">
       {/* ── Hero ──────────────────────────────────────────── */}
-      <section className="relative px-6 py-24 md:px-12 md:py-32 border-b border-dashed border-ink-black flex flex-col items-start overflow-hidden bg-sage-bg/30">
-        <div className="absolute top-0 right-0 w-1/3 h-full border-l border-dashed border-ink-black/10 -z-10 pointer-events-none hidden lg:block"></div>
-        <div className="absolute bottom-0 left-0 w-full h-1/4 border-t border-dashed border-ink-black/10 -z-10 pointer-events-none"></div>
-
-        <div className="max-w-4xl flex-grow relative">
+      <section className="px-6 py-24 md:px-12 md:py-32 border-b border-dashed border-ink-black bg-sage-bg/30 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.02] pointer-events-none" 
+             style={{ backgroundImage: 'radial-gradient(#121212 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
+        
+        <div className="max-w-5xl mx-auto relative z-10">
           <div className="flex items-center gap-3 mb-8">
-            <div className="type-label opacity-40 text-xs">The Operator's Registry</div>
+            <div className="type-label opacity-40 text-[0.6rem]">Vetted API Registry</div>
             <div className="h-px w-8 bg-ink-black/20"></div>
           </div>
           <h1 className="type-display mb-12">
@@ -75,7 +64,7 @@ export default function Home() {
               <span className="absolute bottom-1 left-0 w-full h-4 bg-accent-blue/30 -z-0"></span>
             </span> Every Sales API and MCP server you need to automate your stack.
           </h1>
-          <p className="max-w-[600px] text-lg font-medium opacity-60 leading-relaxed">
+          <p className="max-w-2xl text-lg font-medium opacity-60 leading-relaxed">
             Stop digging through messy dev docs. We find the tools that actually plug into your AI workflow so you can focus on building your sales engine.
           </p>
 
@@ -83,95 +72,101 @@ export default function Home() {
             <input 
               type="email" 
               placeholder="get new tool updates" 
-              className="flex-grow bg-white/80 border border-ink-black px-4 py-3 text-sm font-medium focus:bg-white focus:outline-none transition-all placeholder:text-gray-400"
+              className="flex-grow bg-white border border-ink-black px-4 py-3 text-sm font-medium focus:outline-none transition-all placeholder:text-gray-400 shadow-[4px_4px_0px_rgba(18,18,18,0.05)]"
               required
             />
-            <button type="submit" className="swiss-btn swiss-btn-primary px-8 py-3 text-sm font-bold whitespace-nowrap">
+            <button type="submit" className="swiss-btn swiss-btn-primary px-8 py-3 text-sm font-bold whitespace-nowrap shadow-[4px_4px_0px_#121212]">
               Subscribe <span>-></span>
             </button>
           </form>
         </div>
       </section>
 
-      {/* ── Featured Tools ───────────────────────────────── */}
-      <section className="swiss-grid-bg px-6 py-24 md:px-12 md:py-24 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-px bg-ink-black/10"></div>
-        <div className="mb-16 flex items-end justify-between">
-          <div className="flex flex-col gap-2">
-            <div className="type-label opacity-40">Top Selection</div>
-            <h2 className="text-3xl font-bold tracking-tight uppercase">The Authority List</h2>
+      {/* ── Featured Tools (The Authority List) ──────────────── */}
+      <section className="px-6 py-24 md:px-12 bg-white/50 relative border-b border-ink-black">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-12 flex items-end justify-between">
+            <div className="flex flex-col gap-2">
+              <div className="type-label opacity-40">Featured Stack</div>
+              <h2 className="text-3xl font-black tracking-tighter uppercase italic">The Authority List</h2>
+            </div>
+            <Link href="/tools" className="text-[0.6rem] font-bold uppercase tracking-[0.2em] border-b-2 border-accent-blue pb-1 hover:text-accent-orange hover:border-accent-orange transition-colors">
+              View All Tools ->
+            </Link>
           </div>
-          <Link href="/tools" className="text-[0.65rem] font-bold uppercase tracking-[0.2em] border-b border-ink-black pb-1 hover:text-accent-orange hover:border-accent-orange transition-colors">
-            View All ->
-          </Link>
-        </div>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {featuredTools.map((tool) => (
-            <ToolCard key={tool.slug} tool={tool} />
-          ))}
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {featuredTools.map((tool) => (
+              <ToolCard key={tool.slug} tool={tool} />
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ── Infinite Crawl ───────────────────────────────── */}
-      <section className="border-y border-dashed border-ink-black bg-white/40 py-10 overflow-hidden relative">
-        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-sage-bg to-transparent z-10"></div>
-        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-sage-bg to-transparent z-10"></div>
-        <div className="flex animate-marquee whitespace-nowrap gap-4">
-          {[...allTools, ...allTools].map((tool, idx) => (
-            <div key={`${tool.slug}-${idx}`} className="inline-block">
+      <section className="border-b border-ink-black bg-[#1A1C16] py-8 overflow-hidden relative">
+        <div className="flex animate-marquee whitespace-nowrap">
+          <div className="flex gap-12 px-4 items-center">
+            {[...allTools, ...allTools].map((tool, idx) => (
               <Link 
+                key={`${tool.slug}-${idx}`}
                 href={`/tools/${tool.slug}`}
-                className="flex items-center gap-3 p-2.5 border border-ink-black/10 bg-white/60 hover:border-ink-black transition-all"
+                className="flex items-center gap-3 group opacity-40 hover:opacity-100 transition-opacity"
               >
-                <div className="h-7 w-7 flex items-center justify-center border border-ink-black bg-white font-bold text-[10px]">
+                <div className="h-5 w-5 flex items-center justify-center border border-white/20 bg-white/5 font-bold text-[7px] text-white">
                   {tool.name.charAt(0)}
                 </div>
-                <div className="flex flex-col pr-4">
-                  <span className="text-[10px] font-bold uppercase tracking-tight">{tool.name}</span>
-                  <span className="text-[8px] opacity-40 uppercase tracking-widest">{tool.category}</span>
-                </div>
+                <span className="text-[9px] font-black uppercase text-white tracking-widest">{tool.name}</span>
               </Link>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ── Categories ───────────────────────────── */}
-      <section className="border-t border-ink-black px-6 py-24 md:px-12 bg-[#E8EBFF] relative">
-        <div className="absolute top-0 right-0 p-8 opacity-10">
-          <Brain className="h-32 w-32" />
-        </div>
-        <div className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-12 relative z-10">
-          <div className="max-w-2xl">
-            <div className="type-label mb-6 text-accent-blue font-black">Tool Index</div>
-            <h2 className="type-display">Find the right tools for every part of your infrastructure.</h2>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 relative z-10">
-          {categories.slice(0, 8).map((cat, idx) => (
-            <Link
-              key={cat.slug}
-              href={`/categories/${cat.slug}`}
-              className="group bg-white border border-ink-black/10 p-8 transition-all hover:border-ink-black hover:-translate-y-1 hover:shadow-[6px_6px_0px_#B5C0FF]"
-            >
-              <div className="mb-8 flex items-center justify-between">
-                <div className="text-[0.6rem] font-bold opacity-30 group-hover:text-accent-blue transition-colors">0{idx + 1}</div>
-                <div className="h-1 w-1 bg-accent-blue/20 group-hover:bg-accent-orange transition-colors rounded-full"></div>
+      {/* ── Categories (Tool Index) ───────────────────────────── */}
+      <section className="px-6 py-24 md:px-12 bg-[#1A1C16] relative overflow-hidden border-t border-ink-black/20">
+        {/* Abstract Blueprint Grid */}
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+             style={{ backgroundImage: 'linear-gradient(#B5C0FF 1px, transparent 1px), linear-gradient(90deg, #B5C0FF 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-12">
+            <div className="max-w-2xl">
+              <div className="inline-flex items-center gap-2 px-3 py-1 border border-accent-blue/20 bg-accent-blue/5 mb-6">
+                <div className="h-1.5 w-1.5 rounded-full bg-accent-blue animate-pulse"></div>
+                <span className="text-[0.6rem] font-bold uppercase tracking-[0.3em] text-accent-blue">Infrastructure Map</span>
               </div>
-              <h3 className="text-base font-bold tracking-tight uppercase group-hover:text-accent-blue transition-colors">
-                {cat.name}
-              </h3>
-              <p className="mt-3 text-[0.7rem] font-medium opacity-60 line-clamp-2 leading-relaxed">
-                {cat.description}
+              <h2 className="type-display text-white">Registry Nodes.</h2>
+              <p className="mt-6 text-lg font-medium text-white/30 leading-relaxed max-w-xl">
+                Every category is vetted for builder-first compatibility. Vetted APIs, verified MCPs, zero fluff.
               </p>
-              <div className="mt-10 flex items-center justify-between opacity-30 group-hover:opacity-100 transition-all">
-                <div className="text-[0.6rem] font-bold uppercase tracking-widest">{cat.toolCount} Modules</div>
-                <div className="h-px w-8 bg-accent-blue/30 group-hover:w-12 transition-all"></div>
-              </div>
-            </Link>
-          ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 gap-px bg-white/5 border border-white/5 md:grid-cols-2 lg:grid-cols-4">
+            {categories.slice(0, 8).map((cat, idx) => (
+              <Link
+                key={cat.slug}
+                href={`/categories/${cat.slug}`}
+                className="group bg-[#24261F] p-10 transition-all hover:bg-accent-blue/[0.05]"
+              >
+                <div className="mb-10 flex items-center justify-between">
+                  <div className="text-[0.6rem] font-black text-white/10 group-hover:text-accent-blue transition-colors font-mono tracking-tighter">NODE_0{idx + 1}</div>
+                  <div className="h-1.5 w-1.5 bg-accent-blue/20 group-hover:bg-accent-orange transition-colors rounded-full"></div>
+                </div>
+                <h3 className="text-base font-black tracking-tight uppercase text-white group-hover:text-accent-blue transition-colors">
+                  {cat.name}
+                </h3>
+                <p className="mt-4 text-[0.65rem] font-bold text-white/20 line-clamp-2 leading-relaxed uppercase tracking-tight group-hover:text-white/40 transition-colors">
+                  {cat.description}
+                </p>
+                <div className="mt-12 flex items-center justify-between opacity-20 group-hover:opacity-100 transition-all">
+                  <div className="text-[0.55rem] font-black uppercase tracking-[0.2em] text-accent-blue">{cat.toolCount} Modules</div>
+                  <ArrowRight className="h-3 w-3 text-white transition-transform group-hover:translate-x-1" />
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
     </div>
