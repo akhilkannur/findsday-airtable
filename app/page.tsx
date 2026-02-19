@@ -195,10 +195,7 @@ export default function Home() {
               <code className="text-accent-blue text-xs font-mono break-all leading-loose">
                 gemini skills install https://salestools.club/salestools.skill
               </code>
-              <div className="mt-4 flex items-center justify-between opacity-40 group-hover:opacity-100 transition-opacity">
-                <span className="text-[0.55rem] font-black text-white uppercase tracking-widest">Status: Ready for deployment</span>
-                <span className="text-[0.55rem] font-black text-white uppercase tracking-widest">v1.0</span>
-              </div>
+              {/* Removed status div */}
             </div>
           </div>
         </div>
@@ -232,7 +229,7 @@ export default function Home() {
                 className="group bg-[#24261F] p-10 transition-all hover:bg-accent-blue/[0.05]"
               >
                 <div className="mb-10 flex items-center justify-between">
-                  <div className="text-[0.6rem] font-black text-white/10 group-hover:text-accent-blue transition-colors font-mono tracking-tighter">NODE_0{idx + 1}</div>
+                  {/* Removed NODE_0x element */}
                   <div className="h-1.5 w-1.5 bg-accent-blue/20 group-hover:bg-accent-orange transition-colors rounded-full"></div>
                 </div>
                 <h3 className="text-base font-black tracking-tight uppercase text-white group-hover:text-accent-blue transition-colors">
