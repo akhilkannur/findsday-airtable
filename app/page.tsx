@@ -14,28 +14,34 @@ function ToolCard({ tool }: { tool: any }) {
   return (
     <Link
       href={`/tools/${tool.slug}`}
-      className="group relative bg-white border border-ink-black/10 p-5 flex flex-col h-full transition-all hover:border-ink-black hover:shadow-[4px_4px_0px_#121212] min-h-[160px]"
+      className="swiss-card group relative bg-white/40 backdrop-blur-sm border-ink-black/10 hover:border-ink-black transition-all h-full flex flex-col"
     >
-      <div className="flex justify-between items-start mb-4">
-        <div className="h-8 w-8 flex items-center justify-center border border-ink-black bg-sage-bg group-hover:bg-accent-blue transition-colors font-bold text-xs shadow-[2px_2px_0px_#121212]">
+      <div className="absolute -top-1 -right-1 h-3 w-3 bg-accent-blue opacity-0 group-hover:opacity-100 transition-opacity"></div>
+      
+      <div className="flex justify-between items-start">
+        <div className="flex h-12 w-12 items-center justify-center border border-ink-black bg-white group-hover:bg-accent-blue transition-colors font-bold text-xl shadow-[4px_4px_0px_rgba(18,18,18,0.05)]">
           {tool.name.charAt(0)}
         </div>
         {tool.mcpReady && (
-          <div className="flex items-center gap-1 text-[0.5rem] font-black text-accent-orange uppercase tracking-wider bg-accent-orange/5 px-1.5 py-0.5 border border-accent-orange/20 rounded-sm">
+          <span className="swiss-badge border-accent-orange text-accent-orange flex items-center gap-1">
             <div className="h-1 w-1 bg-accent-orange rounded-full animate-pulse"></div>
             MCP
-          </div>
+          </span>
         )}
       </div>
       
-      <h3 className="text-[0.8rem] font-black uppercase tracking-tight group-hover:text-accent-orange transition-colors line-clamp-1">{tool.name}</h3>
-      <p className="mt-1 text-[0.6rem] font-bold opacity-40 line-clamp-2 leading-normal flex-grow uppercase tracking-tight">
+      <div className="mt-8 text-2xl font-bold tracking-tight uppercase group-hover:text-accent-orange transition-colors">{tool.name}</div>
+      <p className="mt-2 text-sm font-medium opacity-60 line-clamp-2 min-h-[40px] leading-relaxed">
         {tool.oneLiner}
       </p>
 
-      <div className="mt-4 pt-3 border-t border-dashed border-ink-black/10 flex items-center justify-between">
-        <span className="text-[0.5rem] font-bold opacity-30 uppercase tracking-[0.1em]">{tool.category}</span>
-        <ChevronRight className="h-2.5 w-2.5 opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-0.5 text-accent-blue" />
+      <div className="mt-8 flex flex-wrap gap-2">
+        <span className="swiss-badge bg-white/50">{tool.category}</span>
+      </div>
+
+      <div className="mt-auto pt-8 flex items-center justify-between border-t border-dashed border-ink-black/10">
+        <div className="text-[0.65rem] font-bold uppercase tracking-widest opacity-40">View Tool</div>
+        <div className="text-[0.65rem] font-bold uppercase group-hover:translate-x-1 transition-transform">-></div>
       </div>
     </Link>
   )
@@ -55,7 +61,7 @@ export default function Home() {
         
         <div className="max-w-5xl mx-auto relative z-10">
           <div className="flex items-center gap-3 mb-8">
-            <div className="type-label opacity-40 text-[0.6rem]">Vetted API Registry</div>
+            <div className="type-label opacity-40 text-[0.6rem]">Vetted Registry</div>
             <div className="h-px w-8 bg-ink-black/20"></div>
           </div>
           <h1 className="type-display mb-12">
@@ -87,7 +93,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="mb-12 flex items-end justify-between">
             <div className="flex flex-col gap-2">
-              <div className="type-label opacity-40">Featured Stack</div>
+              <div className="type-label opacity-40">Featured Tools</div>
               <h2 className="text-3xl font-black tracking-tighter uppercase italic">The Authority List</h2>
             </div>
             <Link href="/tools" className="text-[0.6rem] font-bold uppercase tracking-[0.2em] border-b-2 border-accent-blue pb-1 hover:text-accent-orange hover:border-accent-orange transition-colors">
@@ -95,7 +101,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {featuredTools.map((tool) => (
               <ToolCard key={tool.slug} tool={tool} />
             ))}
@@ -134,9 +140,9 @@ export default function Home() {
             <div className="max-w-2xl">
               <div className="inline-flex items-center gap-2 px-3 py-1 border border-accent-blue/20 bg-accent-blue/5 mb-6">
                 <div className="h-1.5 w-1.5 rounded-full bg-accent-blue animate-pulse"></div>
-                <span className="text-[0.6rem] font-bold uppercase tracking-[0.3em] text-accent-blue">Infrastructure Map</span>
+                <span className="text-[0.6rem] font-bold uppercase tracking-[0.3em] text-accent-blue">Browse Categories</span>
               </div>
-              <h2 className="type-display text-white">Registry Nodes.</h2>
+              <h2 className="type-display text-white">Tool Categories</h2>
               <p className="mt-6 text-lg font-medium text-white/30 leading-relaxed max-w-xl">
                 Every category is vetted for builder-first compatibility. Vetted APIs, verified MCPs, zero fluff.
               </p>
@@ -151,17 +157,17 @@ export default function Home() {
                 className="group bg-[#24261F] p-10 transition-all hover:bg-accent-blue/[0.05]"
               >
                 <div className="mb-10 flex items-center justify-between">
-                  <div className="text-[0.6rem] font-black text-white/10 group-hover:text-accent-blue transition-colors font-mono tracking-tighter">NODE_0{idx + 1}</div>
+                  <div className="text-[0.6rem] font-bold opacity-20 group-hover:text-accent-blue transition-colors font-mono tracking-tighter">0{idx + 1}</div>
                   <div className="h-1.5 w-1.5 bg-accent-blue/20 group-hover:bg-accent-orange transition-colors rounded-full"></div>
                 </div>
                 <h3 className="text-base font-black tracking-tight uppercase text-white group-hover:text-accent-blue transition-colors">
                   {cat.name}
                 </h3>
-                <p className="mt-4 text-[0.65rem] font-bold text-white/20 line-clamp-2 leading-relaxed uppercase tracking-tight group-hover:text-white/40 transition-colors">
+                <p className="mt-4 text-sm font-medium text-white/60 line-clamp-2 leading-relaxed group-hover:text-white/90 transition-colors">
                   {cat.description}
                 </p>
                 <div className="mt-12 flex items-center justify-between opacity-20 group-hover:opacity-100 transition-all">
-                  <div className="text-[0.55rem] font-black uppercase tracking-[0.2em] text-accent-blue">{cat.toolCount} Modules</div>
+                  <div className="text-[0.55rem] font-black uppercase tracking-[0.2em] text-accent-blue">{cat.toolCount} Items</div>
                   <ArrowRight className="h-3 w-3 text-white transition-transform group-hover:translate-x-1" />
                 </div>
               </Link>
