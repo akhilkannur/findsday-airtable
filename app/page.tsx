@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { ArrowRight, Cpu, Zap, Brain, Mail, Sparkles } from "lucide-react"
 import * as LucideIcons from "lucide-react"
-import { getFeaturedTools, getAllCategories, getMcpTools } from "@/lib/tools"
+import { getFeaturedTools, getAllCategories, getMcpTools, getAllTools } from "@/lib/tools"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
