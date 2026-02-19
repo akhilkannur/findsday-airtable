@@ -142,15 +142,19 @@ export default function Home() {
               <div className="type-label text-ink-black font-black">Directory</div>
               <h2 className="text-3xl font-black tracking-tighter uppercase italic">Explore Tools</h2>
             </div>
-            <Link href="/tools" className="text-[0.6rem] font-bold uppercase tracking-[0.2em] border-b-2 border-accent-blue pb-1 hover:text-accent-orange hover:border-accent-orange transition-colors">
-              View All Tools ->
-            </Link>
+            {/* Link moved to bottom */}
           </div>
 
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {exploreTools.map((tool) => (
               <ToolCard key={tool.slug} tool={tool} />
             ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <Link href="/tools" className="text-[0.6rem] font-bold uppercase tracking-[0.2em] border-b-2 border-accent-blue pb-1 hover:text-accent-orange hover:border-accent-orange transition-colors">
+              View All Tools ->
+            </Link>
           </div>
         </div>
       </section>
