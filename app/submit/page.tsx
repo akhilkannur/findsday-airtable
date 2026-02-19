@@ -179,11 +179,3 @@ export default function SubmitPage() {
     </main>
   )
 }
-
-        <p className="mt-10 text-center text-sm font-medium text-gray-500">
-          We review every submission within 24 hours.
-        </p>
-      </div>
-    </main>
-  )
-}
