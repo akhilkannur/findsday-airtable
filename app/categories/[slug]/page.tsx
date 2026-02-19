@@ -45,65 +45,66 @@ export default async function CategoryDetailPage({
   const tools = getToolsByCategory(category.name)
 
   return (
-    <main className="mx-auto max-w-7xl px-6 py-24 sm:px-12 lg:px-24">
-      <div className="mb-24">
+    <div className="flex flex-col">
+      <section className="px-6 py-24 md:px-12 md:py-32 border-b border-dashed border-ink-black">
         <Link
           href="/categories"
-          className="mb-12 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-gray-500 hover:text-white transition-colors"
+          className="type-label mb-12 inline-block opacity-40 hover:opacity-100 hover:underline"
         >
-          <ArrowLeft className="h-4 w-4" /> All Categories
+          <- All Infrastructure Modules
         </Link>
 
-        <h1 className="mt-12 text-6xl font-extrabold tracking-tight sm:text-8xl italic font-heading">
+        <h1 className="type-display mb-8">
           {category.name}
         </h1>
-        <p className="mt-8 text-2xl text-gray-400 max-w-3xl leading-relaxed">{category.description}</p>
-      </div>
+        <p className="mt-8 text-2xl font-medium opacity-60 max-w-3xl leading-relaxed">{category.description}</p>
+      </section>
 
-      <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="swiss-grid-bg grid grid-cols-1 gap-6 p-6 md:grid-cols-2 lg:grid-cols-3 md:p-12">
         {tools.map((tool) => (
           <Link
             key={tool.slug}
             href={`/tools/${tool.slug}`}
-            className="club-card group flex flex-col h-full"
+            className="swiss-card group h-full"
           >
-            <div className="mb-10 flex items-start justify-between">
-              <div className="flex items-center gap-5">
-                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/[0.03] border border-white/10 text-2xl font-black text-white group-hover:bg-club-teal group-hover:text-black transition-all duration-500 shadow-inner">
-                  {tool.name.charAt(0)}
-                </div>
-                <div>
-                  <h2 className="text-2xl font-bold text-white group-hover:text-club-teal transition-colors tracking-tight">
-                    {tool.name}
-                  </h2>
-                  <p className="text-[11px] font-bold text-gray-500 uppercase tracking-widest mt-1">ID: {tool.slug}</p>
-                </div>
+            <div className="flex items-start justify-between">
+              <div className="flex h-16 w-16 items-center justify-center border border-ink-black bg-white group-hover:bg-accent-blue transition-all duration-500 text-2xl font-black">
+                {tool.name.charAt(0)}
               </div>
-              {tool.mcpReady && (
-                <div className="badge-club border-club-teal/20 text-club-teal bg-club-teal/5">
-                  <Zap className="h-3 w-3 fill-club-teal" /> MCP
-                </div>
-              )}
+              <div className="type-label opacity-40 mt-1">ID: {tool.slug}</div>
             </div>
 
-            <p className="text-lg leading-relaxed text-gray-400 line-clamp-3 mb-10">
+            <h2 className="mt-6 text-2xl font-bold tracking-tight">
+              {tool.name}
+            </h2>
+
+            <p className="mt-4 text-sm font-medium opacity-60 line-clamp-3 mb-10">
               {tool.oneLiner}
             </p>
 
-            <div className="mt-auto pt-8 border-t border-white/5 flex flex-wrap items-center gap-3">
+            <div className="mt-auto pt-8 border-t border-ink-black/10 flex flex-wrap items-center gap-3">
               {tool.aiDifficulty && (
-                <span className="badge-club">
-                  <Brain className="h-3.5 w-3.5" /> {tool.aiDifficulty}
+                <span className="swiss-badge opacity-40">
+                  {tool.aiDifficulty}
                 </span>
               )}
 
               {tool.apiType.map((api) => (
-                <span key={api} className="badge-club">{api}</span>
+                <span key={api} className="swiss-badge">{api}</span>
               ))}
             </div>
           </Link>
         ))}
       </div>
+
+      {tools.length === 0 && (
+        <div className="mt-32 text-center p-24">
+          <p className="text-xl font-bold opacity-40 uppercase tracking-widest">No modules detected in this node.</p>
+        </div>
+      )}
+    </div>
+  )
+}
 
       {tools.length === 0 && (
         <div className="mt-32 text-center">

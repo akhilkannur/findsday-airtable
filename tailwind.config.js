@@ -4,19 +4,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'enjin-bg': '#070707', 
-        'enjin-card': '#0e0e0e',
-        'enjin-teal': '#2dd4bf',
-        'enjin-border': 'rgba(255, 255, 255, 0.08)',
-        // Keeping club names for compatibility with existing code
-        'club-dark': '#070707',
-        'club-card': '#0e0e0e',
-        'club-teal': '#2dd4bf',
+        'sage-bg': '#DCDFCF', 
+        'ink-black': '#121212',
+        'accent-blue': '#B5C0FF',
+        'accent-orange': '#FF4D00',
+        'blob-bg': '#D1D4C4',
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'sans-serif'],
-        heading: ['var(--font-playfair)', 'serif'],
-        mono: ['var(--font-geist-mono)', 'monospace'],
+        sans: ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+        mono: ['Courier New', 'Courier', 'monospace'],
       },
     },
   },

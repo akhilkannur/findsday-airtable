@@ -9,57 +9,59 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <main className="mx-auto max-w-4xl px-6 py-24 sm:px-12 lg:px-24">
-      <div className="mb-24">
+    <div className="flex flex-col">
+      <section className="px-6 py-24 md:px-12 md:py-32 border-b border-dashed border-ink-black">
         <Link
           href="/"
-          className="mb-12 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-gray-500 hover:text-white transition-colors"
+          className="type-label mb-12 inline-block opacity-40 hover:opacity-100 hover:underline"
         >
-          <ArrowLeft className="h-4 w-4" /> Back to Home
+          <- Back to System
         </Link>
 
-        <h1 className="mt-12 text-6xl font-extrabold tracking-tight sm:text-8xl italic font-heading">
+        <h1 className="type-display mb-12">
           The New Sales Stack.
         </h1>
-        <p className="mt-12 text-2xl text-gray-400 leading-relaxed max-w-2xl font-medium">
+        <p className="max-w-2xl text-2xl font-medium opacity-60 leading-relaxed">
           Salestools Club is a curated directory of sales APIs, SDKs, and MCP servers built for the next generation of builders: <strong>AI-Native Operators.</strong>
         </p>
-      </div>
+      </section>
 
-      <div className="grid gap-16 sm:grid-cols-2">
-        <div className="space-y-8">
-          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-club-teal/10 text-club-teal border border-club-teal/20">
-            <Target className="h-7 w-7" />
+      <div className="grid grid-cols-1 md:grid-cols-2 divide-x divide-ink-black border-b border-ink-black">
+        <div className="p-12 space-y-8">
+          <div className="flex h-12 w-12 items-center justify-center border border-ink-black bg-accent-blue font-bold text-xl">
+            M
           </div>
           <h3 className="text-3xl font-bold tracking-tight">The Mission</h3>
-          <p className="text-lg text-gray-500 leading-relaxed">
+          <p className="text-lg font-medium opacity-60 leading-relaxed">
             We believe the future of sales isn't just better software—it's software that talks to AI. We're here to help you find the "hands" for your AI agents.
           </p>
         </div>
 
-        <div className="space-y-8">
-          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-club-teal/10 text-club-teal border border-club-teal/20">
-            <Zap className="h-7 w-7" />
+        <div className="p-12 space-y-8">
+          <div className="flex h-12 w-12 items-center justify-center border border-ink-black bg-accent-orange font-bold text-xl text-white">
+            P
           </div>
           <h3 className="text-3xl font-bold tracking-tight">MCP-First</h3>
-          <p className="text-lg text-gray-500 leading-relaxed">
+          <p className="text-lg font-medium opacity-60 leading-relaxed">
             We prioritize tools that support the Model Context Protocol (MCP), making it easier than ever to connect your CRM or prospecting tool to Claude and Cursor.
           </p>
         </div>
       </div>
 
-      <div className="mt-32 rounded-[3rem] bg-club-card border border-white/10 p-12 sm:p-20 shadow-2xl">
-        <h2 className="text-4xl font-extrabold mb-8 italic font-heading">Get in touch</h2>
-        <p className="text-xl text-gray-400 mb-12 leading-relaxed">
-          Have a tool that should be here? Or just want to talk about AI-native sales workflows? Reach out.
-        </p>
-        <a 
-          href="mailto:akhil@salestools.club" 
-          className="text-2xl font-bold text-club-teal hover:underline underline-offset-8 decoration-2"
-        >
-          akhil@salestools.club
-        </a>
-      </div>
-    </main>
+      <section className="p-12 md:p-24 bg-white/40">
+        <div className="max-w-3xl">
+          <h2 className="type-display mb-12">Get in touch</h2>
+          <p className="text-xl font-medium opacity-60 mb-12 leading-relaxed">
+            Have a tool that should be here? Or just want to talk about AI-native sales workflows? Reach out to our primary node.
+          </p>
+          <a 
+            href="mailto:akhil@salestools.club" 
+            className="text-2xl font-bold underline underline-offset-8 decoration-2 hover:text-accent-orange"
+          >
+            akhil@salestools.club
+          </a>
+        </div>
+      </section>
+    </div>
   )
 }

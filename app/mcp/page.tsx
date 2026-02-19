@@ -13,60 +13,68 @@ export default function McpPage() {
   const mcpTools = getMcpTools()
 
   return (
-    <main className="mx-auto max-w-7xl px-6 py-24 sm:px-12 lg:px-24">
-      <div className="mx-auto max-w-4xl text-center mb-32">
-        <div className="mb-10 inline-flex h-24 w-24 items-center justify-center rounded-[2rem] bg-club-teal/10 text-club-teal border border-club-teal/20 shadow-2xl shadow-club-teal/5">
-          <Zap className="h-10 w-10 fill-club-teal" />
-        </div>
-        <h1 className="text-5xl font-extrabold tracking-tight sm:text-7xl italic font-heading">
-          MCP Servers
-        </h1>
-        <p className="mt-8 text-2xl text-gray-400 leading-relaxed max-w-3xl mx-auto">
+    <div className="flex flex-col">
+      <section className="px-6 py-24 md:px-12 md:py-32 border-b border-dashed border-ink-black">
+        <div className="type-label mb-6 opacity-40">System Protocol</div>
+        <h1 className="type-display mb-8">MCP Servers</h1>
+        <p className="max-w-3xl text-xl font-medium opacity-60">
           The fastest way to give your AI "hands". Plug these servers into Claude and start updating your CRM via chat.
         </p>
-      </div>
+      </section>
 
-      <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="swiss-grid-bg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6 md:p-12">
         {mcpTools.map((tool) => (
           <Link
             key={tool.slug}
             href={`/tools/${tool.slug}`}
-            className="club-card group relative flex flex-col h-full"
+            className="swiss-card group relative flex flex-col h-full"
           >
-            <div className="mb-10 flex items-start justify-between">
-              <div className="flex items-center gap-5">
-                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/[0.03] border border-white/10 text-2xl font-black text-white group-hover:bg-club-teal group-hover:text-black transition-all duration-500 shadow-inner">
-                  {tool.name.charAt(0)}
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-white group-hover:text-club-teal transition-colors tracking-tight">
-                    {tool.name}
-                  </h3>
-                  <span className="text-[11px] font-bold text-gray-500 uppercase tracking-widest mt-1">{tool.category}</span>
-                </div>
+            <div className="flex items-start justify-between">
+              <div className="flex h-12 w-12 items-center justify-center border border-ink-black bg-white group-hover:bg-accent-blue transition-colors text-xl font-bold">
+                {tool.name.charAt(0)}
               </div>
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-club-teal text-black shadow-lg shadow-club-teal/30">
-                <Zap className="h-4 w-4 fill-black" />
+              <div className="flex h-8 w-8 items-center justify-center border border-ink-black bg-accent-orange text-white">
+                <Zap className="h-4 w-4 fill-white" />
               </div>
             </div>
 
-            <p className="text-lg leading-relaxed text-gray-400 line-clamp-3 mb-10">
+            <h3 className="mt-6 text-2xl font-bold tracking-tight">
+              {tool.name}
+            </h3>
+            <div className="type-label opacity-40 mt-1">{tool.category}</div>
+
+            <p className="mt-4 text-sm font-medium opacity-60 line-clamp-3">
               {tool.oneLiner}
             </p>
 
-            <div className="mt-auto pt-8 border-t border-white/5 flex flex-wrap gap-3">
+            <div className="mt-auto pt-8 flex items-center gap-2">
+              <span className="swiss-badge">{tool.apiType[0]} INFRA</span>
               {tool.aiDifficulty && (
-                <span className="badge-club">
-                  <Brain className="h-3.5 w-3.5" /> {tool.aiDifficulty}
-                </span>
+                <span className="swiss-badge opacity-40">{tool.aiDifficulty}</span>
               )}
-              <span className="badge-club">
-                {tool.apiType[0]} INFRA
-              </span>
+            </div>
+
+            <div className="mt-6 swiss-btn group-hover:bg-ink-black group-hover:text-sage-bg">
+              Configure Node <span>↗</span>
             </div>
           </Link>
         ))}
       </div>
+
+      <div className="mx-6 mb-24 md:mx-12 border border-dashed border-ink-black p-12 text-center">
+        <p className="text-lg font-medium opacity-60">
+          Know a protocol module we're missing?
+        </p>
+        <Link
+          href="/submit"
+          className="mt-8 swiss-btn swiss-btn-primary inline-flex min-w-[240px]"
+        >
+          Submit Module <span>-></span>
+        </Link>
+      </div>
+    </div>
+  )
+}
 
       <div className="mt-32 rounded-3xl bg-white/[0.02] border border-white/5 p-12 text-center">
         <p className="text-lg text-gray-400 font-medium">

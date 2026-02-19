@@ -29,24 +29,25 @@ export default function SubmitPage() {
   })
 
   const inputClasses =
-    "w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white placeholder-gray-600 focus:border-club-teal/50 focus:ring-4 focus:ring-club-teal/10 focus:outline-none transition-all"
+    "w-full bg-white/40 border border-ink-black px-6 py-4 text-ink-black placeholder-gray-500 focus:bg-white focus:outline-none transition-all"
 
   return (
-    <main className="px-6 py-24 sm:px-12 lg:px-24">
-      <div className="mx-auto max-w-2xl">
-        <div className="text-center mb-24">
-          <h1 className="text-5xl font-extrabold tracking-tight sm:text-7xl italic font-heading">Submit Entry</h1>
-          <p className="mt-8 text-xl text-gray-400 leading-relaxed">
-            Know a sales API or MCP server we&apos;re missing? Add it to the club.
-          </p>
-        </div>
+    <div className="flex flex-col">
+      <section className="px-6 py-24 md:px-12 md:py-32 border-b border-dashed border-ink-black">
+        <div className="type-label mb-6 opacity-40">Entry Submission</div>
+        <h1 className="type-display mb-8">Add Entry</h1>
+        <p className="max-w-2xl text-xl font-medium opacity-60">
+          Know a sales API or MCP server we&apos;re missing? Add it to the club infrastructure.
+        </p>
+      </section>
 
-        <div className="bg-club-card rounded-[3rem] border border-white/10 p-10 sm:p-16 shadow-2xl">
-          <form className="space-y-10" onSubmit={(e) => e.preventDefault()}>
+      <div className="swiss-grid-bg p-6 md:p-12">
+        <div className="max-w-2xl border border-ink-black bg-sage-bg p-10 md:p-16 shadow-[8px_8px_0px_rgba(18,18,18,0.05)]">
+          <form className="space-y-12" onSubmit={(e) => e.preventDefault()}>
             {/* Tool Name */}
             <div>
-              <label htmlFor="toolName" className="mb-4 block text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">
-                Tool Name
+              <label htmlFor="toolName" className="type-label mb-4 block opacity-40">
+                Module Name
               </label>
               <input
                 id="toolName"
@@ -60,8 +61,8 @@ export default function SubmitPage() {
 
             {/* Website URL */}
             <div>
-              <label htmlFor="websiteUrl" className="mb-4 block text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">
-                Website URL
+              <label htmlFor="websiteUrl" className="type-label mb-4 block opacity-40">
+                Node URL
               </label>
               <input
                 id="websiteUrl"
@@ -75,8 +76,8 @@ export default function SubmitPage() {
 
             {/* API Docs URL */}
             <div>
-              <label htmlFor="apiDocsUrl" className="mb-4 block text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">
-                API Docs URL
+              <label htmlFor="apiDocsUrl" className="type-label mb-4 block opacity-40">
+                Spec URL
               </label>
               <input
                 id="apiDocsUrl"
@@ -90,8 +91,8 @@ export default function SubmitPage() {
 
             {/* Category */}
             <div>
-              <label htmlFor="category" className="mb-4 block text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">
-                Category
+              <label htmlFor="category" className="type-label mb-4 block opacity-40">
+                Infrastructure Class
               </label>
               <select
                 id="category"
@@ -99,9 +100,9 @@ export default function SubmitPage() {
                 value={formData.category}
                 onChange={(e) => setFormData({ ...formData, category: e.target.value })}
               >
-                <option value="" className="bg-club-dark text-gray-500">Select a category</option>
+                <option value="" className="bg-sage-bg">Select a class</option>
                 {CATEGORIES.map((cat) => (
-                  <option key={cat} value={cat} className="bg-club-dark text-white">
+                  <option key={cat} value={cat} className="bg-sage-bg">
                     {cat}
                   </option>
                 ))}
@@ -113,69 +114,34 @@ export default function SubmitPage() {
               <label className="flex items-center gap-4 cursor-pointer group">
                 <input
                   type="checkbox"
-                  className="h-6 w-6 rounded-lg border-white/10 bg-white/5 text-club-teal focus:ring-club-teal/50 transition-all"
+                  className="h-5 w-5 border border-ink-black bg-white checked:bg-accent-orange transition-all"
                   checked={formData.hasMcp}
                   onChange={(e) => setFormData({ ...formData, hasMcp: e.target.checked })}
                 />
-                <span className="text-base font-bold text-gray-500 group-hover:text-white transition-colors">Has MCP Server?</span>
+                <span className="text-sm font-bold uppercase tracking-widest opacity-60 group-hover:opacity-100">MCP INFRA</span>
               </label>
 
               <label className="flex items-center gap-4 cursor-pointer group">
                 <input
                   type="checkbox"
-                  className="h-6 w-6 rounded-lg border-white/10 bg-white/5 text-club-teal focus:ring-club-teal/50 transition-all"
+                  className="h-5 w-5 border border-ink-black bg-white checked:bg-accent-blue transition-all"
                   checked={formData.hasAgentSkills}
                   onChange={(e) => setFormData({ ...formData, hasAgentSkills: e.target.checked })}
                 />
-                <span className="text-base font-bold text-gray-500 group-hover:text-white transition-colors">Has Agent Skills?</span>
+                <span className="text-sm font-bold uppercase tracking-widest opacity-60 group-hover:opacity-100">AGENT SKILLS</span>
               </label>
-            </div>
-
-            {/* Brief Description */}
-            <div>
-              <label htmlFor="description" className="mb-4 block text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">
-                Brief Description
-              </label>
-              <textarea
-                id="description"
-                rows={5}
-                placeholder="What does this tool do? Why should we list it?"
-                className={inputClasses}
-                value={formData.description}
-                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-              />
-            </div>
-
-            {/* Your Email */}
-            <div>
-              <label htmlFor="email" className="mb-4 block text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">
-                Your Email
-              </label>
-              <input
-                id="email"
-                type="text"
-                placeholder="you@example.com"
-                className={inputClasses}
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              />
             </div>
 
             {/* Submit */}
             <button
               type="submit"
-              className="btn-club w-full justify-center py-5 text-lg"
+              className="swiss-btn swiss-btn-primary w-full py-6 text-base"
             >
-              <Send className="h-5 w-5" />
-              Submit Tool
+              Commit Module <span>-></span>
             </button>
           </form>
         </div>
-
-        <p className="mt-12 text-center text-[11px] font-bold text-gray-600 uppercase tracking-[0.3em]">
-          We review every submission within 24 hours.
-        </p>
       </div>
-    </main>
+    </div>
   )
 }

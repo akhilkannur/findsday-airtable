@@ -62,79 +62,112 @@ gtag('config', 'G-9LGNFH00R7');`,
           }}
         />
       </head>
-      <body className="font-sans bg-enjin-bg text-[#efefef] antialiased">
-        <header className="sticky top-0 z-50 border-b border-white/[0.05] bg-enjin-bg/80 backdrop-blur-xl">
-          <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 sm:px-12 lg:px-24">
-            <Link href="/" className="text-xl font-bold tracking-tighter text-white hover:opacity-80 transition-opacity">
-              Salestools Club
-            </Link>
-
-            {/* Desktop nav */}
-            <nav className="hidden items-center gap-12 md:flex">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-500 transition-colors hover:text-white"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
-
-            {/* Desktop CTAs */}
-            <div className="hidden items-center gap-8 md:flex">
-              <Link href="/submit" className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-500 hover:text-white transition-colors">
-                Submit
-              </Link>
-              <Link href="/tools" className="btn-club !px-6 !py-2.5 !text-[10px]">
-                Get started
-              </Link>
+      <body className="bg-sage-bg text-ink-black antialiased">
+        <header className="flex h-[60px] items-center justify-between border-b border-ink-black px-6 md:px-12">
+          <div className="flex items-center gap-4">
+            <div className="relative h-6 w-6 rounded-full border border-ink-black">
+              <div className="absolute inset-0 rounded-full border border-dashed border-ink-black opacity-50 -m-1"></div>
+              <div className="absolute top-1/2 left-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-ink-black"></div>
             </div>
-
-            {/* Mobile nav */}
-            <MobileNav links={navLinks} />
+            <Link href="/" className="text-[0.75rem] font-medium uppercase tracking-[0.2em]">
+              Salestools.club
+            </Link>
           </div>
+
+          <nav className="hidden items-center gap-10 md:flex">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-[0.75rem] font-medium uppercase tracking-[0.1em] hover:underline underline-offset-4"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="hidden items-center gap-6 md:flex">
+            <Link href="/submit" className="text-[0.75rem] font-medium uppercase tracking-[0.1em] hover:underline">
+              Submit
+            </Link>
+            <div className="text-[0.75rem] font-medium uppercase tracking-[0.1em] opacity-40 cursor-default">
+              Login
+            </div>
+          </div>
+
+          {/* Mobile nav */}
+          <MobileNav links={navLinks} />
         </header>
 
-        {children}
-
-        <footer className="border-t border-white/[0.05] bg-enjin-bg px-6 py-32 sm:px-12 lg:px-24">
-          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-24 md:grid-cols-4 lg:grid-cols-5">
-            <div className="col-span-1 md:col-span-2 space-y-10">
-              <Link href="/" className="text-2xl font-bold tracking-tighter">Salestools Club</Link>
-              <p className="max-w-xs text-lg leading-relaxed text-gray-600 font-medium">
-                A modern directory of sales APIs and MCP servers built for the new era of AI-native operators.
-              </p>
+        <div className="grid min-h-[calc(100vh-60px)] grid-cols-1 md:grid-cols-[240px_1fr]">
+          <aside className="hidden flex-col gap-12 border-r border-ink-black p-8 md:flex">
+            <div className="flex flex-col gap-4">
+              <div className="type-label opacity-40">Categories</div>
+              <Link href="/tools" className="flex items-center justify-between text-sm font-medium hover:underline">
+                <span>All Tools</span>
+                <span className="text-[0.7rem] opacity-40">200+</span>
+              </Link>
+              <Link href="/categories/crm" className="flex items-center justify-between text-sm font-medium opacity-60 hover:opacity-100">
+                <span>CRM Platforms</span>
+                <span>-></span>
+              </Link>
+              <Link href="/categories/prospecting" className="flex items-center justify-between text-sm font-medium opacity-60 hover:opacity-100">
+                <span>Prospecting</span>
+                <span>-></span>
+              </Link>
+              <Link href="/categories/workflow-automation" className="flex items-center justify-between text-sm font-medium opacity-60 hover:opacity-100">
+                <span>Automation</span>
+                <span>-></span>
+              </Link>
             </div>
 
-            <div className="space-y-10">
-              <h4 className="text-[10px] font-bold text-white uppercase tracking-[0.4em]">Directory</h4>
-              <ul className="space-y-5 text-sm font-medium text-gray-600">
-                <li><Link href="/tools" className="hover:text-white transition-colors">All Tools</Link></li>
-                <li><Link href="/categories" className="hover:text-white transition-colors">Categories</Link></li>
-                <li><Link href="/mcp" className="hover:text-white transition-colors">MCP Servers</Link></li>
-              </ul>
+            <div className="mt-auto flex flex-col gap-4">
+              <div className="type-label opacity-40">System Status</div>
+              <div className="flex items-center gap-3">
+                <div className="h-2 w-2 rounded-full bg-accent-orange animate-pulse"></div>
+                <span className="type-label">Live Updates</span>
+              </div>
             </div>
+          </aside>
 
-            <div className="space-y-10">
-              <h4 className="text-[10px] font-bold text-white uppercase tracking-[0.4em]">Resources</h4>
-              <ul className="space-y-5 text-sm font-medium text-gray-600">
-                <li><Link href="/submit" className="hover:text-white transition-colors">Submit Tool</Link></li>
-                <li><Link href="/about" className="hover:text-white transition-colors">About Project</Link></li>
-                <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
-              </ul>
-            </div>
-
-            <div className="space-y-10">
-              <h4 className="text-[10px] font-bold text-white uppercase tracking-[0.4em]">Status</h4>
-              <p className="text-[10px] font-bold text-gray-800 uppercase tracking-[0.3em] leading-loose">
-                Version 1.0.0-Stable<br />
-                © {new Date().getFullYear()} Salestools Club
-              </p>
-            </div>
-          </div>
-        </footer>
+          <main className="flex flex-col">
+            {children}
+            
+            <footer className="mt-auto border-t border-dashed border-ink-black p-12 md:p-24">
+              <div className="grid grid-cols-1 gap-20 md:grid-cols-2 lg:grid-cols-4">
+                <div className="space-y-6">
+                  <div className="text-xl font-bold tracking-tighter uppercase">Salestools Club</div>
+                  <p className="text-sm leading-relaxed opacity-60">
+                    A modern directory of sales APIs and MCP servers built for the new era of AI-native operators.
+                  </p>
+                </div>
+                <div className="space-y-6">
+                  <div className="type-label opacity-40">System Nodes</div>
+                  <ul className="space-y-3 text-sm font-medium">
+                    <li><Link href="/tools" className="hover:underline">Directory</Link></li>
+                    <li><Link href="/categories" className="hover:underline">Modules</Link></li>
+                    <li><Link href="/mcp" className="hover:underline">MCP Servers</Link></li>
+                  </ul>
+                </div>
+                <div className="space-y-6">
+                  <div className="type-label opacity-40">Documentation</div>
+                  <ul className="space-y-3 text-sm font-medium">
+                    <li><Link href="/about" className="hover:underline">About Project</Link></li>
+                    <li><Link href="/privacy" className="hover:underline">Privacy Policy</Link></li>
+                    <li><Link href="/submit" className="hover:underline">Add Entry</Link></li>
+                  </ul>
+                </div>
+                <div className="space-y-6">
+                  <div className="type-label opacity-40">Protocol</div>
+                  <p className="text-[0.7rem] font-bold uppercase tracking-widest leading-loose opacity-40">
+                    v1.0.0-Stable<br />
+                    © {new Date().getFullYear()} Salestools.club
+                  </p>
+                </div>
+              </div>
+            </footer>
+          </main>
+        </div>
       </body>
     </html>
   )

@@ -22,25 +22,25 @@ export function MobileNav({ links }: MobileNavProps) {
       </button>
 
       {open && (
-        <nav className="fixed inset-0 top-[73px] z-50 bg-club-dark px-6 py-12 animate-in fade-in slide-in-from-top-5 duration-300">
-          <div className="flex flex-col gap-10">
+        <nav className="fixed inset-0 top-[60px] z-50 bg-sage-bg px-6 py-12 animate-in fade-in slide-in-from-top-2 duration-300">
+          <div className="flex flex-col gap-8">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="text-4xl font-extrabold tracking-tight text-white hover:text-club-teal transition-colors"
+                className="text-4xl font-bold tracking-tighter hover:text-accent-orange transition-colors"
               >
                 {link.label}
               </Link>
             ))}
-            <div className="h-px bg-white/10 my-4" />
+            <div className="h-px bg-ink-black my-4 opacity-10" />
             <Link 
               href="/submit" 
               onClick={() => setOpen(false)}
-              className="text-2xl font-bold text-gray-500 hover:text-white transition-colors"
+              className="text-2xl font-bold opacity-40 hover:opacity-100 transition-opacity"
             >
-              Submit a tool
+              Submit Entry
             </Link>
           </div>
         </nav>

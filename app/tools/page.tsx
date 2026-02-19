@@ -19,67 +19,58 @@ export default async function ToolsPage({
   const tools = q ? searchTools(q) : getAllTools()
 
   return (
-    <main className="mx-auto max-w-7xl px-6 py-32 sm:px-12 lg:px-24">
-      <div className="mb-32 text-center">
-        <h1 className="text-gradient text-6xl font-extrabold sm:text-8xl italic font-heading">
-          The Tools
-        </h1>
-        <p className="mt-8 text-xl text-gray-500 max-w-3xl mx-auto leading-relaxed font-medium">
+    <div className="flex flex-col">
+      <section className="px-6 py-24 md:px-12 md:py-32 border-b border-dashed border-ink-black">
+        <div className="type-label mb-6 opacity-40">Module Directory</div>
+        <h1 className="type-display mb-8">The Tools</h1>
+        <p className="max-w-2xl text-xl font-medium opacity-60">
           The best sales APIs and MCP servers for your AI stack. Discover tools that plug your sales workflow into Claude and Cursor.
         </p>
-      </div>
+      </section>
 
       {q && (
-        <div className="mb-20 flex items-center justify-center gap-4">
-          <span className="text-[10px] font-bold text-gray-700 uppercase tracking-[0.4em]">Searching:</span>
-          <span className="badge-club border-enjin-teal/30 text-enjin-teal bg-enjin-teal/5 text-xs px-6 py-2">&lsquo;{q}&rsquo;</span>
+        <div className="px-6 py-10 md:px-12 border-b border-ink-black flex items-center gap-4">
+          <span className="type-label opacity-40">Filter:</span>
+          <span className="swiss-badge border-accent-blue bg-accent-blue/10">&lsquo;{q}&rsquo;</span>
+          <Link href="/tools" className="type-label hover:underline text-accent-orange">Clear</Link>
         </div>
       )}
 
-      <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="swiss-grid-bg grid grid-cols-1 gap-6 p-6 md:grid-cols-2 lg:grid-cols-3 md:p-12">
         {tools.map((tool) => (
           <Link
             key={tool.slug}
             href={`/tools/${tool.slug}`}
-            className="club-card group flex flex-col h-full"
+            className="swiss-card group h-full"
           >
-            <div className="mb-12 flex items-start justify-between">
-              <div className="flex items-center gap-6">
-                <div className="flex h-16 w-16 items-center justify-center rounded-[20px] bg-white text-black text-2xl font-black group-hover:bg-enjin-teal transition-all duration-500">
-                  {tool.name.charAt(0)}
-                </div>
-                <div>
-                  <h2 className="text-2xl font-bold text-white group-hover:text-enjin-teal transition-colors tracking-tight">{tool.name}</h2>
-                  <p className="text-[10px] font-bold text-gray-600 uppercase tracking-[0.3em] mt-1">{tool.category}</p>
-                </div>
+            <div className="flex justify-between items-start">
+              <div className="flex h-10 w-10 items-center justify-center border border-ink-black bg-white font-bold text-lg group-hover:bg-accent-blue">
+                {tool.name.charAt(0)}
               </div>
-              {tool.mcpReady && (
-                <div className="badge-club border-enjin-teal/20 text-enjin-teal bg-enjin-teal/5">
-                  <Zap className="h-3 w-3 fill-enjin-teal" /> MCP
-                </div>
-              )}
+              <div className="type-label opacity-40">v{Math.floor(Math.random() * 5) + 1}.{Math.floor(Math.random() * 9)}</div>
             </div>
-
-            <p className="text-lg leading-relaxed text-gray-500 line-clamp-3 mb-12 font-medium">
+            
+            <div className="mt-4 text-xl font-medium tracking-tight">{tool.name}</div>
+            <p className="text-sm font-medium opacity-60 line-clamp-3 min-h-[60px]">
               {tool.oneLiner}
             </p>
 
-            <div className="mt-auto pt-10 border-t border-white/[0.05] flex flex-wrap items-center gap-3">
-              {tool.aiDifficulty && (
-                <span className="badge-club">
-                  <Brain className="h-3.5 w-3.5" /> {tool.aiDifficulty}
-                </span>
-              )}
-
+            <div className="mt-auto pt-6 flex flex-wrap gap-2">
+              <span className="swiss-badge">{tool.category}</span>
               {tool.apiType.map((api) => (
-                <span key={api} className="badge-club">{api}</span>
+                <span key={api} className="swiss-badge opacity-40">{api}</span>
               ))}
+            </div>
 
-              <ArrowRight className="ml-auto h-5 w-5 text-gray-800 transition-all group-hover:translate-x-1 group-hover:text-white" />
+            <div className="mt-6 swiss-btn group-hover:bg-ink-black group-hover:text-sage-bg">
+              View Specs <span>↗</span>
             </div>
           </Link>
         ))}
       </div>
+    </div>
+  )
+}
 
       {tools.length === 0 && (
         <div className="mt-32 text-center">
