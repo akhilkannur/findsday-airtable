@@ -17,6 +17,7 @@ module.exports = {
       fontFamily: {
         sans: ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
         mono: ['Courier New', 'Courier', 'monospace'],
+        playfair: ['var(--font-playfair)', 'serif'],
       },
     },
   },
