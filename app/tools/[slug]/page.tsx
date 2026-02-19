@@ -210,8 +210,3 @@ export default async function ToolDetailPage({
     </div>
   )
 }
-
-      </div>
-    </div>
-  )
-}
