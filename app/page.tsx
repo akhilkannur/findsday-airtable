@@ -53,7 +53,9 @@ function ToolCard({ tool }: { tool: any }) {
 }
 
 export default function Home() {
-  const featuredTools = getFeaturedTools().slice(0, 12)
+  const allFeatured = getFeaturedTools()
+  const topTools = allFeatured.slice(0, 4)
+  const exploreTools = allFeatured.slice(4, 12)
   const allTools = getAllTools()
   const categories = getAllCategories()
 
@@ -64,42 +66,101 @@ export default function Home() {
         <div className="absolute inset-0 opacity-[0.02] pointer-events-none" 
              style={{ backgroundImage: 'radial-gradient(#121212 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
         
-        <div className="max-w-5xl mx-auto relative z-10">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="type-label text-ink-black font-black text-[0.6rem]">Tool List</div>
-            <div className="h-px w-8 bg-ink-black/20"></div>
-          </div>
-          <h1 className="type-display mb-12 max-w-4xl">
-            Every Sales API and MCP server you need to automate your GTM with <span className="relative inline-block">
-              <span className="relative z-10 font-bold">Claude Code</span>
-              <span className="absolute bottom-1 left-0 w-full h-4 bg-accent-blue/30 -z-0"></span>
-            </span> and agentic tools.
-          </h1>
-          <p className="max-w-2xl text-lg font-bold leading-relaxed">
-            Stop digging through messy dev docs. We source the Lego blocks that actually plug into your AI workflow so you can focus on building your sales engine.
-          </p>
+        <div className="max-w-7xl mx-auto relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <div className="flex items-center gap-3 mb-8">
+              <div className="type-label text-ink-black font-black text-[0.6rem]">Tool List</div>
+              <div className="h-px w-8 bg-ink-black/20"></div>
+            </div>
+            <h1 className="type-display mb-12 max-w-4xl">
+              Every Sales API and MCP server you need to automate your GTM with <span className="relative inline-block">
+                <span className="relative z-10 font-bold">Claude Code</span>
+                <span className="absolute bottom-1 left-0 w-full h-4 bg-accent-blue/30 -z-0"></span>
+              </span> and agentic tools.
+            </h1>
+            <p className="max-w-2xl text-lg font-bold leading-relaxed">
+              Stop digging through messy dev docs. We source the Lego blocks that actually plug into your AI workflow so you can focus on building your sales engine.
+            </p>
 
-          <form className="mt-10 flex flex-col sm:flex-row gap-3 max-w-md">
-            <input 
-              type="email" 
-              placeholder="get new tool updates" 
-              className="flex-grow bg-white border border-ink-black px-4 py-3 text-sm font-bold focus:outline-none transition-all placeholder:text-gray-400 shadow-[4px_4px_0px_rgba(18,18,18,0.05)]"
-              required
-            />
-            <button type="submit" className="swiss-btn swiss-btn-primary px-8 py-3 text-sm font-bold whitespace-nowrap shadow-[4px_4px_0px_#121212]">
-              Subscribe <span>-></span>
-            </button>
-          </form>
+            <form className="mt-10 flex flex-col sm:flex-row gap-3 max-w-md">
+              <input 
+                type="email" 
+                placeholder="get new tool updates" 
+                className="flex-grow bg-white border border-ink-black px-4 py-3 text-sm font-bold focus:outline-none transition-all placeholder:text-gray-400 shadow-[4px_4px_0px_rgba(18,18,18,0.05)]"
+                required
+              />
+              <button type="submit" className="swiss-btn swiss-btn-primary px-8 py-3 text-sm font-bold whitespace-nowrap shadow-[4px_4px_0px_#121212]">
+                Subscribe <span>-></span>
+              </button>
+            </form>
+          </div>
+
+          <div className="hidden lg:flex justify-center items-center relative h-[400px]">
+            {/* Hand-drawn style SVG Illustration */}
+            <svg viewBox="0 0 400 400" className="w-full h-full max-w-[450px] opacity-80" style={{ filter: 'drop-shadow(2px 2px 0px rgba(0,0,0,0.05))' }}>
+              {/* Central Node (AI Agent) */}
+              <circle cx="200" cy="200" r="45" fill="none" stroke="#121212" strokeWidth="2.5" strokeDasharray="6 3" />
+              <circle cx="200" cy="200" r="35" fill="none" stroke="#3B82F6" strokeWidth="2" />
+              <path d="M190 190 L210 210 M210 190 L190 210" stroke="#121212" strokeWidth="3" strokeLinecap="round" />
+              
+              {/* Orbiting nodes with hand-drawn style paths */}
+              <g className="animate-pulse">
+                <circle cx="80" cy="120" r="15" fill="none" stroke="#121212" strokeWidth="2" />
+                <path d="M165 175 L95 130" stroke="#121212" strokeWidth="1.5" strokeDasharray="4 4" strokeLinecap="round" fill="none" />
+                <path d="M75 115 L85 125 M85 115 L75 125" stroke="#F59E0B" strokeWidth="2" />
+              </g>
+
+              <g style={{ animation: 'pulse 3s infinite' }}>
+                <rect x="300" y="100" width="30" height="30" fill="none" stroke="#121212" strokeWidth="2" transform="rotate(15 315 115)" />
+                <path d="M235 175 L300 125" stroke="#121212" strokeWidth="1.5" strokeDasharray="4 4" strokeLinecap="round" fill="none" />
+              </g>
+
+              <g style={{ animation: 'pulse 4s infinite' }}>
+                <path d="M310 280 L330 300 L310 320" fill="none" stroke="#121212" strokeWidth="2" strokeLinejoin="round" />
+                <path d="M235 225 L310 290" stroke="#121212" strokeWidth="1.5" strokeDasharray="4 4" strokeLinecap="round" fill="none" />
+              </g>
+
+              <g style={{ animation: 'pulse 5s infinite' }}>
+                <circle cx="100" cy="300" r="20" fill="none" stroke="#121212" strokeWidth="2" />
+                <path d="M90 300 L110 300 M100 290 L100 310" stroke="#3B82F6" strokeWidth="2" />
+                <path d="M165 225 L115 285" stroke="#121212" strokeWidth="1.5" strokeDasharray="4 4" strokeLinecap="round" fill="none" />
+              </g>
+
+              {/* Decorative "sketchy" lines */}
+              <path d="M50 50 Q 80 40 100 60" fill="none" stroke="#121212" strokeWidth="1" opacity="0.3" />
+              <path d="M350 350 Q 320 360 300 340" fill="none" stroke="#121212" strokeWidth="1" opacity="0.3" />
+            </svg>
+            
+            {/* Abstract floating text labels to match aesthetic */}
+            <div className="absolute top-1/4 right-0 border border-ink-black/20 bg-white/80 px-2 py-1 text-[0.5rem] font-black uppercase tracking-widest rotate-6">MCP_READY</div>
+            <div className="absolute bottom-1/4 left-0 border border-ink-black/20 bg-white/80 px-2 py-1 text-[0.5rem] font-black uppercase tracking-widest -rotate-3 text-accent-blue">SALES_ENGINE</div>
+          </div>
         </div>
       </section>
 
-      {/* ── Featured Tools ──────────────── */}
-      <section className="px-6 py-24 md:px-12 bg-white/50 relative border-b border-ink-black">
+      {/* ── Top Tools ──────────────── */}
+      <section className="px-6 py-20 md:px-12 bg-white relative border-b border-ink-black">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-12">
+            <div className="type-label text-accent-blue font-black mb-2">Vetted Selection</div>
+            <h2 className="text-3xl font-black tracking-tighter uppercase italic">Top Tools</h2>
+          </div>
+
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {topTools.map((tool) => (
+              <ToolCard key={tool.slug} tool={tool} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Explore Tools ──────────────── */}
+      <section className="px-6 py-20 md:px-12 bg-sage-bg/10 relative border-b border-ink-black">
         <div className="max-w-7xl mx-auto">
           <div className="mb-12 flex items-end justify-between">
             <div className="flex flex-col gap-2">
-              <div className="type-label text-ink-black font-black">Top Tools</div>
-              <h2 className="text-3xl font-black tracking-tighter uppercase italic">Featured Tools</h2>
+              <div className="type-label text-ink-black font-black">Directory</div>
+              <h2 className="text-3xl font-black tracking-tighter uppercase italic">Explore Tools</h2>
             </div>
             <Link href="/tools" className="text-[0.6rem] font-bold uppercase tracking-[0.2em] border-b-2 border-accent-blue pb-1 hover:text-accent-orange hover:border-accent-orange transition-colors">
               View All Tools ->
@@ -107,7 +168,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {featuredTools.map((tool) => (
+            {exploreTools.map((tool) => (
               <ToolCard key={tool.slug} tool={tool} />
             ))}
           </div>
@@ -130,6 +191,32 @@ export default function Home() {
                 <span className="text-[9px] font-black uppercase text-white tracking-widest">{tool.name}</span>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Terminal Access ───────────────────────────────── */}
+      <section className="px-6 py-20 md:px-12 bg-white border-y border-ink-black/10">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12">
+          <div className="max-w-xl">
+            <div className="type-label text-accent-orange font-black mb-4">Agent Integration</div>
+            <h2 className="text-2xl font-black tracking-tight uppercase mb-6">Plug into your terminal</h2>
+            <p className="text-sm font-bold opacity-60 leading-relaxed">
+              Enable your AI agents to search this registry directly. One command installs the Salestools Club protocol into Gemini CLI or Claude Code.
+            </p>
+          </div>
+          
+          <div className="w-full lg:w-auto flex-grow max-w-2xl">
+            <div className="bg-[#1A1C16] p-6 border-2 border-ink-black shadow-[6px_6px_0px_#B5C0FF] group relative">
+              <div className="absolute -top-3 -left-3 bg-accent-orange text-white text-[0.5rem] font-black px-2 py-1 uppercase tracking-widest">Command</div>
+              <code className="text-accent-blue text-xs font-mono break-all leading-loose">
+                gemini skills install https://salestools.club/salestools.skill
+              </code>
+              <div className="mt-4 flex items-center justify-between opacity-40 group-hover:opacity-100 transition-opacity">
+                <span className="text-[0.55rem] font-black text-white uppercase tracking-widest">Status: Ready for deployment</span>
+                <span className="text-[0.55rem] font-black text-white uppercase tracking-widest">v1.0</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -1,8 +1,8 @@
-# Salestools Club — Sales API & MCP Directory
+# Salestools Club — GTM Lego Blocks Registry
 
 ## What this skill does
 
-This skill lets you search and discover sales tools with APIs and MCP servers directly from your coding environment. Instead of browsing websites or guessing which sales tools have APIs, you can query the Salestools Club directory to find CRMs, prospecting tools, enrichment services, email outreach platforms, and more — complete with API docs, auth methods, SDKs, and agent integrations.
+This skill lets you search and discover GTM infrastructure (APIs, MCP servers, and SDKs) directly from your coding environment. Instead of browsing websites or guessing which sales tools have APIs, you can query the Salestools Club directory to find CRMs, prospecting tools, enrichment services, email outreach platforms, and more — complete with API docs, auth methods, SDKs, and agent integrations.
 
 ## When to use this skill
 
