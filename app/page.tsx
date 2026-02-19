@@ -61,24 +61,24 @@ export default function Home() {
   return (
     <div className="flex flex-col max-w-[100vw] overflow-x-hidden">
       {/* ── Hero ──────────────────────────────────────────── */}
-      <section className="px-6 py-24 md:px-12 md:py-32 border-b border-dashed border-ink-black bg-sage-bg/30 relative overflow-hidden">
+      <section className="px-6 py-12 md:px-12 md:py-32 border-b border-dashed border-ink-black bg-sage-bg/30 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.02] pointer-events-none" 
              style={{ backgroundImage: 'radial-gradient(#121212 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
         
-        <div className="max-w-7xl mx-auto relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-7xl mx-auto relative z-10 grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
           <div>
             {/* Removed Tool List element */}
-            <h1 className="type-display mb-12 max-w-4xl">
+            <h1 className="type-display text-3xl md:text-6xl mb-6 md:mb-12 max-w-4xl">
               Every Sales API and MCP server you need to automate your GTM with <span className="relative inline-block">
                 <span className="relative z-10 font-bold">Claude Code</span>
-                <span className="absolute bottom-1 left-0 w-full h-4 bg-accent-blue/30 -z-0"></span>
+                <span className="absolute bottom-1 left-0 w-full h-2 md:h-4 bg-accent-blue/30 -z-0"></span>
               </span> and agentic tools.
             </h1>
-            <p className="max-w-2xl text-lg font-bold leading-relaxed">
+            <p className="max-w-2xl text-base md:text-lg font-bold leading-relaxed">
               Stop digging through messy dev docs. We source the Lego blocks that actually plug into your AI workflow so you can focus on building your sales engine.
             </p>
 
-            <form className="mt-10 flex flex-col sm:flex-row gap-3 max-w-md">
+            <form className="mt-6 md:mt-10 flex flex-col sm:flex-row gap-3 max-w-md">
               <input 
                 type="email" 
                 placeholder="get new tool updates" 
@@ -136,7 +136,7 @@ export default function Home() {
       </section>
 
       {/* ── Explore Tools ──────────────── */}
-      <section className="px-6 py-20 md:px-12 bg-sage-bg/10 relative border-b border-ink-black">
+      <section className="px-6 py-12 md:py-20 md:px-12 bg-sage-bg/10 relative border-b border-ink-black">
         <div className="max-w-7xl mx-auto">
           <div className="mb-12 flex items-end justify-between">
             <div className="flex flex-col gap-2">

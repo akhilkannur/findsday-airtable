@@ -10,8 +10,11 @@ This skill automates the process of researching a sales tool and adding it to th
 
 ## Workflow
 
+### 0. Resume Check
+Before starting, check `PROGRESS.md` in the root directory to find where the last session ended. Always skip tools that have "Added to directory" or "No public API found" in the `Research Notes` column of `pure_salestech.csv`.
+
 ### 1. Identify Tool
-The tool can be identified by name (searched in `agent-reference/pure_salestech.csv`) or by a direct URL.
+The tool can be identified by name (searched in `agent-reference/pure_salestech.csv`) or by a direct URL. Start Batch processing from the line indicated in `PROGRESS.md`.
 
 ### 2. Research Tool
 Run the research script to scrape the tool's website and documentation:
