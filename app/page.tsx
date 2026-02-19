@@ -7,7 +7,12 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Salestools Club — Every Sales API & MCP Server in one place.",
   description:
-    "A curated directory of the best sales APIs and MCP servers for people building with Claude Code, Cursor, and other agentic tools.",
+    "Every Sales API and MCP server you need to automate your GTM with Claude Code and agentic tools.",
+}
+
+function getCategoryIcon(iconName: string) {
+  const Icon = (LucideIcons as Record<string, React.ComponentType<{ className?: string }>>)[iconName]
+  return Icon ? <Icon className="h-6 w-6 text-accent-blue" /> : <Cpu className="h-6 w-6 text-accent-blue" />
 }
 
 function ToolCard({ tool }: { tool: any }) {
@@ -64,14 +69,14 @@ export default function Home() {
             <div className="type-label opacity-40 text-[0.6rem]">Vetted Registry</div>
             <div className="h-px w-8 bg-ink-black/20"></div>
           </div>
-          <h1 className="type-display mb-12">
-            You use Claude Code, Cursor, and other agentic tools to build. We source the <span className="relative inline-block">
-              <span className="relative z-10 font-bold">Lego blocks.</span>
+          <h1 className="type-display mb-12 max-w-4xl">
+            Every Sales API and MCP server you need to automate your GTM with <span className="relative inline-block">
+              <span className="relative z-10 font-bold">Claude Code</span>
               <span className="absolute bottom-1 left-0 w-full h-4 bg-accent-blue/30 -z-0"></span>
-            </span> Every Sales API and MCP server you need to automate your stack.
+            </span> and agentic tools.
           </h1>
           <p className="max-w-2xl text-lg font-medium opacity-60 leading-relaxed">
-            Stop digging through messy dev docs. We find the tools that actually plug into your AI workflow so you can focus on building your sales engine.
+            Stop digging through messy dev docs. We source the Lego blocks that actually plug into your AI workflow so you can focus on building your sales engine.
           </p>
 
           <form className="mt-10 flex flex-col sm:flex-row gap-3 max-w-md">
