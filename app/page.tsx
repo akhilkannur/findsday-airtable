@@ -36,7 +36,7 @@ function ToolCard({ tool }: { tool: any }) {
       </div>
       
       <div className="mt-8 text-2xl font-bold tracking-tight uppercase group-hover:text-accent-orange transition-colors">{tool.name}</div>
-      <p className="mt-2 text-sm font-medium opacity-60 line-clamp-2 min-h-[40px] leading-relaxed">
+      <p className="mt-2 text-sm font-bold leading-relaxed">
         {tool.oneLiner}
       </p>
 
@@ -66,7 +66,7 @@ export default function Home() {
         
         <div className="max-w-5xl mx-auto relative z-10">
           <div className="flex items-center gap-3 mb-8">
-            <div className="type-label opacity-40 text-[0.6rem]">Vetted Registry</div>
+            <div className="type-label text-ink-black font-black text-[0.6rem]">Tool List</div>
             <div className="h-px w-8 bg-ink-black/20"></div>
           </div>
           <h1 className="type-display mb-12 max-w-4xl">
@@ -75,7 +75,7 @@ export default function Home() {
               <span className="absolute bottom-1 left-0 w-full h-4 bg-accent-blue/30 -z-0"></span>
             </span> and agentic tools.
           </h1>
-          <p className="max-w-2xl text-lg font-medium opacity-60 leading-relaxed">
+          <p className="max-w-2xl text-lg font-bold leading-relaxed">
             Stop digging through messy dev docs. We source the Lego blocks that actually plug into your AI workflow so you can focus on building your sales engine.
           </p>
 
@@ -83,7 +83,7 @@ export default function Home() {
             <input 
               type="email" 
               placeholder="get new tool updates" 
-              className="flex-grow bg-white border border-ink-black px-4 py-3 text-sm font-medium focus:outline-none transition-all placeholder:text-gray-400 shadow-[4px_4px_0px_rgba(18,18,18,0.05)]"
+              className="flex-grow bg-white border border-ink-black px-4 py-3 text-sm font-bold focus:outline-none transition-all placeholder:text-gray-400 shadow-[4px_4px_0px_rgba(18,18,18,0.05)]"
               required
             />
             <button type="submit" className="swiss-btn swiss-btn-primary px-8 py-3 text-sm font-bold whitespace-nowrap shadow-[4px_4px_0px_#121212]">
@@ -93,20 +93,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Featured Tools (The Authority List) ──────────────── */}
+      {/* ── Featured Tools ──────────────── */}
       <section className="px-6 py-24 md:px-12 bg-white/50 relative border-b border-ink-black">
         <div className="max-w-7xl mx-auto">
           <div className="mb-12 flex items-end justify-between">
             <div className="flex flex-col gap-2">
-              <div className="type-label opacity-40">Featured Tools</div>
-              <h2 className="text-3xl font-black tracking-tighter uppercase italic">The Authority List</h2>
+              <div className="type-label text-ink-black font-black">Top Tools</div>
+              <h2 className="text-3xl font-black tracking-tighter uppercase italic">Featured Tools</h2>
             </div>
             <Link href="/tools" className="text-[0.6rem] font-bold uppercase tracking-[0.2em] border-b-2 border-accent-blue pb-1 hover:text-accent-orange hover:border-accent-orange transition-colors">
               View All Tools ->
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {featuredTools.map((tool) => (
               <ToolCard key={tool.slug} tool={tool} />
             ))}
@@ -145,10 +145,10 @@ export default function Home() {
             <div className="max-w-2xl">
               <div className="inline-flex items-center gap-2 px-3 py-1 border border-accent-blue/20 bg-accent-blue/5 mb-6">
                 <div className="h-1.5 w-1.5 rounded-full bg-accent-blue animate-pulse"></div>
-                <span className="text-[0.6rem] font-bold uppercase tracking-[0.3em] text-accent-blue">Browse Categories</span>
+                <span className="text-[0.6rem] font-bold uppercase tracking-[0.3em] text-accent-blue">Categories</span>
               </div>
-              <h2 className="type-display text-white">Tool Categories</h2>
-              <p className="mt-6 text-lg font-medium text-white/30 leading-relaxed max-w-xl">
+              <h2 className="type-display text-white">Browse by Category.</h2>
+              <p className="mt-6 text-lg font-bold text-white/80 leading-relaxed max-w-xl">
                 Every category is vetted for builder-first compatibility. Vetted APIs, verified MCPs, zero fluff.
               </p>
             </div>
@@ -162,13 +162,13 @@ export default function Home() {
                 className="group bg-[#24261F] p-10 transition-all hover:bg-accent-blue/[0.05]"
               >
                 <div className="mb-10 flex items-center justify-between">
-                  <div className="text-[0.6rem] font-bold opacity-20 group-hover:text-accent-blue transition-colors font-mono tracking-tighter">0{idx + 1}</div>
+                  <div className="text-[0.6rem] font-black text-white/10 group-hover:text-accent-blue transition-colors font-mono tracking-tighter">NODE_0{idx + 1}</div>
                   <div className="h-1.5 w-1.5 bg-accent-blue/20 group-hover:bg-accent-orange transition-colors rounded-full"></div>
                 </div>
                 <h3 className="text-base font-black tracking-tight uppercase text-white group-hover:text-accent-blue transition-colors">
                   {cat.name}
                 </h3>
-                <p className="mt-4 text-sm font-medium text-white/60 line-clamp-2 leading-relaxed group-hover:text-white/90 transition-colors">
+                <p className="mt-4 text-sm font-bold text-white/90 line-clamp-2 leading-relaxed group-hover:text-white transition-colors">
                   {cat.description}
                 </p>
                 <div className="mt-12 flex items-center justify-between opacity-20 group-hover:opacity-100 transition-all">

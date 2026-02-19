@@ -109,101 +109,44 @@ gtag('config', 'G-9LGNFH00R7');`,
           <MobileNav links={navLinks} />
         </header>
 
-        <div className="grid min-h-[calc(100vh-60px)] grid-cols-1 md:grid-cols-[240px_1fr]">
-          <aside className="hidden flex-col border-r border-ink-black/20 p-8 md:flex bg-sage-bg/50">
-            <div className="flex flex-col gap-10">
-              <div className="space-y-6">
-                <div className="flex items-center justify-between">
-                  <div className="type-label">Categories</div>
-                </div>
-                <div className="flex flex-col gap-2">
-                  <Link href="/tools" className="group flex items-center justify-between text-[0.8rem] font-bold uppercase tracking-tight transition-all hover:translate-x-1">
-                    <span className="group-hover:text-accent-orange">All Tools</span>
-                    <span className="text-[0.6rem] opacity-30 group-hover:opacity-100">70+</span>
-                  </Link>
-                  <Link href="/categories/crm" className="group flex items-center justify-between text-[0.75rem] font-medium opacity-60 transition-all hover:opacity-100 hover:translate-x-1">
-                    <span>CRMs</span>
-                    <span className="text-[0.6rem] transition-transform group-hover:translate-x-1">-></span>
-                  </Link>
-                  <Link href="/categories/prospecting" className="group flex items-center justify-between text-[0.75rem] font-medium opacity-60 transition-all hover:opacity-100 hover:translate-x-1">
-                    <span>Prospecting</span>
-                    <span className="text-[0.6rem] transition-transform group-hover:translate-x-1">-></span>
-                  </Link>
-                  <Link href="/categories/workflow-automation" className="group flex items-center justify-between text-[0.75rem] font-medium opacity-60 transition-all hover:opacity-100 hover:translate-x-1">
-                    <span>Automation</span>
-                    <span className="text-[0.6rem] transition-transform group-hover:translate-x-1">-></span>
-                  </Link>
-                </div>
-              </div>
-
-              <div className="space-y-6">
-                <div className="flex items-center justify-between">
-                  <div className="type-label">Resources</div>
-                </div>
-                <div className="flex flex-col gap-2">
-                  <Link href="/mcp" className="group flex items-center justify-between text-[0.75rem] font-medium opacity-60 transition-all hover:opacity-100 hover:translate-x-1">
-                    <span>MCP Servers</span>
-                    <span className="h-1.5 w-1.5 rounded-full bg-accent-blue/40 group-hover:bg-accent-blue"></span>
-                  </Link>
-                  <Link href="/submit" className="group flex items-center justify-between text-[0.75rem] font-medium opacity-60 transition-all hover:opacity-100 hover:translate-x-1">
-                    <span>Submit Tool</span>
-                    <span className="h-1.5 w-1.5 rounded-full bg-accent-orange/20 group-hover:bg-accent-orange"></span>
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-auto pt-10 schematic-border-t">
-              <div className="type-label opacity-30 mb-4">Live Status</div>
-              <div className="flex flex-col gap-3">
-                <div className="flex items-center gap-3">
-                  <div className="h-1.5 w-1.5 rounded-full bg-accent-orange animate-pulse"></div>
-                  <span className="text-[0.65rem] font-bold uppercase tracking-widest leading-none">Online</span>
-                </div>
-                <div className="text-[0.6rem] font-mono opacity-20 uppercase">
-                  Last Update: {new Date().toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit' })} UTC
-                </div>
-              </div>
-            </div>
-          </aside>
-
-          <main className="flex flex-col">
+        <div className="flex flex-col min-h-[calc(100vh-60px)]">
+          <main className="flex flex-col flex-grow">
             {children}
-            
-            <footer className="mt-auto bg-accent-blue border-t border-ink-black p-12 md:p-24 text-ink-black">
-              <div className="max-w-7xl mx-auto grid grid-cols-1 gap-20 md:grid-cols-2 lg:grid-cols-4">
-                <div className="space-y-6">
-                  <div className="text-xl font-black tracking-tighter uppercase italic">Salestools Club</div>
-                  <p className="text-sm leading-relaxed opacity-70">
-                    A modern directory of sales APIs and MCP servers built for the new era of AI-native operators.
-                  </p>
-                </div>
-                <div className="space-y-6">
-                  <div className="type-label opacity-60">Browse</div>
-                  <ul className="space-y-3 text-sm font-medium">
-                    <li><Link href="/tools" className="hover:underline transition-colors">Directory</Link></li>
-                    <li><Link href="/categories" className="hover:underline transition-colors">Categories</Link></li>
-                    <li><Link href="/mcp" className="hover:underline transition-colors">MCP Servers</Link></li>
-                  </ul>
-                </div>
-                <div className="space-y-6">
-                  <div className="type-label opacity-60">Documentation</div>
-                  <ul className="space-y-3 text-sm font-medium">
-                    <li><Link href="/about" className="hover:underline transition-colors">About Project</Link></li>
-                    <li><Link href="/privacy" className="hover:underline transition-colors">Privacy Policy</Link></li>
-                    <li><Link href="/submit" className="hover:underline transition-colors">Add Entry</Link></li>
-                  </ul>
-                </div>
-                <div className="space-y-6">
-                  <div className="type-label opacity-60">Registry</div>
-                  <p className="text-[0.7rem] font-bold uppercase tracking-widest leading-loose opacity-40">
-                    v1.0.0-Stable<br />
-                    © {new Date().getFullYear()} Salestools.club
-                  </p>
-                </div>
-              </div>
-            </footer>
           </main>
+          
+          <footer className="bg-accent-blue border-t-2 border-ink-black p-12 md:p-24 text-ink-black">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 gap-20 md:grid-cols-2 lg:grid-cols-4">
+              <div className="space-y-6">
+                <div className="text-2xl font-black tracking-tighter uppercase italic">Salestools Club</div>
+                <p className="text-sm font-bold leading-relaxed">
+                  A curated directory of the best sales APIs and MCP servers for people building with Claude Code and other agentic tools.
+                </p>
+              </div>
+              <div className="space-y-6">
+                <div className="type-label text-ink-black font-black">Browse</div>
+                <ul className="space-y-3 text-sm font-bold">
+                  <li><Link href="/tools" className="hover:text-accent-orange transition-colors">Tool Directory</Link></li>
+                  <li><Link href="/categories" className="hover:text-accent-orange transition-colors">Categories</Link></li>
+                  <li><Link href="/mcp" className="hover:text-accent-orange transition-colors">MCP Servers</Link></li>
+                </ul>
+              </div>
+              <div className="space-y-6">
+                <div className="type-label text-ink-black font-black">Documentation</div>
+                <ul className="space-y-3 text-sm font-bold">
+                  <li><Link href="/about" className="hover:text-accent-orange transition-colors">About Project</Link></li>
+                  <li><Link href="/privacy" className="hover:text-accent-orange transition-colors">Privacy Policy</Link></li>
+                  <li><Link href="/submit" className="hover:text-accent-orange transition-colors">Add Entry</Link></li>
+                </ul>
+              </div>
+              <div className="space-y-6">
+                <div className="type-label text-ink-black font-black">Registry</div>
+                <p className="text-[0.7rem] font-black uppercase tracking-widest leading-loose">
+                  v1.0.0-Stable<br />
+                  © {new Date().getFullYear()} Salestools.club
+                </p>
+              </div>
+            </div>
+          </footer>
         </div>
       </body>
     </html>
