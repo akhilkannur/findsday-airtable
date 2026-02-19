@@ -4,6 +4,7 @@ import { GeistMono } from 'geist/font/mono'
 import "./globals.css"
 import Link from "next/link"
 import { MobileNav } from "@/components/MobileNav"
+import { Shield, Zap } from "lucide-react"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -18,13 +19,13 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Salestools Club — Every Sales API & MCP Server in one place.",
   description:
-    "A curated collection of sales APIs, SDKs, and MCP servers. Find the tools to connect your sales stack to Claude and Cursor.",
+    "A curated collection of sales APIs, SDKs, and MCP servers. Find the tools to connect your sales stack to Claude Code, Cursor, and other agentic tools.",
   keywords:
-    "sales API, MCP server, Model Context Protocol, Claude, Cursor, AI sales tools, CRM API, sales automation API",
+    "sales API, MCP server, Model Context Protocol, Claude Code, Claude, Cursor, AI sales tools, CRM API, sales automation API",
   openGraph: {
     title: "Salestools Club — Sales APIs & MCP Servers for AI Tinkerers",
     description:
-      "A simple directory of sales APIs and MCP servers for people building with AI.",
+      "A curated directory of sales APIs and MCP servers for people building with Claude Code, Cursor, and other agentic tools.",
     type: "website",
     url: "https://salestools.club",
   },
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Salestools Club — Sales APIs & MCP Servers for AI Tinkerers",
     description:
-      "Find the APIs, SDKs, and MCP servers that plug your sales stack into Claude and Cursor.",
+      "Find the APIs, SDKs, and MCP servers that plug your sales stack into Claude Code, Cursor, and other agentic tools.",
   },
 }
 
@@ -66,16 +67,16 @@ gtag('config', 'G-9LGNFH00R7');`,
         <header className="flex h-[60px] items-center justify-between border-b border-ink-black px-6 md:px-12 bg-sage-bg/80 backdrop-blur-sm sticky top-0 z-50">
           <div className="flex items-center gap-6">
             <Link href="/" className="group flex items-center gap-3">
-              <div className="relative h-6 w-6 rounded-full border border-ink-black transition-transform duration-500 group-hover:rotate-180">
-                <div className="absolute inset-0 rounded-full border border-dashed border-ink-black opacity-30 -m-1 animate-spin-slow"></div>
-                <div className="absolute top-1/2 left-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-ink-black"></div>
+              <div className="relative flex h-8 w-8 items-center justify-center border-2 border-ink-black bg-accent-blue transition-all duration-500 group-hover:rotate-[15deg] shadow-[2px_2px_0px_#121212]">
+                <Shield className="h-5 w-5 fill-ink-black" />
+                <Zap className="absolute h-2 w-2 fill-accent-orange text-accent-orange top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
               </div>
               <div className="flex flex-col -gap-1">
-                <span className="text-[0.8rem] font-bold uppercase tracking-[0.25em] leading-tight">
-                  Salestools
+                <span className="text-[0.85rem] font-bold uppercase tracking-[0.15em] leading-tight">
+                  Salestools Club
                 </span>
                 <span className="text-[0.6rem] font-bold uppercase tracking-[0.1em] opacity-40 leading-tight">
-                  Protocol v1.0
+                  GTM Lego Blocks
                 </span>
               </div>
             </Link>
@@ -117,7 +118,7 @@ gtag('config', 'G-9LGNFH00R7');`,
                 <div className="flex flex-col gap-2">
                   <Link href="/tools" className="group flex items-center justify-between text-[0.8rem] font-bold uppercase tracking-tight transition-all hover:translate-x-1">
                     <span className="group-hover:text-accent-orange">All Tools</span>
-                    <span className="text-[0.6rem] opacity-30 group-hover:opacity-100">40+</span>
+                    <span className="text-[0.6rem] opacity-30 group-hover:opacity-100">70+</span>
                   </Link>
                   <Link href="/categories/crm" className="group flex items-center justify-between text-[0.75rem] font-medium opacity-60 transition-all hover:opacity-100 hover:translate-x-1">
                     <span>CRMs</span>
