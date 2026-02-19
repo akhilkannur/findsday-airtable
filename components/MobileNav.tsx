@@ -22,7 +22,7 @@ export function MobileNav({ links }: MobileNavProps) {
       </button>
 
       {open && (
-        <nav className="fixed inset-0 top-[60px] z-50 bg-sage-bg px-6 py-12 animate-in fade-in slide-in-from-top-2 duration-300">
+        <nav className="fixed inset-0 top-[60px] z-[999] bg-sage-bg px-6 py-12 animate-in fade-in slide-in-from-top-2 duration-300">
           <div className="flex flex-col gap-8">
             {links.map((link) => (
               <Link
