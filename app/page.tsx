@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 function getCategoryIcon(iconName: string) {
   const Icon = (LucideIcons as Record<string, React.ComponentType<{ className?: string }>>)[iconName]
-  return Icon ? <Icon className="h-6 w-6 text-enjin-teal" /> : <Cpu className="h-6 w-6 text-enjin-teal" />
+  return Icon ? <Icon className="h-6 w-6 text-accent-blue" /> : <Cpu className="h-6 w-6 text-accent-blue" />
 }
 
 export default function Home() {

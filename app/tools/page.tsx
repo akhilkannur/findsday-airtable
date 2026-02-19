@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { getAllTools, searchTools } from "@/lib/tools"
-import { Zap, Brain, ArrowRight } from "lucide-react"
+import { Brain, ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "The Tools | Salestools Club",
@@ -44,7 +44,7 @@ export default async function ToolsPage({
             className="swiss-card group h-full"
           >
             <div className="flex justify-between items-start">
-              <div className="flex h-10 w-10 items-center justify-center border border-ink-black bg-white font-bold text-lg group-hover:bg-accent-blue">
+              <div className="flex h-10 w-10 items-center justify-center border border-ink-black bg-white font-bold text-lg group-hover:bg-accent-blue transition-colors">
                 {tool.name.charAt(0)}
               </div>
               <div className="type-label opacity-40">v{Math.floor(Math.random() * 5) + 1}.{Math.floor(Math.random() * 9)}</div>
@@ -68,16 +68,13 @@ export default async function ToolsPage({
           </Link>
         ))}
       </div>
-    </div>
-  )
-}
 
       {tools.length === 0 && (
-        <div className="mt-32 text-center">
-          <p className="text-xl font-bold text-gray-500">No tools found.</p>
-          <Link href="/tools" className="mt-6 inline-block text-club-teal font-bold hover:underline">Clear search</Link>
+        <div className="mt-32 text-center p-24">
+          <p className="text-xl font-bold opacity-40 uppercase tracking-widest">No tools found matching your query.</p>
+          <Link href="/tools" className="mt-6 inline-block text-accent-orange font-bold hover:underline">Clear Search</Link>
         </div>
       )}
-    </main>
+    </div>
   )
 }

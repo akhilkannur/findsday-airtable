@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { ArrowLeft, Zap, Brain } from "lucide-react"
 import {
   getCategoryBySlug,
   getToolsByCategory,
