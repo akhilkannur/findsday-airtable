@@ -114,8 +114,8 @@ gtag('config', 'G-9LGNFH00R7');`,
             {children}
           </main>
           
-          <footer className="bg-accent-blue border-t-2 border-ink-black p-12 md:p-24 text-ink-black">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 gap-20 md:grid-cols-2 lg:grid-cols-4">
+          <footer className="bg-accent-blue border-t-2 border-ink-black p-6 md:p-12 lg:p-24 text-ink-black">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 gap-y-10 gap-x-20 md:grid-cols-2 lg:grid-cols-4">
               <div className="space-y-6">
                 <div className="text-2xl font-black tracking-tighter uppercase italic">Salestools Club</div>
                 <p className="text-sm font-bold leading-relaxed">

@@ -54,8 +54,7 @@ function ToolCard({ tool }: { tool: any }) {
 
 export default function Home() {
   const allFeatured = getFeaturedTools()
-  const topTools = allFeatured.slice(0, 4)
-  const exploreTools = allFeatured.slice(4, 12)
+  const exploreTools = allFeatured.slice(0, 12) // Now includes all featured tools
   const allTools = getAllTools()
   const categories = getAllCategories()
 
@@ -68,10 +67,7 @@ export default function Home() {
         
         <div className="max-w-7xl mx-auto relative z-10 grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <div className="flex items-center gap-3 mb-8">
-              <div className="type-label text-ink-black font-black text-[0.6rem]">Tool List</div>
-              <div className="h-px w-8 bg-ink-black/20"></div>
-            </div>
+            {/* Removed Tool List element */}
             <h1 className="type-display mb-12 max-w-4xl">
               Every Sales API and MCP server you need to automate your GTM with <span className="relative inline-block">
                 <span className="relative z-10 font-bold">Claude Code</span>
@@ -138,22 +134,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Top Tools ──────────────── */}
-      <section className="px-6 py-20 md:px-12 bg-white relative border-b border-ink-black">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-12">
-            <div className="type-label text-accent-blue font-black mb-2">Vetted Selection</div>
-            <h2 className="text-3xl font-black tracking-tighter uppercase italic">Top Tools</h2>
-          </div>
-
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {topTools.map((tool) => (
-              <ToolCard key={tool.slug} tool={tool} />
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── Explore Tools ──────────────── */}
       <section className="px-6 py-20 md:px-12 bg-sage-bg/10 relative border-b border-ink-black">
         <div className="max-w-7xl mx-auto">
@@ -174,7 +154,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* ── Infinite Crawl ───────────────────────────────── */}
       <section className="border-b border-ink-black bg-[#1A1C16] py-8 overflow-hidden relative">
         <div className="flex animate-marquee whitespace-nowrap">
