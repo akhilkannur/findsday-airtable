@@ -91,45 +91,48 @@ export default function Home() {
             </form>
           </div>
 
-          <div className="hidden lg:flex justify-center items-center relative h-[400px]">
-            {/* Hand-drawn style SVG Illustration */}
-            <svg viewBox="0 0 400 400" className="w-full h-full max-w-[450px] opacity-80" style={{ filter: 'drop-shadow(2px 2px 0px rgba(0,0,0,0.05))' }}>
-              {/* Central Node (AI Agent) */}
-              <circle cx="200" cy="200" r="45" fill="none" stroke="#121212" strokeWidth="2.5" strokeDasharray="6 3" />
-              <circle cx="200" cy="200" r="35" fill="none" stroke="#3B82F6" strokeWidth="2" />
-              <path d="M190 190 L210 210 M210 190 L190 210" stroke="#121212" strokeWidth="3" strokeLinecap="round" />
+          <div className="hidden lg:flex justify-center items-center relative h-[400px] w-full max-w-[450px] mx-auto">
+            {/* Enhanced Hand-drawn style SVG Illustration */}
+            <svg viewBox="0 0 400 400" className="w-full h-full opacity-90" style={{ filter: 'drop-shadow(3px 3px 0px rgba(0,0,0,0.08))' }}>
+              {/* Central AI Agent Node */}
+              <circle cx="200" cy="200" r="48" fill="none" stroke="#121212" strokeWidth="3" strokeDasharray="8 4" className="animate-spin-slow" />
+              <circle cx="200" cy="200" r="38" fill="none" stroke="#3B82F6" strokeWidth="2.5" />
+              <path d="M190 190 L210 210 M210 190 L190 210" stroke="#121212" strokeWidth="4" strokeLinecap="round" />
+              <text x="200" y="205" textAnchor="middle" fill="#121212" fontSize="18" fontWeight="bold" fontFamily="monospace">AI</text>
+
+              {/* Data Stream / Network Flow */}
+              <path d="M50 50 Q 120 20 180 80 Q 250 140 280 120 Q 350 90 380 50" fill="none" stroke="#F59E0B" strokeWidth="1.5" strokeDasharray="3 2" className="animate-dash" />
+              <path d="M380 350 Q 300 380 220 320 Q 150 260 120 280 Q 50 310 20 350" fill="none" stroke="#B5C0FF" strokeWidth="1.5" strokeDasharray="3 2" className="animate-dash-reverse" />
+
+              {/* Node 1: CRM (Hexagon) */}
+              <polygon points="100,60 140,80 140,120 100,140 60,120 60,80" fill="none" stroke="#121212" strokeWidth="2" transform="rotate(-15 100 100)" />
+              <path d="M170 170 L120 130" stroke="#121212" strokeWidth="1.5" strokeDasharray="4 4" strokeLinecap="round" fill="none" />
+              <text x="100" y="105" textAnchor="middle" fill="#121212" fontSize="12" fontWeight="bold" fontFamily="monospace">CRM</text>
+
+              {/* Node 2: Email (Envelope) */}
+              <path d="M280 60 L340 60 L340 140 L280 140 Z M280 60 L310 90 L340 60" fill="none" stroke="#121212" strokeWidth="2" transform="rotate(5 310 100)" />
+              <path d="M230 170 L290 110" stroke="#121212" strokeWidth="1.5" strokeDasharray="4 4" strokeLinecap="round" fill="none" />
+              <text x="310" y="105" textAnchor="middle" fill="#121212" fontSize="12" fontWeight="bold" fontFamily="monospace">MAIL</text>
+
+              {/* Node 3: Database (Cylinder) */}
+              <ellipse cx="300" cy="280" rx="30" ry="10" fill="none" stroke="#121212" strokeWidth="2" />
+              <path d="M270 280 L270 320 A30 10 0 0 0 330 320 L330 280" fill="none" stroke="#121212" strokeWidth="2" />
+              <path d="M230 230 L280 270" stroke="#121212" strokeWidth="1.5" strokeDasharray="4 4" strokeLinecap="round" fill="none" />
+              <text x="300" y="300" textAnchor="middle" fill="#121212" fontSize="12" fontWeight="bold" fontFamily="monospace">DB</text>
+
+              {/* Node 4: Cloud (Irregular Shape) */}
+              <path d="M60 270 Q 40 250 70 230 Q 100 210 130 230 Q 160 250 140 280 Q 120 300 90 290 Z" fill="none" stroke="#121212" strokeWidth="2" />
+              <path d="M170 230 L110 260" stroke="#121212" strokeWidth="1.5" strokeDasharray="4 4" strokeLinecap="round" fill="none" />
+              <text x="100" y="260" textAnchor="middle" fill="#121212" fontSize="12" fontWeight="bold" fontFamily="monospace">CLOUD</text>
               
-              {/* Orbiting nodes with hand-drawn style paths */}
-              <g className="animate-pulse">
-                <circle cx="80" cy="120" r="15" fill="none" stroke="#121212" strokeWidth="2" />
-                <path d="M165 175 L95 130" stroke="#121212" strokeWidth="1.5" strokeDasharray="4 4" strokeLinecap="round" fill="none" />
-                <path d="M75 115 L85 125 M85 115 L75 125" stroke="#F59E0B" strokeWidth="2" />
-              </g>
-
-              <g style={{ animation: 'pulse 3s infinite' }}>
-                <rect x="300" y="100" width="30" height="30" fill="none" stroke="#121212" strokeWidth="2" transform="rotate(15 315 115)" />
-                <path d="M235 175 L300 125" stroke="#121212" strokeWidth="1.5" strokeDasharray="4 4" strokeLinecap="round" fill="none" />
-              </g>
-
-              <g style={{ animation: 'pulse 4s infinite' }}>
-                <path d="M310 280 L330 300 L310 320" fill="none" stroke="#121212" strokeWidth="2" strokeLinejoin="round" />
-                <path d="M235 225 L310 290" stroke="#121212" strokeWidth="1.5" strokeDasharray="4 4" strokeLinecap="round" fill="none" />
-              </g>
-
-              <g style={{ animation: 'pulse 5s infinite' }}>
-                <circle cx="100" cy="300" r="20" fill="none" stroke="#121212" strokeWidth="2" />
-                <path d="M90 300 L110 300 M100 290 L100 310" stroke="#3B82F6" strokeWidth="2" />
-                <path d="M165 225 L115 285" stroke="#121212" strokeWidth="1.5" strokeDasharray="4 4" strokeLinecap="round" fill="none" />
-              </g>
-
-              {/* Decorative "sketchy" lines */}
-              <path d="M50 50 Q 80 40 100 60" fill="none" stroke="#121212" strokeWidth="1" opacity="0.3" />
-              <path d="M350 350 Q 320 360 300 340" fill="none" stroke="#121212" strokeWidth="1" opacity="0.3" />
+              {/* Other abstract connections / flourishes */}
+              <path d="M150 50 L180 30 M150 50 L120 70" stroke="#121212" strokeWidth="1" opacity="0.4" />
+              <path d="M350 350 L320 370 M350 350 L380 330" stroke="#121212" strokeWidth="1" opacity="0.4" />
             </svg>
             
             {/* Abstract floating text labels to match aesthetic */}
-            <div className="absolute top-1/4 right-0 border border-ink-black/20 bg-white/80 px-2 py-1 text-[0.5rem] font-black uppercase tracking-widest rotate-6">MCP_READY</div>
-            <div className="absolute bottom-1/4 left-0 border border-ink-black/20 bg-white/80 px-2 py-1 text-[0.5rem] font-black uppercase tracking-widest -rotate-3 text-accent-blue">SALES_ENGINE</div>
+            <div className="absolute top-1/4 right-0 border border-ink-black/20 bg-white/80 px-2 py-1 text-[0.5rem] font-black uppercase tracking-widest rotate-6">MCP_PROTO</div>
+            <div className="absolute bottom-1/4 left-0 border border-ink-black/20 bg-white/80 px-2 py-1 text-[0.5rem] font-black uppercase tracking-widest -rotate-3 text-accent-blue">GTM_AUTOMATE</div>
           </div>
         </div>
       </section>
