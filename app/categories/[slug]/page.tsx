@@ -51,7 +51,7 @@ export default async function CategoryDetailPage({
           href="/categories"
           className="type-label mb-12 inline-block opacity-40 hover:opacity-100 hover:underline"
         >
-          <- All Infrastructure Modules
+          &lt;- All Infrastructure Modules
         </Link>
 
         <h1 className="type-display mb-8">
@@ -103,14 +103,5 @@ export default async function CategoryDetailPage({
         </div>
       )}
     </div>
-  )
-}
-
-      {tools.length === 0 && (
-        <div className="mt-32 text-center">
-          <p className="text-xl font-bold text-gray-500">No tools in this category yet.</p>
-        </div>
-      )}
-    </main>
   )
 }

@@ -69,24 +69,9 @@ export default function McpPage() {
           href="/submit"
           className="mt-8 swiss-btn swiss-btn-primary inline-flex min-w-[240px]"
         >
-          Submit Module <span>-></span>
+          Submit Module <span>-&gt;</span>
         </Link>
       </div>
     </div>
-  )
-}
-
-      <div className="mt-32 rounded-3xl bg-white/[0.02] border border-white/5 p-12 text-center">
-        <p className="text-lg text-gray-400 font-medium">
-          More tools are adding MCP support every week. Know a tool we're missing?
-        </p>
-        <Link
-          href="/submit"
-          className="mt-8 btn-club"
-        >
-          Submit a tool <ArrowRight className="h-4 w-4" />
-        </Link>
-      </div>
-    </main>
   )
 }

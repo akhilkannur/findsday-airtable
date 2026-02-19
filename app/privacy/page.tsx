@@ -1,6 +1,5 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Privacy Policy | Salestools Club",
@@ -15,7 +14,7 @@ export default function PrivacyPage() {
           href="/"
           className="type-label mb-12 inline-block opacity-40 hover:opacity-100 hover:underline"
         >
-          <- Back to System
+          &lt;- Back to System
         </Link>
 
         <h1 className="type-display">
