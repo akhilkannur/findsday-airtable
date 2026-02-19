@@ -62,15 +62,22 @@ gtag('config', 'G-9LGNFH00R7');`,
           }}
         />
       </head>
-      <body className="bg-sage-bg text-ink-black antialiased">
-        <header className="flex h-[60px] items-center justify-between border-b border-ink-black px-6 md:px-12">
-          <div className="flex items-center gap-4">
-            <div className="relative h-6 w-6 rounded-full border border-ink-black">
-              <div className="absolute inset-0 rounded-full border border-dashed border-ink-black opacity-50 -m-1"></div>
-              <div className="absolute top-1/2 left-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-ink-black"></div>
-            </div>
-            <Link href="/" className="text-[0.75rem] font-medium uppercase tracking-[0.2em]">
-              Salestools.club
+      <body className="bg-sage-bg text-ink-black antialiased grain-bg min-h-screen">
+        <header className="flex h-[60px] items-center justify-between border-b border-ink-black px-6 md:px-12 bg-sage-bg/80 backdrop-blur-sm sticky top-0 z-50">
+          <div className="flex items-center gap-6">
+            <Link href="/" className="group flex items-center gap-3">
+              <div className="relative h-6 w-6 rounded-full border border-ink-black transition-transform duration-500 group-hover:rotate-180">
+                <div className="absolute inset-0 rounded-full border border-dashed border-ink-black opacity-30 -m-1 animate-spin-slow"></div>
+                <div className="absolute top-1/2 left-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-ink-black"></div>
+              </div>
+              <div className="flex flex-col -gap-1">
+                <span className="text-[0.8rem] font-bold uppercase tracking-[0.25em] leading-tight">
+                  Salestools
+                </span>
+                <span className="text-[0.6rem] font-bold uppercase tracking-[0.1em] opacity-40 leading-tight">
+                  Protocol v1.0
+                </span>
+              </div>
             </Link>
           </div>
 
@@ -79,7 +86,7 @@ gtag('config', 'G-9LGNFH00R7');`,
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-[0.75rem] font-medium uppercase tracking-[0.1em] hover:underline underline-offset-4"
+                className="text-[0.7rem] font-bold uppercase tracking-[0.15em] hover:underline hover:underline-offset-4 decoration-accent-orange/40 transition-all"
               >
                 {link.label}
               </Link>
@@ -87,12 +94,13 @@ gtag('config', 'G-9LGNFH00R7');`,
           </nav>
 
           <div className="hidden items-center gap-6 md:flex">
-            <Link href="/submit" className="text-[0.75rem] font-medium uppercase tracking-[0.1em] hover:underline">
-              Submit
-            </Link>
-            <div className="text-[0.75rem] font-medium uppercase tracking-[0.1em] opacity-40 cursor-default">
-              Login
+            <div className="flex items-center gap-2 border-l border-ink-black/10 pl-6 h-6">
+              <div className="h-1 w-1 rounded-full bg-accent-orange animate-pulse"></div>
+              <span className="text-[0.65rem] font-bold uppercase tracking-[0.1em] opacity-40">Session Active</span>
             </div>
+            <Link href="/submit" className="swiss-btn-primary border border-ink-black px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.15em] hover:bg-ink-black hover:text-accent-blue transition-colors">
+              Submit Tool
+            </Link>
           </div>
 
           {/* Mobile nav */}
@@ -100,32 +108,61 @@ gtag('config', 'G-9LGNFH00R7');`,
         </header>
 
         <div className="grid min-h-[calc(100vh-60px)] grid-cols-1 md:grid-cols-[240px_1fr]">
-          <aside className="hidden flex-col gap-12 border-r border-ink-black p-8 md:flex">
-            <div className="flex flex-col gap-4">
-              <div className="type-label opacity-40">Categories</div>
-              <Link href="/tools" className="flex items-center justify-between text-sm font-medium hover:underline">
-                <span>All Tools</span>
-                <span className="text-[0.7rem] opacity-40">200+</span>
-              </Link>
-              <Link href="/categories/crm" className="flex items-center justify-between text-sm font-medium opacity-60 hover:opacity-100">
-                <span>CRM Platforms</span>
-                <span>-></span>
-              </Link>
-              <Link href="/categories/prospecting" className="flex items-center justify-between text-sm font-medium opacity-60 hover:opacity-100">
-                <span>Prospecting</span>
-                <span>-></span>
-              </Link>
-              <Link href="/categories/workflow-automation" className="flex items-center justify-between text-sm font-medium opacity-60 hover:opacity-100">
-                <span>Automation</span>
-                <span>-></span>
-              </Link>
+          <aside className="hidden flex-col border-r border-ink-black/20 p-8 md:flex bg-sage-bg/50">
+            <div className="flex flex-col gap-10">
+              <div className="space-y-6">
+                <div className="flex items-center justify-between">
+                  <div className="type-label">Modules</div>
+                  <div className="text-[0.6rem] font-bold opacity-30">001-A</div>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <Link href="/tools" className="group flex items-center justify-between text-[0.8rem] font-bold uppercase tracking-tight transition-all hover:translate-x-1">
+                    <span className="group-hover:text-accent-orange">All Systems</span>
+                    <span className="text-[0.6rem] opacity-30 group-hover:opacity-100">200+</span>
+                  </Link>
+                  <Link href="/categories/crm" className="group flex items-center justify-between text-[0.75rem] font-medium opacity-60 transition-all hover:opacity-100 hover:translate-x-1">
+                    <span>CRM_CORE</span>
+                    <span className="text-[0.6rem] transition-transform group-hover:translate-x-1">-></span>
+                  </Link>
+                  <Link href="/categories/prospecting" className="group flex items-center justify-between text-[0.75rem] font-medium opacity-60 transition-all hover:opacity-100 hover:translate-x-1">
+                    <span>PROSPECT_LINK</span>
+                    <span className="text-[0.6rem] transition-transform group-hover:translate-x-1">-></span>
+                  </Link>
+                  <Link href="/categories/workflow-automation" className="group flex items-center justify-between text-[0.75rem] font-medium opacity-60 transition-all hover:opacity-100 hover:translate-x-1">
+                    <span>AUTO_FLOW</span>
+                    <span className="text-[0.6rem] transition-transform group-hover:translate-x-1">-></span>
+                  </Link>
+                </div>
+              </div>
+
+              <div className="space-y-6">
+                <div className="flex items-center justify-between">
+                  <div className="type-label">Protocol</div>
+                  <div className="text-[0.6rem] font-bold opacity-30">002-B</div>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <Link href="/mcp" className="group flex items-center justify-between text-[0.75rem] font-medium opacity-60 transition-all hover:opacity-100 hover:translate-x-1">
+                    <span>MCP_SERVERS</span>
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent-blue/40 group-hover:bg-accent-blue"></span>
+                  </Link>
+                  <Link href="/submit" className="group flex items-center justify-between text-[0.75rem] font-medium opacity-60 transition-all hover:opacity-100 hover:translate-x-1">
+                    <span>PUSH_DATA</span>
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent-orange/20 group-hover:bg-accent-orange"></span>
+                  </Link>
+                </div>
+              </div>
             </div>
 
-            <div className="mt-auto flex flex-col gap-4">
-              <div className="type-label opacity-40">System Status</div>
-              <div className="flex items-center gap-3">
-                <div className="h-2 w-2 rounded-full bg-accent-orange animate-pulse"></div>
-                <span className="type-label">Live Updates</span>
+            <div className="mt-auto pt-10 schematic-border-t">
+              <div className="type-label opacity-30 mb-4">Diagnostics</div>
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="h-1.5 w-1.5 rounded-full bg-accent-orange animate-pulse"></div>
+                  <span className="text-[0.65rem] font-bold uppercase tracking-widest leading-none">Status: Live</span>
+                </div>
+                <div className="text-[0.6rem] font-mono opacity-20 uppercase">
+                  Last Sync: {new Date().toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit' })} UTC
+                </div>
               </div>
             </div>
           </aside>

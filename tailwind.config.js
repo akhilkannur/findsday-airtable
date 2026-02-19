@@ -2,8 +2,12 @@
 module.exports = {
   content: ["./app/**/*.{js,ts,jsx,tsx,mdx}", "./pages/**/*.{js,ts,jsx,tsx,mdx}", "./components/**/*.{js,ts,jsx,tsx,mdx}", "*.{js,ts,jsx,tsx,mdx}"],
   theme: {
-    extend: {
-      colors: {
+          extend: {
+            animation: {
+              'spin-slow': 'spin 12s linear infinite',
+            },
+            colors: {
+    
         'sage-bg': '#DCDFCF', 
         'ink-black': '#121212',
         'accent-blue': '#B5C0FF',

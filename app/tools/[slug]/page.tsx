@@ -80,63 +80,71 @@ export default async function ToolDetailPage({
   ]
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col bg-sage-bg/30">
       <JsonLd tool={tool} />
 
-      <section className="px-6 py-24 md:px-12 md:py-32 border-b border-dashed border-ink-black">
+      <section className="px-6 py-24 md:px-12 md:py-32 border-b border-dashed border-ink-black relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-full border-l border-dashed border-ink-black/5 pointer-events-none hidden lg:block"></div>
+        
         <Link
           href="/tools"
-          className="type-label mb-12 inline-block opacity-40 hover:opacity-100 hover:underline"
+          className="type-label mb-12 inline-flex items-center gap-2 opacity-40 hover:opacity-100 hover:text-accent-orange transition-all group"
         >
-          &lt;- Back to Directory
+          <span className="transition-transform group-hover:-translate-x-1">&lt;-</span> Return to Registry
         </Link>
 
         <div className="flex flex-col gap-12 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-3xl">
-            <div className="flex flex-wrap items-center gap-6">
-              <div className="flex h-16 w-16 items-center justify-center border border-ink-black bg-accent-blue text-3xl font-black">
+          <div className="max-w-4xl">
+            <div className="flex flex-wrap items-center gap-8">
+              <div className="flex h-20 w-20 items-center justify-center border border-ink-black bg-white shadow-[6px_6px_0px_rgba(18,18,18,0.1)] text-4xl font-black transition-transform hover:rotate-3">
                 {tool.name.charAt(0)}
               </div>
-              <div>
-                <h1 className="type-display">{tool.name}</h1>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  <span className="swiss-badge">{tool.category}</span>
-                  {tool.aiDifficulty && (
-                    <span className="swiss-badge opacity-40">System: {tool.aiDifficulty}</span>
-                  )}
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="type-label px-2 py-0.5 border border-ink-black/10 bg-white/50">{tool.category}</div>
+                  <div className="h-px w-6 bg-ink-black/20"></div>
+                  <div className="text-[0.6rem] font-bold tracking-[0.2em] opacity-30 uppercase">Node_ID: {tool.slug.toUpperCase()}</div>
                 </div>
+                <h1 className="type-display">{tool.name}</h1>
               </div>
             </div>
-            <p className="mt-10 text-2xl font-medium opacity-60 leading-relaxed">{tool.oneLiner}</p>
+            <p className="mt-12 text-2xl font-medium opacity-60 leading-relaxed max-w-2xl">{tool.oneLiner}</p>
           </div>
 
           <div className="flex flex-col gap-4">
+            <div className="type-label opacity-40 mb-2">Access Protocols</div>
             {actionLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="swiss-btn min-w-[200px]"
+                className="swiss-btn min-w-[240px] bg-white/40 hover:bg-ink-black hover:text-white group"
               >
-                {link.label} <span>↗</span>
+                {link.label} <span className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
               </a>
             ))}
           </div>
         </div>
       </section>
 
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] divide-x divide-ink-black">
-        <div className="p-6 md:p-12 space-y-24">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px]">
+        <div className="p-8 md:p-16 space-y-32">
           {tool.aiCapabilities && tool.aiCapabilities.length > 0 && (
             <div>
-              <div className="type-label mb-8 opacity-40">Operational Capabilities</div>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div className="flex items-center gap-4 mb-10">
+                <div className="type-label opacity-40">Core Capabilities</div>
+                <div className="h-px flex-grow bg-ink-black/5"></div>
+              </div>
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 {tool.aiCapabilities.map((cap) => (
-                  <div key={cap} className="swiss-card bg-transparent">
-                    <div className="flex items-center gap-3">
-                      <div className="h-2 w-2 rounded-full bg-accent-orange"></div>
-                      <span className="text-sm font-bold uppercase tracking-tight">{cap}</span>
+                  <div key={cap} className="p-6 border border-ink-black/10 bg-white/20 backdrop-blur-sm group hover:border-ink-black transition-colors">
+                    <div className="flex items-start gap-4">
+                      <div className="h-2 w-2 rounded-full bg-accent-blue mt-1.5 group-hover:bg-accent-orange transition-colors"></div>
+                      <div className="flex flex-col">
+                        <span className="text-[0.7rem] font-bold uppercase tracking-[0.1em] opacity-40 mb-1">Function_Node</span>
+                        <span className="text-sm font-bold uppercase tracking-tight">{cap}</span>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -145,47 +153,67 @@ export default async function ToolDetailPage({
           )}
 
           {tool.starterPrompt && (
-            <div className="border border-dashed border-ink-black p-10">
-              <div className="type-label mb-6 opacity-40">Initial Command Sequence</div>
-              <div className="font-mono text-lg p-8 border border-ink-black bg-white/40">
+            <div className="border border-dashed border-ink-black p-12 bg-white/10 relative group">
+              <div className="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-100 transition-opacity">
+                <div className="text-[0.6rem] font-bold uppercase tracking-[0.2em]">CMD_INPUT_01</div>
+              </div>
+              <div className="type-label mb-8 opacity-40">Initial Command Sequence</div>
+              <div className="font-mono text-xl p-10 border border-ink-black bg-white shadow-[10px_10px_0px_rgba(18,18,18,0.05)] leading-relaxed italic">
                 &quot;{tool.starterPrompt}&quot;
               </div>
-              <div className="type-label mt-6 text-accent-orange font-bold">Protocol Active</div>
+              <div className="mt-8 flex items-center gap-3">
+                <div className="h-1.5 w-1.5 rounded-full bg-accent-orange animate-pulse"></div>
+                <div className="type-label text-accent-orange font-bold">Signal Active</div>
+              </div>
             </div>
           )}
 
-          <div className="max-w-3xl">
-            <div className="type-label mb-8 opacity-40">Module Overview</div>
-            <div className="text-xl font-medium leading-relaxed opacity-60 whitespace-pre-line">
+          <div className="max-w-4xl">
+            <div className="flex items-center gap-4 mb-10">
+              <div className="type-label opacity-40">Documentation Overlay</div>
+              <div className="h-px flex-grow bg-ink-black/5"></div>
+            </div>
+            <div className="text-xl font-medium leading-relaxed opacity-70 whitespace-pre-line max-w-3xl">
               {tool.description}
             </div>
           </div>
         </div>
 
-        <div className="p-6 md:p-12 space-y-12">
-          <div className="type-label opacity-40">System Specs</div>
-          
-          <div className="space-y-8">
-            {[
-              { label: "Interface", value: tool.apiType.join(' / ') },
-              { label: "Auth Protocol", value: tool.authMethod.join(' / ') },
-              { label: "Resource Tier", value: tool.hasFreeTier ? "Public/Free" : "Private/Paid" },
-              { label: "SDK Nodes", value: tool.sdkLanguages.join(', ') || "Generic" },
-              { label: "Signal Type", value: tool.hasWebhooks ? "Bi-directional" : "Standard" },
-            ].map((spec) => (
-              <div key={spec.label} className="border-b border-ink-black pb-4">
-                <div className="type-label opacity-40 mb-1">{spec.label}</div>
-                <div className="font-bold uppercase text-sm tracking-widest">{spec.value}</div>
-              </div>
-            ))}
+        <div className="p-8 md:p-16 bg-white/20 backdrop-blur-md border-l border-ink-black/10 space-y-16">
+          <div>
+            <div className="flex items-center justify-between mb-10">
+              <div className="type-label opacity-40">System Specs</div>
+              <div className="text-[0.6rem] font-bold opacity-20 uppercase tracking-widest">v1.0.0-STABLE</div>
+            </div>
+            
+            <div className="space-y-10">
+              {[
+                { label: "Interface_Type", value: tool.apiType.join(' / ') },
+                { label: "Auth_Protocol", value: tool.authMethod.join(' / ') },
+                { label: "Resource_Tier", value: tool.hasFreeTier ? "Public / Free" : "Private / Paid" },
+                { label: "SDK_Library", value: tool.sdkLanguages.join(', ') || "Generic / Raw" },
+                { label: "Signal_Route", value: tool.hasWebhooks ? "Bi-directional (Webhooks)" : "Standard (Poll)" },
+              ].map((spec) => (
+                <div key={spec.label} className="group border-b border-ink-black/5 pb-6">
+                  <div className="type-label opacity-40 mb-2 group-hover:text-accent-orange transition-colors">{spec.label}</div>
+                  <div className="font-bold uppercase text-[0.8rem] tracking-[0.15em] leading-tight">{spec.value}</div>
+                </div>
+              ))}
+            </div>
           </div>
 
           {tool.integrations.find(i => i.platform === "MCP" && i.mcpConfig) && (
-            <div className="border border-ink-black p-8 bg-accent-blue/10">
-              <div className="type-label mb-6">MCP Infrastructure</div>
-              <pre className="font-mono text-[10px] whitespace-pre overflow-x-auto p-4 border border-ink-black bg-white">
+            <div className="border border-ink-black bg-ink-black p-8 shadow-[8px_8px_0px_rgba(18,18,18,0.2)]">
+              <div className="flex items-center justify-between mb-8">
+                <div className="type-label text-white/40">MCP Configuration</div>
+                <div className="h-2 w-2 rounded-full bg-accent-blue animate-pulse"></div>
+              </div>
+              <pre className="font-mono text-[10px] whitespace-pre-wrap overflow-x-auto p-6 border border-white/10 bg-white/5 text-white/80 leading-relaxed">
                 {tool.integrations.find(i => i.platform === "MCP")?.mcpConfig}
               </pre>
+              <div className="mt-6 text-[0.6rem] font-bold uppercase tracking-[0.2em] text-accent-blue text-center">
+                Copy to claude_desktop_config.json
+              </div>
             </div>
           )}
         </div>
