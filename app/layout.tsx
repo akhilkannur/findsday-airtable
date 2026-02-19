@@ -112,24 +112,23 @@ gtag('config', 'G-9LGNFH00R7');`,
             <div className="flex flex-col gap-10">
               <div className="space-y-6">
                 <div className="flex items-center justify-between">
-                  <div className="type-label">Modules</div>
-                  <div className="text-[0.6rem] font-bold opacity-30">001-A</div>
+                  <div className="type-label">Categories</div>
                 </div>
                 <div className="flex flex-col gap-2">
                   <Link href="/tools" className="group flex items-center justify-between text-[0.8rem] font-bold uppercase tracking-tight transition-all hover:translate-x-1">
-                    <span className="group-hover:text-accent-orange">All Systems</span>
-                    <span className="text-[0.6rem] opacity-30 group-hover:opacity-100">200+</span>
+                    <span className="group-hover:text-accent-orange">All Tools</span>
+                    <span className="text-[0.6rem] opacity-30 group-hover:opacity-100">40+</span>
                   </Link>
                   <Link href="/categories/crm" className="group flex items-center justify-between text-[0.75rem] font-medium opacity-60 transition-all hover:opacity-100 hover:translate-x-1">
-                    <span>CRM_CORE</span>
+                    <span>CRMs</span>
                     <span className="text-[0.6rem] transition-transform group-hover:translate-x-1">-></span>
                   </Link>
                   <Link href="/categories/prospecting" className="group flex items-center justify-between text-[0.75rem] font-medium opacity-60 transition-all hover:opacity-100 hover:translate-x-1">
-                    <span>PROSPECT_LINK</span>
+                    <span>Prospecting</span>
                     <span className="text-[0.6rem] transition-transform group-hover:translate-x-1">-></span>
                   </Link>
                   <Link href="/categories/workflow-automation" className="group flex items-center justify-between text-[0.75rem] font-medium opacity-60 transition-all hover:opacity-100 hover:translate-x-1">
-                    <span>AUTO_FLOW</span>
+                    <span>Automation</span>
                     <span className="text-[0.6rem] transition-transform group-hover:translate-x-1">-></span>
                   </Link>
                 </div>
@@ -137,16 +136,15 @@ gtag('config', 'G-9LGNFH00R7');`,
 
               <div className="space-y-6">
                 <div className="flex items-center justify-between">
-                  <div className="type-label">Protocol</div>
-                  <div className="text-[0.6rem] font-bold opacity-30">002-B</div>
+                  <div className="type-label">Resources</div>
                 </div>
                 <div className="flex flex-col gap-2">
                   <Link href="/mcp" className="group flex items-center justify-between text-[0.75rem] font-medium opacity-60 transition-all hover:opacity-100 hover:translate-x-1">
-                    <span>MCP_SERVERS</span>
+                    <span>MCP Servers</span>
                     <span className="h-1.5 w-1.5 rounded-full bg-accent-blue/40 group-hover:bg-accent-blue"></span>
                   </Link>
                   <Link href="/submit" className="group flex items-center justify-between text-[0.75rem] font-medium opacity-60 transition-all hover:opacity-100 hover:translate-x-1">
-                    <span>PUSH_DATA</span>
+                    <span>Submit Tool</span>
                     <span className="h-1.5 w-1.5 rounded-full bg-accent-orange/20 group-hover:bg-accent-orange"></span>
                   </Link>
                 </div>
@@ -154,14 +152,14 @@ gtag('config', 'G-9LGNFH00R7');`,
             </div>
 
             <div className="mt-auto pt-10 schematic-border-t">
-              <div className="type-label opacity-30 mb-4">Diagnostics</div>
+              <div className="type-label opacity-30 mb-4">Live Status</div>
               <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-3">
                   <div className="h-1.5 w-1.5 rounded-full bg-accent-orange animate-pulse"></div>
-                  <span className="text-[0.65rem] font-bold uppercase tracking-widest leading-none">Status: Live</span>
+                  <span className="text-[0.65rem] font-bold uppercase tracking-widest leading-none">Online</span>
                 </div>
                 <div className="text-[0.6rem] font-mono opacity-20 uppercase">
-                  Last Sync: {new Date().toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit' })} UTC
+                  Last Update: {new Date().toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit' })} UTC
                 </div>
               </div>
             </div>
@@ -179,10 +177,10 @@ gtag('config', 'G-9LGNFH00R7');`,
                   </p>
                 </div>
                 <div className="space-y-6">
-                  <div className="type-label opacity-40">System Nodes</div>
+                  <div className="type-label opacity-40">Browse</div>
                   <ul className="space-y-3 text-sm font-medium">
                     <li><Link href="/tools" className="hover:underline">Directory</Link></li>
-                    <li><Link href="/categories" className="hover:underline">Modules</Link></li>
+                    <li><Link href="/categories" className="hover:underline">Categories</Link></li>
                     <li><Link href="/mcp" className="hover:underline">MCP Servers</Link></li>
                   </ul>
                 </div>

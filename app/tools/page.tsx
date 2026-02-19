@@ -24,9 +24,9 @@ export default async function ToolsPage({
         <div className="absolute top-0 right-0 w-64 h-full border-l border-dashed border-ink-black/5 pointer-events-none hidden lg:block"></div>
         <div className="type-label mb-6 opacity-40 flex items-center gap-3">
           <div className="h-1.5 w-1.5 rounded-full bg-accent-blue animate-pulse"></div>
-          Node Directory v1.0
+          Directory
         </div>
-        <h1 className="type-display mb-8">The Registry</h1>
+        <h1 className="type-display mb-8">All Tools</h1>
         <p className="max-w-2xl text-xl font-medium opacity-60 leading-relaxed">
           A comprehensive database of sales APIs and MCP servers. These are the building blocks for the next generation of AI-native sales systems.
         </p>
@@ -35,10 +35,10 @@ export default async function ToolsPage({
       {q && (
         <div className="px-6 py-10 md:px-12 border-b border-ink-black flex items-center justify-between bg-white/20 backdrop-blur-sm">
           <div className="flex items-center gap-4">
-            <span className="type-label opacity-40 font-bold uppercase tracking-widest">Query_Signal:</span>
+            <span className="type-label opacity-40 font-bold uppercase tracking-widest">Search Results:</span>
             <span className="px-3 py-1 border border-accent-blue bg-accent-blue/10 text-[0.7rem] font-bold uppercase tracking-[0.1em] text-accent-blue">&lsquo;{q}&rsquo;</span>
           </div>
-          <Link href="/tools" className="type-label hover:text-accent-orange transition-colors">Terminate Filter</Link>
+          <Link href="/tools" className="type-label hover:text-accent-orange transition-colors">Clear Search</Link>
         </div>
       )}
 
@@ -55,10 +55,6 @@ export default async function ToolsPage({
               <div className="flex h-12 w-12 items-center justify-center border border-ink-black bg-white group-hover:bg-accent-blue transition-colors font-bold text-xl shadow-[4px_4px_0px_rgba(18,18,18,0.05)]">
                 {tool.name.charAt(0)}
               </div>
-              <div className="flex flex-col items-end">
-                <div className="text-[0.6rem] font-bold opacity-30">REF._{idx.toString().padStart(3, '0')}</div>
-                <div className="type-label opacity-60 mt-1">v{Math.floor(Math.random() * 5) + 1}.{Math.floor(Math.random() * 9)}</div>
-              </div>
             </div>
             
             <div className="mt-8 text-2xl font-bold tracking-tight uppercase group-hover:text-accent-orange transition-colors">{tool.name}</div>
@@ -71,7 +67,7 @@ export default async function ToolsPage({
               {tool.mcpReady && (
                 <span className="swiss-badge border-accent-orange text-accent-orange flex items-center gap-1">
                   <div className="h-1 w-1 bg-accent-orange rounded-full animate-pulse"></div>
-                  MCP
+                  MCP Ready
                 </span>
               )}
             </div>
@@ -82,7 +78,7 @@ export default async function ToolsPage({
                   <span key={api} className="text-[0.6rem] font-bold uppercase tracking-[0.15em] opacity-30 group-hover:opacity-100 transition-opacity">{api}</span>
                 ))}
               </div>
-              <div className="text-[0.65rem] font-bold uppercase group-hover:translate-x-1 transition-transform">-> Specs</div>
+              <div className="text-[0.65rem] font-bold uppercase group-hover:translate-x-1 transition-transform">-> View Tool</div>
             </div>
           </Link>
         ))}

@@ -74,9 +74,9 @@ export default async function ToolDetailPage({
   }
 
   const actionLinks = [
-    { label: "View Specs", href: tool.docsUrl },
-    { label: "Core Node", href: tool.websiteUrl },
-    { label: "Registry", href: tool.pricingUrl },
+    { label: "Documentation", href: tool.docsUrl },
+    { label: "Website", href: tool.websiteUrl },
+    { label: "Pricing", href: tool.pricingUrl },
   ]
 
   return (
@@ -90,7 +90,7 @@ export default async function ToolDetailPage({
           href="/tools"
           className="type-label mb-12 inline-flex items-center gap-2 opacity-40 hover:opacity-100 hover:text-accent-orange transition-all group"
         >
-          <span className="transition-transform group-hover:-translate-x-1">&lt;-</span> Return to Registry
+          <span className="transition-transform group-hover:-translate-x-1">&lt;-</span> Back to Directory
         </Link>
 
         <div className="flex flex-col gap-12 lg:flex-row lg:items-end lg:justify-between">
@@ -102,8 +102,6 @@ export default async function ToolDetailPage({
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <div className="type-label px-2 py-0.5 border border-ink-black/10 bg-white/50">{tool.category}</div>
-                  <div className="h-px w-6 bg-ink-black/20"></div>
-                  <div className="text-[0.6rem] font-bold tracking-[0.2em] opacity-30 uppercase">Node_ID: {tool.slug.toUpperCase()}</div>
                 </div>
                 <h1 className="type-display">{tool.name}</h1>
               </div>
@@ -112,7 +110,7 @@ export default async function ToolDetailPage({
           </div>
 
           <div className="flex flex-col gap-4">
-            <div className="type-label opacity-40 mb-2">Access Protocols</div>
+            <div className="type-label opacity-40 mb-2">Technical Links</div>
             {actionLinks.map((link) => (
               <a
                 key={link.label}
@@ -133,7 +131,7 @@ export default async function ToolDetailPage({
           {tool.aiCapabilities && tool.aiCapabilities.length > 0 && (
             <div>
               <div className="flex items-center gap-4 mb-10">
-                <div className="type-label opacity-40">Core Capabilities</div>
+                <div className="type-label opacity-40">Key Features</div>
                 <div className="h-px flex-grow bg-ink-black/5"></div>
               </div>
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -142,7 +140,6 @@ export default async function ToolDetailPage({
                     <div className="flex items-start gap-4">
                       <div className="h-2 w-2 rounded-full bg-accent-blue mt-1.5 group-hover:bg-accent-orange transition-colors"></div>
                       <div className="flex flex-col">
-                        <span className="text-[0.7rem] font-bold uppercase tracking-[0.1em] opacity-40 mb-1">Function_Node</span>
                         <span className="text-sm font-bold uppercase tracking-tight">{cap}</span>
                       </div>
                     </div>
@@ -154,23 +151,16 @@ export default async function ToolDetailPage({
 
           {tool.starterPrompt && (
             <div className="border border-dashed border-ink-black p-12 bg-white/10 relative group">
-              <div className="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-100 transition-opacity">
-                <div className="text-[0.6rem] font-bold uppercase tracking-[0.2em]">CMD_INPUT_01</div>
-              </div>
-              <div className="type-label mb-8 opacity-40">Initial Command Sequence</div>
+              <div className="type-label mb-8 opacity-40">Example Prompt</div>
               <div className="font-mono text-xl p-10 border border-ink-black bg-white shadow-[10px_10px_0px_rgba(18,18,18,0.05)] leading-relaxed italic">
                 &quot;{tool.starterPrompt}&quot;
-              </div>
-              <div className="mt-8 flex items-center gap-3">
-                <div className="h-1.5 w-1.5 rounded-full bg-accent-orange animate-pulse"></div>
-                <div className="type-label text-accent-orange font-bold">Signal Active</div>
               </div>
             </div>
           )}
 
           <div className="max-w-4xl">
             <div className="flex items-center gap-4 mb-10">
-              <div className="type-label opacity-40">Documentation Overlay</div>
+              <div className="type-label opacity-40">Overview</div>
               <div className="h-px flex-grow bg-ink-black/5"></div>
             </div>
             <div className="text-xl font-medium leading-relaxed opacity-70 whitespace-pre-line max-w-3xl">
@@ -182,17 +172,16 @@ export default async function ToolDetailPage({
         <div className="p-8 md:p-16 bg-white/20 backdrop-blur-md border-l border-ink-black/10 space-y-16">
           <div>
             <div className="flex items-center justify-between mb-10">
-              <div className="type-label opacity-40">System Specs</div>
-              <div className="text-[0.6rem] font-bold opacity-20 uppercase tracking-widest">v1.0.0-STABLE</div>
+              <div className="type-label opacity-40">Technical Specs</div>
             </div>
             
             <div className="space-y-10">
               {[
-                { label: "Interface_Type", value: tool.apiType.join(' / ') },
-                { label: "Auth_Protocol", value: tool.authMethod.join(' / ') },
-                { label: "Resource_Tier", value: tool.hasFreeTier ? "Public / Free" : "Private / Paid" },
-                { label: "SDK_Library", value: tool.sdkLanguages.join(', ') || "Generic / Raw" },
-                { label: "Signal_Route", value: tool.hasWebhooks ? "Bi-directional (Webhooks)" : "Standard (Poll)" },
+                { label: "API Type", value: tool.apiType.join(' / ') },
+                { label: "Authentication", value: tool.authMethod.join(' / ') },
+                { label: "Pricing Tier", value: tool.hasFreeTier ? "Free Tier Available" : "Paid Only" },
+                { label: "SDK Languages", value: tool.sdkLanguages.join(', ') || "N/A" },
+                { label: "Webhooks", value: tool.hasWebhooks ? "Yes" : "No" },
               ].map((spec) => (
                 <div key={spec.label} className="group border-b border-ink-black/5 pb-6">
                   <div className="type-label opacity-40 mb-2 group-hover:text-accent-orange transition-colors">{spec.label}</div>
@@ -212,11 +201,16 @@ export default async function ToolDetailPage({
                 {tool.integrations.find(i => i.platform === "MCP")?.mcpConfig}
               </pre>
               <div className="mt-6 text-[0.6rem] font-bold uppercase tracking-[0.2em] text-accent-blue text-center">
-                Copy to claude_desktop_config.json
+                Copy to MCP Config
               </div>
             </div>
           )}
         </div>
+      </div>
+    </div>
+  )
+}
+
       </div>
     </div>
   )

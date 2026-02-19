@@ -50,7 +50,7 @@ export default async function CategoryDetailPage({
           href="/categories"
           className="type-label mb-12 inline-block opacity-40 hover:opacity-100 hover:underline"
         >
-          &lt;- All Infrastructure Modules
+          &lt;- All Categories
         </Link>
 
         <h1 className="type-display mb-8">
@@ -70,7 +70,6 @@ export default async function CategoryDetailPage({
               <div className="flex h-16 w-16 items-center justify-center border border-ink-black bg-white group-hover:bg-accent-blue transition-all duration-500 text-2xl font-black">
                 {tool.name.charAt(0)}
               </div>
-              <div className="type-label opacity-40 mt-1">ID: {tool.slug}</div>
             </div>
 
             <h2 className="mt-6 text-2xl font-bold tracking-tight">
@@ -98,7 +97,7 @@ export default async function CategoryDetailPage({
 
       {tools.length === 0 && (
         <div className="mt-32 text-center p-24">
-          <p className="text-xl font-bold opacity-40 uppercase tracking-widest">No modules detected in this node.</p>
+          <p className="text-xl font-bold opacity-40 uppercase tracking-widest">No tools found in this category.</p>
         </div>
       )}
     </div>
