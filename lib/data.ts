@@ -90,7 +90,7 @@ export const tools: SalesTool[] = [
     oneLiner: "The unified API and MCP server for managing X (Twitter) DMs.",
     description:
       "Inbox provides a programmatic way to send and manage DM conversations across messaging platforms, starting with X. It offers a REST API for message automation, CRM synchronization, and AI-powered responses. With its native MCP server, you can connect tools like Claude or Cursor directly to your Twitter DMs to automate outreach and support workflows.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/inbox.svg",
     websiteUrl: "https://inboxapp.com",
     docsUrl: "https://docs.inboxapp.com",
@@ -147,7 +147,7 @@ export const tools: SalesTool[] = [
     oneLiner: "Interactive quiz platform for capturing zero-party consumer data.",
     description:
       "Jebbit's REST API allows developers to programmatically manage interactive quizzes, product feeds, and lead capture workflows. It specializes in 'zero-party data'—data that customers intentionally share with a brand. By integrating Jebbit into your sales stack, you can sync high-intent lead data directly to your CRM and trigger personalized follow-ups based on quiz responses.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/jebbit.svg",
     websiteUrl: "https://www.jebbit.com",
     docsUrl: "https://developers.jebbit.com",
@@ -222,7 +222,7 @@ export const tools: SalesTool[] = [
     oneLiner: "Cloud phone system for sales and support teams with deep CRM integrations.",
     description:
       "JustCall's REST API allows developers to programmatically initiate calls, send SMS/MMS, and retrieve call recordings and analytics. It is designed for sales teams that want to build custom dialers or automate voice-based workflows within their CRM. With its robust webhook support, you can trigger actions in real-time when a call is started, answered, or completed, making it a cornerstone for automated sales operations.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/justcall.svg",
     websiteUrl: "https://justcall.io",
     docsUrl: "https://justcall.io/docs/api/",
@@ -297,7 +297,7 @@ export const tools: SalesTool[] = [
     oneLiner: "AI-powered sales dialer and SMS platform for high-velocity teams.",
     description:
       "Kixie offers a robust API for automating voice and SMS communication within your sales stack. It features AI-powered dialing, local presence, and deep CRM integrations that can be orchestrated programmatically. Developers can use the API to trigger calls, send personalized SMS campaigns, and sync call logs and recordings directly into their business systems, significantly boosting rep productivity.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/kixie.svg",
     websiteUrl: "https://kixie.com",
     docsUrl: "https://developer.kixie.com",
@@ -2959,7 +2959,7 @@ export const tools: SalesTool[] = [
     oneLiner: "Sales engagement platform for multi-channel outbound and personalized outreach.",
     description:
       "Klenty's REST API allows developers to programmatically manage cadences, sync leads, and trigger outbound communication across email, phone, and LinkedIn. It specializes in 'Personalized Outbound at Scale,' providing deep integration with major CRMs. With its robust webhook support and API, revenue teams can automate the entire lifecycle of a prospect from initial contact to meeting booked.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/klenty.svg",
     websiteUrl: "https://www.klenty.com",
     docsUrl: "https://developers.klenty.com",
@@ -3009,7 +3009,7 @@ export const tools: SalesTool[] = [
     oneLiner: "AI-powered sales dialer for multi-line and power dialing at scale.",
     description:
       "Koncert's API enables high-velocity sales teams to programmatically orchestrate their calling activities. It features AI-powered multi-line dialing, cadences, and 'Remote Salesfloor' capabilities. The API is designed for building deeply integrated dialer experiences within your CRM, allowing for automated call logging, lead status updates, and real-time activity tracking.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/koncert.svg",
     websiteUrl: "https://www.koncert.com",
     docsUrl: "https://koncert.com/developers",
@@ -3109,7 +3109,7 @@ export const tools: SalesTool[] = [
     oneLiner: "Cold email outreach platform with unlimited email accounts.",
     description:
       "Manyreach provides a clean REST API for managing cold email campaigns, leads, and email accounts at scale. It allows you to programmatically trigger outreach, update lead statuses, and monitor campaign performance. With its focus on high deliverability and pay-as-you-go pricing, Manyreach is ideal for teams and agencies that need a flexible, API-driven email infrastructure.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/manyreach.svg",
     websiteUrl: "https://manyreach.com",
     docsUrl: "https://docs.manyreach.com/api",
@@ -3209,7 +3209,7 @@ export const tools: SalesTool[] = [
     oneLiner: "AI-powered parallel dialer for high-velocity outbound teams.",
     description:
       "Nooks provides an API for programmatically orchestrating parallel dialing sessions and managing outbound prospect data. It is designed to help sales reps have more live conversations by using AI to bypass gatekeepers and voicemails. The API allows for deep integration with CRMs and sales engagement tools, ensuring that all call activity and outcomes are synced in real-time.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/nooks.svg",
     websiteUrl: "https://nooks.in",
     docsUrl: "https://docs.nooks.in",
@@ -3259,7 +3259,7 @@ export const tools: SalesTool[] = [
     oneLiner: "AI-powered live conversation platform for outbound sales teams.",
     description:
       "Orum provides a powerful API for programmatically managing parallel dialing and live sales conversations. It uses AI to detect human voices, navigate phone trees, and handle voicemails, allowing sales reps to focus exclusively on talking to prospects. The API enables seamless integration with your CRM, ensuring that every call outcome is logged and every follow-up task is created automatically.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/orum.svg",
     websiteUrl: "https://orum.com",
     docsUrl: "https://developers.orum.com",
@@ -3284,7 +3284,7 @@ export const tools: SalesTool[] = [
     oneLiner: "AI-powered sales execution platform for managing entire revenue workflows.",
     description:
       "Outreach provides a comprehensive REST API that allows developers to programmatically manage leads, sequences, and sales activities. It is a cornerstone for modern revenue teams, offering tools for sales engagement, pipeline management, and AI-driven insights. The API enables the creation of complex, multi-step sales workflows that can be triggered by any external event or business logic.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/outreach.svg",
     websiteUrl: "https://www.outreach.io",
     docsUrl: "https://developers.outreach.io/api/reference/",
@@ -3359,7 +3359,7 @@ export const tools: SalesTool[] = [
     oneLiner: "Power dialer for sales teams to increase answer rates and live conversations.",
     description:
       "PhoneBurner provides a robust API for programmatically managing power dialing sessions and lead communication. It is designed to help sales reps have more quality conversations by automating the dialing process and managing call outcomes efficiently. The API allows for deep CRM integration, ensuring that all call activity, recordings, and lead status updates are synced automatically.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/phoneburner.svg",
     websiteUrl: "https://phoneburner.com",
     docsUrl: "https://www.phoneburner.com/developer/index",
@@ -3509,7 +3509,7 @@ export const tools: SalesTool[] = [
     oneLiner: "Cloud-based DM automation and lead generation for social platforms.",
     description:
       "ReachOwl provides a REST API for automating direct messaging and lead generation across social platforms like X and Instagram. It allows developers to programmatically manage outreach campaigns, personalize messages at scale, and track engagement. ReachOwl is designed for teams that want to scale their social selling efforts while maintaining a human-like outreach cadence.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/reachowl.svg",
     websiteUrl: "https://reachowl.com",
     docsUrl: "https://docs.reachowl.com",
@@ -3534,7 +3534,7 @@ export const tools: SalesTool[] = [
     oneLiner: "AI-powered video prospecting platform for personalized outreach.",
     description:
       "Reachout.ai's API enables developers to programmatically generate and send personalized AI videos to prospects. It uses deepfake technology to create human-like videos that address leads by name, significantly increasing engagement and reply rates. The API allows for the automation of video-based outreach sequences that can be triggered from any CRM or prospecting tool.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/reachout.svg",
     websiteUrl: "https://reachout.ai",
     docsUrl: "https://docs.reachout.ai",
@@ -3559,7 +3559,7 @@ export const tools: SalesTool[] = [
     oneLiner: "AI parallel dialer and salesfloor for high-velocity SDR teams.",
     description:
       "Salesfinity provides a robust API for orchestrating AI-powered parallel dialing and managing virtual salesfloors. It is designed to help B2B SaaS teams book more meetings by automating the dialing process and using waterfall enrichment to ensure high contact rates. The API allows for seamless integration with CRMs, ensuring that all call data and recordings are synced in real-time.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/salesfinity.svg",
     websiteUrl: "https://salesfinity.ai",
     docsUrl: "https://docs.salesfinity.ai",
@@ -3584,7 +3584,7 @@ export const tools: SalesTool[] = [
     oneLiner: "Social and email outreach automation for lead generation.",
     description:
       "Salesflow offers a comprehensive API for programmatically managing LinkedIn and email outreach campaigns. It allows teams to automate connection requests, InMails, and follow-up sequences across multiple accounts. The API provides programmatic access to campaign analytics and lead data, making it ideal for agencies and revenue teams looking to scale their social selling efforts.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/salesflow.svg",
     websiteUrl: "https://salesflow.io",
     docsUrl: "https://salesflow.io/api/docs",
@@ -3641,7 +3641,7 @@ export const tools: SalesTool[] = [
     oneLiner: "AI SDR for scaling personalized outreach with unlimited mailboxes.",
     description:
       "Salesforge provides an API designed for high-scale, personalized outbound outreach. It features an 'AI SDR' that automates the creation of hyper-personalized emails and LinkedIn messages by analyzing prospect data. The API allows for the orchestration of unlimited mailboxes and senders, making it a powerful solution for teams that need to scale their outreach while maintaining high deliverability and relevance.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/salesforge.svg",
     websiteUrl: "https://www.salesforge.ai",
     docsUrl: "https://docs.salesforge.ai",
@@ -3666,7 +3666,7 @@ export const tools: SalesTool[] = [
     oneLiner: "Cold email outreach platform with automated follow-ups and high deliverability.",
     description:
       "Saleshandy's REST API allows developers to programmatically manage email campaigns, verify leads, and track engagement. It is designed for high-deliverability outreach, offering features like email warmup and automated sequences. By integrating the Saleshandy API, sales teams can automate their top-of-funnel pipeline generation and ensure their messages land in the primary inbox.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/saleshandy.svg",
     websiteUrl: "https://www.saleshandy.com",
     docsUrl: "https://docs.saleshandy.com/api",
@@ -3691,7 +3691,7 @@ export const tools: SalesTool[] = [
     oneLiner: "AI-powered revenue orchestration platform for high-performance sales teams.",
     description:
       "Salesloft provides a comprehensive REST API that allows developers to programmatically manage cadences, leads, and sales activities. It is a leading platform for revenue orchestration, offering deep insights into deal health and rep performance. The API enables the creation of automated, multi-channel sales workflows that sync seamlessly with major CRMs and business intelligence tools.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/salesloft.svg",
     websiteUrl: "https://salesloft.com",
     docsUrl: "https://developers.salesloft.com/api",
@@ -3741,7 +3741,7 @@ export const tools: SalesTool[] = [
     oneLiner: "Scale outreach with unlimited mailboxes and AI-powered deliverability.",
     description:
       "Smartlead's REST API is built for high-volume outbound outreach, allowing developers to programmatically manage unlimited mailboxes, campaigns, and lead sequences. It features AI-driven email warmup and rotating inbox technology to ensure maximum deliverability. The API is widely used by agencies and scaling sales teams to orchestrate massive cold email operations with precision.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/smartlead.svg",
     websiteUrl: "https://smartlead.ai",
     docsUrl: "https://api.smartlead.ai/docs",
@@ -3866,7 +3866,7 @@ export const tools: SalesTool[] = [
     oneLiner: "Multi-channel cold outreach automation for LinkedIn, X, and Email.",
     description:
       "Super Send provides an API for programmatically managing multi-channel outreach campaigns across LinkedIn, X (Twitter), and email. It allows teams to automate sequences, synchronize lead data, and monitor engagement in one place. Super Send is designed for lean sales teams and agencies that want to scale their outreach while maintaining a unified view of their prospect interactions.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/supersend.svg",
     websiteUrl: "https://supersend.io",
     docsUrl: "https://docs.supersend.io",
@@ -3966,7 +3966,7 @@ export const tools: SalesTool[] = [
     oneLiner: "AI-powered email coach to help sales reps write better emails faster.",
     description:
       "Lavender's API enables teams to programmatically access its AI-driven email coaching and personalization insights. Developers can use the API to analyze outgoing emails for quality, sentiment, and clarity directly within their own applications. By integrating Lavender's intelligence into your sales stack, you can ensure that every email sent by your team is optimized for a positive response.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/lavender.svg",
     websiteUrl: "https://lavender.ai",
     docsUrl: "https://developers.lavender.ai",
@@ -4066,7 +4066,7 @@ export const tools: SalesTool[] = [
     oneLiner: "System of action for capturing intent and running AI sales agents.",
     description:
       "Unify's REST API allows teams to programmatically capture intent signals, manage AI sales agents, and orchestrate personalized outbound outreach. It acts as a unified platform for GTM teams to transform intent data into revenue. The API enables the synchronization of leads, campaign management, and automated engagement across multiple channels based on real-time buyer behavior.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/unify.svg",
     websiteUrl: "https://unifygtm.com",
     docsUrl: "https://docs.unifygtm.com",
@@ -4091,7 +4091,7 @@ export const tools: SalesTool[] = [
     oneLiner: "Lead management and sales engagement platform with automated dialing.",
     description:
       "VanillaSoft provides a robust API for programmatically managing leads, queues, and calling activities. It is designed for high-velocity sales teams that require a structured, queue-based approach to lead management. The API allows for the automation of lead distribution, call logging, and synchronization of engagement data with external systems, ensuring high rep productivity.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/vanillasoft.svg",
     websiteUrl: "http://www.vanillasoft.com",
     docsUrl: "https://vanillasoft.zendesk.com/hc/en-us/articles/360041143311-API-Overview",
@@ -4166,7 +4166,7 @@ export const tools: SalesTool[] = [
     oneLiner: "Email warmup tool to ensure cold emails never land in spam.",
     description:
       "Warmbox provides an API for programmatically managing email warmup schedules and monitoring deliverability metrics. It automates the process of sending and replying to emails between your inbox and a network of thousands of other accounts to build sender reputation. By integrating the Warmbox API, sales teams can ensure their cold outreach infrastructure is always optimized for high inbox placement.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/warmbox.svg",
     websiteUrl: "https://warmbox.ai",
     docsUrl: "https://docs.warmbox.ai/api",
@@ -4191,7 +4191,7 @@ export const tools: SalesTool[] = [
     oneLiner: "Powerful mail merge and cold email system for Gmail.",
     description:
       "GMass provides an API for programmatically managing cold email campaigns, follow-ups, and lead lists directly within the Gmail ecosystem. It is a popular tool for sales reps and individual outbounders who want to leverage Gmail's deliverability while using powerful automation features. The API enables the creation of automated sequences, lead verification, and synchronization of campaign results.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/gmass.svg",
     websiteUrl: "https://www.gmass.co",
     docsUrl: "https://www.gmass.co/api",
@@ -4241,7 +4241,7 @@ export const tools: SalesTool[] = [
     oneLiner: "Cold email outreach and follow-up automation for sales and agencies.",
     description:
       "Woodpecker provides a robust REST API for managing cold email sequences, prospect data, and campaign performance. It is designed for agencies and sales teams that need to scale their outreach while maintaining a personalized touch. The API allows for the programmatic synchronization of leads, management of cadences, and integration of engagement signals into your CRM or data warehouse.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/woodpecker.svg",
     websiteUrl: "https://woodpecker.co",
     docsUrl: "https://woodpecker.co/help/api-documentation/",
@@ -4366,7 +4366,7 @@ export const tools: SalesTool[] = [
     oneLiner: "AI sales automation powered by sales AI agents for personalized outreach.",
     description:
       "Dealcode AI provides an API for programmatically managing AI sales agents that automate lead generation, qualification, and outreach. It uses machine learning to identify the best prospects and generate highly personalized outreach messages. By integrating Dealcode AI, revenue teams can scale their outbound efforts while maintaining a high level of relevance and conversion probability.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/dealcode.svg",
     websiteUrl: "https://www.dealcode.ai",
     docsUrl: "https://docs.dealcode.ai",
@@ -4741,7 +4741,7 @@ export const tools: SalesTool[] = [
     oneLiner: "AI chatbot for automated lead capture and customer conversion.",
     description:
       "Cliengo is an AI chatbot platform that helps businesses automate lead capture on their websites. The AI interacts with visitors in real-time, answers common questions, and collects contact information to pass directly into a CRM. Cliengo is designed to improve website conversion rates by ensuring that every visitor is engaged immediately, regardless of the time of day.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/cliengo.svg",
     websiteUrl: "https://cliengo.com",
     docsUrl: "https://cliengo.com",
@@ -6516,7 +6516,7 @@ export const tools: SalesTool[] = [
     oneLiner: "Conversational marketing and sales platform powered by AI.",
     description:
       "Drift is a conversational marketing and sales platform that uses AI-powered chatbots to engage website visitors in real-time. It helps businesses identify high-value prospects and connect them with the right reps instantly. Drift's AI (Drift B2B Brain) can answer complex questions, book meetings, and provide personalized experiences for every visitor, helping teams increase their conversion rates and accelerate their sales cycles through real-time conversations.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/drift.svg",
     websiteUrl: "https://drift.com",
     docsUrl: "https://developer.drift.com/",
@@ -6541,7 +6541,7 @@ export const tools: SalesTool[] = [
     oneLiner: "Pipeline generation platform for B2B teams to identify website intent.",
     description:
       "Qualified is a pipeline generation platform that uses AI to identify high-intent B2B visitors on your website. It provides sales teams with a 'Qualified Signal' score, which helps them prioritize accounts based on real-time behavior. The platform features conversational AI chatbots and live chat tools that allow reps to engage with key decision-makers at the exact moment they are showing intent, helping companies turn website traffic into a predictable sales pipeline.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/qualified.svg",
     websiteUrl: "https://qualified.com",
     docsUrl: "https://www.qualified.com/developers",
@@ -6566,7 +6566,7 @@ export const tools: SalesTool[] = [
     oneLiner: "AI-powered customer service and sales platform for real-time engagement.",
     description:
       "Intercom is a complete customer service and sales platform that uses AI (Fin AI) to automate support and drive revenue. For sales teams, it offers AI-powered chatbots that can qualify leads, answer product questions, and book meetings 24/7. Intercom provides a unified inbox for all customer interactions, helping teams build stronger relationships and improve their conversion rates through personalized, real-time engagement across web, email, and mobile.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/intercom.svg",
     websiteUrl: "https://intercom.com",
     docsUrl: "https://developers.intercom.com/",
@@ -9103,7 +9103,7 @@ export const tools: SalesTool[] = [
     oneLiner: "Autonomous revenue orchestration platform for identifying website intent.",
     description:
       "Warmly is an AI-powered platform that identifies anonymous B2B visitors on your website and automates the initial engagement. It uses AI to score visitor intent, deanonymize accounts, and trigger personalized outreach via web chat, email, or LinkedIn. Warmly focus on 'Warm Outbound,' ensuring that reps are only engaging with prospects who are already showing interest, helping to drive higher conversion rates and revenue through intelligent orchestration.",
-    category: "Engagement",
+    category: "Sales Engagement",
     logoUrl: "/logos/warmly.svg",
     websiteUrl: "https://warmly.ai",
     docsUrl: "https://warmly.ai",
@@ -9856,7 +9856,7 @@ export const categories: CategoryMeta[] = [
     description:
       "Empower your AI agents to find, verify, and build high-intent lead lists. These tools provide the raw data needed to feed your automated sales engine.",
     icon: "Search",
-    toolCount: 24,
+    toolCount: 81,
   },
   {
     slug: "email-outreach",
@@ -9864,7 +9864,7 @@ export const categories: CategoryMeta[] = [
     description:
       "Give your AI the 'hands' to send personalized emails at scale. These APIs handle deliverability and sequences so your agent can focus on closing.",
     icon: "Mail",
-    toolCount: 11,
+    toolCount: 16,
   },
   {
     slug: "crm",
@@ -9872,7 +9872,7 @@ export const categories: CategoryMeta[] = [
     description:
       "The source of truth for your AI. Connect these APIs to let your agent manage deals, update contact status, and map relationships automatically.",
     icon: "Users",
-    toolCount: 9,
+    toolCount: 26,
   },
   {
     slug: "enrichment",
@@ -9880,7 +9880,7 @@ export const categories: CategoryMeta[] = [
     description:
       "Upgrade your data with AI. These APIs augment raw lead records with firmographic and technographic signals for better personalization.",
     icon: "Database",
-    toolCount: 8,
+    toolCount: 17,
   },
   {
     slug: "voice-and-calling",
@@ -9888,7 +9888,7 @@ export const categories: CategoryMeta[] = [
     description:
       "Deploy AI voice agents that can make calls, handle support, and set appointments. Transform your terminal into a call center.",
     icon: "Phone",
-    toolCount: 8,
+    toolCount: 15,
   },
   {
     slug: "scheduling",
@@ -9896,7 +9896,7 @@ export const categories: CategoryMeta[] = [
     description:
       "Let AI handle the back-and-forth. These APIs allow your agents to book meetings and manage availability directly within any chat workflow.",
     icon: "Calendar",
-    toolCount: 3,
+    toolCount: 4,
   },
   {
     slug: "conversation-intelligence",
@@ -9904,7 +9904,7 @@ export const categories: CategoryMeta[] = [
     description:
       "Turn meetings into actionable data. Use these APIs to let your AI transcribe, summarize, and extract insights from every customer call.",
     icon: "MessageSquare",
-    toolCount: 4,
+    toolCount: 22,
   },
   {
     slug: "documents-and-proposals",
@@ -9912,7 +9912,7 @@ export const categories: CategoryMeta[] = [
     description:
       "Automate the closing process. These APIs let your AI generate, send, and track proposals and contracts without manual effort.",
     icon: "FileText",
-    toolCount: 5,
+    toolCount: 8,
   },
   {
     slug: "sales-engagement",
@@ -9920,7 +9920,7 @@ export const categories: CategoryMeta[] = [
     description:
       "Orchestrate multi-channel sequences. Use these tools to let your AI manage touchpoints across email, phone, and social in one place.",
     icon: "Zap",
-    toolCount: 7,
+    toolCount: 107,
   },
   {
     slug: "workflow-automation",
@@ -9928,6 +9928,30 @@ export const categories: CategoryMeta[] = [
     description:
       "The glue for your AI stack. Connect disparate sales tools and build complex, multi-step automations triggered by any event.",
     icon: "GitBranch",
-    toolCount: 9,
+    toolCount: 12,
+  },
+  {
+    slug: "analytics",
+    name: "Analytics",
+    description:
+      "Predictive revenue and pipeline analysis. Use these APIs to let your AI forecast outcomes and identify risks in your sales funnel.",
+    icon: "BarChart3",
+    toolCount: 14,
+  },
+  {
+    slug: "operations",
+    name: "Operations",
+    description:
+      "The engine room of revenue. Automate lead routing, territory management, and incentive compensation with these GTM APIs.",
+    icon: "Settings2",
+    toolCount: 21,
+  },
+  {
+    slug: "sales-enablement",
+    name: "Sales Enablement",
+    description:
+      "Equip your team with AI power. Automate role-play, content discovery, and real-time coaching to shorten sales cycles.",
+    icon: "GraduationCap",
+    toolCount: 46,
   },
 ]

@@ -11,6 +11,9 @@ export type ToolCategory =
   | "Documents & Proposals"
   | "Sales Engagement"
   | "Workflow Automation"
+  | "Analytics"
+  | "Operations"
+  | "Sales Enablement"
 
 export type AiDifficulty = "AI-Native" | "Beginner-Friendly" | "Technical" | "Complex"
 
