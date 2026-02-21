@@ -46,17 +46,21 @@ body {
   }
 
   .tool-card {
-    @apply relative p-8 transition-all duration-300 cursor-pointer border border-transparent;
+    @apply relative p-8 transition-all duration-300 cursor-pointer border border-[var(--ink)]/15 bg-[var(--paper-dark)]/60;
   }
   
   .tool-card::after {
     content: '';
-    @apply absolute inset-0 border border-[var(--ink)] opacity-0 transition-opacity duration-200 pointer-events-none bg-white/40 -z-[1];
+    @apply absolute inset-0 border border-[var(--ink)] opacity-0 transition-opacity duration-200 pointer-events-none bg-white/80 -z-[1];
   }
 
   .tool-card:hover::after {
     @apply opacity-100;
-    box-shadow: 4px 4px 0 var(--ink);
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+  
+  .tool-card:hover {
+    @apply -translate-x-1 -translate-y-1;
   }
 
   .tag-mcp {

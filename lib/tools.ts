@@ -59,3 +59,37 @@ export function searchTools(query: string): SalesTool[] {
       t.alternativeTo?.some((a) => a.toLowerCase().includes(q))
   )
 }
+
+export function filterTools(options: {
+  query?: string
+  category?: string
+  mcpOnly?: boolean
+  freeOnly?: boolean
+}): SalesTool[] {
+  let filtered = tools
+
+  if (options.category && options.category !== "All") {
+    filtered = filtered.filter((t) => t.category === options.category)
+  }
+
+  if (options.mcpOnly) {
+    filtered = filtered.filter((t) => t.mcpReady)
+  }
+
+  if (options.freeOnly) {
+    filtered = filtered.filter((t) => t.hasFreeTier)
+  }
+
+  if (options.query) {
+    const q = options.query.toLowerCase()
+    filtered = filtered.filter(
+      (t) =>
+        t.name.toLowerCase().includes(q) ||
+        t.oneLiner.toLowerCase().includes(q) ||
+        t.category.toLowerCase().includes(q) ||
+        t.alternativeTo?.some((a) => a.toLowerCase().includes(q))
+    )
+  }
+
+  return filtered
+}

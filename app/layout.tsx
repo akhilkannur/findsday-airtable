@@ -116,10 +116,12 @@ gtag('config', 'G-9LGNFH00R7');`,
             </div>
 
             <div className="flex items-center gap-6">
-              <div className="hidden lg:flex items-center gap-2 font-mono text-[0.75rem] text-[var(--ink-fade)]">
-                <span className="w-2 h-2 bg-[var(--ink)] rounded-full animate-status-blink"></span>
-                SESSION ACTIVE
-              </div>
+              <a 
+                href="mailto:akhil@salestools.club" 
+                className="hidden lg:block font-mono text-[0.75rem] uppercase hover:line-through transition-all"
+              >
+                Contact
+              </a>
               
               <MobileNav links={navLinks} />
             </div>
@@ -138,7 +140,7 @@ gtag('config', 'G-9LGNFH00R7');`,
               <line x1="10" y1="50" x2="90" y2="50" stroke="currentColor" strokeWidth="2"></line>
             </svg>
             <div className="font-mono text-[0.75rem] uppercase tracking-widest">
-              The Annotated Manifest — STC_INDEX_V1<br />
+              build by akhilhaving.fun<br />
               © {new Date().getFullYear()}
             </div>
           </div>

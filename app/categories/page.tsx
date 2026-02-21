@@ -46,7 +46,7 @@ export default function CategoriesPage() {
                 <Link
                   key={cat.slug}
                   href={`/categories/${cat.slug}`}
-                  className="group flex flex-col h-full gap-8 p-8 border border-transparent hover:border-[var(--ink)]/10 transition-all"
+                  className="group flex flex-col h-full gap-8 p-8 border border-[var(--ink)]/15 bg-[var(--paper-dark)]/60 hover:border-[var(--ink)]/30 hover:translate-y-[-4px] transition-all"
                 >
                   <div className="flex items-center justify-between">
                     <div className="w-12 h-12 flex items-center justify-center bg-[var(--ink)] text-[var(--paper)] [clip-path:polygon(0%_0%,100%_5%,95%_100%,5%_95%)]">

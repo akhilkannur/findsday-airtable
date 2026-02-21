@@ -130,7 +130,7 @@ export default function Home() {
               <Link
                 key={cat.slug}
                 href={`/categories/${cat.slug}`}
-                className="group flex flex-col h-full gap-6 hover:translate-y-[-4px] transition-transform"
+                className="group flex flex-col h-full gap-6 p-8 border border-[var(--ink)]/15 bg-[var(--paper-dark)]/60 hover:translate-y-[-4px] hover:border-[var(--ink)]/30 transition-all"
               >
                 <div className="font-mono text-[0.75rem] text-[var(--ink-fade)] group-hover:text-[var(--ink)] transition-colors italic uppercase">Collection_0{idx + 1}</div>
                 <h3 className="text-2xl font-bold uppercase underline decoration-transparent group-hover:decoration-[var(--ink)] transition-all underline-offset-8">
