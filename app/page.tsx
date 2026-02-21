@@ -13,34 +13,39 @@ export const metadata: Metadata = {
   },
 }
 
-function getCategoryIcon(iconName: string) {
-  const Icon = (LucideIcons as Record<string, React.ComponentType<{ className?: string }>>)[iconName]
-  return Icon ? <Icon className="h-6 w-6 text-accent-blue" /> : <Cpu className="h-6 w-6 text-accent-blue" />
-}
+function ToolCard({ tool, index }: { tool: any, index: number }) {
+  const colors = ['header-blue', 'header-red', 'header-yellow', 'header-green']
+  const avatarColors = ['var(--lego-blue)', 'var(--lego-red)', '#bba400', 'var(--lego-green)']
+  const colorClass = colors[index % colors.length]
+  const avatarColor = avatarColors[index % avatarColors.length]
 
-function ToolCard({ tool }: { tool: any }) {
   return (
     <Link
       href={`/tools/${tool.slug}`}
-      className="tool-card group border-r border-b border-[#333333] hover:bg-[#0a0a0a] transition-colors p-8 flex flex-col gap-5 h-full"
+      className="tool-card group"
     >
-      <div className="card-top flex justify-between items-start">
-        <div className="avatar w-12 h-12 bg-[#111] border border-[#333333] flex items-center justify-center font-bold text-xl text-white">
-          {tool.name.charAt(0)}
-        </div>
-        <div className="text-xl opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-1 group-hover:-translate-y-1 text-[#888]">↗</div>
+      <div className={`card-header-studs ${colorClass}`}>
+        <div className="stud"></div><div className="stud"></div><div className="stud"></div>
       </div>
-      
-      <div className="tool-info">
-        {tool.mcpReady && (
-          <div className="mcp-badge">MCP READY</div>
-        )}
-        <h3 className="text-xl font-semibold tracking-[-0.02em] mb-2">{tool.name}</h3>
-        <p className="text-[14px] text-[#888] leading-relaxed mb-4 line-clamp-2">
-          {tool.oneLiner}
-        </p>
-        <div className="tags flex flex-wrap gap-2 mt-auto">
-          <span className="tag border border-[#333333] px-2 py-1 text-[11px] text-[#888] uppercase">{tool.category}</span>
+      <div className="card-body p-6 flex flex-col gap-4">
+        <div className="card-top flex justify-between items-start">
+          <div className="avatar w-14 h-14 bg-[#eee] border-2 border-black rounded-xl flex items-center justify-center font-extrabold text-2xl" style={{ color: avatarColor }}>
+            {tool.name.charAt(0)}
+          </div>
+          {tool.mcpReady && (
+            <span className="mcp-badge">MCP READY</span>
+          )}
+        </div>
+        
+        <div>
+          <h3 className="text-xl font-bold mb-2 uppercase">{tool.name}</h3>
+          <p className="text-[0.95rem] text-[#666] leading-relaxed line-clamp-3 mb-4">
+            {tool.oneLiner}
+          </p>
+        </div>
+
+        <div className="mt-auto flex flex-wrap gap-2">
+          <span className="tag">{tool.category}</span>
         </div>
       </div>
     </Link>
@@ -55,144 +60,90 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
+      {/* Decorative Bricks */}
+      <div className="absolute top-[15%] left-[5%] w-16 h-16 bg-[var(--lego-red)] border-[var(--border-width)] border-black rounded-full opacity-60 -z-10 shadow-[4px_4px_0_rgba(0,0,0,0.2)]"></div>
+      <div className="absolute bottom-[20%] right-[5%] w-24 h-10 bg-[var(--lego-blue)] border-[var(--border-width)] border-black rounded-lg opacity-60 -z-10 shadow-[4px_4px_0_rgba(0,0,0,0.2)] -rotate-12"></div>
+      <div className="absolute top-[25%] right-[15%] w-10 h-10 bg-[var(--lego-yellow)] border-[var(--border-width)] border-black rounded opacity-60 -z-10 shadow-[4px_4px_0_rgba(0,0,0,0.2)] rotate-12"></div>
+
       {/* ── Hero ──────────────────────────────────────────── */}
-      <section className="hero grid lg:grid-cols-[1.2fr_0.8fr] border-b border-[#333333] min-h-[600px]">
-        <div className="hero-content p-10 md:p-20 flex flex-col justify-center border-r border-[#333333]">
-          <h1 className="text-[42px] md:text-[64px] font-bold leading-[0.95] tracking-[-0.04em] mb-8">
-            The "Lego Blocks" <br />
-            for your <br />
-            AI Sales Agent.
+      <header className="py-24 md:py-32 text-center relative overflow-hidden">
+        <div className="layout-container">
+          <h1 className="text-4xl md:text-[4rem] font-bold leading-[1.1] tracking-tight mb-8">
+            The <span className="inline-block bg-[var(--lego-blue)] text-white px-4 border-[var(--border-width)] border-black rounded-[var(--radius-md)] shadow-[6px_6px_0_black] rotate-2 mx-2">Lego Blocks</span> <br />
+            for your AI Sales Agent.
           </h1>
-          <p className="text-[18px] text-[#999] leading-relaxed mb-12 max-w-[480px]">
+          <p className="text-xl md:text-2xl text-[#444] leading-relaxed mb-12 max-w-[700px] mx-auto">
             Don't reinvent the wheel. We've curated the best APIs, SDKs, and MCP servers that plug directly into Claude Code and Cursor. Build your GTM machine in hours, not weeks.
           </p>
 
-          <form className="email-capture flex h-14 max-w-[460px] border border-[#333333]">
+          <form className="flex flex-col sm:flex-row justify-center items-stretch gap-4 max-w-[500px] mx-auto">
             <input 
               type="email" 
               placeholder="enter your email..." 
-              className="flex-grow bg-transparent px-6 text-white text-[16px] outline-none"
+              className="flex-grow px-6 py-4 text-lg border-[var(--border-width)] border-black rounded-[var(--radius-md)] outline-none shadow-[inset_3px_3px_0_rgba(0,0,0,0.1)] focus:bg-[#fffbe6] transition-colors"
               required
             />
-            <button type="submit" className="px-8 bg-white text-black font-bold hover:bg-[#ccc] transition-colors uppercase text-[11px] tracking-widest">
+            <button type="submit" className="brick brick-btn bg-[var(--lego-red)] text-white font-bold hover:scale-105 transition-transform whitespace-nowrap">
               Get the Blueprint
             </button>
           </form>
         </div>
+      </header>
 
-        <div className="hero-visual bg-[#050505] overflow-hidden flex items-center justify-center min-h-[300px] lg:min-h-full">
-          {/* Node network visualization placeholder - matches design code style */}
-          <div className="relative w-full h-full opacity-40">
-            <svg viewBox="0 0 400 400" className="w-full h-full">
-              <path d="M50 50 L350 350 M50 350 L350 50" stroke="#333" strokeWidth="1" />
-              <circle cx="200" cy="200" r="100" fill="none" stroke="#333" strokeWidth="1" strokeDasharray="4 4" />
-              <rect x="195" y="195" width="10" height="10" fill="white">
-                <animate attributeName="opacity" values="0.2;1;0.2" dur="3s" repeatCount="indefinite" />
-              </rect>
-              <rect x="45" y="45" width="10" height="10" fill="white" opacity="0.5" />
-              <rect x="345" y="345" width="10" height="10" fill="white" opacity="0.5" />
-            </svg>
+      {/* ── Grid Section ──────────────── */}
+      <section className="py-20 bg-white/30 border-y-[var(--border-width)] border-black">
+        <div className="layout-container">
+          <div className="flex flex-wrap gap-4 mb-12">
+            <div className="px-4 py-2 border-2 border-black rounded-full font-bold bg-black text-white shadow-[2px_2px_0_black]">Latest Blocks</div>
+            <div className="px-4 py-2 border-2 border-black rounded-full font-bold bg-white shadow-[2px_2px_0_black] hover:-translate-y-1 transition-transform cursor-pointer text-sm">All Classes</div>
+          </div>
+
+          <div className="tools-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {exploreTools.map((tool, idx) => (
+              <ToolCard key={tool.slug} tool={tool} index={idx} />
+            ))}
+          </div>
+
+          <div className="mt-20 text-center">
+            <Link href="/tools" className="brick brick-btn bg-white text-black hover:scale-105 transition-transform font-bold tracking-widest">
+              Explore Full Registry ->
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* ── Latest Deployments Header ──────────────── */}
-      <div className="directory-header px-10 md:px-20 py-6 border-b border-[#333333] flex justify-between items-center bg-black">
-        <div className="text-[11px] font-semibold uppercase tracking-[0.05em] text-[#888]">Latest Deployments</div>
-        <div className="text-[11px] font-semibold uppercase tracking-[0.05em] text-[#888]">Filter: All Systems</div>
-      </div>
+      {/* ── Categories ───────────────────────────── */}
+      <section className="py-32 bg-[var(--lego-offwhite)]">
+        <div className="layout-container">
+          <div className="mb-20">
+            <div className="inline-flex items-center gap-2 font-bold uppercase tracking-widest text-sm mb-4">
+              <span className="w-2 h-2 bg-black rounded-full"></span>
+              Infrastructure Classes
+            </div>
+            <h2 className="text-5xl font-bold tracking-tight">Browse by Category.</h2>
+          </div>
 
-      {/* ── Grid ──────────────── */}
-      <div className="tools-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 bg-[#333333] gap-px">
-        {exploreTools.map((tool) => (
-          <ToolCard key={tool.slug} tool={tool} />
-        ))}
-      </div>
-
-      <div className="border-t border-[#333333] p-12 text-center bg-black">
-        <Link href="/tools" className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#888] hover:text-white transition-colors">
-          Initialize Full Registry ->
-        </Link>
-      </div>
-      {/* ── Infinite Crawl ───────────────────────────────── */}
-      <section className="border-b border-[#333333] bg-[#050505] py-8 overflow-hidden relative">
-        <div className="flex animate-marquee whitespace-nowrap">
-          <div className="flex gap-12 px-4 items-center">
-            {[...allTools, ...allTools].map((tool, idx) => (
-              <Link 
-                key={`${tool.slug}-${idx}`}
-                href={`/tools/${tool.slug}`}
-                className="flex items-center gap-3 group opacity-40 hover:opacity-100 transition-opacity"
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {categories.slice(0, 8).map((cat, idx) => (
+              <Link
+                key={cat.slug}
+                href={`/categories/${cat.slug}`}
+                className="brick p-10 bg-white group hover:rotate-1 transition-all"
               >
-                <div className="h-5 w-5 flex items-center justify-center border border-[#333333] bg-black font-bold text-[7px] text-white">
-                  {tool.name.charAt(0)}
+                <div className="text-[10px] font-mono text-[#888] mb-6">BLOCK_TYPE_0{idx + 1}</div>
+                <h3 className="text-xl font-bold uppercase mb-4 group-hover:text-[var(--lego-blue)] transition-colors">
+                  {cat.name}
+                </h3>
+                <p className="text-[0.95rem] text-[#666] line-clamp-2 leading-relaxed">
+                  {cat.description}
+                </p>
+                <div className="mt-10 flex items-center justify-between opacity-40 group-hover:opacity-100 transition-all pt-6 border-t-2 border-dashed border-black/10">
+                  <span className="text-[10px] font-bold uppercase">{cat.toolCount} Pieces</span>
+                  <ArrowRight className="h-4 w-4" />
                 </div>
-                <span className="text-[9px] font-bold uppercase text-white tracking-widest">{tool.name}</span>
               </Link>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ── Terminal Access ───────────────────────────────── */}
-      <section className="px-10 md:px-20 py-24 bg-black border-b border-[#333333]">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-16">
-          <div className="max-w-xl">
-            <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#888] mb-6">Deployment Protocol</div>
-            <h2 className="text-3xl font-bold tracking-tight uppercase mb-8">Plug into your terminal</h2>
-            <p className="text-[16px] text-[#888] leading-relaxed">
-              Enable your AI agents to search this registry directly. One command installs the Salestools Club protocol into Gemini CLI or Claude Code.
-            </p>
-          </div>
-          
-          <div className="w-full lg:w-auto flex-grow max-w-2xl">
-            <div className="bg-[#050505] p-10 border border-[#333333] shadow-[8px_8px_0px_#111] group relative">
-              <div className="absolute -top-3 -left-3 bg-white text-black text-[9px] font-black px-2 py-1 uppercase tracking-widest">Execute</div>
-              <code className="text-white text-sm font-mono break-all leading-loose opacity-80">
-                gemini skills install https://salestools.club/salestools.skill
-              </code>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Categories (Tool Index) ───────────────────────────── */}
-      <section className="px-10 md:px-20 py-32 bg-black relative overflow-hidden">
-        <div className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-12">
-          <div className="max-w-2xl">
-            <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#888] mb-6 flex items-center gap-3">
-              <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
-              Infrastructure Classes
-            </div>
-            <h2 className="text-[42px] font-bold tracking-tight leading-none text-white">Browse by Category.</h2>
-            <p className="mt-8 text-[18px] text-[#888] leading-relaxed max-w-xl">
-              Every category is vetted for builder-first compatibility. Vetted APIs, verified MCPs, zero fluff.
-            </p>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 bg-[#333333] gap-px border border-[#333333]">
-          {categories.slice(0, 8).map((cat, idx) => (
-            <Link
-              key={cat.slug}
-              href={`/categories/${cat.slug}`}
-              className="group bg-black p-12 transition-all hover:bg-[#0a0a0a]"
-            >
-              <div className="mb-12 flex items-center justify-between">
-                <div className="text-[10px] font-mono text-[#444] group-hover:text-white transition-colors">CLASS_0{idx + 1}</div>
-              </div>
-              <h3 className="text-xl font-bold tracking-tight uppercase text-white mb-4">
-                {cat.name}
-              </h3>
-              <p className="text-[14px] text-[#888] line-clamp-2 leading-relaxed group-hover:text-white transition-colors">
-                {cat.description}
-              </p>
-              <div className="mt-16 flex items-center justify-between opacity-20 group-hover:opacity-100 transition-all">
-                <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-white">{cat.toolCount} Items</div>
-                <ArrowRight className="h-4 w-4 text-white" />
-              </div>
-            </Link>
-          ))}
         </div>
       </section>
     </div>

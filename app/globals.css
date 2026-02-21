@@ -3,69 +3,83 @@
 @tailwind utilities;
 
 :root {
-  --bg: #000000;
-  --fg: #ffffff;
-  --border: #333333;
-  --border-active: #ffffff;
-  --accent: #ffffff;
+  --lego-red: #E3000B;
+  --lego-yellow: #FECD11; 
+  --lego-blue: #0055BF;
+  --lego-green: #237841;
+  --lego-black: #111111;
+  --lego-white: #FFFFFF;
+  --lego-offwhite: #F4F4F4;
+  
+  --border-width: 3px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --shadow-depth: 5px;
+  --shadow-color: rgba(0,0,0,1);
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap');
+
 body {
-  background-color: var(--bg);
-  color: var(--fg);
-  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  font-family: 'Fredoka', sans-serif;
+  background-color: var(--lego-offwhite);
+  color: var(--lego-black);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  
+  background-image: radial-gradient(rgba(0,0,0,0.05) 15%, transparent 16%);
+  background-size: 30px 30px;
 }
 
 @layer components {
-  .u-grid-bg {
-    @apply fixed inset-0 pointer-events-none -z-10;
-    background-image: 
-        linear-gradient(to right, #111 1px, transparent 1px),
-        linear-gradient(to bottom, #111 1px, transparent 1px);
-    background-size: 60px 60px;
-  }
-
   .layout-container {
-    @apply max-w-[1400px] mx-auto border-x border-[#333333] min-h-screen flex flex-col;
+    @apply max-w-[1200px] mx-auto px-5;
   }
 
-  .swiss-card {
-    @apply border border-transparent bg-black p-8 flex flex-col gap-5 transition-all duration-300 h-full relative;
-  }
-  
-  .swiss-card:hover {
-    @apply bg-[#0a0a0a];
+  .brick {
+    @apply bg-white border-[var(--border-width)] border-black rounded-[var(--radius-md)] transition-all duration-150 relative;
+    box-shadow: var(--shadow-depth) var(--shadow-depth) 0 var(--shadow-color);
   }
 
-  .swiss-btn {
-    @apply inline-flex items-center justify-between border border-[#333333] bg-black px-6 py-3 text-[0.7rem] font-bold uppercase tracking-[0.2em] transition-all hover:bg-white hover:text-black active:scale-[0.98];
+  .brick:active, .brick.pressed {
+    @apply translate-x-[2px] translate-y-[2px];
+    box-shadow: 2px 2px 0 var(--shadow-color);
   }
 
-  .swiss-btn-primary {
-    @apply bg-white text-black border-none font-black;
+  .brick-btn {
+    @apply cursor-pointer font-semibold px-6 py-3 no-underline inline-block uppercase text-[0.9rem] tracking-[0.5px];
   }
 
-  .swiss-btn-primary:hover {
-    @apply bg-[#cccccc] text-black;
+  .tool-card {
+    @apply bg-white border-[var(--border-width)] border-black rounded-[var(--radius-md)] overflow-hidden flex flex-col transition-all duration-200 cursor-pointer relative h-full;
+    box-shadow: 8px 8px 0 var(--shadow-color);
   }
 
-  .swiss-badge {
-    @apply inline-flex items-center gap-1.5 border border-[#333333] bg-black px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-[#888888];
+  .tool-card:hover {
+    @apply -translate-x-[2px] -translate-y-[2px];
+    box-shadow: 12px 12px 0 var(--shadow-color);
+  }
+
+  .card-header-studs {
+    @apply h-6 flex gap-3 px-4 items-end border-b-[var(--border-width)] border-black;
+  }
+
+  .stud {
+    @apply w-[30px] height-[10px] bg-black/10 rounded-t-[4px];
   }
 
   .mcp-badge {
-    @apply bg-white text-black text-[10px] font-extrabold px-1.5 py-1 inline-block mb-3;
+    @apply bg-black text-[var(--lego-yellow)] text-[0.7rem] font-bold px-2 py-1 rounded-[4px] uppercase tracking-[0.5px] border border-[var(--lego-yellow)];
+  }
+
+  .tag {
+    @apply text-[0.8rem] font-semibold px-[10px] py-[4px] border-2 border-black rounded-[20px] bg-white;
   }
 
   .type-display {
-    @apply text-[64px] font-bold leading-[0.95] tracking-[-0.04em];
-  }
-
-  .type-label {
-    @apply text-[11px] font-semibold uppercase tracking-[0.05em] text-[#888888];
+    @apply text-[4rem] font-bold leading-[1.1] tracking-tight;
   }
 }
 
@@ -80,10 +94,9 @@ body {
 }
 
 /* Custom scrollbar */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: #000; }
-::-webkit-scrollbar-thumb { background: #333; }
-::-webkit-scrollbar-thumb:hover { background: #444; }
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--lego-offwhite); }
+::-webkit-scrollbar-thumb { background: var(--lego-black); border-radius: 10px; border: 2px solid var(--lego-offwhite); }
 
-h1, h2, h3, h4 { @apply text-white; }
-a { @apply text-white; }
+h1, h2, h3, h4 { @apply text-[var(--lego-black)]; }
+a { @apply text-inherit; }

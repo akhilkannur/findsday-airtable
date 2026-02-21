@@ -97,86 +97,80 @@ gtag('config', 'G-9LGNFH00R7');`,
         />
       </head>
       <body className="antialiased min-h-screen">
-        <div className="u-grid-bg"></div>
-        
-        <div className="layout-container">
-          <header className="flex h-[60px] items-stretch justify-between border-b border-[#333333] bg-black sticky top-0 z-[100]">
-            <div className="flex items-stretch">
-              <Link href="/" className="flex items-center px-8 border-right border-[#333333] font-extrabold text-[18px] tracking-[-0.02em] hover:bg-white hover:text-black transition-colors group">
-                <svg viewBox="0 0 24 24" className="w-6 h-6 mr-3 fill-current">
-                  <path d="M4 4h7l-5 16h-2V4z M13 4h7v16h-7l5-16z"></path>
-                </svg>
-                SALESTOOLS.CLUB
+        <nav className="bg-[var(--lego-yellow)] border-b-[var(--border-width)] border-black py-4 sticky top-0 z-[100]">
+          <div className="layout-container flex justify-between items-center">
+            <div className="flex items-center gap-8">
+              <Link href="/" className="bg-[var(--lego-red)] text-white px-4 py-2 border-[var(--border-width)] border-black rounded-[var(--radius-sm)] shadow-[3px_3px_0_black] -rotate-2 font-bold text-xl flex items-center gap-2 hover:scale-105 transition-transform">
+                <div className="w-2.5 h-2.5 bg-white rounded-full"></div>
+                Salestools.club
               </Link>
               
-              <nav className="hidden md:flex items-stretch">
+              <div className="hidden md:flex gap-4">
                 {navLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="flex items-center px-6 border-r border-[#333333] text-[11px] font-semibold uppercase tracking-[0.05em] hover:bg-white hover:text-black transition-colors"
+                    className="text-black font-semibold px-3 py-2 rounded-[var(--radius-sm)] hover:bg-white/40 transition-colors uppercase text-[0.8rem]"
                   >
                     {link.label}
                   </Link>
                 ))}
-              </nav>
+              </div>
             </div>
 
-            <div className="flex items-stretch">
-              <div className="hidden lg:flex items-center px-6 border-r border-[#333333] gap-2 text-[12px] font-mono text-[#888]">
-                <div className="w-2 h-2 bg-[#00FF00] rounded-full shadow-[0_0_8px_#00FF00] animate-status-pulse"></div>
+            <div className="flex items-center gap-6">
+              <div className="hidden lg:flex items-center text-[0.85rem] font-bold text-black gap-2">
+                <span className="w-3 h-3 bg-[var(--lego-green)] border-2 border-black rounded-full animate-status-pulse"></span>
                 SESSION ACTIVE
               </div>
               
-              <Link href="/submit" className="flex items-center px-6 bg-white text-black text-[11px] font-bold uppercase tracking-[0.05em] hover:bg-[#ccc] transition-colors">
-                SUBMIT TOOL
+              <Link href="/submit" className="brick brick-btn bg-black text-white hover:scale-105 transition-transform py-2.5">
+                Submit Tool
               </Link>
 
-              {/* Mobile nav toggle would go here - keeping it simple for now as per design */}
               <MobileNav links={navLinks} />
             </div>
-          </header>
+          </div>
+        </nav>
 
-          <main className="flex-grow">
-            {children}
-          </main>
-          
-          <footer className="border-t border-[#333333] p-12 bg-black">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
-              <div className="space-y-4">
-                <div className="text-xl font-bold tracking-tighter uppercase">Salestools Club</div>
-                <p className="text-[13px] text-[#888] leading-relaxed">
-                  The technical "Lego Blocks" for your AI Sales Agent. APIs, SDKs, and MCP servers.
-                </p>
-              </div>
-              {/* Keeping existing footer navigation links for SEO */}
-              <div className="space-y-4">
-                <div className="text-[11px] font-bold uppercase tracking-widest text-[#444]">Navigation</div>
-                <ul className="space-y-2 text-[13px] font-medium text-[#888]">
-                  <li><Link href="/tools" className="hover:text-white transition-colors">Nodes</Link></li>
-                  <li><Link href="/categories" className="hover:text-white transition-colors">Classes</Link></li>
-                  <li><Link href="/mcp" className="hover:text-white transition-colors">Protocols</Link></li>
-                  <li><Link href="/vs" className="hover:text-white transition-colors">Audits</Link></li>
-                </ul>
-              </div>
-              <div className="space-y-4">
-                <div className="text-[11px] font-bold uppercase tracking-widest text-[#444]">Documentation</div>
-                <ul className="space-y-2 text-[13px] font-medium text-[#888]">
-                  <li><Link href="/about" className="hover:text-white transition-colors">System Info</Link></li>
-                  <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy protocol</Link></li>
-                  <li><Link href="/submit" className="hover:text-white transition-colors">Add Module</Link></li>
-                </ul>
-              </div>
-              <div className="space-y-4">
-                <div className="text-[11px] font-bold uppercase tracking-widest text-[#444]">Status</div>
-                <p className="text-[11px] font-mono text-[#444] leading-loose">
-                  STC_NODE_STABLE<br />
-                  © {new Date().getFullYear()}
-                </p>
-              </div>
+        <main className="min-h-screen">
+          {children}
+        </main>
+        
+        <footer className="bg-[var(--lego-blue)] border-t-[var(--border-width)] border-black p-12 text-white">
+          <div className="layout-container grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div className="space-y-4">
+              <div className="text-2xl font-bold uppercase tracking-tighter">Salestools Club</div>
+              <p className="text-[14px] opacity-80 leading-relaxed">
+                The technical "Lego Blocks" for your AI Sales Agent. APIs, SDKs, and MCP servers.
+              </p>
             </div>
-          </footer>
-        </div>
+            <div className="space-y-4">
+              <div className="text-[11px] font-bold uppercase tracking-widest opacity-60">Navigation</div>
+              <ul className="space-y-2 text-[14px] font-semibold">
+                <li><Link href="/tools" className="hover:underline">Nodes</Link></li>
+                <li><Link href="/categories" className="hover:underline">Classes</Link></li>
+                <li><Link href="/mcp" className="hover:underline">Protocols</Link></li>
+                <li><Link href="/vs" className="hover:underline">Audits</Link></li>
+              </ul>
+            </div>
+            <div className="space-y-4">
+              <div className="text-[11px] font-bold uppercase tracking-widest opacity-60">Documentation</div>
+              <ul className="space-y-2 text-[14px] font-semibold">
+                <li><Link href="/about" className="hover:underline">System Info</Link></li>
+                <li><Link href="/privacy" className="hover:underline">Privacy protocol</Link></li>
+                <li><Link href="/submit" className="hover:underline">Add Module</Link></li>
+              </ul>
+            </div>
+            <div className="space-y-4">
+              <div className="text-[11px] font-bold uppercase tracking-widest opacity-60">Status</div>
+              <p className="text-[12px] font-mono leading-loose">
+                STC_BLOCK_STABLE<br />
+                © {new Date().getFullYear()}
+              </p>
+            </div>
+          </div>
+        </footer>
       </body>
     </html>
   )
