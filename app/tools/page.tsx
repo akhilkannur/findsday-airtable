@@ -13,6 +13,46 @@ export const metadata: Metadata = {
   },
 }
 
+function ToolCard({ tool, index }: { tool: any, index: number }) {
+  const colors = ['header-blue', 'header-red', 'header-yellow', 'header-green']
+  const colorClass = colors[index % colors.length]
+
+  return (
+    <Link
+      href={`/tools/${tool.slug}`}
+      className="tool-card group"
+    >
+      <div className={`card-header-studs ${colorClass}`}>
+        <div className="stud"></div><div className="stud"></div><div className="stud"></div>
+      </div>
+      <div className="card-body p-6 flex flex-col gap-4">
+        <div className="card-top flex justify-between items-start">
+          <div className="avatar w-14 h-14 bg-[#eee] border-2 border-black rounded-xl flex items-center justify-center font-extrabold text-2xl text-black">
+            {tool.name.charAt(0)}
+          </div>
+          {tool.mcpReady && (
+            <span className="mcp-badge">MCP READY</span>
+          )}
+        </div>
+        
+        <div>
+          <h3 className="text-xl font-bold mb-2 uppercase text-black">{tool.name}</h3>
+          <p className="text-[0.95rem] text-[#666] leading-relaxed line-clamp-2">
+            {tool.oneLiner}
+          </p>
+        </div>
+
+        <div className="mt-auto flex flex-wrap gap-2 items-center">
+          <span className="tag">{tool.category}</span>
+          <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity">
+             <ArrowRight className="h-5 w-5 text-black" />
+          </div>
+        </div>
+      </div>
+    </Link>
+  )
+}
+
 export default async function ToolsPage({
   searchParams,
 }: {
@@ -24,69 +64,53 @@ export default async function ToolsPage({
 
   return (
     <div className="flex flex-col min-h-screen">
-      <section className="px-10 md:px-20 py-24 border-b border-[#333333] relative overflow-hidden bg-black">
-        <div className="type-label mb-6 flex items-center gap-3">
-          <div className="w-1.5 h-1.5 bg-white rounded-full animate-status-pulse"></div>
-          Node Registry
+      <section className="px-5 py-24 border-b-[var(--border-width)] border-black bg-[var(--lego-yellow)]">
+        <div className="layout-container">
+          <div className="inline-flex items-center gap-2 font-bold uppercase tracking-widest text-sm mb-6 bg-white px-3 py-1 border-2 border-black rounded-full shadow-[2px_2px_0_black]">
+            <span className="w-2 h-2 bg-[var(--lego-green)] rounded-full animate-status-pulse"></span>
+            Node Registry
+          </div>
+          <h1 className="text-4xl md:text-6xl font-bold leading-none tracking-tight mb-8 text-black">All Tools</h1>
+          <p className="max-w-2xl text-xl font-medium text-black/70 leading-relaxed">
+            A comprehensive database of sales APIs and MCP servers. These are the building blocks for the next generation of AI-native sales systems.
+          </p>
         </div>
-        <h1 className="text-[42px] md:text-[64px] font-bold leading-none tracking-[-0.04em] mb-8 text-white">All Tools</h1>
-        <p className="max-w-2xl text-[18px] text-[#888] leading-relaxed">
-          A comprehensive database of sales APIs and MCP servers. These are the building blocks for the next generation of AI-native sales systems.
-        </p>
       </section>
 
-      <SearchBar />
-
-      {q && (
-        <div className="px-10 md:px-20 py-8 border-b border-[#333333] flex items-center justify-between bg-[#050505]">
-          <div className="flex items-center gap-4">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#444]">Filter Active:</span>
-            <span className="px-3 py-1 border border-white text-[10px] font-bold uppercase tracking-[0.1em] text-white">SYSTEM_QUERY: &lsquo;{q}&rsquo;</span>
-          </div>
-          <Link href="/tools" className="text-[10px] font-bold uppercase tracking-widest text-[#888] hover:text-white transition-colors underline underline-offset-4">Reset System</Link>
+      <div className="bg-white border-b-[var(--border-width)] border-black">
+        <div className="layout-container">
+          <SearchBar />
         </div>
-      )}
-
-      <div className="tools-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 bg-[#333333] gap-px border-b border-[#333333]">
-        {tools.map((tool, idx) => (
-          <Link
-            key={tool.slug}
-            href={`/tools/${tool.slug}`}
-            className="group bg-black p-10 flex flex-col gap-6 transition-all hover:bg-[#0a0a0a]"
-          >
-            <div className="flex justify-between items-start">
-              <div className="w-12 h-12 flex items-center justify-center border border-[#333333] bg-black font-bold text-xl text-white group-hover:border-white transition-colors">
-                {tool.name.charAt(0)}
-              </div>
-              <div className="text-xl opacity-0 group-hover:opacity-100 transition-all text-[#444]">↗</div>
-            </div>
-            
-            <div className="flex-grow">
-              <h3 className="text-xl font-semibold tracking-[-0.02em] text-white mb-3">{tool.name}</h3>
-              <p className="text-[14px] text-[#888] leading-relaxed line-clamp-2">
-                {tool.oneLiner}
-              </p>
-            </div>
-
-            <div className="mt-auto pt-8 flex flex-wrap gap-2 items-center">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-[#444]">{tool.category}</span>
-              {tool.mcpReady && (
-                <div className="w-1 h-1 bg-white rounded-full"></div>
-              )}
-              {tool.mcpReady && (
-                <span className="text-[10px] font-bold uppercase tracking-widest text-white">MCP</span>
-              )}
-            </div>
-          </Link>
-        ))}
       </div>
 
-      {tools.length === 0 && (
-        <div className="mt-32 text-center p-24">
-          <p className="text-[11px] font-bold text-[#444] uppercase tracking-widest">No tools found matching your query.</p>
-          <Link href="/tools" className="mt-6 inline-block text-white font-bold hover:underline uppercase text-[10px] tracking-widest">Clear Search</Link>
+      {q && (
+        <div className="py-8 border-b-[var(--border-width)] border-black bg-[var(--lego-offwhite)]">
+          <div className="layout-container flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#444]">Filter Active:</span>
+              <span className="px-3 py-1 bg-[var(--lego-blue)] text-white border-2 border-black rounded-md text-[10px] font-bold uppercase tracking-[0.1em]">SYSTEM_QUERY: &lsquo;{q}&rsquo;</span>
+            </div>
+            <Link href="/tools" className="text-[10px] font-bold uppercase tracking-widest text-black hover:text-[var(--lego-red)] transition-colors underline underline-offset-4">Reset System</Link>
+          </div>
         </div>
       )}
+
+      <section className="py-20">
+        <div className="layout-container">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {tools.map((tool, idx) => (
+              <ToolCard key={tool.slug} tool={tool} index={idx} />
+            ))}
+          </div>
+
+          {tools.length === 0 && (
+            <div className="text-center py-32 brick bg-white">
+              <p className="text-xl font-bold text-black uppercase tracking-widest">No nodes indexed in this class.</p>
+              <Link href="/tools" className="mt-8 brick brick-btn brick-red">Clear Search</Link>
+            </div>
+          )}
+        </div>
+      </section>
     </div>
   )
 }

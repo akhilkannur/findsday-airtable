@@ -18,20 +18,20 @@ export function SearchBar() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="relative w-full group border-b border-[#333333]">
-      <div className="absolute left-10 top-1/2 -translate-y-1/2 flex items-center gap-3 pointer-events-none">
-        <Search className="h-4 w-4 text-white opacity-20 group-focus-within:opacity-100 transition-all" />
+    <form onSubmit={handleSubmit} className="relative w-full group py-6">
+      <div className="absolute left-6 top-1/2 -translate-y-1/2 flex items-center gap-3 pointer-events-none">
+        <Search className="h-5 w-5 text-black opacity-40 group-focus-within:opacity-100 transition-all" />
       </div>
       <input
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="SEARCH_REGISTRY_..."
-        className="w-full bg-black py-10 pl-20 pr-10 text-[11px] font-bold uppercase tracking-[0.2em] text-white placeholder-white/10 transition-all focus:outline-none"
+        className="w-full bg-[var(--lego-offwhite)] border-[var(--border-width)] border-black rounded-[var(--radius-md)] py-5 pl-16 pr-10 text-[14px] font-bold uppercase tracking-[0.1em] text-black placeholder-black/20 transition-all focus:bg-white focus:outline-none shadow-[inset_3px_3px_0_rgba(0,0,0,0.05)]"
       />
-      <div className="absolute right-10 top-1/2 -translate-y-1/2 hidden md:flex items-center gap-2 opacity-20 group-focus-within:opacity-100 transition-opacity">
-        <span className="text-[9px] font-bold uppercase tracking-widest">Execute [Enter]</span>
-        <div className="w-1 h-1 bg-white rounded-full animate-status-pulse"></div>
+      <div className="absolute right-6 top-1/2 -translate-y-1/2 hidden md:flex items-center gap-2 opacity-40 group-focus-within:opacity-100 transition-opacity">
+        <span className="text-[10px] font-bold uppercase tracking-widest text-black">Execute [Enter]</span>
+        <div className="w-2 h-2 bg-[var(--lego-green)] border border-black rounded-full animate-status-pulse"></div>
       </div>
     </form>
   )
