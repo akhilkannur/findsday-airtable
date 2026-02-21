@@ -67,7 +67,7 @@ body {
   }
 
   .stud {
-    @apply w-[30px] height-[10px] bg-black/10 rounded-t-[4px];
+    @apply w-[30px] h-[10px] bg-black/10 rounded-t-[4px];
   }
 
   .mcp-badge {
