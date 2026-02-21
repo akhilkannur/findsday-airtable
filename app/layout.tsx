@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from "next/font/google"
 import { GeistMono } from 'geist/font/mono'
 import "./globals.css"
 import Link from "next/link"
+import Image from "next/image"
 import { MobileNav } from "@/components/MobileNav"
 import { Shield, Zap } from "lucide-react"
 
@@ -133,15 +134,26 @@ gtag('config', 'G-9LGNFH00R7');`,
         </main>
         
         <footer className="border-t border-ink p-12 mt-20 opacity-60">
-          <div className="layout-container text-center flex flex-col items-center gap-8">
-            <svg width="40" height="40" viewBox="0 0 100 100" className="opacity-40">
-              <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" strokeWidth="2"></circle>
-              <line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" strokeWidth="2"></line>
-              <line x1="10" y1="50" x2="90" y2="50" stroke="currentColor" strokeWidth="2"></line>
-            </svg>
-            <div className="font-mono text-[0.75rem] uppercase tracking-widest">
-              build by <a href="https://akhilhaving.fun" target="_blank" rel="noopener noreferrer" className="hover:underline">akhilhaving.fun</a><br />
-              © {new Date().getFullYear()}
+          <div className="layout-container text-center flex flex-col items-center gap-6">
+            <div className="flex items-center gap-3 font-mono text-[0.75rem] uppercase tracking-widest flex-wrap justify-center">
+              <span>Built by</span>
+              <a href="https://akhilhaving.fun" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                <Image 
+                  src="/dp.jpg" 
+                  alt="Akhil" 
+                  width={24}
+                  height={24}
+                  className="rounded-full grayscale border border-ink/20"
+                />
+                <span className="font-bold border-b border-ink/30 pb-0.5">Akhil</span>
+              </a>
+              <span>with</span>
+              <a href="https://realaiexamples.com" target="_blank" rel="noopener noreferrer" className="font-bold border-b border-ink/30 pb-0.5 hover:opacity-80 transition-opacity">
+                Real AI Examples
+              </a>
+            </div>
+            <div className="font-mono text-[0.6rem] uppercase tracking-[0.2em] opacity-40">
+              © {new Date().getFullYear()} Salestools Club
             </div>
           </div>
         </footer>

@@ -16,26 +16,39 @@ Before starting, check `PROGRESS.md` in the root directory to find where the las
 ### 1. Identify Tool
 The tool can be identified by name (searched in `agent-reference/pure_salestech.csv`) or by a direct URL. Start Batch processing from the line indicated in `PROGRESS.md`.
 
-### 2. Research Tool
-Run the research script to scrape the tool's website and documentation:
-```bash
-python scripts/research_tool.py <website_url>
-```
-*Wait for it to save results to `research_result.md`.*
+### 2. Deep Research (The "Crawl4AI" Loop)
+Do not just rely on the homepage. You must verify technical details.
 
-### 3. Analyze & Validate
-Read `research_result.md` and check for:
-- **API Availability:** Does it have a REST/GraphQL API?
+1.  **Crawl Homepage:**
+    Run the research script to scrape the main URL:
+    ```bash
+    python scripts/research_tool.py <website_url>
+    ```
+2.  **Analyze & Expand:**
+    Read `research_result.md`. If it lacks specific "API Documentation" or "Pricing" details, perform a Google Search:
+    - Query: `"<Tool Name> API documentation authentication"`
+    - Query: `"<Tool Name> pricing model"`
+3.  **Crawl Technical Pages:**
+    If you found specific docs or pricing URLs in step 2, run the crawler **again** on those specific URLs to capture the raw technical data.
+    ```bash
+    python scripts/research_tool.py <docs_url>
+    ```
+
+### 3. Verify Data Points
+Before adding, you must confirm:
+- **API Availability:** REST, GraphQL, or pure Webhook?
+- **Auth Method:** Bearer Token, API Key, or OAuth?
+- **Pricing:** Is there a Free Tier? Is it Credit-based?
 - **MCP Support:** Does it have an official or community MCP server?
-- **Agent Readiness:** Can an AI agent (like Claude) use it easily?
 
-*If no API/MCP is found, inform the user and stop.*
+*If no API/MCP is found after this deep check, inform the user and stop.*
 
 ### 4. Format & Commit
 - Generate a `slug` (kebab-case).
 - Extract description, `aiCapabilities`, `starterPrompt`, and `integrations` (especially `mcpConfig` if available).
 - Reference the schema in `references/lib-data-schema.md`.
 - Use the `replace` tool to add the new tool object to `lib/data.ts` inside the `tools` array.
+- **Sync to Sheet:** Immediately run `python3 scripts/sync-to-gsheet.py` to keep the master sheet updated.
 
 ## Guidelines
 - **No AI Slop:** Descriptions should be human, direct, and conversational. Avoid words like "unleash," "leverage," or "comprehensive."
@@ -44,5 +57,5 @@ Read `research_result.md` and check for:
 
 ## Resources
 - [lib-data-schema.md](references/lib-data-schema.md): Schema reference for the `SalesTool` type.
-- `scripts/research_tool.py`: Research script in the root directory.
+- `scripts/research_tool.py`: Research script in the root directory (Uses Crawl4AI).
 - `agent-reference/pure_salestech.csv`: Master list of potential tools.

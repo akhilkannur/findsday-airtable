@@ -1,19 +1,16 @@
 "use client"
 
 import { useState } from "react"
-import { Send } from "lucide-react"
+import { Send, CheckCircle2, AlertCircle } from "lucide-react"
 
 const CATEGORIES = [
-  "Prospecting",
-  "Email Outreach",
-  "CRM",
-  "Enrichment",
-  "Voice & Calling",
-  "Scheduling",
-  "Conversation Intelligence",
-  "Documents & Proposals",
+  "Sales Intelligence",
   "Sales Engagement",
-  "Workflow Automation",
+  "Phone & Dialers",
+  "CRM & RevOps",
+  "Revenue Intelligence",
+  "Sales Enablement",
+  "Closing & Scheduling",
 ]
 
 export default function SubmitPage() {
@@ -28,8 +25,67 @@ export default function SubmitPage() {
     email: "",
   })
 
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState("")
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setStatus('submitting')
+    setErrorMessage("")
+
+    try {
+      const response = await fetch('/api/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Failed to submit')
+      }
+
+      setStatus('success')
+      // Reset form after success
+      setFormData({
+        toolName: "",
+        websiteUrl: "",
+        apiDocsUrl: "",
+        category: "",
+        hasMcp: false,
+        hasAgentSkills: false,
+        description: "",
+        email: "",
+      })
+    } catch (err: any) {
+      console.error(err)
+      setStatus('error')
+      setErrorMessage(err.message || "Something went wrong. Please try again.")
+    }
+  }
+
   const inputClasses =
     "w-full bg-transparent border-b-2 border-ink px-0 py-4 text-black placeholder-black/20 focus:outline-none focus:bg-white/40 transition-all font-mono"
+
+  if (status === 'success') {
+    return (
+      <div className="flex flex-col min-h-screen bg-paper items-center justify-center text-center px-8">
+        <CheckCircle2 className="w-20 h-20 text-green-600 mb-8" />
+        <h1 className="type-display mb-4 text-4xl">Submission Received</h1>
+        <p className="max-w-md font-serif italic text-2xl text-ink-fade leading-relaxed mb-12">
+          Your tool has been dispatched to the primary node for manual verification.
+        </p>
+        <button 
+          onClick={() => setStatus('idle')}
+          className="font-mono font-bold uppercase text-[0.9rem] border-b-2 border-ink pb-1 hover:opacity-60 transition-opacity"
+        >
+          Submit another tool
+        </button>
+      </div>
+    )
+  }
 
   return (
     <div className="flex flex-col min-h-screen bg-paper">
@@ -45,7 +101,7 @@ export default function SubmitPage() {
       <section className="py-20">
         <div className="layout-container">
           <div className="max-w-2xl mx-auto p-16 border border-dashed border-ink/30 bg-white/20">
-            <form className="space-y-16" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-16" onSubmit={handleSubmit}>
               {/* Tool Name */}
               <div>
                 <label htmlFor="toolName" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink-fade mb-2 block">
@@ -58,6 +114,7 @@ export default function SubmitPage() {
                   className={inputClasses}
                   value={formData.toolName}
                   onChange={(e) => setFormData({ ...formData, toolName: e.target.value })}
+                  required
                 />
               </div>
 
@@ -68,11 +125,12 @@ export default function SubmitPage() {
                 </label>
                 <input
                   id="websiteUrl"
-                  type="text"
+                  type="url"
                   placeholder="https://..."
                   className={inputClasses}
                   value={formData.websiteUrl}
                   onChange={(e) => setFormData({ ...formData, websiteUrl: e.target.value })}
+                  required
                 />
               </div>
 
@@ -83,7 +141,7 @@ export default function SubmitPage() {
                 </label>
                 <input
                   id="apiDocsUrl"
-                  type="text"
+                  type="url"
                   placeholder="https://docs..."
                   className={inputClasses}
                   value={formData.apiDocsUrl}
@@ -101,6 +159,7 @@ export default function SubmitPage() {
                   className={inputClasses}
                   value={formData.category}
                   onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                  required
                 >
                   <option value="" className="bg-paper">Select a class...</option>
                   {CATEGORIES.map((cat) => (
@@ -109,6 +168,37 @@ export default function SubmitPage() {
                     </option>
                   ))}
                 </select>
+              </div>
+
+              {/* Description */}
+              <div>
+                <label htmlFor="description" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink-fade mb-2 block">
+                  05. One-liner / Description
+                </label>
+                <input
+                  id="description"
+                  type="text"
+                  placeholder="What does it do for AI agents?"
+                  className={inputClasses}
+                  value={formData.description}
+                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                  required
+                />
+              </div>
+
+              {/* Email */}
+              <div>
+                <label htmlFor="email" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink-fade mb-2 block">
+                  06. Your Email (Optional)
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="For verification updates..."
+                  className={inputClasses}
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                />
               </div>
 
               {/* Checkboxes */}
@@ -140,13 +230,21 @@ export default function SubmitPage() {
                 </label>
               </div>
 
+              {status === 'error' && (
+                <div className="flex items-center gap-2 text-red-600 font-mono text-sm">
+                  <AlertCircle className="w-4 h-4" />
+                  {errorMessage}
+                </div>
+              )}
+
               {/* Submit */}
               <div className="pt-8">
                 <button
                   type="submit"
-                  className="w-full py-6 font-mono font-bold uppercase text-[1.1rem] transition-all hover:rotate-[-1deg] circled accent bg-transparent"
+                  disabled={status === 'submitting'}
+                  className={`w-full py-6 font-mono font-bold uppercase text-[1.1rem] transition-all hover:rotate-[-1deg] circled accent bg-transparent ${status === 'submitting' ? 'opacity-50 cursor-not-allowed' : ''}`}
                 >
-                  Deploy to Registry <span>-></span>
+                  {status === 'submitting' ? 'Deploying...' : 'Deploy to Registry'} <span>-></span>
                 </button>
                 <p className="mt-8 font-serif italic text-lg text-ink-fade text-center opacity-60">
                   Awaiting manual verification from primary node...
