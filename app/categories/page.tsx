@@ -27,7 +27,7 @@ export default function CategoriesPage() {
         <div className="layout-container">
           <div className="font-mono text-[0.85rem] uppercase tracking-[0.2em] text-[var(--ink-fade)] mb-6 flex items-center gap-3">
             <span className="w-1.5 h-1.5 bg-current rounded-full animate-status-blink"></span>
-            Taxonomy of Systems
+            Browse by Type
           </div>
           <h1 className="type-display mb-8">Categories</h1>
           <p className="max-w-2xl font-serif italic text-2xl text-[var(--ink-fade)] leading-relaxed border-l-2 border-[var(--ink)] pl-6">
@@ -38,7 +38,6 @@ export default function CategoriesPage() {
 
       <section className="py-20">
         <div className="layout-container">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-px bg-[var(--ink)] opacity-20"></div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12">
             {categories.map((cat, idx) => {
               const Icon = getCategoryIcon(cat.icon)
@@ -53,7 +52,7 @@ export default function CategoriesPage() {
                     <div className="w-12 h-12 flex items-center justify-center bg-[var(--ink)] text-[var(--paper)] [clip-path:polygon(0%_0%,100%_5%,95%_100%,5%_95%)]">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <span className="font-mono text-[0.7rem] text-[var(--ink-fade)] group-hover:text-black transition-colors italic uppercase">Index_0{idx + 1}</span>
+                    <span className="font-mono text-[0.7rem] text-[var(--ink-fade)] group-hover:text-black transition-colors italic uppercase">Type_0{idx + 1}</span>
                   </div>
 
                   <div>
@@ -67,9 +66,9 @@ export default function CategoriesPage() {
 
                   <div className="mt-auto pt-8 flex items-center justify-between opacity-40 group-hover:opacity-100 transition-all border-t border-dashed border-[var(--ink)]/20">
                     <div className="font-mono text-[0.7rem] uppercase">
-                      {cat.toolCount} Manifests
+                      {cat.toolCount} Tools
                     </div>
-                    <div className="font-mono text-[0.7rem] uppercase tracking-widest">Inspect -></div>
+                    <div className="font-mono text-[0.7rem] uppercase tracking-widest">Open -></div>
                   </div>
                 </Link>
               )

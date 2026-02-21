@@ -83,7 +83,7 @@ function ToolCard({ tool }: { tool: SalesTool }) {
       </div>
 
       <div className="mt-auto flex items-center justify-between opacity-40 group-hover:opacity-100 transition-all pt-4">
-        <div className="font-mono text-[9px] uppercase tracking-widest text-[var(--ink)]">Inspect Node</div>
+        <div className="font-mono text-[9px] uppercase tracking-widest text-[var(--ink)]">View Details</div>
         <ArrowRight className="h-3 w-3 text-black transition-transform group-hover:translate-x-1" />
       </div>
     </Link>
@@ -123,7 +123,7 @@ export default async function ToolDetailPage({
     <div className="flex flex-col min-h-screen">
       <JsonLd tool={tool} />
 
-      <section className="px-8 py-24 border-b border-[var(--ink)] bg-[var(--paper-dark)]">
+      <section className="px-8 py-24 border-b border-[var(--ink)] bg-[var(--paper-dark)]/30">
         <div className="layout-container">
           <Link
             href="/tools"
@@ -139,7 +139,7 @@ export default async function ToolDetailPage({
                   {tool.name.charAt(0)}
                 </div>
                 <div className="space-y-4">
-                  <div className="circled font-mono text-[0.75rem] font-bold uppercase">#{tool.category.toLowerCase().replace(/\s+/g, '_')}</div>
+                  <div className="circled font-mono text-[0.75rem] font-bold uppercase">{tool.category}</div>
                   <h1 className="type-display uppercase">{tool.name}</h1>
                 </div>
               </div>
@@ -147,7 +147,7 @@ export default async function ToolDetailPage({
             </div>
 
             <div className="flex flex-col gap-4">
-              <div className="font-mono text-[0.7rem] uppercase tracking-widest text-[var(--ink-fade)] mb-2">Technical_Endpoints</div>
+              <div className="font-mono text-[0.7rem] uppercase tracking-widest text-[var(--ink-fade)] mb-2">Important Links</div>
               {actionLinks.map((link) => (
                 <a
                   key={link.label}
@@ -187,7 +187,7 @@ export default async function ToolDetailPage({
 
           {tool.starterPrompt && (
             <div className="p-16 bg-[var(--paper)] border border-dashed border-[var(--ink)] relative group">
-              <div className="font-mono text-[0.7rem] uppercase tracking-widest text-[var(--ink-fade)] mb-10">Usage Annotation</div>
+              <div className="font-mono text-[0.7rem] uppercase tracking-widest text-[var(--ink-fade)] mb-10">How to use this tool</div>
               <div className="font-serif italic text-2xl text-[var(--ink)] leading-relaxed">
                 &quot;{tool.starterPrompt}&quot;
               </div>
@@ -196,7 +196,7 @@ export default async function ToolDetailPage({
 
           <div className="max-w-4xl">
             <div className="flex items-center gap-6 mb-12">
-              <div className="font-mono text-[0.8rem] uppercase tracking-wider text-[var(--ink)]">Technical Context</div>
+              <div className="font-mono text-[0.8rem] uppercase tracking-wider text-[var(--ink)]">About {tool.name}</div>
               <div className="h-px flex-grow bg-[var(--ink)] opacity-10"></div>
             </div>
             <div className="font-serif text-xl leading-relaxed text-[var(--ink-fade)] whitespace-pre-line max-w-3xl">
@@ -207,7 +207,7 @@ export default async function ToolDetailPage({
 
         <div className="p-10 md:p-20 bg-[var(--paper-dark)]/30 space-y-20">
           <div>
-            <div className="font-mono text-[0.75rem] uppercase tracking-widest text-[var(--ink-fade)] mb-12">Manifest Specification</div>
+            <div className="font-mono text-[0.75rem] uppercase tracking-widest text-[var(--ink-fade)] mb-12">Technical Details</div>
             
             <div className="space-y-12">
               {[
@@ -228,7 +228,7 @@ export default async function ToolDetailPage({
           {tool.integrations.find(i => i.platform === "MCP" && i.mcpConfig) && (
             <div className="tool-card group bg-black text-[var(--paper)]">
               <div className="flex items-center justify-between mb-10">
-                <div className="font-mono text-[0.7rem] uppercase tracking-widest text-[var(--paper)] opacity-60">MCP Configuration</div>
+                <div className="font-mono text-[0.7rem] uppercase tracking-widest text-[var(--paper)] opacity-60">MCP Setup</div>
                 <div className="w-2 h-2 bg-white rounded-full animate-status-blink"></div>
               </div>
               <pre className="font-mono text-[11px] whitespace-pre-wrap overflow-x-auto p-8 border border-white/10 bg-white/5 text-white/80 leading-relaxed mb-8">
@@ -237,7 +237,7 @@ export default async function ToolDetailPage({
               <div className="flex justify-center">
                 <CopyButton 
                   text={tool.integrations.find(i => i.platform === "MCP")?.mcpConfig || ""} 
-                  label="Annotate Config"
+                  label="Copy Config"
                   className="font-mono text-[0.7rem] uppercase border border-white/20 px-4 py-2 hover:bg-white hover:text-black transition-all"
                 />
               </div>
@@ -251,7 +251,7 @@ export default async function ToolDetailPage({
           {alternatives.length > 0 && (
             <>
               <div className="flex items-center gap-6 mb-20">
-                <h2 className="font-serif italic text-3xl">Cross-referenced alternatives to {tool.name}</h2>
+                <h2 className="font-serif italic text-3xl">Alternatives to {tool.name}</h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
                 {alternatives.map((alt) => (

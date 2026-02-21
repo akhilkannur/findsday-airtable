@@ -93,8 +93,8 @@ export default function Home() {
       <section className="py-20 border-t border-[var(--ink)]">
         <div className="layout-container">
           <div className="flex justify-between items-end mb-12 pb-4 border-b border-[var(--ink)]">
-            <span className="font-mono text-[0.9rem] uppercase tracking-widest text-[var(--ink-fade)]">Latest Deployments</span>
-            <div className="font-mono text-[0.9rem] uppercase tracking-widest text-[var(--ink-fade)]">Filter: All Systems</div>
+            <span className="font-mono text-[0.9rem] uppercase tracking-widest text-[var(--ink-fade)]">Recently Added</span>
+            <div className="font-mono text-[0.9rem] uppercase tracking-widest text-[var(--ink-fade)]">Browse All</div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
@@ -105,7 +105,7 @@ export default function Home() {
 
           <div className="mt-24 text-center">
             <Link href="/tools" className="font-serif italic text-2xl border-b border-black hover:opacity-60 transition-opacity pb-1">
-              Initialize Full Registry ->
+              Browse All Tools ->
             </Link>
           </div>
         </div>
@@ -117,11 +117,11 @@ export default function Home() {
           <div className="mb-20">
             <div className="font-mono text-[0.85rem] uppercase tracking-[0.2em] text-[var(--ink-fade)] mb-6 flex items-center gap-3">
               <span className="w-1.5 h-1.5 bg-current rounded-full"></span>
-              Infrastructure Classes
+              Explore by Type
             </div>
-            <h2 className="font-serif text-5xl leading-tight">Browse by Category.</h2>
+            <h2 className="font-serif text-5xl leading-tight">Categories</h2>
             <p className="mt-8 text-xl font-medium text-[var(--ink-fade)] leading-relaxed max-w-xl">
-              Every category is vetted for builder-first compatibility. Vetted APIs, verified MCPs, zero fluff.
+              We vet every tool to make sure it actually works with AI agents. No fluff, just the building blocks.
             </p>
           </div>
 
@@ -132,7 +132,7 @@ export default function Home() {
                 href={`/categories/${cat.slug}`}
                 className="group flex flex-col h-full gap-6 hover:translate-y-[-4px] transition-transform"
               >
-                <div className="font-mono text-[0.75rem] text-[var(--ink-fade)] group-hover:text-[var(--ink)] transition-colors italic uppercase">Class_0{idx + 1}</div>
+                <div className="font-mono text-[0.75rem] text-[var(--ink-fade)] group-hover:text-[var(--ink)] transition-colors italic uppercase">Collection_0{idx + 1}</div>
                 <h3 className="text-2xl font-bold uppercase underline decoration-transparent group-hover:decoration-[var(--ink)] transition-all underline-offset-8">
                   {cat.name}
                 </h3>
@@ -140,7 +140,7 @@ export default function Home() {
                   {cat.description}
                 </p>
                 <div className="mt-auto font-mono text-[0.7rem] uppercase text-[var(--ink-fade)]">
-                  {cat.toolCount} Items
+                  {cat.toolCount} Tools
                 </div>
               </Link>
             ))}
