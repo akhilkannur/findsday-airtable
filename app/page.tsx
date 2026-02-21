@@ -86,12 +86,17 @@ export default async function Home() {
                   />
                 </div>
                 <button type="submit" className="bg-ink text-paper px-8 py-3 font-mono font-bold uppercase text-[0.9rem] hover:bg-ink/90 transition-all whitespace-nowrap">
-                  Get the Blueprint
+                  Join the Club
                 </button>
               </form>
-              <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade">
-                Tools, Resources & Products. Delivered weekly.
-              </p>
+              <div className="flex flex-col gap-2">
+                <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade">
+                  Fresh APIs, Blueprints & Workflows. Arriving every 10 days.
+                </p>
+                <p className="font-mono text-[0.6rem] uppercase tracking-widest text-ink-fade/60">
+                  {allTools.length} Tools Indexed. Last refresh: {new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} at {new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })}
+                </p>
+              </div>
             </div>
           </div>
         </div>
