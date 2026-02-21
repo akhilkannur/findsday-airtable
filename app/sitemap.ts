@@ -3,8 +3,8 @@ import type { MetadataRoute } from "next"
 
 const BASE_URL = "https://salestools.club"
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const toolSlugs = getAllSlugs()
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const toolSlugs = await getAllSlugs()
   const categorySlugs = getAllCategorySlugs()
 
   const staticPages = [

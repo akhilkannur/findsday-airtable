@@ -36,8 +36,8 @@ function ToolCard({ tool }: { tool: any }) {
       </div>
 
       <div className="mt-auto flex items-center justify-between border-t border-dashed border-black/10 pt-4">
-        <div className="font-mono text-[0.7rem] uppercase text-black font-bold border border-black/20 px-2 py-0.5">
-          {tool.apiType[0]} INFRA
+        <div className="font-mono text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 border border-ink/20 rounded-full group-hover:border-ink transition-colors">
+          {tool.hasFreeTier ? "Free" : "Paid"}
         </div>
         <div className="font-mono text-[0.7rem] uppercase underline group-hover:line-through transition-all">
           Configure Node ↗
@@ -47,8 +47,8 @@ function ToolCard({ tool }: { tool: any }) {
   )
 }
 
-export default function McpPage() {
-  const mcpTools = getMcpTools()
+export default async function McpPage() {
+  const mcpTools = await getMcpTools()
 
   return (
     <div className="flex flex-col min-h-screen bg-paper">

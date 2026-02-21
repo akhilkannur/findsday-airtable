@@ -225,7 +225,7 @@ export const tools: SalesTool[] = [
     category: "Sales Engagement",
     logoUrl: "/logos/justcall.svg",
     websiteUrl: "https://justcall.io",
-    docsUrl: "https://justcall.io/docs/api/",
+    docsUrl: "https://help.justcall.io/en/collections/2290453-developer-apis-webhooks",
     pricingUrl: "https://justcall.io/pricing",
     apiType: ["REST"],
     authMethod: ["API Key"],

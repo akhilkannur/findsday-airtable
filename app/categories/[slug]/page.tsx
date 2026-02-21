@@ -75,7 +75,7 @@ export default async function CategoryDetailPage({
     notFound()
   }
 
-  const tools = getToolsByCategory(category.name)
+  const tools = await getToolsByCategory(category.name)
 
   return (
     <div className="flex flex-col min-h-screen bg-paper">

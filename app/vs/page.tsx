@@ -10,8 +10,8 @@ export const metadata = {
   },
 }
 
-export default function VsIndexPage() {
-  const tools = getAllTools()
+export default async function VsIndexPage() {
+  const tools = await getAllTools()
   
   // High-value featured pairs for SEO
   const featuredPairs = [

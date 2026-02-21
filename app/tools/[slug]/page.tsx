@@ -20,7 +20,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>
 }): Promise<Metadata> {
   const { slug } = await params
-  const tool = getToolBySlug(slug)
+  const tool = await getToolBySlug(slug)
 
   if (!tool) {
     return {
@@ -96,7 +96,7 @@ export default async function ToolDetailPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const tool = getToolBySlug(slug)
+  const tool = await getToolBySlug(slug)
 
   if (!tool) {
     notFound()
@@ -109,7 +109,7 @@ export default async function ToolDetailPage({
   ]
 
   // Find alternatives
-  const allTools = getAllTools()
+  const allTools = await getAllTools()
   const alternatives = allTools.filter(t => 
     t.slug !== tool.slug && 
     (

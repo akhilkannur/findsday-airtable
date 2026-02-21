@@ -88,7 +88,7 @@ export default async function ToolsPage({
   const freeOnly = sp.free === "true"
   const view = sp.view === "list" ? "list" : "grid"
 
-  const tools = filterTools({
+  const tools = await filterTools({
     query: q,
     category: category,
     mcpOnly,

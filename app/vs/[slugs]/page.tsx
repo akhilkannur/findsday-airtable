@@ -10,7 +10,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slugs } = await params
-  const { tool1, tool2 } = getToolsForComparison(slugs)
+  const { tool1, tool2 } = await getToolsForComparison(slugs)
 
   if (!tool1 || !tool2) {
     return { title: "Comparison Not Found" }
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ComparisonPage({ params }: Props) {
   const { slugs } = await params
-  const { tool1, tool2 } = getToolsForComparison(slugs)
+  const { tool1, tool2 } = await getToolsForComparison(slugs)
 
   if (!tool1 || !tool2) {
     notFound()

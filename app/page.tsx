@@ -45,10 +45,10 @@ function ToolCard({ tool }: { tool: any }) {
   )
 }
 
-export default function Home() {
-  const allFeatured = getFeaturedTools()
+export default async function Home() {
+  const allFeatured = await getFeaturedTools()
   const exploreTools = allFeatured.slice(0, 12)
-  const allTools = getAllTools()
+  const allTools = await getAllTools()
   const categories = getAllCategories()
 
   return (
