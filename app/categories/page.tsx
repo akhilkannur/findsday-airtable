@@ -24,8 +24,8 @@ export default function CategoriesPage() {
   return (
     <div className="flex flex-col min-h-screen bg-black">
       <section className="px-10 md:px-20 py-24 border-b border-[#333333]">
-        <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#444] mb-6">Classification System</div>
-        <h1 className="text-[42px] md:text-[64px] font-bold leading-none tracking-[-0.04em] mb-8 text-white">Infrastructure Classes</h1>
+        <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#444] mb-6">Tool Directory</div>
+        <h1 className="text-[42px] md:text-[64px] font-bold leading-none tracking-[-0.04em] mb-8 text-white">Categories</h1>
         <p className="max-w-2xl text-[18px] text-[#888] leading-relaxed">
           Find the building blocks for every part of your automated sales engine. From prospecting data to outreach APIs.
         </p>

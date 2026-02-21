@@ -20,7 +20,7 @@ export default function McpPage() {
       <section className="px-10 md:px-20 py-24 border-b border-[#333333]">
         <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#444] mb-6 flex items-center gap-3">
           <div className="w-1.5 h-1.5 bg-white rounded-full animate-status-pulse"></div>
-          Protocol Layer
+          Automation Layer
         </div>
         <h1 className="text-[42px] md:text-[64px] font-bold leading-none tracking-[-0.04em] mb-8 text-white">MCP Servers</h1>
         <p className="max-w-3xl text-[18px] text-[#888] leading-relaxed">
