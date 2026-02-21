@@ -35,10 +35,9 @@ export default function SubmitPage() {
     <div className="flex flex-col min-h-screen bg-paper">
       <section className="px-8 py-24 border-b border-ink bg-paper-dark/30">
         <div className="layout-container">
-          <div className="font-mono text-[0.85rem] uppercase tracking-[0.2em] text-ink-fade mb-6 flex items-center gap-3">Entry Submission</div>
-          <h1 className="type-display mb-8">Add Entry</h1>
+          <h1 className="type-display mb-8">Submit Tool</h1>
           <p className="max-w-2xl font-serif italic text-2xl text-ink-fade leading-relaxed border-l-2 border-ink pl-6">
-            Know a sales API or MCP server we&apos;re missing? Add it to the club infrastructure.
+            Know a sales API or MCP server we&apos;re missing? Add it to the club.
           </p>
         </div>
       </section>
@@ -50,7 +49,7 @@ export default function SubmitPage() {
               {/* Tool Name */}
               <div>
                 <label htmlFor="toolName" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink-fade mb-2 block">
-                  01. Module Identifier
+                  01. Tool Name
                 </label>
                 <input
                   id="toolName"
@@ -65,7 +64,7 @@ export default function SubmitPage() {
               {/* Website URL */}
               <div>
                 <label htmlFor="websiteUrl" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink-fade mb-2 block">
-                  02. Primary Node (URL)
+                  02. Website URL
                 </label>
                 <input
                   id="websiteUrl"
@@ -80,7 +79,7 @@ export default function SubmitPage() {
               {/* API Docs URL */}
               <div>
                 <label htmlFor="apiDocsUrl" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink-fade mb-2 block">
-                  03. Spec/Docs Endpoint
+                  03. API Docs URL
                 </label>
                 <input
                   id="apiDocsUrl"
@@ -95,7 +94,7 @@ export default function SubmitPage() {
               {/* Category */}
               <div>
                 <label htmlFor="category" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink-fade mb-2 block">
-                  04. Infrastructure Class
+                  04. Category
                 </label>
                 <select
                   id="category"

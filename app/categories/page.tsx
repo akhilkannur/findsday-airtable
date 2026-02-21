@@ -25,10 +25,6 @@ export default function CategoriesPage() {
     <div className="flex flex-col min-h-screen bg-paper">
       <section className="px-8 py-24 border-b border-ink">
         <div className="layout-container">
-          <div className="font-mono text-[0.85rem] uppercase tracking-[0.2em] text-ink-fade mb-6 flex items-center gap-3">
-            <span className="w-1.5 h-1.5 bg-current rounded-full animate-status-blink"></span>
-            Browse by Type
-          </div>
           <h1 className="type-display mb-8">Categories</h1>
           <p className="max-w-2xl font-serif italic text-2xl text-ink-fade leading-relaxed border-l-2 border-ink pl-6">
             Find the building blocks for every part of your automated sales engine. From prospecting data to outreach APIs.
@@ -53,7 +49,6 @@ export default function CategoriesPage() {
                     <div className="w-12 h-12 flex items-center justify-center bg-ink text-paper [clip-path:polygon(0%_0%,100%_5%,95%_100%,5%_95%)]">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <span className="font-mono text-[0.7rem] text-ink-fade group-hover:text-black transition-colors italic uppercase">Type_0{idx + 1}</span>
                   </div>
 
                   <div>

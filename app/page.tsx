@@ -35,8 +35,11 @@ function ToolCard({ tool }: { tool: any }) {
         </p>
       </div>
 
-      <div className="mt-auto flex flex-wrap gap-2">
+      <div className="mt-auto flex flex-wrap gap-2 items-center">
         <span className="font-mono text-[0.75rem] uppercase tracking-wider text-ink-fade">{tool.category}</span>
+        <span className="ml-auto font-mono text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 border border-ink/20 rounded-full">
+          {tool.hasFreeTier ? "Free Tier" : "Paid"}
+        </span>
       </div>
     </Link>
   )
@@ -72,19 +75,24 @@ export default function Home() {
               Don't reinvent the wheel. We've curated the best APIs, SDKs, and MCP servers that plug directly into Claude Code and Cursor. Build your GTM machine in hours, not weeks.
             </div>
 
-            <form className="flex gap-6 max-w-lg items-end">
-              <div className="flex-grow">
-                <input 
-                  type="email" 
-                  placeholder="enter your email..." 
-                  className="w-full bg-transparent border-b-2 border-ink font-mono text-lg py-2 focus:outline-none placeholder:italic placeholder:text-ink-fade"
-                  required
-                />
-              </div>
-              <button type="submit" className="circled accent font-mono font-bold uppercase text-[1rem] hover:rotate-[-2deg] transition-transform">
-                Get the Blueprint
-              </button>
-            </form>
+            <div className="max-w-xl">
+              <form className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-end mb-6">
+                <div className="flex-grow">
+                  <input 
+                    type="email" 
+                    placeholder="enter your email..." 
+                    className="w-full bg-transparent border-b-2 border-ink font-mono text-lg py-2 focus:outline-none placeholder:italic placeholder:text-ink-fade"
+                    required
+                  />
+                </div>
+                <button type="submit" className="bg-ink text-paper px-8 py-3 font-mono font-bold uppercase text-[0.9rem] hover:bg-ink/90 transition-all whitespace-nowrap">
+                  Get the Blueprint
+                </button>
+              </form>
+              <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade">
+                Tools, Resources & Products. Delivered weekly.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -92,11 +100,6 @@ export default function Home() {
       {/* ── Directory Header ──────────────── */}
       <section className="py-20 border-t border-ink">
         <div className="layout-container">
-          <div className="flex justify-between items-end mb-12 pb-4 border-b border-ink">
-            <span className="font-mono text-[0.9rem] uppercase tracking-widest text-ink-fade">Recently Added</span>
-            <div className="font-mono text-[0.9rem] uppercase tracking-widest text-ink-fade">Browse All</div>
-          </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             {exploreTools.map((tool) => (
               <ToolCard key={tool.slug} tool={tool} />
@@ -115,10 +118,6 @@ export default function Home() {
       <section className="py-32 bg-paper-dark border-y border-ink">
         <div className="layout-container">
           <div className="mb-20">
-            <div className="font-mono text-[0.85rem] uppercase tracking-[0.2em] text-ink-fade mb-6 flex items-center gap-3">
-              <span className="w-1.5 h-1.5 bg-current rounded-full"></span>
-              Explore by Type
-            </div>
             <h2 className="font-serif text-5xl leading-tight">Categories</h2>
             <p className="mt-8 text-xl font-medium text-ink-fade leading-relaxed max-w-xl">
               We vet every tool to make sure it actually works with AI agents. No fluff, just the building blocks.
@@ -133,7 +132,6 @@ export default function Home() {
                 className="group flex flex-col h-full gap-6 p-8 bg-paper-dark/60 hover:translate-y-[-4px] transition-all"
                 style={{ border: '1px solid rgba(26, 25, 23, 0.15)' }}
               >
-                <div className="font-mono text-[0.75rem] text-ink-fade group-hover:text-ink transition-colors italic uppercase">Collection_0{idx + 1}</div>
                 <h3 className="text-2xl font-bold uppercase underline decoration-transparent group-hover:decoration-ink transition-all underline-offset-8">
                   {cat.name}
                 </h3>

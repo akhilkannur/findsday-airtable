@@ -140,7 +140,7 @@ gtag('config', 'G-9LGNFH00R7');`,
               <line x1="10" y1="50" x2="90" y2="50" stroke="currentColor" strokeWidth="2"></line>
             </svg>
             <div className="font-mono text-[0.75rem] uppercase tracking-widest">
-              build by akhilhaving.fun<br />
+              build by <a href="https://akhilhaving.fun" target="_blank" rel="noopener noreferrer" className="hover:underline">akhilhaving.fun</a><br />
               © {new Date().getFullYear()}
             </div>
           </div>

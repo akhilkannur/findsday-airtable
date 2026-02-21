@@ -55,11 +55,9 @@ function ToolCard({ tool }: { tool: any }) {
 
       <div className="mt-auto flex flex-wrap gap-2 items-center border-t border-dashed border-black/10 pt-4">
         <span className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade group-hover:text-black transition-colors">{tool.aiDifficulty}</span>
-        <div className="ml-auto flex gap-1">
-          {tool.apiType.map((api: string) => (
-            <span key={api} className="font-mono text-[9px] font-bold uppercase tracking-widest text-white bg-black px-1.5 py-0.5">{api}</span>
-          ))}
-        </div>
+        <span className="ml-auto font-mono text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 border border-ink/20 rounded-full group-hover:border-ink transition-colors">
+          {tool.hasFreeTier ? "Free" : "Paid"}
+        </span>
       </div>
     </Link>
   )
@@ -87,13 +85,9 @@ export default async function CategoryDetailPage({
             href="/categories"
             className="font-mono text-[0.75rem] uppercase underline hover:line-through transition-all mb-12 inline-block"
           >
-            &lt;- Back to Taxonomy Index
+            &lt;- Back to Categories
           </Link>
 
-          <div className="font-mono text-[0.85rem] uppercase tracking-[0.2em] text-ink-fade mb-6 flex items-center gap-3">
-            <span className="w-1.5 h-1.5 bg-current rounded-full animate-status-blink"></span>
-            Class Manifest: {category.name}
-          </div>
           <h1 className="type-display mb-8">
             Best {category.name} APIs.
           </h1>
@@ -113,7 +107,7 @@ export default async function CategoryDetailPage({
 
           {tools.length === 0 && (
             <div className="text-center py-32 opacity-60 font-serif italic text-2xl">
-              No manifests indexed in this class.
+              No tools indexed in this category.
             </div>
           )}
         </div>
@@ -123,7 +117,7 @@ export default async function CategoryDetailPage({
       <section className="py-24 bg-paper-dark/50 border-t border-ink">
         <div className="layout-container">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
-            <h2 className="font-serif italic text-3xl">Cross-referenced Categories</h2>
+            <h2 className="font-serif italic text-3xl">Related Categories</h2>
             <Link href="/categories" className="font-mono text-[0.75rem] uppercase underline hover:line-through">All Categories -></Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
@@ -133,7 +127,6 @@ export default async function CategoryDetailPage({
                 href={`/categories/${cat.slug}`}
                 className="group flex flex-col gap-6 p-8 border border-transparent hover:border-ink/10 transition-all bg-paper"
               >
-                <div className="font-mono text-[0.75rem] text-ink-fade italic uppercase">INDEX_0{cat.toolCount}</div>
                 <h3 className="text-xl font-bold uppercase underline decoration-transparent group-hover:decoration-ink transition-all underline-offset-8">{cat.name}</h3>
                 <div className="mt-auto flex justify-end opacity-0 group-hover:opacity-100 transition-opacity">
                   <ArrowRight className="h-4 w-4" />
