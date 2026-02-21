@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "MCP Servers | Salestools Club",
   description:
     "Find sales tools with MCP (Model Context Protocol) support for Claude and Cursor.",
+  alternates: {
+    canonical: "https://salestools.club/mcp",
+  },
 }
 
 export default function McpPage() {

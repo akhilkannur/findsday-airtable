@@ -49,10 +49,35 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Salestools Club",
+    "url": "https://salestools.club",
+    "logo": "https://salestools.club/icon.png",
+    "description": "A curated directory of sales APIs and MCP servers for AI agents and developers.",
+    "sameAs": [
+      "https://x.com/salestoolsclub"
+    ]
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Salestools Club",
+    "url": "https://salestools.club",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://salestools.club/tools?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  };
+
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable} ${GeistMono.variable}`}>
       <head>
         <link rel="icon" href="/icon.png" />
+        <link rel="canonical" href="https://salestools.club" />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-9LGNFH00R7" />
         <script
           dangerouslySetInnerHTML={{
@@ -61,6 +86,14 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-9LGNFH00R7');`,
           }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
       <body className="bg-sage-bg text-ink-black antialiased grain-bg min-h-screen">
@@ -128,6 +161,7 @@ gtag('config', 'G-9LGNFH00R7');`,
                   <li><Link href="/tools" className="hover:text-accent-orange transition-colors">Tool Directory</Link></li>
                   <li><Link href="/categories" className="hover:text-accent-orange transition-colors">Categories</Link></li>
                   <li><Link href="/mcp" className="hover:text-accent-orange transition-colors">MCP Servers</Link></li>
+                  <li><Link href="/vs" className="hover:text-accent-orange transition-colors">Comparisons</Link></li>
                 </ul>
               </div>
               <div className="space-y-4">

@@ -1,12 +1,14 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
-import { getToolBySlug, getAllSlugs } from "@/lib/tools"
+import { getToolBySlug, getAllSlugs, getToolsByCategory, getAllTools } from "@/lib/tools"
 import type { SalesTool } from "@/lib/types"
 import {
   ExternalLink,
   Zap,
+  ArrowRight,
 } from "lucide-react"
+import { CopyButton } from "@/components/ui/CopyButton"
 
 export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }))
@@ -61,6 +63,27 @@ function JsonLd({ tool }: { tool: SalesTool }) {
   )
 }
 
+function ToolCard({ tool }: { tool: SalesTool }) {
+  return (
+    <Link
+      href={`/tools/${tool.slug}`}
+      className="p-6 border border-ink-black/10 bg-white/20 backdrop-blur-sm group hover:border-ink-black transition-all flex flex-col h-full"
+    >
+      <div className="flex justify-between items-start mb-4">
+        <div className="flex h-10 w-10 items-center justify-center border border-ink-black bg-white group-hover:bg-accent-blue transition-colors font-bold text-lg shadow-[3px_3px_0px_rgba(18,18,18,0.05)]">
+          {tool.name.charAt(0)}
+        </div>
+      </div>
+      <h3 className="text-lg font-black uppercase tracking-tight group-hover:text-accent-orange transition-colors">{tool.name}</h3>
+      <p className="mt-2 text-xs font-bold opacity-60 line-clamp-2">{tool.oneLiner}</p>
+      <div className="mt-auto pt-6 flex items-center justify-between opacity-20 group-hover:opacity-100 transition-all">
+        <div className="text-[0.55rem] font-black uppercase tracking-[0.2em]">Inspect Node</div>
+        <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+      </div>
+    </Link>
+  )
+}
+
 export default async function ToolDetailPage({
   params,
 }: {
@@ -78,6 +101,17 @@ export default async function ToolDetailPage({
     { label: "Website", href: tool.websiteUrl },
     { label: "Pricing", href: tool.pricingUrl },
   ]
+
+  // Find alternatives
+  const allTools = getAllTools()
+  const alternatives = allTools.filter(t => 
+    t.slug !== tool.slug && 
+    (
+      t.category === tool.category || 
+      tool.alternativeTo?.some(alt => t.name.toLowerCase().includes(alt.toLowerCase())) ||
+      t.alternativeTo?.some(alt => tool.name.toLowerCase().includes(alt.toLowerCase()))
+    )
+  ).slice(0, 4)
 
   return (
     <div className="flex flex-col bg-sage-bg/30">
@@ -126,7 +160,7 @@ export default async function ToolDetailPage({
         </div>
       </section>
 
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px]">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] border-b border-ink-black">
         <div className="p-8 md:p-16 space-y-32">
           {tool.aiCapabilities && tool.aiCapabilities.length > 0 && (
             <div>
@@ -200,13 +234,33 @@ export default async function ToolDetailPage({
               <pre className="font-mono text-[10px] whitespace-pre-wrap overflow-x-auto p-6 border border-white/10 bg-white/5 text-white/80 leading-relaxed">
                 {tool.integrations.find(i => i.platform === "MCP")?.mcpConfig}
               </pre>
-              <div className="mt-6 text-[0.6rem] font-bold uppercase tracking-[0.2em] text-accent-blue text-center">
-                Copy to MCP Config
+              <div className="mt-6 flex justify-center">
+                <CopyButton 
+                  text={tool.integrations.find(i => i.platform === "MCP")?.mcpConfig || ""} 
+                  label="Copy to MCP Config"
+                  className="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-accent-blue hover:text-accent-orange transition-colors"
+                />
               </div>
             </div>
           )}
         </div>
       </div>
+
+      {alternatives.length > 0 && (
+        <section className="px-6 py-24 md:px-12 md:py-32 bg-white/50 backdrop-blur-sm">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex items-center gap-4 mb-16">
+              <div className="type-label text-accent-orange font-black">Programmatic SEO</div>
+              <h2 className="text-3xl font-black uppercase tracking-tighter italic">Alternatives to {tool.name}</h2>
+            </div>
+            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              {alternatives.map((alt) => (
+                <ToolCard key={alt.slug} tool={alt} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   )
 }

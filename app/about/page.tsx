@@ -4,6 +4,9 @@ import Link from "next/link"
 export const metadata: Metadata = {
   title: "About | Salestools Club",
   description: "Learn about Salestools Club, the directory for AI-native sales operators.",
+  alternates: {
+    canonical: "https://salestools.club/about",
+  },
 }
 
 export default function AboutPage() {

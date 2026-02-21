@@ -4,6 +4,9 @@ import Link from "next/link"
 export const metadata: Metadata = {
   title: "Privacy Policy | Salestools Club",
   description: "Privacy policy for Salestools Club.",
+  alternates: {
+    canonical: "https://salestools.club/privacy",
+  },
 }
 
 export default function PrivacyPage() {

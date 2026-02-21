@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "Salestools Club — Every Sales API & MCP Server in one place.",
   description:
     "Every Sales API and MCP server you need to automate your GTM with Claude Code and agentic tools.",
+  alternates: {
+    canonical: "https://salestools.club",
+  },
 }
 
 function getCategoryIcon(iconName: string) {
@@ -45,7 +48,7 @@ function ToolCard({ tool }: { tool: any }) {
       </div>
 
       <div className="mt-auto pt-8 flex items-center justify-between border-t border-dashed border-ink-black/10">
-        <div className="text-[0.65rem] font-bold uppercase tracking-widest opacity-40">View Tool</div>
+        <div className="text-[0.65rem] font-bold uppercase tracking-widest opacity-40">Inspect Node</div>
         <div className="text-[0.65rem] font-bold uppercase group-hover:translate-x-1 transition-transform">-></div>
       </div>
     </Link>
@@ -69,24 +72,24 @@ export default function Home() {
           <div>
             {/* Removed Tool List element */}
             <h1 className="type-display text-3xl md:text-6xl mb-6 md:mb-12 max-w-4xl">
-              Every Sales API and MCP server you need to automate your GTM with <span className="relative inline-block">
-                <span className="relative z-10 font-bold">Claude Code</span>
+              The "Lego Blocks" for your <span className="relative inline-block">
+                <span className="relative z-10 font-bold">AI Sales Agent.</span>
                 <span className="absolute bottom-1 left-0 w-full h-2 md:h-4 bg-accent-blue/30 -z-0"></span>
-              </span> and agentic tools.
+              </span>
             </h1>
-            <p className="max-w-2xl text-base md:text-lg font-bold leading-relaxed">
-              Stop digging through messy dev docs. We source the Lego blocks that actually plug into your AI workflow so you can focus on building your sales engine.
+            <p className="max-w-2xl text-base md:text-lg font-bold leading-relaxed opacity-80">
+              Don't reinvent the wheel. We've curated the best APIs, SDKs, and MCP servers that plug directly into Claude Code and Cursor. Build your GTM machine in hours, not weeks.
             </p>
 
             <form className="mt-6 md:mt-10 flex flex-col sm:flex-row gap-3 max-w-md">
               <input 
                 type="email" 
-                placeholder="get new tool updates" 
+                placeholder="enter your email..." 
                 className="flex-grow bg-white border border-ink-black px-4 py-3 text-sm font-bold focus:outline-none transition-all placeholder:text-gray-400 shadow-[4px_4px_0px_rgba(18,18,18,0.05)]"
                 required
               />
               <button type="submit" className="swiss-btn swiss-btn-primary px-8 py-3 text-sm font-bold whitespace-nowrap shadow-[4px_4px_0px_#121212]">
-                Subscribe <span>-></span>
+                Get the Blueprint <span>-></span>
               </button>
             </form>
           </div>

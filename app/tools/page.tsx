@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "The Tools | Salestools Club",
   description:
     "A simple list of sales APIs and tools for people building with AI.",
+  alternates: {
+    canonical: "https://salestools.club/tools",
+  },
 }
 
 export default async function ToolsPage({
@@ -78,7 +81,7 @@ export default async function ToolsPage({
                   <span key={api} className="text-[0.6rem] font-bold uppercase tracking-[0.15em] opacity-30 group-hover:opacity-100 transition-opacity">{api}</span>
                 ))}
               </div>
-              <div className="text-[0.65rem] font-bold uppercase group-hover:translate-x-1 transition-transform">-> View Tool</div>
+              <div className="text-[0.65rem] font-bold uppercase group-hover:translate-x-1 transition-transform">-> Inspect Node</div>
             </div>
           </Link>
         ))}

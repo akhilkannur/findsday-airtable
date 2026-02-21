@@ -47,7 +47,7 @@ export default function SubmitPage() {
             {/* Tool Name */}
             <div>
               <label htmlFor="toolName" className="type-label mb-4 block opacity-40">
-                Module Name
+                01. Module Identifier
               </label>
               <input
                 id="toolName"
@@ -62,12 +62,12 @@ export default function SubmitPage() {
             {/* Website URL */}
             <div>
               <label htmlFor="websiteUrl" className="type-label mb-4 block opacity-40">
-                Node URL
+                02. Primary Node (URL)
               </label>
               <input
                 id="websiteUrl"
                 type="text"
-                placeholder="https://example.com"
+                placeholder="https://..."
                 className={inputClasses}
                 value={formData.websiteUrl}
                 onChange={(e) => setFormData({ ...formData, websiteUrl: e.target.value })}
@@ -77,12 +77,12 @@ export default function SubmitPage() {
             {/* API Docs URL */}
             <div>
               <label htmlFor="apiDocsUrl" className="type-label mb-4 block opacity-40">
-                Spec URL
+                03. Spec/Docs Endpoint
               </label>
               <input
                 id="apiDocsUrl"
                 type="text"
-                placeholder="https://docs.example.com/api"
+                placeholder="https://docs..."
                 className={inputClasses}
                 value={formData.apiDocsUrl}
                 onChange={(e) => setFormData({ ...formData, apiDocsUrl: e.target.value })}
@@ -92,7 +92,7 @@ export default function SubmitPage() {
             {/* Category */}
             <div>
               <label htmlFor="category" className="type-label mb-4 block opacity-40">
-                Infrastructure Class
+                04. Infrastructure Class
               </label>
               <select
                 id="category"
@@ -100,7 +100,7 @@ export default function SubmitPage() {
                 value={formData.category}
                 onChange={(e) => setFormData({ ...formData, category: e.target.value })}
               >
-                <option value="" className="bg-sage-bg">Select a class</option>
+                <option value="" className="bg-sage-bg">Select a class...</option>
                 {CATEGORIES.map((cat) => (
                   <option key={cat} value={cat} className="bg-sage-bg">
                     {cat}
@@ -114,31 +114,36 @@ export default function SubmitPage() {
               <label className="flex items-center gap-4 cursor-pointer group">
                 <input
                   type="checkbox"
-                  className="h-5 w-5 border border-ink-black bg-white checked:bg-accent-orange transition-all"
+                  className="h-5 w-5 border-2 border-ink-black bg-white checked:bg-accent-orange transition-all appearance-none checked:border-accent-orange relative after:content-[''] after:absolute after:hidden after:left-1.5 after:top-0.5 after:w-1.5 after:h-2.5 after:border-white after:border-r-2 after:border-b-2 after:rotate-45 checked:after:block"
                   checked={formData.hasMcp}
                   onChange={(e) => setFormData({ ...formData, hasMcp: e.target.checked })}
                 />
-                <span className="text-sm font-bold uppercase tracking-widest opacity-60 group-hover:opacity-100">MCP INFRA</span>
+                <span className="text-[0.65rem] font-bold uppercase tracking-widest opacity-60 group-hover:opacity-100">MCP READY</span>
               </label>
 
               <label className="flex items-center gap-4 cursor-pointer group">
                 <input
                   type="checkbox"
-                  className="h-5 w-5 border border-ink-black bg-white checked:bg-accent-blue transition-all"
+                  className="h-5 w-5 border-2 border-ink-black bg-white checked:bg-accent-blue transition-all appearance-none checked:border-accent-blue relative after:content-[''] after:absolute after:hidden after:left-1.5 after:top-0.5 after:w-1.5 after:h-2.5 after:border-white after:border-r-2 after:border-b-2 after:rotate-45 checked:after:block"
                   checked={formData.hasAgentSkills}
                   onChange={(e) => setFormData({ ...formData, hasAgentSkills: e.target.checked })}
                 />
-                <span className="text-sm font-bold uppercase tracking-widest opacity-60 group-hover:opacity-100">AGENT SKILLS</span>
+                <span className="text-[0.65rem] font-bold uppercase tracking-widest opacity-60 group-hover:opacity-100">AGENT SKILLS</span>
               </label>
             </div>
 
             {/* Submit */}
-            <button
-              type="submit"
-              className="swiss-btn swiss-btn-primary w-full py-6 text-base"
-            >
-              Commit Module <span>-></span>
-            </button>
+            <div className="pt-8">
+              <button
+                type="submit"
+                className="swiss-btn swiss-btn-primary w-full py-6 text-sm font-black uppercase tracking-[0.2em] shadow-[8px_8px_0px_#121212] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all"
+              >
+                Deploy to Registry <span>-></span>
+              </button>
+              <p className="mt-6 text-[0.6rem] font-bold uppercase tracking-widest opacity-30 text-center italic">
+                Awaiting manual verification from primary node...
+              </p>
+            </div>
           </form>
         </div>
       </div>

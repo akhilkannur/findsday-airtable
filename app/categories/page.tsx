@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "Categories | Salestools Club",
   description:
     "Find sales APIs by category — prospecting, CRM, enrichment, outreach, and more.",
+  alternates: {
+    canonical: "https://salestools.club/categories",
+  },
 }
 
 function getCategoryIcon(iconName: string): LucideIcon {
@@ -57,7 +60,7 @@ export default function CategoriesPage() {
                 <div className="type-label opacity-40 group-hover:text-sage-bg/40">
                   {cat.toolCount} TOOLS
                 </div>
-                <div className="type-label font-bold text-accent-orange opacity-0 group-hover:opacity-100 tracking-widest">Select -></div>
+                <div className="type-label font-bold text-accent-orange opacity-0 group-hover:opacity-100 tracking-widest">Explore Node -></div>
               </div>
             </Link>
           )

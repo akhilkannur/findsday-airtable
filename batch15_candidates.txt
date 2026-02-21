@@ -1,0 +1,10 @@
+GalaxTel,https://www.galaxtel.com
+Gearset,https://gearset.com
+GetAccept,https://www.getaccept.com
+GetResponse,https://getresponse.com
+GetSales,https://getsales.io
+GetVocal AI,https://getvocal.ai
+GojiberryAI,https://gojiberry.ai
+Golden Leads,https://goldenleads.io
+Goose,https://www.gooseapp.com
+SalesFlow,https://salesflow.io/

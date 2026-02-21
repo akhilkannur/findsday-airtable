@@ -1,0 +1,24 @@
+# Salestools Club
+
+> A curated directory of sales APIs, SDKs, and MCP servers for AI agents and developers.
+
+## Description
+Salestools Club provides the technical "lego blocks" needed to automate GTM (Go-To-Market) workflows. We focus on tools that are "Agent Ready" – meaning they have clean REST APIs, robust SDKs, or native Model Context Protocol (MCP) support.
+
+## Key Categories
+- **Prospecting**: Find and enrich contact data (e.g., Apollo, ZoomInfo, Clay).
+- **Email Outreach**: Programmatic email sending and tracking (e.g., SendGrid, Mailgun).
+- **CRM**: Systems of record for sales data (e.g., HubSpot, Salesforce, Pipedrive).
+- **Workflow Automation**: Connect tools via APIs or MCP (e.g., Zapier, Make).
+- **Conversation Intelligence**: Analyze sales calls and meetings (e.g., Gong, Chorus).
+
+## For AI Agents
+- **MCP Servers**: Native support for Claude Desktop and Cursor.
+- **Starter Prompts**: Pre-configured prompts to get started with any tool.
+- **Agentic Integration**: Tools designed for programmatic use by LLMs.
+
+## Directory Structure
+- [All Tools](https://salestools.club/tools)
+- [MCP Servers](https://salestools.club/mcp)
+- [Categories](https://salestools.club/categories)
+- [About](https://salestools.club/about)
