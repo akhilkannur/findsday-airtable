@@ -35,9 +35,20 @@ def format_value(v):
         return json.dumps(v)
     if v is None:
         return "undefined"
-    # Escaping double quotes and newlines for strings in TS
-    escaped = v.replace('"', '\\"').replace('\n', '\\n').replace('\r', '')
+    # Escaping backslashes and double quotes for TS
+    escaped = v.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n').replace('\r', '')
     return f'"{escaped}"'
+
+# SEO-focused Category Metadata
+CATEGORIES_META = [
+    {"slug": "sales-intelligence", "name": "Sales Intelligence", "description": "Find prospects and enrich lead lists with real-time B2B contact data and technographic signals.", "icon": "Search"},
+    {"slug": "sales-engagement", "name": "Sales Engagement", "description": "Orchestrate automated multichannel outreach across email, LinkedIn, and social media platforms.", "icon": "Zap"},
+    {"slug": "phone-and-dialers", "name": "Phone & Dialers", "description": "Scale your outbound volume with power dialers, AI voice agents, and cloud calling infrastructure.", "icon": "Phone"},
+    {"slug": "crm-and-revops", "name": "CRM & RevOps", "description": "Manage customer relationships and automate the revenue operations lifecycle with modern sales infrastructure.", "icon": "Users"},
+    {"slug": "revenue-intelligence", "name": "Revenue Intelligence", "description": "Analyze sales conversations and deal health to improve pipeline forecasting and revenue growth.", "icon": "BarChart3"},
+    {"slug": "sales-enablement", "name": "Sales Enablement", "description": "Equip sales teams with the content, coaching, and playbooks needed to shorten sales cycles.", "icon": "GraduationCap"},
+    {"slug": "closing-and-scheduling", "name": "Closing & Scheduling", "description": "Automate meeting booking and simplify the document signing process to close deals faster.", "icon": "Calendar"}
+]
 
 def main():
     print(f"📥 Fetching data from Google Sheet...")
@@ -55,7 +66,6 @@ def main():
     for row in reader:
         if not row.get('slug'): continue
         
-        # Parse fields
         tool = {
             "slug": row.get('slug'),
             "name": row.get('name'),
@@ -82,29 +92,14 @@ def main():
             "alternativeTo": parse_list(row.get('alternativeTo', '[]')),
             "integrations": row.get('integrations', '[]')
         }
-        
         tools.append(tool)
         cat = row.get('category')
-        if cat:
-            category_counts[cat] = category_counts.get(cat, 0) + 1
+        if cat: category_counts[cat] = category_counts.get(cat, 0) + 1
 
-    # Read the current lib/data.ts to preserve the categories metadata structure
-    with open(OUTPUT_FILE, 'r') as f:
-        old_content = f.read()
-
-    # Extract categories array
-    cat_match = re.search(r'export const categories: CategoryMeta\[\] = \[(.*?)\]', old_content, re.DOTALL)
-    if not cat_match:
-        print("❌ Could not find categories array in lib/data.ts")
-        sys.exit(1)
-    
-    cat_text = cat_match.group(1)
-    
     # Reconstruct the file
     new_content = 'import type { SalesTool, CategoryMeta } from "./types"\n\n'
     new_content += 'export const tools: SalesTool[] = [\n'
     
-    # Group tools by category for readability
     current_cat = None
     for tool in sorted(tools, key=lambda x: (x['category'] or '', x['name'] or '')):
         if tool['category'] != current_cat:
@@ -115,8 +110,14 @@ def main():
         for k, v in tool.items():
             if k == 'integrations':
                 val = v if v and v != "[]" else "[]"
+                # Basic cleanup to ensure TS doesn't break
                 if val.strip().startswith('{') and not val.strip().startswith('['):
                     val = f'[{val}]'
+                # Check for unbalanced braces (simple fix for cut-off data)
+                if val.count('{') > val.count('}'): val += '}' * (val.count('{') - val.count('}'))
+                if val.count('[') > val.count(']'): val += ']' * (val.count('[') - val.count(']'))
+                # Replace unescaped single quotes inside the config strings if needed
+                # For now, we assume the CSV has valid-ish JS object syntax
                 new_content += f'    {k}: {val},\n'
             elif k in ['githubUrl', 'openApiSpecUrl'] and not v:
                 continue
@@ -125,22 +126,15 @@ def main():
         new_content += '  },\n'
     
     new_content += ']\n\n'
-
-    # Update counts in cat_text
-    for cat_name, count in category_counts.items():
-        block_pattern = rf'{{[^}}]*?name: "{cat_name}"[^}}]*?}}'
-        block_match = re.search(block_pattern, cat_text, re.DOTALL)
-        if block_match:
-            block = block_match.group(0)
-            new_block = re.sub(r'toolCount: \d+', f'toolCount: {count}', block)
-            cat_text = cat_text.replace(block, new_block)
-
-    new_content += 'export const categories: CategoryMeta[] = [' + cat_text + ']\n'
+    new_content += 'export const categories: CategoryMeta[] = [\n'
+    for cat in CATEGORIES_META:
+        count = category_counts.get(cat["name"], 0)
+        new_content += f'  {{\n    slug: "{cat["slug"]}",\n    name: "{cat["name"]}",\n    description: "{cat["description"]}",\n    icon: "{cat["icon"]}",\n    toolCount: {count},\n  }},\n'
+    new_content += ']\n'
 
     with open(OUTPUT_FILE, 'w') as f:
         f.write(new_content)
-    
-    print(f"✅ Success: Updated {len(tools)} tools across {len(category_counts)} categories in {OUTPUT_FILE}")
+    print(f"✅ Success: Updated lib/data.ts")
 
 if __name__ == "__main__":
     main()
