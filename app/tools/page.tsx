@@ -36,7 +36,7 @@ function ToolCard({ tool }: { tool: any }) {
       </div>
 
       <div className="mt-auto flex flex-wrap gap-2 items-center">
-        <span className="font-mono text-[0.7rem] uppercase tracking-wider text-[var(--ink-fade)] group-hover:text-black transition-colors">#{tool.category.toLowerCase().replace(/\s+/g, '_')}</span>
+        <span className="font-mono text-[0.7rem] uppercase tracking-wider text-[var(--ink-fade)] group-hover:text-black transition-colors">{tool.category}</span>
         <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity">
            <ArrowRight className="h-4 w-4" />
         </div>
@@ -60,7 +60,7 @@ export default async function ToolsPage({
         <div className="layout-container">
           <div className="font-mono text-[0.85rem] uppercase tracking-[0.2em] text-[var(--ink-fade)] mb-6 flex items-center gap-3">
             <span className="w-1.5 h-1.5 bg-current rounded-full animate-status-blink"></span>
-            Comprehensive Registry
+            Node Registry
           </div>
           <h1 className="type-display mb-8">All Tools</h1>
           <p className="max-w-2xl font-serif italic text-2xl text-[var(--ink-fade)] leading-relaxed border-l-2 border-[var(--ink)] pl-6">
@@ -80,7 +80,7 @@ export default async function ToolsPage({
           <div className="layout-container flex items-center justify-between">
             <div className="flex items-center gap-4">
               <span className="font-mono text-[0.75rem] uppercase tracking-[0.2em] text-[var(--ink-fade)]">Filter Active:</span>
-              <span className="circled font-mono text-[0.75rem] font-bold">QUERY: &lsquo;{q}&rsquo;</span>
+              <span className="circled font-mono text-[0.75rem] font-bold">SYSTEM_QUERY: &lsquo;{q}&rsquo;</span>
             </div>
             <Link href="/tools" className="font-mono text-[0.75rem] uppercase underline hover:line-through transition-all">Reset System</Link>
           </div>
@@ -97,7 +97,7 @@ export default async function ToolsPage({
 
           {tools.length === 0 && (
             <div className="text-center py-32 opacity-60">
-              <p className="font-serif italic text-2xl mb-8">No nodes indexed in this manifest.</p>
+              <p className="font-serif italic text-2xl mb-8">No nodes indexed in this class.</p>
               <Link href="/tools" className="circled font-mono font-bold">Clear Search</Link>
             </div>
           )}

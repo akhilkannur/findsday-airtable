@@ -35,7 +35,7 @@ export default function SubmitPage() {
     <div className="flex flex-col min-h-screen bg-[var(--paper)]">
       <section className="px-8 py-24 border-b border-[var(--ink)] bg-[var(--paper-dark)]/30">
         <div className="layout-container">
-          <div className="font-mono text-[0.85rem] uppercase tracking-[0.2em] text-[var(--ink-fade)] mb-6 flex items-center gap-3">Entry Annotation</div>
+          <div className="font-mono text-[0.85rem] uppercase tracking-[0.2em] text-[var(--ink-fade)] mb-6 flex items-center gap-3">Entry Submission</div>
           <h1 className="type-display mb-8">Add Entry</h1>
           <p className="max-w-2xl font-serif italic text-2xl text-[var(--ink-fade)] leading-relaxed border-l-2 border-[var(--ink)] pl-6">
             Know a sales API or MCP server we&apos;re missing? Add it to the club infrastructure.
@@ -147,7 +147,7 @@ export default function SubmitPage() {
                   type="submit"
                   className="w-full py-6 font-mono font-bold uppercase text-[1.1rem] transition-all hover:rotate-[-1deg] circled accent bg-transparent"
                 >
-                  Commit to Registry <span>-></span>
+                  Deploy to Registry <span>-></span>
                 </button>
                 <p className="mt-8 font-serif italic text-lg text-[var(--ink-fade)] text-center opacity-60">
                   Awaiting manual verification from primary node...

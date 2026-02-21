@@ -40,7 +40,7 @@ function ToolCard({ tool }: { tool: any }) {
           {tool.apiType[0]} INFRA
         </div>
         <div className="font-mono text-[0.7rem] uppercase underline group-hover:line-through transition-all">
-          Annotation ↗
+          Configure Node ↗
         </div>
       </div>
     </Link>
@@ -56,7 +56,7 @@ export default function McpPage() {
         <div className="layout-container">
           <div className="font-mono text-[0.85rem] uppercase tracking-[0.2em] text-[var(--ink-fade)] mb-6 flex items-center gap-3">
             <span className="w-1.5 h-1.5 bg-current rounded-full animate-status-blink"></span>
-            Automation Manifest
+            Automation Layer
           </div>
           <h1 className="type-display mb-8 uppercase">MCP Servers</h1>
           <p className="max-w-3xl font-serif italic text-2xl text-[var(--ink-fade)] leading-relaxed border-l-2 border-[var(--ink)] pl-6">
@@ -79,13 +79,13 @@ export default function McpPage() {
         <div className="layout-container">
           <div className="p-16 text-center border-2 border-dashed border-[var(--ink)]/20 bg-white/20">
             <p className="font-serif italic text-2xl mb-10 text-[var(--ink-fade)]">
-              Missing a protocol module in this registry?
+              Know a protocol module we're missing?
             </p>
             <Link
               href="/submit"
               className="circled accent font-mono font-bold px-12 py-4 text-[1rem] uppercase hover:rotate-[-1deg] transition-transform"
             >
-              Submit Protocol <span>-&gt;</span>
+              Submit Module <span>-&gt;</span>
             </Link>
           </div>
         </div>

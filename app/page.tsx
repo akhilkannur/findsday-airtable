@@ -36,7 +36,7 @@ function ToolCard({ tool }: { tool: any }) {
       </div>
 
       <div className="mt-auto flex flex-wrap gap-2">
-        <span className="font-mono text-[0.75rem] uppercase tracking-wider text-[var(--ink-fade)]">#{tool.category.toLowerCase().replace(/\s+/g, '_')}</span>
+        <span className="font-mono text-[0.75rem] uppercase tracking-wider text-[var(--ink-fade)]">{tool.category}</span>
       </div>
     </Link>
   )
@@ -76,13 +76,13 @@ export default function Home() {
               <div className="flex-grow">
                 <input 
                   type="email" 
-                  placeholder="enter email for weekly manifest..." 
+                  placeholder="enter your email..." 
                   className="w-full bg-transparent border-b-2 border-[var(--ink)] font-mono text-lg py-2 focus:outline-none placeholder:italic placeholder:text-[var(--ink-fade)]"
                   required
                 />
               </div>
-              <button type="submit" className="circled font-mono font-bold uppercase text-[1rem] hover:rotate-[-2deg] transition-transform">
-                Join
+              <button type="submit" className="circled accent font-mono font-bold uppercase text-[1rem] hover:rotate-[-2deg] transition-transform">
+                Get the Blueprint
               </button>
             </form>
           </div>
@@ -93,8 +93,8 @@ export default function Home() {
       <section className="py-20 border-t border-[var(--ink)]">
         <div className="layout-container">
           <div className="flex justify-between items-end mb-12 pb-4 border-b border-[var(--ink)]">
-            <span className="font-mono text-[0.9rem] uppercase tracking-widest text-[var(--ink-fade)]">Index of Tools ({exploreTools.length})</span>
-            <div className="font-mono text-[0.9rem] uppercase tracking-widest text-[var(--ink-fade)]">Vol. 1</div>
+            <span className="font-mono text-[0.9rem] uppercase tracking-widest text-[var(--ink-fade)]">Latest Deployments</span>
+            <div className="font-mono text-[0.9rem] uppercase tracking-widest text-[var(--ink-fade)]">Filter: All Systems</div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
@@ -117,9 +117,12 @@ export default function Home() {
           <div className="mb-20">
             <div className="font-mono text-[0.85rem] uppercase tracking-[0.2em] text-[var(--ink-fade)] mb-6 flex items-center gap-3">
               <span className="w-1.5 h-1.5 bg-current rounded-full"></span>
-              Taxonomy of Infrastructure
+              Infrastructure Classes
             </div>
             <h2 className="font-serif text-5xl leading-tight">Browse by Category.</h2>
+            <p className="mt-8 text-xl font-medium text-[var(--ink-fade)] leading-relaxed max-w-xl">
+              Every category is vetted for builder-first compatibility. Vetted APIs, verified MCPs, zero fluff.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
@@ -129,7 +132,7 @@ export default function Home() {
                 href={`/categories/${cat.slug}`}
                 className="group flex flex-col h-full gap-6 hover:translate-y-[-4px] transition-transform"
               >
-                <div className="font-mono text-[0.75rem] text-[var(--ink-fade)] group-hover:text-[var(--ink)] transition-colors italic">ITEM_0{idx + 1}</div>
+                <div className="font-mono text-[0.75rem] text-[var(--ink-fade)] group-hover:text-[var(--ink)] transition-colors italic uppercase">Class_0{idx + 1}</div>
                 <h3 className="text-2xl font-bold uppercase underline decoration-transparent group-hover:decoration-[var(--ink)] transition-all underline-offset-8">
                   {cat.name}
                 </h3>
@@ -137,7 +140,7 @@ export default function Home() {
                   {cat.description}
                 </p>
                 <div className="mt-auto font-mono text-[0.7rem] uppercase text-[var(--ink-fade)]">
-                  {cat.toolCount} NODES INDEXED
+                  {cat.toolCount} Items
                 </div>
               </Link>
             ))}
