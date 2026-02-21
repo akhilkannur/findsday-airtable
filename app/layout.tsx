@@ -38,10 +38,10 @@ export const metadata: Metadata = {
 }
 
 const navLinks = [
-  { href: "/tools", label: "Tools" },
+  { href: "/tools", label: "Directory" },
   { href: "/categories", label: "Categories" },
   { href: "/mcp", label: "MCP Servers" },
-  { href: "/submit", label: "Submit" },
+  { href: "/submit", label: "Submit Tool" },
 ]
 
 export default function RootLayout({
@@ -97,37 +97,30 @@ gtag('config', 'G-9LGNFH00R7');`,
         />
       </head>
       <body className="antialiased min-h-screen">
-        <nav className="bg-[var(--lego-yellow)] border-b-[var(--border-width)] border-black py-4 sticky top-0 z-[100]">
-          <div className="layout-container flex justify-between items-center">
-            <div className="flex items-center gap-8">
-              <Link href="/" className="bg-[var(--lego-red)] text-white px-4 py-2 border-[var(--border-width)] border-black rounded-[var(--radius-sm)] shadow-[3px_3px_0_black] -rotate-2 font-bold text-xl flex items-center gap-2 hover:scale-105 transition-transform">
-                <div className="w-2.5 h-2.5 bg-white rounded-full"></div>
-                Salestools.club
-              </Link>
-              
-              <div className="hidden md:flex gap-4">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="text-black font-semibold px-3 py-2 rounded-[var(--radius-sm)] hover:bg-white/40 transition-colors uppercase text-[0.8rem]"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
+        <nav className="border-b border-[var(--ink)] py-4 sticky top-0 bg-[var(--paper)] z-[100]">
+          <div className="layout-container flex justify-between items-baseline">
+            <Link href="/" className="font-mono font-bold text-lg tracking-tighter hover:line-through transition-all">
+              SALESTOOLS.CLUB
+            </Link>
+            
+            <div className="hidden md:flex gap-8 items-center font-mono text-[0.85rem] uppercase">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="hover:line-through transition-all"
+                >
+                  {link.label}
+                </Link>
+              ))}
             </div>
 
             <div className="flex items-center gap-6">
-              <div className="hidden lg:flex items-center text-[0.85rem] font-bold text-black gap-2">
-                <span className="w-3 h-3 bg-[var(--lego-green)] border-2 border-black rounded-full animate-status-pulse"></span>
+              <div className="hidden lg:flex items-center gap-2 font-mono text-[0.75rem] text-[var(--ink-fade)]">
+                <span className="w-2 h-2 bg-[var(--ink)] rounded-full animate-status-blink"></span>
                 SESSION ACTIVE
               </div>
               
-              <Link href="/submit" className="brick brick-btn bg-black text-white hover:scale-105 transition-transform py-2.5">
-                Submit Tool
-              </Link>
-
               <MobileNav links={navLinks} />
             </div>
           </div>
@@ -137,37 +130,16 @@ gtag('config', 'G-9LGNFH00R7');`,
           {children}
         </main>
         
-        <footer className="bg-[var(--lego-blue)] border-t-[var(--border-width)] border-black p-12 text-white">
-          <div className="layout-container grid grid-cols-1 md:grid-cols-4 gap-12">
-            <div className="space-y-4">
-              <div className="text-2xl font-bold uppercase tracking-tighter">Salestools Club</div>
-              <p className="text-[14px] opacity-80 leading-relaxed">
-                The technical "Lego Blocks" for your AI Sales Agent. APIs, SDKs, and MCP servers.
-              </p>
-            </div>
-            <div className="space-y-4">
-              <div className="text-[11px] font-bold uppercase tracking-widest opacity-60">Navigation</div>
-              <ul className="space-y-2 text-[14px] font-semibold">
-                <li><Link href="/tools" className="hover:underline">Nodes</Link></li>
-                <li><Link href="/categories" className="hover:underline">Classes</Link></li>
-                <li><Link href="/mcp" className="hover:underline">Protocols</Link></li>
-                <li><Link href="/vs" className="hover:underline">Audits</Link></li>
-              </ul>
-            </div>
-            <div className="space-y-4">
-              <div className="text-[11px] font-bold uppercase tracking-widest opacity-60">Documentation</div>
-              <ul className="space-y-2 text-[14px] font-semibold">
-                <li><Link href="/about" className="hover:underline">System Info</Link></li>
-                <li><Link href="/privacy" className="hover:underline">Privacy protocol</Link></li>
-                <li><Link href="/submit" className="hover:underline">Add Module</Link></li>
-              </ul>
-            </div>
-            <div className="space-y-4">
-              <div className="text-[11px] font-bold uppercase tracking-widest opacity-60">Status</div>
-              <p className="text-[12px] font-mono leading-loose">
-                STC_BLOCK_STABLE<br />
-                © {new Date().getFullYear()}
-              </p>
+        <footer className="border-t border-[var(--ink)] p-12 mt-20 opacity-60">
+          <div className="layout-container text-center flex flex-col items-center gap-8">
+            <svg width="40" height="40" viewBox="0 0 100 100" className="opacity-40">
+              <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" strokeWidth="2"></circle>
+              <line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" strokeWidth="2"></line>
+              <line x1="10" y1="50" x2="90" y2="50" stroke="currentColor" strokeWidth="2"></line>
+            </svg>
+            <div className="font-mono text-[0.75rem] uppercase tracking-widest">
+              The Annotated Manifest — STC_INDEX_V1<br />
+              © {new Date().getFullYear()}
             </div>
           </div>
         </footer>

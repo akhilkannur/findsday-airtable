@@ -12,43 +12,35 @@ export const metadata: Metadata = {
   },
 }
 
-function ToolCard({ tool, index }: { tool: any, index: number }) {
-  const colors = ['header-blue', 'header-red', 'header-yellow', 'header-green']
-  const colorClass = colors[index % colors.length]
-
+function ToolCard({ tool }: { tool: any }) {
   return (
     <Link
       href={`/tools/${tool.slug}`}
-      className="tool-card group"
+      className="tool-card group flex flex-col h-full"
     >
-      <div className={`card-header-studs ${colorClass}`}>
-        <div className="stud"></div><div className="stud"></div><div className="stud"></div>
+      <div className="flex justify-between items-start mb-6">
+        <div className="w-12 h-12 bg-[var(--ink)] text-[var(--paper)] flex items-center justify-center font-serif font-bold text-xl [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]">
+          {tool.name.charAt(0)}
+        </div>
+        <div className="w-8 h-8 bg-[var(--ink)] text-[var(--paper)] flex items-center justify-center [clip-path:polygon(10%_0%,90%_0%,100%_100%,0%_100%)]">
+          <Zap className="w-4 h-4 fill-current" />
+        </div>
       </div>
-      <div className="card-body p-6 flex flex-col gap-4 text-left">
-        <div className="card-top flex justify-between items-start">
-          <div className="avatar w-12 h-12 bg-[#eee] border-2 border-black rounded-xl flex items-center justify-center font-extrabold text-xl text-black">
-            {tool.name.charAt(0)}
-          </div>
-          <div className="w-8 h-8 bg-[var(--lego-red)] border-2 border-black rounded-lg flex items-center justify-center shadow-[2px_2px_0_black]">
-            <Zap className="w-4 h-4 text-white fill-white" />
-          </div>
-        </div>
-        
-        <div className="flex-grow">
-          <h3 className="text-xl font-bold mb-1 uppercase text-black">{tool.name}</h3>
-          <div className="text-[10px] font-bold uppercase tracking-widest text-black/40 mb-4">{tool.category}</div>
-          <p className="text-[0.85rem] text-[#666] line-clamp-3 leading-relaxed">
-            {tool.oneLiner}
-          </p>
-        </div>
+      
+      <div className="flex-grow">
+        <h3 className="text-xl font-semibold mb-1">{tool.name}</h3>
+        <div className="font-mono text-[0.7rem] uppercase tracking-widest text-[var(--ink-fade)] mb-4 italic">#{tool.category.toLowerCase().replace(/\s+/g, '_')}</div>
+        <p className="text-[0.9rem] text-[var(--ink-fade)] leading-relaxed line-clamp-3">
+          {tool.oneLiner}
+        </p>
+      </div>
 
-        <div className="mt-auto flex items-center justify-between border-t border-dashed border-black/10 pt-4">
-          <div className="flex gap-2">
-            <span className="text-[9px] font-bold uppercase tracking-widest text-white bg-black px-1.5 py-0.5 rounded-sm">{tool.apiType[0]} INFRA</span>
-          </div>
-          <div className="brick brick-btn bg-white text-black py-1 px-3 text-[9px] group-hover:bg-[var(--lego-yellow)] transition-colors">
-            Configure Node ↗
-          </div>
+      <div className="mt-auto flex items-center justify-between border-t border-dashed border-black/10 pt-4">
+        <div className="font-mono text-[0.7rem] uppercase text-black font-bold border border-black/20 px-2 py-0.5">
+          {tool.apiType[0]} INFRA
+        </div>
+        <div className="font-mono text-[0.7rem] uppercase underline group-hover:line-through transition-all">
+          Annotation ↗
         </div>
       </div>
     </Link>
@@ -59,15 +51,15 @@ export default function McpPage() {
   const mcpTools = getMcpTools()
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <section className="px-5 py-24 border-b-[var(--border-width)] border-black bg-[var(--lego-yellow)]">
+    <div className="flex flex-col min-h-screen bg-[var(--paper)]">
+      <section className="px-8 py-24 border-b border-[var(--ink)]">
         <div className="layout-container">
-          <div className="inline-flex items-center gap-2 font-bold uppercase tracking-widest text-[10px] mb-6 bg-white px-3 py-1 border-2 border-black rounded-full shadow-[2px_2px_0_black]">
-            <span className="w-2 h-2 bg-[var(--lego-green)] rounded-full animate-status-pulse"></span>
-            Automation Layer
+          <div className="font-mono text-[0.85rem] uppercase tracking-[0.2em] text-[var(--ink-fade)] mb-6 flex items-center gap-3">
+            <span className="w-1.5 h-1.5 bg-current rounded-full animate-status-blink"></span>
+            Automation Manifest
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold leading-none tracking-tight mb-8 text-black uppercase">MCP Servers</h1>
-          <p className="max-w-3xl text-xl font-medium text-black/70 leading-relaxed">
+          <h1 className="type-display mb-8 uppercase">MCP Servers</h1>
+          <p className="max-w-3xl font-serif italic text-2xl text-[var(--ink-fade)] leading-relaxed border-l-2 border-[var(--ink)] pl-6">
             The fastest way to give your AI "hands". Plug these servers into Claude Desktop or Cursor to update your CRM and search leads via chat.
           </p>
         </div>
@@ -75,9 +67,9 @@ export default function McpPage() {
 
       <section className="py-20">
         <div className="layout-container">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {mcpTools.map((tool, idx) => (
-              <ToolCard key={tool.slug} tool={tool} index={idx} />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+            {mcpTools.map((tool) => (
+              <ToolCard key={tool.slug} tool={tool} />
             ))}
           </div>
         </div>
@@ -85,15 +77,15 @@ export default function McpPage() {
 
       <section className="pb-32">
         <div className="layout-container">
-          <div className="brick bg-white p-16 text-center border-[var(--border-width)] border-black">
-            <p className="text-xl font-bold text-black mb-10">
-              Know a protocol module we're missing?
+          <div className="p-16 text-center border-2 border-dashed border-[var(--ink)]/20 bg-white/20">
+            <p className="font-serif italic text-2xl mb-10 text-[var(--ink-fade)]">
+              Missing a protocol module in this registry?
             </p>
             <Link
               href="/submit"
-              className="brick brick-btn bg-[var(--lego-red)] text-white font-bold px-12 py-4 text-sm"
+              className="circled accent font-mono font-bold px-12 py-4 text-[1rem] uppercase hover:rotate-[-1deg] transition-transform"
             >
-              Submit Module <span>-&gt;</span>
+              Submit Protocol <span>-&gt;</span>
             </Link>
           </div>
         </div>

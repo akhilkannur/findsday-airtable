@@ -22,12 +22,15 @@ export default function CategoriesPage() {
   const categories = getAllCategories()
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <section className="px-5 py-24 border-b-[var(--border-width)] border-black bg-[var(--lego-yellow)]">
+    <div className="flex flex-col min-h-screen bg-[var(--paper)]">
+      <section className="px-8 py-24 border-b border-[var(--ink)]">
         <div className="layout-container">
-          <div className="inline-flex items-center gap-2 font-bold uppercase tracking-widest text-[10px] mb-6 bg-white px-3 py-1 border-2 border-black rounded-full shadow-[2px_2px_0_black]">Tool Directory</div>
-          <h1 className="text-4xl md:text-6xl font-bold leading-none tracking-tight mb-8 text-black uppercase">Categories</h1>
-          <p className="max-w-2xl text-xl font-medium text-black/70 leading-relaxed">
+          <div className="font-mono text-[0.85rem] uppercase tracking-[0.2em] text-[var(--ink-fade)] mb-6 flex items-center gap-3">
+            <span className="w-1.5 h-1.5 bg-current rounded-full animate-status-blink"></span>
+            Taxonomy of Systems
+          </div>
+          <h1 className="type-display mb-8">Categories</h1>
+          <p className="max-w-2xl font-serif italic text-2xl text-[var(--ink-fade)] leading-relaxed border-l-2 border-[var(--ink)] pl-6">
             Find the building blocks for every part of your automated sales engine. From prospecting data to outreach APIs.
           </p>
         </div>
@@ -35,7 +38,8 @@ export default function CategoriesPage() {
 
       <section className="py-20">
         <div className="layout-container">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-px bg-[var(--ink)] opacity-20"></div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12">
             {categories.map((cat, idx) => {
               const Icon = getCategoryIcon(cat.icon)
 
@@ -43,29 +47,29 @@ export default function CategoriesPage() {
                 <Link
                   key={cat.slug}
                   href={`/categories/${cat.slug}`}
-                  className="brick group p-10 bg-white hover:-rotate-1 transition-all flex flex-col h-full gap-8"
+                  className="group flex flex-col h-full gap-8 p-8 border border-transparent hover:border-[var(--ink)]/10 transition-all"
                 >
                   <div className="flex items-center justify-between">
-                    <div className="w-14 h-14 flex items-center justify-center border-2 border-black bg-[var(--lego-offwhite)] text-black group-hover:bg-[var(--lego-blue)] group-hover:text-white transition-colors rounded-xl">
-                      <Icon className="w-7 h-7" />
+                    <div className="w-12 h-12 flex items-center justify-center bg-[var(--ink)] text-[var(--paper)] [clip-path:polygon(0%_0%,100%_5%,95%_100%,5%_95%)]">
+                      <Icon className="w-6 h-6" />
                     </div>
-                    <span className="text-[10px] font-mono font-bold text-black/20 group-hover:text-black transition-colors uppercase">Class_0{idx + 1}</span>
+                    <span className="font-mono text-[0.7rem] text-[var(--ink-fade)] group-hover:text-black transition-colors italic uppercase">Index_0{idx + 1}</span>
                   </div>
 
                   <div>
-                    <h2 className="text-2xl font-bold tracking-tight text-black mb-4 uppercase">
+                    <h2 className="text-xl font-bold uppercase underline decoration-transparent group-hover:decoration-[var(--ink)] transition-all underline-offset-8 mb-4">
                       {cat.name}
                     </h2>
-                    <p className="text-[0.95rem] text-[#666] line-clamp-3 leading-relaxed group-hover:text-black transition-colors">
+                    <p className="text-[1rem] text-[var(--ink-fade)] line-clamp-3 leading-relaxed">
                       {cat.description}
                     </p>
                   </div>
 
-                  <div className="mt-auto pt-8 flex items-center justify-between opacity-40 group-hover:opacity-100 transition-all border-t-2 border-dashed border-black/10">
-                    <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-black">
-                      {cat.toolCount} Pieces
+                  <div className="mt-auto pt-8 flex items-center justify-between opacity-40 group-hover:opacity-100 transition-all border-t border-dashed border-[var(--ink)]/20">
+                    <div className="font-mono text-[0.7rem] uppercase">
+                      {cat.toolCount} Manifests
                     </div>
-                    <div className="text-[10px] font-bold text-black tracking-widest uppercase">Inspect -></div>
+                    <div className="font-mono text-[0.7rem] uppercase tracking-widest">Inspect -></div>
                   </div>
                 </Link>
               )
