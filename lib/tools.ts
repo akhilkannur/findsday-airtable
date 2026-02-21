@@ -12,32 +12,69 @@ async function fetchSheetData(): Promise<SalesTool[]> {
     const lines = csvText.split("\n").filter(line => line.trim());
     if (lines.length < 2) return fallbackTools;
 
-    const headers = lines[0].split(",").map(h => h.trim());
+    const headers = parseCSVLine(lines[0]);
     
     return lines.slice(1).map(line => {
-      const values = line.split(",");
+      const values = parseCSVLine(line);
       const tool: any = {};
       headers.forEach((header, i) => {
         let val: any = values[i]?.trim();
         
-        if (val?.startsWith('"') && val?.endsWith('"')) {
-          val = val.substring(1, val.length - 1);
-        }
-
         if (val === "true") val = true;
         else if (val === "false") val = false;
         else if (val?.startsWith("[") && val?.endsWith("]")) {
-          try { val = JSON.parse(val.replace(/'/g, '"')); } catch(e) { val = []; }
+          try { 
+            // Handle double-escaped quotes from CSV export
+            const jsonStr = val.replace(/""/g, '"');
+            val = JSON.parse(jsonStr); 
+          } catch(e) { 
+            val = []; 
+          }
         }
         
         tool[header] = val;
       });
+
+      // Defensive checks for array fields to prevent build errors
+      const arrayFields = ['apiType', 'authMethod', 'aiCapabilities', 'integrations', 'alternativeTo', 'sdkLanguages'];
+      arrayFields.forEach(field => {
+        if (!Array.isArray(tool[field])) {
+          tool[field] = [];
+        }
+      });
+
       return tool as SalesTool;
     });
   } catch (error) {
     console.error("Error fetching sheet data, using fallback:", error);
     return fallbackTools;
   }
+}
+
+// Helper to parse CSV line handling quoted commas
+function parseCSVLine(line: string): string[] {
+  const result = [];
+  let curVal = "";
+  let inQuotes = false;
+  
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i];
+    if (char === '"') {
+      if (inQuotes && line[i+1] === '"') {
+        curVal += '"';
+        i++;
+      } else {
+        inQuotes = !inQuotes;
+      }
+    } else if (char === ',' && !inQuotes) {
+      result.push(curVal);
+      curVal = "";
+    } else {
+      curVal += char;
+    }
+  }
+  result.push(curVal);
+  return result;
 }
 
 export async function getAllTools(): Promise<SalesTool[]> {
