@@ -22,7 +22,7 @@ function ToolCard({ tool }: { tool: any }) {
   return (
     <Link
       href={`/tools/${tool.slug}`}
-      className="swiss-card group relative bg-white/40 backdrop-blur-sm border-ink-black/10 hover:border-ink-black transition-all h-full flex flex-col"
+      className="swiss-card group relative h-full flex flex-col"
     >
       <div className="absolute -top-1 -right-1 h-3 w-3 bg-accent-blue opacity-0 group-hover:opacity-100 transition-opacity"></div>
       
@@ -44,7 +44,7 @@ function ToolCard({ tool }: { tool: any }) {
       </p>
 
       <div className="mt-8 flex flex-wrap gap-2">
-        <span className="swiss-badge bg-white/50">{tool.category}</span>
+        <span className="swiss-badge">{tool.category}</span>
       </div>
 
       <div className="mt-auto pt-8 flex items-center justify-between border-t border-dashed border-ink-black/10">

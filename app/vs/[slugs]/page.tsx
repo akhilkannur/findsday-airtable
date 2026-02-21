@@ -68,7 +68,7 @@ export default async function ComparisonPage({ params }: Props) {
             {/* VS */}
             <div className="flex flex-col items-center">
               <div className="h-20 w-px bg-ink-black/10 hidden lg:block"></div>
-              <div className="my-8 px-6 py-3 border-2 border-ink-black bg-[#1A1C16] text-white font-black italic tracking-tighter text-3xl shadow-[6px_6px_0px_#B5C0FF]">
+              <div className="my-8 px-6 py-3 border-2 border-ink-black bg-[#1A1C16] text-white font-black italic tracking-tighter text-3xl shadow-[6px_6px_0px_#121212]">
                 VS
               </div>
               <div className="h-20 w-px bg-ink-black/10 hidden lg:block"></div>

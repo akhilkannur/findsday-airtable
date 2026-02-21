@@ -3,44 +3,43 @@
 @tailwind utilities;
 
 :root {
-  --bg-color: #DCDFCF;
+  --bg-color: #F4F4F1; /* Sage BG from system.md */
   --ink-color: #121212;
-  --accent-blue: #B5C0FF;
-  --accent-orange: #FF4D00;
-  --blob-bg: #D1D4C4;
+  --accent-blue: #3B82F6; /* Technical Blue from system.md */
+  --accent-orange: #F59E0B; /* Action Orange from system.md */
 }
 
 body {
   background-color: var(--bg-color);
   color: var(--ink-color);
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: var(--font-inter), 'Helvetica Neue', Helvetica, Arial, sans-serif;
   line-height: 1.4;
   -webkit-font-smoothing: antialiased;
 }
 
 @layer components {
   .swiss-card {
-    @apply border border-ink-black bg-sage-bg p-6 flex flex-col gap-4 transition-all duration-200;
+    @apply border border-ink-black bg-white p-8 flex flex-col gap-4 transition-all duration-200 shadow-[4px_4px_0px_rgba(18,18,18,0.05)];
   }
   
   .swiss-card:hover {
-    @apply -translate-x-0.5 -translate-y-0.5 shadow-[4px_4px_0px_rgba(18,18,18,0.1)];
+    @apply -translate-x-0.5 -translate-y-0.5 border-accent-blue shadow-[8px_8px_0px_rgba(18,18,18,0.1)];
   }
 
   .swiss-btn {
-    @apply inline-flex items-center justify-between border border-ink-black px-4 py-2.5 text-[0.85rem] font-medium uppercase tracking-widest transition-all hover:bg-ink-black hover:text-sage-bg active:scale-[0.98];
+    @apply inline-flex items-center justify-between border-2 border-ink-black bg-white px-6 py-3 text-[0.7rem] font-black uppercase tracking-[0.2em] transition-all hover:bg-ink-black hover:text-white active:scale-[0.98] shadow-[4px_4px_0px_#121212];
   }
 
   .swiss-btn-primary {
-    @apply bg-accent-blue;
+    @apply bg-white shadow-[4px_4px_0px_var(--accent-blue)] border-2 border-ink-black;
   }
 
   .swiss-btn-primary:hover {
-    @apply bg-ink-black text-accent-blue;
+    @apply bg-ink-black text-white shadow-none translate-x-1 translate-y-1;
   }
 
   .swiss-badge {
-    @apply inline-flex items-center gap-1.5 border border-ink-black px-2 py-0.5 rounded-full text-[0.7rem] font-medium uppercase tracking-wider;
+    @apply inline-flex items-center gap-1.5 border border-ink-black bg-white px-2 py-0.5 text-[0.6rem] font-black uppercase tracking-widest;
   }
 
   .swiss-badge-hot {

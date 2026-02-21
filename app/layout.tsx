@@ -105,7 +105,7 @@ gtag('config', 'G-9LGNFH00R7');`,
                   <span className="text-[1.1rem] font-black tracking-[-0.02em] uppercase italic italic-bold">
                     Salestools
                   </span>
-                  <span className="bg-accent-orange text-white text-[0.6rem] font-black px-1.5 py-0.5 rounded-sm transform -rotate-3 shadow-[2px_2px_0px_#121212] uppercase tracking-tighter">
+                  <span className="bg-accent-orange text-white text-[0.6rem] font-black px-1.5 py-0.5 transform -rotate-3 shadow-[2px_2px_0px_#121212] uppercase tracking-tighter">
                     Club
                   </span>
                 </div>
@@ -130,10 +130,10 @@ gtag('config', 'G-9LGNFH00R7');`,
 
           <div className="hidden items-center gap-6 md:flex">
             <div className="flex items-center gap-2 border-l border-ink-black/10 pl-6 h-6">
-              <div className="h-1 w-1 rounded-full bg-accent-orange animate-pulse"></div>
+              <div className="h-1 w-1 bg-accent-orange animate-pulse"></div>
               <span className="text-[0.65rem] font-bold uppercase tracking-[0.1em] opacity-40">Session Active</span>
             </div>
-            <Link href="/submit" className="swiss-btn-primary border border-ink-black px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.15em] hover:bg-ink-black hover:text-accent-blue transition-colors">
+            <Link href="/submit" className="swiss-btn px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.15em] hover:bg-ink-black hover:text-white transition-colors">
               Submit Tool
             </Link>
           </div>

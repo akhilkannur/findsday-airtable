@@ -57,7 +57,7 @@ export default function McpPage() {
               )}
             </div>
 
-            <div className="mt-6 swiss-btn group-hover:bg-ink-black group-hover:text-sage-bg">
+            <div className="mt-6 swiss-btn group-hover:bg-ink-black group-hover:text-white">
               Configure Node <span>↗</span>
             </div>
           </Link>

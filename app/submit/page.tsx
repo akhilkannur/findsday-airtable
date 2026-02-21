@@ -29,11 +29,11 @@ export default function SubmitPage() {
   })
 
   const inputClasses =
-    "w-full bg-white/40 border border-ink-black px-6 py-4 text-ink-black placeholder-gray-500 focus:bg-white focus:outline-none transition-all"
+    "w-full bg-white border border-ink-black px-6 py-4 text-ink-black placeholder-gray-500 focus:outline-none focus:border-accent-blue transition-all shadow-[4px_4px_0px_rgba(18,18,18,0.05)] focus:shadow-[6px_6px_0px_rgba(59,130,246,0.1)]"
 
   return (
     <div className="flex flex-col">
-      <section className="px-6 py-24 md:px-12 md:py-32 border-b border-dashed border-ink-black">
+      <section className="px-6 py-24 md:px-12 md:py-32 border-b border-dashed border-ink-black bg-white/40">
         <div className="type-label mb-6 opacity-40">Entry Submission</div>
         <h1 className="type-display mb-8">Add Entry</h1>
         <p className="max-w-2xl text-xl font-medium opacity-60">
@@ -42,7 +42,7 @@ export default function SubmitPage() {
       </section>
 
       <div className="swiss-grid-bg p-6 md:p-12">
-        <div className="max-w-2xl border border-ink-black bg-sage-bg p-10 md:p-16 shadow-[8px_8px_0px_rgba(18,18,18,0.05)]">
+        <div className="max-w-2xl border border-ink-black bg-white p-10 md:p-16 shadow-[8px_8px_0px_#121212]">
           <form className="space-y-12" onSubmit={(e) => e.preventDefault()}>
             {/* Tool Name */}
             <div>

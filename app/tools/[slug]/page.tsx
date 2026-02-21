@@ -67,16 +67,16 @@ function ToolCard({ tool }: { tool: SalesTool }) {
   return (
     <Link
       href={`/tools/${tool.slug}`}
-      className="p-6 border border-ink-black/10 bg-white/20 backdrop-blur-sm group hover:border-ink-black transition-all flex flex-col h-full"
+      className="p-8 border border-ink-black bg-white group hover:border-accent-blue transition-all flex flex-col h-full shadow-[4px_4px_0px_rgba(18,18,18,0.05)] hover:shadow-[8px_8px_0px_rgba(18,18,18,0.1)] hover:-translate-y-1"
     >
-      <div className="flex justify-between items-start mb-4">
-        <div className="flex h-10 w-10 items-center justify-center border border-ink-black bg-white group-hover:bg-accent-blue transition-colors font-bold text-lg shadow-[3px_3px_0px_rgba(18,18,18,0.05)]">
+      <div className="flex justify-between items-start mb-6">
+        <div className="flex h-12 w-12 items-center justify-center border border-ink-black bg-white group-hover:bg-accent-blue transition-colors font-bold text-xl">
           {tool.name.charAt(0)}
         </div>
       </div>
-      <h3 className="text-lg font-black uppercase tracking-tight group-hover:text-accent-orange transition-colors">{tool.name}</h3>
-      <p className="mt-2 text-xs font-bold opacity-60 line-clamp-2">{tool.oneLiner}</p>
-      <div className="mt-auto pt-6 flex items-center justify-between opacity-20 group-hover:opacity-100 transition-all">
+      <h3 className="text-xl font-black uppercase tracking-tight group-hover:text-accent-orange transition-colors">{tool.name}</h3>
+      <p className="mt-4 text-xs font-bold opacity-60 line-clamp-2 leading-relaxed">{tool.oneLiner}</p>
+      <div className="mt-auto pt-8 flex items-center justify-between opacity-20 group-hover:opacity-100 transition-all border-t border-dashed border-ink-black/10">
         <div className="text-[0.55rem] font-black uppercase tracking-[0.2em]">Inspect Node</div>
         <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
       </div>
@@ -117,7 +117,7 @@ export default async function ToolDetailPage({
     <div className="flex flex-col bg-sage-bg/30">
       <JsonLd tool={tool} />
 
-      <section className="px-6 py-24 md:px-12 md:py-32 border-b border-dashed border-ink-black relative overflow-hidden">
+      <section className="px-6 py-24 md:px-12 md:py-32 border-b border-dashed border-ink-black relative overflow-hidden bg-white/40">
         <div className="absolute top-0 right-0 w-64 h-full border-l border-dashed border-ink-black/5 pointer-events-none hidden lg:block"></div>
         
         <Link
@@ -130,12 +130,12 @@ export default async function ToolDetailPage({
         <div className="flex flex-col gap-12 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-4xl">
             <div className="flex flex-wrap items-center gap-8">
-              <div className="flex h-20 w-20 items-center justify-center border border-ink-black bg-white shadow-[6px_6px_0px_rgba(18,18,18,0.1)] text-4xl font-black transition-transform hover:rotate-3">
+              <div className="flex h-20 w-20 items-center justify-center border border-ink-black bg-white shadow-[6px_6px_0px_rgba(18,18,18,0.1)] text-4xl font-black">
                 {tool.name.charAt(0)}
               </div>
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
-                  <div className="type-label px-2 py-0.5 border border-ink-black/10 bg-white/50">{tool.category}</div>
+                  <div className="type-label px-2 py-0.5 border border-ink-black bg-white">{tool.category}</div>
                 </div>
                 <h1 className="type-display">{tool.name}</h1>
               </div>
@@ -151,7 +151,7 @@ export default async function ToolDetailPage({
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="swiss-btn min-w-[240px] bg-white/40 hover:bg-ink-black hover:text-white group"
+                className="swiss-btn min-w-[240px] bg-white hover:bg-ink-black hover:text-white group"
               >
                 {link.label} <span className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
               </a>
@@ -170,9 +170,9 @@ export default async function ToolDetailPage({
               </div>
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 {tool.aiCapabilities.map((cap) => (
-                  <div key={cap} className="p-6 border border-ink-black/10 bg-white/20 backdrop-blur-sm group hover:border-ink-black transition-colors">
+                  <div key={cap} className="p-6 border border-ink-black bg-white group hover:border-accent-blue transition-colors">
                     <div className="flex items-start gap-4">
-                      <div className="h-2 w-2 rounded-full bg-accent-blue mt-1.5 group-hover:bg-accent-orange transition-colors"></div>
+                      <div className="h-2 w-2 bg-accent-blue mt-1.5 group-hover:bg-accent-orange transition-colors"></div>
                       <div className="flex flex-col">
                         <span className="text-sm font-bold uppercase tracking-tight">{cap}</span>
                       </div>
@@ -184,9 +184,9 @@ export default async function ToolDetailPage({
           )}
 
           {tool.starterPrompt && (
-            <div className="border border-dashed border-ink-black p-12 bg-white/10 relative group">
+            <div className="border border-dashed border-ink-black p-12 bg-white/50 relative group">
               <div className="type-label mb-8 opacity-40">Example Prompt</div>
-              <div className="font-mono text-xl p-10 border border-ink-black bg-white shadow-[10px_10px_0px_rgba(18,18,18,0.05)] leading-relaxed italic">
+              <div className="font-mono text-xl p-10 border border-ink-black bg-white shadow-[10px_10px_0px_rgba(18,18,18,0.05)] leading-relaxed italic italic-bold">
                 &quot;{tool.starterPrompt}&quot;
               </div>
             </div>
@@ -203,7 +203,7 @@ export default async function ToolDetailPage({
           </div>
         </div>
 
-        <div className="p-8 md:p-16 bg-white/20 backdrop-blur-md border-l border-ink-black/10 space-y-16">
+        <div className="p-8 md:p-16 bg-white/40 border-l border-ink-black/10 space-y-16">
           <div>
             <div className="flex items-center justify-between mb-10">
               <div className="type-label opacity-40">Technical Specs</div>
@@ -229,7 +229,7 @@ export default async function ToolDetailPage({
             <div className="border border-ink-black bg-ink-black p-8 shadow-[8px_8px_0px_rgba(18,18,18,0.2)]">
               <div className="flex items-center justify-between mb-8">
                 <div className="type-label text-white/40">MCP Configuration</div>
-                <div className="h-2 w-2 rounded-full bg-accent-blue animate-pulse"></div>
+                <div className="h-2 w-2 bg-accent-blue animate-pulse"></div>
               </div>
               <pre className="font-mono text-[10px] whitespace-pre-wrap overflow-x-auto p-6 border border-white/10 bg-white/5 text-white/80 leading-relaxed">
                 {tool.integrations.find(i => i.platform === "MCP")?.mcpConfig}
@@ -247,7 +247,7 @@ export default async function ToolDetailPage({
       </div>
 
       {alternatives.length > 0 && (
-        <section className="px-6 py-24 md:px-12 md:py-32 bg-white/50 backdrop-blur-sm">
+        <section className="px-6 py-24 md:px-12 md:py-32 bg-white/60">
           <div className="max-w-7xl mx-auto">
             <div className="flex items-center gap-4 mb-16">
               <div className="type-label text-accent-orange font-black">Programmatic SEO</div>
