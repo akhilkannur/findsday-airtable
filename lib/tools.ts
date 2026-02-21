@@ -37,6 +37,10 @@ export function getAllSlugs(): string[] {
   return tools.map((t) => t.slug)
 }
 
+export function getAllCategorySlugs(): string[] {
+  return categories.map((c) => c.slug)
+}
+
 export function getToolsForComparison(slugs: string): { tool1: SalesTool | undefined; tool2: SalesTool | undefined } {
   const [s1, s2] = slugs.split("-vs-")
   return {
