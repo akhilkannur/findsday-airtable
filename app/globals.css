@@ -29,7 +29,7 @@ body {
   }
 
   .layout-container {
-    @apply max-width-[1400px] mx-auto border-x border-[#333333] min-h-screen flex flex-col;
+    @apply max-w-[1400px] mx-auto border-x border-[#333333] min-h-screen flex flex-col;
   }
 
   .swiss-card {
