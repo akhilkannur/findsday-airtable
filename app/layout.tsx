@@ -96,87 +96,82 @@ gtag('config', 'G-9LGNFH00R7');`,
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
-      <body className="bg-sage-bg text-ink-black antialiased grain-bg min-h-screen">
-        <header className="flex h-[60px] items-center justify-between border-b border-ink-black px-6 md:px-12 bg-sage-bg/80 backdrop-blur-sm sticky top-0 z-50">
-          <div className="flex items-center gap-6">
-            <Link href="/" className="group flex items-center gap-0">
-              <div className="flex flex-col items-start leading-none">
-                <div className="flex items-center gap-1.5">
-                  <span className="text-[1.1rem] font-black tracking-[-0.02em] uppercase italic italic-bold">
-                    Salestools
-                  </span>
-                  <span className="bg-accent-orange text-white text-[0.6rem] font-black px-1.5 py-0.5 transform -rotate-3 shadow-[2px_2px_0px_#121212] uppercase tracking-tighter">
-                    Club
-                  </span>
-                </div>
-                <span className="text-[0.55rem] font-bold uppercase tracking-[0.3em] opacity-30 mt-1 ml-0.5">
-                  GTM Lego Blocks
-                </span>
-              </div>
-            </Link>
-          </div>
-
-          <nav className="hidden items-center gap-10 md:flex">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-[0.7rem] font-bold uppercase tracking-[0.15em] hover:underline hover:underline-offset-4 decoration-accent-orange/40 transition-all"
-              >
-                {link.label}
+      <body className="antialiased min-h-screen">
+        <div className="u-grid-bg"></div>
+        
+        <div className="layout-container">
+          <header className="flex h-[60px] items-stretch justify-between border-b border-[#333333] bg-black sticky top-0 z-[100]">
+            <div className="flex items-stretch">
+              <Link href="/" className="flex items-center px-8 border-right border-[#333333] font-extrabold text-[18px] tracking-[-0.02em] hover:bg-white hover:text-black transition-colors group">
+                <svg viewBox="0 0 24 24" className="w-6 h-6 mr-3 fill-current">
+                  <path d="M4 4h7l-5 16h-2V4z M13 4h7v16h-7l5-16z"></path>
+                </svg>
+                SALESTOOLS.CLUB
               </Link>
-            ))}
-          </nav>
-
-          <div className="hidden items-center gap-6 md:flex">
-            <div className="flex items-center gap-2 border-l border-ink-black/10 pl-6 h-6">
-              <div className="h-1 w-1 bg-accent-orange animate-pulse"></div>
-              <span className="text-[0.65rem] font-bold uppercase tracking-[0.1em] opacity-40">Session Active</span>
+              
+              <nav className="hidden md:flex items-stretch">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="flex items-center px-6 border-r border-[#333333] text-[11px] font-semibold uppercase tracking-[0.05em] hover:bg-white hover:text-black transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </nav>
             </div>
-            <Link href="/submit" className="swiss-btn px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.15em] hover:bg-ink-black hover:text-white transition-colors">
-              Submit Tool
-            </Link>
-          </div>
 
-          {/* Mobile nav */}
-          <MobileNav links={navLinks} />
-        </header>
+            <div className="flex items-stretch">
+              <div className="hidden lg:flex items-center px-6 border-r border-[#333333] gap-2 text-[12px] font-mono text-[#888]">
+                <div className="w-2 h-2 bg-[#00FF00] rounded-full shadow-[0_0_8px_#00FF00] animate-status-pulse"></div>
+                SESSION ACTIVE
+              </div>
+              
+              <Link href="/submit" className="flex items-center px-6 bg-white text-black text-[11px] font-bold uppercase tracking-[0.05em] hover:bg-[#ccc] transition-colors">
+                SUBMIT TOOL
+              </Link>
 
-        <div className="flex flex-col min-h-[calc(100vh-60px)]">
-          <main className="flex flex-col flex-grow">
+              {/* Mobile nav toggle would go here - keeping it simple for now as per design */}
+              <MobileNav links={navLinks} />
+            </div>
+          </header>
+
+          <main className="flex-grow">
             {children}
           </main>
           
-          <footer className="bg-accent-blue border-t-2 border-ink-black p-4 md:p-8 lg:p-12 text-ink-black">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 gap-y-6 gap-x-10 md:grid-cols-2 lg:grid-cols-4">
+          <footer className="border-t border-[#333333] p-12 bg-black">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
               <div className="space-y-4">
-                <div className="text-2xl font-black tracking-tighter uppercase italic">Salestools Club</div>
-                <p className="text-sm font-bold leading-relaxed">
-                  A curated directory of the best sales APIs and MCP servers for people building with Claude Code and other agentic tools.
+                <div className="text-xl font-bold tracking-tighter uppercase">Salestools Club</div>
+                <p className="text-[13px] text-[#888] leading-relaxed">
+                  The technical "Lego Blocks" for your AI Sales Agent. APIs, SDKs, and MCP servers.
                 </p>
               </div>
+              {/* Keeping existing footer navigation links for SEO */}
               <div className="space-y-4">
-                <div className="type-label text-ink-black font-black">Browse</div>
-                <ul className="space-y-3 text-sm font-bold">
-                  <li><Link href="/tools" className="hover:text-accent-orange transition-colors">Tool Directory</Link></li>
-                  <li><Link href="/categories" className="hover:text-accent-orange transition-colors">Categories</Link></li>
-                  <li><Link href="/mcp" className="hover:text-accent-orange transition-colors">MCP Servers</Link></li>
-                  <li><Link href="/vs" className="hover:text-accent-orange transition-colors">Comparisons</Link></li>
+                <div className="text-[11px] font-bold uppercase tracking-widest text-[#444]">Navigation</div>
+                <ul className="space-y-2 text-[13px] font-medium text-[#888]">
+                  <li><Link href="/tools" className="hover:text-white transition-colors">Nodes</Link></li>
+                  <li><Link href="/categories" className="hover:text-white transition-colors">Classes</Link></li>
+                  <li><Link href="/mcp" className="hover:text-white transition-colors">Protocols</Link></li>
+                  <li><Link href="/vs" className="hover:text-white transition-colors">Audits</Link></li>
                 </ul>
               </div>
               <div className="space-y-4">
-                <div className="type-label text-ink-black font-black">Documentation</div>
-                <ul className="space-y-3 text-sm font-bold">
-                  <li><Link href="/about" className="hover:text-accent-orange transition-colors">About Project</Link></li>
-                  <li><Link href="/privacy" className="hover:text-accent-orange transition-colors">Privacy Policy</Link></li>
-                  <li><Link href="/submit" className="hover:text-accent-orange transition-colors">Add Entry</Link></li>
+                <div className="text-[11px] font-bold uppercase tracking-widest text-[#444]">Documentation</div>
+                <ul className="space-y-2 text-[13px] font-medium text-[#888]">
+                  <li><Link href="/about" className="hover:text-white transition-colors">System Info</Link></li>
+                  <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy protocol</Link></li>
+                  <li><Link href="/submit" className="hover:text-white transition-colors">Add Module</Link></li>
                 </ul>
               </div>
               <div className="space-y-4">
-                <div className="type-label text-ink-black font-black">Registry</div>
-                <p className="text-[0.7rem] font-black uppercase tracking-widest leading-loose">
-                  v1.0.0-Stable<br />
-                  © {new Date().getFullYear()} Salestools.club
+                <div className="text-[11px] font-bold uppercase tracking-widest text-[#444]">Status</div>
+                <p className="text-[11px] font-mono text-[#444] leading-loose">
+                  STC_NODE_STABLE<br />
+                  © {new Date().getFullYear()}
                 </p>
               </div>
             </div>

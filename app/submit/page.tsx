@@ -29,24 +29,24 @@ export default function SubmitPage() {
   })
 
   const inputClasses =
-    "w-full bg-white border border-ink-black px-6 py-4 text-ink-black placeholder-gray-500 focus:outline-none focus:border-accent-blue transition-all shadow-[4px_4px_0px_rgba(18,18,18,0.05)] focus:shadow-[6px_6px_0px_rgba(59,130,246,0.1)]"
+    "w-full bg-black border border-[#333333] px-6 py-4 text-white placeholder-white/10 focus:outline-none focus:border-white transition-all shadow-[4px_4px_0px_#050505] focus:shadow-[6px_6px_0px_#111]"
 
   return (
-    <div className="flex flex-col">
-      <section className="px-6 py-24 md:px-12 md:py-32 border-b border-dashed border-ink-black bg-white/40">
-        <div className="type-label mb-6 opacity-40">Entry Submission</div>
-        <h1 className="type-display mb-8">Add Entry</h1>
-        <p className="max-w-2xl text-xl font-medium opacity-60">
+    <div className="flex flex-col min-h-screen bg-black">
+      <section className="px-10 md:px-20 py-24 border-b border-[#333333] bg-[#050505]">
+        <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#444] mb-6">Entry Submission</div>
+        <h1 className="text-[42px] md:text-[64px] font-bold leading-none tracking-[-0.04em] mb-8 text-white">Add Entry</h1>
+        <p className="max-w-2xl text-[18px] text-[#888] leading-relaxed">
           Know a sales API or MCP server we&apos;re missing? Add it to the club infrastructure.
         </p>
       </section>
 
-      <div className="swiss-grid-bg p-6 md:p-12">
-        <div className="max-w-2xl border border-ink-black bg-white p-10 md:p-16 shadow-[8px_8px_0px_#121212]">
+      <div className="p-10 md:p-20 bg-black">
+        <div className="max-w-2xl border border-[#333333] bg-[#050505] p-10 md:p-16">
           <form className="space-y-12" onSubmit={(e) => e.preventDefault()}>
             {/* Tool Name */}
             <div>
-              <label htmlFor="toolName" className="type-label mb-4 block opacity-40">
+              <label htmlFor="toolName" className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#444] mb-4 block">
                 01. Module Identifier
               </label>
               <input
@@ -61,7 +61,7 @@ export default function SubmitPage() {
 
             {/* Website URL */}
             <div>
-              <label htmlFor="websiteUrl" className="type-label mb-4 block opacity-40">
+              <label htmlFor="websiteUrl" className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#444] mb-4 block">
                 02. Primary Node (URL)
               </label>
               <input
@@ -76,7 +76,7 @@ export default function SubmitPage() {
 
             {/* API Docs URL */}
             <div>
-              <label htmlFor="apiDocsUrl" className="type-label mb-4 block opacity-40">
+              <label htmlFor="apiDocsUrl" className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#444] mb-4 block">
                 03. Spec/Docs Endpoint
               </label>
               <input
@@ -91,7 +91,7 @@ export default function SubmitPage() {
 
             {/* Category */}
             <div>
-              <label htmlFor="category" className="type-label mb-4 block opacity-40">
+              <label htmlFor="category" className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#444] mb-4 block">
                 04. Infrastructure Class
               </label>
               <select
@@ -100,9 +100,9 @@ export default function SubmitPage() {
                 value={formData.category}
                 onChange={(e) => setFormData({ ...formData, category: e.target.value })}
               >
-                <option value="" className="bg-sage-bg">Select a class...</option>
+                <option value="" className="bg-black">Select a class...</option>
                 {CATEGORIES.map((cat) => (
-                  <option key={cat} value={cat} className="bg-sage-bg">
+                  <option key={cat} value={cat} className="bg-black">
                     {cat}
                   </option>
                 ))}
@@ -114,21 +114,21 @@ export default function SubmitPage() {
               <label className="flex items-center gap-4 cursor-pointer group">
                 <input
                   type="checkbox"
-                  className="h-5 w-5 border-2 border-ink-black bg-white checked:bg-accent-orange transition-all appearance-none checked:border-accent-orange relative after:content-[''] after:absolute after:hidden after:left-1.5 after:top-0.5 after:w-1.5 after:h-2.5 after:border-white after:border-r-2 after:border-b-2 after:rotate-45 checked:after:block"
+                  className="h-5 w-5 border border-[#333333] bg-black checked:bg-white transition-all appearance-none checked:border-white relative after:content-[''] after:absolute after:hidden after:left-1.5 after:top-0.5 after:w-1.5 after:h-2.5 after:border-black after:border-r-2 after:border-b-2 after:rotate-45 checked:after:block"
                   checked={formData.hasMcp}
                   onChange={(e) => setFormData({ ...formData, hasMcp: e.target.checked })}
                 />
-                <span className="text-[0.65rem] font-bold uppercase tracking-widest opacity-60 group-hover:opacity-100">MCP READY</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-[#444] group-hover:text-white transition-colors">MCP READY</span>
               </label>
 
               <label className="flex items-center gap-4 cursor-pointer group">
                 <input
                   type="checkbox"
-                  className="h-5 w-5 border-2 border-ink-black bg-white checked:bg-accent-blue transition-all appearance-none checked:border-accent-blue relative after:content-[''] after:absolute after:hidden after:left-1.5 after:top-0.5 after:w-1.5 after:h-2.5 after:border-white after:border-r-2 after:border-b-2 after:rotate-45 checked:after:block"
+                  className="h-5 w-5 border border-[#333333] bg-black checked:bg-white transition-all appearance-none checked:border-white relative after:content-[''] after:absolute after:hidden after:left-1.5 after:top-0.5 after:w-1.5 after:h-2.5 after:border-black after:border-r-2 after:border-b-2 after:rotate-45 checked:after:block"
                   checked={formData.hasAgentSkills}
                   onChange={(e) => setFormData({ ...formData, hasAgentSkills: e.target.checked })}
                 />
-                <span className="text-[0.65rem] font-bold uppercase tracking-widest opacity-60 group-hover:opacity-100">AGENT SKILLS</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-[#444] group-hover:text-white transition-colors">AGENT SKILLS</span>
               </label>
             </div>
 
@@ -136,11 +136,11 @@ export default function SubmitPage() {
             <div className="pt-8">
               <button
                 type="submit"
-                className="swiss-btn swiss-btn-primary w-full py-6 text-sm font-black uppercase tracking-[0.2em] shadow-[8px_8px_0px_#121212] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all"
+                className="w-full py-6 bg-white text-black text-[11px] font-black uppercase tracking-[0.2em] hover:bg-[#ccc] transition-all active:scale-[0.98]"
               >
                 Deploy to Registry <span>-></span>
               </button>
-              <p className="mt-6 text-[0.6rem] font-bold uppercase tracking-widest opacity-30 text-center italic">
+              <p className="mt-6 text-[9px] font-bold uppercase tracking-[0.2em] text-[#444] text-center italic">
                 Awaiting manual verification from primary node...
               </p>
             </div>

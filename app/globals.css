@@ -3,120 +3,87 @@
 @tailwind utilities;
 
 :root {
-  --bg-color: #F4F4F1; /* Sage BG from system.md */
-  --ink-color: #121212;
-  --accent-blue: #3B82F6; /* Technical Blue from system.md */
-  --accent-orange: #F59E0B; /* Action Orange from system.md */
+  --bg: #000000;
+  --fg: #ffffff;
+  --border: #333333;
+  --border-active: #ffffff;
+  --accent: #ffffff;
 }
 
 body {
-  background-color: var(--bg-color);
-  color: var(--ink-color);
-  font-family: var(--font-inter), 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  line-height: 1.4;
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 @layer components {
+  .u-grid-bg {
+    @apply fixed inset-0 pointer-events-none -z-10;
+    background-image: 
+        linear-gradient(to right, #111 1px, transparent 1px),
+        linear-gradient(to bottom, #111 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .layout-container {
+    @apply max-width-[1400px] mx-auto border-x border-[#333333] min-h-screen flex flex-col;
+  }
+
   .swiss-card {
-    @apply border border-ink-black bg-white p-8 flex flex-col gap-4 transition-all duration-200 shadow-[4px_4px_0px_rgba(18,18,18,0.05)];
+    @apply border border-transparent bg-black p-8 flex flex-col gap-5 transition-all duration-300 h-full relative;
   }
   
   .swiss-card:hover {
-    @apply -translate-x-0.5 -translate-y-0.5 border-accent-blue shadow-[8px_8px_0px_rgba(18,18,18,0.1)];
+    @apply bg-[#0a0a0a];
   }
 
   .swiss-btn {
-    @apply inline-flex items-center justify-between border-2 border-ink-black bg-white px-6 py-3 text-[0.7rem] font-black uppercase tracking-[0.2em] transition-all hover:bg-ink-black hover:text-white active:scale-[0.98] shadow-[4px_4px_0px_#121212];
+    @apply inline-flex items-center justify-between border border-[#333333] bg-black px-6 py-3 text-[0.7rem] font-bold uppercase tracking-[0.2em] transition-all hover:bg-white hover:text-black active:scale-[0.98];
   }
 
   .swiss-btn-primary {
-    @apply bg-white shadow-[4px_4px_0px_var(--accent-blue)] border-2 border-ink-black;
+    @apply bg-white text-black border-none font-black;
   }
 
   .swiss-btn-primary:hover {
-    @apply bg-ink-black text-white shadow-none translate-x-1 translate-y-1;
+    @apply bg-[#cccccc] text-black;
   }
 
   .swiss-badge {
-    @apply inline-flex items-center gap-1.5 border border-ink-black bg-white px-2 py-0.5 text-[0.6rem] font-black uppercase tracking-widest;
+    @apply inline-flex items-center gap-1.5 border border-[#333333] bg-black px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-[#888888];
   }
 
-  .swiss-badge-hot {
-    @apply border-accent-orange text-accent-orange;
-  }
-
-  .swiss-grid-bg {
-    background-image: 
-      linear-gradient(to right, rgba(18,18,18,0.02) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(18,18,18,0.02) 1px, transparent 1px);
-    background-size: 32px 32px;
-  }
-
-  .grain-bg::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.03;
-    z-index: 50;
-    pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3%3Ffilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  }
-
-  .schematic-border {
-    @apply border border-ink-black/10 border-dashed;
-  }
-
-  .schematic-border-t {
-    @apply border-t border-ink-black/10 border-dashed;
-  }
-
-  .schematic-border-b {
-    @apply border-b border-ink-black/10 border-dashed;
-  }
-
-  .schematic-border-l {
-    @apply border-l border-ink-black/10 border-dashed;
-  }
-
-  .schematic-border-r {
-    @apply border-r border-ink-black/10 border-dashed;
-  }
-
-  .nav-link-active {
-    @apply relative after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-full after:bg-ink-black;
+  .mcp-badge {
+    @apply bg-white text-black text-[10px] font-extrabold px-1.5 py-1 inline-block mb-3;
   }
 
   .type-display {
-    @apply font-playfair text-[2.5rem] font-medium leading-[1.05] tracking-tight;
+    @apply text-[64px] font-bold leading-[0.95] tracking-[-0.04em];
   }
 
   .type-label {
-    @apply text-[0.7rem] font-bold uppercase tracking-[0.15em] text-ink-black/60;
+    @apply text-[11px] font-semibold uppercase tracking-[0.05em] text-[#888888];
   }
 }
 
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.4; }
+  100% { opacity: 1; }
 }
 
-.animate-marquee {
-  animation: marquee 40s linear infinite;
-}
-
-.animate-marquee:hover {
-  animation-play-state: paused;
+.animate-status-pulse {
+  animation: pulse 2s infinite;
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--bg-color); }
-::-webkit-scrollbar-thumb { background: rgba(18,18,18,0.2); }
-::-webkit-scrollbar-thumb:hover { background: rgba(18,18,18,0.4); }
+::-webkit-scrollbar-track { background: #000; }
+::-webkit-scrollbar-thumb { background: #333; }
+::-webkit-scrollbar-thumb:hover { background: #444; }
 
-h1, h2, h3, h4 { @apply text-ink-black; }
-a { @apply text-ink-black; }
+h1, h2, h3, h4 { @apply text-white; }
+a { @apply text-white; }
