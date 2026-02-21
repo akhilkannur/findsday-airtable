@@ -6,7 +6,8 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "sync": "python3 scripts/sync-data.py"
   },
   "dependencies": {
     "@eslint/eslintrc": "latest",

@@ -1,126 +1,47 @@
-import { tools as fallbackTools, categories as fallbackCategories } from "./data"
+import { tools, categories } from "./data"
 import type { SalesTool, ToolCategory, CategoryMeta } from "./types"
 
-const SHEET_URL = "https://docs.google.com/spreadsheets/d/1lISM0kMrJJSCs-e8nqBZKkKeNExtoXu5KD-mI4GvZN0/export?format=csv";
-
-async function fetchSheetData(): Promise<SalesTool[]> {
-  try {
-    const response = await fetch(SHEET_URL, { next: { revalidate: 60 } }); // Cache for 1 minute
-    if (!response.ok) throw new Error("Failed to fetch sheet");
-    const csvText = await response.text();
-    
-    const lines = csvText.split("\n").filter(line => line.trim());
-    if (lines.length < 2) return fallbackTools;
-
-    const headers = parseCSVLine(lines[0]);
-    
-    return lines.slice(1).map(line => {
-      const values = parseCSVLine(line);
-      const tool: any = {};
-      headers.forEach((header, i) => {
-        let val: any = values[i]?.trim();
-        
-        if (val === "true") val = true;
-        else if (val === "false") val = false;
-        else if (val?.startsWith("[") && val?.endsWith("]")) {
-          try { 
-            // Handle double-escaped quotes from CSV export
-            const jsonStr = val.replace(/""/g, '"');
-            val = JSON.parse(jsonStr); 
-          } catch(e) { 
-            val = []; 
-          }
-        }
-        
-        tool[header] = val;
-      });
-
-      // Defensive checks for array fields to prevent build errors
-      const arrayFields = ['apiType', 'authMethod', 'aiCapabilities', 'integrations', 'alternativeTo', 'sdkLanguages'];
-      arrayFields.forEach(field => {
-        if (!Array.isArray(tool[field])) {
-          tool[field] = [];
-        }
-      });
-
-      return tool as SalesTool;
-    });
-  } catch (error) {
-    console.error("Error fetching sheet data, using fallback:", error);
-    return fallbackTools;
-  }
-}
-
-// Helper to parse CSV line handling quoted commas
-function parseCSVLine(line: string): string[] {
-  const result = [];
-  let curVal = "";
-  let inQuotes = false;
-  
-  for (let i = 0; i < line.length; i++) {
-    const char = line[i];
-    if (char === '"') {
-      if (inQuotes && line[i+1] === '"') {
-        curVal += '"';
-        i++;
-      } else {
-        inQuotes = !inQuotes;
-      }
-    } else if (char === ',' && !inQuotes) {
-      result.push(curVal);
-      curVal = "";
-    } else {
-      curVal += char;
-    }
-  }
-  result.push(curVal);
-  return result;
-}
+// In "Terminal-First" mode, we use the local data.ts as the source of truth.
+// We keep the functions async so the UI doesn't need to change, and it allows
+// for easy switching back to a live API if needed later.
 
 export async function getAllTools(): Promise<SalesTool[]> {
-  return await fetchSheetData()
+  return tools
 }
 
 export async function getFeaturedTools(): Promise<SalesTool[]> {
-  const tools = await fetchSheetData()
   return tools.filter((t) => t.isFeatured)
 }
 
 export async function getToolBySlug(slug: string): Promise<SalesTool | undefined> {
-  const tools = await fetchSheetData()
   return tools.find((t) => t.slug === slug)
 }
 
 export async function getToolsByCategory(category: ToolCategory): Promise<SalesTool[]> {
-  const tools = await fetchSheetData()
   return tools.filter((t) => t.category === category)
 }
 
 export async function getMcpTools(): Promise<SalesTool[]> {
-  const tools = await fetchSheetData()
   return tools.filter((t) => t.mcpReady)
 }
 
 export async function getToolsWithIntegrations(): Promise<SalesTool[]> {
-  const tools = await fetchSheetData()
   return tools.filter((t) => t.integrations && t.integrations.length > 0)
 }
 
 export function getAllCategories(): CategoryMeta[] {
-  return fallbackCategories
+  return categories
 }
 
 export function getCategoryBySlug(slug: string): CategoryMeta | undefined {
-  return fallbackCategories.find((c) => c.slug === slug)
+  return categories.find((c) => c.slug === slug)
 }
 
 export async function getAllSlugs(): Promise<string[]> {
-  const tools = await fetchSheetData()
   return tools.map((t) => t.slug)
 }
 
 export async function searchTools(query: string): Promise<SalesTool[]> {
-  const tools = await fetchSheetData()
   const q = query.toLowerCase()
   return tools.filter(
     (t) =>
@@ -132,7 +53,7 @@ export async function searchTools(query: string): Promise<SalesTool[]> {
 }
 
 export function getAllCategorySlugs(): string[] {
-  return fallbackCategories.map((c) => c.slug)
+  return categories.map((c) => c.slug)
 }
 
 export async function getToolsForComparison(slugs: string): Promise<{ tool1: SalesTool | undefined; tool2: SalesTool | undefined }> {
@@ -149,7 +70,7 @@ export async function filterTools(options: {
   mcpOnly?: boolean
   freeOnly?: boolean
 }): Promise<SalesTool[]> {
-  let filtered = await fetchSheetData()
+  let filtered = tools
 
   if (options.category && options.category !== "All") {
     filtered = filtered.filter((t) => t.category === options.category)
