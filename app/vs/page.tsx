@@ -34,7 +34,7 @@ export default function VsIndexPage() {
             <Scale className="h-4 w-4" />
             Comparison Registry
           </div>
-          <h1 className="text-[42px] md:text-[64px] font-bold leading-none tracking-[-0.04em] mb-8 text-white">Technical Audits.</h1>
+          <h1 className="text-[42px] md:text-[64px] font-bold leading-none tracking-[-0.04em] mb-8 text-white">Head-to-Head Technical Audits.</h1>
           <p className="max-w-2xl text-[18px] text-[#888] leading-relaxed">
             We compare sales modules based on their <strong>programmability</strong>, <strong>AI-readiness</strong>, and <strong>MCP support</strong>. Choose the right node for your agentic stack.
           </p>
@@ -90,7 +90,7 @@ export default function VsIndexPage() {
                   href={`/vs/${t.slug}-vs-${altTool.slug}`}
                   className="text-[11px] font-bold uppercase tracking-widest text-[#444] hover:text-white transition-all"
                 >
-                  {t.name} / {altTool.name}
+                  {t.name} vs {altTool.name}
                 </Link>
               )
           })}

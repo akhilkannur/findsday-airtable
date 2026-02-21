@@ -59,23 +59,23 @@ export default function Home() {
       <section className="hero grid lg:grid-cols-[1.2fr_0.8fr] border-b border-[#333333] min-h-[600px]">
         <div className="hero-content p-10 md:p-20 flex flex-col justify-center border-r border-[#333333]">
           <h1 className="text-[42px] md:text-[64px] font-bold leading-[0.95] tracking-[-0.04em] mb-8">
-            The Lego Blocks <br />
+            The "Lego Blocks" <br />
             for your <br />
             AI Sales Agent.
           </h1>
           <p className="text-[18px] text-[#999] leading-relaxed mb-12 max-w-[480px]">
-            A curated directory of high-performance APIs, SDKs, and MCP servers designed for the next generation of autonomous sales infrastructure.
+            Don't reinvent the wheel. We've curated the best APIs, SDKs, and MCP servers that plug directly into Claude Code and Cursor. Build your GTM machine in hours, not weeks.
           </p>
 
           <form className="email-capture flex h-14 max-w-[460px] border border-[#333333]">
             <input 
               type="email" 
-              placeholder="sales@agent.os" 
+              placeholder="enter your email..." 
               className="flex-grow bg-transparent px-6 text-white text-[16px] outline-none"
               required
             />
-            <button type="submit" className="px-8 bg-white text-black font-bold hover:bg-[#ccc] transition-colors">
-              GET ACCESS
+            <button type="submit" className="px-8 bg-white text-black font-bold hover:bg-[#ccc] transition-colors uppercase text-[11px] tracking-widest">
+              Get the Blueprint
             </button>
           </form>
         </div>

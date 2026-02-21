@@ -129,7 +129,7 @@ export default async function ToolDetailPage({
           href="/tools"
           className="text-[10px] font-bold uppercase tracking-widest text-[#444] hover:text-white mb-12 inline-block transition-colors"
         >
-          &lt;- Return to Registry
+          &lt;- Back to Directory
         </Link>
 
         <div className="flex flex-col gap-12 lg:flex-row lg:items-end lg:justify-between">
@@ -147,7 +147,7 @@ export default async function ToolDetailPage({
           </div>
 
           <div className="flex flex-col gap-4">
-            <div className="text-[10px] font-bold uppercase tracking-widest text-[#444] mb-2">Primary_Endpoints</div>
+            <div className="text-[10px] font-bold uppercase tracking-widest text-[#444] mb-2">Technical Links</div>
             {actionLinks.map((link) => (
               <a
                 key={link.label}
@@ -168,7 +168,7 @@ export default async function ToolDetailPage({
           {tool.aiCapabilities && tool.aiCapabilities.length > 0 && (
             <div>
               <div className="flex items-center gap-6 mb-12">
-                <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-white">AI_CAPABILITIES</div>
+                <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-white">Key Features</div>
                 <div className="h-px flex-grow bg-[#333333]"></div>
               </div>
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
@@ -186,7 +186,7 @@ export default async function ToolDetailPage({
 
           {tool.starterPrompt && (
             <div className="border border-[#333333] p-16 bg-[#050505] relative group">
-              <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#444] mb-10">Sample_Request_Prompt</div>
+              <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#444] mb-10">Example Prompt</div>
               <div className="font-mono text-xl p-10 border border-[#333333] bg-black text-white leading-relaxed italic">
                 &quot;{tool.starterPrompt}&quot;
               </div>
@@ -195,7 +195,7 @@ export default async function ToolDetailPage({
 
           <div className="max-w-4xl">
             <div className="flex items-center gap-6 mb-12">
-              <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-white">System_Audit_Log</div>
+              <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-white">Overview</div>
               <div className="h-px flex-grow bg-[#333333]"></div>
             </div>
             <div className="text-[18px] font-medium leading-relaxed text-[#888] whitespace-pre-line max-w-3xl">
@@ -206,15 +206,15 @@ export default async function ToolDetailPage({
 
         <div className="p-10 md:p-20 bg-[#050505] border-l border-[#333333] space-y-20">
           <div>
-            <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#444] mb-12">Technical_Manifest</div>
+            <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#444] mb-12">Technical Specs</div>
             
             <div className="space-y-12">
               {[
-                { label: "Protocol", value: tool.apiType.join(' / ') },
-                { label: "Auth_Method", value: tool.authMethod.join(' / ') },
-                { label: "Pricing", value: tool.hasFreeTier ? "Free_Available" : "Paid_Only" },
-                { label: "Native_SDKs", value: tool.sdkLanguages.join(', ') || "N/A" },
-                { label: "Webhooks", value: tool.hasWebhooks ? "Enabled" : "Disabled" },
+                { label: "API Type", value: tool.apiType.join(' / ') },
+                { label: "Authentication", value: tool.authMethod.join(' / ') },
+                { label: "Pricing Tier", value: tool.hasFreeTier ? "Free Tier Available" : "Paid Only" },
+                { label: "SDK Languages", value: tool.sdkLanguages.join(', ') || "N/A" },
+                { label: "Webhooks", value: tool.hasWebhooks ? "Yes" : "No" },
               ].map((spec) => (
                 <div key={spec.label} className="group border-b border-[#333333] pb-8">
                   <div className="text-[10px] font-bold uppercase tracking-widest text-[#444] mb-3 group-hover:text-white transition-colors">{spec.label}</div>
@@ -227,7 +227,7 @@ export default async function ToolDetailPage({
           {tool.integrations.find(i => i.platform === "MCP" && i.mcpConfig) && (
             <div className="border border-white p-10 bg-black shadow-[12px_12px_0px_#111]">
               <div className="flex items-center justify-between mb-10">
-                <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-white">MCP_PROTOCOL_CONFIG</div>
+                <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-white">MCP Configuration</div>
                 <div className="w-2 h-2 bg-[#00FF00] rounded-full shadow-[0_0_8px_#00FF00] animate-status-pulse"></div>
               </div>
               <pre className="font-mono text-[11px] whitespace-pre-wrap overflow-x-auto p-8 border border-[#333333] bg-[#050505] text-[#888] leading-relaxed mb-8">
@@ -236,7 +236,7 @@ export default async function ToolDetailPage({
               <div className="flex justify-center">
                 <CopyButton 
                   text={tool.integrations.find(i => i.platform === "MCP")?.mcpConfig || ""} 
-                  label="Inject to Agent OS"
+                  label="Copy to MCP Config"
                   className="text-[10px] font-bold uppercase tracking-[0.2em] text-white hover:text-[#888] transition-colors"
                 />
               </div>
@@ -249,7 +249,7 @@ export default async function ToolDetailPage({
         <section className="px-10 md:px-20 py-32 bg-[#050505]">
           <div className="max-w-7xl mx-auto">
             <div className="flex items-center gap-6 mb-20">
-              <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-white italic underline underline-offset-8 decoration-white/20">Alternative_Nodes</div>
+              <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-white italic underline underline-offset-8 decoration-white/20">Alternatives to {tool.name}</div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 bg-[#333333] gap-px">
               {alternatives.map((alt) => (
