@@ -18,7 +18,7 @@ export function OPTIONS() {
   return new NextResponse(null, { status: 204, headers })
 }
 
-export function GET(request: NextRequest) {
+export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl
 
   const q = searchParams.get("q")
@@ -31,19 +31,19 @@ export function GET(request: NextRequest) {
   let tools
 
   if (q) {
-    tools = searchTools(q)
+    tools = await searchTools(q)
   } else if (category) {
-    tools = getToolsByCategory(category as ToolCategory)
+    tools = await getToolsByCategory(category as ToolCategory)
   } else if (mcp === "true") {
-    tools = getMcpTools()
+    tools = await getMcpTools()
   } else if (integrations === "true") {
-    tools = getToolsWithIntegrations()
+    tools = await getToolsWithIntegrations()
   } else if (featured === "true") {
-    tools = getAllTools().filter((t) => t.isFeatured)
+    tools = (await getAllTools()).filter((t) => t.isFeatured)
   } else if (free === "true") {
-    tools = getAllTools().filter((t) => t.hasFreeTier)
+    tools = (await getAllTools()).filter((t) => t.hasFreeTier)
   } else {
-    tools = getAllTools()
+    tools = await getAllTools()
   }
 
   return NextResponse.json({ count: tools.length, tools }, { headers })

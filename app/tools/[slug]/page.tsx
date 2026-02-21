@@ -11,7 +11,8 @@ import {
 import { CopyButton } from "@/components/ui/CopyButton"
 
 export async function generateStaticParams() {
-  return getAllSlugs().map((slug) => ({ slug }))
+  const slugs = await getAllSlugs()
+  return slugs.map((slug) => ({ slug }))
 }
 
 export async function generateMetadata({

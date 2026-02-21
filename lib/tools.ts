@@ -82,6 +82,18 @@ export async function getAllSlugs(): Promise<string[]> {
   return tools.map((t) => t.slug)
 }
 
+export async function searchTools(query: string): Promise<SalesTool[]> {
+  const tools = await fetchSheetData()
+  const q = query.toLowerCase()
+  return tools.filter(
+    (t) =>
+      t.name.toLowerCase().includes(q) ||
+      t.oneLiner.toLowerCase().includes(q) ||
+      t.category.toLowerCase().includes(q) ||
+      t.alternativeTo?.some((a) => a.toLowerCase().includes(q))
+  )
+}
+
 export function getAllCategorySlugs(): string[] {
   return fallbackCategories.map((c) => c.slug)
 }
