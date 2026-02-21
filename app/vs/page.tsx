@@ -54,7 +54,8 @@ export default function VsIndexPage() {
                 <Link 
                   key={`${pair.s1}-vs-${pair.s2}`}
                   href={`/vs/${pair.s1}-vs-${pair.s2}`}
-                  className="group flex flex-col h-full gap-8 p-8 border border-[var(--ink)]/15 bg-[var(--paper-dark)]/60 hover:border-[var(--ink)]/30 transition-all"
+                  className="group flex flex-col h-full gap-8 p-8 bg-[var(--paper-dark)]/60 transition-all"
+                  style={{ border: '1px solid rgba(26, 25, 23, 0.15)' }}
                 >
                   <div className="font-mono text-[0.7rem] uppercase text-[var(--ink-fade)] group-hover:text-black transition-colors italic">{pair.label}</div>
                   <div className="flex items-center justify-between gap-4">

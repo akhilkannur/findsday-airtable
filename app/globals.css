@@ -46,7 +46,8 @@ body {
   }
 
   .tool-card {
-    @apply relative p-8 transition-all duration-300 cursor-pointer border border-[var(--ink)]/15 bg-[var(--paper-dark)]/60;
+    @apply relative p-8 transition-all duration-300 cursor-pointer bg-[var(--paper-dark)]/60;
+    border: 1px solid rgba(26, 25, 23, 0.15); /* Ink color #1a1917 at 15% opacity */
   }
   
   .tool-card::after {
