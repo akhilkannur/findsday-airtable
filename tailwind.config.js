@@ -7,7 +7,10 @@ module.exports = {
               'spin-slow': 'spin 12s linear infinite',
             },
             colors: {
-    
+        'paper': '#f4f1ea',
+        'paper-dark': '#e8e4da',
+        'ink': '#1a1917',
+        'ink-fade': '#66635c',
         'sage-bg': '#DCDFCF', 
         'ink-black': '#121212',
         'accent-blue': '#B5C0FF',

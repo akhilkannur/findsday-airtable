@@ -46,13 +46,13 @@ body {
   }
 
   .tool-card {
-    @apply relative p-8 transition-all duration-300 cursor-pointer bg-[var(--paper-dark)]/60;
+    @apply relative p-8 transition-all duration-300 cursor-pointer bg-paper-dark/60;
     border: 1px solid rgba(26, 25, 23, 0.15); /* Ink color #1a1917 at 15% opacity */
   }
   
   .tool-card::after {
     content: '';
-    @apply absolute inset-0 border border-[var(--ink)] opacity-0 transition-opacity duration-200 pointer-events-none bg-white/80 -z-[1];
+    @apply absolute inset-0 border border-ink opacity-0 transition-opacity duration-200 pointer-events-none bg-white/80 -z-[1];
   }
 
   .tool-card:hover::after {
@@ -70,7 +70,7 @@ body {
 
   .tag-mcp::before {
     content: '';
-    @apply absolute -inset-x-1.5 -inset-y-0.5 border border-[var(--ink)] pointer-events-none;
+    @apply absolute -inset-x-1.5 -inset-y-0.5 border border-ink pointer-events-none;
     border-radius: 20px 200px 30px 150px / 180px 20px 160px 20px;
   }
 
@@ -99,5 +99,5 @@ body {
 ::-webkit-scrollbar-thumb { background: var(--ink-fade); border-radius: 0; }
 ::-webkit-scrollbar-thumb:hover { background: var(--ink); }
 
-h1, h2, h3, h4 { @apply text-[var(--ink)]; }
+h1, h2, h3, h4 { @apply text-ink; }
 a { @apply text-inherit no-underline; }

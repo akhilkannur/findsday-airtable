@@ -97,7 +97,7 @@ gtag('config', 'G-9LGNFH00R7');`,
         />
       </head>
       <body className="antialiased min-h-screen">
-        <nav className="border-b border-[var(--ink)] py-4 sticky top-0 bg-[var(--paper)] z-[100]">
+        <nav className="border-b border-ink py-4 sticky top-0 bg-paper z-[100]">
           <div className="layout-container flex justify-between items-baseline">
             <Link href="/" className="font-mono font-bold text-lg tracking-tighter hover:line-through transition-all">
               SALESTOOLS.CLUB
@@ -132,7 +132,7 @@ gtag('config', 'G-9LGNFH00R7');`,
           {children}
         </main>
         
-        <footer className="border-t border-[var(--ink)] p-12 mt-20 opacity-60">
+        <footer className="border-t border-ink p-12 mt-20 opacity-60">
           <div className="layout-container text-center flex flex-col items-center gap-8">
             <svg width="40" height="40" viewBox="0 0 100 100" className="opacity-40">
               <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" strokeWidth="2"></circle>

@@ -19,18 +19,18 @@ function ToolCard({ tool }: { tool: any }) {
       className="tool-card group flex flex-col h-full"
     >
       <div className="flex justify-between items-start mb-6">
-        <div className="w-12 h-12 bg-[var(--ink)] text-[var(--paper)] flex items-center justify-center font-serif font-bold text-xl [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]">
+        <div className="w-12 h-12 bg-ink text-paper flex items-center justify-center font-serif font-bold text-xl [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]">
           {tool.name.charAt(0)}
         </div>
-        <div className="w-8 h-8 bg-[var(--ink)] text-[var(--paper)] flex items-center justify-center [clip-path:polygon(10%_0%,90%_0%,100%_100%,0%_100%)]">
+        <div className="w-8 h-8 bg-ink text-paper flex items-center justify-center [clip-path:polygon(10%_0%,90%_0%,100%_100%,0%_100%)]">
           <Zap className="w-4 h-4 fill-current" />
         </div>
       </div>
       
       <div className="flex-grow">
         <h3 className="text-xl font-semibold mb-1">{tool.name}</h3>
-        <div className="font-mono text-[0.7rem] uppercase tracking-widest text-[var(--ink-fade)] mb-4 italic">#{tool.category.toLowerCase().replace(/\s+/g, '_')}</div>
-        <p className="text-[0.9rem] text-[var(--ink-fade)] leading-relaxed line-clamp-3">
+        <div className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade mb-4 italic">#{tool.category.toLowerCase().replace(/\s+/g, '_')}</div>
+        <p className="text-[0.9rem] text-ink-fade leading-relaxed line-clamp-3">
           {tool.oneLiner}
         </p>
       </div>
@@ -51,15 +51,15 @@ export default function McpPage() {
   const mcpTools = getMcpTools()
 
   return (
-    <div className="flex flex-col min-h-screen bg-[var(--paper)]">
-      <section className="px-8 py-24 border-b border-[var(--ink)]">
+    <div className="flex flex-col min-h-screen bg-paper">
+      <section className="px-8 py-24 border-b border-ink">
         <div className="layout-container">
-          <div className="font-mono text-[0.85rem] uppercase tracking-[0.2em] text-[var(--ink-fade)] mb-6 flex items-center gap-3">
+          <div className="font-mono text-[0.85rem] uppercase tracking-[0.2em] text-ink-fade mb-6 flex items-center gap-3">
             <span className="w-1.5 h-1.5 bg-current rounded-full animate-status-blink"></span>
             Automation Layer
           </div>
           <h1 className="type-display mb-8 uppercase">MCP Servers</h1>
-          <p className="max-w-3xl font-serif italic text-2xl text-[var(--ink-fade)] leading-relaxed border-l-2 border-[var(--ink)] pl-6">
+          <p className="max-w-3xl font-serif italic text-2xl text-ink-fade leading-relaxed border-l-2 border-ink pl-6">
             The fastest way to give your AI "hands". Plug these servers into Claude Desktop or Cursor to update your CRM and search leads via chat.
           </p>
         </div>
@@ -77,8 +77,8 @@ export default function McpPage() {
 
       <section className="pb-32">
         <div className="layout-container">
-          <div className="p-16 text-center border-2 border-dashed border-[var(--ink)]/20 bg-white/20">
-            <p className="font-serif italic text-2xl mb-10 text-[var(--ink-fade)]">
+          <div className="p-16 text-center border-2 border-dashed border-ink/20 bg-white/20">
+            <p className="font-serif italic text-2xl mb-10 text-ink-fade">
               Know a protocol module we're missing?
             </p>
             <Link
