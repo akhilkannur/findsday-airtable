@@ -11,6 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const categorySlugs = getAllCategorySlugs()
   const usecaseSlugs = getUseCaseSlugs()
   const stackSlugs = getStackSlugs()
+  const skillSlugs = getSkillSlugs()
 
   const staticPages = [
     { url: BASE_URL, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 1 },
@@ -26,42 +27,50 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE_URL}/privacy`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.3 },
   ]
 
-  const toolPages = toolSlugs.map((slug) => ({
-    url: `${BASE_URL}/tools/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: "weekly" as const,
-    priority: 0.7,
-  }))
+  const toolPages = (toolSlugs || [])
+    .filter((slug) => typeof slug === "string" && slug)
+    .map((slug) => ({
+      url: `${BASE_URL}/tools/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+    }))
 
-  const categoryPages = categorySlugs.map((slug) => ({
-    url: `${BASE_URL}/categories/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
-  }))
+  const categoryPages = (categorySlugs || [])
+    .filter((slug) => typeof slug === "string" && slug)
+    .map((slug) => ({
+      url: `${BASE_URL}/categories/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    }))
 
-  const usecasePages = usecaseSlugs.map((slug) => ({
-    url: `${BASE_URL}/for/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
-  }))
+  const usecasePages = (usecaseSlugs || [])
+    .filter((slug) => typeof slug === "string" && slug)
+    .map((slug) => ({
+      url: `${BASE_URL}/for/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    }))
 
-  const stackPages = stackSlugs.map((slug) => ({
-    url: `${BASE_URL}/stacks/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
-  }))
+  const stackPages = (stackSlugs || [])
+    .filter((slug) => typeof slug === "string" && slug)
+    .map((slug) => ({
+      url: `${BASE_URL}/stacks/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    }))
 
-  const skillSlugs = getSkillSlugs()
-
-  const skillPages = skillSlugs.map((slug) => ({
-    url: `${BASE_URL}/skills/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
-  }))
+  const skillPages = (skillSlugs || [])
+    .filter((slug) => typeof slug === "string" && slug)
+    .map((slug) => ({
+      url: `${BASE_URL}/skills/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    }))
 
   return [...staticPages, ...toolPages, ...categoryPages, ...usecasePages, ...stackPages, ...skillPages]
 }
