@@ -112,7 +112,7 @@ export default async function Home() {
       />
 
       {/* -- Hero -------------------------------------------- */}
-      <section className="hero relative">
+      <section className="hero relative pt-12 pb-8 md:pt-32 md:pb-24 overflow-hidden">
         <div className="layout-container">
           <svg className="connections-layer absolute inset-0 w-full h-full pointer-events-none opacity-40 z-0" viewBox="0 0 1400 600" preserveAspectRatio="none">
             <path className="connector-line fill-none stroke-ink stroke-2 [stroke-dasharray:600] [stroke-dashoffset:600] animate-[drawLine_2s_ease_forwards_0.5s]" d="M 400,120 Q 600,180 750,140" />
@@ -124,17 +124,17 @@ export default async function Home() {
           `}} />
 
           <div className="relative z-10">
-            <h1 className="type-display mb-12">
+            <h1 className="type-display mb-8 md:mb-12">
               The <span className="circled">Lego Blocks</span> <br />
               for your <span className="circled">AI Sales Agent.</span>
             </h1>
             
-            <div className="font-serif italic text-2xl text-ink-fade max-w-2xl pl-6 border-l-2 border-ink mb-16 leading-relaxed">
+            <div className="font-serif italic text-xl md:text-2xl text-ink-fade max-w-2xl pl-6 border-l-2 border-ink mb-10 md:mb-16 leading-relaxed">
               A handpicked collection of APIs, SDKs, and MCP servers that plug directly into Claude Code and other agentic tools. Build your GTM machine in hours, not weeks.
             </div>
 
             <div className="max-w-xl">
-              <form className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-end mb-12">
+              <form className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-end mb-10 md:mb-12">
                 <div className="flex-grow">
                   <input 
                     type="email" 
@@ -147,7 +147,7 @@ export default async function Home() {
                   Join the Club
                 </button>
               </form>
-              <div className="flex flex-col gap-2 -mt-10 mb-12">
+              <div className="flex flex-col gap-2 -mt-8 md:-mt-10 mb-8 md:mb-12">
                 <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade">
                   New APIs & Skills. Every 10 days.
                 </p>
@@ -161,17 +161,17 @@ export default async function Home() {
       </section>
 
       {/* -- Works With Trust Bar ----------------------- */}
-      <section className="py-12 border-t border-ink">
+      <section className="py-8 md:py-12 border-t border-ink">
         <div className="layout-container">
           <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade mb-6">
             Works with your agent
           </p>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-2 md:gap-3">
             {["Claude Code", "Gemini CLI", "Claude Cowork", "ChatGPT Operator", "Any Agentic Tools"].map(
               (agent) => (
                 <span
                   key={agent}
-                  className="font-mono text-[0.8rem] px-4 py-2 border border-ink/20 text-ink"
+                  className="font-mono text-[0.75rem] md:text-[0.8rem] px-3 md:px-4 py-1.5 md:py-2 border border-ink/20 text-ink"
                 >
                   {agent}
                 </span>
@@ -182,18 +182,18 @@ export default async function Home() {
       </section>
 
       {/* -- What's Inside ----------------------------------- */}
-      <section className="py-32 bg-paper-dark border-y border-ink">
+      <section className="py-16 md:py-32 bg-paper-dark border-y border-ink">
         <div className="layout-container">
-          <div className="mb-20">
+          <div className="mb-12 md:mb-20">
             <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade mb-4">
               What&apos;s Inside
             </p>
-            <h2 className="font-serif text-5xl leading-tight">
+            <h2 className="font-serif text-4xl md:text-5xl leading-tight">
               Three things you&apos;ll find here
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
             <Link href="/tools" className="group flex flex-col gap-4">
               <span className="font-mono text-[0.75rem] text-ink-fade tracking-widest">01</span>
               <h3 className="text-2xl font-bold uppercase underline decoration-transparent group-hover:decoration-ink transition-all underline-offset-8">
@@ -237,25 +237,25 @@ export default async function Home() {
       </section>
 
       {/* -- Directory Header ---------------- */}
-      <section className="py-20 border-t border-ink">
+      <section className="py-12 md:py-20 border-t border-ink">
         <div className="layout-container">
-          <div className="mb-16">
+          <div className="mb-10 md:mb-16">
             <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade mb-4">
               Featured Directory
             </p>
-            <h2 className="font-serif text-4xl leading-tight">
+            <h2 className="font-serif text-3xl md:text-4xl leading-tight">
               Sales APIs & MCP Servers
             </h2>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
             {exploreTools.map((tool) => (
               <ToolCard key={tool.slug} tool={tool} />
             ))}
           </div>
 
-          <div className="mt-24 text-center">
-            <Link href="/tools" className="font-serif italic text-2xl border-b border-black hover:opacity-60 transition-opacity pb-1">
+          <div className="mt-16 md:mt-24 text-center">
+            <Link href="/tools" className="font-serif italic text-xl md:text-2xl border-b border-black hover:opacity-60 transition-opacity pb-1">
               Browse All APIs ->
             </Link>
           </div>
@@ -263,24 +263,24 @@ export default async function Home() {
       </section>
 
       {/* -- Categories ----------------------------- */}
-      <section className="py-32 bg-paper-dark border-y border-ink">
+      <section className="py-16 md:py-32 bg-paper-dark border-y border-ink">
         <div className="layout-container">
-          <div className="mb-20">
-            <h2 className="font-serif text-5xl leading-tight">Categories</h2>
-            <p className="mt-8 text-xl font-medium text-ink-fade leading-relaxed max-w-xl">
+          <div className="mb-12 md:mb-20">
+            <h2 className="font-serif text-4xl md:text-5xl leading-tight">Categories</h2>
+            <p className="mt-4 md:mt-8 text-lg md:text-xl font-medium text-ink-fade leading-relaxed max-w-xl">
               I vet every tool to make sure it actually works with AI agents. No fluff, just the building blocks.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
             {categories.slice(0, 8).map((cat, idx) => (
               <Link
                 key={cat.slug}
                 href={`/categories/${cat.slug}`}
-                className="group flex flex-col h-full gap-6 p-8 bg-paper-dark/60 hover:translate-y-[-4px] transition-all"
+                className="group flex flex-col h-full gap-6 p-6 md:p-8 bg-paper-dark/60 hover:translate-y-[-4px] transition-all"
                 style={{ border: '1px solid rgba(26, 25, 23, 0.15)' }}
               >
-                <h3 className="text-2xl font-bold uppercase underline decoration-transparent group-hover:decoration-ink transition-all underline-offset-8">
+                <h3 className="text-xl md:text-2xl font-bold uppercase underline decoration-transparent group-hover:decoration-ink transition-all underline-offset-8">
                   {cat.name}
                 </h3>
                 <p className="text-[1rem] text-ink-fade line-clamp-3 leading-relaxed">
@@ -296,13 +296,13 @@ export default async function Home() {
       </section>
 
       {/* -- FAQ ----------------------------------------- */}
-      <section className="py-32">
+      <section className="py-16 md:py-32">
         <div className="layout-container">
-          <div className="mb-20">
+          <div className="mb-12 md:mb-20">
             <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade mb-4">
               Common Questions
             </p>
-            <h2 className="font-serif text-5xl leading-tight">
+            <h2 className="font-serif text-4xl md:text-5xl leading-tight">
               Everything you need to know
             </h2>
           </div>
