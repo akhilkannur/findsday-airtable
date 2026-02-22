@@ -14,6 +14,18 @@ This package contains the exact modular instructions, design system, and technic
 3.  **Deploy the UI:** *"Now use the **Design System Enforcer** and **System Architect** to build the Next.js site."*
 4.  **Polish the Voice:** *"Apply the **Voice Enforcer** rules to all site copy to ensure a solo-founder feel."*
 
+## Prerequisites & Deployment
+For the autonomous sync to work on Vercel, the buyer must provide:
+- **Google Cloud Service Account:** With Spreadsheet Editor access.
+- **Vercel Env Vars:** `GOOGLE_CLIENT_EMAIL`, `GOOGLE_PRIVATE_KEY`, and `GOOGLE_SHEET_ID`.
+- **Domain:** The AI will automatically configure SEO canonicals based on the target domain.
+
+## The Clean Slate Protocol
+To start a new directory from scratch:
+1.  **Wipe the Sheet:** Clear all rows in your Google Sheet (except the Header Row).
+2.  **Clear Local Data:** Run `cat > lib/data.ts <<EOF ... EOF` to reset the local storage.
+3.  **Run Researcher:** Initiate the **Niche Researcher** skill to populate your new niche.
+
 ## The Technical "Guts"
 The engine relies on three critical scripts (included in the root `/scripts` folder of the repository):
 - `sync-gsheet.py`: The Vercel-optimized data fetcher.

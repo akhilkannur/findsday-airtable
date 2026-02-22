@@ -19,7 +19,13 @@ The site must feel like an official government registry or a premium leather-bou
     - **Narrative:** `Playfair Display` (Serif). Use for intros and quotes.
     - **Data:** `Geist Mono`. Use for all technical labels and CLI commands.
 
-## III. Layout Constraints
+## III. Personalization Layer
+You MUST identify and replace all unique personal identifiers:
+1.  **Founder Asset:** Replace `/dp.jpg` with the user's provided headshot.
+2.  **Founder Name:** Search `layout.tsx` and `app/directory-builder/page.tsx` for "Akhil" and replace with the user's name.
+3.  **Copyright:** Ensure the year is dynamic and the name is updated.
+
+## IV. Layout Constraints
 - **Grid:** Use a strict 3-column or 4-column layout with `gap-12`.
 - **Borders:** Prefer `border-ink/10` over shadows. Shadows feel too "SaaS".
 - **Empty States:** Use `italic serif` text with low opacity.
