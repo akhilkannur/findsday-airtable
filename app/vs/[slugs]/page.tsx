@@ -34,11 +34,11 @@ export default async function ComparisonPage({ params }: Props) {
   }
 
   const specs = [
-    { label: "API Type", val1: tool1.apiType.join(", "), val2: tool2.apiType.join(", ") },
+    { label: "API Type", val1: (tool1.apiType || []).join(", "), val2: (tool2.apiType || []).join(", ") },
     { label: "MCP Ready", val1: tool1.mcpReady ? "YES" : "NO", val2: tool2.mcpReady ? "YES" : "NO" },
     { label: "Free Tier", val1: tool1.hasFreeTier ? "YES" : "NO", val2: tool2.hasFreeTier ? "YES" : "NO" },
     { label: "AI Difficulty", val1: tool1.aiDifficulty, val2: tool2.aiDifficulty },
-    { label: "SDKs", val1: tool1.sdkLanguages.join(", ") || "None", val2: tool2.sdkLanguages.join(", ") || "None" },
+    { label: "SDKs", val1: (tool1.sdkLanguages || []).join(", ") || "None", val2: (tool2.sdkLanguages || []).join(", ") || "None" },
     { label: "Webhooks", val1: tool1.hasWebhooks ? "YES" : "NO", val2: tool2.hasWebhooks ? "YES" : "NO" },
   ]
 
@@ -117,7 +117,7 @@ export default async function ComparisonPage({ params }: Props) {
             <div className="p-16 space-y-12 bg-white/40 border border-transparent hover:border-black/10 transition-all">
               <div className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink-fade">AI_CAPABILITIES: {tool1.name}</div>
               <div className="space-y-6">
-                {tool1.aiCapabilities.map((cap) => (
+                {(tool1.aiCapabilities || []).map((cap) => (
                   <div key={cap} className="flex items-center gap-4 group">
                     <div className="w-1.5 h-1.5 bg-black rounded-full opacity-20 group-hover:opacity-100 transition-opacity"></div>
                     <span className="font-serif italic text-xl text-ink-fade group-hover:text-black transition-colors">{cap}</span>
@@ -133,7 +133,7 @@ export default async function ComparisonPage({ params }: Props) {
             <div className="p-16 space-y-12 bg-white/40 border border-transparent hover:border-black/10 transition-all">
               <div className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink-fade">AI_CAPABILITIES: {tool2.name}</div>
               <div className="space-y-6">
-                {tool2.aiCapabilities.map((cap) => (
+                {(tool2.aiCapabilities || []).map((cap) => (
                   <div key={cap} className="flex items-center gap-4 group">
                     <div className="w-1.5 h-1.5 bg-black rounded-full opacity-20 group-hover:opacity-100 transition-opacity"></div>
                     <span className="font-serif italic text-xl text-ink-fade group-hover:text-black transition-colors">{cap}</span>

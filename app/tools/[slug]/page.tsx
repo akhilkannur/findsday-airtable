@@ -235,10 +235,10 @@ export default async function ToolDetailPage({
             
             <div className="space-y-12">
               {[
-                { label: "API Type", value: tool.apiType.join(' / ') },
-                { label: "Authentication", value: tool.authMethod.join(' / ') },
+                { label: "API Type", value: (tool.apiType || []).join(' / ') },
+                { label: "Authentication", value: (tool.authMethod || []).join(' / ') },
                 { label: "Pricing Tier", value: tool.hasFreeTier ? "Free Tier Available" : "Paid Only" },
-                { label: "SDK Languages", value: tool.sdkLanguages.join(', ') || "N/A" },
+                { label: "SDK Languages", value: (tool.sdkLanguages || []).join(', ') || "N/A" },
                 { label: "Webhooks", value: tool.hasWebhooks ? "Yes" : "No" },
               ].map((spec) => (
                 <div key={spec.label} className="group border-b border-ink/10 pb-8">

@@ -4,6 +4,10 @@ export const tools: SalesTool[] = [
   // ── Prospecting ──────────────────────────────────────────────
   {
     slug: "apollo",
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
+    sdkLanguages: [],
     name: "Apollo.io",
     oneLiner: "Sales intelligence and engagement platform with a massive B2B contact database.",
     description:
@@ -86,6 +90,10 @@ export const tools: SalesTool[] = [
   },
   {
     slug: "inbox",
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
+    sdkLanguages: [],
     name: "Inbox",
     oneLiner: "The unified API and MCP server for managing X (Twitter) DMs.",
     description:
@@ -368,6 +376,10 @@ export const tools: SalesTool[] = [
   },
   {
     slug: "crawl4ai",
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
+    sdkLanguages: [],
     name: "Crawl4AI",
     oneLiner: "Open-source LLM-friendly web crawler and scraper.",
     description:
@@ -400,6 +412,10 @@ export const tools: SalesTool[] = [
   },
   {
     slug: "firecrawl",
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
+    sdkLanguages: [],
     name: "Firecrawl",
     oneLiner: "Turn any website into LLM-ready Markdown or structured JSON.",
     description:
@@ -456,6 +472,10 @@ export const tools: SalesTool[] = [
   },
   {
     slug: "hunter",
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
+    sdkLanguages: [],
     name: "Hunter.io",
     oneLiner: "The standard for finding and verifying professional email addresses.",
     description:
@@ -512,6 +532,10 @@ export const tools: SalesTool[] = [
   },
   {
     slug: "exa-ai",
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
+    sdkLanguages: [],
     name: "Exa.ai",
     oneLiner: "AI-native search engine for finding anything on the web.",
     description:
@@ -543,6 +567,10 @@ export const tools: SalesTool[] = [
   },
   {
     slug: "tavily",
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
+    sdkLanguages: [],
     name: "Tavily AI",
     oneLiner: "Search engine optimized for AI agents and RAG applications.",
     description:
@@ -795,6 +823,10 @@ export const tools: SalesTool[] = [
   },
   {
     slug: "resend",
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
+    sdkLanguages: [],
     name: "Resend",
     oneLiner: "Modern email API built for developers.",
     description:
@@ -904,6 +936,10 @@ export const tools: SalesTool[] = [
   // ── CRM ──────────────────────────────────────────────────────
   {
     slug: "attio",
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
+    sdkLanguages: [],
     name: "Attio",
     oneLiner: "Next-generation CRM with a powerful, flexible API.",
     description:
@@ -964,6 +1000,10 @@ export const tools: SalesTool[] = [
   },
   {
     slug: "hubspot",
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
+    sdkLanguages: [],
     name: "HubSpot",
     oneLiner: "All-in-one CRM platform with an extensive API ecosystem.",
     description:
@@ -997,6 +1037,10 @@ export const tools: SalesTool[] = [
   },
   {
     slug: "salesforce",
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
+    sdkLanguages: [],
     name: "Salesforce",
     oneLiner: "The world's leading enterprise CRM with comprehensive API and AI tools.",
     description:
@@ -1028,6 +1072,10 @@ export const tools: SalesTool[] = [
   },
   {
     slug: "zoho-crm",
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
+    sdkLanguages: [],
     name: "Zoho CRM",
     oneLiner: "Flexible CRM for growing businesses with native AI and MCP support.",
     description:
@@ -1059,6 +1107,10 @@ export const tools: SalesTool[] = [
   },
   {
     slug: "pipedrive",
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
+    sdkLanguages: [],
     name: "Pipedrive",
     oneLiner: "Sales-focused CRM with a robust REST API for deal management.",
     description:
@@ -1108,6 +1160,9 @@ export const tools: SalesTool[] = [
     hasOpenApiSpec: false,
     isFeatured: false,
     alternativeTo: ["Attio", "HubSpot", "Streak"],
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
   },
   {
     slug: "arpedio",
@@ -1203,6 +1258,9 @@ export const tools: SalesTool[] = [
     hasOpenApiSpec: false,
     isFeatured: false,
     alternativeTo: ["People Data Labs", "ZoomInfo", "Apollo.io"],
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
   },
   {
     slug: "people-data-labs",
@@ -1224,6 +1282,9 @@ export const tools: SalesTool[] = [
     hasOpenApiSpec: false,
     isFeatured: false,
     alternativeTo: ["Clearbit", "ZoomInfo", "Apollo.io"],
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
   },
   {
     slug: "proxycurl",
@@ -1245,9 +1306,16 @@ export const tools: SalesTool[] = [
     hasOpenApiSpec: false,
     isFeatured: false,
     alternativeTo: ["Clearbit", "People Data Labs", "PhantomBuster"],
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
   },
   {
     slug: "jina-reader",
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
+    sdkLanguages: [],
     name: "Jina Reader",
     oneLiner: "Convert any URL to LLM-friendly Markdown for AI processing.",
     description:
@@ -1372,6 +1440,9 @@ export const tools: SalesTool[] = [
     hasOpenApiSpec: false,
     isFeatured: false,
     alternativeTo: ["Vapi", "Retell.ai", "Air.ai"],
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
   },
   {
     slug: "vapi",
@@ -1394,9 +1465,16 @@ export const tools: SalesTool[] = [
     openApiSpecUrl: "https://docs.vapi.ai/api-reference/openapi-spec",
     isFeatured: true,
     alternativeTo: ["Bland.ai", "Retell.ai", "Twilio"],
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
   },
   {
     slug: "retell-ai",
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
+    sdkLanguages: [],
     name: "Retell AI",
     oneLiner: "The platform for building high-performance conversational AI voice agents.",
     description:
@@ -1428,6 +1506,10 @@ export const tools: SalesTool[] = [
   },
   {
     slug: "elevenlabs",
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
+    sdkLanguages: [],
     name: "ElevenLabs",
     oneLiner: "Advanced AI audio platform for realistic text-to-speech and voice agents.",
     description:
@@ -1481,6 +1563,9 @@ export const tools: SalesTool[] = [
     openApiSpecUrl: "https://api.cal.com/v2/docs",
     isFeatured: true,
     alternativeTo: ["Calendly", "SavvyCal", "TidyCal"],
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
   },
   {
     slug: "calendly",
@@ -1502,6 +1587,9 @@ export const tools: SalesTool[] = [
     hasOpenApiSpec: false,
     isFeatured: false,
     alternativeTo: ["Cal.com", "SavvyCal", "Chili Piper"],
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
   },
   {
     slug: "chili-piper",
@@ -1550,6 +1638,9 @@ export const tools: SalesTool[] = [
     hasOpenApiSpec: false,
     isFeatured: false,
     alternativeTo: ["Gong", "Chorus", "Otter.ai"],
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
   },
   {
     slug: "recall-ai",
@@ -1572,6 +1663,9 @@ export const tools: SalesTool[] = [
     openApiSpecUrl: "https://docs.recall.ai/reference",
     isFeatured: false,
     alternativeTo: ["Fireflies.ai", "Gong", "Assembly AI"],
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
   },
   {
     slug: "gong",
@@ -1602,6 +1696,10 @@ export const tools: SalesTool[] = [
   // ── Documents & Proposals ────────────────────────────────────
   {
     slug: "pandadoc",
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
+    sdkLanguages: [],
     name: "PandaDoc",
     oneLiner: "API for document generation, e-signatures, and tracking.",
     description:
@@ -1804,9 +1902,16 @@ export const tools: SalesTool[] = [
     openApiSpecUrl: "https://docs.n8n.io/api/api-reference/",
     isFeatured: false,
     alternativeTo: ["Zapier", "Make", "Tray.io"],
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
   },
   {
     slug: "apideck",
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
+    sdkLanguages: [],
     name: "Apideck",
     oneLiner: "Unified API platform for building real-time AI integrations.",
     description:
@@ -1838,6 +1943,10 @@ export const tools: SalesTool[] = [
   },
   {
     slug: "nango",
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
+    sdkLanguages: [],
     name: "Nango",
     oneLiner: "Open-source product integration platform for AI agents.",
     description:
@@ -1870,6 +1979,10 @@ export const tools: SalesTool[] = [
   },
   {
     slug: "zapier",
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
+    sdkLanguages: [],
     name: "Zapier",
     oneLiner: "The world's largest automation ecosystem with an MCP server.",
     description:
@@ -1901,6 +2014,10 @@ export const tools: SalesTool[] = [
   },
   {
     slug: "make-com",
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
+    sdkLanguages: [],
     name: "Make.com",
     oneLiner: "Visual automation platform with powerful agentic capabilities.",
     description:
@@ -3605,6 +3722,10 @@ export const tools: SalesTool[] = [
   },
   {
     slug: "salesforce",
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
+    sdkLanguages: [],
     name: "Salesforce",
     oneLiner: "The world's #1 AI-powered CRM and customer success platform.",
     description:
@@ -7262,6 +7383,10 @@ export const tools: SalesTool[] = [
   },
   {
     slug: "monday-sales-crm",
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
+    sdkLanguages: [],
     name: "Monday Sales CRM",
     oneLiner: "The flexible Work OS for managing the entire sales cycle and pipeline.",
     description:
@@ -7443,6 +7568,10 @@ export const tools: SalesTool[] = [
   },
   {
     slug: "copy-ai",
+    aiCapabilities: [],
+    aiDifficulty: "Beginner-Friendly",
+    mcpReady: false,
+    sdkLanguages: [],
     name: "Copy.ai",
     oneLiner: "The GTM AI platform for automating sales and marketing workflows.",
     description:

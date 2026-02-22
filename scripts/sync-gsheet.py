@@ -369,7 +369,7 @@ export function getUseCasesForTool(tool: SalesTool): UseCase[] {
   return usecases.filter((uc) => {
     if (uc.categories.includes(tool.category)) return true
     if (uc.capabilityKeywords?.length) {
-      const caps = tool.aiCapabilities.join(" ").toLowerCase()
+      const caps = (tool.aiCapabilities || []).join(" ").toLowerCase()
       return uc.capabilityKeywords.some((kw) => caps.includes(kw.toLowerCase()))
     }
     return false
@@ -388,7 +388,7 @@ export function getToolsForUseCase(usecase: UseCase): SalesTool[] {
   if (usecase.capabilityKeywords?.length) {
     for (const tool of tools) {
       if (matched.has(tool.slug)) continue
-      const caps = tool.aiCapabilities.join(" ").toLowerCase()
+      const caps = (tool.aiCapabilities || []).join(" ").toLowerCase()
       const matchesKeyword = usecase.capabilityKeywords.some((kw) =>
         caps.includes(kw.toLowerCase())
       )
