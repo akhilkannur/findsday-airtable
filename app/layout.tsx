@@ -158,9 +158,9 @@ gtag('config', 'G-9LGNFH00R7');`,
                 <span className="font-black border-b-2 border-ink pb-0.5">Akhil</span>
               </a>
               <span className="opacity-60 text-[0.7rem]">with</span>
-              <a href="https://realaiexamples.com" target="_blank" rel="noopener noreferrer" className="font-black border-b-2 border-ink pb-0.5 hover:opacity-80 transition-opacity">
-                Real AI Examples
-              </a>
+              <Link href="/directory-builder" className="font-black border-b-2 border-ink pb-0.5 hover:opacity-80 transition-opacity">
+                Directory Builder Skill
+              </Link>
             </div>
             <div className="font-mono text-[0.6rem] uppercase tracking-[0.2em] opacity-40 flex flex-col gap-2">
               <p>Registry Status: Live • 389 Tools Indexed</p>
