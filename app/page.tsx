@@ -5,7 +5,7 @@ import { getFeaturedTools, getAllCategories, getAllTools } from "@/lib/tools"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Salestools Club — Every Sales API & MCP Server in one place.",
+  title: "Salestools Club - Every Sales API & MCP Server in one place.",
   description:
     "Every Sales API and MCP server you need to automate your GTM with Claude Code and agentic tools.",
   keywords: [
@@ -111,7 +111,7 @@ export default async function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      {/* ── Hero ──────────────────────────────────────────── */}
+      {/* -- Hero -------------------------------------------- */}
       <section className="hero relative">
         <div className="layout-container">
           <svg className="connections-layer absolute inset-0 w-full h-full pointer-events-none opacity-40 z-0" viewBox="0 0 1400 600" preserveAspectRatio="none">
@@ -154,12 +154,13 @@ export default async function Home() {
               </div>
 
               <div className="flex flex-wrap gap-6 mb-12">
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── Works With Trust Bar ─────────────────────── */}
+      {/* -- Works With Trust Bar ----------------------- */}
       <section className="py-12 border-t border-ink">
         <div className="layout-container">
           <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade mb-6">
@@ -180,7 +181,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ── What's Inside ─────────────────────────────── */}
+      {/* -- What's Inside ----------------------------------- */}
       <section className="py-32 bg-paper-dark border-y border-ink">
         <div className="layout-container">
           <div className="mb-20">
@@ -235,7 +236,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ── Directory Header ──────────────── */}
+      {/* -- Directory Header ---------------- */}
       <section className="py-20 border-t border-ink">
         <div className="layout-container">
           <div className="mb-16">
@@ -261,7 +262,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ── Categories ───────────────────────────── */}
+      {/* -- Categories ----------------------------- */}
       <section className="py-32 bg-paper-dark border-y border-ink">
         <div className="layout-container">
           <div className="mb-20">
@@ -294,7 +295,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ── FAQ ───────────────────────────────────────── */}
+      {/* -- FAQ ----------------------------------------- */}
       <section className="py-32">
         <div className="layout-container">
           <div className="mb-20">
