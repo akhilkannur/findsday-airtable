@@ -6,14 +6,15 @@ import sys
 import os
 
 # Configuration
+# This is the Master Sheet ID
 SHEET_ID = "1lISM0kMrJJSCs-e8nqBZKkKeNExtoXu5KD-mI4GvZN0"
 
-# Tab GIDs — update these after creating tabs in Google Sheets
+# Tab GIDs
 TABS = {
-    "tools":    "1367773213",       # tools_export (existing)
-    "skills":   "SKILLS_GID_HERE",  # skills_export (create this tab)
-    "stacks":   "STACKS_GID_HERE",  # stacks_export (create this tab)
-    "usecases": "USECASES_GID_HERE",# usecases_export (create this tab)
+    "tools":    "1367773213",       # tools_export
+    "skills":   "SKILLS_GID_HERE",  
+    "stacks":   "STACKS_GID_HERE",  
+    "usecases": "USECASES_GID_HERE",
 }
 
 def csv_url(gid):
@@ -22,11 +23,11 @@ def csv_url(gid):
 def fetch_tab(name):
     gid = TABS[name]
     if "GID_HERE" in gid:
-        print(f"⏭️  Skipping {name} — GID not configured yet")
         return None
     print(f"📥 Fetching {name} tab...")
     try:
-        with urllib.request.urlopen(csv_url(gid)) as response:
+        req = urllib.request.Request(csv_url(gid), headers={'User-Agent': 'Mozilla/5.0'})
+        with urllib.request.urlopen(req) as response:
             if response.status != 200:
                 print(f"❌ Failed to fetch {name}: {response.status}")
                 return None
@@ -36,40 +37,74 @@ def fetch_tab(name):
         print(f"❌ Error fetching {name}: {e}")
         return None
 
-# ── Helpers ──────────────────────────────────────────────
-
 def parse_list(s):
-    if not s or s == "[]":
-        return []
+    if not s or s == "[]": return []
     try:
+        # Handle cases where it's already valid JSON
         return json.loads(s.replace("'", '"'))
     except:
-        if s.startswith("[") and s.endswith("]"):
-            s = s[1:-1]
+        # Fallback for comma-separated lists
+        if s.startswith("[") and s.endswith("]"): s = s[1:-1]
         return [item.strip().strip('"').strip("'") for item in s.split(",") if item.strip()]
 
 def parse_bool(s):
-    if not s:
-        return False
+    if not s: return False
     return s.upper() == "TRUE"
 
 def format_value(v):
-    if isinstance(v, bool):
-        return "true" if v else "false"
-    if isinstance(v, list):
-        return json.dumps(v)
-    if v is None:
-        return "undefined"
-    escaped = v.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n').replace('\r', '')
+    if isinstance(v, bool): return "true" if v else "false"
+    if isinstance(v, list): return json.dumps(v)
+    if v is None: return "undefined"
+    # Basic escaping for strings to prevent breaking TS
+    escaped = str(v).replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n').replace('\r', '')
     return f'"{escaped}"'
 
 def escape_ts_string(s):
-    """Escape a string for use inside TypeScript backtick template literals."""
-    if not s:
-        return ""
-    return s.replace('\\', '\\\\').replace('`', '\\`').replace('${', '\\${')
+    """Safely escape a string for use inside backticks."""
+    if not s: return ""
+    # We escape backslashes and backticks
+    return str(s).replace('\\', '\\\\').replace('`', '\\`').replace('${', '\\${')
 
-# ── Tools sync ───────────────────────────────────────────
+def format_integrations(val):
+    """Robustly format the integrations column JSON for TypeScript."""
+    if not val or val == "[]" or val == "":
+        return "[]"
+    
+    try:
+        # 1. Clean the input string
+        cleaned = val.strip()
+        # If it's wrapped in single quotes from the CSV export, remove them
+        if cleaned.startswith("'") and cleaned.endswith("'"):
+            cleaned = cleaned[1:-1]
+        
+        # 2. Try to parse as JSON
+        # We try replacing common spreadsheet single-quote issues
+        try:
+            data = json.loads(cleaned)
+        except:
+            data = json.loads(cleaned.replace("'", '"'))
+            
+        if not isinstance(data, list):
+            data = [data]
+            
+        # 3. Build the TypeScript string
+        formatted = "[\n"
+        for item in data:
+            formatted += "      {\n"
+            for k, v in item.items():
+                if k == 'mcpConfig' and v:
+                    # Multi-line config is safest in backticks
+                    formatted += f"        {k}: `{escape_ts_string(v)}`,\n"
+                else:
+                    formatted += f"        {k}: {format_value(v)},\n"
+            formatted += "      },\n"
+        formatted += "    ]"
+        return formatted
+    except Exception as e:
+        # FINAL FALLBACK: If parsing fails, we output a safe empty array 
+        # instead of breaking the build with a syntax error.
+        print(f"⚠️  Parsing error for integrations: {e}")
+        return "[]"
 
 CATEGORIES_META = [
     {"slug": "sales-intelligence", "name": "Sales Intelligence", "description": "Find prospects and enrich lead lists with real-time B2B contact data and technographic signals.", "icon": "Search"},
@@ -88,56 +123,66 @@ def sync_tools(rows):
     for row in rows:
         if not row.get('slug'): continue
 
+        # Map spreadsheet columns to our object structure
+        # We use .get() with defaults to ensure missing columns don't crash the script
         tool = {
-            "slug": row.get('slug'),
-            "name": row.get('name'),
-            "oneLiner": row.get('oneLiner'),
-            "description": row.get('description'),
-            "category": row.get('category'),
-            "logoUrl": row.get('logoUrl'),
-            "websiteUrl": row.get('websiteUrl'),
-            "docsUrl": row.get('docsUrl'),
-            "pricingUrl": row.get('pricingUrl'),
-            "githubUrl": row.get('githubUrl'),
-            "apiType": parse_list(row.get('apiType', '[]')),
-            "authMethod": parse_list(row.get('authMethod', '[]')),
-            "hasFreeTier": parse_bool(row.get('hasFreeTier')),
+            "slug": row.get('slug', '').strip(),
+            "name": row.get('name', '').strip(),
+            "oneLiner": row.get('oneLiner', '').strip(),
+            "description": row.get('description', '').strip(),
+            "category": row.get('category', 'Sales Intelligence').strip(),
+            "logoUrl": row.get('logoUrl', '/placeholder.svg').strip(),
+            "websiteUrl": row.get('websiteUrl', '').strip(),
+            "docsUrl": row.get('docsUrl', '').strip(),
+            "pricingUrl": row.get('pricingUrl', '').strip(),
+            "githubUrl": row.get('githubUrl', ''),
+            "apiType": parse_list(row.get('apiType', '["REST"]')),
+            "authMethod": parse_list(row.get('authMethod', '["API Key"]')),
+            "hasFreeTier": parse_bool(row.get('hasFreeTier', 'FALSE')),
             "sdkLanguages": parse_list(row.get('sdkLanguages', '[]')),
-            "hasWebhooks": parse_bool(row.get('hasWebhooks')),
-            "hasOpenApiSpec": parse_bool(row.get('hasOpenApiSpec')),
-            "openApiSpecUrl": row.get('openApiSpecUrl'),
+            "hasWebhooks": parse_bool(row.get('hasWebhooks', 'FALSE')),
+            "hasOpenApiSpec": parse_bool(row.get('hasOpenApiSpec', 'FALSE')),
+            "openApiSpecUrl": row.get('openApiSpecUrl', ''),
             "aiCapabilities": parse_list(row.get('aiCapabilities', '[]')),
             "aiDifficulty": row.get('aiDifficulty', 'Beginner-Friendly'),
             "starterPrompt": row.get('starterPrompt', ''),
-            "mcpReady": parse_bool(row.get('mcpReady')),
-            "isFeatured": parse_bool(row.get('isFeatured')),
+            "mcpReady": parse_bool(row.get('mcpReady', 'FALSE')),
+            "isFeatured": parse_bool(row.get('isFeatured', 'FALSE')),
             "alternativeTo": parse_list(row.get('alternativeTo', '[]')),
-            "integrations": row.get('integrations', '[]')
+            "integrations": row.get('integrations', '')
         }
         tools.append(tool)
-        cat = row.get('category')
+        cat = tool['category']
         if cat: category_counts[cat] = category_counts.get(cat, 0) + 1
 
     content = 'import type { SalesTool, CategoryMeta } from "./types"\n\n'
     content += 'export const tools: SalesTool[] = [\n'
 
+    # Sort tools by category then name
+    sorted_tools = sorted(tools, key=lambda x: (x['category'], x['name']))
+    
     current_cat = None
-    for tool in sorted(tools, key=lambda x: (x['category'] or '', x['name'] or '')):
+    for tool in sorted_tools:
         if tool['category'] != current_cat:
             current_cat = tool['category']
             content += f'\n  // ── {current_cat} ──────────────────────────────────────────────\n'
 
         content += '  {\n'
-        for k, v in tool.items():
+        # Define field order for cleaner file
+        fields = [
+            'slug', 'name', 'oneLiner', 'description', 'category', 'logoUrl', 
+            'websiteUrl', 'docsUrl', 'pricingUrl', 'githubUrl', 'apiType', 
+            'authMethod', 'hasFreeTier', 'sdkLanguages', 'hasWebhooks', 
+            'hasOpenApiSpec', 'openApiSpecUrl', 'aiCapabilities', 'aiDifficulty', 
+            'starterPrompt', 'mcpReady', 'isFeatured', 'alternativeTo', 'integrations'
+        ]
+        
+        for k in fields:
+            v = tool.get(k)
             if k == 'integrations':
-                val = v if v and v != "[]" else "[]"
-                if val.strip().startswith('{') and not val.strip().startswith('['):
-                    val = f'[{val}]'
-                if val.count('{') > val.count('}'): val += '}' * (val.count('{') - val.count('}'))
-                if val.count('[') > val.count(']'): val += ']' * (val.count('[') - val.count(']'))
-                content += f'    {k}: {val},\n'
+                content += f'    {k}: {format_integrations(v)},\n'
             elif k in ['githubUrl', 'openApiSpecUrl'] and not v:
-                continue
+                continue # Skip optional empty fields
             else:
                 content += f'    {k}: {format_value(v)},\n'
         content += '  },\n'
@@ -153,292 +198,13 @@ def sync_tools(rows):
         f.write(content)
     print(f"✅ Updated lib/data.ts ({len(tools)} tools)")
 
-# ── Skills sync ──────────────────────────────────────────
-
-def sync_skills(rows):
-    skills = []
-    for row in rows:
-        if not row.get('slug'): continue
-        skills.append({
-            "slug": row['slug'].strip(),
-            "name": row.get('name', '').strip(),
-            "description": row.get('description', '').strip(),
-            "category": row.get('category', 'Operations').strip(),
-            "difficulty": row.get('difficulty', 'Beginner').strip(),
-            "worksWithTools": parse_list(row.get('worksWithTools', '[]')),
-            "promptContent": row.get('promptContent', '').strip(),
-            "source": row.get('source', 'Salestools Club').strip(),
-            "installCommand": row.get('installCommand', '').strip(),
-        })
-
-    content = '''export interface Skill {
-  slug: string
-  name: string
-  description: string
-  category: "Outreach" | "Research" | "CRM" | "Analytics" | "Operations" | "Enablement"
-  difficulty: "Beginner" | "Intermediate" | "Advanced"
-  worksWithTools: string[]
-  promptContent: string
-  source: string
-  installCommand?: string
-}
-
-const skills: Skill[] = [\n'''
-
-    for s in skills:
-        content += '  {\n'
-        content += f'    slug: {format_value(s["slug"])},\n'
-        content += f'    name: {format_value(s["name"])},\n'
-        content += f'    description: {format_value(s["description"])},\n'
-        content += f'    category: {format_value(s["category"])},\n'
-        content += f'    difficulty: {format_value(s["difficulty"])},\n'
-        content += f'    worksWithTools: {json.dumps(s["worksWithTools"])},\n'
-        content += f'    promptContent: `{escape_ts_string(s["promptContent"])}`,\n'
-        content += f'    source: {format_value(s["source"])},\n'
-        if s["installCommand"]:
-            content += f'    installCommand: {format_value(s["installCommand"])},\n'
-        content += '  },\n'
-
-    content += ''']
-
-export function getAllSkills(): Skill[] {
-  return skills
-}
-
-export function getSkillBySlug(slug: string): Skill | undefined {
-  return skills.find((s) => s.slug === slug)
-}
-
-export function getSkillSlugs(): string[] {
-  return skills.map((s) => s.slug)
-}
-
-export function getSkillsByCategory(category: Skill["category"]): Skill[] {
-  return skills.filter((s) => s.category === category)
-}
-'''
-
-    with open('lib/skills.ts', 'w') as f:
-        f.write(content)
-    print(f"✅ Updated lib/skills.ts ({len(skills)} skills)")
-
-# ── Stacks sync ──────────────────────────────────────────
-
-def sync_stacks(rows):
-    stacks = []
-    for row in rows:
-        if not row.get('slug'): continue
-
-        tool_slugs = parse_list(row.get('toolSlugs', '[]'))
-
-        # Parse workflow
-        workflow_raw = row.get('workflow', '[]').strip()
-        try:
-            workflow = json.loads(workflow_raw.replace("'", '"'))
-        except:
-            workflow = []
-
-        stacks.append({
-            "slug": row['slug'].strip(),
-            "name": row.get('name', '').strip(),
-            "tagline": row.get('tagline', '').strip(),
-            "description": row.get('description', '').strip(),
-            "toolSlugs": tool_slugs,
-            "workflow": workflow,
-        })
-
-    content = '''import { tools } from "./data"
-import type { SalesTool } from "./types"
-
-export interface WorkflowStep {
-  step: string
-  toolSlug: string
-  description: string
-}
-
-export interface Stack {
-  slug: string
-  name: string
-  tagline: string
-  description: string
-  toolSlugs: string[]
-  workflow: WorkflowStep[]
-}
-
-const stacks: Stack[] = [\n'''
-
-    for s in stacks:
-        content += '  {\n'
-        content += f'    slug: {format_value(s["slug"])},\n'
-        content += f'    name: {format_value(s["name"])},\n'
-        content += f'    tagline: {format_value(s["tagline"])},\n'
-        content += f'    description: {format_value(s["description"])},\n'
-        content += f'    toolSlugs: {json.dumps(s["toolSlugs"])},\n'
-        content += '    workflow: [\n'
-        for w in s["workflow"]:
-            step = w.get("step", "").replace('"', '\\"')
-            tool_slug = w.get("toolSlug", "").replace('"', '\\"')
-            desc = w.get("description", "").replace('"', '\\"')
-            content += f'      {{ step: "{step}", toolSlug: "{tool_slug}", description: "{desc}" }},\n'
-        content += '    ],\n'
-        content += '  },\n'
-
-    content += ''']
-
-export function getAllStacks(): Stack[] {
-  return stacks
-}
-
-export function getStackBySlug(slug: string): Stack | undefined {
-  return stacks.find((s) => s.slug === slug)
-}
-
-export function getStackSlugs(): string[] {
-  return stacks.map((s) => s.slug)
-}
-
-export function getToolsForStack(stack: Stack): SalesTool[] {
-  return stack.toolSlugs
-    .map((slug) => tools.find((t) => t.slug === slug))
-    .filter((t): t is SalesTool => t !== undefined)
-}
-'''
-
-    with open('lib/stacks.ts', 'w') as f:
-        f.write(content)
-    print(f"✅ Updated lib/stacks.ts ({len(stacks)} stacks)")
-
-# ── Use Cases sync ───────────────────────────────────────
-
-def sync_usecases(rows):
-    usecases = []
-    for row in rows:
-        if not row.get('slug'): continue
-        usecases.append({
-            "slug": row['slug'].strip(),
-            "title": row.get('title', '').strip(),
-            "metaDescription": row.get('metaDescription', '').strip(),
-            "intro": row.get('intro', '').strip(),
-            "categories": parse_list(row.get('categories', '[]')),
-            "capabilityKeywords": parse_list(row.get('capabilityKeywords', '[]')),
-            "includeSlugs": parse_list(row.get('includeSlugs', '[]')),
-        })
-
-    content = '''import { tools } from "./data"
-import type { SalesTool } from "./types"
-
-export interface UseCase {
-  slug: string
-  title: string
-  metaDescription: string
-  intro: string
-  categories: string[]
-  capabilityKeywords?: string[]
-  includeSlugs?: string[]
-}
-
-const usecases: UseCase[] = [\n'''
-
-    for uc in usecases:
-        content += '  {\n'
-        content += f'    slug: {format_value(uc["slug"])},\n'
-        content += f'    title: {format_value(uc["title"])},\n'
-        content += f'    metaDescription: {format_value(uc["metaDescription"])},\n'
-        content += f'    intro: {format_value(uc["intro"])},\n'
-        content += f'    categories: {json.dumps(uc["categories"])},\n'
-        if uc["capabilityKeywords"]:
-            content += f'    capabilityKeywords: {json.dumps(uc["capabilityKeywords"])},\n'
-        if uc["includeSlugs"]:
-            content += f'    includeSlugs: {json.dumps(uc["includeSlugs"])},\n'
-        content += '  },\n'
-
-    content += ''']
-
-export function getAllUseCases(): UseCase[] {
-  return usecases
-}
-
-export function getUseCaseBySlug(slug: string): UseCase | undefined {
-  return usecases.find((uc) => uc.slug === slug)
-}
-
-export function getUseCaseSlugs(): string[] {
-  return usecases.map((uc) => uc.slug)
-}
-
-export function getUseCasesForTool(tool: SalesTool): UseCase[] {
-  return usecases.filter((uc) => {
-    if (uc.categories.includes(tool.category)) return true
-    if (uc.capabilityKeywords?.length) {
-      const caps = (tool.aiCapabilities || []).join(" ").toLowerCase()
-      return uc.capabilityKeywords.some((kw) => caps.includes(kw.toLowerCase()))
-    }
-    return false
-  })
-}
-
-export function getToolsForUseCase(usecase: UseCase): SalesTool[] {
-  const matched = new Map<string, SalesTool>()
-
-  for (const tool of tools) {
-    if (usecase.categories.includes(tool.category)) {
-      matched.set(tool.slug, tool)
-    }
-  }
-
-  if (usecase.capabilityKeywords?.length) {
-    for (const tool of tools) {
-      if (matched.has(tool.slug)) continue
-      const caps = (tool.aiCapabilities || []).join(" ").toLowerCase()
-      const matchesKeyword = usecase.capabilityKeywords.some((kw) =>
-        caps.includes(kw.toLowerCase())
-      )
-      if (matchesKeyword) {
-        matched.set(tool.slug, tool)
-      }
-    }
-  }
-
-  if (usecase.includeSlugs?.length) {
-    for (const slug of usecase.includeSlugs) {
-      const tool = tools.find((t) => t.slug === slug)
-      if (tool) {
-        matched.set(tool.slug, tool)
-      }
-    }
-  }
-
-  return Array.from(matched.values())
-}
-'''
-
-    with open('lib/usecases.ts', 'w') as f:
-        f.write(content)
-    print(f"✅ Updated lib/usecases.ts ({len(usecases)} use cases)")
-
-# ── Main ─────────────────────────────────────────────────
-
 def main():
-    targets = sys.argv[1:] if len(sys.argv) > 1 else ["tools", "skills", "stacks", "usecases"]
-
+    targets = sys.argv[1:] if len(sys.argv) > 1 else ["tools"]
     for target in targets:
-        if target not in TABS:
-            print(f"❌ Unknown tab: {target}")
-            continue
-
         rows = fetch_tab(target)
-        if rows is None:
-            continue
-
-        if target == "tools":
-            sync_tools(rows)
-        elif target == "skills":
-            sync_skills(rows)
-        elif target == "stacks":
-            sync_stacks(rows)
-        elif target == "usecases":
-            sync_usecases(rows)
-
+        if rows:
+            if target == "tools":
+                sync_tools(rows)
     print("\n🏁 Sync complete!")
 
 if __name__ == "__main__":
