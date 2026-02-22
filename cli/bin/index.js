@@ -3,6 +3,8 @@
 import { Command } from 'commander';
 import chalk from 'chalk';
 import ora from 'ora';
+import fs from 'fs';
+import path from 'path';
 
 const program = new Command();
 
@@ -11,43 +13,43 @@ program
   .description('The official CLI for Salestools.club — configure your sales agents in one command.')
   .version('0.1.0');
 
-// Initial "Hello World" command
-program
-  .command('init')
-  .description('Bootstrap your sales agent environment with official MCPs (Apollo, HubSpot, etc.).')
-  .action(async () => {
-    const spinner = ora('Scanning for AI configurations (Claude/Cursor)...').start();
-    
-    // In a real CLI, we would detect Mac/Windows paths here
-    setTimeout(() => {
-      spinner.succeed(chalk.green('Detected Claude Desktop!'));
-      
-      console.log('
-' + chalk.bold('Preparing to install official sales nodes:'));
-      console.log(chalk.cyan(' - [OFFICIAL] Apollo.io MCP Node'));
-      console.log(chalk.cyan(' - [OFFICIAL] HubSpot CRM Node'));
-      console.log(chalk.cyan(' - [COMMUNITY] LinkedIn Prospector Skill'));
-      
-      console.log('
-' + chalk.yellow('Note: ') + 'This is a "Hello World" preview. Real installation would update your config.json here.');
-      
-      console.log('
-' + chalk.bold.green('Salestools initialized!') + ' Your agent is now ready for prospecting.');
-    }, 1500);
-  });
-
 program
   .command('add <slug>')
   .description('Add a specific sales skill to your agent by its Salestools.club registry slug.')
-  .action((slug) => {
-    console.log(chalk.bold(`
-Fetching skill metadata for: `) + chalk.cyan(slug));
-    console.log(chalk.gray(`Retrieving from registry at https://salestools.club/api/skills/${slug}...`));
+  .option('--local', 'Use local registry for testing', false)
+  .action(async (slug, options) => {
+    const baseUrl = options.local ? 'http://localhost:3000' : 'https://salestools.club';
+    const spinner = ora(chalk.cyan(`Fetching skill logic for: `) + chalk.bold(slug)).start();
     
-    // This is where we would fetch the JSON from your Google Sheet (via the API)
-    console.log('
-' + chalk.green('✔ ') + `Ready to install ` + chalk.bold(slug));
-    console.log(chalk.italic(`"Claude, use the ${slug} skill to help me find 10 leads at US-based startups."`));
+    try {
+      const response = await fetch(`${baseUrl}/api/skills/${slug}`);
+      if (!response.ok) {
+        throw new Error(`Skill '${slug}' not found in registry.`);
+      }
+      
+      const skill = await response.json();
+      spinner.succeed(chalk.green(`Retrieved ${chalk.bold(skill.name)} by ${skill.author}`));
+
+      // Installation logic
+      const fileName = `${skill.slug}.md`;
+      const targetDir = path.join(process.cwd(), '.claude', 'skills');
+      
+      // Ensure directory exists
+      if (!fs.existsSync(targetDir)) {
+        fs.mkdirSync(targetDir, { recursive: true });
+      }
+
+      const filePath = path.join(targetDir, fileName);
+      fs.writeFileSync(filePath, skill.instructions);
+
+      console.log('\n' + chalk.bold.green('✔ Skill Installed Successfully!'));
+      console.log(chalk.gray(`Path: ${filePath}`));
+      console.log('\n' + chalk.bold('Try this prompt:'));
+      console.log(chalk.italic(`"${skill.instructions.split('\n').find(l => l.length > 5) || 'Use this skill to help me.'}"`));
+      
+    } catch (error) {
+      spinner.fail(chalk.red(`Failed to add skill: ${error.message}`));
+    }
   });
 
 program.parse(process.argv);

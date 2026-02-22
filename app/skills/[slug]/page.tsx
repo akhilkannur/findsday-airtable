@@ -83,42 +83,52 @@ export default async function SkillDetailPage({
       <div className="layout-container grid grid-cols-1 lg:grid-cols-[1fr_400px] border-x border-ink bg-white/40">
         {/* Left column */}
         <div className="p-10 md:p-20 space-y-32 border-r border-ink">
-          {/* Install Command if exists */}
-          {skill.installCommand && (
-            <div>
-              <div className="flex items-center gap-6 mb-12">
-                <div className="font-mono text-[0.8rem] uppercase tracking-wider text-ink">
-                  Quick Install
-                </div>
-                <div className="h-px flex-grow bg-ink opacity-10"></div>
+          {/* One-Click Install */}
+          <div>
+            <div className="flex items-center gap-6 mb-12">
+              <div className="font-mono text-[0.8rem] uppercase tracking-wider text-ink">
+                One-Click Add
               </div>
+              <div className="h-px flex-grow bg-ink opacity-10"></div>
+            </div>
 
-              <div className="tool-card group bg-ink text-paper">
-                <div className="flex items-center justify-between mb-10">
-                  <div className="font-mono text-[0.7rem] uppercase tracking-widest text-paper opacity-60">
-                    Terminal Command
-                  </div>
-                  <CopyButton
-                    text={skill.installCommand}
-                    label="Copy Command"
-                    className="font-mono text-[0.7rem] uppercase border border-white/20 px-4 py-2 hover:bg-white hover:text-black transition-all"
-                  />
+            <div className="tool-card group bg-ink text-paper">
+              <div className="flex items-center justify-between mb-10">
+                <div className="font-mono text-[0.7rem] uppercase tracking-widest text-paper opacity-60">
+                  Terminal Command
                 </div>
-                <pre className="font-mono text-[14px] p-8 border border-white/10 bg-white/5 text-white leading-relaxed">
-                  {skill.installCommand}
-                </pre>
-                <p className="mt-6 font-mono text-[10px] text-paper/40 uppercase tracking-widest">
-                  Paste this into your terminal to add the skill to your agent.
+                <CopyButton
+                  text={`npx salestools add ${skill.slug}`}
+                  label="Copy Command"
+                  className="font-mono text-[0.7rem] uppercase border border-white/20 px-4 py-2 hover:bg-white hover:text-black transition-all"
+                />
+              </div>
+              <pre className="font-mono text-[16px] p-8 border border-white/10 bg-white/5 text-white leading-relaxed font-bold">
+                npx salestools add {skill.slug}
+              </pre>
+              <div className="mt-8 pt-8 border-t border-white/10 flex flex-col gap-4">
+                <p className="font-mono text-[10px] text-paper/40 uppercase tracking-widest">
+                  Serve this skill to your agent instantly. Works with Claude Code, Cursor, and Gemini CLI.
                 </p>
+                {skill.sourceUrl && (
+                  <a 
+                    href={skill.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-paper/60 hover:text-paper text-[0.75rem] font-mono underline transition-colors"
+                  >
+                    View Original Source on {skill.source} ↗
+                  </a>
+                )}
               </div>
             </div>
-          )}
+          </div>
 
           {/* Skill content */}
           <div>
             <div className="flex items-center gap-6 mb-12">
               <div className="font-mono text-[0.8rem] uppercase tracking-wider text-ink">
-                {skill.installCommand ? "Skill Instructions" : "Skill File"}
+                Agent Instructions
               </div>
               <div className="h-px flex-grow bg-ink opacity-10"></div>
             </div>
@@ -130,63 +140,34 @@ export default async function SkillDetailPage({
                 </div>
                 <CopyButton
                   text={skill.promptContent}
-                  label="Copy Skill"
+                  label="Copy Instructions"
                   className="font-mono text-[0.7rem] uppercase border border-white/20 px-4 py-2 hover:bg-white hover:text-black transition-all"
                 />
               </div>
-              <pre className="font-mono text-[11px] whitespace-pre-wrap overflow-x-auto p-8 border border-white/10 bg-white/5 text-white/80 leading-relaxed">
-                {skill.promptContent}
-              </pre>
+              <div className="prose prose-invert max-w-none prose-pre:bg-transparent prose-pre:p-0 prose-pre:border-none">
+                <pre className="font-mono text-[11px] whitespace-pre-wrap overflow-x-auto p-8 border border-white/10 bg-white/5 text-white/80 leading-relaxed">
+                  {skill.promptContent}
+                </pre>
+              </div>
+              <p className="mt-6 font-mono text-[10px] text-paper/40 uppercase tracking-widest px-8">
+                Copy this and paste it into your agent's system prompt or custom instructions.
+              </p>
             </div>
           </div>
 
-          {/* How to install */}
-          <div>
-            <div className="flex items-center gap-6 mb-12">
-              <div className="font-mono text-[0.8rem] uppercase tracking-wider text-ink">
-                How to Install
-              </div>
-              <div className="h-px flex-grow bg-ink opacity-10"></div>
-            </div>
-
-            <div className="p-16 bg-paper border border-dashed border-ink">
-              <div className="font-serif text-xl leading-relaxed text-ink-fade space-y-6">
-                {skill.installCommand ? (
-                  <>
-                    <p>
-                      <strong className="font-mono text-[0.85rem] uppercase text-ink">Quick Add:</strong>{" "}
-                      Copy the terminal command above and paste it into your agent's terminal (Claude Code, Cursor, or Gemini CLI).
-                    </p>
-                    <p>
-                      <strong className="font-mono text-[0.85rem] uppercase text-ink">Source:</strong>{" "}
-                      This skill is provided by <span className="font-bold text-ink">{skill.source}</span>.
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    <p>
-                      <strong className="font-mono text-[0.85rem] uppercase text-ink">Option 1:</strong>{" "}
-                      Paste the skill content directly into your agent&apos;s context window or system prompt.
-                    </p>
-                    <p>
-                      <strong className="font-mono text-[0.85rem] uppercase text-ink">Option 2:</strong>{" "}
-                      Save this as <code className="font-mono text-[0.85rem] bg-paper-dark/60 px-2 py-0.5">{skill.slug}.md</code> in your agent&apos;s custom instructions folder.
-                    </p>
-                  </>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* Works with tools */}
+          {/* Infrastructure / Tools needed */}
           {linkedTools.length > 0 && (
             <div>
               <div className="flex items-center gap-6 mb-12">
                 <div className="font-mono text-[0.8rem] uppercase tracking-wider text-ink">
-                  Works With
+                  Required Infrastructure
                 </div>
                 <div className="h-px flex-grow bg-ink opacity-10"></div>
               </div>
+              
+              <p className="mb-8 font-serif italic text-lg text-ink-fade">
+                This skill requires the following tools to be connected to your agent via API or MCP:
+              </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 {linkedTools.map((tool) => (
@@ -219,6 +200,40 @@ export default async function SkillDetailPage({
               </div>
             </div>
           )}
+
+          {/* How to install */}
+          <div>
+            <div className="flex items-center gap-6 mb-12">
+              <div className="font-mono text-[0.8rem] uppercase tracking-wider text-ink">
+                How to Install
+              </div>
+              <div className="h-px flex-grow bg-ink opacity-10"></div>
+            </div>
+
+            <div className="p-16 bg-paper border border-dashed border-ink">
+              <div className="font-serif text-xl leading-relaxed text-ink-fade space-y-8">
+                <div className="space-y-4">
+                  <p>
+                    <strong className="font-mono text-[0.85rem] uppercase text-ink">Method 1: One-Click (Recommended)</strong><br />
+                    Copy the <code className="font-mono text-[0.85rem] bg-paper-dark/60 px-2 py-0.5">npx salestools add</code> command above and paste it into your terminal. Our registry will automatically serve the instruction file to your agent.
+                  </p>
+                </div>
+                
+                <div className="space-y-4">
+                  <p>
+                    <strong className="font-mono text-[0.85rem] uppercase text-ink">Method 2: Manual Copy</strong><br />
+                    Copy the "Agent Instructions" block above and paste it directly into your agent's system prompt or custom instructions window.
+                  </p>
+                </div>
+
+                <div className="mt-12 pt-8 border-t border-ink/10">
+                  <p className="text-[0.9rem] italic opacity-60 text-ink-fade">
+                    This skill is curated from the community and served via the Salestools.club registry for easy agent configuration. Original credit belongs to <strong>{skill.source}</strong>.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Right sidebar */}

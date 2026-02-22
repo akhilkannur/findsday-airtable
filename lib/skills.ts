@@ -7,31 +7,57 @@ export interface Skill {
   worksWithTools: string[]
   promptContent: string
   source: string
+  sourceUrl?: string
   installCommand?: string
 }
 
 const skills: Skill[] = [
   {
-    slug: "apollo-prospecting",
-    name: "Apollo.io Prospecting Node",
-    description: "Search 275M+ verified contacts and companies directly from your AI agent. Filter by title, industry, and funding.",
-    category: "Research",
-    difficulty: "Beginner",
-    worksWithTools: ["apollo"],
-    promptContent: "Claude, use the Apollo search tool to find 10 VPs of Sales at Series B SaaS companies in San Francisco and save them to my 'Target Leads' list.",
-    source: "Apollo.io Official",
-    installCommand: "npx -y @apollo/mcp-server",
+    slug: "icp-lead-qualifier",
+    name: "ICP Lead Qualifier",
+    description: "Automatically score leads against your Ideal Customer Profile using real-time company data.",
+    category: "Operations",
+    difficulty: "Intermediate",
+    worksWithTools: ["apollo", "clearbit", "people-data-labs"],
+    promptContent: `# Skill: ICP Lead Qualifier
+
+You are a senior Revenue Operations agent. Your goal is to score a list of leads based on a specific Ideal Customer Profile (ICP).
+
+## Scoring Framework
+1. **Industry (25 pts):** High priority for SaaS, Fintech, and AI infrastructure.
+2. **Company Size (25 pts):** Target 50-500 employees (Scale-up phase).
+3. **Role (25 pts):** Look for Head of Sales, VP Revenue, or Founder.
+4. **Trigger Event (25 pts):** Recent funding (last 6 months) or hiring for sales roles.
+
+## Instructions
+- Use the connected search tool to fetch company details.
+- Calculate a total score out of 100.
+- Return a table with: Name, Company, Score, and "Reason for Fit".
+- Flag anyone with a score > 80 as "High Intent".`,
+    source: "Anthropic Prompt Library",
+    sourceUrl: "https://docs.anthropic.com/en/prompt-library/inbound-sales-agent",
   },
   {
-    slug: "hubspot-crm-sync",
-    name: "HubSpot CRM Orchestrator",
-    description: "Manage your HubSpot pipeline using natural language. Create contacts, update deal stages, and search records.",
-    category: "CRM",
+    slug: "battlecard-researcher",
+    name: "Sales Battlecard Researcher",
+    description: "Generate a competitive battlecard for any company in seconds before your next demo.",
+    category: "Research",
     difficulty: "Beginner",
-    worksWithTools: ["hubspot"],
-    promptContent: "Claude, search HubSpot for any deals closing this month over $50k and give me a summary of the latest activity for each.",
-    source: "HubSpot Official",
-    installCommand: "npx -y @hubspot/mcp-server",
+    worksWithTools: ["exa-ai", "perplexity"],
+    promptContent: `# Skill: Battlecard Researcher
+
+You are a Sales Enablement assistant. Create a competitive battlecard for the prospect's company.
+
+## Research Areas
+1. **Product Gaps:** What do customers complain about in their G2/Capterra reviews?
+2. **Recent News:** Find funding, layoffs, or product launches from the last 90 days.
+3. **Tech Stack:** Identify what CRM and ESP they currently use.
+4. **Win Themes:** 3 reasons why our solution is better for their specific situation.
+
+## Output
+Format as a clean Markdown battlecard with bold headers and bullet points.`,
+    source: "OpenClaw Registry",
+    sourceUrl: "https://openclaw.io/skills/sales-outreach",
   },
   {
     slug: "cold-email-writer",
