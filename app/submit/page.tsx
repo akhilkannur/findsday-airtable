@@ -75,9 +75,9 @@ export default function SubmitPage() {
         <CheckCircle2 className="w-20 h-20 text-green-600 mb-8" />
         <h1 className="type-display mb-4 text-4xl">Submission Received</h1>
         <p className="max-w-md font-serif italic text-2xl text-ink-fade leading-relaxed mb-12">
-          Your tool has been dispatched to the primary node for manual verification.
+          Your tool has been dispatched to the primary node for manual verification. We'll review it within 72 hours.
         </p>
-        <button 
+        <button
           onClick={() => setStatus('idle')}
           className="font-mono font-bold uppercase text-[0.9rem] border-b-2 border-ink pb-1 hover:opacity-60 transition-opacity"
         >

@@ -130,7 +130,7 @@ export default async function Home() {
             </h1>
             
             <div className="font-serif italic text-xl md:text-2xl text-ink-fade max-w-2xl pl-6 border-l-2 border-ink mb-6 md:mb-8 leading-relaxed">
-              A handpicked collection of APIs, SDKs, and MCP servers that plug directly into Claude Code and other agentic tools. Build your GTM machine in hours, not weeks.
+              A handpicked collection of APIs, Skills, and MCP servers that plug directly into Claude Code and other agentic tools. Build your GTM machine in hours, not weeks.
             </div>
 
             <div className="max-w-xl">
@@ -287,7 +287,7 @@ export default async function Home() {
                   {cat.description}
                 </p>
                 <div className="mt-auto font-mono text-[0.7rem] uppercase text-ink-fade">
-                  {cat.toolCount} Tools
+                  <span className="font-bold">{cat.toolCount}</span> Tools
                 </div>
               </Link>
             ))}

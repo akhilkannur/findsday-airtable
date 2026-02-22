@@ -1,8 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { getAllTools, filterTools, getAllCategories } from "@/lib/tools"
-import { Brain, ArrowRight, Check, LayoutGrid, List } from "lucide-react"
-import { SearchBar } from "@/components/SearchBar"
+import { ArrowRight, Check, LayoutGrid, List } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Sales APIs | Salestools Club",
@@ -110,12 +109,6 @@ export default async function ToolsPage({
           </p>
         </div>
       </section>
-
-      <div className="border-b border-ink">
-        <div className="layout-container">
-          <SearchBar />
-        </div>
-      </div>
 
       <div className="border-b border-ink bg-paper-dark/20 py-6">
         <div className="layout-container flex flex-wrap items-center justify-between gap-y-6">
