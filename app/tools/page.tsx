@@ -79,24 +79,26 @@ function ToolRow({ tool }: { tool: any }) {
 export default async function ToolsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string; category?: string; mcp?: string; free?: string; view?: string }>
+  searchParams: Promise<{ q?: string; category?: string; mcp?: string; free?: string; official?: string; view?: string }>
 }) {
   const sp = await searchParams
   const q = sp.q ?? ""
   const category = sp.category ?? ""
   const mcpOnly = sp.mcp === "true"
   const freeOnly = sp.free === "true"
+  const officialOnly = sp.official === "true"
   const view = sp.view === "list" ? "list" : "grid"
 
   const tools = await filterTools({
     query: q,
     category: category,
     mcpOnly,
-    freeOnly
+    freeOnly,
+    officialOnly
   })
 
   const categories = getAllCategories()
-  const baseParams = `${q ? `q=${q}&` : ''}${category ? `category=${category}&` : ''}${mcpOnly ? 'mcp=true&' : ''}${freeOnly ? 'free=true&' : ''}`
+  const baseParams = `${q ? `q=${q}&` : ''}${category ? `category=${category}&` : ''}${mcpOnly ? 'mcp=true&' : ''}${freeOnly ? 'free=true&' : ''}${officialOnly ? 'official=true&' : ''}`
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -129,7 +131,7 @@ export default async function ToolsPage({
               {categories.map(cat => (
                 <Link 
                   key={cat.slug}
-                  href={`/tools?category=${encodeURIComponent(cat.name)}${q ? `&q=${q}` : ''}${mcpOnly ? '&mcp=true' : ''}${freeOnly ? '&free=true' : ''}${view === 'list' ? '&view=list' : ''}`}
+                  href={`/tools?category=${encodeURIComponent(cat.name)}${q ? `&q=${q}` : ''}${mcpOnly ? '&mcp=true' : ''}${freeOnly ? '&free=true' : ''}${officialOnly ? '&official=true' : ''}${view === 'list' ? '&view=list' : ''}`}
                   className={`font-mono text-[0.7rem] uppercase tracking-widest px-3 py-1.5 border transition-all ${category === cat.name ? 'bg-ink text-paper border-ink' : 'border-ink/20 text-ink-fade hover:border-ink hover:text-ink'}`}
                 >
                   {cat.name}
@@ -158,6 +160,16 @@ export default async function ToolsPage({
                 </div>
                 Free Tier
               </Link>
+
+              <Link 
+                href={`/tools?${baseParams}official=${!officialOnly}${view === 'list' ? '&view=list' : ''}`}
+                className={`flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-widest transition-all ${officialOnly ? 'text-black font-bold' : 'text-ink-fade hover:text-black'}`}
+              >
+                <div className={`w-3 h-3 border border-black flex items-center justify-center ${officialOnly ? 'bg-black' : ''}`}>
+                  {officialOnly && <Check className="w-2 h-2 text-white" />}
+                </div>
+                Official Only
+              </Link>
             </div>
           </div>
 
@@ -181,7 +193,7 @@ export default async function ToolsPage({
         </div>
       </div>
 
-      {(q || category || mcpOnly || freeOnly) && (
+      {(q || category || mcpOnly || freeOnly || officialOnly) && (
         <div className="py-6 border-b border-ink bg-paper-dark/40">
           <div className="layout-container flex items-center justify-between">
             <div className="flex items-center gap-4">

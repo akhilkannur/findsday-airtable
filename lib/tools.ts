@@ -64,11 +64,16 @@ export async function getToolsForComparison(slugs: string): Promise<{ tool1: Sal
   }
 }
 
+export async function getOpenSourceTools(): Promise<SalesTool[]> {
+  return tools.filter((t) => t.githubUrl)
+}
+
 export async function filterTools(options: {
   query?: string
   category?: string
   mcpOnly?: boolean
   freeOnly?: boolean
+  officialOnly?: boolean
 }): Promise<SalesTool[]> {
   let filtered = tools
 
@@ -82,6 +87,12 @@ export async function filterTools(options: {
 
   if (options.freeOnly) {
     filtered = filtered.filter((t) => t.hasFreeTier)
+  }
+
+  if (options.officialOnly) {
+    filtered = filtered.filter((t) =>
+      t.integrations.some((i) => i.label?.toLowerCase().includes("official"))
+    )
   }
 
   if (options.query) {

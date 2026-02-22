@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowRight, Zap, Brain } from "lucide-react"
+import { ArrowRight, Zap, Brain, Check } from "lucide-react"
 import { getMcpTools } from "@/lib/tools"
 import type { Metadata } from "next"
 
@@ -47,8 +47,19 @@ function ToolCard({ tool }: { tool: any }) {
   )
 }
 
-export default async function McpPage() {
-  const mcpTools = await getMcpTools()
+export default async function McpPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ official?: string }>
+}) {
+  const sp = await searchParams
+  const officialOnly = sp.official === "true"
+  const allMcpTools = await getMcpTools()
+  const mcpTools = officialOnly
+    ? allMcpTools.filter((t) =>
+        t.integrations.some((i) => i.label?.toLowerCase().includes("official"))
+      )
+    : allMcpTools
 
   return (
     <div className="flex flex-col min-h-screen bg-paper">
@@ -64,6 +75,22 @@ export default async function McpPage() {
           </p>
         </div>
       </section>
+
+      <div className="border-b border-ink bg-paper-dark/20 py-6">
+        <div className="layout-container flex items-center">
+          <div className="flex items-center gap-6">
+            <Link 
+              href={`/mcp?official=${!officialOnly}`}
+              className={`flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-widest transition-all ${officialOnly ? 'text-black font-bold' : 'text-ink-fade hover:text-black'}`}
+            >
+              <div className={`w-3 h-3 border border-black flex items-center justify-center ${officialOnly ? 'bg-black' : ''}`}>
+                {officialOnly && <Check className="w-2 h-2 text-white" />}
+              </div>
+              Official Only
+            </Link>
+          </div>
+        </div>
+      </div>
 
       <section className="py-20">
         <div className="layout-container">

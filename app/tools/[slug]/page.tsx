@@ -9,6 +9,7 @@ import {
   ArrowRight,
 } from "lucide-react"
 import { CopyButton } from "@/components/ui/CopyButton"
+import { getUseCasesForTool } from "@/lib/usecases"
 
 export async function generateStaticParams() {
   const slugs = await getAllSlugs()
@@ -109,6 +110,8 @@ export default async function ToolDetailPage({
     { label: "Pricing", href: tool.pricingUrl },
   ]
 
+  const matchingUseCases = getUseCasesForTool(tool)
+
   // Find alternatives
   const allTools = await getAllTools()
   const alternatives = allTools.filter(t => 
@@ -204,6 +207,26 @@ export default async function ToolDetailPage({
               {tool.description}
             </div>
           </div>
+
+          {matchingUseCases.length > 0 && (
+            <div>
+              <div className="flex items-center gap-6 mb-12">
+                <div className="font-mono text-[0.8rem] uppercase tracking-wider text-ink">Use {tool.name} for</div>
+                <div className="h-px flex-grow bg-ink opacity-10"></div>
+              </div>
+              <div className="flex flex-wrap gap-4">
+                {matchingUseCases.map((uc) => (
+                  <Link
+                    key={uc.slug}
+                    href={`/for/${uc.slug}`}
+                    className="font-mono text-[0.8rem] uppercase tracking-wide px-4 py-2 border border-ink/20 hover:border-ink hover:bg-ink hover:text-paper transition-all"
+                  >
+                    {uc.title}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="p-10 md:p-20 bg-paper-dark/30 space-y-20">

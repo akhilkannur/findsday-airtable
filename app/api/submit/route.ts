@@ -8,9 +8,7 @@ export async function POST(req: Request) {
 
     // Validate environment variables
     const clientEmail = process.env.GOOGLE_CLIENT_EMAIL;
-    const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/
-/g, '
-');
+    const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n');
     const sheetId = process.env.GOOGLE_SHEET_ID;
 
     if (!clientEmail || !privateKey || !sheetId) {

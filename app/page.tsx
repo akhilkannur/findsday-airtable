@@ -8,9 +8,62 @@ export const metadata: Metadata = {
   title: "Salestools Club — Every Sales API & MCP Server in one place.",
   description:
     "Every Sales API and MCP server you need to automate your GTM with Claude Code and agentic tools.",
+  keywords: [
+    "what is mcp server sales",
+    "ai sales tools directory",
+    "sales api directory",
+    "mcp server for crm",
+    "ai native sales tools",
+  ],
   alternates: {
     canonical: "https://salestools.club",
   },
+}
+
+const faqItems = [
+  {
+    question: "What is an MCP server?",
+    answer:
+      "A connector that lets AI agents (like Claude or Cursor) talk directly to a sales tool. Instead of writing API code, you paste a config and your agent can update your CRM, search leads, or send emails.",
+  },
+  {
+    question: "Do I need to code?",
+    answer:
+      "Not really. Most tools here work with copy-paste configs and starter prompts. If you can use Claude Code or Cursor, you can use these tools.",
+  },
+  {
+    question: "What does AI-Native mean?",
+    answer:
+      "It means the tool was built (or works well) with AI agents in mind. Good API docs, MCP support, and clean endpoints that an AI can call without getting confused.",
+  },
+  {
+    question: "How do I choose between an API and an MCP server?",
+    answer:
+      "If the tool has an MCP server, start there — it's the fastest path. If not, use the API with a starter prompt. We label MCP-ready tools so you can filter for them.",
+  },
+  {
+    question: "Is this only for developers?",
+    answer:
+      "No. This is for founders, sales managers, and ops people who use AI tools to build automations. If you use Claude or Cursor, you're the target audience.",
+  },
+  {
+    question: "Can I submit a tool?",
+    answer:
+      "Yes. If you know a sales API or MCP server we're missing, submit it and we'll review it.",
+  },
+]
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
 }
 
 function ToolCard({ tool }: { tool: any }) {
@@ -53,6 +106,11 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+
       {/* ── Hero ──────────────────────────────────────────── */}
       <section className="hero relative">
         <div className="layout-container">
@@ -102,6 +160,82 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* ── Works With Trust Bar ─────────────────────── */}
+      <section className="py-12 border-t border-ink">
+        <div className="layout-container">
+          <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade mb-6">
+            Works with your agent
+          </p>
+          <div className="flex flex-wrap gap-3">
+            {["Claude Code", "Claude Desktop", "Gemini CLI", "Claude Cowork", "ChatGPT Operator", "Any MCP Client"].map(
+              (agent) => (
+                <span
+                  key={agent}
+                  className="font-mono text-[0.8rem] px-4 py-2 border border-ink/20 text-ink"
+                >
+                  {agent}
+                </span>
+              )
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* ── What's Inside ─────────────────────────────── */}
+      <section className="py-32 bg-paper-dark border-y border-ink">
+        <div className="layout-container">
+          <div className="mb-20">
+            <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade mb-4">
+              What&apos;s Inside
+            </p>
+            <h2 className="font-serif text-5xl leading-tight">
+              Three things you&apos;ll find here
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <Link href="/tools" className="group flex flex-col gap-4">
+              <span className="font-mono text-[0.75rem] text-ink-fade tracking-widest">01</span>
+              <h3 className="text-2xl font-bold uppercase underline decoration-transparent group-hover:decoration-ink transition-all underline-offset-8">
+                Sales APIs
+              </h3>
+              <p className="text-[1rem] text-ink-fade leading-relaxed">
+                Programmable access to your CRM, outreach tools, enrichment databases, and calling platforms. These let your AI agent read and write to your sales stack directly.
+              </p>
+              <span className="mt-auto font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade group-hover:text-ink transition-colors">
+                Browse APIs →
+              </span>
+            </Link>
+
+            <Link href="/mcp" className="group flex flex-col gap-4">
+              <span className="font-mono text-[0.75rem] text-ink-fade tracking-widest">02</span>
+              <h3 className="text-2xl font-bold uppercase underline decoration-transparent group-hover:decoration-ink transition-all underline-offset-8">
+                MCP Servers
+              </h3>
+              <p className="text-[1rem] text-ink-fade leading-relaxed">
+                Ready-made connectors that plug sales tools into Claude, Cursor, and other AI agents. No glue code. Copy the config, paste it, go.
+              </p>
+              <span className="mt-auto font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade group-hover:text-ink transition-colors">
+                Browse MCP Servers →
+              </span>
+            </Link>
+
+            <Link href="/tools" className="group flex flex-col gap-4">
+              <span className="font-mono text-[0.75rem] text-ink-fade tracking-widest">03</span>
+              <h3 className="text-2xl font-bold uppercase underline decoration-transparent group-hover:decoration-ink transition-all underline-offset-8">
+                Starter Prompts
+              </h3>
+              <p className="text-[1rem] text-ink-fade leading-relaxed">
+                Copy-paste prompts that tell your AI agent exactly how to use each tool for a real sales task. No docs to read, no code to write.
+              </p>
+              <span className="mt-auto font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade group-hover:text-ink transition-colors">
+                Browse Prompts →
+              </span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ── Directory Header ──────────────── */}
       <section className="py-20 border-t border-ink">
         <div className="layout-container">
@@ -147,6 +281,47 @@ export default async function Home() {
                   {cat.toolCount} Tools
                 </div>
               </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ───────────────────────────────────────── */}
+      <section className="py-32">
+        <div className="layout-container">
+          <div className="mb-20">
+            <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade mb-4">
+              Common Questions
+            </p>
+            <h2 className="font-serif text-5xl leading-tight">
+              Everything you need to know
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
+            {faqItems.map((item, idx) => (
+              <div key={idx} className="flex flex-col gap-3">
+                <span className="font-mono text-[0.75rem] text-ink-fade tracking-widest">
+                  {String(idx + 1).padStart(2, "0")}
+                </span>
+                <h3 className="font-serif text-xl font-bold">{item.question}</h3>
+                <p className="text-[1rem] text-ink-fade leading-relaxed">
+                  {idx === faqItems.length - 1 ? (
+                    <>
+                      {item.answer.replace(" submit it", "")}{" "}
+                      <Link
+                        href="/submit"
+                        className="underline underline-offset-4 hover:text-ink transition-colors"
+                      >
+                        submit it
+                      </Link>{" "}
+                      and we&apos;ll review it.
+                    </>
+                  ) : (
+                    item.answer
+                  )}
+                </p>
+              </div>
             ))}
           </div>
         </div>

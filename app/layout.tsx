@@ -41,6 +41,9 @@ export const metadata: Metadata = {
 const navLinks = [
   { href: "/tools", label: "Directory" },
   { href: "/categories", label: "Categories" },
+  { href: "/for", label: "Use Cases" },
+  { href: "/stacks", label: "Stacks" },
+  { href: "/skills", label: "Skills" },
   { href: "/mcp", label: "MCP Servers" },
   { href: "/submit", label: "Submit Tool" },
 ]
