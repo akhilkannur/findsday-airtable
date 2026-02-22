@@ -24,22 +24,22 @@ const faqItems = [
   {
     question: "What is a Sales API?",
     answer:
-      "Think of an API as a pipe that connects two pieces of software. It allows your AI agent to send or receive data from your sales tools, like pulling a list of leads from Apollo or pushing a new contact into HubSpot.",
+      "Think of an API as a pipe that connects two pieces of software. It allows your AI agent to send or receive data from your sales tools. For example, an API lets your agent pull a list of new leads from Apollo or push a finished contact record into HubSpot without you doing it manually.",
   },
   {
     question: "What is an MCP Server?",
     answer:
-      "An MCP is like a universal plug. It is a newer, faster way to connect tools to AI agents like Claude or Cursor. Instead of building a complex connection, you just paste a small piece of configuration and your agent can immediately use that tool.",
+      "An MCP is like a universal plug. It is a newer, faster way to connect tools to AI agents like Claude Code or Gemini CLI. While an API is the pipe, an MCP is the standardized connection that makes the pipe work instantly. Instead of building a complex bridge, you just paste a small piece of configuration and your agent can immediately use that tool.",
   },
   {
     question: "What is a 'Skill'?",
     answer:
-      "A skill is a set of instructions that tells your AI exactly how to perform a sales task. It combines a prompt with the right tools so your agent knows how to do things like write a cold email or research a prospect without you explaining it every time.",
+      "A skill is a set of instructions that tells your AI exactly how to perform a sales task. It combines a prompt with the right tools. For example, a 'Lead Scoring' skill would teach your agent how to look at a prospect's LinkedIn, check their company size, and give them a score from 1 to 100 based on your rules.",
   },
   {
     question: "Do I need to be a developer?",
     answer:
-      "No. This site is built for founders, sales managers, and ops professionals. If you know how to use Claude or Cursor, you can use these tools. Most of them work with simple copy and paste setup.",
+      "No. This site is built for founders, sales managers, and ops professionals. If you know how to use Claude Code or Gemini CLI, you can use these tools. Most of them work with simple copy and paste setup. You don't need to write code to use these building blocks.",
   },
   {
     question: "What does AI-Native mean?",
@@ -49,7 +49,7 @@ const faqItems = [
   {
     question: "Can I submit a tool?",
     answer:
-      "Yes. If you know a sales API or MCP server we are missing, submit it and we will review it.",
+      "Yes. If you know a sales API or MCP server I am missing, submit it and I will review it.",
   },
 ]
 
@@ -130,11 +130,11 @@ export default async function Home() {
             </h1>
             
             <div className="font-serif italic text-2xl text-ink-fade max-w-2xl pl-6 border-l-2 border-ink mb-16 leading-relaxed">
-              Don't reinvent the wheel. We've curated the best APIs, SDKs, and MCP servers that plug directly into Claude Code and Cursor. Build your GTM machine in hours, not weeks.
+              Don't reinvent the wheel. I've curated the best APIs, SDKs, and MCP servers that plug directly into Claude Code and Gemini CLI. Build your GTM machine in hours, not weeks.
             </div>
 
             <div className="max-w-xl">
-              <form className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-end mb-6">
+              <form className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-end mb-12">
                 <div className="flex-grow">
                   <input 
                     type="email" 
@@ -147,12 +147,22 @@ export default async function Home() {
                   Join the Club
                 </button>
               </form>
+
+              <div className="flex flex-wrap gap-6 mb-12">
+                <Link href="/skills" className="font-mono font-bold uppercase text-[0.8rem] underline hover:line-through transition-all">
+                  Browse Skills ->
+                </Link>
+                <Link href="/mcp" className="font-mono font-bold uppercase text-[0.8rem] underline hover:line-through transition-all">
+                  Browse MCP Servers ->
+                </Link>
+                <Link href="/tools" className="font-mono font-bold uppercase text-[0.8rem] underline hover:line-through transition-all">
+                  Full Directory ->
+                </Link>
+              </div>
+
               <div className="flex flex-col gap-2">
                 <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade">
                   Fresh APIs, Blueprints & Workflows. Arriving every 10 days.
-                </p>
-                <p className="font-mono text-[0.6rem] uppercase tracking-widest text-ink-fade/60">
-                  {allTools.length} Tools Indexed. Last refresh: {new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} at {new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })}
                 </p>
               </div>
             </div>
@@ -200,7 +210,7 @@ export default async function Home() {
                 Sales APIs
               </h3>
               <p className="text-[1rem] text-ink-fade leading-relaxed">
-                Programmable access to your CRM, outreach tools, enrichment databases, and calling platforms. These let your AI agent read and write to your sales stack directly.
+                Programmable access to your CRM, outreach tools, enrichment databases, and calling platforms. These let Claude Code or Gemini CLI read and write to your sales stack directly.
               </p>
               <span className="mt-auto font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade group-hover:text-ink transition-colors">
                 Browse APIs →
@@ -213,23 +223,23 @@ export default async function Home() {
                 MCP Servers
               </h3>
               <p className="text-[1rem] text-ink-fade leading-relaxed">
-                Ready-made connectors that plug sales tools into Claude, Cursor, and other AI agents. No glue code. Copy the config, paste it, go.
+                Ready-made connectors that plug sales tools into Claude Code, Gemini CLI, and other agentic tools. No glue code. Copy the config, paste it, go.
               </p>
               <span className="mt-auto font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade group-hover:text-ink transition-colors">
                 Browse MCP Servers →
               </span>
             </Link>
 
-            <Link href="/tools" className="group flex flex-col gap-4">
+            <Link href="/skills" className="group flex flex-col gap-4">
               <span className="font-mono text-[0.75rem] text-ink-fade tracking-widest">03</span>
               <h3 className="text-2xl font-bold uppercase underline decoration-transparent group-hover:decoration-ink transition-all underline-offset-8">
-                Starter Prompts
+                Agent Skills
               </h3>
               <p className="text-[1rem] text-ink-fade leading-relaxed">
-                Copy-paste prompts that tell your AI agent exactly how to use each tool for a real sales task. No docs to read, no code to write.
+                Pre-configured instruction files that teach your agent how to perform complex sales tasks. One-click install for Claude Code, Cursor, and Gemini CLI.
               </p>
               <span className="mt-auto font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade group-hover:text-ink transition-colors">
-                Browse Prompts →
+                Browse Skills →
               </span>
             </Link>
           </div>
@@ -239,6 +249,15 @@ export default async function Home() {
       {/* ── Directory Header ──────────────── */}
       <section className="py-20 border-t border-ink">
         <div className="layout-container">
+          <div className="mb-16">
+            <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade mb-4">
+              Featured Directory
+            </p>
+            <h2 className="font-serif text-4xl leading-tight">
+              Sales APIs & MCP Servers
+            </h2>
+          </div>
+          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             {exploreTools.map((tool) => (
               <ToolCard key={tool.slug} tool={tool} />
@@ -247,7 +266,7 @@ export default async function Home() {
 
           <div className="mt-24 text-center">
             <Link href="/tools" className="font-serif italic text-2xl border-b border-black hover:opacity-60 transition-opacity pb-1">
-              Browse All Tools ->
+              Browse All APIs ->
             </Link>
           </div>
         </div>
@@ -259,7 +278,7 @@ export default async function Home() {
           <div className="mb-20">
             <h2 className="font-serif text-5xl leading-tight">Categories</h2>
             <p className="mt-8 text-xl font-medium text-ink-fade leading-relaxed max-w-xl">
-              We vet every tool to make sure it actually works with AI agents. No fluff, just the building blocks.
+              I vet every tool to make sure it actually works with AI agents. No fluff, just the building blocks.
             </p>
           </div>
 

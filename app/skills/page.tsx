@@ -5,7 +5,7 @@ import { getAllSkills, type Skill } from "@/lib/skills"
 export const metadata: Metadata = {
   title: "Agent Skills for Sales | Salestools Club",
   description:
-    "Copy-paste instruction files that teach AI agents how to write cold emails, qualify leads, update CRMs, and run sales workflows. Drop them into Claude Code, Cursor, or any AI agent.",
+    "Copy-paste instruction files that teach AI agents how to write cold emails, qualify leads, update CRMs, and run sales workflows. Drop them into Claude Code, Gemini CLI, or any agentic tool.",
   alternates: {
     canonical: "https://salestools.club/skills",
   },
@@ -103,9 +103,9 @@ export default async function SkillsPage({
                     {String(idx + 1).padStart(2, "0")}
                   </span>
                   <span
-                    className={`font-mono text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 border rounded-full ${difficultyColor[skill.difficulty]}`}
+                    className="font-mono text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 border border-ink/20 rounded-full text-ink-fade"
                   >
-                    {skill.difficulty}
+                    By {skill.source}
                   </span>
                 </div>
 
@@ -118,12 +118,20 @@ export default async function SkillsPage({
                   </p>
                 </div>
 
-                <div className="mt-auto pt-8 flex items-center justify-between opacity-40 group-hover:opacity-100 transition-all border-t border-dashed border-ink/20">
-                  <div className="font-mono text-[0.7rem] uppercase">
-                    {skill.category}
-                  </div>
-                  <div className="font-mono text-[0.7rem] uppercase tracking-widest">
-                    Open -&gt;
+                <div className="mt-auto pt-8 flex flex-col gap-4 border-t border-dashed border-ink/20">
+                  {skill.worksWithTools.length > 0 && (
+                    <div className="font-mono text-[9px] uppercase tracking-tighter text-ink-fade flex flex-wrap gap-1 items-center">
+                      <span className="opacity-40">Requires:</span>
+                      {skill.worksWithTools.join(" + ")}
+                    </div>
+                  )}
+                  <div className="flex items-center justify-between opacity-40 group-hover:opacity-100 transition-all">
+                    <div className="font-mono text-[0.7rem] uppercase">
+                      {skill.category}
+                    </div>
+                    <div className="font-mono text-[0.7rem] uppercase tracking-widest">
+                      Open -&gt;
+                    </div>
                   </div>
                 </div>
               </Link>

@@ -20,13 +20,13 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Salestools Club — Every Sales API & MCP Server in one place.",
   description:
-    "A curated collection of sales APIs, SDKs, and MCP servers. Find the tools to connect your sales stack to Claude Code, Cursor, and other agentic tools.",
+    "A curated collection of sales APIs, SDKs, and MCP servers. Find the tools to connect your sales stack to Claude Code, Gemini CLI, and other agentic tools.",
   keywords:
-    "sales API, MCP server, Model Context Protocol, Claude Code, Claude, Cursor, AI sales tools, CRM API, sales automation API",
+    "sales API, MCP server, Model Context Protocol, Claude Code, Claude, Gemini CLI, AI sales tools, CRM API, sales automation API",
   openGraph: {
     title: "Salestools Club — Sales APIs & MCP Servers for AI Tinkerers",
     description:
-      "A curated directory of sales APIs and MCP servers for people building with Claude Code, Cursor, and other agentic tools.",
+      "A curated directory of sales APIs and MCP servers for people building with Claude Code, Gemini CLI, and other agentic tools.",
     type: "website",
     url: "https://salestools.club",
   },
@@ -34,18 +34,17 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Salestools Club — Sales APIs & MCP Servers for AI Tinkerers",
     description:
-      "Find the APIs, SDKs, and MCP servers that plug your sales stack into Claude Code, Cursor, and other agentic tools.",
+      "Find the APIs, SDKs, and MCP servers that plug your sales stack into Claude Code, Gemini CLI, and other agentic tools.",
   },
 }
 
 const navLinks = [
-  { href: "/tools", label: "Directory" },
-  { href: "/categories", label: "Categories" },
-  { href: "/for", label: "Use Cases" },
-  { href: "/stacks", label: "Stacks" },
-  { href: "/skills", label: "Skills" },
+  { href: "/tools", label: "APIs" },
   { href: "/mcp", label: "MCP Servers" },
-  { href: "/submit", label: "Submit Tool" },
+  { href: "/skills", label: "Skills" },
+  { href: "/stacks", label: "Stacks" },
+  { href: "/categories", label: "Categories" },
+  { href: "/submit", label: "Submit" },
 ]
 
 export default function RootLayout({
@@ -137,7 +136,15 @@ gtag('config', 'G-9LGNFH00R7');`,
         </main>
         
         <footer className="border-t border-ink p-12 mt-20 opacity-60">
-          <div className="layout-container text-center flex flex-col items-center gap-6">
+          <div className="layout-container text-center flex flex-col items-center gap-8">
+            <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 font-mono text-[0.7rem] uppercase tracking-widest border-b border-ink/10 pb-8 w-full max-w-2xl">
+              <Link href="/for" className="hover:line-through">Use Cases</Link>
+              <Link href="/open-source" className="hover:line-through">Open Source</Link>
+              <Link href="/about" className="hover:line-through">About</Link>
+              <Link href="/privacy" className="hover:line-through">Privacy</Link>
+              <Link href="/submit" className="hover:line-through">Submit Tool</Link>
+            </div>
+
             <div className="flex items-center gap-3 font-mono text-[0.75rem] uppercase tracking-widest flex-wrap justify-center">
               <span>Built by</span>
               <a href="https://akhilhaving.fun" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
@@ -155,8 +162,9 @@ gtag('config', 'G-9LGNFH00R7');`,
                 Real AI Examples
               </a>
             </div>
-            <div className="font-mono text-[0.6rem] uppercase tracking-[0.2em] opacity-40">
-              © {new Date().getFullYear()} Salestools Club
+            <div className="font-mono text-[0.6rem] uppercase tracking-[0.2em] opacity-40 flex flex-col gap-2">
+              <p>Registry Status: Live • 389 Tools Indexed</p>
+              <p>© {new Date().getFullYear()} Salestools Club</p>
             </div>
           </div>
         </footer>

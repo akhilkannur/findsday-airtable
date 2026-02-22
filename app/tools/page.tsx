@@ -5,9 +5,9 @@ import { Brain, ArrowRight, Check, LayoutGrid, List } from "lucide-react"
 import { SearchBar } from "@/components/SearchBar"
 
 export const metadata: Metadata = {
-  title: "The Tools | Salestools Club",
+  title: "Sales APIs | Salestools Club",
   description:
-    "A simple list of sales APIs and tools for people building with AI.",
+    "A comprehensive database of sales APIs and tools for people building with Claude Code and Gemini CLI.",
   alternates: {
     canonical: "https://salestools.club/tools",
   },
@@ -104,7 +104,7 @@ export default async function ToolsPage({
     <div className="flex flex-col min-h-screen">
       <section className="px-8 py-24 border-b border-ink">
         <div className="layout-container">
-          <h1 className="type-display mb-8">All Tools</h1>
+          <h1 className="type-display mb-8">Sales APIs</h1>
           <p className="max-w-2xl font-serif italic text-2xl text-ink-fade leading-relaxed border-l-2 border-ink pl-6">
             A comprehensive database of sales APIs and MCP servers. These are the building blocks for the next generation of AI-native sales systems.
           </p>

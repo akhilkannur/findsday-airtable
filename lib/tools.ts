@@ -1,7 +1,7 @@
 import { tools, categories } from "./data"
 import type { SalesTool, ToolCategory, CategoryMeta } from "./types"
 
-// In "Terminal-First" mode, we use the local data.ts as the source of truth.
+// In "Terminal-First" mode, I use the local data.ts as the source of truth.
 // We keep the functions async so the UI doesn't need to change, and it allows
 // for easy switching back to a live API if needed later.
 

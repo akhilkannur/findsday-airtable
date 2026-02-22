@@ -31,25 +31,25 @@ export default function PrivacyPage() {
         <section>
           <div className="font-mono text-[0.75rem] uppercase tracking-widest text-ink-fade mb-6 italic">01. Introduction</div>
           <p className="text-xl font-serif italic text-ink-fade leading-relaxed border-l-2 border-ink pl-6">
-            Salestools Club ("we", "us", or "our") respects your privacy. This policy explains how we handle information when you visit our module directory.
+            Salestools Club ("I") respects your privacy. This policy explains how I handle information when you visit my module directory.
           </p>
         </section>
 
         <section>
           <div className="font-mono text-[0.75rem] uppercase tracking-widest text-ink-fade mb-6 italic">02. Data Collection</div>
           <p className="text-xl font-serif italic text-ink-fade leading-relaxed mb-8">
-            We collect minimal protocol data to provide our service:
+            I collect minimal protocol data to provide my service:
           </p>
           <ul className="list-disc pl-8 font-serif text-xl italic text-ink-fade space-y-6">
-            <li><strong>Usage Data:</strong> We use Google Analytics 4 (GA4) to understand how nodes interact with the site. This includes anonymized IP addresses and page view behavior.</li>
-            <li><strong>Email:</strong> If you join our list, we store your email address solely for sending you the newsletter packet.</li>
+            <li><strong>Usage Data:</strong> I use Google Analytics 4 (GA4) to understand how nodes interact with the site. This includes anonymized IP addresses and page view behavior.</li>
+            <li><strong>Email:</strong> If you join my list, I store your email address solely for sending you the newsletter packet.</li>
           </ul>
         </section>
 
         <section>
           <div className="font-mono text-[0.75rem] uppercase tracking-widest text-ink-fade mb-6 italic">03. External Nodes</div>
           <p className="text-xl font-serif italic text-ink-fade leading-relaxed">
-            We link to many third-party sales tools. We are not responsible for the privacy practices of those external nodes. Please check their respective protocols.
+            I link to many third-party sales tools. I am not responsible for the privacy practices of those external nodes. Please check their respective protocols.
           </p>
         </section>
 

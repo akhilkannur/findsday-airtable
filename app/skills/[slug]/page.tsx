@@ -73,6 +73,13 @@ export default async function SkillDetailPage({
               </div>
               <h1 className="type-display uppercase">{skill.name}</h1>
             </div>
+            
+            <div className="mt-8 p-4 border border-ink/10 bg-paper-dark/20 inline-block">
+              <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade">
+                Registry Note: This is a community-contributed skill from <span className="text-ink font-bold">{skill.source}</span>.
+              </p>
+            </div>
+
             <p className="mt-12 font-serif italic text-2xl text-ink-fade leading-relaxed max-w-2xl border-l-2 border-ink pl-6">
               {skill.description}
             </p>

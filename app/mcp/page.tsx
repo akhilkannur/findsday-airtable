@@ -6,7 +6,7 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "MCP Servers | Salestools Club",
   description:
-    "Find sales tools with MCP (Model Context Protocol) support for Claude and Cursor.",
+    "Find sales tools with MCP (Model Context Protocol) support for Claude Code and Gemini CLI.",
   alternates: {
     canonical: "https://salestools.club/mcp",
   },
@@ -71,7 +71,7 @@ export default async function McpPage({
           </div>
           <h1 className="type-display mb-8 uppercase">MCP Servers</h1>
           <p className="max-w-3xl font-serif italic text-2xl text-ink-fade leading-relaxed border-l-2 border-ink pl-6">
-            The fastest way to give your AI "hands". Plug these servers into Claude Desktop or Cursor to update your CRM and search leads via chat.
+            The fastest way to give your AI "hands". Plug these servers into Claude Code or Gemini CLI to update your CRM and search leads via chat.
           </p>
         </div>
       </section>
