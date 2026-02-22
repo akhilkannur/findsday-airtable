@@ -130,7 +130,7 @@ export default async function Home() {
             </h1>
             
             <div className="font-serif italic text-2xl text-ink-fade max-w-2xl pl-6 border-l-2 border-ink mb-16 leading-relaxed">
-              Don't reinvent the wheel. I've curated the best APIs, SDKs, and MCP servers that plug directly into Claude Code and Gemini CLI. Build your GTM machine in hours, not weeks.
+              A handpicked collection of APIs, SDKs, and MCP servers that plug directly into Claude Code and other agentic tools. Build your GTM machine in hours, not weeks.
             </div>
 
             <div className="max-w-xl">
@@ -147,21 +147,13 @@ export default async function Home() {
                   Join the Club
                 </button>
               </form>
-
-              <div className="flex flex-wrap gap-6 mb-12">
-                <Link href="/tools" className="font-mono font-bold uppercase text-[0.8rem] underline hover:line-through transition-all">
-                  Browse APIs & MCPs ->
-                </Link>
-                <Link href="/skills" className="font-mono font-bold uppercase text-[0.8rem] underline hover:line-through transition-all">
-                  Browse Skills ->
-                </Link>
-              </div>
-
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 -mt-10 mb-12">
                 <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade">
-                  Fresh APIs, Blueprints & Workflows. Arriving every 10 days.
+                  New APIs & Skills. Every 10 days.
                 </p>
               </div>
+
+              <div className="flex flex-wrap gap-6 mb-12">
             </div>
           </div>
         </div>

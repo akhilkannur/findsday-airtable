@@ -135,9 +135,9 @@ gtag('config', 'G-9LGNFH00R7');`,
           {children}
         </main>
         
-        <footer className="border-t border-ink p-12 mt-20 opacity-60">
-          <div className="layout-container text-center flex flex-col items-center gap-8">
-            <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 font-mono text-[0.7rem] uppercase tracking-widest border-b border-ink/10 pb-8 w-full max-w-2xl">
+        <footer className="border-t border-ink p-12 mt-20">
+          <div className="layout-container text-center flex flex-col items-center gap-10">
+            <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 font-mono text-[0.7rem] uppercase tracking-widest border-b border-ink/10 pb-8 w-full max-w-2xl opacity-60">
               <Link href="/for" className="hover:line-through">Use Cases</Link>
               <Link href="/open-source" className="hover:line-through">Open Source</Link>
               <Link href="/about" className="hover:line-through">About</Link>
@@ -145,8 +145,8 @@ gtag('config', 'G-9LGNFH00R7');`,
               <Link href="/submit" className="hover:line-through">Submit Tool</Link>
             </div>
 
-            <div className="flex items-center gap-4 font-mono text-[0.85rem] uppercase tracking-widest flex-wrap justify-center py-4 px-8 border border-ink/10 bg-paper-dark/30 rounded-full">
-              <span className="opacity-60 text-[0.7rem]">Engineered by</span>
+            <div className="flex items-center gap-4 font-mono text-[0.85rem] uppercase tracking-widest flex-wrap justify-center py-6 px-10 border-2 border-ink bg-paper shadow-[8px_8px_0px_rgba(26,25,23,0.1)] transition-transform hover:translate-x-[-2px] hover:translate-y-[-2px]">
+              <span className="opacity-60 text-[0.7rem]">Built by</span>
               <a href="https://akhilhaving.fun" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:opacity-80 transition-opacity group">
                 <Image 
                   src="/dp.jpg" 

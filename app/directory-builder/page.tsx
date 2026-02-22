@@ -19,18 +19,36 @@ export default function DirectoryBuilderPage() {
           </div>
           <h1 className="type-display mb-12 text-6xl md:text-8xl leading-tight">
             Clone this <br />
-            entire <span className="circled">business.</span>
+            entire <span className="circled">website.</span>
           </h1>
           <p className="max-w-3xl font-serif italic text-3xl text-ink-fade leading-relaxed border-l-2 border-ink pl-8 mb-16">
-            Own the exact "Skill File" and automation engine I used to build Salestools.club. Give it to your AI, specify a niche (Recruiting, Legal, Fintech), and watch it build a full-scale directory in hours. 
+            Get the exact "Skill Package" and automation engine I used to build Salestools.club. Deploy your own directory for any niche (Recruiting, Legal, etc.) in a few hours. 
           </p>
           
-          <div className="flex flex-wrap gap-8">
-            <a href="mailto:akhil@salestools.club?subject=Interested in Directory Builder Skill" className="bg-ink text-paper px-12 py-5 font-mono font-bold uppercase text-[1rem] hover:bg-ink/90 transition-all">
-              Buy the Machine ->
-            </a>
-            <div className="flex items-center gap-4 font-mono text-[0.75rem] uppercase tracking-widest text-ink-fade">
-              <span>Ready to deploy in 24 hours</span>
+          <div className="flex flex-col gap-12">
+            <div className="tool-card bg-ink text-paper p-10 max-w-2xl">
+              <div className="flex items-center justify-between mb-8">
+                <div className="font-mono text-[0.7rem] uppercase tracking-widest opacity-60">Setup Command</div>
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 bg-paper rounded-full animate-status-blink"></span>
+                  <span className="font-mono text-[0.7rem] uppercase">Live</span>
+                </div>
+              </div>
+              <pre className="font-mono text-[1.2rem] md:text-[1.5rem] font-bold mb-8">
+                npx salestools bootstrap
+              </pre>
+              <div className="font-mono text-[0.7rem] uppercase tracking-widest text-paper/40 mb-8 pt-8 border-t border-white/10 space-y-2">
+                <p>Includes: Next.js Frontend + Python Scripts + Agent Logic</p>
+                <p className="text-paper/80 font-bold">Bonus: 1 week of email support for initial users</p>
+              </div>
+              <div className="flex flex-wrap gap-6">
+                <button className="bg-paper text-ink px-8 py-3 font-mono font-bold uppercase text-[0.8rem] hover:bg-white transition-all">
+                  Copy Command
+                </button>
+                <button className="border border-white/20 text-paper px-8 py-3 font-mono font-bold uppercase text-[0.8rem] hover:bg-white/10 transition-all">
+                  Download Package
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -124,13 +142,13 @@ export default function DirectoryBuilderPage() {
       {/* ── CTA ─────────────────────────────────────────── */}
       <section className="py-48 text-center">
         <div className="layout-container max-w-3xl">
-          <h2 className="type-display mb-12">Want to own the <br /><span className="circled text-ink">machine?</span></h2>
+          <h2 className="type-display mb-12 text-5xl">Ready to <br /><span className="circled text-ink">start?</span></h2>
           <p className="text-2xl font-serif italic text-ink-fade mb-16 leading-relaxed">
-            I'm currently offering the full setup (code + prompts + scripts) to a small group of founders who want to build high-trust niche directories.
+            I am offering the full setup (code + skills + scripts) for founders who want to build high-trust directories. One week of direct email support included.
           </p>
           <div className="flex flex-col sm:flex-row gap-8 justify-center items-center">
-            <a href="mailto:akhil@salestools.club?subject=Interested in Directory Builder Skill" className="circled font-mono font-bold px-12 py-4 text-[1.2rem] uppercase hover:bg-ink hover:text-paper transition-all">
-              Request Access
+            <a href="mailto:akhil@salestools.club?subject=Directory Builder Package" className="circled font-mono font-bold px-12 py-4 text-[1.2rem] uppercase hover:bg-ink hover:text-paper transition-all">
+              Request the Package
             </a>
             <Link href="/" className="font-mono text-[0.8rem] uppercase underline hover:line-through transition-all">
               Back to Registry

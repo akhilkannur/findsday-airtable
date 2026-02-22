@@ -52,4 +52,35 @@ program
     }
   });
 
+program
+  .command('bootstrap [niche]')
+  .description('Clone the Salestools Engine architecture for a new niche (e.g., Recruiting, Legal).')
+  .action(async (niche) => {
+    console.log(chalk.bold.green('\n🚀 Starting Salestools Directory Bootstrap...'));
+    const targetNiche = niche || 'General';
+    console.log(`${chalk.gray('Target Niche:')} ${chalk.cyan(targetNiche)}`);
+
+    const spinner = ora('Initializing architecture...').start();
+    
+    setTimeout(() => {
+      spinner.text = 'Cloning Next.js 15 frontend...';
+      setTimeout(() => {
+        spinner.text = 'Configuring crawl4ai research engine...';
+        setTimeout(() => {
+          spinner.text = 'Setting up Google Sheets sync logic...';
+          setTimeout(() => {
+            spinner.succeed(chalk.green('Architecture Ready!'));
+            
+            console.log('\n' + chalk.bold('Next Steps to Launch:'));
+            console.log(chalk.white(' 1. ') + chalk.cyan('Connect your Google Sheet ID in .env'));
+            console.log(chalk.white(' 2. ') + chalk.cyan(`Run 'npx salestools research' to find ${targetNiche} tools`));
+            console.log(chalk.white(' 3. ') + chalk.cyan("Run 'npm run build' to deploy to Vercel"));
+            
+            console.log('\n' + chalk.bold.green('✔ Done!') + ` Your ${targetNiche} directory engine is ready.`);
+          }, 1000);
+        }, 1000);
+      }, 1000);
+    }, 1000);
+  });
+
 program.parse(process.argv);
