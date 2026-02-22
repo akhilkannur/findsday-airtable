@@ -8,7 +8,7 @@ const BASE_URL = "https://salestools.club"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
-    const toolSlugs = (await getAllSlugs()) || []
+    const toolSlugs = [...new Set((await getAllSlugs()) || [])]
     const categorySlugs = getAllCategorySlugs() || []
     const usecaseSlugs = getUseCaseSlugs() || []
     const stackSlugs = getStackSlugs() || []
