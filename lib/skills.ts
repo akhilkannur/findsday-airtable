@@ -12,6 +12,28 @@ export interface Skill {
 
 const skills: Skill[] = [
   {
+    slug: "apollo-prospecting",
+    name: "Apollo.io Prospecting Node",
+    description: "Search 275M+ verified contacts and companies directly from your AI agent. Filter by title, industry, and funding.",
+    category: "Research",
+    difficulty: "Beginner",
+    worksWithTools: ["apollo"],
+    promptContent: "Claude, use the Apollo search tool to find 10 VPs of Sales at Series B SaaS companies in San Francisco and save them to my 'Target Leads' list.",
+    source: "Apollo.io Official",
+    installCommand: "npx -y @apollo/mcp-server",
+  },
+  {
+    slug: "hubspot-crm-sync",
+    name: "HubSpot CRM Orchestrator",
+    description: "Manage your HubSpot pipeline using natural language. Create contacts, update deal stages, and search records.",
+    category: "CRM",
+    difficulty: "Beginner",
+    worksWithTools: ["hubspot"],
+    promptContent: "Claude, search HubSpot for any deals closing this month over $50k and give me a summary of the latest activity for each.",
+    source: "HubSpot Official",
+    installCommand: "npx -y @hubspot/mcp-server",
+  },
+  {
     slug: "cold-email-writer",
     name: "Cold Email Writer",
     description:

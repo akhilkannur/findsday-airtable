@@ -83,11 +83,42 @@ export default async function SkillDetailPage({
       <div className="layout-container grid grid-cols-1 lg:grid-cols-[1fr_400px] border-x border-ink bg-white/40">
         {/* Left column */}
         <div className="p-10 md:p-20 space-y-32 border-r border-ink">
+          {/* Install Command if exists */}
+          {skill.installCommand && (
+            <div>
+              <div className="flex items-center gap-6 mb-12">
+                <div className="font-mono text-[0.8rem] uppercase tracking-wider text-ink">
+                  Quick Install
+                </div>
+                <div className="h-px flex-grow bg-ink opacity-10"></div>
+              </div>
+
+              <div className="tool-card group bg-ink text-paper">
+                <div className="flex items-center justify-between mb-10">
+                  <div className="font-mono text-[0.7rem] uppercase tracking-widest text-paper opacity-60">
+                    Terminal Command
+                  </div>
+                  <CopyButton
+                    text={skill.installCommand}
+                    label="Copy Command"
+                    className="font-mono text-[0.7rem] uppercase border border-white/20 px-4 py-2 hover:bg-white hover:text-black transition-all"
+                  />
+                </div>
+                <pre className="font-mono text-[14px] p-8 border border-white/10 bg-white/5 text-white leading-relaxed">
+                  {skill.installCommand}
+                </pre>
+                <p className="mt-6 font-mono text-[10px] text-paper/40 uppercase tracking-widest">
+                  Paste this into your terminal to add the skill to your agent.
+                </p>
+              </div>
+            </div>
+          )}
+
           {/* Skill content */}
           <div>
             <div className="flex items-center gap-6 mb-12">
               <div className="font-mono text-[0.8rem] uppercase tracking-wider text-ink">
-                Skill File
+                {skill.installCommand ? "Skill Instructions" : "Skill File"}
               </div>
               <div className="h-px flex-grow bg-ink opacity-10"></div>
             </div>
@@ -120,15 +151,29 @@ export default async function SkillDetailPage({
 
             <div className="p-16 bg-paper border border-dashed border-ink">
               <div className="font-serif text-xl leading-relaxed text-ink-fade space-y-6">
-                <p>
-                  <strong className="font-mono text-[0.85rem] uppercase text-ink">Option 1:</strong>{" "}
-                  Drop this into your <code className="font-mono text-[0.85rem] bg-paper-dark/60 px-2 py-0.5">.claude/skills/</code> folder
-                  as <code className="font-mono text-[0.85rem] bg-paper-dark/60 px-2 py-0.5">{skill.slug}.md</code>
-                </p>
-                <p>
-                  <strong className="font-mono text-[0.85rem] uppercase text-ink">Option 2:</strong>{" "}
-                  Paste the skill content directly into your agent&apos;s context window or system prompt.
-                </p>
+                {skill.installCommand ? (
+                  <>
+                    <p>
+                      <strong className="font-mono text-[0.85rem] uppercase text-ink">Quick Add:</strong>{" "}
+                      Copy the terminal command above and paste it into your agent's terminal (Claude Code, Cursor, or Gemini CLI).
+                    </p>
+                    <p>
+                      <strong className="font-mono text-[0.85rem] uppercase text-ink">Source:</strong>{" "}
+                      This skill is provided by <span className="font-bold text-ink">{skill.source}</span>.
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <p>
+                      <strong className="font-mono text-[0.85rem] uppercase text-ink">Option 1:</strong>{" "}
+                      Paste the skill content directly into your agent&apos;s context window or system prompt.
+                    </p>
+                    <p>
+                      <strong className="font-mono text-[0.85rem] uppercase text-ink">Option 2:</strong>{" "}
+                      Save this as <code className="font-mono text-[0.85rem] bg-paper-dark/60 px-2 py-0.5">{skill.slug}.md</code> in your agent&apos;s custom instructions folder.
+                    </p>
+                  </>
+                )}
               </div>
             </div>
           </div>
