@@ -22,34 +22,34 @@ export const metadata: Metadata = {
 
 const faqItems = [
   {
-    question: "What is an MCP server?",
+    question: "What is a Sales API?",
     answer:
-      "A connector that lets AI agents (like Claude or Cursor) talk directly to a sales tool. Instead of writing API code, you paste a config and your agent can update your CRM, search leads, or send emails.",
+      "Think of an API as a pipe that connects two pieces of software. It allows your AI agent to send or receive data from your sales tools, like pulling a list of leads from Apollo or pushing a new contact into HubSpot.",
   },
   {
-    question: "Do I need to code?",
+    question: "What is an MCP Server?",
     answer:
-      "Not really. Most tools here work with copy-paste configs and starter prompts. If you can use Claude Code or Cursor, you can use these tools.",
+      "An MCP is like a universal plug. It is a newer, faster way to connect tools to AI agents like Claude or Cursor. Instead of building a complex connection, you just paste a small piece of configuration and your agent can immediately use that tool.",
+  },
+  {
+    question: "What is a 'Skill'?",
+    answer:
+      "A skill is a set of instructions that tells your AI exactly how to perform a sales task. It combines a prompt with the right tools so your agent knows how to do things like write a cold email or research a prospect without you explaining it every time.",
+  },
+  {
+    question: "Do I need to be a developer?",
+    answer:
+      "No. This site is built for founders, sales managers, and ops professionals. If you know how to use Claude or Cursor, you can use these tools. Most of them work with simple copy and paste setup.",
   },
   {
     question: "What does AI-Native mean?",
     answer:
-      "It means the tool was built (or works well) with AI agents in mind. Good API docs, MCP support, and clean endpoints that an AI can call without getting confused.",
-  },
-  {
-    question: "How do I choose between an API and an MCP server?",
-    answer:
-      "If the tool has an MCP server, start there — it's the fastest path. If not, use the API with a starter prompt. We label MCP-ready tools so you can filter for them.",
-  },
-  {
-    question: "Is this only for developers?",
-    answer:
-      "No. This is for founders, sales managers, and ops people who use AI tools to build automations. If you use Claude or Cursor, you're the target audience.",
+      "It means the tool was built specifically to work with AI agents. These tools have clean data and easy connections that an AI can understand without getting confused by old or messy software structures.",
   },
   {
     question: "Can I submit a tool?",
     answer:
-      "Yes. If you know a sales API or MCP server we're missing, submit it and we'll review it.",
+      "Yes. If you know a sales API or MCP server we are missing, submit it and we will review it.",
   },
 ]
 
