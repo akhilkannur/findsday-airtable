@@ -1,6 +1,6 @@
 import csv
 import json
-import requests
+import urllib.request
 import re
 import sys
 import os
@@ -25,11 +25,16 @@ def fetch_tab(name):
         print(f"⏭️  Skipping {name} — GID not configured yet")
         return None
     print(f"📥 Fetching {name} tab...")
-    resp = requests.get(csv_url(gid))
-    if resp.status_code != 200:
-        print(f"❌ Failed to fetch {name}: {resp.status_code}")
+    try:
+        with urllib.request.urlopen(csv_url(gid)) as response:
+            if response.status != 200:
+                print(f"❌ Failed to fetch {name}: {response.status}")
+                return None
+            content = response.read().decode('utf-8')
+            return list(csv.DictReader(content.splitlines()))
+    except Exception as e:
+        print(f"❌ Error fetching {name}: {e}")
         return None
-    return list(csv.DictReader(resp.content.decode('utf-8').splitlines()))
 
 # ── Helpers ──────────────────────────────────────────────
 
@@ -64,7 +69,7 @@ def escape_ts_string(s):
         return ""
     return s.replace('\\', '\\\\').replace('`', '\\`').replace('${', '\\${')
 
-# ── Tools sync (existing logic) ──────────────────────────
+# ── Tools sync ───────────────────────────────────────────
 
 CATEGORIES_META = [
     {"slug": "sales-intelligence", "name": "Sales Intelligence", "description": "Find prospects and enrich lead lists with real-time B2B contact data and technographic signals.", "icon": "Search"},
@@ -149,7 +154,6 @@ def sync_tools(rows):
     print(f"✅ Updated lib/data.ts ({len(tools)} tools)")
 
 # ── Skills sync ──────────────────────────────────────────
-# Sheet columns: slug, name, description, category, difficulty, worksWithTools, promptContent, source, installCommand
 
 def sync_skills(rows):
     skills = []
@@ -219,8 +223,6 @@ export function getSkillsByCategory(category: Skill["category"]): Skill[] {
     print(f"✅ Updated lib/skills.ts ({len(skills)} skills)")
 
 # ── Stacks sync ──────────────────────────────────────────
-# Sheet columns: slug, name, tagline, description, toolSlugs, workflow
-# workflow column format: JSON array of {step, toolSlug, description}
 
 def sync_stacks(rows):
     stacks = []
@@ -229,7 +231,7 @@ def sync_stacks(rows):
 
         tool_slugs = parse_list(row.get('toolSlugs', '[]'))
 
-        # Parse workflow — expect JSON array
+        # Parse workflow
         workflow_raw = row.get('workflow', '[]').strip()
         try:
             workflow = json.loads(workflow_raw.replace("'", '"'))
@@ -307,7 +309,6 @@ export function getToolsForStack(stack: Stack): SalesTool[] {
     print(f"✅ Updated lib/stacks.ts ({len(stacks)} stacks)")
 
 # ── Use Cases sync ───────────────────────────────────────
-# Sheet columns: slug, title, metaDescription, intro, categories, capabilityKeywords, includeSlugs
 
 def sync_usecases(rows):
     usecases = []
@@ -418,8 +419,6 @@ export function getToolsForUseCase(usecase: UseCase): SalesTool[] {
 # ── Main ─────────────────────────────────────────────────
 
 def main():
-    # Allow syncing specific tabs: python sync-gsheet.py tools skills
-    # Or sync all: python sync-gsheet.py
     targets = sys.argv[1:] if len(sys.argv) > 1 else ["tools", "skills", "stacks", "usecases"]
 
     for target in targets:

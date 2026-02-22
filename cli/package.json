@@ -1,0 +1,18 @@
+{
+  "name": "@salestools/cli",
+  "version": "0.1.0",
+  "description": "The official CLI for Salestools.club — configure your sales agents in one command.",
+  "main": "bin/index.js",
+  "bin": {
+    "salestools": "bin/index.js"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^11.1.0",
+    "ora": "^7.0.1"
+  }
+}
