@@ -145,20 +145,20 @@ gtag('config', 'G-9LGNFH00R7');`,
               <Link href="/submit" className="hover:line-through">Submit Tool</Link>
             </div>
 
-            <div className="flex items-center gap-3 font-mono text-[0.75rem] uppercase tracking-widest flex-wrap justify-center">
-              <span>Built by</span>
-              <a href="https://akhilhaving.fun" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+            <div className="flex items-center gap-4 font-mono text-[0.85rem] uppercase tracking-widest flex-wrap justify-center py-4 px-8 border border-ink/10 bg-paper-dark/30 rounded-full">
+              <span className="opacity-60 text-[0.7rem]">Engineered by</span>
+              <a href="https://akhilhaving.fun" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:opacity-80 transition-opacity group">
                 <Image 
                   src="/dp.jpg" 
                   alt="Akhil" 
-                  width={24}
-                  height={24}
-                  className="rounded-full grayscale border border-ink/20"
+                  width={32}
+                  height={32}
+                  className="rounded-full grayscale border-2 border-ink/40 group-hover:grayscale-0 transition-all"
                 />
-                <span className="font-bold border-b border-ink/30 pb-0.5">Akhil</span>
+                <span className="font-black border-b-2 border-ink pb-0.5">Akhil</span>
               </a>
-              <span>with</span>
-              <a href="https://realaiexamples.com" target="_blank" rel="noopener noreferrer" className="font-bold border-b border-ink/30 pb-0.5 hover:opacity-80 transition-opacity">
+              <span className="opacity-60 text-[0.7rem]">with</span>
+              <a href="https://realaiexamples.com" target="_blank" rel="noopener noreferrer" className="font-black border-b-2 border-ink pb-0.5 hover:opacity-80 transition-opacity">
                 Real AI Examples
               </a>
             </div>

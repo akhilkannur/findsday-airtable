@@ -149,14 +149,11 @@ export default async function Home() {
               </form>
 
               <div className="flex flex-wrap gap-6 mb-12">
+                <Link href="/tools" className="font-mono font-bold uppercase text-[0.8rem] underline hover:line-through transition-all">
+                  Browse APIs & MCPs ->
+                </Link>
                 <Link href="/skills" className="font-mono font-bold uppercase text-[0.8rem] underline hover:line-through transition-all">
                   Browse Skills ->
-                </Link>
-                <Link href="/mcp" className="font-mono font-bold uppercase text-[0.8rem] underline hover:line-through transition-all">
-                  Browse MCP Servers ->
-                </Link>
-                <Link href="/tools" className="font-mono font-bold uppercase text-[0.8rem] underline hover:line-through transition-all">
-                  Full Directory ->
                 </Link>
               </div>
 
@@ -177,7 +174,7 @@ export default async function Home() {
             Works with your agent
           </p>
           <div className="flex flex-wrap gap-3">
-            {["Claude Code", "Claude Desktop", "Gemini CLI", "Claude Cowork", "ChatGPT Operator", "Any MCP Client"].map(
+            {["Claude Code", "Gemini CLI", "Claude Cowork", "ChatGPT Operator", "Any Agentic Tools"].map(
               (agent) => (
                 <span
                   key={agent}
