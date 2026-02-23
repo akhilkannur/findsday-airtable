@@ -29,16 +29,64 @@ export async function POST(req: Request) {
 
     const sheets = google.sheets({ version: 'v4', auth });
 
-    await sheets.spreadsheets.values.append({
-      spreadsheetId: sheetId,
-      range: 'Newsletter!A:B',
-      valueInputOption: 'USER_ENTERED',
-      requestBody: {
-        values: [
-          [new Date().toISOString(), email],
-        ],
-      },
-    });
+    // Try to append - if sheet doesn't exist, create it first
+    try {
+      await sheets.spreadsheets.values.append({
+        spreadsheetId: sheetId,
+        range: 'Newsletter!A:B',
+        valueInputOption: 'USER_ENTERED',
+        requestBody: {
+          values: [
+            [new Date().toISOString(), email],
+          ],
+        },
+      });
+    } catch (appendError: any) {
+      // If sheet doesn't exist, create it
+      if (appendError.message?.includes('Unable to parse range')) {
+        // Create the Newsletter sheet
+        const spreadsheet = await sheets.spreadsheets.get({ spreadsheetId });
+        const sheetExists = spreadsheet.data.sheets?.some(s => s.properties?.title === 'Newsletter');
+        
+        if (!sheetExists) {
+          await sheets.spreadsheets.batchUpdate({
+            spreadsheetId,
+            requestBody: {
+              requests: [{
+                addSheet: {
+                  properties: {
+                    title: 'Newsletter',
+                    gridProperties: { rowCount: 1000, columnCount: 26 }
+                  }
+                }
+              }]
+            }
+          });
+          
+          // Add headers
+          await sheets.spreadsheets.values.update({
+            spreadsheetId,
+            range: 'Newsletter!A1:B1',
+            valueInputOption: 'USER_ENTERED',
+            requestBody: {
+              values: [['Timestamp', 'Email']],
+            },
+          });
+        }
+        
+        // Now append the email
+        await sheets.spreadsheets.values.append({
+          spreadsheetId,
+          range: 'Newsletter!A:B',
+          valueInputOption: 'USER_ENTERED',
+          requestBody: {
+            values: [[new Date().toISOString(), email]],
+          },
+        });
+      } else {
+        throw appendError;
+      }
+    }
 
     return NextResponse.json({ success: true });
   } catch (error: any) {
