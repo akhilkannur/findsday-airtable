@@ -10,20 +10,39 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Invalid email address' }, { status: 400 });
     }
 
-    const clientEmail = process.env.GOOGLE_CLIENT_EMAIL;
-    const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n');
     const sheetId = process.env.GOOGLE_SHEET_ID;
 
-    if (!clientEmail || !privateKey || !sheetId) {
-      console.error('Missing Google Sheets configuration');
+    if (!sheetId) {
+      console.error('Missing Google Sheet ID');
       return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
     }
 
-    const auth = new google.auth.GoogleAuth({
-      credentials: {
+    // Load credentials from JSON env var or individual env vars
+    let credentials;
+    const credentialsJson = process.env.GOOGLE_CREDENTIALS_JSON;
+    
+    if (credentialsJson) {
+      credentials = JSON.parse(credentialsJson);
+    } else {
+      // Fallback to individual env vars
+      const clientEmail = process.env.GOOGLE_CLIENT_EMAIL;
+      const privateKey = process.env.GOOGLE_PRIVATE_KEY;
+      
+      if (!clientEmail || !privateKey) {
+        console.error('Missing Google credentials');
+        return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
+      }
+      
+      credentials = {
+        type: 'service_account',
+        private_key: privateKey.replace(/\\n/g, '\n'),
         client_email: clientEmail,
-        private_key: privateKey,
-      },
+        token_uri: 'https://oauth2.googleapis.com/token',
+      };
+    }
+
+    const auth = new google.auth.GoogleAuth({
+      credentials,
       scopes: ['https://www.googleapis.com/auth/spreadsheets'],
     });
 
@@ -36,15 +55,12 @@ export async function POST(req: Request) {
         range: 'Newsletter!A:B',
         valueInputOption: 'USER_ENTERED',
         requestBody: {
-          values: [
-            [new Date().toISOString(), email],
-          ],
+          values: [[new Date().toISOString(), email]],
         },
       });
     } catch (appendError: any) {
       // If sheet doesn't exist, create it
       if (appendError.message?.includes('Unable to parse range')) {
-        // Create the Newsletter sheet
         const spreadsheet = await sheets.spreadsheets.get({ spreadsheetId });
         const sheetExists = spreadsheet.data.sheets?.some(s => s.properties?.title === 'Newsletter');
         
