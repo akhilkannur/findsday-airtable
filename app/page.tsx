@@ -6,15 +6,20 @@ import type { Metadata } from "next"
 import { NewsletterForm } from "@/components/NewsletterForm"
 
 export const metadata: Metadata = {
-  title: "Salestools Club - Every Sales API & MCP Server in one place.",
+  title: "Salestools Club — Every Sales API & MCP Server in one place.",
   description:
-    "Every Sales API and MCP server you need to automate your GTM with Claude Code and agentic tools.",
+    "The sales API directory for AI agents. Find MCP servers, CRM APIs, and agentic sales tools for Claude Code, Gemini CLI, and autonomous sales workflows.",
   keywords: [
-    "what is mcp server sales",
-    "ai sales tools directory",
-    "sales api directory",
-    "mcp server for crm",
-    "ai native sales tools",
+    "sales API directory",
+    "MCP server for sales",
+    "CRM API marketplace",
+    "build AI sales agent",
+    "Claude Code sales tools",
+    "Gemini CLI sales",
+    "agentic sales stack",
+    "sales automation API",
+    "AI agent sales integrations",
+    "sales tools for AI agents",
   ],
   alternates: {
     canonical: "https://salestools.club",

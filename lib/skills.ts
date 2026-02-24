@@ -415,6 +415,632 @@ Return enriched data as a structured table with one row per lead. Include a conf
 - Respect rate limits on enrichment APIs`,
     source: "Salestools Club",
   },
+  {
+    slug: "cold-outreach",
+    name: "Cold Outreach",
+    description:
+      "Cold email sequences, LinkedIn DMs, and personalized outreach that get replies. Structured around relevance, brevity, and clear value.",
+    category: "Outreach",
+    difficulty: "Intermediate",
+    worksWithTools: ["apollo", "hunter", "instantly", "lemlist", "linkedin"],
+    promptContent: `# Skill: Cold Outreach
+
+Cold email sequences, LinkedIn DMs, and personalized outreach that get replies. Structured around relevance, brevity, and clear value.
+
+## Purpose
+
+Cold outreach fails when it's generic, long, or self-centered. This skill generates outreach that's short, specific to the recipient, and focused on their problem — not your product.
+
+## Workflow
+
+### Step 1: Gather Context
+
+Collect from the user:
+- **What you sell:** Product/service in one sentence
+- **Who you're targeting:** Title, company size, industry
+- **Their likely pain:** The problem they probably have right now
+- **Your proof:** Results you've gotten for similar companies/people
+- **Channel:** Email, LinkedIn DM, or both
+- **Sequence length:** Single touch or multi-step (recommend 3-5 emails)
+
+### Step 2: Research the Recipient (if specific)
+
+If targeting a specific person/company:
+- Reference something specific (recent post, company news, job listing, product launch)
+- Connect it to the pain your product solves
+- Never fake personalization — if you can't find something real, use industry-level relevance
+
+### Step 3: Write the Sequence
+
+**Email 1: The Opener** (Day 1)
+- Subject line: Short, lowercase, curiosity or relevance-driven
+- Line 1: Observation about them (not about you)
+- Line 2-3: Connect to a problem they likely have
+- Line 4: What you do and one proof point
+- Line 5: Soft CTA (question, not demand)
+- Total: 4-6 sentences max
+
+**Email 2: The Value Add** (Day 3)
+- Provide something useful — a quick insight, stat, or idea
+- Don't pitch. Just demonstrate you understand their world.
+- End with "Thought this might be relevant. Worth a quick chat?"
+
+**Email 3: The Case Study** (Day 6)
+- "We helped [similar company] achieve [specific result] in [timeframe]"
+- One paragraph, one result, one CTA
+- "Would something like this be useful for [their company]?"
+
+**Email 4: The Breakup** (Day 10)
+- Short and honest: "I'll stop reaching out, but wanted to leave this here"
+- Restate the value one final time
+- "If timing is ever right, here's my calendar: [link]"
+
+### Step 4: Write Subject Lines
+
+Generate 5 subject line options per email:
+- 3-6 words
+- Lowercase (feels personal, not marketing)
+- No clickbait — relevance over curiosity
+
+## Constraints
+
+- Every email must be under 100 words. Shorter is better.
+- Never open with "I hope this email finds you well" or "My name is..."
+- Never describe your company in more than one sentence
+- Subject lines must be under 6 words
+- Always include a specific, low-friction CTA (question, not demand)
+- Don't use bold, bullet points, or formatting in cold emails — plain text only`,
+    source: "Matt Warren",
+    sourceUrl: "https://github.com/mfwarren/entrepreneur-claude-skills",
+  },
+  {
+    slug: "objection-handling",
+    name: "Objection Handling",
+    description:
+      "Sales objection scripts, FAQ generation, and trust-building content for common buying hesitations.",
+    category: "Enablement",
+    difficulty: "Beginner",
+    worksWithTools: ["fireflies", "recall-ai", "hubspot", "salesforce"],
+    promptContent: `# Skill: Objection Handling
+
+Sales objection scripts, FAQ generation, and trust-building content for common buying hesitations.
+
+## Purpose
+
+Every product faces the same core objections: price, timing, trust, need, and authority. This skill maps your specific objections and creates scripts to address each one honestly.
+
+## Workflow
+
+### Step 1: Gather Context
+- Product/service and price point
+- Sales channel (calls, chat, email, self-serve)
+- Most common objections heard (if known)
+- Ideal customer profile
+
+### Step 2: Map the Objection Categories
+1. **Price:** "It's too expensive" / "I can't afford it"
+2. **Timing:** "Not right now" / "Maybe later"
+3. **Trust:** "How do I know this works?" / "I've been burned before"
+4. **Need:** "I don't think I need this" / "We're fine without it"
+5. **Authority:** "I need to check with my partner/boss"
+6. **Competition:** "How are you different from X?"
+
+### Step 3: Create Response Scripts
+For each objection:
+- **Acknowledge** — Validate the concern (never dismiss it)
+- **Clarify** — Ask a question to understand the real objection
+- **Reframe** — Shift the perspective
+- **Proof** — Provide evidence (testimonial, case study, guarantee)
+- **Close** — Re-present the offer with the objection addressed
+
+### Step 4: FAQ Page Content
+Turn top objections into FAQ entries for the website/sales page. Proactively address concerns before they arise.
+
+### Step 5: Trust-Building Content
+Suggest content pieces that preemptively handle objections:
+- Case studies for trust
+- Comparison pages for competition
+- ROI calculators for price
+- Free trials/samples for need
+
+## Constraints
+
+- Never teach manipulation tactics — honest selling only
+- Scripts should feel conversational, not rehearsed
+- Always respect "no" — provide one reframe, then move on
+- Don't create pressure tactics or false scarcity`,
+    source: "Matt Warren",
+    sourceUrl: "https://github.com/mfwarren/entrepreneur-claude-skills",
+  },
+  {
+    slug: "offer-creation",
+    name: "Offer Creation",
+    description:
+      "Build irresistible offers using the $100M Offers framework. Structure value stacks, guarantees, bonuses, and pricing that make saying no feel irrational.",
+    category: "Enablement",
+    difficulty: "Advanced",
+    worksWithTools: ["hubspot", "salesforce", "pipedrive"],
+    promptContent: `# Skill: Offer Creation
+
+Build irresistible offers using the $100M Offers framework. Structure value stacks, guarantees, bonuses, and pricing that make saying "no" feel irrational.
+
+## Purpose
+
+Most founders sell a product. Great founders sell an offer. This skill walks through the complete process of turning a product or service into a "grand slam offer" — one where the perceived value so far exceeds the price that buying becomes the obvious choice.
+
+## Workflow
+
+### Step 1: Define the Dream Outcome
+
+Ask the user:
+- What does your customer want more than anything? (The dream outcome, not your product)
+- How long does it currently take them to get there?
+- What have they already tried that failed?
+- What's the biggest risk they perceive in buying?
+
+### Step 2: Apply the Value Equation
+
+Value = (Dream Outcome x Perceived Likelihood of Achievement) / (Time Delay x Effort & Sacrifice)
+
+For maximum value, work all four levers:
+1. **Increase Dream Outcome** — Make the end result bigger, more specific, more desirable
+2. **Increase Perceived Likelihood** — Add proof, guarantees, credentials, case studies
+3. **Decrease Time Delay** — Faster results, quick wins, immediate access
+4. **Decrease Effort & Sacrifice** — Done-for-you, templates, automation, simplicity
+
+### Step 3: Build the Value Stack
+
+List every component of the offer. For each, define:
+- Core offer: The main product/service
+- Bonus 1: Accelerator, template, tool
+- Bonus 2: Access, community, support
+- Bonus 3: Speed/convenience upgrade
+
+The stack should make the price feel absurdly low compared to total value. Aim for 10:1 value-to-price ratio minimum.
+
+### Step 4: Design the Guarantee
+
+Choose a guarantee type:
+- **Unconditional** — "Full refund, no questions asked, 30 days"
+- **Conditional** — "Do X, Y, Z and if you don't get [result], full refund"
+- **Anti-guarantee** — "This is NOT for everyone. We're selective."
+- **Performance** — "We'll work for free until you hit [metric]"
+
+### Step 5: Name the Offer
+
+The name should communicate the result, not the mechanism:
+- Bad: "Marketing Consulting Package"
+- Good: "The 90-Day Revenue Accelerator"
+
+Formula: [Timeframe] + [Dream Outcome] + [Container Word]
+
+## Constraints
+
+- Never create offers with fake or inflated value numbers — every value claim must be defensible
+- Don't stack bonuses that are irrelevant to the core outcome
+- Guarantees must be ones the user can actually honor`,
+    source: "Matt Warren",
+    sourceUrl: "https://github.com/mfwarren/entrepreneur-claude-skills",
+  },
+  {
+    slug: "pricing-strategy",
+    name: "Pricing Strategy",
+    description:
+      "Value-based pricing, tiered offers, anchoring, and price sensitivity analysis for SaaS and services.",
+    category: "Operations",
+    difficulty: "Advanced",
+    worksWithTools: ["stripe", "chargebee", "paddle"],
+    promptContent: `# Skill: Pricing Strategy
+
+Value-based pricing, tiered offers, anchoring, and price sensitivity analysis.
+
+## Purpose
+
+Price is the most powerful lever for profitability. A 10% price increase typically adds more to the bottom line than a 10% increase in volume. This skill helps founders price based on value, not cost.
+
+## Workflow
+
+### Step 1: Gather Context
+- Product/service description
+- Current pricing (if any)
+- Target customer and their budget
+- Competitor pricing
+- Cost structure (COGS, delivery costs)
+- Business model (subscription, one-time, usage)
+
+### Step 2: Pricing Model Selection
+- **Value-based:** Price based on outcome delivered (best for most businesses)
+- **Cost-plus:** Price = cost + margin (commodity markets only)
+- **Competitor-based:** Price relative to alternatives
+- **Usage-based:** Price scales with consumption
+
+### Step 3: Tier Design
+
+Most businesses benefit from 3 tiers:
+- **Starter/Basic:** Low price, limited features — exists to anchor
+- **Professional/Growth:** Mid price, best value — this is what you want them to buy
+- **Enterprise/Premium:** High price, everything — exists to make middle look reasonable
+
+For each tier: name, price, features, and who it's for.
+
+### Step 4: Pricing Psychology
+- Anchoring: Show highest price first
+- Charm pricing ($97 vs $100) for B2C
+- Round pricing ($500, not $497) for B2B/premium
+- Decoy effect: Make the middle tier obviously best value
+- Payment plans to reduce perceived cost
+
+### Step 5: Price Sensitivity Testing
+- Van Westendorp questions (too cheap, cheap, expensive, too expensive)
+- Suggest A/B testing approach for digital products
+- Grandfather existing customers vs. immediate change
+
+## Constraints
+
+- Never suggest pricing below cost without an explicit strategy (loss leader, land-and-expand)
+- Always consider the customer's willingness to pay, not just the founder's desired price
+- Note that pricing is iterative — recommend starting point, not permanent decision`,
+    source: "Matt Warren",
+    sourceUrl: "https://github.com/mfwarren/entrepreneur-claude-skills",
+  },
+  {
+    slug: "founder-led-sales",
+    name: "Founder-Led Sales",
+    description:
+      "Complete system for founders to land their first 100 customers. Prospect lists, problem-first messaging, tracking, and follow-up.",
+    category: "Outreach",
+    difficulty: "Intermediate",
+    worksWithTools: ["linkedin", "apollo", "hunter", "notion", "airtable"],
+    promptContent: `# Skill: Founder-Led Sales & Outreach Expert
+
+Act as a top 1% sales development strategist who specializes in founder-led sales for early-stage SaaS. You've helped solo founders close their first 100 customers through direct outreach.
+
+## Core Principles
+
+- Your first 100 customers won't come from inbound. You have to go get them.
+- Outreach that leads with "I built a thing" fails. Outreach that leads with "I noticed you have this problem" converts.
+- Volume matters, but relevance matters more. 10 personalized messages beat 100 generic ones.
+- Every reply — even a rejection — is data. Objections are product requirements in disguise.
+- Consistency beats intensity. 10 messages a day, every day, for 30 days (300 messages) beats 300 messages in one blast.
+
+## Building a Prospect List
+
+### Where to Find Prospects
+
+**LinkedIn (best for B2B SaaS):**
+- Search by job title + industry + company size matching your ICP
+- Look at who follows your competitors
+- Check who's posting about the problem you solve
+- Groups related to your problem space
+
+**Communities:**
+- Reddit: Search subreddits where your ICP hangs out
+- Indie Hackers, Hacker News: People building things often need tools
+- Slack/Discord communities in your niche
+
+**Review sites:**
+- G2, Capterra: Look at who's reviewing competitor products — especially negative reviewers
+- Product Hunt: People who upvoted similar products
+
+**Job boards:**
+- Companies hiring for roles that your product makes easier are actively feeling the pain
+
+### Prospect List Structure
+
+Build a spreadsheet with:
+| Name | Title | Company | Company Size | Source | Email | LinkedIn | Pain Signal | Status | Last Contact | Response | Notes |
+
+**Pain signal** is the most important column. It's the specific reason you believe THIS person has the problem you solve.
+
+Minimum viable list: **100 prospects** before you start sending.
+
+## Writing Problem-First Messages
+
+### The Structure
+
+[1-2 sentences showing you know THEM and THEIR problem]
+[1 sentence connecting to your experience with that problem]
+[1 sentence introducing your solution — what it does, not what it is]
+[1 sentence with a specific, low-commitment ask]
+
+### Template
+
+Hi [First name],
+
+I noticed [specific observation about them]. [One sentence about why that caught your attention, connecting it to a problem you understand.]
+
+I ran into the same issue when I was [your relevant experience]. That's why I built [Product] — it [one sentence on the specific outcome, not features].
+
+[Concrete proof point]
+
+Would a quick 15-minute call make sense to see if this fits your situation?
+
+## Follow-Up Sequence
+
+Day 0:  Initial message
+Day 3:  Follow-up #1 — Short, add new value
+Day 8:  Follow-up #2 — Even shorter, different angle
+Day 15: Follow-up #3 (final) — Breakup email
+
+## Daily Routine
+
+Morning (30-45 minutes):
+1. Send 10 new outreach messages (personalized)
+2. Send follow-ups to previous messages
+3. Reply to any responses from yesterday
+4. Log everything in your spreadsheet
+
+## Constraints
+
+- Don't lead with your product name, features, or company story
+- Don't send the same message to 500 people
+- Don't write more than 150 words
+- Don't ask for a 30-minute call. Ask for 15
+- Don't follow up more than 3 times`,
+    source: "Jesse Vincent",
+    sourceUrl: "https://github.com/whawkinsiv/claude-code-superpowers",
+  },
+  {
+    slug: "anysite-lead-generation",
+    name: "Lead Generation (Anysite)",
+    description:
+      "B2B lead generation and prospecting using LinkedIn, email discovery, company research, and contact enrichment. Build qualified prospect lists.",
+    category: "Operations",
+    difficulty: "Intermediate",
+    worksWithTools: ["linkedin", "apollo", "hunter", "clearbit"],
+    promptContent: `# Skill: anysite Lead Generation
+
+Professional lead generation and prospecting. Find prospects on LinkedIn, discover verified emails, extract contacts from websites, and build comprehensive lead lists for sales, recruiting, and business development.
+
+## Overview
+
+This skill helps you:
+- **Find qualified prospects** on LinkedIn using advanced search filters
+- **Enrich profiles** with work history, education, and skills
+- **Discover email addresses** through LinkedIn email finding
+- **Extract contact information** from company websites
+- **Research companies** to identify target accounts
+- **Build prospect lists** formatted for CRM import
+
+## Supported Platforms
+
+- **LinkedIn** (Primary): People search, profile enrichment, email discovery, company research
+- **Web Scraping**: Contact extraction from websites, sitemap parsing
+- **Instagram**: Business account discovery and profile analysis
+- **Y Combinator**: Startup company and founder research
+
+## Quick Start
+
+### Step 1: Identify Your Lead Source
+
+| Goal | Primary Tool | Use Case |
+|------|-------------|----------|
+| Find prospects by title/company | LinkedIn search | B2B prospecting, targeted outreach |
+| Enrich existing leads | LinkedIn profile | Add work history, education, skills |
+| Find verified emails | Email finder | Email outreach campaigns |
+| Extract website contacts | Web scraper | Get emails/phones from contact pages |
+| Research target companies | LinkedIn companies | Account-based marketing (ABM) |
+
+### Step 2: Execute Data Collection
+
+**Example: Find Sales VPs in San Francisco**
+Search LinkedIn with title "VP Sales", location "San Francisco Bay Area", count 25
+
+**Example: Enrich a LinkedIn Profile**
+Get profile with work history, education, and skills
+
+**Example: Find Email Address**
+Use email finder with name + company domain
+
+### Step 3: Process and Analyze Results
+
+Review the returned data for:
+- **Profile completeness**: Work history, education, skills presence
+- **Contact quality**: Email deliverability, phone format
+- **Relevance scoring**: Title match, company fit, location alignment
+
+### Step 4: Format Output
+
+Choose your preferred output format:
+- **Chat Summary**: Top prospects with key details
+- **CSV Export**: Full prospect list ready for CRM import
+- **JSON Export**: Structured data for custom integration
+
+## Common Workflows
+
+### LinkedIn B2B Prospecting
+
+1. Search for prospects by title, location, company keywords
+2. Enrich top prospects with experience and education
+3. Find email addresses using multiple sources
+4. Export to CSV with fields: Name, Title, Company, Location, Email, LinkedIn URL
+
+## Output Formats
+
+All outputs support three formats:
+- **Chat Summary** (Default) - Natural language insights
+- **CSV Export** - Structured data for spreadsheet/CRM
+- **JSON Export** - Raw data for programmatic processing`,
+    source: "Anysite",
+    sourceUrl: "https://github.com/anysiteio/agent-skills",
+  },
+  {
+    slug: "anysite-person-analyzer",
+    name: "Person Analyzer (Anysite)",
+    description:
+      "Deep multi-platform intelligence on prospects. Combines LinkedIn, Twitter/X, Reddit, and web presence for comprehensive sales research.",
+    category: "Research",
+    difficulty: "Advanced",
+    worksWithTools: ["linkedin", "twitter", "reddit", "exa-ai"],
+    promptContent: `# Skill: Person Intelligence Analyzer
+
+Comprehensive multi-platform intelligence analysis combining LinkedIn, Twitter/X, Reddit, GitHub, and web presence data to create actionable intelligence reports for sales, partnerships, and recruitment.
+
+## Analysis Workflow
+
+### Phase 1: Initial Data Collection
+
+**Starting with LinkedIn Profile URL:**
+1. Get full profile with education, experience, skills
+2. Extract URN for subsequent API calls
+3. Record: current company, role, location, connections count
+
+**Starting with Name + Context:**
+1. Search LinkedIn with name, title, company, location filters
+2. If multiple matches: present top 3-5 candidates
+3. After confirmation, proceed with confirmed profile
+
+### Phase 2: Activity & Engagement Analysis
+
+**Content Analysis (Posts):**
+- Get recent posts (20-50, last 90-180 days)
+- Analyze topics, themes, engagement metrics
+- Calculate posting frequency
+- Identify content style (thought leadership, sharing, personal)
+
+**Engagement Analysis (Comments & Reactions):**
+- Get comments and reactions (30-50)
+- Analyze who they engage with (seniority, industries)
+- Topics that spark engagement
+- Engagement style (supportive, challenging, informational)
+
+**Output: Engagement Profile**
+- Primary content themes (ranked by frequency)
+- Engagement level: High/Medium/Low
+- Influence indicators: follower count, engagement rate
+- Communication style: formal/casual, technical/general
+
+### Phase 3: Company Intelligence
+
+**Current Company Deep Dive:**
+- Company size, industry, specialties
+- Growth indicators (employee count trends)
+- Recent updates/news
+- Company communication themes
+- Strategic priorities from posts
+
+### Phase 4: Multi-Platform Intelligence
+
+**Twitter/X Analysis:**
+- Find Twitter handle from LinkedIn bio
+- Profile stats: followers, following, tweet count
+- Content analysis: technical expertise, industry opinions, personal interests
+- Engagement patterns
+
+**Reddit Analysis:**
+- Search for user activity
+- Subreddits they participate in
+- Comment history and sentiment
+- Areas of expertise and interest
+
+**GitHub Analysis (if applicable):**
+- Repositories and contributions
+- Technical skills demonstrated
+- Project activity level
+
+## Output Format
+
+Produce a comprehensive report with:
+- **Profile Summary**: Key biographical data
+- **Professional Background**: Career trajectory, key roles
+- **Content & Engagement**: What they post about, how they engage
+- **Cross-Platform Presence**: Activity across LinkedIn, Twitter, Reddit, GitHub
+- **Strategic Insights**: Conversation starters, mutual interests, potential pain points
+- **Recommended Approach**: How to engage, what messaging resonates`,
+    source: "Anysite",
+    sourceUrl: "https://github.com/anysiteio/agent-skills",
+  },
+  {
+    slug: "anysite-vc-analyst",
+    name: "VC Analyst (Anysite)",
+    description:
+      "Universal VC investor analysis and fundraising outreach. Analyze investors, score fit, detect portfolio conflicts, generate personalized outreach.",
+    category: "Outreach",
+    difficulty: "Advanced",
+    worksWithTools: ["linkedin", "crunchbase", "pitchbook", "yc"],
+    promptContent: `# Skill: VC Investor Analyst
+
+Universal agent for startup investor research and outreach. Analyzes any startup project, understands fundraising stage, identifies ideal investor profile, scores investors, detects portfolio conflicts, and generates personalized outreach.
+
+## Onboarding Flow (REQUIRED FIRST)
+
+### Step 1: Project Discovery
+
+Ask user to provide:
+1. **Company website** - to fetch and analyze
+2. **Pitch deck or materials** - file path or link
+3. **One-liner** - what does the company do?
+
+### Step 2: Fetch & Analyze Project
+
+1. **Website**: Parse to understand product, market, features, pricing
+2. **Pitch deck**: Extract problem, solution, market size, traction, team
+3. **Extract key info**:
+   - Problem & Solution
+   - Market size (TAM/SAM/SOM)
+   - Business model
+   - Traction metrics
+   - Team background
+
+### Step 3: Fundraising Context
+
+Ask:
+- **What stage are you raising?** Pre-Seed, Seed, Series A, Other
+- **How much are you raising?** Ranges from <$500K to $2M+
+- **What's your current traction?** Pre-revenue to $50K+ MRR
+
+### Step 4: Investor Preferences
+
+Ask:
+- **What type of investors?** Angels, Micro VCs, Seed VCs, Growth
+- **Geography preferences?** US, EU, Asia, Global
+- **Sector focus?** SaaS, Fintech, AI, Consumer, etc.
+
+## Investor Analysis Workflow
+
+### Step 1: Build Target Investor List
+
+Search criteria:
+- Stage match (they invest at your round)
+- Sector match (they invest in your industry)
+- Geography match (they invest in your region)
+- Check size match (their typical check fits your raise)
+
+### Step 2: Score Each Investor
+
+Scoring factors:
+- **Stage fit** (30%): Do they invest at your round?
+- **Sector fit** (30%): Do they invest in your industry?
+- **Portfolio conflicts** (20%): Any direct competitors?
+- **Value-add** (10%): Can they help with hiring, customers, next round?
+- **Responsiveness** (10%): Known for quick decisions?
+
+### Step 3: Detect Portfolio Conflicts
+
+For each investor:
+- Review portfolio companies
+- Flag direct competitors
+- Note adjacent companies (could be conflict or opportunity)
+
+### Step 4: Generate Personalized Outreach
+
+For top-scored investors:
+- Reference specific portfolio company they backed
+- Connect to your unique insight/angle
+- Show you've done your homework
+- Clear ask: meeting request or intro
+
+## Output Format
+
+Produce:
+1. **Investor Scorecard**: Table with scores across all factors
+2. **Top 20 Targets**: Ranked list with rationale
+3. **Portfolio Conflict Report**: Any red flags
+4. **Personalized Outreach Templates**: One per top investor
+5. **Fundraising Strategy**: Recommended approach, timeline, tactics`,
+    source: "Anysite",
+    sourceUrl: "https://github.com/anysiteio/agent-skills",
+  },
 ]
 
 export function getAllSkills(): Skill[] {

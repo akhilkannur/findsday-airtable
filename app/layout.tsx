@@ -20,13 +20,13 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Salestools Club — Every Sales API & MCP Server in one place.",
   description:
-    "A curated collection of sales APIs, SDKs, and MCP servers. Find the tools to connect your sales stack to Claude Code, Gemini CLI, and other agentic tools.",
+    "A curated directory of sales APIs, MCP servers, and agent skills. Find tools to connect your sales stack to Claude Code, Gemini CLI, and agentic workflows.",
   keywords:
-    "sales API, MCP server, Model Context Protocol, Claude Code, Claude, Gemini CLI, AI sales tools, CRM API, sales automation API",
+    "sales API directory, MCP server sales, Model Context Protocol, Claude Code, Gemini CLI, AI sales tools, CRM API, sales automation API, build AI sales agent, agentic sales stack, sales tools for AI agents",
   openGraph: {
     title: "Salestools Club — Sales APIs & MCP Servers for AI Tinkerers",
     description:
-      "A curated directory of sales APIs and MCP servers for people building with Claude Code, Gemini CLI, and other agentic tools.",
+      "The sales API directory for builders. Find MCP servers, CRM APIs, and agentic tools for Claude Code, Gemini CLI, and autonomous sales workflows.",
     type: "website",
     url: "https://salestools.club",
   },
@@ -44,6 +44,7 @@ const navLinks = [
   { href: "/skills", label: "Skills" },
   { href: "/stacks", label: "Stacks" },
   { href: "/categories", label: "Categories" },
+  { href: "/guides", label: "Guides" },
   { href: "/submit", label: "Submit" },
 ]
 
