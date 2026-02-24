@@ -256,27 +256,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* -- Featured Guide ----------------------------------- */}
-      <section className="py-10 md:py-16">
-        <div className="layout-container">
-          <div className="mb-8 md:mb-12">
-            <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade mb-4">
-              New Guide
-            </p>
-            <h2 className="font-serif text-3xl md:text-4xl leading-tight mb-6">
-              Getting Started with AI Agents for Sales
-            </h2>
-            <p className="max-w-2xl text-[1rem] text-ink-fade leading-relaxed mb-8">
-              Your first week building with Claude Code and sales APIs. No code required — just follow along and you&apos;ll have a working AI SDR by the weekend.
-            </p>
-            <Link href="/guides/getting-started-with-ai-agents" className="inline-flex items-center gap-3 font-mono text-[0.75rem] uppercase tracking-widest px-6 py-3 bg-ink text-paper hover:opacity-90 transition-opacity">
-              Read the Guide
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* -- Categories ----------------------------- */}
       <section className="py-10 md:py-16 bg-paper-dark border-y border-ink">
         <div className="layout-container">

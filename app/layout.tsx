@@ -44,7 +44,6 @@ const navLinks = [
   { href: "/skills", label: "Skills" },
   { href: "/stacks", label: "Stacks" },
   { href: "/categories", label: "Categories" },
-  { href: "/guides", label: "Guides" },
   { href: "/submit", label: "Submit" },
 ]
 
