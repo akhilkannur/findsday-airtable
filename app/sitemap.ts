@@ -93,50 +93,85 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Dynamic tool pages
   const tools = await getAllTools()
-  const toolPages: MetadataRoute.Sitemap = tools.map((tool) => ({
-    url: `${baseUrl}/tools/${tool.slug}`,
-    lastModified: lastModified,
-    changeFrequency: "weekly" as const,
-    priority: 0.7,
-  }))
+  const uniqueToolSlugs = new Set<string>()
+  const toolPages: MetadataRoute.Sitemap = tools
+    .filter((tool) => {
+      if (!tool.slug || uniqueToolSlugs.has(tool.slug)) return false
+      uniqueToolSlugs.add(tool.slug)
+      return true
+    })
+    .map((tool) => ({
+      url: `${baseUrl}/tools/${tool.slug}`,
+      lastModified: lastModified,
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+    }))
 
   // Dynamic skill pages
   const skills = getAllSkills()
-  const skillPages: MetadataRoute.Sitemap = skills.map((skill) => ({
-    url: `${baseUrl}/skills/${skill.slug}`,
-    lastModified: lastModified,
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
-  }))
+  const uniqueSkillSlugs = new Set<string>()
+  const skillPages: MetadataRoute.Sitemap = skills
+    .filter((skill) => {
+      if (!skill.slug || uniqueSkillSlugs.has(skill.slug)) return false
+      uniqueSkillSlugs.add(skill.slug)
+      return true
+    })
+    .map((skill) => ({
+      url: `${baseUrl}/skills/${skill.slug}`,
+      lastModified: lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    }))
 
   // Dynamic stack pages
   const stacks = getAllStacks()
-  const stackPages: MetadataRoute.Sitemap = stacks.map((stack) => ({
-    url: `${baseUrl}/stacks/${stack.slug}`,
-    lastModified: lastModified,
-    changeFrequency: "weekly" as const,
-    priority: 0.7,
-  }))
+  const uniqueStackSlugs = new Set<string>()
+  const stackPages: MetadataRoute.Sitemap = stacks
+    .filter((stack) => {
+      if (!stack.slug || uniqueStackSlugs.has(stack.slug)) return false
+      uniqueStackSlugs.add(stack.slug)
+      return true
+    })
+    .map((stack) => ({
+      url: `${baseUrl}/stacks/${stack.slug}`,
+      lastModified: lastModified,
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+    }))
 
   // Dynamic category pages
   const categories = getAllCategories()
-  const categoryPages: MetadataRoute.Sitemap = categories.map((category) => ({
-    url: `${baseUrl}/categories/${category.slug}`,
-    lastModified: lastModified,
-    changeFrequency: "weekly" as const,
-    priority: 0.7,
-  }))
+  const uniqueCategorySlugs = new Set<string>()
+  const categoryPages: MetadataRoute.Sitemap = categories
+    .filter((category) => {
+      if (!category.slug || uniqueCategorySlugs.has(category.slug)) return false
+      uniqueCategorySlugs.add(category.slug)
+      return true
+    })
+    .map((category) => ({
+      url: `${baseUrl}/categories/${category.slug}`,
+      lastModified: lastModified,
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+    }))
 
   // Dynamic use case pages (for /for/[slug])
   const usecases = getAllUseCases()
-  const usecasePages: MetadataRoute.Sitemap = usecases.map((usecase) => ({
-    url: `${baseUrl}/for/${usecase.slug}`,
-    lastModified: lastModified,
-    changeFrequency: "weekly" as const,
-    priority: 0.7,
-  }))
+  const uniqueUseCaseSlugs = new Set<string>()
+  const usecasePages: MetadataRoute.Sitemap = usecases
+    .filter((usecase) => {
+      if (!usecase.slug || uniqueUseCaseSlugs.has(usecase.slug)) return false
+      uniqueUseCaseSlugs.add(usecase.slug)
+      return true
+    })
+    .map((usecase) => ({
+      url: `${baseUrl}/for/${usecase.slug}`,
+      lastModified: lastModified,
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+    }))
 
-  return [
+  const allPages = [
     ...staticPages,
     ...toolPages,
     ...skillPages,
@@ -144,4 +179,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...categoryPages,
     ...usecasePages,
   ]
+
+  // Final deduplication by URL to be absolutely sure
+  const uniqueUrls = new Set<string>()
+  return allPages.filter((page) => {
+    if (uniqueUrls.has(page.url)) return false
+    uniqueUrls.add(page.url)
+    return true
+  })
 }
