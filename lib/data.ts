@@ -8343,7 +8343,7 @@ export const tools: SalesTool[] = [
     slug: "zoominfo",
     name: "ZoomInfo",
     oneLiner: "The comprehensive B2B database and sales intelligence platform.",
-    description: "ZoomInfo's Enterprise API allows developers to programmatically access its world-class B2B contact and company database. It is the industry standard for high-accuracy sales intelligence, offering deep insights into firmographics, technographics, and intent signals. The API enables teams to automate lead enrichment, build complex prospecting lists, and keep their CRM data up-to-date with the highest quality information.",
+    description: "Access 300M+ professional profiles and 65M+ company records directly through API or MCP. Use natural language in Claude to build prospecting lists, enrich leads with verified emails, and track intent signals without leaving your chat interface.",
     category: "Sales Engagement",
     logoUrl: "/logos/zoominfo.svg",
     websiteUrl: "https://www.zoominfo.com",
@@ -8355,13 +8355,26 @@ export const tools: SalesTool[] = [
     sdkLanguages: [],
     hasWebhooks: true,
     hasOpenApiSpec: true,
-    aiCapabilities: ["Deep Firmographic Insights", "Real-time Lead Enrichment", "Intent Data Orchestration"],
+    aiCapabilities: ["Natural Language Prospecting", "Real-time Lead Enrichment", "Intent Data Orchestration"],
     aiDifficulty: "Technical",
-    starterPrompt: "Claude, use the ZoomInfo API to enrich this list of company domains with their primary industry and latest revenue data.",
-    mcpReady: false,
+    starterPrompt: "Claude, use the ZoomInfo MCP server to search for 50 VPs of Sales at Series B SaaS companies in California and return their verified emails.",
+    mcpReady: true,
     isFeatured: true,
     alternativeTo: ["Apollo.io", "Lusha", "Cognism"],
-    integrations: [],
+    integrations: [
+      {
+        platform: "MCP",
+        url: "https://mcp.zoominfo.com/mcp",
+        label: "Official ZoomInfo MCP (Hosted)",
+        mcpConfig: `{
+  "mcpServers": {
+    "zoominfo": {
+      "url": "https://mcp.zoominfo.com/mcp"
+    }
+  }
+}`
+      }
+    ],
   },
   {
     slug: "zymplify",
