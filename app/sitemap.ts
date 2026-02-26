@@ -7,7 +7,7 @@ import { getAllUseCases } from "@/lib/usecases"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://salestools.club"
-  const lastModified = new Date()
+  const lastModified = new Date().toISOString().split('T')[0]
 
   // Static pages
   const staticPages: MetadataRoute.Sitemap = [
