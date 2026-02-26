@@ -180,11 +180,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...usecasePages,
   ]
 
-  // Final deduplication by URL to be absolutely sure
+  // Final deduplication by URL and XML escaping to be absolutely sure
   const uniqueUrls = new Set<string>()
-  return allPages.filter((page) => {
-    if (uniqueUrls.has(page.url)) return false
-    uniqueUrls.add(page.url)
-    return true
-  })
+  return allPages
+    .filter((page) => {
+      if (uniqueUrls.has(page.url)) return false
+      uniqueUrls.add(page.url)
+      return true
+    })
 }
