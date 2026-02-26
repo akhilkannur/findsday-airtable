@@ -1295,26 +1295,39 @@ export const tools: SalesTool[] = [
   {
     slug: "lusha",
     name: "Lusha",
-    oneLiner: "Sales intelligence platform for accurate B2B contact and company data.",
-    description: "Lusha provides a powerful API for enriching prospect data with high-accuracy phone numbers and email addresses. It allows developers to programmatically access a massive database of verified B2B contacts directly within their CRM or sales automation tools. Lusha's focus on data compliance and accuracy makes it a top choice for revenue teams looking to scale their outbound efforts.",
-    category: "CRM & RevOps",
+    oneLiner: "The fastest way to find verified B2B mobile numbers and emails.",
+    description: "Lusha provides a powerful API and official MCP server for real-time lead enrichment. It allows sales teams to find verified direct dials and personal emails for decision-makers directly within their AI workflows. It is highly optimized for speed and data accuracy, making it a critical tool for high-intensity prospecting.",
+    category: "Sales Intelligence",
     logoUrl: "/logos/lusha.svg",
     websiteUrl: "https://www.lusha.com",
     docsUrl: "https://docs.lusha.com/tutorials/signals",
-    pricingUrl: "https://www.lusha.com/pricing/",
+    pricingUrl: "https://www.lusha.com/pricing",
     apiType: ["REST"],
     authMethod: ["API Key"],
     hasFreeTier: true,
     sdkLanguages: [],
     hasWebhooks: true,
     hasOpenApiSpec: false,
-    aiCapabilities: ["Lead Enrichment", "Contact Data Retrieval", "CRM Data Sync"],
-    aiDifficulty: "Beginner-Friendly",
-    starterPrompt: "Claude, use Lusha to find the direct phone number for the CTO of any company I mention.",
-    mcpReady: false,
+    aiCapabilities: ["Direct Dial Enrichment", "Firmographic Data Retrieval", "Real-time Prospecting"],
+    aiDifficulty: "AI-Native",
+    starterPrompt: "Claude, use Lusha to find the verified mobile number for the VP of Engineering at Vercel.",
+    mcpReady: true,
     isFeatured: true,
     alternativeTo: ["Apollo.io", "ZoomInfo", "Cognism"],
-    integrations: [],
+    integrations: [
+      {
+        platform: "MCP",
+        url: "https://mcp.lusha.com",
+        label: "Official Lusha MCP (Hosted)",
+        mcpConfig: `{
+  "mcpServers": {
+    "lusha": {
+      "url": "https://mcp.lusha.com"
+    }
+  }
+}`
+      }
+    ],
   },
   {
     slug: "mailreef",
@@ -1703,8 +1716,8 @@ export const tools: SalesTool[] = [
   {
     slug: "pipedrive",
     name: "Pipedrive",
-    oneLiner: "Sales-focused CRM and pipeline management software.",
-    description: "Pipedrive offers a comprehensive REST API that allows developers to programmatically manage their entire sales pipeline, from lead capture to deal closure. It is known for its simplicity and ease of use, making it a favorite among scaling sales teams. The API enables the synchronization of contacts, deals, activities, and custom fields with any other tool in your sales and marketing stack.",
+    oneLiner: "The sales-first CRM for managing pipelines and closing deals.",
+    description: "Pipedrive is a developer-friendly CRM that offers a robust REST API and an official hosted MCP server. This allows AI agents to manage deals, track activities, and sync contact information using natural language. It is optimized for teams that want a simple but powerful foundation for their sales tech stack.",
     category: "CRM & RevOps",
     logoUrl: "/logos/pipedrive.svg",
     websiteUrl: "https://www.pipedrive.com",
@@ -1717,12 +1730,25 @@ export const tools: SalesTool[] = [
     hasWebhooks: true,
     hasOpenApiSpec: true,
     aiCapabilities: ["Pipeline Management", "Automated Lead Capture", "Deal Progress Synchronization"],
-    aiDifficulty: "Beginner-Friendly",
-    starterPrompt: "Claude, use the Pipedrive API to create a new deal for 'Acme Corp' and assign it to the 'New Business' pipeline.",
-    mcpReady: false,
+    aiDifficulty: "AI-Native",
+    starterPrompt: "Claude, find all deals in the 'Negotiation' stage in Pipedrive and summarize the next steps for each.",
+    mcpReady: true,
     isFeatured: true,
     alternativeTo: ["HubSpot", "Salesforce", "Close.com"],
-    integrations: [],
+    integrations: [
+      {
+        platform: "MCP",
+        url: "https://mcp.pipedrive.com",
+        label: "Official Pipedrive MCP (Hosted)",
+        mcpConfig: `{
+  "mcpServers": {
+    "pipedrive": {
+      "url": "https://mcp.pipedrive.com"
+    }
+  }
+}`
+      }
+    ],
   },
   {
     slug: "pipedrive",
@@ -2320,7 +2346,7 @@ export const tools: SalesTool[] = [
     slug: "gong",
     name: "Gong",
     oneLiner: "The industry standard for revenue intelligence and conversation analysis.",
-    description: "Gong's REST API gives teams programmatic access to the world's most advanced conversation intelligence platform. It allows AI agents to extract insights from sales calls, analyze deal sentiment, and identify coaching opportunities. Gong is a critical hub for high-performing sales teams that want to use AI to understand what's actually happening in their customer conversations.",
+    description: "Gong's REST API and community MCP server give teams programmatic access to the world's most advanced conversation intelligence platform. It allows AI agents to extract insights from sales calls, analyze deal sentiment, and identify coaching opportunities directly from the transcript data.",
     category: "Closing & Scheduling",
     logoUrl: "/logos/gong.svg",
     websiteUrl: "https://www.gong.io",
@@ -2333,12 +2359,30 @@ export const tools: SalesTool[] = [
     hasWebhooks: true,
     hasOpenApiSpec: false,
     aiCapabilities: ["Conversation Analysis", "Deal Sentiment Tracking", "Meeting Insight Extraction"],
-    aiDifficulty: "Technical",
+    aiDifficulty: "AI-Native",
     starterPrompt: "Claude, summarize the common objections mentioned in the last 10 calls for the 'Stripe' deal in Gong.",
-    mcpReady: false,
+    mcpReady: true,
     isFeatured: true,
     alternativeTo: ["Chorus.ai", "Fireflies.ai", "Otter.ai"],
-    integrations: [],
+    integrations: [
+      {
+        platform: "MCP",
+        url: "https://github.com/jbalbu01/sales-intelligence-mcp-server",
+        label: "Community Sales Intelligence MCP (Node.js)",
+        mcpConfig: `{
+  "mcpServers": {
+    "sales-intelligence": {
+      "command": "npx",
+      "args": ["-y", "sales-intelligence-mcp-server"],
+      "env": {
+        "GONG_ACCESS_KEY": "YOUR_KEY",
+        "GONG_ACCESS_SECRET": "YOUR_SECRET"
+      }
+    }
+  }
+}`
+      }
+    ],
   },
   {
     slug: "pandadoc",
@@ -8662,8 +8706,8 @@ export const tools: SalesTool[] = [
   {
     slug: "clay",
     name: "Clay",
-    oneLiner: "Creative data enrichment and outbound automation platform.",
-    description: "Clay's REST API lets you programmatically run waterfall enrichment across 100+ data providers, build dynamic lead lists, and orchestrate personalized outbound campaigns. It acts as a universal connector between data sources so you can enrich any prospect record with firmographic, technographic, and intent signals. Clay is a go-to tool for revenue teams building highly targeted, data-driven outreach at scale.",
+    oneLiner: "The universal data enrichment and outbound orchestration platform.",
+    description: "Clay is an AI-native data enrichment platform that lets you run waterfall enrichment across 100+ providers. With the official hosted MCP server, you can use Claude to query your Clay tables, enrich prospects with real-time data, and trigger outbound workflows using natural language. It acts as the 'Lego-block' foundation for autonomous sales development.",
     category: "Sales Intelligence",
     logoUrl: "/logos/clay.svg",
     websiteUrl: "https://www.clay.com",
@@ -8676,12 +8720,25 @@ export const tools: SalesTool[] = [
     hasWebhooks: true,
     hasOpenApiSpec: false,
     aiCapabilities: ["Waterfall Enrichment", "AI-Powered Outbound", "Universal Data Connector"],
-    aiDifficulty: "Technical",
-    starterPrompt: "Claude, use Clay to enrich this list of domains with their latest funding round and LinkedIn URL.",
-    mcpReady: false,
+    aiDifficulty: "AI-Native",
+    starterPrompt: "Claude, search my 'Q1 Prospects' table in Clay for companies with over $50M in funding and list their founders.",
+    mcpReady: true,
     isFeatured: true,
     alternativeTo: ["Apollo.io", "ZoomInfo", "Clearbit"],
-    integrations: [],
+    integrations: [
+      {
+        platform: "MCP",
+        url: "https://api.clay.com/v3/mcp",
+        label: "Official Clay MCP (Hosted)",
+        mcpConfig: `{
+  "mcpServers": {
+    "clay": {
+      "url": "https://api.clay.com/v3/mcp"
+    }
+  }
+}`
+      }
+    ],
   },
   {
     slug: "cognism",
@@ -8854,8 +8911,8 @@ export const tools: SalesTool[] = [
   {
     slug: "instantly",
     name: "Instantly.ai",
-    oneLiner: "Cold email infrastructure and outreach automation at scale.",
-    description: "Instantly.ai provides a REST API for managing cold email campaigns, warming up inboxes, and tracking deliverability metrics programmatically. Developers can create and schedule multi-step email sequences, manage unlimited sending accounts, and pull analytics on open rates, replies, and bounces. It is built for agencies and sales teams that need to scale outbound email without sacrificing deliverability.",
+    oneLiner: "The gold standard for cold email infrastructure and automation.",
+    description: "Instantly.ai provides a robust REST API for managing cold email campaigns and tracking deliverability. With its new MCP capabilities, you can now use Claude to manage campaigns, monitor bounce rates, and pause sequences using natural language. It is built for agencies and sales teams that need to scale outbound email without sacrificing deliverability.",
     category: "Sales Intelligence",
     logoUrl: "/logos/instantly.svg",
     websiteUrl: "https://instantly.ai",
@@ -8868,12 +8925,41 @@ export const tools: SalesTool[] = [
     hasWebhooks: true,
     hasOpenApiSpec: false,
     aiCapabilities: ["Automate Cold Email", "Inbox Warmup", "Campaign Analytics"],
-    aiDifficulty: "Beginner-Friendly",
-    starterPrompt: "Claude, create a new cold email campaign in Instantly for the lead list I just generated.",
-    mcpReady: false,
+    aiDifficulty: "AI-Native",
+    starterPrompt: "Claude, check my 'SaaS Founders' campaign in Instantly and pause it if the bounce rate is over 3%.",
+    mcpReady: true,
     isFeatured: false,
     alternativeTo: ["Lemlist", "Smartlead", "Woodpecker"],
-    integrations: [],
+    integrations: [
+      {
+        platform: "MCP",
+        url: "https://mcp.instantly.ai/mcp",
+        label: "Official Instantly MCP (Hosted)",
+        mcpConfig: `{
+  "mcpServers": {
+    "instantly": {
+      "url": "https://mcp.instantly.ai/mcp/YOUR_API_KEY"
+    }
+  }
+}`
+      },
+      {
+        platform: "MCP",
+        url: "https://github.com/bcharleson/instantly-mcp",
+        label: "Community Instantly MCP (Python)",
+        mcpConfig: `{
+  "mcpServers": {
+    "instantly-community": {
+      "command": "python3",
+      "args": ["-m", "instantly_mcp"],
+      "env": {
+        "INSTANTLY_API_KEY": "YOUR_API_KEY"
+      }
+    }
+  }
+}`
+      }
+    ],
   },
   {
     slug: "intellizence",
@@ -9136,8 +9222,49 @@ export const tools: SalesTool[] = [
     starterPrompt: "Claude, enrich this list of LinkedIn URLs with Lusha to find their direct phone numbers.",
     mcpReady: false,
     isFeatured: false,
-    alternativeTo: ["Apollo.io", "ZoomInfo", "Kaspr"],
+    alternativeTo: ["ZoomInfo", "Apollo.io", "Kaspr"],
     integrations: [],
+  },
+  {
+    slug: "linkedin-sales-navigator",
+    name: "LinkedIn Sales Navigator",
+    oneLiner: "The premier platform for B2B relationship building and prospecting.",
+    description: "LinkedIn Sales Navigator provides deep insights into 1B+ professional profiles. While it lacks a public REST API for most users, community MCP servers allow AI agents to 'read' your saved lists and leads to map out organizational charts and identify warm introduction paths directly within Claude.",
+    category: "Sales Intelligence",
+    logoUrl: "/logos/linkedin.svg",
+    websiteUrl: "https://business.linkedin.com/sales-solutions/sales-navigator",
+    docsUrl: "https://learn.microsoft.com/en-us/linkedin/shared/integrations/sales-navigator/",
+    pricingUrl: "https://business.linkedin.com/sales-solutions/sales-navigator/pricing",
+    apiType: ["REST"],
+    authMethod: ["OAuth2"],
+    hasFreeTier: false,
+    sdkLanguages: [],
+    hasWebhooks: false,
+    hasOpenApiSpec: false,
+    aiCapabilities: ["Lead List Mapping", "Relationship Intelligence", "Org Chart Visualization"],
+    aiDifficulty: "Advanced",
+    starterPrompt: "Claude, look at my 'Tier 1 Accounts' list in Sales Navigator and tell me which stakeholders I should prioritize for a multi-threading campaign.",
+    mcpReady: true,
+    isFeatured: true,
+    alternativeTo: ["ZoomInfo", "Apollo.io", "Lusha"],
+    integrations: [
+      {
+        platform: "MCP",
+        url: "https://github.com/jbalbu01/sales-intelligence-mcp-server",
+        label: "Community Sales Intelligence MCP (Node.js)",
+        mcpConfig: `{
+  "mcpServers": {
+    "sales-intelligence": {
+      "command": "npx",
+      "args": ["-y", "sales-intelligence-mcp-server"],
+      "env": {
+        "LINKEDIN_COOKIE": "YOUR_SESSION_COOKIE"
+      }
+    }
+  }
+}`
+      }
+    ],
   },
   {
     slug: "mattermark",
