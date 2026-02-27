@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { Resend } from 'resend';
 
 export async function POST(req: Request) {
   try {
@@ -9,65 +10,16 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Invalid email address' }, { status: 400 });
     }
 
-    const githubToken = process.env.GITHUB_TOKEN;
-    const repo = process.env.GITHUB_REPO || 'akhilkannur/findsday-airtable';
+    const resend = new Resend(process.env.RESEND_API_KEY);
 
-    if (!githubToken) {
-      console.error('Missing GITHUB_TOKEN');
-      return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
-    }
-
-    const [owner, repoName] = repo.split('/');
-
-    // Get current file content
-    const filePath = 'newsletter.json';
-    let emails: Array<{ email: string; timestamp: string }> = [];
-    let sha: string | undefined;
-
-    try {
-      const response = await fetch(`https://api.github.com/repos/${owner}/${repoName}/contents/${filePath}`, {
-        headers: {
-          'Authorization': `Bearer ${githubToken}`,
-          'Accept': 'application/vnd.github.v3+json',
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        const content = Buffer.from(data.content, 'base64').toString('utf-8');
-        emails = JSON.parse(content);
-        sha = data.sha;
-      }
-    } catch (e) {
-      // File doesn't exist yet, that's ok
-      console.log('newsletter.json does not exist yet, will create it');
-    }
-
-    // Add new email
-    emails.push({
+    const { data, error } = await resend.contacts.create({
       email,
-      timestamp: new Date().toISOString(),
+      audienceId: '2f5b3843-e79f-4518-b2ca-4d46c2f959cf',
     });
 
-    // Commit updated file
-    const commitResponse = await fetch(`https://api.github.com/repos/${owner}/${repoName}/contents/${filePath}`, {
-      method: 'PUT',
-      headers: {
-        'Authorization': `Bearer ${githubToken}`,
-        'Accept': 'application/vnd.github.v3+json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        message: `chore: add newsletter email ${email}`,
-        content: Buffer.from(JSON.stringify(emails, null, 2)).toString('base64'),
-        ...(sha ? { sha } : {}),
-      }),
-    });
-
-    if (!commitResponse.ok) {
-      const errorData = await commitResponse.json();
-      console.error('GitHub API error:', errorData);
-      throw new Error(errorData.message || 'Failed to commit to GitHub');
+    if (error) {
+      console.error('Resend error:', error);
+      return NextResponse.json({ error: error.message }, { status: 400 });
     }
 
     return NextResponse.json({ success: true });

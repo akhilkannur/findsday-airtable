@@ -899,7 +899,7 @@ export const tools: SalesTool[] = [
     category: "CRM & RevOps",
     logoUrl: "/logos/gojiberry.svg",
     websiteUrl: "https://gojiberry.ai",
-    docsUrl: "https://gojiberry.ai/",
+    docsUrl: "https://docs.gojiberry.app/documentation",
     pricingUrl: "https://gojiberry.ai/",
     apiType: ["REST"],
     authMethod: ["API Key"],
