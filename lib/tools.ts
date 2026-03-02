@@ -6,11 +6,11 @@ import type { SalesTool, ToolCategory, CategoryMeta } from "./types"
 // for easy switching back to a live API if needed later.
 
 export async function getAllTools(): Promise<SalesTool[]> {
-  return tools
+  return tools.filter((t) => t.docsUrl && t.docsUrl !== "")
 }
 
 export async function getFeaturedTools(): Promise<SalesTool[]> {
-  return tools.filter((t) => t.isFeatured)
+  return tools.filter((t) => t.isFeatured && t.docsUrl && t.docsUrl !== "")
 }
 
 export async function getToolBySlug(slug: string): Promise<SalesTool | undefined> {
@@ -45,10 +45,12 @@ export async function searchTools(query: string): Promise<SalesTool[]> {
   const q = query.toLowerCase()
   return tools.filter(
     (t) =>
-      t.name.toLowerCase().includes(q) ||
-      t.oneLiner.toLowerCase().includes(q) ||
-      t.category.toLowerCase().includes(q) ||
-      t.alternativeTo?.some((a) => a.toLowerCase().includes(q))
+      t.docsUrl &&
+      t.docsUrl !== "" &&
+      (t.name.toLowerCase().includes(q) ||
+        t.oneLiner.toLowerCase().includes(q) ||
+        t.category.toLowerCase().includes(q) ||
+        t.alternativeTo?.some((a) => a.toLowerCase().includes(q)))
   )
 }
 
@@ -68,6 +70,10 @@ export async function getOpenSourceTools(): Promise<SalesTool[]> {
   return tools.filter((t) => t.githubUrl)
 }
 
+export async function getToolsWithoutDocs(): Promise<SalesTool[]> {
+  return tools.filter((t) => !t.docsUrl || t.docsUrl === "")
+}
+
 export async function filterTools(options: {
   query?: string
   category?: string
@@ -75,7 +81,7 @@ export async function filterTools(options: {
   freeOnly?: boolean
   officialOnly?: boolean
 }): Promise<SalesTool[]> {
-  let filtered = tools
+  let filtered = tools.filter((t) => t.docsUrl && t.docsUrl !== "")
 
   if (options.category && options.category !== "All") {
     filtered = filtered.filter((t) => t.category === options.category)
