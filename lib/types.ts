@@ -1,21 +1,14 @@
 export type ApiType = "REST" | "GraphQL" | "WebSocket" | "gRPC"
 export type AuthMethod = "API Key" | "OAuth2" | "Bearer Token" | "Basic Auth" | "None"
 export type ToolCategory =
-  | "Prospecting"
-  | "Email Outreach"
-  | "CRM"
-  | "Enrichment"
-  | "Voice & Calling"
-  | "Scheduling"
-  | "Conversation Intelligence"
-  | "Documents & Proposals"
+  | "Sales Intelligence"
   | "Sales Engagement"
-  | "Workflow Automation"
-  | "Analytics"
-  | "Operations"
+  | "Phone & Dialers"
+  | "CRM & RevOps"
+  | "Revenue Intelligence"
   | "Sales Enablement"
+  | "Closing & Scheduling"
 
-export type AiDifficulty = "AI-Native" | "Beginner-Friendly" | "Technical" | "Complex"
 
 export interface AgentIntegration {
   platform: "MCP" | "OpenClaw" | "LangChain" | "CrewAI" | "Claude Skill" | "Custom"
@@ -46,7 +39,6 @@ export interface SalesTool {
 
   // AI-Native Operator Specifics
   aiCapabilities: string[] // e.g., ["Search Leads", "Update CRM", "Record Meetings"]
-  aiDifficulty: AiDifficulty
   starterPrompt?: string // "Claude, use this tool to..."
   mcpReady: boolean
 

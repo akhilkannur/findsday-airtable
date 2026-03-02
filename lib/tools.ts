@@ -70,6 +70,10 @@ export async function getOpenSourceTools(): Promise<SalesTool[]> {
   return tools.filter((t) => t.githubUrl)
 }
 
+export async function getToolsWithoutDocs(): Promise<SalesTool[]> {
+  return tools.filter((t) => !t.docsUrl || t.docsUrl === "")
+}
+
 export async function filterTools(options: {
   query?: string
   category?: string
