@@ -4787,7 +4787,7 @@ export const tools: SalesTool[] = [
     category: "Sales Engagement",
     logoUrl: "/logos/amplemarket.svg",
     websiteUrl: "https://amplemarket.com",
-    docsUrl: "",
+    docsUrl: "https://docs.amplemarket.com",
     pricingUrl: "https://amplemarket.com/pricing",
     apiType: ["REST"],
     authMethod: ["API Key"],
