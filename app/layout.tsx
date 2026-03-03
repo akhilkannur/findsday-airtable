@@ -6,6 +6,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { MobileNav } from "@/components/MobileNav"
 import { Shield, Zap } from "lucide-react"
+import { getAllTools } from "@/lib/tools"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -48,11 +49,15 @@ const navLinks = [
   { href: "/submit", label: "Submit" },
 ]
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const allTools = await getAllTools()
+  const toolsWithDocs = allTools.filter(t => t.docsUrl && t.docsUrl !== "").length
+  const toolsWithoutDocs = allTools.length - toolsWithDocs
+  
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -163,7 +168,7 @@ gtag('config', 'G-9LGNFH00R7');`,
               </Link>
             </div>
             <div className="font-mono text-[0.6rem] uppercase tracking-[0.2em] opacity-40 flex flex-col gap-2">
-              <p>Registry Status: Live • 389 Tools Indexed</p>
+              <p>Found: {toolsWithDocs} APIs with docs • {toolsWithoutDocs} pending documentation</p>
               <p>© {new Date().getFullYear()} Salestools Club</p>
             </div>
           </div>
