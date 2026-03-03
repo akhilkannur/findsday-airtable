@@ -6,12 +6,88 @@ import ora from 'ora';
 import fs from 'fs';
 import path from 'path';
 
+const STOP_WORDS = new Set([
+  'a', 'an', 'the', 'and', 'or', 'but', 'is', 'are', 'was', 'were', 'be', 'been', 'being',
+  'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could', 'should', 'may',
+  'might', 'must', 'shall', 'can', 'need', 'dare', 'ought', 'used', 'to', 'of', 'in',
+  'for', 'on', 'with', 'at', 'by', 'from', 'up', 'about', 'into', 'over', 'after',
+  'under', 'above', 'i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you',
+  'your', 'yours', 'yourself', 'yourselves', 'he', 'him', 'his', 'himself', 'she', 'her',
+  'hers', 'herself', 'it', 'its', 'itself', 'they', 'them', 'their', 'theirs', 'themselves',
+  'what', 'which', 'who', 'whom', 'this', 'that', 'these', 'those', 'am',
+  'been', 'being', 'having', 'doing', 'would', 'should', 'could', 'ought',
+  'i\'m', 'you\'re', 'he\'s', 'she\'s', 'it\'s', 'we\'re', 'they\'re', 'i\'ve',
+  'you\'ve', 'we\'ve', 'they\'ve', 'i\'d', 'you\'d', 'he\'d', 'she\'d', 'we\'d', 'they\'d',
+  'i\'ll', 'you\'ll', 'he\'ll', 'she\'ll', 'we\'ll', 'they\'ll', 'isn\'t', 'aren\'t', 'wasn\'t',
+  'weren\'t', 'hasn\'t', 'haven\'t', 'hadn\'t', 'doesn\'t', 'don\'t', 'didn\'t', 'won\'t',
+  'wouldn\'t', 'shan\'t', 'shouldn\'t', 'can\'t', 'cannot', 'couldn\'t', 'mustn\'t', 'let\'s',
+  'us', 'say', 'said', 'also', 'just', 'like', 'get', 'got', 'find', 'finding',
+  'search', 'searching', 'looking', 'need', 'needs', 'wants', 'want', 'best', 'good', 'top',
+  'free', 'cheap', 'affordable', 'use', 'using', 'used', 'make', 'making', 'build', 'building',
+  'project', 'their', 'show', 'showme', 'list', 'all', 'some', 'any', 'no',
+  'not', 'only', 'very', 'really', 'most', 'many', 'much', 'such', 'other', 'another',
+  'work', 'works', 'working', 'vs', 'versus', 'alternative', 'alternatives', 'compare',
+]);
+
+function extractKeywords(query) {
+  return query
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, ' ')
+    .split(/\s+/)
+    .filter(word => word.length > 1 && !STOP_WORDS.has(word))
+    .join(' ');
+}
+
 const program = new Command();
 
 program
   .name('salestools')
   .description('The official CLI for Salestools.club — configure your sales agents in one command.')
   .version('0.1.0');
+
+program
+  .command('search <query>')
+  .description('Search for sales tools and APIs relevant to your campaign.')
+  .option('--local', 'Use local server for testing', false)
+  .action(async (query, options) => {
+    const keywords = extractKeywords(query);
+    const baseUrl = options.local ? 'http://localhost:3000' : 'https://salestools.club';
+    const spinner = ora(chalk.cyan(`Searching for: `) + chalk.bold(query)).start();
+    
+    try {
+      const response = await fetch(`${baseUrl}/api/tools?q=${encodeURIComponent(keywords)}`);
+      if (!response.ok) {
+        throw new Error(`Search failed: ${response.statusText}`);
+      }
+      
+      const { tools, count } = await response.json();
+      spinner.succeed(chalk.green(`Found ${chalk.bold(count)} tools`));
+      
+      if (count === 0) {
+        console.log(chalk.gray('No tools found. Try a different search term.'));
+        return;
+      }
+
+      console.log(chalk.bold('\nResults:'));
+      console.log('─'.repeat(60));
+      
+      tools.slice(0, 10).forEach((tool, i) => {
+        console.log(`\n${i + 1}. ${chalk.cyan(tool.name)}`);
+        console.log(`   ${chalk.gray(tool.description?.slice(0, 80) || 'No description')}`);
+        console.log(`   ${chalk.white('→')} ${chalk.underline(`https://salestools.club/tools/${tool.slug}`)}`);
+      });
+      
+      if (count > 10) {
+        console.log(chalk.gray(`\n...and ${count - 10} more. Visit https://salestools.club to see all.`));
+      }
+      
+      console.log(chalk.bold('\nTip: Use with Claude Code:'));
+      console.log(chalk.italic(`  "Find me ${keywords} tools on salestools.club using npx salestools search ${keywords}"`));
+      
+    } catch (error) {
+      spinner.fail(chalk.red(`Search failed: ${error.message}`));
+    }
+  });
 
 program
   .command('add <slug>')

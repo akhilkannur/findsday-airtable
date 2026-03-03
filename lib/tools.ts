@@ -41,16 +41,56 @@ export async function getAllSlugs(): Promise<string[]> {
   return tools.map((t) => t.slug)
 }
 
+const STOP_WORDS = new Set([
+  'a', 'an', 'the', 'and', 'or', 'but', 'is', 'are', 'was', 'were', 'be', 'been', 'being',
+  'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could', 'should', 'may',
+  'might', 'must', 'shall', 'can', 'need', 'dare', 'ought', 'used', 'to', 'of', 'in',
+  'for', 'on', 'with', 'at', 'by', 'from', 'up', 'about', 'into', 'over', 'after',
+  'under', 'above', 'i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you',
+  'your', 'yours', 'yourself', 'yourselves', 'he', 'him', 'his', 'himself', 'she', 'her',
+  'hers', 'herself', 'it', 'its', 'itself', 'they', 'them', 'their', 'theirs', 'themselves',
+  'what', 'which', 'who', 'whom', 'this', 'that', 'these', 'those', 'am',
+  'been', 'being', 'having', 'doing', 'would', 'should', 'could', 'ought',
+  'i\'m', 'you\'re', 'he\'s', 'she\'s', 'it\'s', 'we\'re', 'they\'re', 'i\'ve',
+  'you\'ve', 'we\'ve', 'they\'ve', 'i\'d', 'you\'d', 'he\'d', 'she\'d', 'we\'d', 'they\'d',
+  'i\'ll', 'you\'ll', 'he\'ll', 'she\'ll', 'we\'ll', 'they\'ll', 'isn\'t', 'aren\'t', 'wasn\'t',
+  'weren\'t', 'hasn\'t', 'haven\'t', 'hadn\'t', 'doesn\'t', 'don\'t', 'didn\'t', 'won\'t',
+  'wouldn\'t', 'shan\'t', 'shouldn\'t', 'can\'t', 'cannot', 'couldn\'t', 'mustn\'t', 'let\'s',
+  'us', 'say', 'said', 'also', 'just', 'like', 'get', 'got', 'find', 'finding',
+  'search', 'searching', 'looking', 'need', 'needs', 'wants', 'want', 'best', 'good', 'top',
+  'free', 'cheap', 'affordable', 'use', 'using', 'used', 'make', 'making', 'build', 'building',
+  'project', 'their', 'show', 'showme', 'list', 'all', 'some', 'any', 'no',
+  'not', 'only', 'very', 'really', 'most', 'many', 'much', 'such', 'other', 'another',
+  'work', 'works', 'working', 'vs', 'versus', 'alternative', 'alternatives', 'compare',
+])
+
+function extractKeywords(query: string): string[] {
+  return query
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, ' ')
+    .split(/\s+/)
+    .filter(word => word.length > 1 && !STOP_WORDS.has(word))
+}
+
 export async function searchTools(query: string): Promise<SalesTool[]> {
-  const q = query.toLowerCase()
+  const keywords = extractKeywords(query)
+  
+  if (keywords.length === 0) {
+    return []
+  }
+
   return tools.filter(
     (t) =>
       t.docsUrl &&
       t.docsUrl !== "" &&
-      (t.name.toLowerCase().includes(q) ||
-        t.oneLiner.toLowerCase().includes(q) ||
-        t.category.toLowerCase().includes(q) ||
-        t.alternativeTo?.some((a) => a.toLowerCase().includes(q)))
+      keywords.some(
+        (kw) =>
+          t.name.toLowerCase().includes(kw) ||
+          t.oneLiner.toLowerCase().includes(kw) ||
+          t.category.toLowerCase().includes(kw) ||
+          t.description?.toLowerCase().includes(kw) ||
+          t.alternativeTo?.some((a) => a.toLowerCase().includes(kw))
+      )
   )
 }
 

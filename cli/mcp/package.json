@@ -1,0 +1,20 @@
+{
+  "name": "@salestoolsclub/mcp",
+  "version": "0.2.0",
+  "description": "MCP server for Salestools Club - Search sales APIs and tools",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "salestools-mcp": "index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.23.0"
+  },
+  "keywords": ["mcp", "sales", "api", "tools", "claude"],
+  "author": "Salestools Club",
+  "license": "MIT"
+}

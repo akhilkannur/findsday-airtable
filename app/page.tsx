@@ -164,7 +164,7 @@ export default async function Home() {
               (agent) => (
                 <span
                   key={agent}
-                  className="font-mono text-[0.65rem] md:text-[0.7rem] text-ink/40 uppercase tracking-tighter"
+                  className="font-mono text-[0.65rem] md:text-[0.7rem] text-ink/60 uppercase tracking-tighter"
                 >
                   {agent}
                 </span>
@@ -199,16 +199,18 @@ export default async function Home() {
           </div>
 
           {/* MCP Package CTA */}
-          <div className="mt-16 max-w-2xl mx-auto text-center">
-            <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade mb-3">
-              Access directly from Claude Code or any agentic tool
-            </p>
-            <p className="font-mono text-[0.75rem] mb-3">
-              Install the MCP package: <code className="bg-ink/10 px-2 py-1 rounded">npm install @salestoolsclub/mcp</code>
-            </p>
-            <p className="font-mono text-[0.7rem] text-ink-fade italic">
-              Then ask your agent: "Use the Salestools Club MCP to provide lead enrichment APIs for my use case"
-            </p>
+          <div className="mt-16 max-w-2xl mx-auto">
+            <div className="p-6 md:p-8 bg-paper border-2 border-ink shadow-[6px_6px_0px_rgba(26,25,23,0.15)]">
+              <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade mb-3 text-center">
+                Access directly from Claude Code or any agentic tool
+              </p>
+              <p className="font-mono text-[0.85rem] mb-4 text-center">
+                Install: <code className="bg-ink text-paper px-3 py-1.5 rounded font-bold">npm install @salestoolsclub/mcp</code>
+              </p>
+              <p className="font-mono text-[0.7rem] text-ink-fade italic text-center">
+                Then ask your agent: "Use the Salestools Club MCP to provide lead enrichment APIs for my use case"
+              </p>
+            </div>
           </div>
         </div>
       </section>

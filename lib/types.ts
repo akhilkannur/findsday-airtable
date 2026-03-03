@@ -38,7 +38,7 @@ export interface SalesTool {
   openApiSpecUrl?: string
 
   // AI-Native Operator Specifics
-  aiCapabilities: string[] // e.g., ["Search Leads", "Update CRM", "Record Meetings"]
+  aiCapabilities: string[] // e.g. ["Search Leads", "Update CRM", "Record Meetings"]
   starterPrompt?: string // "Claude, use this tool to..."
   mcpReady: boolean
 

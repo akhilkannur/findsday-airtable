@@ -167,8 +167,8 @@ gtag('config', 'G-9LGNFH00R7');`,
                 Directory Builder Skill
               </Link>
             </div>
-            <div className="font-mono text-[0.6rem] uppercase tracking-[0.2em] opacity-40 flex flex-col gap-2">
-              <p>Found: {toolsWithDocs} APIs with docs • {toolsWithoutDocs} pending documentation</p>
+            <div className="font-mono text-[0.6rem] uppercase tracking-[0.2em] opacity-50 flex flex-col gap-2">
+              <p>Found: {toolsWithDocs} APIs with docs • Monitoring {toolsWithoutDocs} for documentation</p>
               <p>© {new Date().getFullYear()} Salestools Club</p>
             </div>
           </div>
