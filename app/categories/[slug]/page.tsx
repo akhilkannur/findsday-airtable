@@ -25,11 +25,24 @@ export async function generateMetadata({
     return { title: "Category Not Found | Salestools Club" }
   }
 
+  const pageTitle = `Best ${category.name} APIs & SDKs (2026) | Salestools Club`
+  const pageDescription = `Discover the best ${category.name} APIs and tools for AI agents. Curated list of ${category.toolCount} ${category.name.toLowerCase()} solutions for automated GTM.`
+  const pageUrl = `https://salestools.club/categories/${slug}`
+
   return {
-    title: `Best ${category.name} APIs & SDKs (2026) | Salestools Club`,
-    description: `Discover the best ${category.name} APIs and tools for AI agents. Curated list of ${category.toolCount} ${category.name.toLowerCase()} solutions for automated GTM.`,
-    alternates: {
-      canonical: `https://salestools.club/categories/${slug}`,
+    title: pageTitle,
+    description: pageDescription,
+    alternates: { canonical: pageUrl },
+    openGraph: {
+      title: pageTitle,
+      description: pageDescription,
+      type: "website",
+      url: pageUrl,
+    },
+    twitter: {
+      card: "summary_large_image" as const,
+      title: pageTitle,
+      description: pageDescription,
     },
   }
 }

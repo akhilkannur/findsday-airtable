@@ -25,11 +25,24 @@ export async function generateMetadata({
     }
   }
 
+  const pageTitle = `${stack.name} | Salestools Club`
+  const pageDescription = stack.tagline
+  const pageUrl = `https://salestools.club/stacks/${stack.slug}`
+
   return {
-    title: `${stack.name} | Salestools Club`,
-    description: stack.tagline,
-    alternates: {
-      canonical: `https://salestools.club/stacks/${stack.slug}`,
+    title: pageTitle,
+    description: pageDescription,
+    alternates: { canonical: pageUrl },
+    openGraph: {
+      title: pageTitle,
+      description: pageDescription,
+      type: "website",
+      url: pageUrl,
+    },
+    twitter: {
+      card: "summary_large_image" as const,
+      title: pageTitle,
+      description: pageDescription,
     },
   }
 }

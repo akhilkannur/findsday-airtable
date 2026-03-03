@@ -25,11 +25,24 @@ export async function generateMetadata({
     }
   }
 
+  const pageTitle = `${skill.name} — Agent Skill | Salestools Club`
+  const pageDescription = skill.description
+  const pageUrl = `https://salestools.club/skills/${skill.slug}`
+
   return {
-    title: `${skill.name} — Agent Skill | Salestools Club`,
-    description: skill.description,
-    alternates: {
-      canonical: `https://salestools.club/skills/${skill.slug}`,
+    title: pageTitle,
+    description: pageDescription,
+    alternates: { canonical: pageUrl },
+    openGraph: {
+      title: pageTitle,
+      description: pageDescription,
+      type: "website",
+      url: pageUrl,
+    },
+    twitter: {
+      card: "summary_large_image" as const,
+      title: pageTitle,
+      description: pageDescription,
     },
   }
 }

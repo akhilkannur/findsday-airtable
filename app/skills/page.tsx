@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://salestools.club/skills",
   },
+  openGraph: {
+    title: "Agent Skills for Sales | Salestools Club",
+    description: "Copy-paste instruction files that teach AI agents how to write cold emails, qualify leads, update CRMs, and run sales workflows. Drop them into Claude Code, Gemini CLI, or any agentic tool.",
+    type: "website",
+    url: "https://salestools.club/skills",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Agent Skills for Sales | Salestools Club",
+    description: "Copy-paste instruction files that teach AI agents how to write cold emails, qualify leads, update CRMs, and run sales workflows. Drop them into Claude Code, Gemini CLI, or any agentic tool.",
+  },
 }
 
 const CATEGORIES: Skill["category"][] = [

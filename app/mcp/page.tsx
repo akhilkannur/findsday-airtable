@@ -10,6 +10,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://salestools.club/mcp",
   },
+  openGraph: {
+    title: "MCP Servers | Salestools Club",
+    description: "Find sales tools with MCP (Model Context Protocol) support for Claude Code and Gemini CLI.",
+    type: "website",
+    url: "https://salestools.club/mcp",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MCP Servers | Salestools Club",
+    description: "Find sales tools with MCP (Model Context Protocol) support for Claude Code and Gemini CLI.",
+  },
 }
 
 function ToolCard({ tool }: { tool: any }) {

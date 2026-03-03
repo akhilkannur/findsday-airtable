@@ -10,6 +10,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://salestools.club/for",
   },
+  openGraph: {
+    title: "Sales AI Use Cases | Salestools Club",
+    description: "Browse AI sales tools organized by use case — cold outreach, lead enrichment, CRM automation, prospecting, and more. Find the right APIs for what you're building.",
+    type: "website",
+    url: "https://salestools.club/for",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sales AI Use Cases | Salestools Club",
+    description: "Browse AI sales tools organized by use case — cold outreach, lead enrichment, CRM automation, prospecting, and more. Find the right APIs for what you're building.",
+  },
 }
 
 export default function UseCasesPage() {

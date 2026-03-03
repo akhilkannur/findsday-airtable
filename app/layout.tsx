@@ -19,6 +19,7 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://salestools.club"),
   title: "Salestools Club — Every Sales API & MCP Server in one place.",
   description:
     "A curated directory of sales APIs, MCP servers, and agent skills. Find tools to connect your sales stack to Claude Code, Gemini CLI, and agentic workflows.",

@@ -10,6 +10,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://salestools.club/tools",
   },
+  openGraph: {
+    title: "Sales APIs | Salestools Club",
+    description: "A comprehensive database of sales APIs and tools for people building with Claude Code and Gemini CLI.",
+    type: "website",
+    url: "https://salestools.club/tools",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sales APIs | Salestools Club",
+    description: "A comprehensive database of sales APIs and tools for people building with Claude Code and Gemini CLI.",
+  },
 }
 
 function ToolCard({ tool }: { tool: any }) {

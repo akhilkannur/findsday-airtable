@@ -11,6 +11,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://salestools.club/categories",
   },
+  openGraph: {
+    title: "Categories | Salestools Club",
+    description: "Find sales APIs by category — prospecting, CRM, enrichment, outreach, and more.",
+    type: "website",
+    url: "https://salestools.club/categories",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Categories | Salestools Club",
+    description: "Find sales APIs by category — prospecting, CRM, enrichment, outreach, and more.",
+  },
 }
 
 function getCategoryIcon(iconName: string): LucideIcon {

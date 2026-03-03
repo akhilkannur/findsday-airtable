@@ -1,12 +1,24 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 import { getAllTools } from "@/lib/tools"
 import { ArrowRight, Zap, Scale, Cpu } from "lucide-react"
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "API Comparisons | Salestools Club",
   description: "Technical head-to-head comparisons of the best sales APIs, SDKs, and MCP servers for AI agents.",
   alternates: {
     canonical: "https://salestools.club/vs",
+  },
+  openGraph: {
+    title: "API Comparisons | Salestools Club",
+    description: "Technical head-to-head comparisons of the best sales APIs, SDKs, and MCP servers for AI agents.",
+    type: "website",
+    url: "https://salestools.club/vs",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "API Comparisons | Salestools Club",
+    description: "Technical head-to-head comparisons of the best sales APIs, SDKs, and MCP servers for AI agents.",
   },
 }
 

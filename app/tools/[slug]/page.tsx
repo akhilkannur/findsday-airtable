@@ -31,11 +31,25 @@ export async function generateMetadata({
     }
   }
 
+  const pageTitle = `${tool.name} API & MCP Server | Salestools Club`
+  const pageUrl = `https://salestools.club/tools/${tool.slug}`
+
   return {
-    title: `${tool.name} API & MCP Server | Salestools Club`,
+    title: pageTitle,
     description: tool.oneLiner,
     alternates: {
-      canonical: `https://salestools.club/tools/${tool.slug}`,
+      canonical: pageUrl,
+    },
+    openGraph: {
+      title: pageTitle,
+      description: tool.oneLiner,
+      type: "website",
+      url: pageUrl,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: pageTitle,
+      description: tool.oneLiner,
     },
   }
 }

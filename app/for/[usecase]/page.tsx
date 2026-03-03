@@ -25,11 +25,24 @@ export async function generateMetadata({
     return { title: "Use Case Not Found | Salestools Club" }
   }
 
+  const pageTitle = `${uc.title} (2026) | Salestools Club`
+  const pageDescription = uc.metaDescription
+  const pageUrl = `https://salestools.club/for/${uc.slug}`
+
   return {
-    title: `${uc.title} (2026) | Salestools Club`,
-    description: uc.metaDescription,
-    alternates: {
-      canonical: `https://salestools.club/for/${uc.slug}`,
+    title: pageTitle,
+    description: pageDescription,
+    alternates: { canonical: pageUrl },
+    openGraph: {
+      title: pageTitle,
+      description: pageDescription,
+      type: "website",
+      url: pageUrl,
+    },
+    twitter: {
+      card: "summary_large_image" as const,
+      title: pageTitle,
+      description: pageDescription,
     },
   }
 }

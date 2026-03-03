@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://salestools.club/stacks",
   },
+  openGraph: {
+    title: "Sales Tool Stacks | Salestools Club",
+    description: "Curated tool combinations for specific sales workflows. Pre-built stacks of APIs that chain together — from prospecting to close.",
+    type: "website",
+    url: "https://salestools.club/stacks",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sales Tool Stacks | Salestools Club",
+    description: "Curated tool combinations for specific sales workflows. Pre-built stacks of APIs that chain together — from prospecting to close.",
+  },
 }
 
 export default function StacksPage() {

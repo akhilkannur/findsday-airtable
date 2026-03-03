@@ -16,11 +16,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: "Comparison Not Found" }
   }
 
+  const pageTitle = `${tool1.name} API vs ${tool2.name} API — Which is better for AI Agents?`
+  const pageDescription = `Compare ${tool1.name} and ${tool2.name} for AI-native sales. Find the best API, MCP server, and SDK for your GTM stack.`
+  const pageUrl = `https://salestools.club/vs/${slugs}`
+
   return {
-    title: `${tool1.name} API vs ${tool2.name} API — Which is better for AI Agents?`,
-    description: `Compare ${tool1.name} and ${tool2.name} for AI-native sales. Find the best API, MCP server, and SDK for your GTM stack.`,
-    alternates: {
-      canonical: `https://salestools.club/vs/${slugs}`,
+    title: pageTitle,
+    description: pageDescription,
+    alternates: { canonical: pageUrl },
+    openGraph: {
+      title: pageTitle,
+      description: pageDescription,
+      type: "website",
+      url: pageUrl,
+    },
+    twitter: {
+      card: "summary_large_image" as const,
+      title: pageTitle,
+      description: pageDescription,
     },
   }
 }

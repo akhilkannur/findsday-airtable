@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://salestools.club/monitoring",
   },
+  openGraph: {
+    title: "Monitoring | Salestools Club",
+    description: "Tools we're monitoring for API documentation. If you know any of these tools have public APIs, let us know!",
+    type: "website",
+    url: "https://salestools.club/monitoring",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Monitoring | Salestools Club",
+    description: "Tools we're monitoring for API documentation. If you know any of these tools have public APIs, let us know!",
+  },
 }
 
 export default async function MonitoringPage() {
