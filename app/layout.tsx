@@ -6,7 +6,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { MobileNav } from "@/components/MobileNav"
 import { Shield, Zap } from "lucide-react"
-import { getAllTools } from "@/lib/tools"
+import { getAllTools, getToolsWithoutDocs } from "@/lib/tools"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -57,7 +57,7 @@ export default async function RootLayout({
 }>) {
   const allTools = await getAllTools()
   const toolsWithDocs = allTools.filter(t => t.docsUrl && t.docsUrl !== "").length
-  const toolsWithoutDocs = allTools.length - toolsWithDocs
+  const toolsWithoutDocs = (await getToolsWithoutDocs()).length
   
   const organizationSchema = {
     "@context": "https://schema.org",
@@ -164,9 +164,9 @@ gtag('config', 'G-9LGNFH00R7');`,
                 <span className="font-black border-b-2 border-ink pb-0.5">Akhil</span>
               </a>
               <span className="opacity-60 text-[0.7rem]">with</span>
-              <Link href="/directory-builder" className="font-black border-b-2 border-ink pb-0.5 hover:opacity-80 transition-opacity">
+              <a href="http://realaiexamples.com/" target="_blank" rel="noopener noreferrer" className="font-black border-b-2 border-ink pb-0.5 hover:opacity-80 transition-opacity">
                 Directory Builder Skill
-              </Link>
+              </a>
             </div>
             <div className="font-mono text-[0.6rem] uppercase tracking-[0.2em] opacity-50 flex flex-col gap-2">
               <p>Found: {toolsWithDocs} APIs with docs • Monitoring {toolsWithoutDocs} for documentation</p>
