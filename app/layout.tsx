@@ -81,7 +81,6 @@ export default function RootLayout({
     <html lang="en" className={`${playfair.variable} ${inter.variable} ${GeistMono.variable}`}>
       <head>
         <link rel="icon" href="/icon.png" />
-        <link rel="canonical" href="https://salestools.club" />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-9LGNFH00R7" />
         <script
           dangerouslySetInnerHTML={{
