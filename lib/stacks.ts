@@ -143,7 +143,7 @@ const stacks: Stack[] = [
     tagline: "Record every call, analyze every deal, and forecast revenue with AI-powered insights.",
     description:
       "Revenue intelligence is about seeing what's really happening in your pipeline — not just what reps enter in the CRM. This stack records and transcribes every sales conversation, analyzes deal health and sentiment, syncs insights back to your CRM, and surfaces product-qualified leads from usage data.",
-    toolSlugs: ["fireflies", "gong", "hubspot", "journy"],
+    toolSlugs: ["fireflies", "gong", "hubspot", "koala"],
     workflow: [
       {
         step: "Record & transcribe calls",
@@ -162,8 +162,8 @@ const stacks: Stack[] = [
       },
       {
         step: "Identify product-qualified leads",
-        toolSlug: "journy",
-        description: "Use Journy.io to monitor product usage signals and flag users ready for an upsell conversation.",
+        toolSlug: "koala",
+        description: "Use Koala to prioritize sales signals, score intent, and surface accounts ready for an upsell conversation.",
       },
     ],
   },
@@ -208,7 +208,7 @@ const stacks: Stack[] = [
     tagline: "Extract, enrich, and engage LinkedIn prospects at scale with AI automation.",
     description:
       "LinkedIn is still the #1 source for B2B leads, but manual prospecting doesn't scale. This stack extracts structured data from LinkedIn profiles, enriches contacts with verified emails and phone numbers, automates connection requests and DM sequences, and syncs everything into your CRM.",
-    toolSlugs: ["proxycurl", "kaspr", "aimfox", "folk"],
+    toolSlugs: ["proxycurl", "lusha", "aimfox", "folk"],
     workflow: [
       {
         step: "Extract LinkedIn data",
@@ -217,8 +217,8 @@ const stacks: Stack[] = [
       },
       {
         step: "Get contact details",
-        toolSlug: "kaspr",
-        description: "Pass LinkedIn URLs to Kaspr to retrieve verified email addresses and mobile phone numbers.",
+        toolSlug: "lusha",
+        description: "Pass prospects through Lusha to retrieve verified B2B email addresses and mobile phone numbers.",
       },
       {
         step: "Automate LinkedIn outreach",

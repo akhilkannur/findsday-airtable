@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { ArrowRight, Cpu, Zap, Brain, Mail, Sparkles, ChevronRight } from "lucide-react"
 import * as LucideIcons from "lucide-react"
-import { getFeaturedTools, getAllCategories, getAllTools } from "@/lib/tools"
+import { getAllCategories, getAllTools } from "@/lib/tools"
 import type { Metadata } from "next"
 import { NewsletterForm } from "@/components/NewsletterForm"
 
@@ -105,9 +105,8 @@ function ToolCard({ tool }: { tool: any }) {
 }
 
 export default async function Home() {
-  const allFeatured = await getFeaturedTools()
-  const exploreTools = allFeatured.slice(0, 12)
   const allTools = await getAllTools()
+  const exploreTools = allTools.slice(-12).reverse()
   const categories = getAllCategories()
 
   return (
@@ -154,6 +153,19 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* -- Notification Bar -- */}
+      <section className="py-3 bg-ink/5 border-y border-ink/10">
+        <div className="layout-container text-center">
+          <p className="font-mono text-[0.7rem] text-ink/80">
+            📬 I'm updating & enriching the directory this weekend. Have suggestions or feedback on listings? Email{' '}
+            <a href="mailto:akhil@salestools.club" className="underline hover:text-ink transition-colors">
+              akhil@salestools.club
+            </a>{' '}
+            and I'll fix it immediately.
+          </p>
+        </div>
+      </section>
+
       {/* -- Works With Trust Bar ----------------------- */}
       <section className="py-2 md:py-3 border-t border-ink/10">
         <div className="layout-container flex flex-col md:flex-row md:items-center gap-2 md:gap-8">
@@ -172,6 +184,10 @@ export default async function Home() {
               )
             )}
           </div>
+          <div className="hidden md:block w-px h-4 bg-ink/20" />
+          <p className="font-mono text-[0.65rem] text-ink/60 whitespace-nowrap">
+            Use in Claude Code: <code className="bg-ink/10 px-2 py-0.5 rounded">npx salestools-finder find cold-outreach</code>
+          </p>
         </div>
       </section>
 
@@ -180,7 +196,7 @@ export default async function Home() {
         <div className="layout-container">
           <div className="mb-8 md:mb-12">
             <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade mb-4">
-              Featured Directory
+              Recently Added
             </p>
             <h2 className="font-serif text-3xl md:text-4xl leading-tight">
               Sales APIs & MCP Servers
@@ -197,6 +213,19 @@ export default async function Home() {
             <Link href="/tools" className="font-serif italic text-xl md:text-2xl border-b border-black hover:opacity-60 transition-opacity pb-1">
               Browse All APIs ->
             </Link>
+          </div>
+
+          {/* CLI CTA */}
+          <div className="mt-12 max-w-2xl mx-auto text-center">
+            <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade mb-3">
+              Need to find the best API for your GTM usecase without visiting the site?
+            </p>
+            <p className="font-mono text-[0.75rem] mb-2">
+              Run in your terminal: <code className="bg-ink/10 px-2 py-1 rounded">npx salestools-finder find &lt;usecase&gt;</code>
+            </p>
+            <p className="font-mono text-[0.7rem] text-ink-fade italic">
+              (e.g., "find best lead enrichment tool for my usecase")
+            </p>
           </div>
         </div>
       </section>

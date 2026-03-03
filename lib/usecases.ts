@@ -157,9 +157,10 @@ export function getUseCasesForTool(tool: SalesTool): UseCase[] {
 
 export function getToolsForUseCase(usecase: UseCase): SalesTool[] {
   const matched = new Map<string, SalesTool>()
+  const withDocs = tools.filter((t) => t.docsUrl && t.docsUrl !== "")
 
   // Match by categories
-  for (const tool of tools) {
+  for (const tool of withDocs) {
     if (usecase.categories.includes(tool.category)) {
       matched.set(tool.slug, tool)
     }
@@ -167,7 +168,7 @@ export function getToolsForUseCase(usecase: UseCase): SalesTool[] {
 
   // Match by capability keywords
   if (usecase.capabilityKeywords?.length) {
-    for (const tool of tools) {
+    for (const tool of withDocs) {
       if (matched.has(tool.slug)) continue
       const caps = (tool.aiCapabilities || []).join(" ").toLowerCase()
       const matchesKeyword = usecase.capabilityKeywords.some((kw) =>
@@ -182,7 +183,7 @@ export function getToolsForUseCase(usecase: UseCase): SalesTool[] {
   // Force-include specific slugs
   if (usecase.includeSlugs?.length) {
     for (const slug of usecase.includeSlugs) {
-      const tool = tools.find((t) => t.slug === slug)
+      const tool = withDocs.find((t) => t.slug === slug)
       if (tool) {
         matched.set(tool.slug, tool)
       }

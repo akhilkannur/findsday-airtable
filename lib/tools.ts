@@ -18,15 +18,15 @@ export async function getToolBySlug(slug: string): Promise<SalesTool | undefined
 }
 
 export async function getToolsByCategory(category: ToolCategory): Promise<SalesTool[]> {
-  return tools.filter((t) => t.category === category)
+  return tools.filter((t) => t.docsUrl && t.docsUrl !== "" && t.category === category)
 }
 
 export async function getMcpTools(): Promise<SalesTool[]> {
-  return tools.filter((t) => t.mcpReady)
+  return tools.filter((t) => t.docsUrl && t.docsUrl !== "" && t.mcpReady)
 }
 
 export async function getToolsWithIntegrations(): Promise<SalesTool[]> {
-  return tools.filter((t) => t.integrations && t.integrations.length > 0)
+  return tools.filter((t) => t.docsUrl && t.docsUrl !== "" && t.integrations && t.integrations.length > 0)
 }
 
 export function getAllCategories(): CategoryMeta[] {
@@ -67,7 +67,7 @@ export async function getToolsForComparison(slugs: string): Promise<{ tool1: Sal
 }
 
 export async function getOpenSourceTools(): Promise<SalesTool[]> {
-  return tools.filter((t) => t.githubUrl)
+  return tools.filter((t) => t.docsUrl && t.docsUrl !== "" && t.githubUrl)
 }
 
 export async function getToolsWithoutDocs(): Promise<SalesTool[]> {
