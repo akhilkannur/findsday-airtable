@@ -74,6 +74,14 @@ const skills: Skill[] = [
   },
 ]
 
+export function getAllSkills(): Skill[] {
+  return skills
+}
+
+export function getSkillBySlug(slug: string): Skill | undefined {
+  return skills.find((s) => s.slug === slug)
+}
+
 export function getSkillSlugs(): string[] {
   return skills.map((s) => s.slug)
 }
