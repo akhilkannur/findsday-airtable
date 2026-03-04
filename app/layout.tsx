@@ -46,7 +46,7 @@ const navLinks = [
   { href: "/skills", label: "Skills" },
   { href: "/stacks", label: "Stacks" },
   { href: "/categories", label: "Categories" },
-  { href: "/monitoring", label: "Monitoring" },
+  { href: "/open-source", label: "Open Source" },
   { href: "/submit", label: "Submit" },
 ]
 
@@ -145,7 +145,7 @@ gtag('config', 'G-9LGNFH00R7');`,
           <div className="layout-container text-center flex flex-col items-center gap-10">
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 font-mono text-[0.7rem] uppercase tracking-widest border-b border-ink/10 pb-8 w-full max-w-2xl opacity-60">
               <Link href="/for" className="hover:line-through">Use Cases</Link>
-              <Link href="/open-source" className="hover:line-through">Open Source</Link>
+              <Link href="/monitoring" className="hover:line-through">Monitoring</Link>
               <Link href="/about" className="hover:line-through">About</Link>
               <Link href="/privacy" className="hover:line-through">Privacy</Link>
               <Link href="/submit" className="hover:line-through">Submit Tool</Link>

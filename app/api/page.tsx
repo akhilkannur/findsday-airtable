@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { getAllTools, filterTools, getAllCategories } from "@/lib/tools"
-import { ArrowRight, Check, LayoutGrid, List } from "lucide-react"
-import { redirect } from "next/navigation"
+import { ArrowRight } from "lucide-react"
+import { ApiFilterBar } from "@/components/ApiFilterBar"
 
 export const dynamic = "force-dynamic"
 
@@ -54,7 +54,6 @@ export default async function APIPage({
   })
 
   const categories = getAllCategories()
-  const baseParams = `${q ? `q=${q}&` : ''}${category ? `category=${category}&` : ''}${mcpOnly ? 'mcp=true&' : ''}${freeOnly ? 'free=true&' : ''}${officialOnly ? 'official=true&' : ''}`
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -67,78 +66,7 @@ export default async function APIPage({
         </div>
       </section>
 
-      <div className="border-b border-ink bg-paper-dark/20 py-6">
-        <div className="layout-container flex flex-wrap items-center justify-between gap-y-6">
-          <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
-            <div className="flex flex-wrap gap-2">
-              <Link 
-                href={`/api?${view === 'list' ? 'view=list' : ''}`}
-                className={`font-mono text-[0.7rem] uppercase tracking-widest px-3 py-1.5 border transition-all ${!category ? 'bg-ink text-paper border-ink' : 'border-ink/20 text-ink-fade hover:border-ink hover:text-ink'}`}
-              >
-                All
-              </Link>
-              {categories.map(cat => (
-                <Link 
-                  key={cat.slug}
-                  href={`/api?category=${encodeURIComponent(cat.name)}${q ? `&q=${q}` : ''}${mcpOnly ? '&mcp=true' : ''}${freeOnly ? '&free=true' : ''}${officialOnly ? '&official=true' : ''}${view === 'list' ? '&view=list' : ''}`}
-                  className={`font-mono text-[0.7rem] uppercase tracking-widest px-3 py-1.5 border transition-all ${category === cat.name ? 'bg-ink text-paper border-ink' : 'border-ink/20 text-ink-fade hover:border-ink hover:text-ink'}`}
-                >
-                  {cat.name}
-                </Link>
-              ))}
-            </div>
-
-            <div className="flex items-center gap-6 border-l border-ink/20 pl-8">
-              <Link 
-                href={`/api?${baseParams}mcp=${!mcpOnly}${view === 'list' ? '&view=list' : ''}`}
-                className={`flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-widest transition-all ${mcpOnly ? 'text-black font-bold' : 'text-ink-fade hover:text-black'}`}
-              >
-                <div className={`w-3 h-3 border border-black flex items-center justify-center ${mcpOnly ? 'bg-black' : ''}`}>
-                  {mcpOnly && <Check className="w-2 h-2 text-white" />}
-                </div>
-                MCP Only
-              </Link>
-
-              <Link 
-                href={`/api?${baseParams}free=${!freeOnly}${view === 'list' ? '&view=list' : ''}`}
-                className={`flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-widest transition-all ${freeOnly ? 'text-black font-bold' : 'text-ink-fade hover:text-black'}`}
-              >
-                <div className={`w-3 h-3 border border-black flex items-center justify-center ${freeOnly ? 'bg-black' : ''}`}>
-                  {freeOnly && <Check className="w-2 h-2 text-white" />}
-                </div>
-                Free Tier
-              </Link>
-
-              <Link 
-                href={`/api?${baseParams}official=${!officialOnly}${view === 'list' ? '&view=list' : ''}`}
-                className={`flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-widest transition-all ${officialOnly ? 'text-black font-bold' : 'text-ink-fade hover:text-black'}`}
-              >
-                <div className={`w-3 h-3 border border-black flex items-center justify-center ${officialOnly ? 'bg-black' : ''}`}>
-                  {officialOnly && <Check className="w-2 h-2 text-white" />}
-                </div>
-                Official Only
-              </Link>
-            </div>
-          </div>
-
-          <div className="flex items-center border border-ink/20 p-1 bg-white/20">
-            <Link 
-              href={`/api?${baseParams}view=grid`}
-              className={`p-2 transition-all ${view === 'grid' ? 'bg-ink text-paper' : 'text-ink-fade hover:text-ink'}`}
-              title="Grid View"
-            >
-              <LayoutGrid className="h-4 w-4" />
-            </Link>
-            <Link 
-              href={`/api?${baseParams}view=list`}
-              className={`p-2 transition-all ${view === 'list' ? 'bg-ink text-paper' : 'text-ink-fade hover:text-ink'}`}
-              title="List View"
-            >
-              <List className="h-4 w-4" />
-            </Link>
-          </div>
-        </div>
-      </div>
+      <ApiFilterBar categories={categories.map(c => ({ slug: c.slug, name: c.name }))} />
 
       {(q || category || mcpOnly || freeOnly || officialOnly) && (
         <div className="py-6 border-b border-ink bg-paper-dark/40">
