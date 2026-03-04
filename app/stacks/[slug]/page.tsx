@@ -213,7 +213,7 @@ export default async function StackDetailPage({
               CRM Automation
             </Link>
             <Link
-              href="/tools"
+              href="/api"
               className="font-mono text-[0.7rem] uppercase underline underline-offset-4 hover:line-through transition-all"
             >
               Full Directory

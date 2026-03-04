@@ -11,9 +11,9 @@ export function SearchBar() {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (query.trim()) {
-      router.push(`/tools?q=${encodeURIComponent(query.trim())}`)
+      router.push(`/api?q=${encodeURIComponent(query.trim())}`)
     } else {
-      router.push("/tools")
+      router.push("/api")
     }
   }
 

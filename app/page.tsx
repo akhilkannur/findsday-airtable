@@ -193,7 +193,7 @@ export default async function Home() {
           </div>
 
           <div className="mt-12 md:mt-16 text-center">
-            <Link href="/tools" className="font-serif italic text-xl md:text-2xl border-b border-black hover:opacity-60 transition-opacity pb-1">
+            <Link href="/api" className="font-serif italic text-xl md:text-2xl border-b border-black hover:opacity-60 transition-opacity pb-1">
               Browse All APIs ->
             </Link>
           </div>
@@ -228,7 +228,7 @@ export default async function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-            <Link href="/tools" className="group flex flex-col gap-4">
+            <Link href="/api" className="group flex flex-col gap-4">
               <span className="font-mono text-[0.75rem] text-ink-fade tracking-widest">01</span>
               <h3 className="text-2xl font-bold uppercase underline decoration-transparent group-hover:decoration-ink transition-all underline-offset-8">
                 Sales APIs

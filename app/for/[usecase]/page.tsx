@@ -155,7 +155,7 @@ export default async function UseCaseDetailPage({
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
             <h2 className="font-serif italic text-3xl">Keep Exploring</h2>
             <Link
-              href="/tools"
+              href="/api"
               className="font-mono text-[0.75rem] uppercase underline hover:line-through"
             >
               Full Directory -&gt;
@@ -181,7 +181,7 @@ export default async function UseCaseDetailPage({
 
           <div className="flex flex-wrap gap-6 pt-8 border-t border-dashed border-ink/20">
             <Link
-              href="/tools"
+              href="/api"
               className="font-mono text-[0.75rem] uppercase underline hover:line-through transition-all"
             >
               All Tools

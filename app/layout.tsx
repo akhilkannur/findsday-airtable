@@ -41,7 +41,7 @@ export const metadata: Metadata = {
 }
 
 const navLinks = [
-  { href: "/tools", label: "APIs" },
+  { href: "/api", label: "APIs" },
   { href: "/mcp", label: "MCP Servers" },
   { href: "/skills", label: "Skills" },
   { href: "/stacks", label: "Stacks" },
@@ -78,7 +78,7 @@ export default async function RootLayout({
     "url": "https://salestools.club",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://salestools.club/tools?q={search_term_string}",
+      "target": "https://salestools.club/api?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   };
@@ -165,7 +165,7 @@ gtag('config', 'G-9LGNFH00R7');`,
               </a>
               <span className="opacity-60 text-[0.7rem]">with</span>
               <a href="http://realaiexamples.com/" target="_blank" rel="noopener noreferrer" className="font-black border-b-2 border-ink pb-0.5 hover:opacity-80 transition-opacity">
-                Directory Builder Skill
+                realaiexamples.com
               </a>
             </div>
             <div className="font-mono text-[0.6rem] uppercase tracking-[0.2em] opacity-50 flex flex-col gap-2">

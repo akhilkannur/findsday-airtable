@@ -294,7 +294,7 @@ export default async function SkillDetailPage({
             </div>
             <div className="space-y-4">
               <Link
-                href="/tools"
+                href="/api"
                 className="font-mono text-[0.8rem] uppercase tracking-wide px-4 py-2 border border-ink/20 hover:border-ink hover:bg-ink hover:text-paper transition-all block text-center"
               >
                 Browse All Tools

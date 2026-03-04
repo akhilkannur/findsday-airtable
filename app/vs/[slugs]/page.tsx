@@ -166,7 +166,7 @@ export default async function ComparisonPage({ params }: Props) {
         <div className="layout-container">
           <h2 className="font-serif italic text-3xl mb-12">Select your primary infrastructure node.</h2>
           <div className="flex flex-col md:flex-row gap-12 justify-center items-center">
-            <Link href="/tools" className="font-mono font-bold uppercase underline hover:line-through">Back to Registry</Link>
+            <Link href="/api" className="font-mono font-bold uppercase underline hover:line-through">Back to Registry</Link>
             <Link href="/submit" className="circled font-mono font-bold uppercase px-8 py-3">Add New Module</Link>
           </div>
         </div>

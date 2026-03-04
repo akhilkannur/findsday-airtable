@@ -18,7 +18,7 @@ Salestools Club provides the technical "lego blocks" needed to automate GTM (Go-
 - **Agentic Integration**: Tools designed for programmatic use by LLMs.
 
 ## Directory Structure
-- [All Tools](https://salestools.club/tools)
+- [All APIs](https://salestools.club/api)
 - [MCP Servers](https://salestools.club/mcp)
 - [Categories](https://salestools.club/categories)
 - [About](https://salestools.club/about)

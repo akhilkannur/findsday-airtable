@@ -101,7 +101,7 @@ export default async function OpenSourcePage() {
         <div className="layout-container">
           <div className="flex flex-wrap gap-6 pt-8 border-t border-dashed border-ink/20">
             <Link
-              href="/tools"
+              href="/api"
               className="font-mono text-[0.75rem] uppercase underline hover:line-through transition-all"
             >
               All Tools

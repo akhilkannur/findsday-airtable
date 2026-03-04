@@ -144,7 +144,7 @@ export default async function ToolDetailPage({
       <section className="px-8 py-24 border-b border-ink bg-paper-dark/30">
         <div className="layout-container">
           <Link
-            href="/tools"
+            href="/api"
             className="font-mono text-[0.75rem] uppercase underline hover:line-through transition-all mb-12 inline-block"
           >
             &lt;- Back to Directory
