@@ -73,7 +73,7 @@ export default async function APIPage({
           <div className="layout-container flex items-center justify-between">
             <div className="flex items-center gap-4">
               <span className="font-mono text-[0.75rem] font-bold">
-                {tools.length} nodes found
+                {tools.length} APIs found
               </span>
             </div>
             <Link href="/api" className="font-mono text-[0.75rem] uppercase underline hover:line-through transition-all">Reset All Filters</Link>

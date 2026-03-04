@@ -31,7 +31,7 @@ export default function StacksPage() {
         <div className="layout-container">
           <h1 className="type-display mb-8">Stacks</h1>
           <p className="max-w-2xl font-serif italic text-2xl text-ink-fade leading-relaxed border-l-2 border-ink pl-6">
-            Curated tool combinations that actually work together. Not just lists — these are connected workflows where data flows from one tool to the next.
+            Curated tool combinations that actually work together. Not just lists. These are connected workflows where data flows from one tool to the next.
           </p>
         </div>
       </section>

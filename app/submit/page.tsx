@@ -75,7 +75,7 @@ export default function SubmitPage() {
         <CheckCircle2 className="w-20 h-20 text-green-600 mb-8" />
         <h1 className="type-display mb-4 text-4xl">Submission Received</h1>
         <p className="max-w-md font-serif italic text-2xl text-ink-fade leading-relaxed mb-12">
-          Your tool has been dispatched to the primary node for manual verification. We'll review it within 72 hours.
+          Your tool has been submitted. We'll review it within 72 hours.
         </p>
         <button
           onClick={() => setStatus('idle')}
@@ -104,7 +104,7 @@ export default function SubmitPage() {
             <form className="space-y-16" onSubmit={handleSubmit}>
               {/* Tool Name */}
               <div>
-                <label htmlFor="toolName" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink-fade mb-2 block">
+                <label htmlFor="toolName" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-2 block">
                   01. Tool Name
                 </label>
                 <input
@@ -120,7 +120,7 @@ export default function SubmitPage() {
 
               {/* Website URL */}
               <div>
-                <label htmlFor="websiteUrl" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink-fade mb-2 block">
+                <label htmlFor="websiteUrl" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-2 block">
                   02. Website URL
                 </label>
                 <input
@@ -136,7 +136,7 @@ export default function SubmitPage() {
 
               {/* API Docs URL */}
               <div>
-                <label htmlFor="apiDocsUrl" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink-fade mb-2 block">
+                <label htmlFor="apiDocsUrl" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-2 block">
                   03. API Docs URL
                 </label>
                 <input
@@ -151,7 +151,7 @@ export default function SubmitPage() {
 
               {/* Category */}
               <div>
-                <label htmlFor="category" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink-fade mb-2 block">
+                <label htmlFor="category" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-2 block">
                   04. Category
                 </label>
                 <select
@@ -172,7 +172,7 @@ export default function SubmitPage() {
 
               {/* Description */}
               <div>
-                <label htmlFor="description" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink-fade mb-2 block">
+                <label htmlFor="description" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-2 block">
                   05. One-liner / Description
                 </label>
                 <input
@@ -188,7 +188,7 @@ export default function SubmitPage() {
 
               {/* Email */}
               <div>
-                <label htmlFor="email" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink-fade mb-2 block">
+                <label htmlFor="email" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-2 block">
                   06. Your Email (Optional)
                 </label>
                 <input
@@ -244,10 +244,10 @@ export default function SubmitPage() {
                   disabled={status === 'submitting'}
                   className={`w-full py-6 font-mono font-bold uppercase text-[1.1rem] transition-all hover:rotate-[-1deg] circled accent bg-transparent ${status === 'submitting' ? 'opacity-50 cursor-not-allowed' : ''}`}
                 >
-                  {status === 'submitting' ? 'Deploying...' : 'Deploy to Registry'} <span>-></span>
+                  {status === 'submitting' ? 'Submitting...' : 'Submit Tool'} <span>-></span>
                 </button>
                 <p className="mt-8 font-serif italic text-lg text-ink-fade text-center opacity-60">
-                  Awaiting manual verification from primary node...
+                  We'll review your submission and get back to you.
                 </p>
               </div>
             </form>

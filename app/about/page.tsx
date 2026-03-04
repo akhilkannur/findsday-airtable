@@ -57,7 +57,7 @@ export default function AboutPage() {
           <div className="max-w-3xl">
             <h2 className="type-display mb-12">Get in touch</h2>
             <p className="text-xl font-serif italic text-ink-fade mb-12 leading-relaxed">
-              Have a tool that should be here? Or just want to talk about AI-native sales workflows? Reach out to our primary node.
+              Have a tool that should be here? Or just want to talk about AI-native sales workflows? Reach out.
             </p>
             <a 
               href="mailto:akhil@salestools.club" 
