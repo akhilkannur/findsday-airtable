@@ -23,7 +23,6 @@ export interface SalesTool {
   oneLiner: string
   description: string
   category: ToolCategory
-  logoUrl: string
   websiteUrl: string
   docsUrl: string
   pricingUrl: string
@@ -34,8 +33,6 @@ export interface SalesTool {
   hasFreeTier: boolean
   sdkLanguages: string[]
   hasWebhooks: boolean
-  hasOpenApiSpec: boolean
-  openApiSpecUrl?: string
 
   // AI-Native Operator Specifics
   aiCapabilities: string[] // e.g. ["Search Leads", "Update CRM", "Record Meetings"]

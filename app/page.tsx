@@ -5,6 +5,8 @@ import { getAllCategories, getAllTools } from "@/lib/tools"
 import type { Metadata } from "next"
 import { NewsletterForm } from "@/components/NewsletterForm"
 
+export const dynamic = "force-dynamic"
+
 export const metadata: Metadata = {
   title: "Salestools Club — Every Sales API & MCP Server in one place.",
   description:
@@ -106,7 +108,7 @@ function ToolCard({ tool }: { tool: any }) {
 
 export default async function Home() {
   const allTools = await getAllTools()
-  const exploreTools = allTools.slice(-12).reverse()
+  const exploreTools = allTools.slice(0, 12)
   const categories = getAllCategories()
 
   return (
