@@ -40,7 +40,7 @@ function ToolCard({ tool }: { tool: any }) {
       
       <div className="flex-grow">
         <h3 className="text-xl font-semibold mb-1">{tool.name}</h3>
-        <div className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade mb-4 italic">#{tool.category.toLowerCase().replace(/\s+/g, '_')}</div>
+        <div className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade mb-4 italic">{tool.category}</div>
         <p className="text-[0.9rem] text-ink-fade leading-relaxed line-clamp-3">
           {tool.oneLiner}
         </p>
@@ -51,7 +51,7 @@ function ToolCard({ tool }: { tool: any }) {
           {tool.hasFreeTier ? "Free" : "Paid"}
         </div>
         <div className="font-mono text-[0.7rem] uppercase underline group-hover:line-through transition-all">
-          Configure Node ↗
+          View Tool ↗
         </div>
       </div>
     </Link>
@@ -78,7 +78,7 @@ export default async function McpPage({
         <div className="layout-container">
           <div className="font-mono text-[0.85rem] uppercase tracking-[0.2em] text-ink-fade mb-6 flex items-center gap-3">
             <span className="w-1.5 h-1.5 bg-current rounded-full animate-status-blink"></span>
-            Automation Layer
+            MCP Directory
           </div>
           <h1 className="type-display mb-8 uppercase">MCP Servers</h1>
           <p className="max-w-3xl font-serif italic text-2xl text-ink-fade leading-relaxed border-l-2 border-ink pl-6">
@@ -117,13 +117,13 @@ export default async function McpPage({
         <div className="layout-container">
           <div className="p-16 text-center border-2 border-dashed border-ink/20 bg-white/20">
             <p className="font-serif italic text-2xl mb-10 text-ink-fade">
-              Know a protocol module we're missing?
+              Know an MCP server we're missing?
             </p>
             <Link
               href="/submit"
               className="circled accent font-mono font-bold px-12 py-4 text-[1rem] uppercase hover:rotate-[-1deg] transition-transform"
             >
-              Submit Module <span>-&gt;</span>
+              Submit a Tool <span>-&gt;</span>
             </Link>
           </div>
         </div>

@@ -67,7 +67,6 @@ function ToolCard({ tool }: { tool: any }) {
       </div>
 
       <div className="mt-auto flex flex-wrap gap-2 items-center border-t border-dashed border-black/10 pt-4">
-        <span className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade group-hover:text-black transition-colors">{tool.aiDifficulty}</span>
         <span className="ml-auto font-mono text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 border border-ink/20 rounded-full group-hover:border-ink transition-colors">
           {tool.hasFreeTier ? "Free" : "Paid"}
         </span>
@@ -124,7 +123,7 @@ export default async function CategoryDetailPage({
             Best {category.name} APIs.
           </h1>
           <p className="max-w-2xl font-serif italic text-2xl text-ink-fade leading-relaxed border-l-2 border-ink pl-6">
-            {category.description} These {tools.length} modules have been vetted for their ability to integrate with AI-native sales stacks.
+            {category.description} These {tools.length} tools have been vetted for their ability to integrate with AI-native sales stacks.
           </p>
         </div>
       </section>

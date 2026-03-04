@@ -50,9 +50,9 @@ export default async function ComparisonPage({ params }: Props) {
     { label: "API Type", val1: (tool1.apiType || []).join(", "), val2: (tool2.apiType || []).join(", ") },
     { label: "MCP Ready", val1: tool1.mcpReady ? "YES" : "NO", val2: tool2.mcpReady ? "YES" : "NO" },
     { label: "Free Tier", val1: tool1.hasFreeTier ? "YES" : "NO", val2: tool2.hasFreeTier ? "YES" : "NO" },
-    { label: "AI Difficulty", val1: tool1.aiDifficulty, val2: tool2.aiDifficulty },
     { label: "SDKs", val1: (tool1.sdkLanguages || []).join(", ") || "None", val2: (tool2.sdkLanguages || []).join(", ") || "None" },
     { label: "Webhooks", val1: tool1.hasWebhooks ? "YES" : "NO", val2: tool2.hasWebhooks ? "YES" : "NO" },
+    { label: "Capabilities", val1: (tool1.aiCapabilities || []).join(", ") || "—", val2: (tool2.aiCapabilities || []).join(", ") || "—" },
   ]
 
   return (
@@ -61,9 +61,9 @@ export default async function ComparisonPage({ params }: Props) {
       <section className="px-8 py-24 border-b border-ink bg-paper-dark/30 relative overflow-hidden">
         <div className="layout-container">
           <div className="font-mono text-[0.75rem] uppercase tracking-[0.2em] mb-16 flex items-center gap-4 text-ink-fade">
-            <span className="circled font-bold text-black italic">Audit_Node</span>
+            <span className="circled font-bold text-black italic">Compare</span>
             <div className="w-1.5 h-1.5 bg-black rounded-full animate-status-blink"></div>
-            <span>Technical Scorecard</span>
+            <span>Side-by-Side Comparison</span>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] items-center gap-12 md:gap-24">
@@ -101,7 +101,7 @@ export default async function ComparisonPage({ params }: Props) {
       <section className="py-24">
         <div className="layout-container">
           <div className="mb-20">
-            <h2 className="font-mono text-[0.8rem] uppercase tracking-[0.2em] text-ink-fade border-b border-black/10 pb-4 inline-block italic">Spec Comparison Matrix</h2>
+            <h2 className="font-mono text-[0.8rem] uppercase tracking-[0.2em] text-ink-fade border-b border-black/10 pb-4 inline-block italic">Feature Comparison</h2>
           </div>
 
           <div className="border border-ink/20 bg-white/40 overflow-hidden">
@@ -113,50 +113,11 @@ export default async function ComparisonPage({ params }: Props) {
             
             {specs.map((spec) => (
               <div key={spec.label} className="grid grid-cols-[1.5fr_1fr_1fr] p-10 border-b border-ink/10 hover:bg-[var(--highlight)] transition-colors group">
-                <div className="font-mono text-[0.7rem] uppercase tracking-widest opacity-40 group-hover:opacity-100 italic">{spec.label}</div>
-                <div className="font-serif text-[1.2rem] font-bold uppercase">{spec.val1}</div>
-                <div className="font-serif text-[1.2rem] font-bold uppercase">{spec.val2}</div>
+                <div className="font-mono text-[0.85rem] uppercase tracking-widest font-bold text-ink/70">{spec.label}</div>
+                <div className={spec.label === "Capabilities" ? "font-serif text-[0.95rem] leading-relaxed" : "font-serif text-[1.2rem] font-bold uppercase"}>{spec.val1}</div>
+                <div className={spec.label === "Capabilities" ? "font-serif text-[0.95rem] leading-relaxed" : "font-serif text-[1.2rem] font-bold uppercase"}>{spec.val2}</div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* AI Readiness Section */}
-      <section className="py-24 bg-paper-dark/20 border-y border-ink/10">
-        <div className="layout-container">
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Tool 1 AI */}
-            <div className="p-16 space-y-12 bg-white/40 border border-transparent hover:border-black/10 transition-all">
-              <div className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink-fade">AI_CAPABILITIES: {tool1.name}</div>
-              <div className="space-y-6">
-                {(tool1.aiCapabilities || []).map((cap) => (
-                  <div key={cap} className="flex items-center gap-4 group">
-                    <div className="w-1.5 h-1.5 bg-black rounded-full opacity-20 group-hover:opacity-100 transition-opacity"></div>
-                    <span className="font-serif italic text-xl text-ink-fade group-hover:text-black transition-colors">{cap}</span>
-                  </div>
-                ))}
-              </div>
-              <Link href={`/tools/${tool1.slug}`} className="font-mono font-bold uppercase text-[0.8rem] underline hover:line-through transition-all inline-block">
-                BOOT NODE ->
-              </Link>
-            </div>
-
-            {/* Tool 2 AI */}
-            <div className="p-16 space-y-12 bg-white/40 border border-transparent hover:border-black/10 transition-all">
-              <div className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink-fade">AI_CAPABILITIES: {tool2.name}</div>
-              <div className="space-y-6">
-                {(tool2.aiCapabilities || []).map((cap) => (
-                  <div key={cap} className="flex items-center gap-4 group">
-                    <div className="w-1.5 h-1.5 bg-black rounded-full opacity-20 group-hover:opacity-100 transition-opacity"></div>
-                    <span className="font-serif italic text-xl text-ink-fade group-hover:text-black transition-colors">{cap}</span>
-                  </div>
-                ))}
-              </div>
-              <Link href={`/tools/${tool2.slug}`} className="font-mono font-bold uppercase text-[0.8rem] underline hover:line-through transition-all inline-block">
-                BOOT NODE ->
-              </Link>
-            </div>
           </div>
         </div>
       </section>
@@ -164,10 +125,11 @@ export default async function ComparisonPage({ params }: Props) {
       {/* Footer Call to Action */}
       <section className="py-32 text-center">
         <div className="layout-container">
-          <h2 className="font-serif italic text-3xl mb-12">Select your primary infrastructure node.</h2>
+          <h2 className="font-serif italic text-3xl mb-12">Ready to pick your tool?</h2>
           <div className="flex flex-col md:flex-row gap-12 justify-center items-center">
-            <Link href="/api" className="font-mono font-bold uppercase underline hover:line-through">Back to Registry</Link>
-            <Link href="/submit" className="circled font-mono font-bold uppercase px-8 py-3">Add New Module</Link>
+            <Link href={`/tools/${tool1.slug}`} className="font-mono font-bold uppercase underline hover:line-through">View {tool1.name}</Link>
+            <Link href={`/tools/${tool2.slug}`} className="font-mono font-bold uppercase underline hover:line-through">View {tool2.name}</Link>
+            <Link href="/api" className="circled font-mono font-bold uppercase px-8 py-3">Browse All Tools</Link>
           </div>
         </div>
       </section>

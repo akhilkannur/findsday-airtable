@@ -161,7 +161,7 @@ export default function SubmitPage() {
                   onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                   required
                 >
-                  <option value="" className="bg-paper">Select a class...</option>
+                  <option value="" className="bg-paper">Select a category...</option>
                   {CATEGORIES.map((cat) => (
                     <option key={cat} value={cat} className="bg-paper">
                       {cat}

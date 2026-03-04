@@ -187,7 +187,7 @@ export default async function SkillDetailPage({
             <div>
               <div className="flex items-center gap-6 mb-12">
                 <div className="font-mono text-[0.8rem] uppercase tracking-wider text-ink">
-                  Required Infrastructure
+                  Required Tools
                 </div>
                 <div className="h-px flex-grow bg-ink opacity-10"></div>
               </div>
