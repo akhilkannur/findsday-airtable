@@ -87,9 +87,16 @@ export default async function SkillDetailPage({
               <h1 className="type-display uppercase">{skill.name}</h1>
             </div>
             
-            <div className="mt-8 p-4 border border-ink/10 bg-paper-dark/20 inline-block">
+            <div className="mt-8 p-4 border border-ink/10 bg-paper-dark/20 inline-flex items-center gap-2">
               <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade">
-                Registry Note: This is a community-contributed skill from <span className="text-ink font-bold">{skill.source}</span>.
+                Curated by Salestools Club • Created by{" "}
+                {skill.sourceUrl ? (
+                  <a href={skill.sourceUrl} target="_blank" rel="noopener noreferrer" className="text-ink font-bold underline hover:line-through transition-all">
+                    {skill.source} ↗
+                  </a>
+                ) : (
+                  <span className="text-ink font-bold">{skill.source}</span>
+                )}
               </p>
             </div>
 
@@ -248,7 +255,7 @@ export default async function SkillDetailPage({
 
                 <div className="mt-12 pt-8 border-t border-ink/10">
                   <p className="text-[0.9rem] italic opacity-60 text-ink-fade">
-                    This skill is curated from the community and served via the Salestools.club registry for easy agent configuration. Original credit belongs to <strong>{skill.source}</strong>.
+                    Curated and served via the Salestools.club registry. Original credit belongs to <strong>{skill.source}</strong>.
                   </p>
                 </div>
               </div>
@@ -267,7 +274,6 @@ export default async function SkillDetailPage({
               {[
                 { label: "Difficulty", value: skill.difficulty },
                 { label: "Category", value: skill.category },
-                { label: "Source", value: skill.source },
                 {
                   label: "Compatible With",
                   value: "Claude Code, Cursor, Gemini CLI",
@@ -285,6 +291,20 @@ export default async function SkillDetailPage({
                   </div>
                 </div>
               ))}
+              <div className="group border-b border-ink/10 pb-8">
+                <div className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade mb-3 group-hover:text-ink transition-colors italic">
+                  Creator
+                </div>
+                <div className="font-mono font-bold text-[0.85rem] uppercase tracking-widest">
+                  {skill.sourceUrl ? (
+                    <a href={skill.sourceUrl} target="_blank" rel="noopener noreferrer" className="underline hover:line-through transition-all">
+                      {skill.source} ↗
+                    </a>
+                  ) : (
+                    skill.source
+                  )}
+                </div>
+              </div>
             </div>
           </div>
 
