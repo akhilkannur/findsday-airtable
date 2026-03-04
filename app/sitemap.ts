@@ -84,6 +84,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     },
     {
+      url: `${baseUrl}/monitoring`,
+      lastModified: lastModified,
+      changeFrequency: "weekly",
+      priority: 0.6,
+    },
+    {
       url: `${baseUrl}/directory-builder`,
       lastModified: lastModified,
       changeFrequency: "monthly",
@@ -171,6 +177,42 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     }))
 
+  // Dynamic vs comparison pages
+  const vsUrlSet = new Set<string>()
+  const toolsByName = new Map(tools.map((t) => [t.name.toLowerCase(), t]))
+
+  for (const tool of tools) {
+    if (!tool.alternativeTo?.length) continue
+    for (const alt of tool.alternativeTo) {
+      const altTool = toolsByName.get(alt.toLowerCase())
+      if (!altTool) continue
+      const slugs = [tool.slug, altTool.slug].sort()
+      vsUrlSet.add(`${baseUrl}/vs/${slugs[0]}-vs-${slugs[1]}`)
+    }
+  }
+
+  // Include featured pairs from the vs index page
+  const featuredPairs = [
+    "apollo-vs-clay",
+    "apollo-vs-zoominfo",
+    "hubspot-vs-salesforce",
+    "instantly-vs-smartlead",
+    "firecrawl-vs-jina-reader",
+    "bland-ai-vs-vapi",
+    "cal-com-vs-calendly",
+    "perplexity-vs-tavily",
+  ]
+  for (const pair of featuredPairs) {
+    vsUrlSet.add(`${baseUrl}/vs/${pair}`)
+  }
+
+  const vsPages: MetadataRoute.Sitemap = Array.from(vsUrlSet).map((url) => ({
+    url,
+    lastModified: lastModified,
+    changeFrequency: "weekly" as const,
+    priority: 0.6,
+  }))
+
   const allPages = [
     ...staticPages,
     ...toolPages,
@@ -178,6 +220,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...stackPages,
     ...categoryPages,
     ...usecasePages,
+    ...vsPages,
   ]
 
   // Final deduplication by URL and XML escaping to be absolutely sure

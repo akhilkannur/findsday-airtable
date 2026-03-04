@@ -90,8 +90,27 @@ export default async function CategoryDetailPage({
 
   const tools = await getToolsByCategory(category.name)
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": `Best ${category.name} APIs`,
+    "description": category.description,
+    "numberOfItems": tools.length,
+    "itemListElement": tools.map((tool, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": tool.name,
+      "url": `https://salestools.club/tools/${tool.slug}`,
+      "description": tool.oneLiner,
+    })),
+  }
+
   return (
     <div className="flex flex-col min-h-screen bg-paper">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <section className="px-8 py-24 border-b border-ink bg-paper-dark/30">
         <div className="layout-container">
           <Link

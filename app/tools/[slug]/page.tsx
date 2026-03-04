@@ -287,6 +287,25 @@ export default async function ToolDetailPage({
       <section className="py-32 bg-paper border-t border-ink">
         <div className="layout-container">
           {alternatives.length > 0 && (
+            <div className="mb-20">
+              <div className="flex items-center gap-6 mb-12">
+                <h2 className="font-mono text-[0.8rem] uppercase tracking-wider text-ink">Compare {tool.name}</h2>
+                <div className="h-px flex-grow bg-ink opacity-10"></div>
+              </div>
+              <div className="flex flex-wrap gap-4">
+                {alternatives.map((alt) => (
+                  <Link
+                    key={alt.slug}
+                    href={`/vs/${tool.slug}-vs-${alt.slug}`}
+                    className="font-mono text-[0.8rem] uppercase tracking-wide px-4 py-2 border border-ink/20 hover:border-ink hover:bg-ink hover:text-paper transition-all"
+                  >
+                    {tool.name} vs {alt.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+          {alternatives.length > 0 && (
             <>
               <div className="flex items-center gap-6 mb-20">
                 <h2 className="font-serif italic text-3xl">Alternatives to {tool.name}</h2>
