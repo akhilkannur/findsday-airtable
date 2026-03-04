@@ -98,23 +98,19 @@ export default async function ComparisonPage({ params }: Props) {
       </section>
 
       {/* Comparison Grid */}
-      <section className="py-24">
+      <section className="py-12">
         <div className="layout-container">
-          <div className="mb-20">
-            <h2 className="font-mono text-[0.8rem] uppercase tracking-[0.2em] text-ink-fade border-b border-black/10 pb-4 inline-block italic">Feature Comparison</h2>
-          </div>
-
           <div className="border border-ink/20 bg-white/40 overflow-hidden">
-            <div className="grid grid-cols-[1.5fr_1fr_1fr] bg-paper-dark/50 border-b border-ink/20 text-[0.7rem] font-mono font-bold uppercase tracking-widest p-10 text-ink-fade">
-              <div>Attribute</div>
+            <div className="grid grid-cols-[1.2fr_1fr_1fr] gap-6 bg-paper-dark/50 border-b border-ink/20 text-[0.7rem] font-mono font-bold uppercase tracking-widest px-8 py-6 text-ink-fade">
+              <div></div>
               <div className="text-black">{tool1.name}</div>
               <div className="text-black">{tool2.name}</div>
             </div>
             
             {specs.map((spec) => (
-              <div key={spec.label} className="grid grid-cols-[1.5fr_1fr_1fr] p-10 border-b border-ink/10 hover:bg-[var(--highlight)] transition-colors group">
+              <div key={spec.label} className="grid grid-cols-[1.2fr_1fr_1fr] gap-6 px-8 py-6 border-b border-ink/10 hover:bg-[var(--highlight)] transition-colors group">
                 <div className="font-mono text-[0.85rem] uppercase tracking-widest font-bold text-ink/70">{spec.label}</div>
-                <div className={spec.label === "Capabilities" ? "font-serif text-[0.95rem] leading-relaxed" : "font-serif text-[1.2rem] font-bold uppercase"}>{spec.val1}</div>
+                <div className={spec.label === "Capabilities" ? "font-serif text-[0.95rem] leading-relaxed pr-4" : "font-serif text-[1.2rem] font-bold uppercase"}>{spec.val1}</div>
                 <div className={spec.label === "Capabilities" ? "font-serif text-[0.95rem] leading-relaxed" : "font-serif text-[1.2rem] font-bold uppercase"}>{spec.val2}</div>
               </div>
             ))}
