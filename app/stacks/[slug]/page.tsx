@@ -50,7 +50,7 @@ export async function generateMetadata({
 function ToolCard({ tool }: { tool: SalesTool }) {
   return (
     <Link
-      href={`/tools/${tool.slug}`}
+      href={`/apis/${tool.slug}`}
       className="tool-card group flex flex-col h-full"
     >
       <div className="flex justify-between items-start mb-6">
@@ -143,7 +143,7 @@ export default async function StackDetailPage({
                       </h3>
                       {tool && (
                         <Link
-                          href={`/tools/${tool.slug}`}
+                          href={`/apis/${tool.slug}`}
                           className="inline-block font-mono text-[0.75rem] uppercase underline underline-offset-4 hover:line-through transition-all mb-4"
                         >
                           {tool.name} →

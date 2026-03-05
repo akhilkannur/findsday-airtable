@@ -88,7 +88,7 @@ export default async function APIPage({
               {tools.map((tool) => (
                 <Link
                   key={tool.slug}
-                  href={`/tools/${tool.slug}`}
+                  href={`/apis/${tool.slug}`}
                   className="tool-card group flex flex-col h-full"
                 >
                   <div className="flex justify-between items-start mb-6">
@@ -121,7 +121,7 @@ export default async function APIPage({
               {tools.map((tool) => (
                 <Link
                   key={tool.slug}
-                  href={`/tools/${tool.slug}`}
+                  href={`/apis/${tool.slug}`}
                   className="group flex flex-col md:flex-row md:items-center gap-6 p-8 border-b border-ink/10 hover:bg-paper-dark/30 transition-all"
                 >
                   <div className="w-10 h-10 bg-ink text-paper flex-shrink-0 flex items-center justify-center font-serif font-bold text-lg [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]">

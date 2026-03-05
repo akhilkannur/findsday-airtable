@@ -200,7 +200,7 @@ export default async function SkillDetailPage({
                 {linkedTools.map((tool) => (
                   <Link
                     key={tool!.slug}
-                    href={`/tools/${tool!.slug}`}
+                    href={`/apis/${tool!.slug}`}
                     className="tool-card group flex flex-col h-full"
                   >
                     <div className="flex justify-between items-start mb-6">

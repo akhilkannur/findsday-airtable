@@ -32,7 +32,7 @@ export async function generateMetadata({
   }
 
   const pageTitle = `${tool.name} API & MCP Server | Salestools Club`
-  const pageUrl = `https://salestools.club/tools/${tool.slug}`
+  const pageUrl = `https://salestools.club/apis/${tool.slug}`
 
   return {
     title: pageTitle,
@@ -82,7 +82,7 @@ function JsonLd({ tool }: { tool: SalesTool }) {
 function ToolCard({ tool }: { tool: SalesTool }) {
   return (
     <Link
-      href={`/tools/${tool.slug}`}
+      href={`/apis/${tool.slug}`}
       className="tool-card group flex flex-col h-full"
     >
       <div className="flex justify-between items-start mb-6">

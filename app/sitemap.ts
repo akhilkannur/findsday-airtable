@@ -107,7 +107,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       return true
     })
     .map((tool) => ({
-      url: `${baseUrl}/tools/${tool.slug}`,
+      url: `${baseUrl}/apis/${tool.slug}`,
       lastModified: lastModified,
       changeFrequency: "weekly" as const,
       priority: 0.7,

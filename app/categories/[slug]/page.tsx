@@ -50,7 +50,7 @@ export async function generateMetadata({
 function ToolCard({ tool }: { tool: any }) {
   return (
     <Link
-      href={`/tools/${tool.slug}`}
+      href={`/apis/${tool.slug}`}
       className="tool-card group flex flex-col h-full"
     >
       <div className="flex justify-between items-start mb-6">
@@ -99,7 +99,7 @@ export default async function CategoryDetailPage({
       "@type": "ListItem",
       "position": i + 1,
       "name": tool.name,
-      "url": `https://salestools.club/tools/${tool.slug}`,
+      "url": `https://salestools.club/apis/${tool.slug}`,
       "description": tool.oneLiner,
     })),
   }

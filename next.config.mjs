@@ -27,6 +27,20 @@ const nextConfig = {
       },
     ]
   },
+  async redirects() {
+    return [
+      {
+        source: '/tools/:slug',
+        destination: '/apis/:slug',
+        permanent: true,
+      },
+      {
+        source: '/tools',
+        destination: '/api',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 export default nextConfig

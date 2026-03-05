@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 function ToolCard({ tool }: { tool: any }) {
   return (
     <Link
-      href={`/tools/${tool.slug}`}
+      href={`/apis/${tool.slug}`}
       className="tool-card group flex flex-col h-full"
     >
       <div className="flex justify-between items-start mb-6">
