@@ -5,6 +5,7 @@ import {
   getToolsByCategory,
   getToolsWithIntegrations,
   searchTools,
+  resolveCategoryName,
 } from "@/lib/tools"
 import type { ToolCategory } from "@/lib/types"
 
@@ -33,7 +34,8 @@ export async function GET(request: NextRequest) {
   if (q) {
     tools = await searchTools(q)
   } else if (category) {
-    tools = await getToolsByCategory(category as ToolCategory)
+    const resolved = resolveCategoryName(category) ?? category as ToolCategory
+    tools = await getToolsByCategory(resolved as ToolCategory)
   } else if (mcp === "true") {
     tools = await getMcpTools()
   } else if (integrations === "true") {

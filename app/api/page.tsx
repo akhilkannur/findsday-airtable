@@ -10,14 +10,20 @@ export function generateStaticParams() {
   return []
 }
 
-export function generateMetadata({ searchParams }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }): Promise<Metadata> {
-  return Promise.resolve({
+export async function generateMetadata({ searchParams }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }): Promise<Metadata> {
+  const sp = await searchParams
+  const hasFilters = !!(sp.q || sp.category || sp.mcp || sp.free || sp.official || sp.view)
+
+  return {
     title: "Sales APIs | Salestools Club",
     description:
       "A comprehensive database of sales APIs and tools for people building with Claude Code and Gemini CLI.",
     alternates: {
       canonical: "https://salestools.club/api",
     },
+    ...(hasFilters && {
+      robots: { index: false, follow: true },
+    }),
     openGraph: {
       title: "Sales APIs | Salestools Club",
       description: "A comprehensive database of sales APIs and tools for people building with Claude Code and Gemini CLI.",
@@ -29,7 +35,7 @@ export function generateMetadata({ searchParams }: { searchParams: Promise<{ [ke
       title: "Sales APIs | Salestools Club",
       description: "A comprehensive database of sales APIs and tools for people building with Claude Code and Gemini CLI.",
     },
-  })
+  }
 }
 
 export default async function APIPage({

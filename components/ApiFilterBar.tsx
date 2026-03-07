@@ -79,7 +79,7 @@ export function ApiFilterBar({ categories }: { categories: CategoryOption[] }) {
           >
             <option value="">All Categories</option>
             {categories.map((cat) => (
-              <option key={cat.slug} value={cat.name}>
+              <option key={cat.slug} value={cat.slug}>
                 {cat.name}
               </option>
             ))}

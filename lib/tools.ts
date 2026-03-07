@@ -114,6 +114,15 @@ export async function getToolsWithoutDocs(): Promise<SalesTool[]> {
   return tools.filter((t) => !t.docsUrl || t.docsUrl === "")
 }
 
+export function resolveCategoryName(input: string): string | undefined {
+  const trimmed = input.trim()
+  if (!trimmed) return undefined
+  const cat = categories.find(
+    (c) => c.slug === trimmed || c.name === trimmed
+  )
+  return cat?.name
+}
+
 export async function filterTools(options: {
   query?: string
   category?: string
@@ -124,7 +133,12 @@ export async function filterTools(options: {
   let filtered = tools.filter((t) => t.docsUrl && t.docsUrl !== "")
 
   if (options.category && options.category !== "All") {
-    filtered = filtered.filter((t) => t.category === options.category)
+    const resolved = resolveCategoryName(options.category)
+    if (resolved) {
+      filtered = filtered.filter((t) => t.category === resolved)
+    } else {
+      filtered = filtered.filter((t) => t.category === options.category.trim())
+    }
   }
 
   if (options.mcpOnly) {
