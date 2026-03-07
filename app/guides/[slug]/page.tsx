@@ -3,6 +3,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { getAllGuides, getGuideBySlug, getGuideSlugs, getToolsForGuide } from "@/lib/guides"
 import { Check, X } from "lucide-react"
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
 
 export async function generateStaticParams() {
   return getGuideSlugs().map((slug) => ({ slug }))
@@ -91,6 +92,10 @@ export default async function GuidePage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <BreadcrumbJsonLd items={[
+        { name: "Guides", url: "https://salestools.club/guides" },
+        { name: guide.title, url: `https://salestools.club/guides/${slug}` },
+      ]} />
 
       <section className="px-8 py-24 border-b border-ink bg-paper-dark/30">
         <div className="layout-container">

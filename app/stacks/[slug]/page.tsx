@@ -4,6 +4,7 @@ import type { Metadata } from "next"
 import { getStackBySlug, getStackSlugs, getToolsForStack } from "@/lib/stacks"
 import type { SalesTool } from "@/lib/types"
 import { ArrowRight } from "lucide-react"
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
 
 export async function generateStaticParams() {
   const slugs = getStackSlugs()
@@ -90,6 +91,10 @@ export default async function StackDetailPage({
 
   return (
     <div className="flex flex-col min-h-screen">
+      <BreadcrumbJsonLd items={[
+        { name: "Stacks", url: "https://salestools.club/stacks" },
+        { name: stack.name, url: `https://salestools.club/stacks/${stack.slug}` },
+      ]} />
       <section className="px-8 py-24 border-b border-ink bg-paper-dark/30">
         <div className="layout-container">
           <Link

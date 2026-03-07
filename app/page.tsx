@@ -5,8 +5,6 @@ import { getAllCategories, getAllTools } from "@/lib/tools"
 import type { Metadata } from "next"
 import { NewsletterForm } from "@/components/NewsletterForm"
 
-export const dynamic = "force-dynamic"
-
 export const metadata: Metadata = {
   title: "Salestools Club — Every Sales API & MCP Server in one place.",
   description:

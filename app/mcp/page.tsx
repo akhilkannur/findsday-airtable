@@ -3,24 +3,32 @@ import { ArrowRight, Zap, Brain, Check } from "lucide-react"
 import { getMcpTools } from "@/lib/tools"
 import type { Metadata } from "next"
 
-export const metadata: Metadata = {
-  title: "MCP Servers | Salestools Club",
-  description:
-    "Find sales tools with MCP (Model Context Protocol) support for Claude Code and Gemini CLI.",
-  alternates: {
-    canonical: "https://salestools.club/mcp",
-  },
-  openGraph: {
+export async function generateMetadata({ searchParams }: { searchParams: Promise<{ official?: string }> }): Promise<Metadata> {
+  const sp = await searchParams
+  const hasFilters = !!(sp.official && sp.official === "true")
+
+  return {
     title: "MCP Servers | Salestools Club",
-    description: "Find sales tools with MCP (Model Context Protocol) support for Claude Code and Gemini CLI.",
-    type: "website",
-    url: "https://salestools.club/mcp",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "MCP Servers | Salestools Club",
-    description: "Find sales tools with MCP (Model Context Protocol) support for Claude Code and Gemini CLI.",
-  },
+    description:
+      "Find sales tools with MCP (Model Context Protocol) support for Claude Code and Gemini CLI.",
+    alternates: {
+      canonical: "https://salestools.club/mcp",
+    },
+    ...(hasFilters && {
+      robots: { index: false, follow: true },
+    }),
+    openGraph: {
+      title: "MCP Servers | Salestools Club",
+      description: "Find sales tools with MCP (Model Context Protocol) support for Claude Code and Gemini CLI.",
+      type: "website",
+      url: "https://salestools.club/mcp",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "MCP Servers | Salestools Club",
+      description: "Find sales tools with MCP (Model Context Protocol) support for Claude Code and Gemini CLI.",
+    },
+  }
 }
 
 function ToolCard({ tool }: { tool: any }) {
@@ -72,8 +80,24 @@ export default async function McpPage({
       )
     : allMcpTools
 
+  const mcpJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "MCP Servers for Sales",
+    "description": "Sales tools with MCP (Model Context Protocol) support for Claude Code and Gemini CLI.",
+    "numberOfItems": mcpTools.length,
+    "itemListElement": mcpTools.slice(0, 50).map((tool, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": tool.name,
+      "url": `https://salestools.club/apis/${tool.slug}`,
+      "description": tool.oneLiner,
+    })),
+  }
+
   return (
     <div className="flex flex-col min-h-screen bg-paper">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(mcpJsonLd) }} />
       <section className="px-8 py-24 border-b border-ink">
         <div className="layout-container">
           <div className="font-mono text-[0.85rem] uppercase tracking-[0.2em] text-ink-fade mb-6 flex items-center gap-3">
@@ -91,7 +115,7 @@ export default async function McpPage({
         <div className="layout-container flex items-center">
           <div className="flex items-center gap-6">
             <Link 
-              href={`/mcp?official=${!officialOnly}`}
+              href={officialOnly ? "/mcp" : "/mcp?official=true"}
               className={`flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-widest transition-all ${officialOnly ? 'text-black font-bold' : 'text-ink-fade hover:text-black'}`}
             >
               <div className={`w-3 h-3 border border-black flex items-center justify-center ${officialOnly ? 'bg-black' : ''}`}>

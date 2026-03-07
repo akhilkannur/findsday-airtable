@@ -8,6 +8,7 @@ import {
   getAllCategories,
 } from "@/lib/tools"
 import { ArrowRight } from "lucide-react"
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
 
 export async function generateStaticParams() {
   return getAllCategorySlugs().map((slug) => ({ slug }))
@@ -110,6 +111,10 @@ export default async function CategoryDetailPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <BreadcrumbJsonLd items={[
+        { name: "Categories", url: "https://salestools.club/categories" },
+        { name: category.name, url: `https://salestools.club/categories/${slug}` },
+      ]} />
       <section className="px-8 py-24 border-b border-ink bg-paper-dark/30">
         <div className="layout-container">
           <Link

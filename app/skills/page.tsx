@@ -2,24 +2,32 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { getAllSkills, type Skill } from "@/lib/skills"
 
-export const metadata: Metadata = {
-  title: "Agent Skills for Sales | Salestools Club",
-  description:
-    "Copy-paste instruction files that teach AI agents how to write cold emails, qualify leads, update CRMs, and run sales workflows. Drop them into Claude Code, Gemini CLI, or any agentic tool.",
-  alternates: {
-    canonical: "https://salestools.club/skills",
-  },
-  openGraph: {
+export async function generateMetadata({ searchParams }: { searchParams: Promise<{ category?: string }> }): Promise<Metadata> {
+  const sp = await searchParams
+  const hasFilters = !!sp.category
+
+  return {
     title: "Agent Skills for Sales | Salestools Club",
-    description: "Copy-paste instruction files that teach AI agents how to write cold emails, qualify leads, update CRMs, and run sales workflows. Drop them into Claude Code, Gemini CLI, or any agentic tool.",
-    type: "website",
-    url: "https://salestools.club/skills",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Agent Skills for Sales | Salestools Club",
-    description: "Copy-paste instruction files that teach AI agents how to write cold emails, qualify leads, update CRMs, and run sales workflows. Drop them into Claude Code, Gemini CLI, or any agentic tool.",
-  },
+    description:
+      "Copy-paste instruction files that teach AI agents how to write cold emails, qualify leads, update CRMs, and run sales workflows. Drop them into Claude Code, Gemini CLI, or any agentic tool.",
+    alternates: {
+      canonical: "https://salestools.club/skills",
+    },
+    ...(hasFilters && {
+      robots: { index: false, follow: true },
+    }),
+    openGraph: {
+      title: "Agent Skills for Sales | Salestools Club",
+      description: "Copy-paste instruction files that teach AI agents how to write cold emails, qualify leads, update CRMs, and run sales workflows. Drop them into Claude Code, Gemini CLI, or any agentic tool.",
+      type: "website",
+      url: "https://salestools.club/skills",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Agent Skills for Sales | Salestools Club",
+      description: "Copy-paste instruction files that teach AI agents how to write cold emails, qualify leads, update CRMs, and run sales workflows. Drop them into Claude Code, Gemini CLI, or any agentic tool.",
+    },
+  }
 }
 
 const CATEGORIES: Skill["category"][] = [

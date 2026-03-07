@@ -4,6 +4,7 @@ import { getAllSkills } from "@/lib/skills"
 import { getAllStacks } from "@/lib/stacks"
 import { getAllCategories } from "@/lib/tools"
 import { getAllUseCases } from "@/lib/usecases"
+import { getAllGuides } from "@/lib/guides"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://salestools.club"
@@ -88,6 +89,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: lastModified,
       changeFrequency: "weekly",
       priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/guides`,
+      lastModified: lastModified,
+      changeFrequency: "weekly",
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/directory-builder`,
@@ -177,6 +184,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     }))
 
+  // Dynamic guide pages
+  const guides = getAllGuides()
+  const uniqueGuideSlugs = new Set<string>()
+  const guidePages: MetadataRoute.Sitemap = guides
+    .filter((guide) => {
+      if (!guide.slug || uniqueGuideSlugs.has(guide.slug)) return false
+      uniqueGuideSlugs.add(guide.slug)
+      return true
+    })
+    .map((guide) => ({
+      url: `${baseUrl}/guides/${guide.slug}`,
+      lastModified: lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    }))
+
   // Dynamic vs comparison pages
   const vsUrlSet = new Set<string>()
   const toolsByName = new Map(tools.map((t) => [t.name.toLowerCase(), t]))
@@ -220,6 +243,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...stackPages,
     ...categoryPages,
     ...usecasePages,
+    ...guidePages,
     ...vsPages,
   ]
 

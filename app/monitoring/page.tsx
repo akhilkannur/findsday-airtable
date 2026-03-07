@@ -2,8 +2,6 @@ import type { Metadata } from "next"
 import { getToolsWithoutDocs } from "@/lib/tools"
 import { MonitoringFilterBar } from "@/components/MonitoringFilterBar"
 
-export const dynamic = "force-dynamic"
-
 export const metadata: Metadata = {
   title: "Monitoring | Salestools Club",
   description:

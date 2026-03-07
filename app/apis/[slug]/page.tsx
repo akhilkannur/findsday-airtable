@@ -9,6 +9,7 @@ import {
   ArrowRight,
 } from "lucide-react"
 import { CopyButton } from "@/components/ui/CopyButton"
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
 import { getUseCasesForTool } from "@/lib/usecases"
 
 export async function generateStaticParams() {
@@ -31,25 +32,27 @@ export async function generateMetadata({
     }
   }
 
-  const pageTitle = `${tool.name} API & MCP Server | Salestools Club`
+  const pageTitle = tool.mcpReady
+    ? `${tool.name} API & MCP Server | Salestools Club`
+    : `${tool.name} API — Pricing, SDKs & Integrations | Salestools Club`
   const pageUrl = `https://salestools.club/apis/${tool.slug}`
 
   return {
     title: pageTitle,
-    description: tool.oneLiner,
+    description: `${tool.oneLiner} Compare ${tool.name} API pricing, SDKs, MCP server, and integrations for AI sales agents.`,
     alternates: {
       canonical: pageUrl,
     },
     openGraph: {
       title: pageTitle,
-      description: tool.oneLiner,
+      description: `${tool.oneLiner} Compare ${tool.name} API pricing, SDKs, MCP server, and integrations for AI sales agents.`,
       type: "website",
       url: pageUrl,
     },
     twitter: {
       card: "summary_large_image",
       title: pageTitle,
-      description: tool.oneLiner,
+      description: `${tool.oneLiner} Compare ${tool.name} API pricing, SDKs, MCP server, and integrations for AI sales agents.`,
     },
   }
 }
@@ -140,6 +143,10 @@ export default async function ToolDetailPage({
   return (
     <div className="flex flex-col min-h-screen">
       <JsonLd tool={tool} />
+      <BreadcrumbJsonLd items={[
+        { name: "APIs", url: "https://salestools.club/api" },
+        { name: tool.name, url: `https://salestools.club/apis/${tool.slug}` },
+      ]} />
 
       <section className="px-8 py-24 border-b border-ink bg-paper-dark/30">
         <div className="layout-container">

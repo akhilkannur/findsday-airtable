@@ -3,6 +3,7 @@ import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { getToolsForComparison, getAllSlugs } from "@/lib/tools"
 import { Zap, Check, X, ArrowRight } from "lucide-react"
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
 
 interface Props {
   params: Promise<{ slugs: string }>
@@ -55,8 +56,37 @@ export default async function ComparisonPage({ params }: Props) {
     { label: "Capabilities", val1: (tool1.aiCapabilities || []).join(", ") || "—", val2: (tool2.aiCapabilities || []).join(", ") || "—" },
   ]
 
+  const comparisonJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": `${tool1.name} vs ${tool2.name}`,
+    "description": `Compare ${tool1.name} and ${tool2.name} APIs for AI sales agents.`,
+    "numberOfItems": 2,
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": tool1.name,
+        "url": `https://salestools.club/apis/${tool1.slug}`,
+        "description": tool1.oneLiner,
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": tool2.name,
+        "url": `https://salestools.club/apis/${tool2.slug}`,
+        "description": tool2.oneLiner,
+      },
+    ],
+  }
+
   return (
     <div className="flex flex-col min-h-screen bg-paper">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(comparisonJsonLd) }} />
+      <BreadcrumbJsonLd items={[
+        { name: "Comparisons", url: "https://salestools.club/vs" },
+        { name: `${tool1.name} vs ${tool2.name}`, url: `https://salestools.club/vs/${slugs}` },
+      ]} />
       {/* Header */}
       <section className="px-8 py-24 border-b border-ink bg-paper-dark/30 relative overflow-hidden">
         <div className="layout-container">

@@ -5,6 +5,7 @@ import { getSkillBySlug, getSkillSlugs } from "@/lib/skills"
 import { getToolBySlug } from "@/lib/tools"
 import { CopyButton } from "@/components/ui/CopyButton"
 import { ArrowRight } from "lucide-react"
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
 
 export async function generateStaticParams() {
   return getSkillSlugs().map((slug) => ({ slug }))
@@ -70,6 +71,10 @@ export default async function SkillDetailPage({
 
   return (
     <div className="flex flex-col min-h-screen">
+      <BreadcrumbJsonLd items={[
+        { name: "Skills", url: "https://salestools.club/skills" },
+        { name: skill.name, url: `https://salestools.club/skills/${skill.slug}` },
+      ]} />
       <section className="px-8 py-24 border-b border-ink bg-paper-dark/30">
         <div className="layout-container">
           <Link

@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ArrowRight } from "lucide-react"
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
 import {
   getUseCaseBySlug,
   getUseCaseSlugs,
@@ -96,6 +97,10 @@ export default async function UseCaseDetailPage({
 
   return (
     <div className="flex flex-col min-h-screen bg-paper">
+      <BreadcrumbJsonLd items={[
+        { name: "Use Cases", url: "https://salestools.club/for" },
+        { name: uc.title, url: `https://salestools.club/for/${uc.slug}` },
+      ]} />
       <section className="px-8 py-24 border-b border-ink bg-paper-dark/30">
         <div className="layout-container">
           <Link
