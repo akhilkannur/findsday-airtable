@@ -101,3 +101,24 @@ body {
 
 h1, h2, h3, h4 { @apply text-ink; }
 a { @apply text-inherit no-underline; }
+
+/* Prose Table Overrides */
+.prose table {
+  @apply border-collapse border border-ink/20 rounded-lg overflow-hidden my-12 text-base !important;
+}
+
+.prose thead {
+  @apply bg-ink/[0.03] border-b border-ink/30 !important;
+}
+
+.prose th {
+  @apply py-4 px-6 text-ink font-bold font-mono text-[0.85rem] uppercase tracking-wider !important;
+}
+
+.prose td {
+  @apply py-4 px-6 border-b border-ink/10 text-ink/80 !important;
+}
+
+.prose tr:last-child td {
+  @apply border-b-0 !important;
+}

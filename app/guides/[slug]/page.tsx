@@ -43,18 +43,18 @@ function ApiBadge({ children, variant = "default" }: { children: React.ReactNode
     warning: "bg-amber-500/10 text-amber-700 border-amber-500/20",
   }
   return (
-    <span className={`inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider border rounded-full ${variants[variant]}`}>
+    <span className={`inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-mono uppercase tracking-wider border rounded-md ${variants[variant]} font-bold`}>
       {children}
     </span>
   )
 }
 
 function CheckIcon({ className }: { className?: string }) {
-  return <Check className={`h-3 w-3 ${className}`} />
+  return <Check className={`h-5 w-5 ${className}`} />
 }
 
 function XIcon({ className }: { className?: string }) {
-  return <X className={`h-3 w-3 ${className}`} />
+  return <X className={`h-5 w-5 ${className}`} />
 }
 
 export default async function GuidePage({
@@ -121,47 +121,48 @@ export default async function GuidePage({
         </section>
       )}
 
-      <section className="py-12">
+      <section className="py-12 bg-ink/[0.02]">
         <div className="layout-container">
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+          <h2 className="type-display text-3xl mb-12">Technical Comparison</h2>
+          <div className="overflow-x-auto bg-paper border border-ink/20 rounded-xl shadow-sm">
+            <table className="w-full text-base">
               <thead>
-                <tr className="border-b border-ink/20">
-                  <th className="text-left py-4 px-4 font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade">Tool</th>
-                  <th className="text-left py-4 px-4 font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade">API</th>
-                  <th className="text-left py-4 px-4 font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade">Auth</th>
-                  <th className="text-left py-4 px-4 font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade">SDKs</th>
-                  <th className="text-center py-4 px-4 font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade">Webhooks</th>
-                  <th className="text-center py-4 px-4 font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade">Free Tier</th>
-                  <th className="text-center py-4 px-4 font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade">MCP</th>
+                <tr className="border-b border-ink/30 bg-ink/[0.03]">
+                  <th className="text-left py-5 px-6 font-mono text-[0.85rem] uppercase tracking-wider text-ink font-bold">Tool</th>
+                  <th className="text-left py-5 px-6 font-mono text-[0.85rem] uppercase tracking-wider text-ink font-bold">API</th>
+                  <th className="text-left py-5 px-6 font-mono text-[0.85rem] uppercase tracking-wider text-ink font-bold">Auth</th>
+                  <th className="text-left py-5 px-6 font-mono text-[0.85rem] uppercase tracking-wider text-ink font-bold">SDKs</th>
+                  <th className="text-center py-5 px-6 font-mono text-[0.85rem] uppercase tracking-wider text-ink font-bold">Webhooks</th>
+                  <th className="text-center py-5 px-6 font-mono text-[0.85rem] uppercase tracking-wider text-ink font-bold">Free</th>
+                  <th className="text-center py-5 px-6 font-mono text-[0.85rem] uppercase tracking-wider text-ink font-bold">MCP</th>
                 </tr>
               </thead>
               <tbody>
                 {tools.map((tool) => (
-                  <tr key={tool.slug} className="border-b border-ink/10 hover:bg-ink/[0.02] transition-colors">
-                    <td className="py-4 px-4">
-                      <Link href={`/apis/${tool.slug}`} className="hover:underline font-semibold">
+                  <tr key={tool.slug} className="border-b border-ink/20 hover:bg-ink/[0.04] transition-colors last:border-0">
+                    <td className="py-5 px-6">
+                      <Link href={`/apis/${tool.slug}`} className="hover:underline font-bold text-lg block">
                         {tool.name}
                       </Link>
-                      <p className="text-xs text-ink-fade mt-1 line-clamp-1 max-w-[200px]">{tool.oneLiner}</p>
+                      <p className="text-sm text-ink-fade mt-1 line-clamp-1 max-w-[250px]">{tool.oneLiner}</p>
                     </td>
-                    <td className="py-4 px-4">
-                      <div className="flex flex-wrap gap-1">
+                    <td className="py-5 px-6">
+                      <div className="flex flex-wrap gap-1.5">
                         {tool.apiType.map((api) => (
                           <ApiBadge key={api}>{api}</ApiBadge>
                         ))}
                       </div>
                     </td>
-                    <td className="py-4 px-4">
-                      <div className="flex flex-wrap gap-1">
+                    <td className="py-5 px-6">
+                      <div className="flex flex-wrap gap-1.5">
                         {tool.authMethod.map((auth) => (
                           <ApiBadge key={auth} variant="warning">{auth}</ApiBadge>
                         ))}
                       </div>
                     </td>
-                    <td className="py-4 px-4">
+                    <td className="py-5 px-6">
                       {tool.sdkLanguages.length > 0 ? (
-                        <div className="flex flex-wrap gap-1">
+                        <div className="flex flex-wrap gap-1.5">
                           {tool.sdkLanguages.slice(0, 3).map((sdk) => (
                             <ApiBadge key={sdk} variant="success">{sdk}</ApiBadge>
                           ))}
@@ -170,30 +171,30 @@ export default async function GuidePage({
                           )}
                         </div>
                       ) : (
-                        <span className="text-ink-fade text-xs">—</span>
+                        <span className="text-ink-fade text-sm">—</span>
                       )}
                     </td>
-                    <td className="py-4 px-4 text-center">
+                    <td className="py-5 px-6 text-center">
                       {tool.hasWebhooks ? (
-                        <div className="flex justify-center"><CheckIcon className="text-green-600" /></div>
+                        <div className="flex justify-center"><CheckIcon className="text-green-600 h-5 w-5" /></div>
                       ) : (
-                        <div className="flex justify-center"><XIcon className="text-ink-fade/30" /></div>
+                        <div className="flex justify-center"><XIcon className="text-ink-fade/40 h-5 w-5" /></div>
                       )}
                     </td>
-                    <td className="py-4 px-4 text-center">
+                    <td className="py-5 px-6 text-center">
                       {tool.hasFreeTier ? (
-                        <div className="flex justify-center"><CheckIcon className="text-green-600" /></div>
+                        <div className="flex justify-center"><CheckIcon className="text-green-600 h-5 w-5" /></div>
                       ) : (
-                        <div className="flex justify-center"><XIcon className="text-ink-fade/30" /></div>
+                        <div className="flex justify-center"><XIcon className="text-ink-fade/40 h-5 w-5" /></div>
                       )}
                     </td>
-                    <td className="py-4 px-4 text-center">
+                    <td className="py-5 px-6 text-center">
                       {tool.mcpReady ? (
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider border rounded-full bg-purple-500/10 text-purple-700 border-purple-500/20">
+                        <span className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-mono uppercase tracking-wider border rounded-full bg-purple-500/10 text-purple-700 border-purple-500/20 font-bold">
                           MCP
                         </span>
                       ) : (
-                        <div className="flex justify-center"><XIcon className="text-ink-fade/30" /></div>
+                        <div className="flex justify-center"><XIcon className="text-ink-fade/40 h-5 w-5" /></div>
                       )}
                     </td>
                   </tr>
