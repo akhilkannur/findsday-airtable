@@ -113,6 +113,14 @@ export default async function GuidePage({
         </div>
       </section>
 
+      {guide.content && (
+        <section className="py-16 border-b border-ink/10">
+          <div className="layout-container prose prose-zinc prose-lg max-w-4xl prose-headings:font-bold prose-a:text-ink hover:prose-a:line-through prose-strong:text-ink">
+            <div dangerouslySetInnerHTML={{ __html: guide.content }} />
+          </div>
+        </section>
+      )}
+
       <section className="py-12">
         <div className="layout-container">
           <div className="overflow-x-auto">
