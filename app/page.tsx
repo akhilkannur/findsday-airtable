@@ -2,6 +2,7 @@ import Link from "next/link"
 import { ArrowRight, Cpu, Zap, Brain, Mail, Sparkles, ChevronRight } from "lucide-react"
 import * as LucideIcons from "lucide-react"
 import { getAllCategories, getAllTools } from "@/lib/tools"
+import { getAllGuides } from "@/lib/guides"
 import type { Metadata } from "next"
 import { NewsletterForm } from "@/components/NewsletterForm"
 
@@ -108,6 +109,7 @@ export default async function Home() {
   const allTools = await getAllTools()
   const exploreTools = allTools.slice(0, 12)
   const categories = getAllCategories()
+  const guides = getAllGuides().slice(0, 3)
 
   return (
     <div className="flex flex-col">
@@ -266,6 +268,45 @@ export default async function Home() {
                 Browse Skills →
               </span>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* -- Featured Guides ---------------- */}
+      <section className="py-16 md:py-24 border-b border-ink">
+        <div className="layout-container">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div className="max-w-2xl">
+              <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade mb-4">
+                Operator Deep Dives
+              </p>
+              <h2 className="type-display text-4xl md:text-5xl leading-tight">
+                Master the <span className="circled italic">Sales Stack.</span>
+              </h2>
+            </div>
+            <Link href="/guides" className="font-serif italic text-xl border-b border-black hover:opacity-60 transition-opacity pb-1">
+              View All Guides →
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {guides.map((guide) => (
+              <Link 
+                key={guide.slug} 
+                href={`/guides/${guide.slug}`}
+                className="group flex flex-col p-8 bg-paper border border-ink/10 hover:border-ink transition-all hover:shadow-[4px_4px_0px_rgba(26,25,23,0.1)]"
+              >
+                <h3 className="font-serif text-2xl font-bold mb-4 group-hover:underline decoration-ink/30 underline-offset-4">
+                  {guide.title}
+                </h3>
+                <p className="text-[1rem] text-ink-fade leading-relaxed line-clamp-3 mb-6">
+                  {guide.metaDescription}
+                </p>
+                <div className="mt-auto font-mono text-[0.7rem] uppercase tracking-widest font-bold">
+                  Read Guide →
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

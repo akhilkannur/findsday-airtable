@@ -7,10 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: [
         "/tools",
-        "/api?*",
-        "/tools?*",
-        "/mcp?*",
-        "/skills?*",
+        "/*?*",
       ],
     },
     sitemap: "https://salestools.club/sitemap.xml",

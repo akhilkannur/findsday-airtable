@@ -57,8 +57,8 @@ export async function generateMetadata({
   }
 }
 
-function JsonLd({ tool }: { tool: SalesTool }) {
-  const jsonLd = {
+function JsonLd({ tool, alternatives }: { tool: SalesTool; alternatives: SalesTool[] }) {
+  const softwareSchema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: tool.name,
@@ -74,11 +74,52 @@ function JsonLd({ tool }: { tool: SalesTool }) {
     featureList: tool.aiCapabilities?.join(", "),
   }
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `What does ${tool.name} do?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `${tool.name} is a ${tool.category.toLowerCase()} tool that provides ${tool.oneLiner}`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `Is ${tool.name} API free?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: tool.hasFreeTier 
+            ? `Yes, ${tool.name} offers a free tier for its API.` 
+            : `No, ${tool.name} is a paid service, but you can check their website for current trial offers.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `What are the best alternatives to ${tool.name}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: alternatives.length > 0 
+            ? `The best alternatives to ${tool.name} include ${alternatives.map(a => a.name).join(", ")}.`
+            : `Top alternatives in the ${tool.category} category include similar tools listed in our directory.`,
+        },
+      },
+    ],
+  }
+
   return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+    </>
   )
 }
 
@@ -128,6 +169,7 @@ export default async function ToolDetailPage({
   ]
 
   const matchingUseCases = getUseCasesForTool(tool)
+  const categoryMeta = getAllCategories().find(c => c.name === tool.category)
 
   // Find alternatives
   const allTools = await getAllTools()
@@ -142,11 +184,25 @@ export default async function ToolDetailPage({
 
   return (
     <div className="flex flex-col min-h-screen">
-      <JsonLd tool={tool} />
+      <JsonLd tool={tool} alternatives={alternatives} />
       <BreadcrumbJsonLd items={[
         { name: "APIs", url: "https://salestools.club/api" },
         { name: tool.name, url: `https://salestools.club/apis/${tool.slug}` },
       ]} />
+
+      <nav className="layout-container py-6 flex items-center gap-2 text-[0.7rem] font-mono uppercase tracking-widest text-ink-fade">
+        <Link href="/" className="hover:text-ink hover:underline">Home</Link>
+        <span className="opacity-30">/</span>
+        <Link href="/api" className="hover:text-ink hover:underline">APIs</Link>
+        <span className="opacity-30">/</span>
+        {categoryMeta && (
+          <>
+            <Link href={`/categories/${categoryMeta.slug}`} className="hover:text-ink hover:underline">{tool.category}</Link>
+            <span className="opacity-30">/</span>
+          </>
+        )}
+        <span className="text-ink font-bold">{tool.name}</span>
+      </nav>
 
       <section className="px-8 py-24 border-b border-ink bg-paper-dark/30">
         <div className="layout-container">
@@ -290,6 +346,42 @@ export default async function ToolDetailPage({
           )}
         </div>
       </div>
+
+      <section className="py-24 bg-paper border-t border-ink">
+        <div className="layout-container">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="font-serif italic text-3xl mb-12 text-center">Frequently Asked Questions</h2>
+            <div className="space-y-12">
+              <div className="group border-b border-ink/10 pb-8">
+                <h3 className="font-serif text-xl font-bold mb-4 group-hover:text-ink transition-colors">What does {tool.name} do?</h3>
+                <p className="text-ink-fade leading-relaxed">{tool.name} is a {tool.category.toLowerCase()} tool that provides {tool.oneLiner}</p>
+              </div>
+              <div className="group border-b border-ink/10 pb-8">
+                <h3 className="font-serif text-xl font-bold mb-4 group-hover:text-ink transition-colors">Is {tool.name} API free?</h3>
+                <p className="text-ink-fade leading-relaxed">
+                  {tool.hasFreeTier 
+                    ? `Yes, ${tool.name} offers a free tier for its API, making it accessible for testing and small-scale projects.` 
+                    : `No, ${tool.name} is a premium service. You can view their full pricing details at their official website.`
+                  }
+                </p>
+              </div>
+              {alternatives.length > 0 && (
+                <div className="group border-b border-ink/10 pb-8">
+                  <h3 className="font-serif text-xl font-bold mb-4 group-hover:text-ink transition-colors">What are the best alternatives to {tool.name}?</h3>
+                  <p className="text-ink-fade leading-relaxed">
+                    Based on features and use cases, the top alternatives to {tool.name} are {alternatives.map((a, i) => (
+                      <span key={a.slug}>
+                        <Link href={`/apis/${a.slug}`} className="font-bold hover:underline">{a.name}</Link>
+                        {i === alternatives.length - 1 ? '.' : i === alternatives.length - 2 ? ' and ' : ', '}
+                      </span>
+                    ))}.
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="py-32 bg-paper border-t border-ink">
         <div className="layout-container">
