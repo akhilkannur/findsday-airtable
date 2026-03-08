@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
-import { getToolBySlug, getAllSlugs, getToolsByCategory, getAllTools } from "@/lib/tools"
+import { getToolBySlug, getAllSlugs, getToolsByCategory, getAllTools, getAllCategories } from "@/lib/tools"
 import type { SalesTool } from "@/lib/types"
 import {
   ExternalLink,
