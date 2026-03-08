@@ -38,7 +38,7 @@ export function getCategoryBySlug(slug: string): CategoryMeta | undefined {
 }
 
 export async function getAllSlugs(): Promise<string[]> {
-  return tools.map((t) => t.slug)
+  return tools.filter((t) => t.slug).map((t) => t.slug)
 }
 
 const STOP_WORDS = new Set([
