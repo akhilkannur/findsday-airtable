@@ -39,6 +39,16 @@ const guides: Guide[] = [
     categories: ["Sales Intelligence"],
   },
   {
+    slug: "best-lead-enrichment-apis",
+    title: "Best Lead Enrichment APIs for 2026",
+    metaDescription:
+      "Stop wasting time on manual research. Compare the top 15+ lead enrichment APIs, learn about Waterfall Enrichment, and plug your CRM into real-time intelligence.",
+    intro:
+      "Compare the top lead enrichment APIs for 2026. We break down the best tools for verified emails, real-time social data, and waterfall enrichment strategies for high-velocity sales teams.",
+    categories: ["Sales Intelligence"],
+    keywords: ["enrichment", "waterfall", "contact data", "b2b data"],
+  },
+  {
     slug: "phone-apis",
     title: "Phone & Calling APIs for AI Agents",
     metaDescription:
