@@ -1,6 +1,6 @@
-import type { SalesTool, CategoryMeta } from "./types"
+import type { SalesTool, CategoryMeta, MinimalTool } from "./types"
 
-export const tools: SalesTool[] = [
+export const tools: (SalesTool | MinimalTool)[] = [
   {
     slug: "attio",
     name: "Attio",
@@ -1522,7 +1522,7 @@ export const tools: SalesTool[] = [
     starterPrompt: "Claude, use Neverbounce to verify this list of 10,000 emails and flag any bounces before our campaign.",
     mcpReady: false,
     isFeatured: false,
-    alternativeTo: ["ZeroBounce", "Debounce", "Emailable"],
+    alternativeTo: ["ZeroBounce", "Debounce", "Emailable", "Trestle IQ"],
     integrations: [],
   },
   {
@@ -1543,7 +1543,7 @@ export const tools: SalesTool[] = [
     starterPrompt: "Claude, use ZeroBounce to validate these 500 emails and return only the deliverable ones.",
     mcpReady: false,
     isFeatured: false,
-    alternativeTo: ["Neverbounce", "Debounce", "Emailable"],
+    alternativeTo: ["Neverbounce", "Debounce", "Emailable", "Trestle IQ"],
     integrations: [],
   },
   {
@@ -6325,7 +6325,49 @@ export const tools: SalesTool[] = [
     starterPrompt: "Claude, use the FullContact API to enrich this list of 100 email addresses with LinkedIn URLs, job titles, and current company details.",
     mcpReady: false,
     isFeatured: false,
-    alternativeTo: ["Clearbit", "Apollo.io", "Lusha"],
+    alternativeTo: ["Clearbit", "Apollo.io", "Lusha", "Pipl"],
+    integrations: [],
+  },
+  {
+    slug: "pipl",
+    name: "Pipl",
+    oneLiner: "Identity verification and people search API for trust and safety.",
+    description: "Pipl is the #1 source for online identity and trust. It provides comprehensive identity data APIs that connect digital identities to real people and offline records. With access to 5+ billion trusted identities, 10+ billion global emails, and 3+ billion mobile numbers, Pipl helps businesses verify user identities, prevent fraud, and build trust. The API supports searches by email, phone, username, or name, and returns rich identity profiles including social media links, addresses, and demographic data. Ideal for fintech, marketplaces, and security applications.",
+    category: "Sales Intelligence",
+    websiteUrl: "https://pipl.com",
+    docsUrl: "https://pipl.com/developers/",
+    pricingUrl: "https://pipl.com/contact-sales/",
+    apiType: ["REST"],
+    authMethod: ["API Key"],
+    hasFreeTier: false,
+    sdkLanguages: ["Python", "Java", "Ruby", "PHP", "Node.js"],
+    hasWebhooks: false,
+    aiCapabilities: ["Identity Verification", "Fraud Prevention", "People Search", "Trust & Safety"],
+    starterPrompt: "Claude, use the Pipl API to verify this email address and get the associated person's identity profile including social media accounts.",
+    mcpReady: false,
+    isFeatured: false,
+    alternativeTo: ["FullContact", "Auth0", "Jumio"],
+    integrations: [],
+  },
+  {
+    slug: "trestle-iq",
+    name: "Trestle IQ",
+    oneLiner: "Phone verification and reverse phone lookup API for lead validation.",
+    description: "Trestle IQ provides phone verification and identity data APIs that help businesses validate phone numbers and identify owners across 100+ countries. The Real Contact API verifies phone numbers with name matches, determines line type (mobile, VoIP, landline), and provides contact grades (A-F) to prioritize leads. Trestle offers 479M+ identities and 1B+ phone-name linkages with 99.99% uptime. Key features include phone activity scores, VoIP detection, prepaid phone identification, and litigious number checks for TCPA compliance. Essential for outbound sales teams, lead validation, and fraud prevention.",
+    category: "Sales Intelligence",
+    websiteUrl: "https://trestleiq.com",
+    docsUrl: "https://trestleiq.com/developer/",
+    pricingUrl: "https://trestleiq.com/pricing/",
+    apiType: ["REST"],
+    authMethod: ["API Key"],
+    hasFreeTier: true,
+    sdkLanguages: ["Python", "JavaScript", "Java", "Ruby", "PHP"],
+    hasWebhooks: true,
+    aiCapabilities: ["Phone Verification", "Reverse Phone Lookup", "Lead Validation", "VoIP Detection", "TCPA Compliance"],
+    starterPrompt: "Claude, use the Trestle IQ API to verify this phone number, check if it's a VoIP or mobile line, and get the owner's name for lead validation.",
+    mcpReady: false,
+    isFeatured: false,
+    alternativeTo: ["Neverbounce", "ZeroBounce", "PhoneValidator"],
     integrations: [],
   },
   {
@@ -11644,7 +11686,8 @@ export const tools: SalesTool[] = [
     alternativeTo: ["6sense", "Demandbase", "Clearbit", "Clay"],
     integrations: [],
   },
-  // ── Additional Monitoring Tools (Minimal) ──────────────────────────────────────────
+  // NOTE: Additional tools with minimal API info (not full SalesTool entries)
+  // These appear in alternativeTo lists but don't have full profiles
   { name: "Leadsforge", websiteUrl: "https://leadsforge.ai" },
   { name: "AeroLeads", websiteUrl: "https://aeroleads.com" },
   { name: "Albacross", websiteUrl: "https://albacross.com" },

@@ -60,7 +60,7 @@ const guides: Guide[] = [
     <tr>
       <td><a href="/apis/hubspot"><strong>HubSpot</strong></a></td>
       <td>CRM & RevOps</td>
-      <td>Gold standard for documentation and webhook reliability (99.95% SLA).</td>
+      <td>Gold standard for documentation and webhook reliability.</td>
     </tr>
     <tr>
       <td><a href="/apis/salesforce"><strong>Salesforce</strong></a></td>
@@ -99,7 +99,7 @@ const guides: Guide[] = [
 </ol>
 
 <h2>The Power of Webhooks: Real-Time Action</h2>
-<p>Your agents shouldn't "poll" the CRM for updates. They should listen for <strong>Webhooks</strong>. A webhook from <strong>Pipedrive</strong> (e.g., <code>deal.updated</code>) can instantly trigger a tool like <strong><a href="/apis/relay">Relay</a></strong> or <strong><a href="/apis/composio">Composio</a></strong> to ask an AI agent to generate a custom proposal.</li>
+<p>Your agents shouldn't "poll" the CRM for updates. They should listen for <strong>Webhooks</strong>. A webhook from <strong>Pipedrive</strong> (e.g., <code>deal.updated</code>) can instantly trigger a tool like <strong><a href="/apis/relay">Relay</a></strong> or <strong><a href="/apis/composio">Composio</a></strong> to ask an AI agent to generate a custom proposal.</p>
 
 <h2>Security & Compliance (GDPR)</h2>
 <p>CRM APIs handle sensitive PII (Personally Identifiable Information). In 2026, security is non-negotiable:</p>
@@ -115,7 +115,7 @@ const guides: Guide[] = [
 <p><strong>Q: Can I build this without code?</strong><br>A: Yes. Middleware like <strong><a href="/apis/relay">Relay</a></strong> or <strong><a href="/apis/zapier">Zapier</a></strong> provides no-code blocks for most CRM API endpoints.</p>
 
 <h2>Conclusion</h2>
-<p>Your CRM API is the foundation of your automated sales engine. By treating it as a programmable relational database and connecting it to <strong>Intelligence</strong> and <strong>Engagement</strong> tools, you eliminate data silos and empower your agents to drive revenue. Explore our full <a href="/categories/crm-revops">CRM Category</a> to find your next Lego block.</p>
+<p>Your CRM API is the foundation of your automated sales engine. By treating it as a programmable relational database and connecting it to <strong>Intelligence</strong> and <strong>Engagement</strong> tools, you eliminate data silos and empower your agents to drive revenue. Explore our full <a href="/categories/crm-and-revops">CRM Category</a> to find your next Lego block.</p>
     `,
     categories: ["CRM & RevOps"],
   },
@@ -335,7 +335,7 @@ const guides: Guide[] = [
 
 <h2>FAQ</h2>
 <p><strong>Q: Is the data GDPR/CCPA compliant?</strong><br>A: Providers like <strong>Cognism</strong> and <strong>Kaspr</strong> specialize in EU-compliant data collection.</p>
-<p><strong>Q: Can I enrich phone numbers?</strong><br>A: Yes. Use a Reverse Phone API (like <strong><a href="/apis/trestle">Trestle</a></strong>) to identify anonymous callers or filter out VoIP numbers.</p>
+<p><strong>Q: Can I enrich phone numbers?</strong><br>A: Yes. Use a Reverse Phone API (like <strong><a href="/apis/trestle-iq">Trestle IQ</a></strong>) to identify anonymous callers or filter out VoIP numbers.</p>
 <p><strong>Q: What format is the data returned in?</strong><br>A: Almost all modern providers return <strong>JSON</strong>, making it easy to map to Salesforce, HubSpot, or custom AI tools via webhooks.</p>
 
 <h2>Conclusion</h2>

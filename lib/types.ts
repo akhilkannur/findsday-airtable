@@ -10,6 +10,12 @@ export type ToolCategory =
   | "Closing & Scheduling"
 
 
+export interface MinimalTool {
+  name: string
+  websiteUrl: string
+}
+
+
 export interface AgentIntegration {
   platform: "MCP" | "OpenClaw" | "LangChain" | "CrewAI" | "Claude Skill" | "Custom"
   url: string
