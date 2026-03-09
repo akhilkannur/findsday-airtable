@@ -5,7 +5,7 @@ import { getAllGuides } from "@/lib/guides"
 export const metadata: Metadata = {
   title: "API Guides for AI Agents | Salestools Club",
   description:
-    "Deep-dive guides to sales APIs for AI agents. Compare CRM, cold email, enrichment, and more — with API specs, SDKs, and MCP readiness.",
+    "Deep-dive guides to sales APIs for AI agents. Compare CRM, cold email, enrichment, and more, including API specs, SDKs, and MCP readiness.",
 }
 
 export default function GuidesPage() {
@@ -17,7 +17,7 @@ export default function GuidesPage() {
         <div className="layout-container">
           <h1 className="type-display mb-8">API Guides for AI Agents</h1>
           <p className="max-w-2xl font-serif italic text-2xl text-ink-fade leading-relaxed border-l-2 border-ink pl-6">
-            Deep-dive guides to sales APIs. Compare API types, auth methods, SDKs, webhooks, and MCP readiness — all the specs you need to build AI agents.
+            Deep-dive guides to sales APIs. Compare API types, auth methods, SDKs, webhooks, and MCP readiness. Here are all the specs you need to build AI agents.
           </p>
         </div>
       </section>
