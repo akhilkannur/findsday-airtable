@@ -124,7 +124,7 @@ export async function getToolsForComparison(slugs: string): Promise<{ tool1: Sal
 }
 
 export async function getOpenSourceTools(): Promise<SalesTool[]> {
-  return tools.filter((t) => t.docsUrl && t.docsUrl !== "" && t.githubUrl)
+  return tools.filter((t) => t.githubUrl && t.githubUrl !== "") as SalesTool[]
 }
 
 export async function getToolsWithoutDocs(): Promise<SalesTool[]> {
