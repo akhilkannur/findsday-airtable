@@ -254,7 +254,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Auth pages
   const authMethods = getAllAuthMethods()
   const authPages: MetadataRoute.Sitemap = authMethods.map((m) => ({
-    url: `${baseUrl}/auth/${m.toLowerCase().replace(/\s+/g, "-")}`,
+    url: `${baseUrl}/auth/${m.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}`,
     lastModified: lastModified,
     changeFrequency: "weekly" as const,
     priority: 0.6,
@@ -263,7 +263,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Capability pages
   const capabilities = getAllCapabilities()
   const capabilityPages: MetadataRoute.Sitemap = capabilities.map((cap) => ({
-    url: `${baseUrl}/capability/${cap.toLowerCase().replace(/\s+/g, "-")}`,
+    url: `${baseUrl}/capability/${cap.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}`,
     lastModified: lastModified,
     changeFrequency: "weekly" as const,
     priority: 0.6,
