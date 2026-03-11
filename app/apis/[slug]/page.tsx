@@ -166,7 +166,7 @@ export default async function ToolDetailPage({
     { label: "Documentation", href: tool.docsUrl },
     { label: "Website", href: tool.websiteUrl },
     { label: "Pricing", href: tool.pricingUrl },
-  ]
+  ].filter(link => link.href && link.href !== "")
 
   const matchingUseCases = getUseCasesForTool(tool)
   const categoryMeta = getAllCategories().find(c => c.name === tool.category)
@@ -240,7 +240,7 @@ export default async function ToolDetailPage({
               <p className="mt-12 font-serif italic text-2xl text-ink-fade leading-relaxed max-w-2xl border-l-2 border-ink pl-6">{tool.oneLiner}</p>
             </div>
 
-            <div className="flex flex-col gap-4">
+            {actionLinks.length > 0 && <div className="flex flex-col gap-4">
               <div className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade mb-2">Important Links</div>
               {actionLinks.map((link) => (
                 <a
@@ -253,7 +253,7 @@ export default async function ToolDetailPage({
                   {link.label} <span className="opacity-40 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">↗</span>
                 </a>
               ))}
-            </div>
+            </div>}
           </div>
         </div>
       </section>
@@ -408,7 +408,7 @@ export default async function ToolDetailPage({
                 {alternatives.map((alt) => (
                   <Link
                     key={alt.slug}
-                    href={`/vs/${tool.slug}-vs-${alt.slug}`}
+                    href={`/vs/${[tool.slug, alt.slug].sort().join('-vs-')}`}
                     className="font-mono text-[0.8rem] uppercase tracking-wide px-4 py-2 border border-ink/20 hover:border-ink hover:bg-ink hover:text-paper transition-all"
                   >
                     {tool.name} vs {alt.name}

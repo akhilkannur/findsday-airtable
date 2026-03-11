@@ -7778,7 +7778,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     integrations: [],
   },
   {
-    slug: "winn-ai",
+    slug: "zendesk-sell",
     name: "Zendesk Sell",
     oneLiner: "Sales CRM designed to increase productivity and pipeline visibility.",
     description: "Zendesk Sell is a sales productivity tool that provides a seamless CRM experience for sales teams. It offers features for lead management, call tracking, and automated outreach. Zendesk Sell uses AI to provide insights into deal health and rep performance, helping teams improve their sales execution and drive more predictable revenue. It integrates deeply with the Zendesk support suite, providing a unified view of the customer across the entire lifecycle.",

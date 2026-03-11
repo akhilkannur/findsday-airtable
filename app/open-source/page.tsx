@@ -58,11 +58,7 @@ export default async function OpenSourcePage() {
             Sales tools you can self-host, fork, and inspect. Build your AI sales stack on transparent, open-source foundations.
           </p>
 
-          <div className="mt-6 md:mt-10">
-            <span className="font-mono text-[0.75rem] font-bold uppercase tracking-widest">
-              {tools.length} tools indexed
-            </span>
-          </div>
+          <div className="mt-6 md:mt-10" />
         </div>
       </section>
 

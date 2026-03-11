@@ -65,7 +65,7 @@ export default async function VsIndexPage() {
               return (
                 <Link 
                   key={`${pair.s1}-vs-${pair.s2}`}
-                  href={`/vs/${pair.s1}-vs-${pair.s2}`}
+                  href={`/vs/${[pair.s1, pair.s2].sort().join('-vs-')}`}
                   className="group flex flex-col h-full gap-8 p-8 bg-paper-dark/60 transition-all"
                   style={{ border: '1px solid rgba(26, 25, 23, 0.15)' }}
                 >
@@ -103,7 +103,7 @@ export default async function VsIndexPage() {
                 return (
                   <Link 
                     key={`${t.slug}-vs-${altTool.slug}`}
-                    href={`/vs/${t.slug}-vs-${altTool.slug}`}
+                    href={`/vs/${[t.slug, altTool.slug].sort().join('-vs-')}`}
                     className="font-serif text-[1.1rem] text-ink-fade hover:text-black transition-all italic hover:underline"
                   >
                     {t.name} vs {altTool.name}

@@ -115,11 +115,7 @@ export default async function UseCaseDetailPage({
             {uc.intro}
           </p>
 
-          <div className="mt-12">
-            <span className="font-mono text-[0.75rem] font-bold uppercase tracking-widest">
-              {tools.length} tools indexed
-            </span>
-          </div>
+          <div className="mt-12" />
         </div>
       </section>
 

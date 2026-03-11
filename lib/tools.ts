@@ -31,15 +31,31 @@ export async function getToolsWithIntegrations(): Promise<SalesTool[]> {
 }
 
 export function getAllCategories(): CategoryMeta[] {
-  return categories
+  return categories.map(c => ({
+    ...c,
+    toolCount: tools.filter(t => t.docsUrl && t.docsUrl !== "" && t.category === c.name).length,
+  }))
 }
 
 export function getCategoryBySlug(slug: string): CategoryMeta | undefined {
-  return categories.find((c) => c.slug === slug)
+  const cat = categories.find((c) => c.slug === slug)
+  if (!cat) return undefined
+  return {
+    ...cat,
+    toolCount: tools.filter(t => t.docsUrl && t.docsUrl !== "" && t.category === cat.name).length,
+  }
 }
 
 export async function getAllSlugs(): Promise<string[]> {
-  return tools.filter((t) => t.slug).map((t) => t.slug)
+  const seen = new Set<string>()
+  return tools
+    .filter((t) => t.slug && t.docsUrl && t.docsUrl !== "")
+    .filter((t) => {
+      if (seen.has(t.slug)) return false
+      seen.add(t.slug)
+      return true
+    })
+    .map((t) => t.slug)
 }
 
 const STOP_WORDS = new Set([
