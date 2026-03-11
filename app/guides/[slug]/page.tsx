@@ -127,8 +127,6 @@ export default async function GuidePage({
         <div className="layout-container">
           <h2 className="type-display text-3xl mb-12">Technical Comparison</h2>
           <GuideToolTable tools={tools} />
-        </div>
-      </section>
 
           {tools.length === 0 && (
             <div className="text-center py-32 opacity-60 font-serif italic text-2xl">
