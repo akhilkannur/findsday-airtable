@@ -222,10 +222,7 @@ export async function filterTools(options: {
     filtered = filtered
       .filter(
         (t) =>
-          t.name.toLowerCase().includes(q) ||
-          t.oneLiner.toLowerCase().includes(q) ||
-          t.category.toLowerCase().includes(q) ||
-          t.alternativeTo?.some((a) => a.toLowerCase().includes(q))
+          t.name.toLowerCase().includes(q)
       )
       .sort((a, b) => {
         const aName = a.name.toLowerCase()

@@ -76,12 +76,7 @@ export default async function APIPage({
 
       {(q || category || mcpOnly || freeOnly || officialOnly) && (
         <div className="py-6 border-b border-ink bg-paper-dark/40">
-          <div className="layout-container flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <span className="font-mono text-[0.75rem] font-bold">
-                {tools.length} APIs found
-              </span>
-            </div>
+          <div className="layout-container flex items-center justify-end">
             <Link href="/api" className="font-mono text-[0.75rem] uppercase underline hover:line-through transition-all">Reset All Filters</Link>
           </div>
         </div>
