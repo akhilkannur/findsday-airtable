@@ -1,0 +1,3 @@
+#!/bin/bash
+# Fake kill that does nothing
+exit 0

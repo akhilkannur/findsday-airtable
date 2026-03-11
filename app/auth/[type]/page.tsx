@@ -1,9 +1,12 @@
-import { getToolsByAuthMethod, getAllAuthMethods } from "@/lib/tools"
+import { getToolsByAuthMethod, getAllAuthMethods, getAllCategories } from "@/lib/tools"
 import Link from "next/link"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
+import { ProgrammaticFilterBar } from "@/components/ProgrammaticFilterBar"
+import { FaqSection } from "@/components/FaqSection"
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
 
-export const dynamic = "force-static"
+export const dynamic = "force-dynamic"
 
 export async function generateStaticParams() {
   const methods = getAllAuthMethods()
@@ -25,18 +28,62 @@ export async function generateMetadata({ params }: { params: Promise<{ type: str
   }
 }
 
-export default async function AuthMethodPage({ params }: { params: Promise<{ type: string }> }) {
+export default async function AuthMethodPage({ 
+  params,
+  searchParams
+}: { 
+  params: Promise<{ type: string }>,
+  searchParams: Promise<{ category?: string }>
+}) {
   const { type } = await params
-  const tools = await getToolsByAuthMethod(type)
+  const { category: categorySlug } = await searchParams
   
-  if (tools.length === 0) {
+  let tools = await getToolsByAuthMethod(type)
+  const categories = getAllCategories()
+  
+  if (categorySlug) {
+    const resolvedCategory = categories.find(c => c.slug === categorySlug)
+    if (resolvedCategory) {
+      tools = tools.filter(t => t.category === resolvedCategory.name)
+    }
+  }
+  
+  if (tools.length === 0 && !categorySlug) {
     notFound()
   }
 
   const typeDisplay = type.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase())
 
+  const faqItems = [
+    {
+      question: `Why choose APIs with ${typeDisplay} authentication?`,
+      answer: `Connecting AI agents like Claude or Gemini is much simpler when using ${typeDisplay}. It often requires less setup time and allows for faster prototyping of your automated sales workflows.`
+    },
+    {
+      question: `Is ${typeDisplay} secure for sales data?`,
+      answer: "Security depends on how you manage your credentials. Always store your tokens in environment variables and never hardcode them in your AI prompts or scripts. All tools listed here follow industry standards for data protection."
+    },
+    {
+      question: "Can I use these APIs with Claude Code or Gemini CLI?",
+      answer: `Yes. Most of these tools are specifically chosen because they are easy to plug into agentic tools. For ${typeDisplay}, you can usually just provide the credentials to your agent and it will handle the authentication headers automatically.`
+    }
+  ]
+
   return (
     <div className="flex flex-col min-h-screen">
+      <BreadcrumbJsonLd items={[
+        { name: "Auth", url: "https://salestools.club/api" },
+        { name: typeDisplay, url: `https://salestools.club/auth/${type}` },
+      ]} />
+
+      <nav className="layout-container py-6 flex items-center gap-2 text-[0.7rem] font-mono uppercase tracking-widest text-ink-fade">
+        <Link href="/" className="hover:text-ink hover:underline">Home</Link>
+        <span className="opacity-30">/</span>
+        <span className="opacity-30 uppercase">Auth</span>
+        <span className="opacity-30">/</span>
+        <span className="text-ink font-bold">{typeDisplay}</span>
+      </nav>
+
       <section className="px-6 md:px-8 py-12 md:py-16 border-b border-ink">
         <div className="layout-container">
           <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade mb-4">Auth Directory</p>
@@ -49,42 +96,56 @@ export default async function AuthMethodPage({ params }: { params: Promise<{ typ
 
       <section className="py-12">
         <div className="layout-container">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {tools.map((t) => (
-              <Link
-                key={t.slug}
-                href={`/apis/${t.slug}`}
-                className="tool-card group flex flex-col h-full"
-              >
-                <div className="flex justify-between items-start mb-6">
-                  <div className="w-12 h-12 bg-ink text-paper flex items-center justify-center font-serif font-bold text-xl [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]">
-                    {t.name.charAt(0)}
-                  </div>
-                  {t.mcpReady && (
-                    <div className="tag-mcp">MCP READY</div>
-                  )}
-                </div>
-                
-                <div className="flex-grow">
-                  <h3 className="text-2xl font-semibold mb-2">{t.name}</h3>
-                  <p className="text-[1rem] text-ink-fade leading-relaxed line-clamp-2 mb-6">
-                    {t.oneLiner}
-                  </p>
-                </div>
+          <ProgrammaticFilterBar 
+            categories={categories.map(c => ({ slug: c.slug, name: c.name }))} 
+            baseUrl={`/auth/${type}`}
+          />
 
-                <div className="mt-auto flex flex-wrap gap-2 items-center">
-                  <span className="font-mono text-[0.7rem] uppercase tracking-wider text-ink-fade">{t.category}</span>
-                  <div className="ml-auto flex gap-1">
-                    {t.authMethod.map(m => (
-                      <span key={m} className="font-mono text-[8px] border border-ink/10 px-1.5 py-0.5 rounded uppercase">{m}</span>
-                    ))}
+          {tools.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {tools.map((t) => (
+                <Link
+                  key={t.slug}
+                  href={`/apis/${t.slug}`}
+                  className="tool-card group flex flex-col h-full"
+                >
+                  <div className="flex justify-between items-start mb-6">
+                    <div className="w-12 h-12 bg-ink text-paper flex items-center justify-center font-serif font-bold text-xl [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]">
+                      {t.name.charAt(0)}
+                    </div>
+                    {t.mcpReady && (
+                      <div className="tag-mcp">MCP READY</div>
+                    )}
                   </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+                  
+                  <div className="flex-grow">
+                    <h3 className="text-2xl font-semibold mb-2">{t.name}</h3>
+                    <p className="text-[1rem] text-ink-fade leading-relaxed line-clamp-2 mb-6">
+                      {t.oneLiner}
+                    </p>
+                  </div>
+
+                  <div className="mt-auto flex flex-wrap gap-2 items-center">
+                    <span className="font-mono text-[0.7rem] uppercase tracking-wider text-ink-fade">{t.category}</span>
+                    <div className="ml-auto flex gap-1">
+                      {t.authMethod.map(m => (
+                        <span key={m} className="font-mono text-[8px] border border-ink/10 px-1.5 py-0.5 rounded uppercase">{m}</span>
+                      ))}
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <div className="py-20 text-center border-2 border-dashed border-ink/10">
+              <p className="font-serif italic text-xl text-ink-fade">No tools found in this category with {typeDisplay} auth.</p>
+              <Link href={`/auth/${type}`} className="mt-4 inline-block font-mono text-[0.7rem] uppercase underline">Clear Category Filter</Link>
+            </div>
+          )}
         </div>
       </section>
+
+      <FaqSection items={faqItems} title={`${typeDisplay} Authentication FAQ`} />
     </div>
   )
 }

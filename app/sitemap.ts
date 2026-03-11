@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next"
-import { getAllTools } from "@/lib/tools"
+import { getAllTools, getAllSdkLanguages, getAllCapabilities, getAllAuthMethods } from "@/lib/tools"
 import { getAllSkills } from "@/lib/skills"
 import { getAllStacks } from "@/lib/stacks"
 import { getAllCategories } from "@/lib/tools"
@@ -23,6 +23,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: lastModified,
       changeFrequency: "weekly",
       priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/free-sales-apis`,
+      lastModified: lastModified,
+      changeFrequency: "weekly",
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/categories`,
@@ -236,6 +242,42 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }))
 
+  // SDK pages
+  const sdkLanguages = getAllSdkLanguages()
+  const sdkPages: MetadataRoute.Sitemap = sdkLanguages.map((lang) => ({
+    url: `${baseUrl}/sdk/${lang.toLowerCase()}`,
+    lastModified: lastModified,
+    changeFrequency: "weekly" as const,
+    priority: 0.6,
+  }))
+
+  // Auth pages
+  const authMethods = getAllAuthMethods()
+  const authPages: MetadataRoute.Sitemap = authMethods.map((m) => ({
+    url: `${baseUrl}/auth/${m.toLowerCase().replace(/\s+/g, "-")}`,
+    lastModified: lastModified,
+    changeFrequency: "weekly" as const,
+    priority: 0.6,
+  }))
+
+  // Capability pages
+  const capabilities = getAllCapabilities()
+  const capabilityPages: MetadataRoute.Sitemap = capabilities.map((cap) => ({
+    url: `${baseUrl}/capability/${cap.toLowerCase().replace(/\s+/g, "-")}`,
+    lastModified: lastModified,
+    changeFrequency: "weekly" as const,
+    priority: 0.6,
+  }))
+
+  // Alternative pages
+  const topAlternativeSlugs = ["hubspot", "salesforce", "apollo", "zoominfo", "pipedrive", "lusha", "clearbit", "hunter"]
+  const alternativePages: MetadataRoute.Sitemap = topAlternativeSlugs.map((slug) => ({
+    url: `${baseUrl}/alternative-to/${slug}`,
+    lastModified: lastModified,
+    changeFrequency: "weekly" as const,
+    priority: 0.6,
+  }))
+
   const allPages = [
     ...staticPages,
     ...toolPages,
@@ -245,6 +287,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...usecasePages,
     ...guidePages,
     ...vsPages,
+    ...sdkPages,
+    ...authPages,
+    ...capabilityPages,
+    ...alternativePages,
   ]
 
   // Final deduplication by URL and XML escaping to be absolutely sure

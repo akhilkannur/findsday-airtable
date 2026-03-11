@@ -17,7 +17,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
   return {
     title: "Sales APIs | Salestools Club",
     description:
-      "A comprehensive database of sales APIs and tools for people building with Claude Code and Gemini CLI.",
+      "A comprehensive database of sales APIs and tools for people building with Claude Code and other agentic tools.",
     alternates: {
       canonical: "https://salestools.club/api",
     },
@@ -26,14 +26,14 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
     }),
     openGraph: {
       title: "Sales APIs | Salestools Club",
-      description: "A comprehensive database of sales APIs and tools for people building with Claude Code and Gemini CLI.",
+      description: "A comprehensive database of sales APIs and tools for people building with Claude Code and other agentic tools.",
       type: "website",
       url: "https://salestools.club/api",
     },
     twitter: {
       card: "summary_large_image",
       title: "Sales APIs | Salestools Club",
-      description: "A comprehensive database of sales APIs and tools for people building with Claude Code and Gemini CLI.",
+      description: "A comprehensive database of sales APIs and tools for people building with Claude Code and other agentic tools.",
     },
   }
 }

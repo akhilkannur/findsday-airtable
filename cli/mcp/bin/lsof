@@ -1,0 +1,5 @@
+#!/bin/bash
+# Fake lsof that returns nothing (port is free)
+# Also handle the xargs kill case by making kill a no-op
+echo ""
+exit 0

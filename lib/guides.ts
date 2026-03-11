@@ -395,3 +395,40 @@ export function getToolsForGuide(guide: Guide): SalesTool[] {
 
   return Array.from(matched.values())
 }
+
+export function getFaqForGuide(guide: Guide) {
+  const faqs = []
+  const category = guide.categories?.[0] || "Sales"
+
+  // Base Questions
+  faqs.push({
+    question: `What are the benefits of using ${guide.title.split(' ')[0]} APIs?`,
+    answer: `Using APIs for ${category.toLowerCase()} allows you to automate repetitive tasks, ensure data consistency across your stack, and enable AI agents like Claude to perform actions on your behalf without manual data entry.`
+  })
+
+  // Category Specific Questions
+  if (category === "Sales Intelligence") {
+    faqs.push({
+      question: "How do I ensure high data accuracy with enrichment APIs?",
+      answer: "The best practice is to use a 'Waterfall' approach—if the first API doesn't have a result, your script automatically queries a second or third provider. This ensures you get verified emails and phone numbers nearly 100% of the time."
+    })
+  } else if (category === "Sales Engagement") {
+    faqs.push({
+      question: "Can these APIs help with email deliverability?",
+      answer: "Yes. Many engagement APIs include built-in mailbox rotation, spintax, and automated warmup features that mimic human behavior, keeping your domains safe from spam filters."
+    })
+  } else if (category === "CRM & RevOps") {
+    faqs.push({
+      question: "Is it safe to give an AI agent access to my CRM API?",
+      answer: "Yes, provided you use limited-scope API keys or OAuth. You should only grant the permissions the agent actually needs (e.g., 'Read/Write Contacts' but not 'Delete Database') to maintain security."
+    })
+  }
+
+  // AI-Native Question
+  faqs.push({
+    question: "How do I connect these tools to Claude Code or agentic tools?",
+    answer: "Most tools listed here have official MCP servers or well-documented REST APIs. You can simply provide the API documentation link to your agent and ask it to write an integration script or perform a specific task using that tool."
+  })
+
+  return faqs
+}

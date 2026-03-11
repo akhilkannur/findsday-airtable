@@ -2,6 +2,7 @@ import { getToolsByAlternativeTo, getAllTools } from "@/lib/tools"
 import Link from "next/link"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
+import { FaqSection } from "@/components/FaqSection"
 
 export const dynamic = "force-static"
 
@@ -37,8 +38,53 @@ export default async function AlternativeToPage({ params }: { params: Promise<{ 
 
   const toolDisplay = tool.charAt(0).toUpperCase() + tool.slice(1)
 
+  const faqItems = [
+    {
+      question: `Why look for an alternative to ${toolDisplay}?`,
+      answer: `While ${toolDisplay} is a leader in its field, many AI-native operators look for alternatives that offer better API pricing, more developer-friendly documentation, or official MCP server support for instant connection to agents like Claude.`
+    },
+    {
+      question: `Are these alternatives as reliable as ${toolDisplay}?`,
+      answer: "Yes. Every tool listed here has been vetted for its programmatic capabilities. While features may vary, they all provide the high-quality data and reliable connections needed for autonomous sales workflows."
+    },
+    {
+      question: `How do I migrate my data from ${toolDisplay}?`,
+      answer: "Most of these alternatives offer built-in migration tools or support standard CSV/JSON imports. Since you are using their APIs, you can also write a simple AI-assisted script to sync your data between the two platforms."
+    }
+  ]
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://salestools.club"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Alternatives",
+        "item": "https://salestools.club/alternative-to"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": toolDisplay,
+        "item": `https://salestools.club/alternative-to/${tool}`
+      }
+    ]
+  }
+
   return (
     <div className="flex flex-col min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      
       <section className="px-6 md:px-8 py-12 md:py-16 border-b border-ink">
         <div className="layout-container">
           <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade mb-4">Competitor Comparison</p>
@@ -85,6 +131,8 @@ export default async function AlternativeToPage({ params }: { params: Promise<{ 
           </div>
         </div>
       </section>
+
+      <FaqSection items={faqItems} title={`${toolDisplay} Alternatives FAQ`} />
     </div>
   )
 }

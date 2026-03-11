@@ -9,14 +9,14 @@ import { NewsletterForm } from "@/components/NewsletterForm"
 export const metadata: Metadata = {
   title: "Salestools Club — Every Sales API & MCP Server in one place.",
   description:
-    "The sales API directory for AI agents. Find MCP servers, CRM APIs, and agentic sales tools for Claude Code, Gemini CLI, and autonomous sales workflows.",
+    "The sales API directory for AI agents. Find MCP servers, CRM APIs, and agentic sales tools for Claude Code and other autonomous sales workflows.",
   keywords: [
     "sales API directory",
     "MCP server for sales",
     "CRM API marketplace",
     "build AI sales agent",
     "Claude Code sales tools",
-    "Gemini CLI sales",
+    "agentic tools sales",
     "agentic sales stack",
     "sales automation API",
     "AI agent sales integrations",
@@ -36,7 +36,7 @@ const faqItems = [
   {
     question: "What is an MCP Server?",
     answer:
-      "An MCP is like a universal plug. It is a newer, faster way to connect tools to AI agents like Claude Code or Gemini CLI. While an API is the pipe, an MCP is the standardized connection that makes the pipe work instantly. Instead of building a complex bridge, you just paste a small piece of configuration and your agent can immediately use that tool.",
+      "An MCP is like a universal plug. It is a newer, faster way to connect tools to AI agents like Claude Code or Cursor. While an API is the pipe, an MCP is the standardized connection that makes the pipe work instantly. Instead of building a complex bridge, you just paste a small piece of configuration and your agent can immediately use that tool.",
   },
   {
     question: "What is a 'Skill'?",
@@ -46,7 +46,7 @@ const faqItems = [
   {
     question: "Do I need to be a developer?",
     answer:
-      "No. This site is built for founders, sales managers, and ops professionals. If you know how to use Claude Code or Gemini CLI, you can use these tools. Most of them work with simple copy and paste setup. You don't need to write code to use these building blocks.",
+      "No. This site is built for founders, sales managers, and ops professionals. If you know how to use Claude Code or other agentic tools, you can use these building blocks with simple copy and paste setup.",
   },
   {
     question: "What does AI-Native mean?",
@@ -156,17 +156,17 @@ export default async function Home() {
       </section>
 
       {/* -- Works With Trust Bar ----------------------- */}
-      <section className="py-2 md:py-3 border-t border-ink/10">
+      <section className="py-3 md:py-4 border-t border-ink/10 bg-paper-dark/5">
         <div className="layout-container flex flex-col md:flex-row md:items-center gap-2 md:gap-8">
-          <p className="font-mono text-[0.65rem] uppercase tracking-widest text-ink-fade whitespace-nowrap">
+          <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink font-bold whitespace-nowrap">
             Works with:
           </p>
-          <div className="flex flex-wrap gap-x-4 gap-y-1">
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
             {["Claude Code", "Gemini CLI", "Claude Cowork", "ChatGPT Operator", "Any Agentic Tools"].map(
               (agent) => (
                 <span
                   key={agent}
-                  className="font-mono text-[0.65rem] md:text-[0.7rem] text-ink/60 uppercase tracking-tighter"
+                  className="font-mono text-[0.7rem] md:text-[0.75rem] text-ink font-bold uppercase tracking-tight"
                 >
                   {agent}
                 </span>
@@ -200,17 +200,17 @@ export default async function Home() {
             </Link>
           </div>
 
-          {/* MCP Package CTA */}
+          {/* CLI Search CTA */}
           <div className="mt-16 max-w-2xl mx-auto">
             <div className="p-6 md:p-8 bg-paper border-2 border-ink shadow-[6px_6px_0px_rgba(26,25,23,0.15)]">
               <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade mb-3 text-center">
-                Access directly from Claude Code or any agentic tool
+                Search and configure agents from your terminal
               </p>
               <p className="font-mono text-[0.85rem] mb-4 text-center">
-                Install: <code className="bg-ink text-paper px-3 py-1.5 rounded font-bold">npm install @salestoolsclub/mcp</code>
+                Run: <code className="bg-ink text-paper px-3 py-1.5 rounded font-bold">npx salestools search &quot;lead enrichment&quot;</code>
               </p>
               <p className="font-mono text-[0.7rem] text-ink-fade italic text-center">
-                Then ask your agent: "Use the Salestools Club MCP to provide lead enrichment APIs for my use case"
+                Ideal for Claude Code and other agent-native users. Find the right API building blocks without leaving your workflow.
               </p>
             </div>
           </div>
@@ -236,7 +236,7 @@ export default async function Home() {
                 Sales APIs
               </h3>
               <p className="text-[1rem] text-ink-fade leading-relaxed">
-                Programmable access to your CRM, outreach tools, enrichment databases, and calling platforms. These let Claude Code or Gemini CLI read and write to your sales stack directly.
+                Programmable access to your CRM, outreach tools, enrichment databases, and calling platforms. These let Claude Code or other agentic tools read and write to your sales stack directly.
               </p>
               <span className="mt-auto font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade group-hover:text-ink transition-colors">
                 Browse APIs →
@@ -249,7 +249,7 @@ export default async function Home() {
                 MCP Servers
               </h3>
               <p className="text-[1rem] text-ink-fade leading-relaxed">
-                Ready-made connectors that plug sales tools into Claude Code, Gemini CLI, and other agentic tools. No glue code. Copy the config, paste it, go.
+                Ready-made connectors that plug sales tools into Claude Code and other agentic tools. No glue code. Copy the config, paste it, go.
               </p>
               <span className="mt-auto font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade group-hover:text-ink transition-colors">
                 Browse MCP Servers →
@@ -262,7 +262,7 @@ export default async function Home() {
                 Agent Skills
               </h3>
               <p className="text-[1rem] text-ink-fade leading-relaxed">
-                Pre-configured instruction files that teach your agent how to perform complex sales tasks. One-click install for Claude Code, Cursor, and Gemini CLI.
+                Pre-configured instruction files that teach your agent how to perform complex sales tasks. One-click install for Claude Code or other agentic tools.
               </p>
               <span className="mt-auto font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade group-hover:text-ink transition-colors">
                 Browse Skills →

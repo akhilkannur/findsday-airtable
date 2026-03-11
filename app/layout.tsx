@@ -22,13 +22,13 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://salestools.club"),
   title: "Salestools Club — Every Sales API & MCP Server in one place.",
   description:
-    "A curated directory of sales APIs, MCP servers, and agent skills. Find tools to connect your sales stack to Claude Code, Gemini CLI, and agentic workflows.",
+    "A curated directory of sales APIs, MCP servers, and agent skills. Find tools to connect your sales stack to Claude Code or other agentic platforms.",
   keywords:
-    "sales API directory, MCP server sales, Model Context Protocol, Claude Code, Gemini CLI, AI sales tools, CRM API, sales automation API, build AI sales agent, agentic sales stack, sales tools for AI agents",
+    "sales API directory, MCP server sales, Model Context Protocol, Claude Code, agentic tools, AI sales tools, CRM API, sales automation API, build AI sales agent, agentic sales stack, sales tools for AI agents",
   openGraph: {
     title: "Salestools Club — Sales APIs & MCP Servers for AI Tinkerers",
     description:
-      "The sales API directory for builders. Find MCP servers, CRM APIs, and agentic tools for Claude Code, Gemini CLI, and autonomous sales workflows.",
+      "The sales API directory for builders. Find MCP servers, CRM APIs, and agentic tools for Claude Code and other agentic platforms.",
     type: "website",
     url: "https://salestools.club",
   },
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Salestools Club — Sales APIs & MCP Servers for AI Tinkerers",
     description:
-      "Find the APIs, SDKs, and MCP servers that plug your sales stack into Claude Code, Gemini CLI, and other agentic tools.",
+      "Find the APIs, SDKs, and MCP servers that plug your sales stack into Claude Code and other agent-native platforms.",
   },
 }
 
