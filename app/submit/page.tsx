@@ -244,7 +244,7 @@ export default function SubmitPage() {
                   disabled={status === 'submitting'}
                   className={`w-full py-6 font-mono font-bold uppercase text-[1.1rem] transition-all hover:rotate-[-1deg] circled accent bg-transparent ${status === 'submitting' ? 'opacity-50 cursor-not-allowed' : ''}`}
                 >
-                  {status === 'submitting' ? 'Submitting...' : 'Submit Tool'} <span>-></span>
+                  {status === 'submitting' ? 'Submitting...' : 'Submit Tool'} <span>{'>'}</span>
                 </button>
                 <p className="mt-8 font-serif italic text-lg text-ink-fade text-center opacity-60">
                   We'll review your submission and get back to you.

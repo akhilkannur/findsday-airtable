@@ -98,22 +98,22 @@ export default async function McpPage({
   return (
     <div className="flex flex-col min-h-screen bg-paper">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(mcpJsonLd) }} />
-      <section className="px-8 py-24 border-b border-ink">
+      <section className="px-6 md:px-8 py-10 md:py-14 border-b border-ink">
         <div className="layout-container">
-          <div className="font-mono text-[0.85rem] uppercase tracking-[0.2em] text-ink-fade mb-6 flex items-center gap-3">
+          <div className="font-mono text-[0.85rem] uppercase tracking-[0.2em] text-ink-fade mb-4 md:mb-6 flex items-center gap-3">
             <span className="w-1.5 h-1.5 bg-current rounded-full animate-status-blink"></span>
             MCP Directory
           </div>
-          <h1 className="type-display mb-8 uppercase">MCP Servers</h1>
-          <p className="max-w-3xl font-serif italic text-2xl text-ink-fade leading-relaxed border-l-2 border-ink pl-6">
+          <h1 className="type-display mb-4 md:mb-6 uppercase">MCP Servers</h1>
+          <p className="max-w-3xl font-serif italic text-lg md:text-xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
             The fastest way to give your AI "hands". Plug these servers into Claude Code or Gemini CLI to update your CRM and search leads via chat.
           </p>
         </div>
       </section>
 
-      <div className="border-b border-ink bg-paper-dark/20 py-6">
+      <div className="border-b border-ink bg-paper-dark/20 py-4 md:py-6">
         <div className="layout-container flex items-center">
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4 md:gap-6">
             <Link 
               href={officialOnly ? "/mcp" : "/mcp?official=true"}
               className={`flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-widest transition-all ${officialOnly ? 'text-black font-bold' : 'text-ink-fade hover:text-black'}`}
@@ -127,9 +127,9 @@ export default async function McpPage({
         </div>
       </div>
 
-      <section className="py-20">
+      <section className="py-8 md:py-12">
         <div className="layout-container">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
             {mcpTools.map((tool) => (
               <ToolCard key={tool.slug} tool={tool} />
             ))}

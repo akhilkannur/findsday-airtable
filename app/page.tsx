@@ -196,7 +196,7 @@ export default async function Home() {
 
           <div className="mt-12 md:mt-16 text-center">
             <Link href="/api" className="font-serif italic text-xl md:text-2xl border-b border-black hover:opacity-60 transition-opacity pb-1">
-              Browse All APIs ->
+              Browse All APIs {'>'}
             </Link>
           </div>
 

@@ -13,18 +13,18 @@ export default function GuidesPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-paper">
-      <section className="px-8 py-24 border-b border-ink bg-paper-dark/30">
+      <section className="px-6 md:px-8 py-12 md:py-16 border-b border-ink bg-paper-dark/30">
         <div className="layout-container">
-          <h1 className="type-display mb-8">API Guides for AI Agents</h1>
-          <p className="max-w-2xl font-serif italic text-2xl text-ink-fade leading-relaxed border-l-2 border-ink pl-6">
+          <h1 className="type-display mb-4 md:mb-6">API Guides for AI Agents</h1>
+          <p className="max-w-2xl font-serif italic text-lg md:text-xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
             Deep-dive guides to sales APIs. Compare API types, auth methods, SDKs, webhooks, and MCP readiness. Here are all the specs you need to build AI agents.
           </p>
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="py-8 md:py-12">
         <div className="layout-container">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
             {guides.map((guide) => (
               <Link
                 key={guide.slug}

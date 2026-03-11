@@ -51,14 +51,14 @@ export default async function OpenSourcePage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-paper">
-      <section className="px-8 py-24 border-b border-ink">
+      <section className="px-6 md:px-8 py-12 md:py-16 border-b border-ink">
         <div className="layout-container">
-          <h1 className="type-display mb-8">Open Source</h1>
-          <p className="max-w-2xl font-serif italic text-2xl text-ink-fade leading-relaxed border-l-2 border-ink pl-6">
+          <h1 className="type-display mb-4 md:mb-6">Open Source</h1>
+          <p className="max-w-2xl font-serif italic text-lg md:text-xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
             Sales tools you can self-host, fork, and inspect. Build your AI sales stack on transparent, open-source foundations.
           </p>
 
-          <div className="mt-12">
+          <div className="mt-6 md:mt-10">
             <span className="font-mono text-[0.75rem] font-bold uppercase tracking-widest">
               {tools.length} tools indexed
             </span>
@@ -66,7 +66,7 @@ export default async function OpenSourcePage() {
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="py-8 md:py-12">
         <div className="layout-container">
           {tools.length < 5 && (
             <div className="mb-12 p-8 border border-dashed border-ink/30 bg-paper-dark/20">

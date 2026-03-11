@@ -40,23 +40,23 @@ export default async function VsIndexPage() {
   return (
     <div className="flex flex-col min-h-screen bg-paper">
       {/* Hero */}
-      <section className="px-8 py-24 border-b border-ink bg-paper-dark/30">
+      <section className="px-6 md:px-8 py-12 md:py-16 border-b border-ink bg-paper-dark/30">
         <div className="layout-container">
-          <div className="font-mono text-[0.85rem] uppercase tracking-[0.2em] text-ink-fade mb-6 flex items-center gap-3">
+          <div className="font-mono text-[0.85rem] uppercase tracking-[0.2em] text-ink-fade mb-4 md:mb-6 flex items-center gap-3">
             <Scale className="h-4 w-4" />
             Comparison Registry
           </div>
-          <h1 className="type-display mb-8 uppercase">Technical Audits.</h1>
-          <p className="max-w-2xl font-serif italic text-2xl text-ink-fade leading-relaxed border-l-2 border-ink pl-6">
+          <h1 className="type-display mb-4 md:mb-6 uppercase">Technical Audits.</h1>
+          <p className="max-w-2xl font-serif italic text-lg md:text-xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
             We compare sales modules based on their <strong>programmability</strong>, <strong>AI-readiness</strong>, and <strong>MCP support</strong>. Choose the right node for your agentic stack.
           </p>
         </div>
       </section>
 
       {/* Featured Comparisons */}
-      <section className="py-20">
+      <section className="py-8 md:py-12">
         <div className="layout-container">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
             {featuredPairs.map((pair) => {
               const t1 = tools.find(t => t.slug === pair.s1)
               const t2 = tools.find(t => t.slug === pair.s2)

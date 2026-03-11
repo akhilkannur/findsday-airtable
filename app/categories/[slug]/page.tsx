@@ -154,7 +154,7 @@ export default async function CategoryDetailPage({
         <div className="layout-container">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
             <h2 className="font-serif italic text-3xl">Related Categories</h2>
-            <Link href="/categories" className="font-mono text-[0.75rem] uppercase underline hover:line-through">All Categories -></Link>
+            <Link href="/categories" className="font-mono text-[0.75rem] uppercase underline hover:line-through">All Categories {'>'}</Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             {getAllCategories().filter(c => c.slug !== slug).slice(0, 4).map(cat => (

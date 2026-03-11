@@ -75,24 +75,24 @@ export default async function SkillDetailPage({
         { name: "Skills", url: "https://salestools.club/skills" },
         { name: skill.name, url: `https://salestools.club/skills/${skill.slug}` },
       ]} />
-      <section className="px-8 py-24 border-b border-ink bg-paper-dark/30">
+      <section className="px-4 md:px-8 py-10 md:py-14 border-b border-ink bg-paper-dark/30">
         <div className="layout-container">
           <Link
             href="/skills"
-            className="font-mono text-[0.75rem] uppercase underline hover:line-through transition-all mb-12 inline-block"
+            className="font-mono text-[0.75rem] uppercase underline hover:line-through transition-all mb-6 md:mb-10 inline-block"
           >
             &lt;- Back to Skills
           </Link>
 
           <div className="max-w-4xl">
-            <div className="space-y-4">
-              <div className="circled font-mono text-[0.75rem] font-bold uppercase">
+            <div className="space-y-3 md:space-y-4">
+              <div className="circled font-mono text-[0.7rem] md:text-[0.75rem] font-bold uppercase">
                 {skill.category}
               </div>
               <h1 className="type-display uppercase">{skill.name}</h1>
             </div>
             
-            <div className="mt-8 p-4 border border-ink/10 bg-paper-dark/20 inline-flex items-center gap-2">
+            <div className="mt-6 md:mt-8 p-3 md:p-4 border border-ink/10 bg-paper-dark/20 inline-flex items-center gap-2">
               <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade">
                 Curated by Salestools Club • Created by{" "}
                 {skill.sourceUrl ? (

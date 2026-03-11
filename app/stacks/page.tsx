@@ -27,18 +27,18 @@ export default function StacksPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-paper">
-      <section className="px-8 py-24 border-b border-ink">
+      <section className="px-6 md:px-8 py-12 md:py-16 border-b border-ink">
         <div className="layout-container">
-          <h1 className="type-display mb-8">Stacks</h1>
-          <p className="max-w-2xl font-serif italic text-2xl text-ink-fade leading-relaxed border-l-2 border-ink pl-6">
+          <h1 className="type-display mb-4 md:mb-6">Stacks</h1>
+          <p className="max-w-2xl font-serif italic text-lg md:text-xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
             Curated tool combinations that actually work together. Not just lists. These are connected workflows where data flows from one tool to the next.
           </p>
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="py-8 md:py-12">
         <div className="layout-container">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8">
             {stacks.map((stack, idx) => {
               const stackTools = getToolsForStack(stack)
 
