@@ -171,16 +171,29 @@ export default async function ToolDetailPage({
   const matchingUseCases = getUseCasesForTool(tool)
   const categoryMeta = getAllCategories().find(c => c.name === tool.category)
 
-  // Find alternatives
+  // Find alternatives – score by relevance so each tool gets unique, meaningful matches
   const allTools = await getAllTools()
-  const alternatives = allTools.filter(t => 
-    t.slug !== tool.slug && 
-    (
-      t.category === tool.category || 
-      tool.alternativeTo?.some(alt => t.name.toLowerCase().includes(alt.toLowerCase())) ||
-      t.alternativeTo?.some(alt => tool.name.toLowerCase().includes(alt.toLowerCase()))
-    )
-  ).slice(0, 4)
+  const alternatives = allTools
+    .filter(t => t.slug !== tool.slug)
+    .map(t => {
+      let score = 0
+      // Highest: tool explicitly lists this as an alternative
+      if (tool.alternativeTo?.some(alt => t.name.toLowerCase().includes(alt.toLowerCase()))) score += 10
+      // High: this tool lists current tool as an alternative
+      if (t.alternativeTo?.some(alt => tool.name.toLowerCase().includes(alt.toLowerCase()))) score += 8
+      // Medium: overlapping aiCapabilities
+      const capOverlap = (tool.aiCapabilities ?? []).filter(c =>
+        (t.aiCapabilities ?? []).some(tc => tc.toLowerCase() === c.toLowerCase())
+      ).length
+      score += capOverlap * 3
+      // Low: same category
+      if (t.category === tool.category) score += 1
+      return { tool: t, score }
+    })
+    .filter(({ score }) => score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 4)
+    .map(({ tool }) => tool)
 
   return (
     <div className="flex flex-col min-h-screen">
