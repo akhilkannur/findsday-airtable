@@ -6,7 +6,8 @@ import type { SalesTool, ToolCategory, CategoryMeta } from "./types"
 // for easy switching back to a live API if needed later.
 
 export async function getAllTools(): Promise<SalesTool[]> {
-  return tools.filter((t) => t.docsUrl && t.docsUrl !== "")
+  const withDocs = tools.filter((t) => "docsUrl" in t && t.docsUrl && t.docsUrl !== "") as SalesTool[]
+  return withDocs.reverse()
 }
 
 export async function getFeaturedTools(): Promise<SalesTool[]> {
