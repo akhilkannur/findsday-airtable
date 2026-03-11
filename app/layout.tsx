@@ -162,37 +162,85 @@ fbq('track', 'PageView');`,
           {children}
         </main>
         
-        <footer className="border-t border-ink p-12 mt-20">
-          <div className="layout-container text-center flex flex-col items-center gap-10">
-            <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 font-mono text-[0.7rem] uppercase tracking-widest border-b border-ink/10 pb-8 w-full max-w-2xl opacity-80">
-              <Link href="/guides" className="hover:line-through">Guides</Link>
-              <Link href="/for" className="hover:line-through">Use Cases</Link>
-              <Link href="/monitoring" className="hover:line-through">Monitoring</Link>
-              <Link href="/about" className="hover:line-through">About</Link>
-              <Link href="/privacy" className="hover:line-through">Privacy</Link>
-              <Link href="/submit" className="hover:line-through">Submit Tool</Link>
+        <footer className="border-t border-ink p-12 mt-20 bg-paper">
+          <div className="layout-container">
+            {/* Programmatic Directory Columns */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-12 mb-16 pb-16 border-b border-ink/10 text-left">
+              <div className="flex flex-col gap-4">
+                <h4 className="font-mono text-[0.7rem] font-bold uppercase tracking-widest text-ink/40">Outcomes</h4>
+                <div className="flex flex-col gap-2 font-mono text-[0.75rem] uppercase">
+                  <Link href="/capability/lead-enrichment" className="hover:line-through">Lead Enrichment</Link>
+                  <Link href="/capability/email-verification" className="hover:line-through">Email Verification</Link>
+                  <Link href="/capability/ai-search" className="hover:line-through">AI Search</Link>
+                  <Link href="/capability/meeting-recording" className="hover:line-through">Meeting Recording</Link>
+                  <Link href="/free-sales-apis" className="hover:line-through text-ink font-bold">Free Sales APIs</Link>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-4">
+                <h4 className="font-mono text-[0.7rem] font-bold uppercase tracking-widest text-ink/40">Alternatives</h4>
+                <div className="flex flex-col gap-2 font-mono text-[0.75rem] uppercase">
+                  <Link href="/alternative-to/hubspot" className="hover:line-through">HubSpot</Link>
+                  <Link href="/alternative-to/salesforce" className="hover:line-through">Salesforce</Link>
+                  <Link href="/alternative-to/apollo" className="hover:line-through">Apollo</Link>
+                  <Link href="/alternative-to/zoominfo" className="hover:line-through">ZoomInfo</Link>
+                  <Link href="/alternative-to/clearbit" className="hover:line-through">Clearbit</Link>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-4">
+                <h4 className="font-mono text-[0.7rem] font-bold uppercase tracking-widest text-ink/40">Auth Types</h4>
+                <div className="flex flex-col gap-2 font-mono text-[0.75rem] uppercase">
+                  <Link href="/auth/api-key" className="hover:line-through">API Key</Link>
+                  <Link href="/auth/oauth2" className="hover:line-through">OAuth2</Link>
+                  <Link href="/auth/bearer-token" className="hover:line-through">Bearer Token</Link>
+                  <Link href="/auth/basic-auth" className="hover:line-through">Basic Auth</Link>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-4">
+                <h4 className="font-mono text-[0.7rem] font-bold uppercase tracking-widest text-ink/40">Developer SDKs</h4>
+                <div className="flex flex-col gap-2 font-mono text-[0.75rem] uppercase">
+                  <Link href="/sdk/python" className="hover:line-through">Python</Link>
+                  <Link href="/sdk/node.js" className="hover:line-through">Node.js</Link>
+                  <Link href="/sdk/ruby" className="hover:line-through">Ruby</Link>
+                  <Link href="/sdk/php" className="hover:line-through">PHP</Link>
+                  <Link href="/sdk/go" className="hover:line-through">Go</Link>
+                </div>
+              </div>
             </div>
 
-            <div className="flex items-center gap-4 font-mono text-[0.85rem] uppercase tracking-widest flex-wrap justify-center py-6 px-10 border-2 border-ink bg-paper shadow-[8px_8px_0px_rgba(26,25,23,0.1)] transition-transform hover:translate-x-[-2px] hover:translate-y-[-2px]">
-              <span className="opacity-60 text-[0.7rem]">Built by</span>
-              <a href="https://akhilhaving.fun" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:opacity-80 transition-opacity group">
-                <Image 
-                  src="/dp.jpg" 
-                  alt="Akhil" 
-                  width={32}
-                  height={32}
-                  className="rounded-full grayscale border-2 border-ink/40 group-hover:grayscale-0 transition-all"
-                />
-                <span className="font-black border-b-2 border-ink pb-0.5">Akhil</span>
-              </a>
-              <span className="opacity-60 text-[0.7rem]">with</span>
-              <a href="http://realaiexamples.com/" target="_blank" rel="noopener noreferrer" className="font-black border-b-2 border-ink pb-0.5 hover:opacity-80 transition-opacity">
-                realaiexamples.com
-              </a>
-            </div>
-            <div className="font-mono text-[0.6rem] uppercase tracking-[0.2em] opacity-75 flex flex-col gap-2">
-              <p>Found: {toolsWithDocs} APIs with docs • Monitoring {toolsWithoutDocs} for documentation</p>
-              <p>© {new Date().getFullYear()} Salestools Club</p>
+            <div className="text-center flex flex-col items-center gap-10">
+              <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 font-mono text-[0.7rem] uppercase tracking-widest border-b border-ink/10 pb-8 w-full max-w-2xl opacity-80">
+                <Link href="/guides" className="hover:line-through">Guides</Link>
+                <Link href="/for" className="hover:line-through">Use Cases</Link>
+                <Link href="/monitoring" className="hover:line-through">Monitoring</Link>
+                <Link href="/about" className="hover:line-through">About</Link>
+                <Link href="/privacy" className="hover:line-through">Privacy</Link>
+                <Link href="/submit" className="hover:line-through">Submit Tool</Link>
+              </div>
+
+              <div className="flex items-center gap-4 font-mono text-[0.85rem] uppercase tracking-widest flex-wrap justify-center py-6 px-10 border-2 border-ink bg-paper shadow-[8px_8px_0px_rgba(26,25,23,0.15)] transition-transform hover:translate-x-[-2px] hover:translate-y-[-2px]">
+                <span className="opacity-60 text-[0.7rem]">Built by</span>
+                <a href="https://akhilhaving.fun" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:opacity-80 transition-opacity group">
+                  <Image 
+                    src="/dp.jpg" 
+                    alt="Akhil" 
+                    width={32}
+                    height={32}
+                    className="rounded-full grayscale border-2 border-ink/40 group-hover:grayscale-0 transition-all"
+                  />
+                  <span className="font-black border-b-2 border-ink pb-0.5">Akhil</span>
+                </a>
+                <span className="opacity-60 text-[0.7rem]">with</span>
+                <a href="http://realaiexamples.com/" target="_blank" rel="noopener noreferrer" className="font-black border-b-2 border-ink pb-0.5 hover:opacity-80 transition-opacity">
+                  realaiexamples.com
+                </a>
+              </div>
+              <div className="font-mono text-[0.6rem] uppercase tracking-[0.2em] opacity-75 flex flex-col gap-2">
+                <p>Found: {toolsWithDocs} APIs with docs • Monitoring {toolsWithoutDocs} for documentation</p>
+                <p>© {new Date().getFullYear()} Salestools Club</p>
+              </div>
             </div>
           </div>
         </footer>

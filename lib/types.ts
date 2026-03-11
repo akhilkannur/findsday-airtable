@@ -38,6 +38,7 @@ export interface SalesTool {
   authMethod: AuthMethod[]
   hasFreeTier: boolean
   sdkLanguages: string[]
+  snippetLanguages?: string[]
   hasWebhooks: boolean
 
   // AI-Native Operator Specifics

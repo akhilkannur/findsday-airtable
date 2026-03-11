@@ -124,6 +124,67 @@ export function resolveCategoryName(input: string): string | undefined {
   return cat?.name
 }
 
+export async function getToolsBySdkLanguage(language: string): Promise<SalesTool[]> {
+  const all = await getAllTools()
+  return all.filter((t) => 
+    t.sdkLanguages.some(l => l.toLowerCase() === language.toLowerCase())
+  )
+}
+
+export async function getToolsByAlternativeTo(toolName: string): Promise<SalesTool[]> {
+  const all = await getAllTools()
+  const searchName = toolName.toLowerCase()
+  return all.filter((t) => 
+    t.alternativeTo?.some(alt => alt.toLowerCase().includes(searchName)) ||
+    t.name.toLowerCase().includes(searchName)
+  )
+}
+
+export async function getToolsByCapability(capabilitySlug: string): Promise<SalesTool[]> {
+  const all = await getAllTools()
+  const target = capabilitySlug.replace(/-/g, " ").toLowerCase()
+  return all.filter((t) => 
+    t.aiCapabilities.some(cap => cap.toLowerCase().includes(target))
+  )
+}
+
+export async function getFreeTierTools(): Promise<SalesTool[]> {
+  const all = await getAllTools()
+  return all.filter((t) => t.hasFreeTier)
+}
+
+export async function getToolsByAuthMethod(method: string): Promise<SalesTool[]> {
+  const all = await getAllTools()
+  const target = method.replace(/-/g, " ").toLowerCase()
+  return all.filter((t) => 
+    t.authMethod.some(m => m.toLowerCase() === target)
+  )
+}
+
+export function getAllSdkLanguages(): string[] {
+  const langs = new Set<string>()
+  tools.forEach(t => {
+    if ("sdkLanguages" in t) {
+      t.sdkLanguages.forEach(l => langs.add(l))
+    }
+  })
+  return Array.from(langs).sort()
+}
+
+export function getAllCapabilities(): string[] {
+  const caps = new Set<string>()
+  tools.forEach(t => {
+    if ("aiCapabilities" in t) {
+      t.aiCapabilities.forEach(c => caps.add(c))
+    }
+  })
+  return Array.from(caps).sort()
+}
+
+export function getAllAuthMethods(): string[] {
+  return ["API Key", "OAuth2", "Bearer Token", "Basic Auth", "None"]
+}
+
 export async function filterTools(options: {
   query?: string
   category?: string
@@ -157,14 +218,37 @@ export async function filterTools(options: {
   }
 
   if (options.query) {
-    const q = options.query.toLowerCase()
-    filtered = filtered.filter(
-      (t) =>
-        t.name.toLowerCase().includes(q) ||
-        t.oneLiner.toLowerCase().includes(q) ||
-        t.category.toLowerCase().includes(q) ||
-        t.alternativeTo?.some((a) => a.toLowerCase().includes(q))
-    )
+    const q = options.query.toLowerCase().trim()
+    filtered = filtered
+      .filter(
+        (t) =>
+          t.name.toLowerCase().includes(q) ||
+          t.oneLiner.toLowerCase().includes(q) ||
+          t.category.toLowerCase().includes(q) ||
+          t.alternativeTo?.some((a) => a.toLowerCase().includes(q))
+      )
+      .sort((a, b) => {
+        const aName = a.name.toLowerCase()
+        const bName = b.name.toLowerCase()
+
+        // 1. Exact match (top priority)
+        if (aName === q && bName !== q) return -1
+        if (bName === q && aName !== q) return 1
+
+        // 2. Starts with (second priority)
+        const aStarts = aName.startsWith(q)
+        const bStarts = bName.startsWith(q)
+        if (aStarts && !bStarts) return -1
+        if (bStarts && !aStarts) return 1
+
+        // 3. Name includes (third priority)
+        const aIncludes = aName.includes(q)
+        const bIncludes = bName.includes(q)
+        if (aIncludes && !bIncludes) return -1
+        if (bIncludes && !aIncludes) return 1
+
+        return 0
+      })
   }
 
   return filtered
