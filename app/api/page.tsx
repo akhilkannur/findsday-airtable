@@ -18,9 +18,11 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
     title: "Sales APIs | Salestools Club",
     description:
       "A comprehensive database of sales APIs and tools for people building with Claude Code and other agentic tools.",
-    alternates: {
-      canonical: "https://salestools.club/api",
-    },
+    ...(!hasFilters && {
+      alternates: {
+        canonical: "https://salestools.club/api",
+      },
+    }),
     ...(hasFilters && {
       robots: { index: false, follow: true },
     }),

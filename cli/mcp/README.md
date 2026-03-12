@@ -72,13 +72,13 @@ Found 2 tools (MCP-ready only):
 ### Clay
 The universal data enrichment and outbound orchestration platform.
 *MCP Ready | Free Tier*
-→ https://salestools.club/tools/clay
+→ https://salestools.club/apis/clay
 📄 Docs: https://docs.clay.com
 
 ### BetterContact
 Waterfall contact enrichment API with 15+ data sources.
 *MCP Ready*
-→ https://salestools.club/tools/better-contact
+→ https://salestools.club/apis/better-contact
 📄 Docs: https://docs.bettercontact.com
 ```
 

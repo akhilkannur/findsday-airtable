@@ -74,7 +74,7 @@ program
       tools.slice(0, 10).forEach((tool, i) => {
         console.log(`\n${i + 1}. ${chalk.cyan(tool.name)}`);
         console.log(`   ${chalk.gray(tool.description?.slice(0, 80) || 'No description')}`);
-        console.log(`   ${chalk.white('→')} ${chalk.underline(`https://salestools.club/tools/${tool.slug}`)}`);
+        console.log(`   ${chalk.white('→')} ${chalk.underline(`https://salestools.club/apis/${tool.slug}`)}`);
       });
       
       if (count > 10) {

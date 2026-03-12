@@ -111,7 +111,7 @@ async function searchTools(query, filters = {}) {
     mcpReady: tool.mcpReady,
     hasFreeTier: tool.hasFreeTier,
     docsUrl: tool.docsUrl,
-    url: `https://salestools.club/tools/${tool.slug}`,
+    url: `https://salestools.club/apis/${tool.slug}`,
   }));
 }
 

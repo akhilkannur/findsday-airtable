@@ -35,10 +35,85 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/sales-tools/tool-alpha',
+        destination: '/api',
+        permanent: true,
+      },
+      {
+        source: '/sales-tools/tool-beta',
+        destination: '/api',
+        permanent: true,
+      },
+      {
+        source: '/sales-tools/tool-gamma',
+        destination: '/api',
+        permanent: true,
+      },
+      {
+        source: '/sales-tools/tool-delta',
+        destination: '/api',
+        permanent: true,
+      },
+      {
+        source: '/drops/drop-1',
+        destination: '/api',
+        permanent: true,
+      },
+      {
+        source: '/drops/drop-4',
+        destination: '/api',
+        permanent: true,
+      },
+      {
+        source: '/sales-tools/:slug',
+        destination: '/apis/:slug',
+        permanent: true,
+      },
+      {
+        source: '/sales-tools',
+        destination: '/api',
+        permanent: true,
+      },
+      {
         source: '/tools',
         destination: '/api',
         permanent: true,
       },
+      {
+        source: '/drops',
+        destination: '/api',
+        permanent: true,
+      },
+      {
+        source: '/drops/:slug',
+        destination: '/api',
+        permanent: true,
+      },
+      {
+        source: '/skills/crm-updater',
+        destination: '/skills',
+        permanent: true,
+      },
+      {
+        source: '/skills/follow-up-drafter',
+        destination: '/skills',
+        permanent: true,
+      },
+      {
+        source: '/skills/founder-led-sales',
+        destination: '/skills',
+        permanent: true,
+      },
+      {
+        source: '/skills/pricing-strategy',
+        destination: '/skills',
+        permanent: true,
+      },
+      {
+        source: '/skills/lead-qualifier',
+        destination: '/skills',
+        permanent: true,
+      }
     ]
   },
 }
