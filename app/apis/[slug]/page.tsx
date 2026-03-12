@@ -43,6 +43,9 @@ export async function generateMetadata({
     alternates: {
       canonical: pageUrl,
     },
+    ...(!tool.docsUrl && {
+      robots: { index: false, follow: true },
+    }),
     openGraph: {
       title: pageTitle,
       description: `${tool.oneLiner} Compare ${tool.name} API pricing, SDKs, MCP server, and integrations for AI sales agents.`,

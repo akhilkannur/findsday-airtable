@@ -65,6 +65,26 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/apis/drift',
+        destination: '/api',
+        permanent: true,
+      },
+      {
+        source: '/apis/intercom',
+        destination: '/api',
+        permanent: true,
+      },
+      {
+        source: '/apis/get-response',
+        destination: '/api',
+        permanent: true,
+      },
+      {
+        source: '/apis/kustomer',
+        destination: '/api',
+        permanent: true,
+      },
+      {
         source: '/sales-tools/:slug',
         destination: '/apis/:slug',
         permanent: true,
