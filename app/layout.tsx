@@ -4,6 +4,7 @@ import { GeistMono } from 'geist/font/mono'
 import "./globals.css"
 import Link from "next/link"
 import Image from "next/image"
+import Script from "next/script"
 import { MobileNav } from "@/components/MobileNav"
 import { Shield, Zap } from "lucide-react"
 import { getAllTools, getToolsWithoutDocs } from "@/lib/tools"
@@ -87,30 +88,33 @@ export default async function RootLayout({
     <html lang="en" className={`${playfair.variable} ${inter.variable} ${GeistMono.variable}`}>
       <head>
         <link rel="icon" href="/icon.png" />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-9LGNFH00R7" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-9LGNFH00R7');`,
-          }}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-9LGNFH00R7"
+          strategy="afterInteractive"
         />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-9LGNFH00R7');
+          `}
+        </Script>
         {/* Meta Pixel Code */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1613021629640914');
-fbq('track', 'PageView');`,
-          }}
-        />
+        <Script id="fb-pixel" strategy="afterInteractive">
+          {`
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '1613021629640914');
+            fbq('track', 'PageView');
+          `}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}

@@ -8,6 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       disallow: [
         "/api/submit",
         "/api/tools/*",
+        "/monitoring",
       ],
     },
     sitemap: "https://salestools.club/sitemap.xml",
