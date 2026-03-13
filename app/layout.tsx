@@ -87,7 +87,8 @@ export default async function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable} ${GeistMono.variable}`}>
       <head>
-        <link rel="icon" href="/icon.png" />
+        <link rel="icon" href="/favicon.png" />
+        <link rel="apple-touch-icon" href="/icon.png" />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-9LGNFH00R7"
           strategy="afterInteractive"
@@ -132,9 +133,18 @@ export default async function RootLayout({
       </head>
       <body className="antialiased min-h-screen">
         <nav className="border-b border-ink py-4 sticky top-0 bg-paper z-[100]">
-          <div className="layout-container flex justify-between items-baseline">
-            <Link href="/" className="font-mono font-bold text-lg tracking-tighter hover:line-through transition-all">
-              SALESTOOLS.CLUB
+          <div className="layout-container flex justify-between items-center">
+            <Link href="/" className="flex items-center gap-2 group">
+              <Image 
+                src="/logo.png" 
+                alt="Salestools Club Logo" 
+                width={28} 
+                height={28} 
+                className="group-hover:rotate-12 transition-transform duration-300"
+              />
+              <span className="font-mono font-bold text-lg tracking-tighter hover:line-through transition-all uppercase">
+                SALESTOOLS.CLUB
+              </span>
             </Link>
             
             <div className="hidden md:flex gap-8 items-center font-mono text-[0.85rem] uppercase">

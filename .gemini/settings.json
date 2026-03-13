@@ -1,10 +1,10 @@
 {
   "mcpServers": {
     "browsermcp": {
-      "command": "npx",
+      "command": "bash",
       "args": [
-        "-y",
-        "@browsermcp/mcp"
+        "-c",
+        "PATH=\"$PWD/cli/mcp/bin:$PATH\" npx -y @browsermcp/mcp"
       ]
     }
   }

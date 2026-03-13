@@ -1,0 +1,13 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="128" fill="#0F172A"/>
+  <!-- Modular "Block" representing an API/MCP component -->
+  <path d="M160 160H352V352H160V160Z" stroke="#38BDF8" stroke-width="24" stroke-linejoin="round"/>
+  <!-- Connection points/sockets -->
+  <circle cx="256" cy="160" r="20" fill="#38BDF8"/>
+  <circle cx="256" cy="352" r="20" fill="#38BDF8"/>
+  <circle cx="160" cy="256" r="20" fill="#38BDF8"/>
+  <circle cx="352" cy="256" r="20" fill="#38BDF8"/>
+  <!-- Inner "Core" representing AI/Data -->
+  <rect x="216" y="216" width="80" height="80" rx="8" fill="#F1F5F9"/>
+  <path d="M256 216V296M216 256H296" stroke="#0F172A" stroke-width="12" stroke-linecap="round"/>
+</svg>
