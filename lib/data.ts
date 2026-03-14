@@ -553,7 +553,6 @@ export const tools: (SalesTool | MinimalTool)[] = [
     integrations: [],
   },
   // ── Data Enrichment ──────────────────────────────────────────
-  },
   // ── LinkedIn Tools ──────────────────────────────────────────
   {
     slug: "dux-soup",
