@@ -1,6 +1,6 @@
 # Salestools MCP Server
 
-Search sales tools, APIs, and MCP servers directly from Claude Code or Cursor.
+Search sales tools, APIs, and MCP servers directly from Claude Code or other AI agents.
 
 ## What is this?
 
@@ -8,7 +8,7 @@ An MCP (Model Context Protocol) server that lets your AI agent search the Salest
 
 ## Setup
 
-Add this to your Claude Code or Cursor config:
+Add this to your Claude Code or AI agent config:
 
 ```json
 {
@@ -85,4 +85,4 @@ Waterfall contact enrichment API with 15+ data sources.
 ## Requirements
 
 - Node.js 18+
-- Claude Code, Cursor, or any MCP-compatible AI assistant
+- Claude Code or any MCP-compatible AI assistant

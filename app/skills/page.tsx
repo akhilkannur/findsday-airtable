@@ -7,9 +7,9 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
   const hasFilters = !!sp.category
 
   return {
-    title: "Agent Skills for Sales | Salestools Club",
+    title: "AI Agent Skills for Sales & GTM | Salestools Club",
     description:
-      "Copy-paste instruction files that teach AI agents how to write cold emails, qualify leads, update CRMs, and run sales workflows. Drop them into Claude Code, Gemini CLI, or any agentic tool.",
+      "Direct-to-agent instruction files for Claude Code, Gemini CLI, and other AI agents. Teach your agent how to write cold emails, qualify leads, and update CRMs without middleware.",
     alternates: {
       canonical: "https://salestools.club/skills",
     },
@@ -17,15 +17,15 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
       robots: { index: false, follow: true },
     }),
     openGraph: {
-      title: "Agent Skills for Sales | Salestools Club",
-      description: "Copy-paste instruction files that teach AI agents how to write cold emails, qualify leads, update CRMs, and run sales workflows. Drop them into Claude Code, Gemini CLI, or any agentic tool.",
+      title: "AI Agent Skills for Sales & GTM | Salestools Club",
+      description: "Direct-to-agent instruction files for Claude Code, Gemini CLI, and other AI agents. Teach your agent how to write cold emails, qualify leads, and update CRMs without middleware.",
       type: "website",
       url: "https://salestools.club/skills",
     },
     twitter: {
-      card: "summary_large_image",
-      title: "Agent Skills for Sales | Salestools Club",
-      description: "Copy-paste instruction files that teach AI agents how to write cold emails, qualify leads, update CRMs, and run sales workflows. Drop them into Claude Code, Gemini CLI, or any agentic tool.",
+      card: "summary_large_image" as const,
+      title: "AI Agent Skills for Sales & GTM | Salestools Club",
+      description: "Direct-to-agent instruction files for Claude Code, Gemini CLI, and other AI agents. Teach your agent how to write cold emails, qualify leads, and update CRMs without middleware.",
     },
   }
 }

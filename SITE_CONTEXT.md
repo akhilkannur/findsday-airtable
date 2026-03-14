@@ -4,7 +4,7 @@
 
 **What it is:** A directory for AI-Native Operators (founders, sales managers, revenue ops) to find sales APIs, MCP servers, and agentic sales tools.
 
-**Target Audience:** Non-developers who use AI (Claude, Cursor, Gemini CLI) to build sales workflows.
+**Target Audience:** Non-developers who use AI (Claude Code, Gemini CLI, AI agents) to build sales workflows.
 
 **Key Features:**
 - Lists sales tools/APIs with MCP server support

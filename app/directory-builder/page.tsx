@@ -108,7 +108,7 @@ export default function DirectoryBuilderPage() {
                 "The 'Content Ops' AI Prompt (The actual brain)",
                 "Python Automation Suite (Sync & Management scripts)",
                 "One-Click 'npx' installation command setup",
-                "Full training on how to use it with Claude/Cursor"
+                "Full training on how to use it with Claude Code"
               ].map((point, i) => (
                 <div key={i} className="flex gap-4 items-start">
                   <Check className="w-6 h-6 text-ink flex-shrink-0 mt-1" />

@@ -91,7 +91,7 @@ const guides: Guide[] = [
 </table>
 
 <h2>Modern Workflow: The "Find & Map" Logic</h2>
-<p>You don't need to be a coder to use these. You can use a "Prompt and Execute" workflow with AI tools like Claude or Cursor:</p>
+<p>You don't need to be a coder to use these. You can use a "Prompt and Execute" workflow with AI agents like Claude Code or Gemini CLI:</p>
 <ol>
   <li><strong>Get your data:</strong> (e.g., A list of new leads from <strong><a href="/apis/uplead">UpLead</a></strong>).</li>
   <li><strong>Feed the Docs:</strong> Paste the link to your CRM's API help page into Claude.</li>
@@ -183,7 +183,7 @@ const guides: Guide[] = [
   </tbody>
 </table>
 
-<h2>How to Use AI (Claude/Cursor) to Build This</h2>
+<h2>How to Use AI Agents (Claude Code) to Build This</h2>
 <p>You don't need to be a developer to connect these tools anymore. Here is the simple 3-step workflow:</p>
 
 <ol>
@@ -302,11 +302,11 @@ const guides: Guide[] = [
 <h2>The "Waterfall" (Backup) Strategy</h2>
 <p>Smart tinkerers use a "Waterfall" approach. If the first tool (like Apollo) doesn't have a phone number, your script automatically asks a second tool (like Lusha). This ensures you get the data you need nearly 100% of the time.</p>
 
-<h2>Modern Implementation (Claude/Cursor Workflow)</h2>
+<h2>Modern Implementation (Claude Code Workflow)</h2>
 <p>You no longer need to write complex code. Here is how you do it with AI:</p>
 <ol>
   <li><strong>Pick your tool:</strong> (e.g., UpLead's enrichment page).</li>
-  <li><strong>Ask your AI:</strong> Give the help docs to Claude or Cursor.</li>
+  <li><strong>Ask your AI:</strong> Give the documentation to Claude Code or your agent.</li>
   <li><strong>The Prompt:</strong> <em>"Claude, write a script using the CUFinder API that takes a list of emails, finds their LinkedIn URLs and how much money their company has raised, and saves it all to a CSV file."</em></li>
 </ol>
 

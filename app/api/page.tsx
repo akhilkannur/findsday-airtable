@@ -15,9 +15,9 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
   const hasFilters = !!(sp.q || sp.category || sp.mcp || sp.free || sp.official || sp.view)
 
   return {
-    title: "Sales APIs | Salestools Club",
+    title: "Sales APIs for Claude Code & AI Agents | Salestools Club",
     description:
-      "A comprehensive database of sales APIs and tools for people building with Claude Code and other agentic tools.",
+      "A comprehensive database of sales APIs and MCP servers for people building with Claude Code or other AI agents. Connect directly without middleware.",
     ...(!hasFilters && {
       alternates: {
         canonical: "https://salestools.club/api",
@@ -27,15 +27,15 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
       robots: { index: false, follow: true },
     }),
     openGraph: {
-      title: "Sales APIs | Salestools Club",
-      description: "A comprehensive database of sales APIs and tools for people building with Claude Code and other agentic tools.",
+      title: "Sales APIs for Claude Code & AI Agents | Salestools Club",
+      description: "A comprehensive database of sales APIs and MCP servers for people building with Claude Code or other AI agents. Connect directly without middleware.",
       type: "website",
       url: "https://salestools.club/api",
     },
     twitter: {
       card: "summary_large_image",
-      title: "Sales APIs | Salestools Club",
-      description: "A comprehensive database of sales APIs and tools for people building with Claude Code and other agentic tools.",
+      title: "Sales APIs for Claude Code & AI Agents | Salestools Club",
+      description: "A comprehensive database of sales APIs and MCP servers for people building with Claude Code or other AI agents. Connect directly without middleware.",
     },
   }
 }

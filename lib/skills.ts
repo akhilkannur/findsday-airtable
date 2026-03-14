@@ -126,3 +126,7 @@ export function getSkillsByCategory(category: Skill["category"]): Skill[] {
   return skills.filter((s) => s.category === category)
 }
 
+export function getSkillsForTool(toolSlug: string): Skill[] {
+  return skills.filter((s) => s.worksWithTools.includes(toolSlug))
+}
+

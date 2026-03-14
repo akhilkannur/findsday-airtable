@@ -13,7 +13,7 @@ Salestools Club provides the technical "lego blocks" needed to automate GTM (Go-
 - **Conversation Intelligence**: Analyze sales calls and meetings (e.g., Gong, Chorus).
 
 ## For AI Agents
-- **MCP Servers**: Native support for Claude Desktop and Cursor.
+- **MCP Servers**: Native support for Claude Code and AI agents.
 - **Starter Prompts**: Pre-configured prompts to get started with any tool.
 - **Agentic Integration**: Tools designed for programmatic use by LLMs.
 

@@ -17,8 +17,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: "Comparison Not Found" }
   }
 
-  const pageTitle = `${tool1.name} API vs ${tool2.name} API — Which is better for AI Agents?`
-  const pageDescription = `Compare ${tool1.name} and ${tool2.name} for AI-native sales. Find the best API, MCP server, and SDK for your GTM stack.`
+  const pageTitle = `${tool1.name} vs ${tool2.name} — Best for Claude Code & AI Agents?`
+  const pageDescription = `Compare ${tool1.name} and ${tool2.name} for direct AI automation. Which API is better for connecting to Claude Code or other AI agents without middleware?`
   const pageUrl = `https://salestools.club/vs/${slugs}`
 
   return {

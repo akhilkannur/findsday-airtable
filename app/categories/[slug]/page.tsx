@@ -26,8 +26,8 @@ export async function generateMetadata({
     return { title: "Category Not Found | Salestools Club" }
   }
 
-  const pageTitle = `Best ${category.name} APIs & SDKs (2026) | Salestools Club`
-  const pageDescription = `Discover the best ${category.name} APIs and tools for AI agents. Curated list of ${category.toolCount} ${category.name.toLowerCase()} solutions for automated GTM.`
+  const pageTitle = `Best ${category.name} APIs for Claude Code & AI Agents | Salestools Club`
+  const pageDescription = `Connect your sales stack directly to Claude Code or other AI agents. A curated list of ${category.toolCount} ${category.name.toLowerCase()} APIs for GTM automation without middleware.`
   const pageUrl = `https://salestools.club/categories/${slug}`
 
   return {

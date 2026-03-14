@@ -3,6 +3,7 @@ import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { getToolBySlug, getAllSlugs, getToolsByCategory, getAllTools, getAllCategories } from "@/lib/tools"
 import type { SalesTool } from "@/lib/types"
+import { getSkillsForTool } from "@/lib/skills"
 import {
   ExternalLink,
   Zap,
@@ -33,13 +34,13 @@ export async function generateMetadata({
   }
 
   const pageTitle = tool.mcpReady
-    ? `${tool.name} API & MCP Server | Salestools Club`
-    : `${tool.name} API — Pricing, SDKs & Integrations | Salestools Club`
+    ? `${tool.name} API & MCP Server — Prompts for Claude Code or other AI Agents | Salestools Club`
+    : `${tool.name} API — Prompts for Claude Code or other AI Agents | Salestools Club`
   const pageUrl = `https://salestools.club/apis/${tool.slug}`
 
   return {
     title: pageTitle,
-    description: `${tool.oneLiner} Compare ${tool.name} API pricing, SDKs, MCP server, and integrations for AI sales agents.`,
+    description: `${tool.oneLiner} Connect ${tool.name} directly to Claude Code or other AI agents using specialized API prompts, SDKs, and integrations.`,
     alternates: {
       canonical: pageUrl,
     },
@@ -48,14 +49,14 @@ export async function generateMetadata({
     }),
     openGraph: {
       title: pageTitle,
-      description: `${tool.oneLiner} Compare ${tool.name} API pricing, SDKs, MCP server, and integrations for AI sales agents.`,
+      description: `${tool.oneLiner} Connect ${tool.name} directly to Claude Code or other AI agents using specialized API prompts, SDKs, and integrations.`,
       type: "website",
       url: pageUrl,
     },
     twitter: {
       card: "summary_large_image",
       title: pageTitle,
-      description: `${tool.oneLiner} Compare ${tool.name} API pricing, SDKs, MCP server, and integrations for AI sales agents.`,
+      description: `${tool.oneLiner} Connect ${tool.name} directly to Claude Code or other AI agents using specialized API prompts, SDKs, and integrations.`,
     },
   }
 }
@@ -67,14 +68,17 @@ function JsonLd({ tool, alternatives }: { tool: SalesTool; alternatives: SalesTo
     name: tool.name,
     description: tool.oneLiner,
     url: tool.websiteUrl,
-    applicationCategory: tool.category,
-    operatingSystem: "Cloud",
+    applicationCategory: "SalesSoftware",
+    applicationSubCategory: tool.category,
+    operatingSystem: "Cloud, Web, API",
     offers: {
       "@type": "Offer",
       price: tool.hasFreeTier ? "0" : undefined,
       priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
     },
     featureList: tool.aiCapabilities?.join(", "),
+    screenshot: `https://salestools.club/apis/${tool.slug}/opengraph-image`,
   }
 
   const faqSchema = {
@@ -87,6 +91,14 @@ function JsonLd({ tool, alternatives }: { tool: SalesTool; alternatives: SalesTo
         acceptedAnswer: {
           "@type": "Answer",
           text: `${tool.name} is a ${tool.category.toLowerCase()} tool that provides ${tool.oneLiner}`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `How do I use ${tool.name} with Claude Code or other AI agents?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `You can connect ${tool.name} directly to Claude Code or other AI agents using its ${tool.apiType?.join(' or ') || 'API'}. Simply provide your ${tool.authMethod?.join(' or ') || 'authentication'} details and use our prompt examples to automate ${tool.aiCapabilities?.slice(0, 2).join(' and ') || 'sales workflows'} without extra middleware.`,
         },
       },
       {
@@ -300,6 +312,39 @@ export default async function ToolDetailPage({
               {tool.description}
             </div>
           </div>
+
+          <div className="p-10 md:p-16 bg-paper-dark/20 border-l-4 border-ink space-y-8">
+            <h3 className="font-mono text-[0.85rem] uppercase font-bold tracking-widest text-ink">Direct Agent Workflow for {tool.name}</h3>
+            <p className="font-serif text-xl leading-relaxed text-ink-fade max-w-2xl italic">
+              Connect {tool.name} directly to Claude Code or other AI agents to bypass traditional middleware like Clay or Make. Using the {tool.apiType?.join(' or ') || 'API'} and your {tool.authMethod?.join(' or ') || 'authentication'} credentials, your agent can perform {tool.aiCapabilities?.slice(0, 3).join(', ') || 'sales operations'} directly from your terminal. This setup enables real-time data sync and complex automation with zero middleware tax.
+            </p>
+          </div>
+
+          {getSkillsForTool(tool.slug).length > 0 && (
+            <div>
+              <div className="flex items-center gap-6 mb-12">
+                <div className="font-mono text-[0.8rem] uppercase tracking-wider text-ink">AI Agent Skills</div>
+                <div className="h-px flex-grow bg-ink opacity-10"></div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {getSkillsForTool(tool.slug).map((skill) => (
+                  <Link
+                    key={skill.slug}
+                    href={`/skills/${skill.slug}`}
+                    className="tool-card group flex flex-col h-full bg-paper border border-ink/20 p-8 hover:bg-ink hover:text-paper transition-all"
+                  >
+                    <div className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade group-hover:text-paper/60 mb-4">{skill.category}</div>
+                    <h4 className="font-serif italic text-xl mb-4">{skill.name}</h4>
+                    <p className="text-[0.85rem] leading-relaxed opacity-70 group-hover:opacity-90">{skill.description}</p>
+                    <div className="mt-8 pt-6 border-t border-ink/10 group-hover:border-paper/20 flex items-center justify-between">
+                      <span className="font-mono text-[0.7rem] uppercase">Get Skill</span>
+                      <ArrowRight className="h-3 w-3" />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
 
           {matchingUseCases.length > 0 && (
             <div>

@@ -140,7 +140,7 @@ export default async function SkillDetailPage({
               </pre>
               <div className="mt-8 pt-8 border-t border-white/10 flex flex-col gap-4">
                 <p className="font-mono text-[10px] text-paper/40 uppercase tracking-widest">
-                  Serve this skill to your agent instantly. Works with Claude Code, Cursor, and Gemini CLI.
+                  Serve this skill to your agent instantly. Works with Claude Code, Gemini CLI, and other AI agents.
                 </p>
                 {skill.sourceUrl && (
                   <a 
@@ -281,7 +281,7 @@ export default async function SkillDetailPage({
                 { label: "Category", value: skill.category },
                 {
                   label: "Compatible With",
-                  value: "Claude Code, Cursor, Gemini CLI",
+                  value: "Claude Code, Gemini CLI, AI Agents",
                 },
               ].map((spec) => (
                 <div

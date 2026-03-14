@@ -9867,7 +9867,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     slug: "inbox",
     name: "Inbox",
     oneLiner: "The unified API and MCP server for managing X (Twitter) DMs.",
-    description: "Inbox provides a programmatic way to send and manage DM conversations across messaging platforms, starting with X. It offers a REST API for message automation, CRM synchronization, and AI-powered responses. With its native MCP server, you can connect tools like Claude or Cursor directly to your Twitter DMs to automate outreach and support workflows.",
+    description: "Inbox provides a programmatic way to send and manage DM conversations across messaging platforms, starting with X. It offers a REST API for message automation, CRM synchronization, and AI-powered responses. With its native MCP server, you can connect tools like Claude Code directly to your Twitter DMs to automate outreach and support workflows.",
     category: "Sales Engagement",
     websiteUrl: "https://inboxapp.com",
     docsUrl: "https://docs.inboxapp.com",

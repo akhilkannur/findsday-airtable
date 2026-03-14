@@ -7,9 +7,9 @@ import type { Metadata } from "next"
 import { NewsletterForm } from "@/components/NewsletterForm"
 
 export const metadata: Metadata = {
-  title: "Salestools Club — Every Sales API & MCP Server in one place.",
+  title: "Salestools Club — Sales APIs & MCP Servers for Claude Code",
   description:
-    "The sales API directory for AI agents. Find MCP servers, CRM APIs, and agentic sales tools for Claude Code and other autonomous sales workflows.",
+    "The directory for AI-native sales stacks. Find APIs, MCP servers, and agent skills for building with Claude Code or other AI agents without middleware.",
   keywords: [
     "sales API directory",
     "MCP server for sales",
@@ -31,27 +31,27 @@ const faqItems = [
   {
     question: "What is a Sales API?",
     answer:
-      "Think of an API as a pipe that connects two pieces of software. It allows your AI agent to send or receive data from your sales tools. For example, an API lets your agent pull a list of new leads from Apollo or push a finished contact record into HubSpot without you doing it manually.",
+      "Think of an API as a pipe that connects two pieces of software. It allows your AI agent to send or receive data from your sales tools directly. For example, an API lets your agent pull a list of new leads from Apollo or push a finished contact record into HubSpot without you doing it manually.",
   },
   {
     question: "What is an MCP Server?",
     answer:
-      "An MCP is like a universal plug. It is a newer, faster way to connect tools to AI agents like Claude Code or Cursor. While an API is the pipe, an MCP is the standardized connection that makes the pipe work instantly. Instead of building a complex bridge, you just paste a small piece of configuration and your agent can immediately use that tool.",
+      "An MCP is a standardized connector that plugs tools into AI agents like Claude Code or other AI agents. While an API is the pipe, an MCP is the universal plug that makes the pipe work instantly. Instead of building complex bridges, you just paste a small piece of configuration and your agent can immediately use that tool.",
   },
   {
     question: "What is a 'Skill'?",
     answer:
-      "A skill is a set of instructions that tells your AI exactly how to perform a sales task. It combines a prompt with the right tools. For example, a 'Lead Scoring' skill would teach your agent how to look at a prospect's LinkedIn, check their company size, and give them a score from 1 to 100 based on your rules.",
+      "A skill is a set of instruction files that teach your AI exactly how to perform a sales task. It combines a prompt with the right tools. For example, a 'Lead Scoring' skill would teach your agent how to look at a prospect's LinkedIn, check their company size, and give them a score based on your rules.",
   },
   {
     question: "Do I need to be a developer?",
     answer:
-      "No. This site is built for founders, sales managers, and ops professionals. If you know how to use Claude Code or other agentic tools, you can use these building blocks with simple copy and paste setup.",
+      "No. This site is built for founders, sales managers, and revenue ops professionals. If you know how to use Claude Code or other AI agents, you can use these building blocks with simple copy-and-paste setup.",
   },
   {
     question: "What does AI-Native mean?",
     answer:
-      "It means the tool was built specifically to work with AI agents. These tools have clean data and easy connections that an AI can understand without getting confused by old or messy software structures.",
+      "It means the tool was built specifically to work with AI agents. These tools have clean data and direct connections that an AI can understand without getting confused by old or messy software structures.",
   },
   {
     question: "Can I submit a tool?",
@@ -137,7 +137,7 @@ export default async function Home() {
             </h1>
             
             <div className="font-serif italic text-xl md:text-2xl text-ink-fade max-w-2xl pl-6 border-l-2 border-ink mb-6 md:mb-8 leading-relaxed">
-              A handpicked collection of APIs, Skills, and MCP servers that plug directly into Claude Code and other agentic tools. Build your GTM machine in hours, not weeks.
+              A handpicked collection of APIs, Skills, and MCP servers that plug directly into Claude Code or other AI agents. Build your GTM machine in hours, not weeks.
             </div>
 
             <div className="max-w-xl">
@@ -236,7 +236,7 @@ export default async function Home() {
                 Sales APIs
               </h3>
               <p className="text-[1rem] text-ink-fade leading-relaxed">
-                Programmable access to your CRM, outreach tools, enrichment databases, and calling platforms. These let Claude Code or other agentic tools read and write to your sales stack directly.
+                Programmable access to your CRM, outreach tools, enrichment databases, and calling platforms. These let Claude Code or other AI agents read and write to your sales stack directly.
               </p>
               <span className="mt-auto font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade group-hover:text-ink transition-colors">
                 Browse APIs →
@@ -249,7 +249,7 @@ export default async function Home() {
                 MCP Servers
               </h3>
               <p className="text-[1rem] text-ink-fade leading-relaxed">
-                Ready-made connectors that plug sales tools into Claude Code and other agentic tools. No glue code. Copy the config, paste it, go.
+                Ready-made connectors that plug sales tools into Claude Code or other AI agents. No glue code. Copy the config, paste it, go.
               </p>
               <span className="mt-auto font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade group-hover:text-ink transition-colors">
                 Browse MCP Servers →
@@ -262,7 +262,7 @@ export default async function Home() {
                 Agent Skills
               </h3>
               <p className="text-[1rem] text-ink-fade leading-relaxed">
-                Pre-configured instruction files that teach your agent how to perform complex sales tasks. One-click install for Claude Code or other agentic tools.
+                Pre-configured instruction files that teach your agent how to perform complex sales tasks. One-click install for Claude Code or other AI agents.
               </p>
               <span className="mt-auto font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade group-hover:text-ink transition-colors">
                 Browse Skills →

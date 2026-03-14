@@ -36,7 +36,7 @@ const usecases: UseCase[] = [
     slug: "crm-automation",
     title: "AI Tools for CRM Automation",
     metaDescription:
-      "Automate your CRM with AI-native APIs and MCP servers. Sync contacts, update deals, and manage pipelines programmatically from Claude, Cursor, or your own agents.",
+      "Automate your CRM with AI-native APIs and MCP servers. Sync contacts, update deals, and manage pipelines programmatically from Claude Code, Gemini CLI, or your own agents.",
     intro:
       "Nobody wants to spend their day updating CRM fields. These tools expose APIs that let your AI agent create contacts, move deals through stages, log activities, and keep your pipeline clean — all without you opening Salesforce.",
     categories: ["CRM & RevOps"],
