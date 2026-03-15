@@ -76,7 +76,7 @@ export default async function CapabilityPage({
         { name: actionDisplay, url: `https://salestools.club/capability/${action}` },
       ]} />
 
-      <nav className="layout-container py-6 flex items-center gap-2 text-[0.7rem] font-mono uppercase tracking-widest text-ink-fade">
+      <nav className="layout-container py-4 md:py-6 flex flex-wrap items-center gap-2 text-[0.65rem] md:text-[0.7rem] font-mono uppercase tracking-widest text-ink-fade">
         <Link href="/" className="hover:text-ink hover:underline">Home</Link>
         <span className="opacity-30">/</span>
         <span className="opacity-30 uppercase">Capabilities</span>
@@ -84,17 +84,17 @@ export default async function CapabilityPage({
         <span className="text-ink font-bold">{actionDisplay}</span>
       </nav>
 
-      <section className="px-6 md:px-8 py-12 md:py-16 border-b border-ink">
+      <section className="px-4 md:px-8 py-12 md:py-16 border-b border-ink">
         <div className="layout-container">
-          <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade mb-4">Capability Hub</p>
-          <h1 className="type-display mb-4 md:mb-6">{actionDisplay} APIs</h1>
-          <p className="max-w-2xl font-serif italic text-lg md:text-xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
+          <p className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-widest text-ink-fade mb-3 md:mb-4">Capability Hub</p>
+          <h1 className="type-display mb-4 md:mb-6 text-3xl md:text-5xl lg:text-7xl">{actionDisplay} APIs</h1>
+          <p className="max-w-2xl font-serif italic text-xl md:text-2xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
             APIs and tools for {actionDisplay.toLowerCase()}. Connect these to your AI agent to automate your prospecting and sales tasks.
           </p>
         </div>
       </section>
 
-      <section className="py-12">
+      <section className="py-8 md:py-12">
         <div className="layout-container">
           <ProgrammaticFilterBar 
             categories={categories.map(c => ({ slug: c.slug, name: c.name }))} 
@@ -102,12 +102,12 @@ export default async function CapabilityPage({
           />
 
           {tools.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {tools.map((t) => (
                 <div key={t.slug} className="tool-card flex flex-col h-full bg-paper">
-                  <Link href={`/apis/${t.slug}`} className="group block mb-6">
-                    <div className="flex justify-between items-start mb-6">
-                      <div className="w-12 h-12 bg-ink text-paper flex items-center justify-center font-serif font-bold text-xl [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]">
+                  <Link href={`/apis/${t.slug}`} className="group block mb-4 md:mb-6">
+                    <div className="flex justify-between items-start mb-4 md:mb-6">
+                      <div className="w-10 h-10 md:w-12 md:h-12 bg-ink text-paper flex items-center justify-center font-serif font-bold text-lg md:text-xl [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]">
                         {t.name.charAt(0)}
                       </div>
                       {t.mcpReady && (
@@ -115,28 +115,28 @@ export default async function CapabilityPage({
                       )}
                     </div>
                     
-                    <h3 className="text-2xl font-semibold mb-2 group-hover:underline">{t.name}</h3>
-                    <p className="text-[1rem] text-ink-fade leading-relaxed line-clamp-2">
+                    <h3 className="text-xl md:text-2xl font-semibold mb-2 group-hover:underline">{t.name}</h3>
+                    <p className="text-[0.9rem] md:text-[1rem] text-ink-fade leading-relaxed line-clamp-2">
                       {t.oneLiner}
                     </p>
                   </Link>
 
                   {t.starterPrompt && (
-                    <div className="mb-6 p-4 bg-paper-dark/50 border border-ink/5 rounded font-mono text-[0.75rem] italic text-ink-fade">
+                    <div className="mb-4 md:mb-6 p-3 md:p-4 bg-paper-dark/50 border border-ink/5 rounded font-mono text-[0.7rem] md:text-[0.75rem] italic text-ink-fade">
                       "{t.starterPrompt}"
                     </div>
                   )}
 
                   <div className="mt-auto flex flex-wrap gap-2 items-center pt-4 border-t border-ink/5">
-                    <span className="font-mono text-[0.7rem] uppercase tracking-wider text-ink-fade">{t.category}</span>
-                    <Link href={`/apis/${t.slug}`} className="ml-auto font-mono text-[0.7rem] uppercase underline hover:no-underline">View API Details</Link>
+                    <span className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-wider text-ink-fade">{t.category}</span>
+                    <Link href={`/apis/${t.slug}`} className="ml-auto font-mono text-[0.65rem] md:text-[0.7rem] uppercase underline hover:no-underline">View API</Link>
                   </div>
                 </div>
               ))}
             </div>
           ) : (
-            <div className="py-20 text-center border-2 border-dashed border-ink/10">
-              <p className="font-serif italic text-xl text-ink-fade">No tools found in this category for {actionDisplay.toLowerCase()}.</p>
+            <div className="py-16 md:py-20 text-center border-2 border-dashed border-ink/10">
+              <p className="font-serif italic text-lg md:text-xl text-ink-fade">No tools found in this category for {actionDisplay.toLowerCase()}.</p>
               <Link href={`/capability/${action}`} className="mt-4 inline-block font-mono text-[0.7rem] uppercase underline">Clear Category Filter</Link>
             </div>
           )}

@@ -1,5 +1,56 @@
 # Verified API Tools - Sessions Log
 
+## Batch 10 (Salesrobot - Salesloft area)
+
+| Tool Name | docsUrl Verified | Data Points Verified | Notes |
+|-----------|-----------------|---------------------|-------|
+| Salesrobot | ⚠️ Fixed | - | Fixed docsUrl (was broken 404) |
+| Scout | ✅ | - | API Key auth |
+| Salesken | ⚠️ Check | - | docsUrl may not be API docs |
+| Salesloft | ✅ | - | OAuth2 auth, hasWebhooks: true |
+
+---
+
+## Batch 9 (Spekit - Showpad area)
+
+| Tool Name | docsUrl Verified | Data Points Verified | Notes |
+|-----------|-----------------|---------------------|-------|
+| Spekit | ✅ | - | API Key auth |
+| Spiff | ✅ | - | OAuth2 auth |
+| Smartlead | ⚠️ Fixed | - | Fixed docsUrl from api.smartlead.ai to helpcenter.smartlead.ai |
+| Snov.io | ✅ | - | API Key auth, hasFreeTier: true |
+| Sharpsell | ❌ Broken | - | docsUrl not accessible |
+| Showpad | ✅ | - | OAuth2 auth, hasWebhooks: true |
+
+---
+
+## Batch 8 (Wiza - VanillaSoft area)
+
+| Tool Name | docsUrl Verified | Data Points Verified | Notes |
+|-----------|-----------------|---------------------|-------|
+| VanillaSoft | ⚠️ Fixed | - | Fixed docsUrl (was broken 404). New: support.vanillasoft.com |
+| Tomba | ✅ | ✅ | API Key+Secret auth, hasFreeTier: true, hasWebhooks: true |
+
+---
+
+## Batch 7 (Wiza - Yesware area)
+
+| Tool Name | docsUrl Verified | Data Points Verified | Notes |
+|-----------|-----------------|---------------------|-------|
+| Wiza | ✅ | ✅ | API Key auth, hasFreeTier: true, hasWebhooks: true |
+| WooSender | ✅ | ✅ | API Key auth, hasFreeTier: false, hasWebhooks: true |
+| Woodpecker | ✅ | ✅ | API Key auth, hasFreeTier: true, hasWebhooks: true |
+| Zipteams | ⚠️ Check | - | docsUrl exists but may not work |
+| ZoomInfo | ✅ | ✅ | API Key auth, hasFreeTier: false, hasWebhooks: true, mcpReady: true |
+| Zeliq | ✅ | ✅ | API Key auth, hasFreeTier: true, hasWebhooks: true |
+| Zymplify | ❌ No API | - | Removed from site (filtered out) |
+| Zintlr | ❌ No API | - | Removed from site (filtered out) |
+| Zaplify | ❌ No API | - | Removed from site (filtered out) |
+| Xactly | ❌ No API | - | Removed from site (filtered out) |
+| Yesware | ❌ No API | - | Removed from site (filtered out) |
+
+---
+
 ## Batch 6 (uHubs - xiQ area)
 
 | Tool Name | docsUrl Verified | Data Points Verified | Notes |

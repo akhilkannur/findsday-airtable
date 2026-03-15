@@ -60,9 +60,9 @@ export default async function SkillsPage({
 
   return (
     <div className="flex flex-col min-h-screen bg-paper">
-      <section className="px-6 md:px-8 py-12 md:py-16 border-b border-ink">
+      <section className="px-4 md:px-8 py-12 md:py-16 border-b border-ink">
         <div className="layout-container">
-          <h1 className="type-display mb-4 md:mb-6">Agent Skills</h1>
+          <h1 className="type-display mb-4 md:mb-6 text-3xl md:text-5xl lg:text-7xl">Agent Skills</h1>
           <p className="max-w-2xl font-serif italic text-lg md:text-xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
             Copy-paste instruction files that teach your AI agent how to do sales tasks. Drop them into your skills folder and let the agent work.
           </p>
@@ -74,7 +74,7 @@ export default async function SkillsPage({
           <div className="flex flex-wrap gap-2">
             <Link
               href="/skills"
-              className={`font-mono text-[0.7rem] uppercase tracking-widest px-3 py-1.5 border transition-all ${!activeCategory ? "bg-ink text-paper border-ink" : "border-ink/20 text-ink-fade hover:border-ink hover:text-ink"}`}
+              className={`font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-widest px-2 md:px-3 py-1.5 border transition-all ${!activeCategory ? "bg-ink text-paper border-ink" : "border-ink/20 text-ink-fade hover:border-ink hover:text-ink"}`}
             >
               All
             </Link>
@@ -82,7 +82,7 @@ export default async function SkillsPage({
               <Link
                 key={cat}
                 href={`/skills?category=${encodeURIComponent(cat)}`}
-                className={`font-mono text-[0.7rem] uppercase tracking-widest px-3 py-1.5 border transition-all ${activeCategory === cat ? "bg-ink text-paper border-ink" : "border-ink/20 text-ink-fade hover:border-ink hover:text-ink"}`}
+                className={`font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-widest px-2 md:px-3 py-1.5 border transition-all ${activeCategory === cat ? "bg-ink text-paper border-ink" : "border-ink/20 text-ink-fade hover:border-ink hover:text-ink"}`}
               >
                 {cat}
               </Link>
@@ -92,14 +92,14 @@ export default async function SkillsPage({
       </div>
 
       {activeCategory && (
-        <div className="py-6 border-b border-ink bg-paper-dark/40">
+        <div className="py-4 md:py-6 border-b border-ink bg-paper-dark/40">
           <div className="layout-container flex items-center justify-between">
-            <span className="font-mono text-[0.75rem] font-bold">
+            <span className="font-mono text-[0.7rem] md:text-[0.75rem] font-bold">
               {skills.length} skills found
             </span>
             <Link
               href="/skills"
-              className="font-mono text-[0.75rem] uppercase underline hover:line-through transition-all"
+              className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase underline hover:line-through transition-all"
             >
               Reset Filter
             </Link>
@@ -109,12 +109,12 @@ export default async function SkillsPage({
 
       <section className="py-8 md:py-12">
         <div className="layout-container">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {skills.map((skill, idx) => (
               <Link
                 key={skill.slug}
                 href={`/skills/${skill.slug}`}
-                className="group flex flex-col h-full gap-4 md:gap-6 p-5 md:p-8 bg-paper-dark/60 hover:translate-y-[-4px] transition-all"
+                className="group flex flex-col h-full gap-4 md:gap-6 p-6 md:p-8 bg-paper-dark/60 hover:translate-y-[-4px] transition-all"
                 style={{ border: "1px solid rgba(26, 25, 23, 0.15)" }}
               >
                 <div className="flex items-center justify-end">

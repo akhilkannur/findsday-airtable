@@ -51,9 +51,9 @@ export default async function OpenSourcePage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-paper">
-      <section className="px-6 md:px-8 py-12 md:py-16 border-b border-ink">
+      <section className="px-4 md:px-8 py-12 md:py-16 border-b border-ink">
         <div className="layout-container">
-          <h1 className="type-display mb-4 md:mb-6">Open Source</h1>
+          <h1 className="type-display mb-4 md:mb-6 text-3xl md:text-5xl lg:text-7xl">Open Source</h1>
           <p className="max-w-2xl font-serif italic text-lg md:text-xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
             Sales tools you can self-host, fork, and inspect. Build your AI sales stack on transparent, open-source foundations.
           </p>
@@ -65,8 +65,8 @@ export default async function OpenSourcePage() {
       <section className="py-8 md:py-12">
         <div className="layout-container">
           {tools.length < 5 && (
-            <div className="mb-12 p-8 border border-dashed border-ink/30 bg-paper-dark/20">
-              <p className="font-serif italic text-lg text-ink-fade">
+            <div className="mb-8 md:mb-12 p-6 md:p-8 border border-dashed border-ink/30 bg-paper-dark/20">
+              <p className="font-serif italic text-base md:text-lg text-ink-fade">
                 We&apos;re still building out this collection.{" "}
                 <Link
                   href="/submit"
@@ -79,23 +79,23 @@ export default async function OpenSourcePage() {
             </div>
           )}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-12">
             {tools.map((tool) => (
               <ToolCard key={tool.slug} tool={tool} />
             ))}
           </div>
 
           {tools.length === 0 && (
-            <div className="text-center py-32 opacity-60 font-serif italic text-2xl">
+            <div className="text-center py-20 md:py-32 opacity-60 font-serif italic text-xl md:text-2xl">
               No open-source tools indexed yet.
             </div>
           )}
         </div>
       </section>
 
-      <section className="py-24 bg-paper-dark/50 border-t border-ink">
+      <section className="py-12 md:py-24 bg-paper-dark/50 border-t border-ink">
         <div className="layout-container">
-          <div className="flex flex-wrap gap-6 pt-8 border-t border-dashed border-ink/20">
+          <div className="flex flex-wrap gap-4 md:gap-6 pt-8 border-t border-dashed border-ink/20">
             <Link
               href="/api"
               className="font-mono text-[0.75rem] uppercase underline hover:line-through transition-all"

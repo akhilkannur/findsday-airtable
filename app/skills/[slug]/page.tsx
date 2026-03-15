@@ -79,21 +79,21 @@ export default async function SkillDetailPage({
         <div className="layout-container">
           <Link
             href="/skills"
-            className="font-mono text-[0.75rem] uppercase underline hover:line-through transition-all mb-6 md:mb-10 inline-block"
+            className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase underline hover:line-through transition-all mb-6 md:mb-10 inline-block"
           >
             &lt;- Back to Skills
           </Link>
 
           <div className="max-w-4xl">
             <div className="space-y-3 md:space-y-4">
-              <div className="circled font-mono text-[0.7rem] md:text-[0.75rem] font-bold uppercase">
+              <div className="circled font-mono text-[0.65rem] md:text-[0.75rem] font-bold uppercase">
                 {skill.category}
               </div>
-              <h1 className="type-display uppercase">{skill.name}</h1>
+              <h1 className="type-display uppercase text-3xl md:text-5xl lg:text-7xl">{skill.name}</h1>
             </div>
             
             <div className="mt-6 md:mt-8 p-3 md:p-4 border border-ink/10 bg-paper-dark/20 inline-flex items-center gap-2">
-              <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade">
+              <p className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-widest text-ink-fade">
                 Curated by Salestools Club • Created by{" "}
                 {skill.sourceUrl ? (
                   <a href={skill.sourceUrl} target="_blank" rel="noopener noreferrer" className="text-ink font-bold underline hover:line-through transition-all">
@@ -105,41 +105,41 @@ export default async function SkillDetailPage({
               </p>
             </div>
 
-            <p className="mt-12 font-serif italic text-2xl text-ink-fade leading-relaxed max-w-2xl border-l-2 border-ink pl-6">
+            <p className="mt-8 md:mt-12 font-serif italic text-xl md:text-2xl text-ink-fade leading-relaxed max-w-2xl border-l-2 border-ink pl-4 md:pl-6">
               {skill.description}
             </p>
           </div>
         </div>
       </section>
 
-      <div className="layout-container grid grid-cols-1 lg:grid-cols-[1fr_400px] border-x border-ink bg-white/40">
+      <div className="layout-container grid grid-cols-1 lg:grid-cols-[1fr_400px] md:border-x border-ink bg-white/40">
         {/* Left column */}
-        <div className="p-10 md:p-20 space-y-32 border-r border-ink">
+        <div className="p-6 md:p-10 lg:p-20 space-y-16 md:space-y-32 lg:border-r border-ink">
           {/* One-Click Install */}
           <div>
-            <div className="flex items-center gap-6 mb-12">
-              <div className="font-mono text-[0.8rem] uppercase tracking-wider text-ink">
+            <div className="flex items-center gap-4 md:gap-6 mb-8 md:mb-12">
+              <div className="font-mono text-[0.75rem] md:text-[0.8rem] uppercase tracking-wider text-ink">
                 One-Click Add
               </div>
               <div className="h-px flex-grow bg-ink opacity-10"></div>
             </div>
 
             <div className="tool-card group bg-ink text-paper">
-              <div className="flex items-center justify-between mb-10">
-                <div className="font-mono text-[0.7rem] uppercase tracking-widest text-paper opacity-60">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 md:mb-10">
+                <div className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-widest text-paper opacity-60">
                   Terminal Command
                 </div>
                 <CopyButton
                   text={`npx salestools add ${skill.slug}`}
                   label="Copy Command"
-                  className="font-mono text-[0.7rem] uppercase border border-white/20 px-4 py-2 hover:bg-white hover:text-black transition-all"
+                  className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase border border-white/20 px-3 py-1.5 md:px-4 md:py-2 hover:bg-white hover:text-black transition-all"
                 />
               </div>
-              <pre className="font-mono text-[16px] p-8 border border-white/10 bg-white/5 text-white leading-relaxed font-bold">
+              <pre className="font-mono text-sm md:text-base p-6 md:p-8 border border-white/10 bg-white/5 text-white leading-relaxed font-bold overflow-x-auto">
                 npx salestools add {skill.slug}
               </pre>
-              <div className="mt-8 pt-8 border-t border-white/10 flex flex-col gap-4">
-                <p className="font-mono text-[10px] text-paper/40 uppercase tracking-widest">
+              <div className="mt-6 md:mt-8 pt-6 md:pt-8 border-t border-white/10 flex flex-col gap-3 md:gap-4">
+                <p className="font-mono text-[9px] md:text-[10px] text-paper/40 uppercase tracking-widest leading-relaxed">
                   Serve this skill to your agent instantly. Works with Claude Code, Gemini CLI, and other AI agents.
                 </p>
                 {skill.sourceUrl && (
@@ -147,7 +147,7 @@ export default async function SkillDetailPage({
                     href={skill.sourceUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-paper/60 hover:text-paper text-[0.75rem] font-mono underline transition-colors"
+                    className="text-paper/60 hover:text-paper text-[0.65rem] md:text-[0.75rem] font-mono underline transition-colors"
                   >
                     View Original Source on {skill.source} ↗
                   </a>
@@ -158,30 +158,30 @@ export default async function SkillDetailPage({
 
           {/* Skill content */}
           <div>
-            <div className="flex items-center gap-6 mb-12">
-              <div className="font-mono text-[0.8rem] uppercase tracking-wider text-ink">
+            <div className="flex items-center gap-4 md:gap-6 mb-8 md:mb-12">
+              <div className="font-mono text-[0.75rem] md:text-[0.8rem] uppercase tracking-wider text-ink">
                 Agent Instructions
               </div>
               <div className="h-px flex-grow bg-ink opacity-10"></div>
             </div>
 
             <div className="tool-card group bg-black text-paper">
-              <div className="flex items-center justify-between mb-10">
-                <div className="font-mono text-[0.7rem] uppercase tracking-widest text-paper opacity-60">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 md:mb-10">
+                <div className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-widest text-paper opacity-60">
                   {skill.slug}.md
                 </div>
                 <CopyButton
                   text={skill.promptContent}
                   label="Copy Instructions"
-                  className="font-mono text-[0.7rem] uppercase border border-white/20 px-4 py-2 hover:bg-white hover:text-black transition-all"
+                  className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase border border-white/20 px-3 py-1.5 md:px-4 md:py-2 hover:bg-white hover:text-black transition-all"
                 />
               </div>
               <div className="prose prose-invert max-w-none prose-pre:bg-transparent prose-pre:p-0 prose-pre:border-none">
-                <pre className="font-mono text-[11px] whitespace-pre-wrap overflow-x-auto p-8 border border-white/10 bg-white/5 text-white/80 leading-relaxed">
+                <pre className="font-mono text-[10px] md:text-[11px] whitespace-pre-wrap overflow-x-auto p-6 md:p-8 border border-white/10 bg-white/5 text-white/80 leading-relaxed">
                   {skill.promptContent}
                 </pre>
               </div>
-              <p className="mt-6 font-mono text-[10px] text-paper/40 uppercase tracking-widest px-8">
+              <p className="mt-4 md:mt-6 font-mono text-[9px] md:text-[10px] text-paper/40 uppercase tracking-widest px-4 md:px-8 leading-relaxed">
                 Copy this and paste it into your agent's system prompt or custom instructions.
               </p>
             </div>
@@ -190,34 +190,34 @@ export default async function SkillDetailPage({
           {/* Infrastructure / Tools needed */}
           {linkedTools.length > 0 && (
             <div>
-              <div className="flex items-center gap-6 mb-12">
-                <div className="font-mono text-[0.8rem] uppercase tracking-wider text-ink">
+              <div className="flex items-center gap-4 md:gap-6 mb-8 md:mb-12">
+                <div className="font-mono text-[0.75rem] md:text-[0.8rem] uppercase tracking-wider text-ink">
                   Required Tools
                 </div>
                 <div className="h-px flex-grow bg-ink opacity-10"></div>
               </div>
               
-              <p className="mb-8 font-serif italic text-lg text-ink-fade">
+              <p className="mb-6 md:mb-8 font-serif italic text-base md:text-lg text-ink-fade">
                 This skill requires the following tools to be connected to your agent via API or MCP:
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
                 {linkedTools.map((tool) => (
                   <Link
                     key={tool!.slug}
                     href={`/apis/${tool!.slug}`}
                     className="tool-card group flex flex-col h-full"
                   >
-                    <div className="flex justify-between items-start mb-6">
-                      <div className="w-12 h-12 bg-ink text-paper flex items-center justify-center font-serif font-bold text-xl [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]">
+                    <div className="flex justify-between items-start mb-4 md:mb-6">
+                      <div className="w-10 h-10 md:w-12 md:h-12 bg-ink text-paper flex items-center justify-center font-serif font-bold text-lg md:text-xl [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]">
                         {tool!.name.charAt(0)}
                       </div>
                     </div>
                     <div className="flex-grow">
-                      <h3 className="text-xl font-semibold mb-2">
+                      <h3 className="text-lg md:text-xl font-semibold mb-2">
                         {tool!.name}
                       </h3>
-                      <p className="text-[0.9rem] text-ink-fade leading-relaxed line-clamp-2">
+                      <p className="text-sm md:text-[0.9rem] text-ink-fade leading-relaxed line-clamp-2">
                         {tool!.oneLiner}
                       </p>
                     </div>
@@ -235,31 +235,31 @@ export default async function SkillDetailPage({
 
           {/* How to install */}
           <div>
-            <div className="flex items-center gap-6 mb-12">
-              <div className="font-mono text-[0.8rem] uppercase tracking-wider text-ink">
+            <div className="flex items-center gap-4 md:gap-6 mb-8 md:mb-12">
+              <div className="font-mono text-[0.75rem] md:text-[0.8rem] uppercase tracking-wider text-ink">
                 How to Install
               </div>
               <div className="h-px flex-grow bg-ink opacity-10"></div>
             </div>
 
-            <div className="p-16 bg-paper border border-dashed border-ink">
-              <div className="font-serif text-xl leading-relaxed text-ink-fade space-y-8">
-                <div className="space-y-4">
+            <div className="p-8 md:p-16 bg-paper border border-dashed border-ink">
+              <div className="font-serif text-lg md:text-xl leading-relaxed text-ink-fade space-y-6 md:space-y-8">
+                <div className="space-y-3 md:space-y-4">
                   <p>
-                    <strong className="font-mono text-[0.85rem] uppercase text-ink">Method 1: One-Click (Recommended)</strong><br />
-                    Copy the <code className="font-mono text-[0.85rem] bg-paper-dark/60 px-2 py-0.5">npx salestools add</code> command above and paste it into your terminal. Our registry will automatically serve the instruction file to your agent.
+                    <strong className="font-mono text-[0.75rem] md:text-[0.85rem] uppercase text-ink">Method 1: One-Click (Recommended)</strong><br />
+                    Copy the <code className="font-mono text-[0.75rem] md:text-[0.85rem] bg-paper-dark/60 px-1.5 md:px-2 py-0.5">npx salestools add</code> command above and paste it into your terminal. Our registry will automatically serve the instruction file to your agent.
                   </p>
                 </div>
                 
-                <div className="space-y-4">
+                <div className="space-y-3 md:space-y-4">
                   <p>
-                    <strong className="font-mono text-[0.85rem] uppercase text-ink">Method 2: Manual Copy</strong><br />
+                    <strong className="font-mono text-[0.75rem] md:text-[0.85rem] uppercase text-ink">Method 2: Manual Copy</strong><br />
                     Copy the "Agent Instructions" block above and paste it directly into your agent's system prompt or custom instructions window.
                   </p>
                 </div>
 
-                <div className="mt-12 pt-8 border-t border-ink/10">
-                  <p className="text-[0.9rem] italic opacity-60 text-ink-fade">
+                <div className="mt-8 md:mt-12 pt-6 md:pt-8 border-t border-ink/10">
+                  <p className="text-[0.85rem] md:text-[0.9rem] italic opacity-60 text-ink-fade">
                     Curated and served via the Salestools.club registry. Original credit belongs to <strong>{skill.source}</strong>.
                   </p>
                 </div>
@@ -269,67 +269,69 @@ export default async function SkillDetailPage({
         </div>
 
         {/* Right sidebar */}
-        <div className="p-10 md:p-20 bg-paper-dark/30 space-y-20">
-          <div>
-            <div className="font-mono text-[0.75rem] uppercase tracking-widest text-ink-fade mb-12">
-              Skill Details
-            </div>
+        <div className="p-6 md:p-10 lg:p-20 bg-paper-dark/30">
+          <div className="lg:sticky lg:top-[120px] space-y-12 md:space-y-20">
+            <div>
+              <div className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase tracking-widest text-ink-fade mb-8 md:mb-12">
+                Skill Details
+              </div>
 
-            <div className="space-y-12">
-              {[
-                { label: "Difficulty", value: skill.difficulty },
-                { label: "Category", value: skill.category },
-                {
-                  label: "Compatible With",
-                  value: "Claude Code, Gemini CLI, AI Agents",
-                },
-              ].map((spec) => (
-                <div
-                  key={spec.label}
-                  className="group border-b border-ink/10 pb-8"
-                >
-                  <div className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade mb-3 group-hover:text-ink transition-colors italic">
-                    {spec.label}
+              <div className="space-y-8 md:space-y-12">
+                {[
+                  { label: "Difficulty", value: skill.difficulty },
+                  { label: "Category", value: skill.category },
+                  {
+                    label: "Compatible With",
+                    value: "Claude Code, Gemini CLI, AI Agents",
+                  },
+                ].map((spec) => (
+                  <div
+                    key={spec.label}
+                    className="group border-b border-ink/10 pb-6 md:pb-8"
+                  >
+                    <div className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-widest text-ink-fade mb-2 md:mb-3 group-hover:text-ink transition-colors italic">
+                      {spec.label}
+                    </div>
+                    <div className="font-mono font-bold text-[0.75rem] md:text-[0.85rem] uppercase tracking-widest">
+                      {spec.value}
+                    </div>
                   </div>
-                  <div className="font-mono font-bold text-[0.85rem] uppercase tracking-widest">
-                    {spec.value}
+                ))}
+                <div className="group border-b border-ink/10 pb-6 md:pb-8">
+                  <div className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-widest text-ink-fade mb-2 md:mb-3 group-hover:text-ink transition-colors italic">
+                    Creator
                   </div>
-                </div>
-              ))}
-              <div className="group border-b border-ink/10 pb-8">
-                <div className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade mb-3 group-hover:text-ink transition-colors italic">
-                  Creator
-                </div>
-                <div className="font-mono font-bold text-[0.85rem] uppercase tracking-widest">
-                  {skill.sourceUrl ? (
-                    <a href={skill.sourceUrl} target="_blank" rel="noopener noreferrer" className="underline hover:line-through transition-all">
-                      {skill.source} ↗
-                    </a>
-                  ) : (
-                    skill.source
-                  )}
+                  <div className="font-mono font-bold text-[0.75rem] md:text-[0.85rem] uppercase tracking-widest">
+                    {skill.sourceUrl ? (
+                      <a href={skill.sourceUrl} target="_blank" rel="noopener noreferrer" className="underline hover:line-through transition-all">
+                        {skill.source} ↗
+                      </a>
+                    ) : (
+                      skill.source
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div>
-            <div className="font-mono text-[0.75rem] uppercase tracking-widest text-ink-fade mb-12">
-              Related Pages
-            </div>
-            <div className="space-y-4">
-              <Link
-                href="/api"
-                className="font-mono text-[0.8rem] uppercase tracking-wide px-4 py-2 border border-ink/20 hover:border-ink hover:bg-ink hover:text-paper transition-all block text-center"
-              >
-                Browse All Tools
-              </Link>
-              <Link
-                href="/for"
-                className="font-mono text-[0.8rem] uppercase tracking-wide px-4 py-2 border border-ink/20 hover:border-ink hover:bg-ink hover:text-paper transition-all block text-center"
-              >
-                Use Cases
-              </Link>
+            <div>
+              <div className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase tracking-widest text-ink-fade mb-8 md:mb-12">
+                Related Pages
+              </div>
+              <div className="space-y-3 md:space-y-4">
+                <Link
+                  href="/api"
+                  className="font-mono text-[0.75rem] md:text-[0.8rem] uppercase tracking-wide px-3 md:px-4 py-2 border border-ink/20 hover:border-ink hover:bg-ink hover:text-paper transition-all block text-center"
+                >
+                  Browse All Tools
+                </Link>
+                <Link
+                  href="/for"
+                  className="font-mono text-[0.75rem] md:text-[0.8rem] uppercase tracking-wide px-3 md:px-4 py-2 border border-ink/20 hover:border-ink hover:bg-ink hover:text-paper transition-all block text-center"
+                >
+                  Use Cases
+                </Link>
+              </div>
             </div>
           </div>
         </div>

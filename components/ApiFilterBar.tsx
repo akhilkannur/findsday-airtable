@@ -58,10 +58,10 @@ export function ApiFilterBar({ categories }: { categories: CategoryOption[] }) {
 
   return (
     <div className="border-b border-ink bg-paper-dark/20 py-4">
-      <div className="layout-container flex flex-col gap-3">
+      <div className="layout-container flex flex-col gap-4">
         {/* Row 1: Search + Category */}
-        <div className="flex items-center gap-3">
-          <form onSubmit={handleSearch} className="relative flex-1 max-w-md">
+        <div className="flex flex-col md:flex-row md:items-center gap-3">
+          <form onSubmit={handleSearch} className="relative flex-1 max-w-full md:max-w-2xl">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-ink-fade" />
             <input
               type="text"
@@ -75,7 +75,7 @@ export function ApiFilterBar({ categories }: { categories: CategoryOption[] }) {
           <select
             value={category}
             onChange={(e) => router.push(buildUrl({ category: e.target.value || undefined }))}
-            className="bg-transparent border border-ink/20 py-2 px-3 font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade focus:outline-none focus:border-ink cursor-pointer transition-all"
+            className="w-full md:w-auto bg-transparent border border-ink/20 py-2 px-3 font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade focus:outline-none focus:border-ink cursor-pointer transition-all"
           >
             <option value="">All Categories</option>
             {categories.map((cat) => (
@@ -87,8 +87,8 @@ export function ApiFilterBar({ categories }: { categories: CategoryOption[] }) {
         </div>
 
         {/* Row 2: Toggles + View */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-5">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
             {[
               { key: "mcp", label: "MCP Only", active: mcpOnly },
               { key: "free", label: "Free Tier", active: freeOnly },
@@ -109,7 +109,7 @@ export function ApiFilterBar({ categories }: { categories: CategoryOption[] }) {
             ))}
           </div>
 
-          <div className="flex items-center border border-ink/20 p-0.5">
+          <div className="flex items-center border border-ink/20 p-0.5 self-start md:self-auto">
             <button
               onClick={() => router.push(buildUrl({ view: undefined }))}
               className={`p-1.5 transition-all ${view === "grid" ? "bg-ink text-paper" : "text-ink-fade hover:text-ink"}`}

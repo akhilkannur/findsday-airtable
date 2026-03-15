@@ -34,14 +34,14 @@ export function FaqSection({ items, title = "Frequently Asked Questions" }: { it
           <h2 className="font-serif text-3xl md:text-4xl leading-tight">{title}</h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 lg:gap-x-24 gap-y-10 md:gap-y-16">
           {items.map((item, idx) => (
-            <div key={idx} className="flex flex-col gap-3">
-              <span className="font-mono text-[0.7rem] text-ink-fade tracking-widest opacity-40">
+            <div key={idx} className="flex flex-col gap-3 group">
+              <span className="font-mono text-[0.7rem] text-ink-fade tracking-widest opacity-40 group-hover:opacity-100 transition-opacity">
                 {String(idx + 1).padStart(2, "0")}
               </span>
-              <h3 className="font-serif text-xl font-bold">{item.question}</h3>
-              <div className="text-[1rem] text-ink-fade leading-relaxed font-serif italic">
+              <h3 className="font-serif text-xl md:text-2xl font-bold group-hover:text-black transition-colors">{item.question}</h3>
+              <div className="text-base md:text-lg text-ink-fade leading-relaxed font-serif italic border-l border-ink/5 pl-6">
                 {item.answer}
               </div>
             </div>

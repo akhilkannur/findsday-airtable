@@ -89,22 +89,22 @@ export default function SubmitPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-paper">
-      <section className="px-8 py-24 border-b border-ink bg-paper-dark/30">
+      <section className="px-4 md:px-8 py-12 md:py-24 border-b border-ink bg-paper-dark/30">
         <div className="layout-container">
-          <h1 className="type-display mb-8">Submit Tool</h1>
-          <p className="max-w-2xl font-serif italic text-2xl text-ink-fade leading-relaxed border-l-2 border-ink pl-6">
+          <h1 className="type-display mb-6 md:mb-8 text-3xl md:text-5xl lg:text-7xl">Submit Tool</h1>
+          <p className="max-w-2xl font-serif italic text-xl md:text-2xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
             Know a sales API or MCP server we&apos;re missing? Add it to the club.
           </p>
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="py-12 md:py-20">
         <div className="layout-container">
-          <div className="max-w-2xl mx-auto p-16 border border-dashed border-ink/30 bg-white/20">
-            <form className="space-y-16" onSubmit={handleSubmit}>
+          <div className="max-w-2xl mx-auto p-6 md:p-16 border border-dashed border-ink/30 bg-white/20">
+            <form className="space-y-10 md:space-y-16" onSubmit={handleSubmit}>
               {/* Tool Name */}
               <div>
-                <label htmlFor="toolName" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-2 block">
+                <label htmlFor="toolName" className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-1 md:mb-2 block">
                   01. Tool Name
                 </label>
                 <input
@@ -120,7 +120,7 @@ export default function SubmitPage() {
 
               {/* Website URL */}
               <div>
-                <label htmlFor="websiteUrl" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-2 block">
+                <label htmlFor="websiteUrl" className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-1 md:mb-2 block">
                   02. Website URL
                 </label>
                 <input
@@ -136,7 +136,7 @@ export default function SubmitPage() {
 
               {/* API Docs URL */}
               <div>
-                <label htmlFor="apiDocsUrl" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-2 block">
+                <label htmlFor="apiDocsUrl" className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-1 md:mb-2 block">
                   03. API Docs URL
                 </label>
                 <input
@@ -151,7 +151,7 @@ export default function SubmitPage() {
 
               {/* Category */}
               <div>
-                <label htmlFor="category" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-2 block">
+                <label htmlFor="category" className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-1 md:mb-2 block">
                   04. Category
                 </label>
                 <select
@@ -161,9 +161,9 @@ export default function SubmitPage() {
                   onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                   required
                 >
-                  <option value="" className="bg-paper">Select a category...</option>
+                  <option value="" className="bg-paper text-sm">Select a category...</option>
                   {CATEGORIES.map((cat) => (
-                    <option key={cat} value={cat} className="bg-paper">
+                    <option key={cat} value={cat} className="bg-paper text-sm">
                       {cat}
                     </option>
                   ))}
@@ -172,7 +172,7 @@ export default function SubmitPage() {
 
               {/* Description */}
               <div>
-                <label htmlFor="description" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-2 block">
+                <label htmlFor="description" className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-1 md:mb-2 block">
                   05. One-liner / Description
                 </label>
                 <input
@@ -188,7 +188,7 @@ export default function SubmitPage() {
 
               {/* Email */}
               <div>
-                <label htmlFor="email" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-2 block">
+                <label htmlFor="email" className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-1 md:mb-2 block">
                   06. Your Email (Optional)
                 </label>
                 <input
@@ -202,51 +202,51 @@ export default function SubmitPage() {
               </div>
 
               {/* Checkboxes */}
-              <div className="flex flex-col gap-8 sm:flex-row sm:gap-16">
-                <label className="flex items-center gap-4 cursor-pointer group">
+              <div className="flex flex-col gap-6 sm:flex-row sm:gap-16">
+                <label className="flex items-center gap-3 md:gap-4 cursor-pointer group">
                   <div className="relative">
                     <input
                       type="checkbox"
-                      className="peer h-6 w-6 border-2 border-ink bg-transparent appearance-none rounded-sm transition-all"
+                      className="peer h-5 w-5 md:h-6 md:w-6 border-2 border-ink bg-transparent appearance-none rounded-sm transition-all"
                       checked={formData.hasMcp}
                       onChange={(e) => setFormData({ ...formData, hasMcp: e.target.checked })}
                     />
-                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity font-bold">✓</div>
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity font-bold text-xs md:text-sm">✓</div>
                   </div>
-                  <span className="font-mono text-[0.75rem] uppercase tracking-widest text-ink-fade group-hover:text-black transition-colors">MCP READY</span>
+                  <span className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase tracking-widest text-ink-fade group-hover:text-black transition-colors">MCP READY</span>
                 </label>
 
-                <label className="flex items-center gap-4 cursor-pointer group">
+                <label className="flex items-center gap-3 md:gap-4 cursor-pointer group">
                   <div className="relative">
                     <input
                       type="checkbox"
-                      className="peer h-6 w-6 border-2 border-ink bg-transparent appearance-none rounded-sm transition-all"
+                      className="peer h-5 w-5 md:h-6 md:w-6 border-2 border-ink bg-transparent appearance-none rounded-sm transition-all"
                       checked={formData.hasAgentSkills}
                       onChange={(e) => setFormData({ ...formData, hasAgentSkills: e.target.checked })}
                     />
-                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity font-bold">✓</div>
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity font-bold text-xs md:text-sm">✓</div>
                   </div>
-                  <span className="font-mono text-[0.75rem] uppercase tracking-widest text-ink-fade group-hover:text-black transition-colors">AGENT SKILLS</span>
+                  <span className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase tracking-widest text-ink-fade group-hover:text-black transition-colors">AGENT SKILLS</span>
                 </label>
               </div>
 
               {status === 'error' && (
-                <div className="flex items-center gap-2 text-red-600 font-mono text-sm">
+                <div className="flex items-center gap-2 text-red-600 font-mono text-xs md:text-sm">
                   <AlertCircle className="w-4 h-4" />
                   {errorMessage}
                 </div>
               )}
 
               {/* Submit */}
-              <div className="pt-8">
+              <div className="pt-4 md:pt-8">
                 <button
                   type="submit"
                   disabled={status === 'submitting'}
-                  className={`w-full py-6 font-mono font-bold uppercase text-[1.1rem] transition-all hover:rotate-[-1deg] circled accent bg-transparent ${status === 'submitting' ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  className={`w-full py-5 md:py-6 font-mono font-bold uppercase text-lg md:text-[1.1rem] transition-all hover:rotate-[-1deg] circled accent bg-transparent ${status === 'submitting' ? 'opacity-50 cursor-not-allowed' : ''}`}
                 >
                   {status === 'submitting' ? 'Submitting...' : 'Submit Tool'} <span>{'>'}</span>
                 </button>
-                <p className="mt-8 font-serif italic text-lg text-ink-fade text-center opacity-60">
+                <p className="mt-6 md:mt-8 font-serif italic text-base md:text-lg text-ink-fade text-center opacity-60">
                   We'll review your submission and get back to you.
                 </p>
               </div>

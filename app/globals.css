@@ -26,7 +26,7 @@ body {
 
 @layer components {
   .layout-container {
-    @apply max-w-[1400px] mx-auto px-8;
+    @apply max-w-[1400px] mx-auto px-4 md:px-8;
   }
 
   .circled {
@@ -57,11 +57,11 @@ body {
 
   .tool-card:hover::after {
     @apply opacity-100;
-    box-shadow: 6px 6px 0 var(--ink);
+    box-shadow: 12px 12px 0 var(--ink);
   }
   
   .tool-card:hover {
-    @apply -translate-x-1 -translate-y-1;
+    @apply -translate-x-2 -translate-y-2;
   }
 
   .tag-mcp {

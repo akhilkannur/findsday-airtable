@@ -77,22 +77,22 @@ export default function SubmitStackPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-paper">
-      <section className="px-8 py-24 border-b border-ink bg-paper-dark/30">
+      <section className="px-4 md:px-8 py-12 md:py-24 border-b border-ink bg-paper-dark/30">
         <div className="layout-container">
-          <h1 className="type-display mb-8">Share Your Stack</h1>
-          <p className="max-w-2xl font-serif italic text-2xl text-ink-fade leading-relaxed border-l-2 border-ink pl-6">
+          <h1 className="type-display mb-6 md:mb-8 text-3xl md:text-5xl lg:text-7xl">Share Your Stack</h1>
+          <p className="max-w-2xl font-serif italic text-xl md:text-2xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
             Show the community your top 3 API building blocks. The best stacks get featured.
           </p>
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="py-12 md:py-20">
         <div className="layout-container">
-          <div className="max-w-2xl mx-auto p-16 border border-dashed border-ink/30 bg-white/20">
-            <form className="space-y-16" onSubmit={handleSubmit}>
+          <div className="max-w-2xl mx-auto p-6 md:p-16 border border-dashed border-ink/30 bg-white/20">
+            <form className="space-y-10 md:space-y-16" onSubmit={handleSubmit}>
               {/* Your Name */}
               <div>
-                <label htmlFor="yourName" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-2 block">
+                <label htmlFor="yourName" className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-1 md:mb-2 block">
                   01. Your Name
                 </label>
                 <input
@@ -108,7 +108,7 @@ export default function SubmitStackPage() {
 
               {/* Stack Name */}
               <div>
-                <label htmlFor="stackName" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-2 block">
+                <label htmlFor="stackName" className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-1 md:mb-2 block">
                   02. Stack Name
                 </label>
                 <input
@@ -124,7 +124,7 @@ export default function SubmitStackPage() {
 
               {/* Tool #1 */}
               <div>
-                <label htmlFor="tool1" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-2 block">
+                <label htmlFor="tool1" className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-1 md:mb-2 block">
                   03. Tool #1
                 </label>
                 <input
@@ -140,7 +140,7 @@ export default function SubmitStackPage() {
 
               {/* Tool #2 */}
               <div>
-                <label htmlFor="tool2" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-2 block">
+                <label htmlFor="tool2" className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-1 md:mb-2 block">
                   04. Tool #2
                 </label>
                 <input
@@ -156,7 +156,7 @@ export default function SubmitStackPage() {
 
               {/* Tool #3 */}
               <div>
-                <label htmlFor="tool3" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-2 block">
+                <label htmlFor="tool3" className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-1 md:mb-2 block">
                   05. Tool #3
                 </label>
                 <input
@@ -172,7 +172,7 @@ export default function SubmitStackPage() {
 
               {/* How It Works */}
               <div>
-                <label htmlFor="howItWorks" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-2 block">
+                <label htmlFor="howItWorks" className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-1 md:mb-2 block">
                   06. How It Works
                 </label>
                 <input
@@ -188,7 +188,7 @@ export default function SubmitStackPage() {
 
               {/* Email */}
               <div>
-                <label htmlFor="email" className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-2 block">
+                <label htmlFor="email" className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-1 md:mb-2 block">
                   07. Your Email (Optional)
                 </label>
                 <input
@@ -202,22 +202,22 @@ export default function SubmitStackPage() {
               </div>
 
               {status === 'error' && (
-                <div className="flex items-center gap-2 text-red-600 font-mono text-sm">
+                <div className="flex items-center gap-2 text-red-600 font-mono text-xs md:text-sm">
                   <AlertCircle className="w-4 h-4" />
                   {errorMessage}
                 </div>
               )}
 
               {/* Submit */}
-              <div className="pt-8">
+              <div className="pt-4 md:pt-8">
                 <button
                   type="submit"
                   disabled={status === 'submitting'}
-                  className={`w-full py-6 font-mono font-bold uppercase text-[1.1rem] transition-all hover:rotate-[-1deg] circled accent bg-transparent ${status === 'submitting' ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  className={`w-full py-5 md:py-6 font-mono font-bold uppercase text-lg md:text-[1.1rem] transition-all hover:rotate-[-1deg] circled accent bg-transparent ${status === 'submitting' ? 'opacity-50 cursor-not-allowed' : ''}`}
                 >
                   {status === 'submitting' ? 'Submitting...' : 'Submit Stack'} <span>{'>'}</span>
                 </button>
-                <p className="mt-8 font-serif italic text-lg text-ink-fade text-center opacity-60">
+                <p className="mt-6 md:mt-8 font-serif italic text-base md:text-lg text-ink-fade text-center opacity-60">
                   We&apos;ll review your submission and get back to you.
                 </p>
               </div>

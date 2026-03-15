@@ -134,27 +134,28 @@ export default async function RootLayout({
       <body className="antialiased min-h-screen">
         <nav className="border-b border-ink py-4 sticky top-0 bg-paper z-[100]">
           <div className="layout-container flex justify-between items-center">
-            <Link href="/" className="flex items-center gap-2 group">
+            <Link href="/" className="flex items-center gap-3 group">
               <Image 
                 src="/logo.png" 
                 alt="Salestools Club Logo" 
-                width={28} 
-                height={28} 
-                className="group-hover:rotate-12 transition-transform duration-300"
+                width={32} 
+                height={32} 
+                className="group-hover:rotate-[15deg] group-hover:scale-110 transition-all duration-300"
               />
-              <span className="font-mono font-bold text-lg tracking-tighter hover:line-through transition-all uppercase">
+              <span className="font-mono font-black text-xl tracking-tighter hover:line-through transition-all uppercase">
                 SALESTOOLS.CLUB
               </span>
             </Link>
             
-            <div className="hidden md:flex gap-8 items-center font-mono text-[0.85rem] uppercase">
+            <div className="hidden md:flex gap-10 items-center font-mono text-[0.8rem] uppercase tracking-wider">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="hover:line-through transition-all"
+                  className="hover:line-through transition-all hover:text-black text-ink-fade relative group"
                 >
                   {link.label}
+                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-black transition-all group-hover:w-full md:hidden lg:block"></span>
                 </Link>
               ))}
             </div>
@@ -176,10 +177,10 @@ export default async function RootLayout({
           {children}
         </main>
         
-        <footer className="border-t border-ink p-12 mt-20 bg-paper">
+        <footer className="border-t border-ink p-8 md:p-12 mt-12 md:mt-20 bg-paper">
           <div className="layout-container">
             {/* Programmatic Directory Columns */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-12 mb-16 pb-16 border-b border-ink/10 text-left">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-12 md:mb-16 pb-12 md:pb-16 border-b border-ink/10 text-left">
               <div className="flex flex-col gap-4">
                 <h4 className="font-mono text-[0.7rem] font-bold uppercase tracking-widest text-ink/40">Outcomes</h4>
                 <div className="flex flex-col gap-2 font-mono text-[0.75rem] uppercase">

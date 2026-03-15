@@ -115,34 +115,34 @@ export default async function CategoryDetailPage({
         { name: "Categories", url: "https://salestools.club/categories" },
         { name: category.name, url: `https://salestools.club/categories/${slug}` },
       ]} />
-      <section className="px-8 py-24 border-b border-ink bg-paper-dark/30">
+      <section className="px-4 py-12 md:px-8 md:py-24 border-b border-ink bg-paper-dark/30">
         <div className="layout-container">
           <Link
             href="/categories"
-            className="font-mono text-[0.75rem] uppercase underline hover:line-through transition-all mb-12 inline-block"
+            className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase underline hover:line-through transition-all mb-8 md:mb-12 inline-block"
           >
             &lt;- Back to Categories
           </Link>
 
-          <h1 className="type-display mb-8">
+          <h1 className="type-display mb-6 md:mb-8 text-3xl md:text-4xl lg:text-5xl">
             Best {category.name} APIs.
           </h1>
-          <p className="max-w-2xl font-serif italic text-2xl text-ink-fade leading-relaxed border-l-2 border-ink pl-6">
+          <p className="max-w-2xl font-serif italic text-xl md:text-2xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
             {category.description} These {tools.length} tools have been vetted for their ability to integrate with AI-native sales stacks.
           </p>
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="py-8 md:py-16">
         <div className="layout-container">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-12">
             {tools.map((tool) => (
               <ToolCard key={tool.slug} tool={tool} />
             ))}
           </div>
 
           {tools.length === 0 && (
-            <div className="text-center py-32 opacity-60 font-serif italic text-2xl">
+            <div className="text-center py-20 md:py-32 opacity-60 font-serif italic text-xl md:text-2xl">
               No tools indexed in this category.
             </div>
           )}
@@ -150,20 +150,20 @@ export default async function CategoryDetailPage({
       </section>
 
       {/* Related Categories */}
-      <section className="py-24 bg-paper-dark/50 border-t border-ink">
+      <section className="py-16 md:py-24 bg-paper-dark/50 border-t border-ink">
         <div className="layout-container">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
-            <h2 className="font-serif italic text-3xl">Related Categories</h2>
-            <Link href="/categories" className="font-mono text-[0.75rem] uppercase underline hover:line-through">All Categories {'>'}</Link>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16 gap-6 md:gap-8">
+            <h2 className="font-serif italic text-2xl md:text-3xl">Related Categories</h2>
+            <Link href="/categories" className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase underline hover:line-through">All Categories {'>'}</Link>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-12">
             {getAllCategories().filter(c => c.slug !== slug).slice(0, 4).map(cat => (
               <Link 
                 key={cat.slug} 
                 href={`/categories/${cat.slug}`}
-                className="group flex flex-col gap-6 p-8 border border-transparent hover:border-ink/10 transition-all bg-paper"
+                className="group flex flex-col gap-4 md:gap-6 p-6 md:p-8 border border-transparent hover:border-ink/10 transition-all bg-paper"
               >
-                <h3 className="text-xl font-bold uppercase underline decoration-transparent group-hover:decoration-ink transition-all underline-offset-8">{cat.name}</h3>
+                <h3 className="text-lg md:text-xl font-bold uppercase underline decoration-transparent group-hover:decoration-ink transition-all underline-offset-8">{cat.name}</h3>
                 <div className="mt-auto flex justify-end opacity-0 group-hover:opacity-100 transition-opacity">
                   <ArrowRight className="h-4 w-4" />
                 </div>

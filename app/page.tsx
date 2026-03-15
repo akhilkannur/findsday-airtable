@@ -89,8 +89,8 @@ function ToolCard({ tool }: { tool: any }) {
       </div>
       
       <div className="flex-grow">
-        <h3 className="text-2xl font-semibold mb-2">{tool.name}</h3>
-        <p className="text-[1rem] text-ink-fade leading-relaxed line-clamp-3 mb-6">
+        <h3 className="text-xl md:text-2xl font-semibold mb-2 group-hover:underline underline-offset-4">{tool.name}</h3>
+        <p className="text-[0.95rem] md:text-[1rem] text-ink-fade leading-relaxed line-clamp-3 mb-6">
           {tool.oneLiner}
         </p>
       </div>
@@ -119,7 +119,7 @@ export default async function Home() {
       />
 
       {/* -- Hero -------------------------------------------- */}
-      <section className="hero relative pt-12 pb-4 md:pt-16 md:pb-6 overflow-hidden">
+      <section className="hero relative pt-8 pb-4 md:pt-20 md:pb-12 overflow-hidden">
         <div className="layout-container">
           <svg className="connections-layer absolute inset-0 w-full h-full pointer-events-none opacity-40 z-0" viewBox="0 0 1400 600" preserveAspectRatio="none">
             <path className="connector-line fill-none stroke-ink stroke-2 [stroke-dasharray:600] [stroke-dashoffset:600] animate-[drawLine_2s_ease_forwards_0.5s]" d="M 400,120 Q 600,180 750,140" />
@@ -131,12 +131,12 @@ export default async function Home() {
           `}} />
 
           <div className="relative z-10">
-            <h1 className="type-display mb-4 md:mb-6">
-              The <span className="circled">Lego Blocks</span> <br />
+            <h1 className="type-display mb-4 md:mb-6 text-3xl md:text-5xl lg:text-7xl">
+              The <span className="circled">Lego Blocks</span> <br className="hidden md:block" />
               for your <span className="circled">AI Sales Agent.</span>
             </h1>
             
-            <div className="font-serif italic text-xl md:text-2xl text-ink-fade max-w-2xl pl-6 border-l-2 border-ink mb-6 md:mb-8 leading-relaxed">
+            <div className="font-serif italic text-lg md:text-2xl text-ink-fade max-w-2xl pl-4 md:pl-6 border-l-2 border-ink mb-6 md:mb-8 leading-relaxed">
               A handpicked collection of APIs, Skills, and MCP servers that plug directly into Claude Code or other AI agents. Build your GTM machine in hours, not weeks.
             </div>
 

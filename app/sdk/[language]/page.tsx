@@ -76,7 +76,7 @@ export default async function SdkLanguagePage({
         { name: langDisplay, url: `https://salestools.club/sdk/${language}` },
       ]} />
 
-      <nav className="layout-container py-6 flex items-center gap-2 text-[0.7rem] font-mono uppercase tracking-widest text-ink-fade">
+      <nav className="layout-container py-4 md:py-6 flex flex-wrap items-center gap-2 text-[0.65rem] md:text-[0.7rem] font-mono uppercase tracking-widest text-ink-fade">
         <Link href="/" className="hover:text-ink hover:underline">Home</Link>
         <span className="opacity-30">/</span>
         <span className="opacity-30 uppercase">SDKs</span>
@@ -84,17 +84,17 @@ export default async function SdkLanguagePage({
         <span className="text-ink font-bold">{langDisplay}</span>
       </nav>
 
-      <section className="px-6 md:px-8 py-12 md:py-16 border-b border-ink">
+      <section className="px-4 md:px-8 py-12 md:py-16 border-b border-ink">
         <div className="layout-container">
-          <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade mb-4">SDK Directory</p>
-          <h1 className="type-display mb-4 md:mb-6">{langDisplay} Sales APIs</h1>
-          <p className="max-w-2xl font-serif italic text-lg md:text-xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
+          <p className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-widest text-ink-fade mb-3 md:mb-4">SDK Directory</p>
+          <h1 className="type-display mb-4 md:mb-6 text-3xl md:text-5xl lg:text-7xl">{langDisplay} Sales APIs</h1>
+          <p className="max-w-2xl font-serif italic text-xl md:text-2xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
             Official {langDisplay} packages for building sales workflows. Use these libraries to avoid writing raw HTTP boilerplate.
           </p>
         </div>
       </section>
 
-      <section className="py-12">
+      <section className="py-8 md:py-12">
         <div className="layout-container">
           <ProgrammaticFilterBar 
             categories={categories.map(c => ({ slug: c.slug, name: c.name }))} 
@@ -102,7 +102,7 @@ export default async function SdkLanguagePage({
           />
 
           {tools.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {tools.map((tool) => (
                 <Link
                   key={tool.slug}
@@ -119,14 +119,14 @@ export default async function SdkLanguagePage({
                   </div>
                   
                   <div className="flex-grow">
-                    <h3 className="text-2xl font-semibold mb-2">{tool.name}</h3>
-                    <p className="text-[1rem] text-ink-fade leading-relaxed line-clamp-2 mb-6">
+                    <h3 className="text-xl md:text-2xl font-semibold mb-2">{tool.name}</h3>
+                    <p className="text-[0.9rem] md:text-[1rem] text-ink-fade leading-relaxed line-clamp-2 mb-4 md:mb-6">
                       {tool.oneLiner}
                     </p>
                   </div>
 
                   <div className="mt-auto flex flex-wrap gap-2 items-center">
-                    <span className="font-mono text-[0.7rem] uppercase tracking-wider text-ink-fade">{tool.category}</span>
+                    <span className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-wider text-ink-fade">{tool.category}</span>
                     <span className="ml-auto font-mono text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 border border-ink/20 rounded-full">
                       {tool.hasFreeTier ? "Free" : "Paid"}
                     </span>
@@ -135,8 +135,8 @@ export default async function SdkLanguagePage({
               ))}
             </div>
           ) : (
-            <div className="py-20 text-center border-2 border-dashed border-ink/10">
-              <p className="font-serif italic text-xl text-ink-fade">No tools found in this category with an official {langDisplay} SDK.</p>
+            <div className="py-16 md:py-20 text-center border-2 border-dashed border-ink/10">
+              <p className="font-serif italic text-lg md:text-xl text-ink-fade">No tools found in this category with an official {langDisplay} SDK.</p>
               <Link href={`/sdk/${language}`} className="mt-4 inline-block font-mono text-[0.7rem] uppercase underline">Clear Category Filter</Link>
             </div>
           )}

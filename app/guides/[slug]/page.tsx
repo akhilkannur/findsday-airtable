@@ -99,37 +99,37 @@ export default async function GuidePage({
         { name: guide.title, url: `https://salestools.club/guides/${slug}` },
       ]} />
 
-      <section className="px-8 py-24 border-b border-ink bg-paper-dark/30">
+      <section className="px-4 py-12 md:px-8 md:py-24 border-b border-ink bg-paper-dark/30">
         <div className="layout-container">
           <Link
             href="/guides"
-            className="font-mono text-[0.75rem] uppercase underline hover:line-through transition-all mb-12 inline-block"
+            className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase underline hover:line-through transition-all mb-8 md:mb-12 inline-block"
           >
             &lt;- Back to Guides
           </Link>
 
-          <h1 className="type-display mb-8">{guide.title}</h1>
-          <p className="max-w-2xl font-serif italic text-2xl text-ink-fade leading-relaxed border-l-2 border-ink pl-6">
+          <h1 className="type-display mb-6 md:mb-8 text-3xl md:text-5xl lg:text-7xl">{guide.title}</h1>
+          <p className="max-w-2xl font-serif italic text-xl md:text-2xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
             {guide.intro}
           </p>
         </div>
       </section>
 
       {guide.content && (
-        <section className="py-16 border-b border-ink/10">
-          <div className="layout-container prose prose-zinc prose-lg max-w-4xl prose-headings:font-bold prose-a:text-ink hover:prose-a:line-through prose-strong:text-ink">
+        <section className="py-8 md:py-16 border-b border-ink/10">
+          <div className="layout-container prose prose-zinc prose-base md:prose-lg max-w-4xl prose-headings:font-bold prose-a:text-ink hover:prose-a:line-through prose-strong:text-ink">
             <div dangerouslySetInnerHTML={{ __html: guide.content }} />
           </div>
         </section>
       )}
 
-      <section className="py-12 bg-ink/[0.02]">
+      <section className="py-8 md:py-12 bg-ink/[0.02]">
         <div className="layout-container">
-          <h2 className="type-display text-3xl mb-12">Technical Comparison</h2>
+          <h2 className="type-display text-2xl md:text-3xl mb-8 md:mb-12">Technical Comparison</h2>
           <GuideToolTable tools={tools} />
 
           {tools.length === 0 && (
-            <div className="text-center py-32 opacity-60 font-serif italic text-2xl">
+            <div className="text-center py-20 md:py-32 opacity-60 font-serif italic text-xl md:text-2xl">
               No tools indexed in this guide.
             </div>
           )}
