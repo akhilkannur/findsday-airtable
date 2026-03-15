@@ -7,9 +7,9 @@ import type { Metadata } from "next"
 import { NewsletterForm } from "@/components/NewsletterForm"
 
 export const metadata: Metadata = {
-  title: "Salestools Club — Sales APIs & MCP Servers for Claude Code",
+  title: "Salestools Club — Sales APIs & MCP Configs for AI Agents",
   description:
-    "The directory for AI-native sales stacks. Find APIs, MCP servers, and agent skills for building with Claude Code or other AI agents without middleware.",
+    "The directory for AI-native sales stacks. Find APIs, MCP configs, and agent skills for building with Claude Code or other AI agents.",
   keywords: [
     "sales API directory",
     "MCP server for sales",

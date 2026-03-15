@@ -26,8 +26,8 @@ export async function generateMetadata({
     return { title: "Category Not Found | Salestools Club" }
   }
 
-  const pageTitle = `Best ${category.name} APIs for Claude Code & AI Agents | Salestools Club`
-  const pageDescription = `Connect your sales stack directly to Claude Code or other AI agents. A curated list of ${category.toolCount} ${category.name.toLowerCase()} APIs for GTM automation without middleware.`
+  const pageTitle = `Best ${category.name} APIs & Configs | Salestools Club`
+  const pageDescription = `A curated list of ${category.toolCount} ${category.name.toLowerCase()} APIs and starter prompts to connect your sales stack to Claude Code or other AI agents.`
   const pageUrl = `https://salestools.club/categories/${slug}`
 
   return {

@@ -34,13 +34,14 @@ export async function generateMetadata({
   }
 
   const pageTitle = tool.mcpReady
-    ? `${tool.name} API & MCP Server — Prompts for Claude Code or other AI Agents | Salestools Club`
-    : `${tool.name} API — Prompts for Claude Code or other AI Agents | Salestools Club`
+    ? `${tool.name} API & MCP Config | Salestools Club`
+    : `${tool.name} API & Prompts | Salestools Club`
   const pageUrl = `https://salestools.club/apis/${tool.slug}`
+  const pageDescription = `${tool.oneLiner} API documentation and starter prompts to connect ${tool.name} to Claude Code or other AI agents for ${tool.category} workflows.`
 
   return {
     title: pageTitle,
-    description: `${tool.oneLiner} Connect ${tool.name} directly to Claude Code or other AI agents using specialized API prompts, SDKs, and integrations.`,
+    description: pageDescription,
     alternates: {
       canonical: pageUrl,
     },
@@ -49,14 +50,14 @@ export async function generateMetadata({
     }),
     openGraph: {
       title: pageTitle,
-      description: `${tool.oneLiner} Connect ${tool.name} directly to Claude Code or other AI agents using specialized API prompts, SDKs, and integrations.`,
+      description: pageDescription,
       type: "website",
       url: pageUrl,
     },
     twitter: {
       card: "summary_large_image",
       title: pageTitle,
-      description: `${tool.oneLiner} Connect ${tool.name} directly to Claude Code or other AI agents using specialized API prompts, SDKs, and integrations.`,
+      description: pageDescription,
     },
   }
 }
@@ -95,10 +96,10 @@ function JsonLd({ tool, alternatives }: { tool: SalesTool; alternatives: SalesTo
       },
       {
         "@type": "Question",
-        name: `How do I use ${tool.name} with Claude Code or other AI agents?`,
+        name: `How do I use ${tool.name} with AI agents?`,
         acceptedAnswer: {
           "@type": "Answer",
-          text: `You can connect ${tool.name} directly to Claude Code or other AI agents using its ${tool.apiType?.join(' or ') || 'API'}. Simply provide your ${tool.authMethod?.join(' or ') || 'authentication'} details and use our prompt examples to automate ${tool.aiCapabilities?.slice(0, 2).join(' and ') || 'sales workflows'} without extra middleware.`,
+          text: `Connect ${tool.name} to agents like Claude Code or Cowork by using its ${tool.apiType?.join(' or ') || 'API'} and your ${tool.authMethod?.join(' or ') || 'authentication'} keys. This allows your agent to perform ${tool.aiCapabilities?.slice(0, 2).join(' and ') || 'tasks'} directly without needing extra software.`,
         },
       },
       {
@@ -315,9 +316,11 @@ export default async function ToolDetailPage({
 
           <div className="p-6 md:p-10 lg:p-16 bg-paper-dark/20 border-l-4 border-ink space-y-6 md:space-y-8">
             <h3 className="font-mono text-[0.8rem] md:text-[0.85rem] uppercase font-bold tracking-widest text-ink">Direct Agent Workflow for {tool.name}</h3>
-            <p className="font-serif text-lg md:text-xl leading-relaxed text-ink-fade max-w-2xl italic">
-              Connect {tool.name} directly to Claude Code or other AI agents to bypass traditional middleware like Clay or Make. Using the {tool.apiType?.join(' or ') || 'API'} and your {tool.authMethod?.join(' or ') || 'authentication'} credentials, your agent can perform {tool.aiCapabilities?.slice(0, 3).join(', ') || 'sales operations'} directly from your terminal. This setup enables real-time data sync and complex automation with zero middleware tax.
-            </p>
+            <div className="font-serif text-lg md:text-xl leading-relaxed text-ink-fade max-w-2xl italic space-y-4">
+              <p>• <strong>Connect:</strong> Give your {tool.name} {tool.authMethod?.join(' or ') || 'API Key'} to <strong>Claude Code, Cowork, or your favorite AI agent.</strong></p>
+              <p>• <strong>Automate:</strong> Your agent handles {tool.aiCapabilities?.slice(0, 2).join(' and ') || 'tasks'} directly.</p>
+              <p>• <strong>Execute:</strong> No extra software or middleware required for {tool.category} automation.</p>
+            </div>
           </div>
 
           {getSkillsForTool(tool.slug).length > 0 && (
@@ -420,6 +423,12 @@ export default async function ToolDetailPage({
                 <p className="text-ink-fade text-base md:text-lg leading-relaxed">{tool.name} is a {tool.category.toLowerCase()} tool that provides {tool.oneLiner}</p>
               </div>
               <div className="group border-b border-ink/10 pb-6 md:pb-8">
+                <h3 className="font-serif text-lg md:text-xl font-bold mb-3 md:mb-4 group-hover:text-ink transition-colors">How do I use {tool.name} with AI agents?</h3>
+                <p className="text-ink-fade text-base md:text-lg leading-relaxed">
+                  Connect {tool.name} to agents like Claude Code or Cowork by using its {tool.apiType?.join(' or ') || 'API'} and your {tool.authMethod?.join(' or ') || 'authentication'} keys. This allows your agent to perform {tool.aiCapabilities?.slice(0, 2).join(' and ') || 'tasks'} directly without needing extra software.
+                </p>
+              </div>
+              <div className="group border-b border-ink/10 pb-6 md:pb-8">
                 <h3 className="font-serif text-lg md:text-xl font-bold mb-3 md:mb-4 group-hover:text-ink transition-colors">Is {tool.name} API free?</h3>
                 <p className="text-ink-fade text-base md:text-lg leading-relaxed">
                   {tool.hasFreeTier 
@@ -437,7 +446,7 @@ export default async function ToolDetailPage({
                         <Link href={`/apis/${a.slug}`} className="font-bold hover:underline">{a.name}</Link>
                         {i === alternatives.length - 1 ? '.' : i === alternatives.length - 2 ? ' and ' : ', '}
                       </span>
-                    ))}.
+                    ))}
                   </p>
                 </div>
               )}

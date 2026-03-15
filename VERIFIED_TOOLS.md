@@ -151,5 +151,22 @@
 
 ---
 
+## Batch 11 (Gong - Actively area)
+
+| Tool Name | docsUrl Verified | Data Points Verified | Notes |
+|-----------|-----------------|---------------------|-------|
+| Gong | ✅ | ✅ | Basic Auth, hasWebhooks: true. API docs at help.gong.io/docs |
+| PandaDoc | ✅ | ✅ | API Key/OAuth2, hasWebhooks: true, hasFreeTier: false (API requires Enterprise) |
+| DocuSign | ✅ | ✅ | OAuth2/API Key, hasWebhooks: true, hasFreeTier: false (free tier has limited API) |
+| Recall.ai | ✅ | ✅ | API Key auth, hasWebhooks: true, hasFreeTier: false |
+| ElevenLabs | ✅ | ✅ | API Key auth, hasWebhooks: true, hasFreeTier: false |
+| 1up | ❌ No API | ❓ | No public API found - RFP automation platform |
+| 6sense | ✅ | ✅ | API Key auth, hasWebhooks: true, hasFreeTier: false |
+| AI Bees | ❌ No API | ❓ | No public API - marketing agency service |
+| Accent Technologies | ❌ No API | ❓ | No public API - sales enablement platform |
+| Actively | ❌ No API | ❓ | No public API - enterprise GTM AI platform |
+
+---
+
 ## Next Batch to Verify
 Start from the tools listed before PhantomBuster in the file (around lines 10100-10220)

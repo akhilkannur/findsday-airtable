@@ -15,9 +15,9 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
   const hasFilters = !!(sp.q || sp.category || sp.mcp || sp.free || sp.official || sp.view)
 
   return {
-    title: "Sales APIs for Claude Code & AI Agents | Salestools Club",
+    title: "Sales APIs & MCP Configs for AI Agents | Salestools Club",
     description:
-      "A comprehensive database of sales APIs and MCP servers for people building with Claude Code or other AI agents. Connect directly without middleware.",
+      "A comprehensive database of sales APIs and MCP configs for connecting your tools to Claude Code or other AI agents with starter prompts and documentation.",
     ...(!hasFilters && {
       alternates: {
         canonical: "https://salestools.club/api",
@@ -27,15 +27,15 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
       robots: { index: false, follow: true },
     }),
     openGraph: {
-      title: "Sales APIs for Claude Code & AI Agents | Salestools Club",
-      description: "A comprehensive database of sales APIs and MCP servers for people building with Claude Code or other AI agents. Connect directly without middleware.",
+      title: "Sales APIs & MCP Configs for AI Agents | Salestools Club",
+      description: "A comprehensive database of sales APIs and MCP configs for connecting your tools to Claude Code or other AI agents with starter prompts and documentation.",
       type: "website",
       url: "https://salestools.club/api",
     },
     twitter: {
       card: "summary_large_image",
-      title: "Sales APIs for Claude Code & AI Agents | Salestools Club",
-      description: "A comprehensive database of sales APIs and MCP servers for people building with Claude Code or other AI agents. Connect directly without middleware.",
+      title: "Sales APIs & MCP Configs for AI Agents | Salestools Club",
+      description: "A comprehensive database of sales APIs and MCP configs for connecting your tools to Claude Code or other AI agents with starter prompts and documentation.",
     },
   }
 }
