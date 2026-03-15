@@ -74,6 +74,20 @@ export default async function APIPage({
         </div>
       </section>
 
+      <div className="bg-ink text-paper py-3 border-b border-ink">
+        <div className="layout-container flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-4">
+          <div className="flex items-center gap-3">
+            <span className="bg-paper text-ink font-mono text-[0.6rem] px-1.5 py-0.5 font-bold uppercase shrink-0">Operator Tip</span>
+            <p className="font-mono text-[0.7rem] uppercase tracking-wider">
+              Compare credit rollover and refund policies for 20+ sales APIs
+            </p>
+          </div>
+          <Link href="/credit-audit" className="font-mono text-[0.7rem] uppercase border-b border-paper hover:opacity-70 transition-opacity w-fit">
+            View Credit Audit -&gt;
+          </Link>
+        </div>
+      </div>
+
       <ApiFilterBar categories={categories.map(c => ({ slug: c.slug, name: c.name }))} />
 
       {(q || category || mcpOnly || freeOnly || officialOnly) && (

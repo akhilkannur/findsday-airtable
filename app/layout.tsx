@@ -188,6 +188,7 @@ export default async function RootLayout({
                   <Link href="/capability/email-verification" className="hover:line-through">Email Verification</Link>
                   <Link href="/capability/ai-search" className="hover:line-through">AI Search</Link>
                   <Link href="/capability/meeting-recording" className="hover:line-through">Meeting Recording</Link>
+                  <Link href="/credit-audit" className="hover:line-through font-bold">Credit Policy Guide</Link>
                   <Link href="/free-sales-apis" className="hover:line-through text-ink font-bold">Free Sales APIs</Link>
                 </div>
               </div>
