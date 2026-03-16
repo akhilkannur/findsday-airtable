@@ -19,12 +19,18 @@ export async function generateMetadata({ params }: { params: Promise<{ type: str
   const { type } = await params
   const typeDisplay = type.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase())
   
+  const tools = await getToolsByAuthMethod(type)
+  const hasTools = tools.length > 0
+
   return {
     title: `Sales APIs with ${typeDisplay} Auth | Salestools Club`,
     description: `Browse all sales tools and APIs that support ${typeDisplay} authentication. Find the easiest tools to connect to your AI agent.`,
     alternates: {
       canonical: `https://salestools.club/auth/${type}`,
     },
+    ...(!hasTools && {
+      robots: { index: false, follow: true },
+    }),
   }
 }
 
@@ -49,7 +55,9 @@ export default async function AuthMethodPage({
   }
   
   if (tools.length === 0 && !categorySlug) {
-    notFound()
+    // Instead of 404, redirect to the main directory permanently
+    const { permanentRedirect } = await import("next/navigation")
+    permanentRedirect("/api")
   }
 
   const typeDisplay = type.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase())

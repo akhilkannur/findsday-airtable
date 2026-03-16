@@ -23,6 +23,7 @@ export async function generateMetadata({
     return {
       title: "Skill Not Found | Salestools Club",
       description: "The requested skill could not be located.",
+      robots: { index: false, follow: true },
     }
   }
 
@@ -57,7 +58,15 @@ export default async function SkillDetailPage({
   const skill = getSkillBySlug(slug)
 
   if (!skill) {
-    notFound()
+    // Check if this was a skill that got converted to a use case (for/...)
+    const { getUseCaseBySlug } = await import("@/lib/usecases")
+    const usecase = getUseCaseBySlug(slug)
+    if (usecase) {
+      const { permanentRedirect } = await import("next/navigation")
+      permanentRedirect(`/for/${usecase.slug}`)
+    }
+    const { permanentRedirect } = await import("next/navigation")
+    permanentRedirect("/skills")
   }
 
   const linkedTools = (

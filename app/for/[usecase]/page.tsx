@@ -23,7 +23,10 @@ export async function generateMetadata({
   const uc = getUseCaseBySlug(usecase)
 
   if (!uc) {
-    return { title: "Use Case Not Found | Salestools Club" }
+    return { 
+      title: "Use Case Not Found | Salestools Club",
+      robots: { index: false, follow: true },
+    }
   }
 
   const pageTitle = `${uc.title} (2026) | Salestools Club`
@@ -89,7 +92,8 @@ export default async function UseCaseDetailPage({
   const uc = getUseCaseBySlug(usecase)
 
   if (!uc) {
-    notFound()
+    const { permanentRedirect } = await import("next/navigation")
+    permanentRedirect("/for")
   }
 
   const tools = getToolsForUseCase(uc)

@@ -160,7 +160,7 @@ export async function getToolsByCapability(capabilitySlug: string): Promise<Sale
   const all = await getAllTools()
   const target = capabilitySlug.replace(/-/g, " ").toLowerCase()
   return all.filter((t) => 
-    t.aiCapabilities.some(cap => cap.toLowerCase().includes(target))
+    t.aiCapabilities.some(cap => cap.toLowerCase().replace(/-/g, " ").includes(target))
   )
 }
 
@@ -180,7 +180,7 @@ export async function getToolsByAuthMethod(method: string): Promise<SalesTool[]>
 export function getAllSdkLanguages(): string[] {
   const langs = new Set<string>()
   tools.forEach(t => {
-    if ("sdkLanguages" in t) {
+    if (t.docsUrl && t.docsUrl !== "" && "sdkLanguages" in t) {
       t.sdkLanguages.forEach(l => langs.add(l))
     }
   })
@@ -190,7 +190,7 @@ export function getAllSdkLanguages(): string[] {
 export function getAllCapabilities(): string[] {
   const caps = new Set<string>()
   tools.forEach(t => {
-    if ("aiCapabilities" in t) {
+    if (t.docsUrl && t.docsUrl !== "" && "aiCapabilities" in t) {
       t.aiCapabilities.forEach(c => caps.add(c))
     }
   })
@@ -198,7 +198,17 @@ export function getAllCapabilities(): string[] {
 }
 
 export function getAllAuthMethods(): string[] {
-  return ["API Key", "OAuth2", "Bearer Token", "Basic Auth", "None"]
+  const methods = new Set<string>()
+  tools.forEach(t => {
+    if (t.docsUrl && t.docsUrl !== "" && "authMethod" in t) {
+      t.authMethod.forEach(m => methods.add(m))
+    }
+  })
+  // Ensure common ones are always there or at least formatted correctly
+  if (methods.size === 0) {
+    return ["API Key", "OAuth2", "Bearer Token", "Basic Auth", "None"]
+  }
+  return Array.from(methods).sort()
 }
 
 export async function filterTools(options: {

@@ -19,12 +19,18 @@ export async function generateMetadata({ params }: { params: Promise<{ language:
   const { language } = await params
   const langDisplay = language.charAt(0).toUpperCase() + language.slice(1)
   
+  const tools = await getToolsBySdkLanguage(language)
+  const hasTools = tools.length > 0
+
   return {
     title: `Sales APIs with ${langDisplay} SDKs | Salestools Club`,
     description: `Browse the best sales tools and APIs with official ${langDisplay} SDK packages. Ideal for building AI agents with Claude and Gemini.`,
     alternates: {
       canonical: `https://salestools.club/sdk/${language}`,
     },
+    ...(!hasTools && {
+      robots: { index: false, follow: true },
+    }),
   }
 }
 
@@ -49,7 +55,9 @@ export default async function SdkLanguagePage({
   }
   
   if (tools.length === 0 && !categorySlug) {
-    notFound()
+    // Instead of 404, redirect to the main directory permanently
+    const { permanentRedirect } = await import("next/navigation")
+    permanentRedirect("/api")
   }
 
   const langDisplay = language.charAt(0).toUpperCase() + language.slice(1)

@@ -14,7 +14,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { tool1, tool2 } = await getToolsForComparison(slugs)
 
   if (!tool1 || !tool2) {
-    return { title: "Comparison Not Found" }
+    return { 
+      title: "Comparison Not Found | Salestools Club",
+      robots: { index: false, follow: true },
+    }
   }
 
   const pageTitle = `${tool1.name} vs ${tool2.name} — Best for Claude Code & AI Agents?`
@@ -43,8 +46,17 @@ export default async function ComparisonPage({ params }: Props) {
   const { slugs } = await params
   const { tool1, tool2 } = await getToolsForComparison(slugs)
 
+  if (!tool1 && !tool2) {
+    // Both tools missing, go to /vs permanently
+    const { permanentRedirect } = await import("next/navigation")
+    permanentRedirect("/vs")
+  }
+
   if (!tool1 || !tool2) {
-    notFound()
+    // One tool missing, go to the one that exists permanently
+    const existingTool = tool1 || tool2
+    const { permanentRedirect } = await import("next/navigation")
+    permanentRedirect(`/apis/${existingTool!.slug}`)
   }
 
   const specs = [

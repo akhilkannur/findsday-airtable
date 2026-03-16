@@ -19,12 +19,18 @@ export async function generateMetadata({ params }: { params: Promise<{ action: s
   const { action } = await params
   const actionDisplay = action.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase())
   
+  const tools = await getToolsByCapability(action)
+  const hasTools = tools.length > 0
+
   return {
     title: `Best Sales Tools for ${actionDisplay} | Salestools Club`,
     description: `Find the best AI-native APIs and tools for ${actionDisplay}. Discover how to automate your sales workflow with Claude and Gemini.`,
     alternates: {
       canonical: `https://salestools.club/capability/${action}`,
     },
+    ...(!hasTools && {
+      robots: { index: false, follow: true },
+    }),
   }
 }
 
@@ -49,7 +55,8 @@ export default async function CapabilityPage({
   }
   
   if (tools.length === 0 && !categorySlug) {
-    notFound()
+    const { permanentRedirect } = await import("next/navigation")
+    permanentRedirect("/api")
   }
 
   const actionDisplay = action.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase())

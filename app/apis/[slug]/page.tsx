@@ -24,12 +24,13 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>
 }): Promise<Metadata> {
   const { slug } = await params
-  const tool = await getToolBySlug(slug)
+  let tool = await getToolBySlug(slug)
 
   if (!tool) {
     return {
       title: "Tool Not Found | Salestools Club",
       description: "The requested tool could not be located.",
+      robots: { index: false, follow: true },
     }
   }
 
@@ -172,10 +173,20 @@ export default async function ToolDetailPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const tool = await getToolBySlug(slug)
+  let tool = await getToolBySlug(slug)
+
+  // Handle legacy slugs that might have been renamed to include -ai
+  if (!tool && !slug.endsWith("-ai")) {
+    const aiTool = await getToolBySlug(`${slug}-ai`)
+    if (aiTool) {
+      const { permanentRedirect } = await import("next/navigation")
+      permanentRedirect(`/apis/${aiTool.slug}`)
+    }
+  }
 
   if (!tool) {
-    notFound()
+    const { permanentRedirect } = await import("next/navigation")
+    permanentRedirect("/api")
   }
 
   const actionLinks = [
