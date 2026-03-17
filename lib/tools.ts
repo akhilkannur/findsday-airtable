@@ -7,7 +7,7 @@ import type { SalesTool, ToolCategory, CategoryMeta } from "./types"
 
 export async function getAllTools(): Promise<SalesTool[]> {
   const withDocs = tools.filter((t) => "docsUrl" in t && t.docsUrl && t.docsUrl !== "") as SalesTool[]
-  return withDocs.reverse()
+  return withDocs
 }
 
 export async function getFeaturedTools(): Promise<SalesTool[]> {
