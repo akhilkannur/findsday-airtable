@@ -5,6 +5,7 @@ import { notFound } from "next/navigation"
 import { ProgrammaticFilterBar } from "@/components/ProgrammaticFilterBar"
 import { FaqSection } from "@/components/FaqSection"
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
+import { generateSeoTitle, generateSeoDescription, formatAcronyms } from "@/lib/seo"
 
 export const dynamic = "force-dynamic"
 
@@ -17,14 +18,14 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ action: string }> }): Promise<Metadata> {
   const { action } = await params
-  const actionDisplay = action.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase())
-  
   const tools = await getToolsByCapability(action)
   const hasTools = tools.length > 0
 
+  const actionDisplay = formatAcronyms(action)
+
   return {
-    title: `Best Sales Tools for ${actionDisplay} | Salestools Club`,
-    description: `Find the best AI-native APIs and tools for ${actionDisplay}. Discover how to automate your sales workflow with Claude and Gemini.`,
+    title: generateSeoTitle(actionDisplay, "capability"),
+    description: generateSeoDescription(actionDisplay, "capability", tools.length),
     alternates: {
       canonical: `https://salestools.club/capability/${action}`,
     },
@@ -59,7 +60,7 @@ export default async function CapabilityPage({
     permanentRedirect("/api")
   }
 
-  const actionDisplay = action.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase())
+  const actionDisplay = formatAcronyms(action)
 
   const faqItems = [
     {

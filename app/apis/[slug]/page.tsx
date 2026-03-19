@@ -12,6 +12,7 @@ import {
 import { CopyButton } from "@/components/ui/CopyButton"
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
 import { getUseCasesForTool } from "@/lib/usecases"
+import { generateSeoTitle, generateSeoDescription } from "@/lib/seo"
 
 export async function generateStaticParams() {
   const slugs = await getAllSlugs()
@@ -34,11 +35,9 @@ export async function generateMetadata({
     }
   }
 
-  const pageTitle = tool.mcpReady
-    ? `${tool.name} API & MCP Config | Salestools Club`
-    : `${tool.name} API & Prompts | Salestools Club`
+  const pageTitle = generateSeoTitle(tool.name, "tool")
   const pageUrl = `https://salestools.club/apis/${tool.slug}`
-  const pageDescription = `${tool.oneLiner} API documentation and starter prompts to connect ${tool.name} to Claude Code or other AI agents for ${tool.category} workflows.`
+  const pageDescription = generateSeoDescription(tool.name, "tool")
 
   return {
     title: pageTitle,

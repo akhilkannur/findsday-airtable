@@ -9,7 +9,7 @@ import { NewsletterForm } from "@/components/NewsletterForm"
 export const metadata: Metadata = {
   title: "Salestools Club — Sales APIs & MCP Configs for AI Agents",
   description:
-    "The directory for AI-native sales stacks. Find APIs, MCP configs, and agent skills for building with Claude Code or other AI agents.",
+    "The technical directory for AI-native sales stacks. Access 500+ verified APIs, MCP configs, and agent skills for building with Claude Code, Gemini, and custom AI agents.",
   keywords: [
     "sales API directory",
     "MCP server for sales",

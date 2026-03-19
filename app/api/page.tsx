@@ -13,11 +13,15 @@ export function generateStaticParams() {
 export async function generateMetadata({ searchParams }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }): Promise<Metadata> {
   const sp = await searchParams
   const hasFilters = !!(sp.q || sp.category || sp.mcp || sp.free || sp.official || sp.view)
+  const allTools = await getAllTools()
+  const toolCount = allTools.length
+
+  const pageTitle = `500+ Sales APIs & MCP Configs for AI Agents | Salestools Club`
+  const pageDescription = `Access ${toolCount}+ verified sales APIs and MCP configs. The technical directory for builders connecting CRM, enrichment, and outreach tools to AI agents.`
 
   return {
-    title: "Sales APIs & MCP Configs for AI Agents | Salestools Club",
-    description:
-      "A comprehensive database of sales APIs and MCP configs for connecting your tools to Claude Code or other AI agents with starter prompts and documentation.",
+    title: pageTitle,
+    description: pageDescription,
     ...(!hasFilters && {
       alternates: {
         canonical: "https://salestools.club/api",
@@ -27,15 +31,15 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
       robots: { index: false, follow: true },
     }),
     openGraph: {
-      title: "Sales APIs & MCP Configs for AI Agents | Salestools Club",
-      description: "A comprehensive database of sales APIs and MCP configs for connecting your tools to Claude Code or other AI agents with starter prompts and documentation.",
+      title: pageTitle,
+      description: pageDescription,
       type: "website",
       url: "https://salestools.club/api",
     },
     twitter: {
       card: "summary_large_image",
-      title: "Sales APIs & MCP Configs for AI Agents | Salestools Club",
-      description: "A comprehensive database of sales APIs and MCP configs for connecting your tools to Claude Code or other AI agents with starter prompts and documentation.",
+      title: pageTitle,
+      description: pageDescription,
     },
   }
 }

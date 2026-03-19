@@ -7,10 +7,12 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
   const sp = await searchParams
   const hasFilters = !!(sp.official && sp.official === "true")
 
+  const pageTitle = "Sales MCP Servers for AI Agents | Salestools Club"
+  const pageDescription = "Find verified sales tools with MCP (Model Context Protocol) support. Connect your CRM and outreach tools directly to Claude Code and Gemini CLI."
+
   return {
-    title: "MCP Servers | Salestools Club",
-    description:
-      "Find sales tools with MCP (Model Context Protocol) support for Claude Code and Gemini CLI.",
+    title: pageTitle,
+    description: pageDescription,
     alternates: {
       canonical: "https://salestools.club/mcp",
     },
@@ -18,15 +20,15 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
       robots: { index: false, follow: true },
     }),
     openGraph: {
-      title: "MCP Servers | Salestools Club",
-      description: "Find sales tools with MCP (Model Context Protocol) support for Claude Code and Gemini CLI.",
+      title: pageTitle,
+      description: pageDescription,
       type: "website",
       url: "https://salestools.club/mcp",
     },
     twitter: {
       card: "summary_large_image",
-      title: "MCP Servers | Salestools Club",
-      description: "Find sales tools with MCP (Model Context Protocol) support for Claude Code and Gemini CLI.",
+      title: pageTitle,
+      description: pageDescription,
     },
   }
 }

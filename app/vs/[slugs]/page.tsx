@@ -4,6 +4,7 @@ import type { Metadata } from "next"
 import { getToolsForComparison, getAllSlugs } from "@/lib/tools"
 import { Zap, Check, X, ArrowRight } from "lucide-react"
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
+import { generateSeoTitle, generateSeoDescription } from "@/lib/seo"
 
 interface Props {
   params: Promise<{ slugs: string }>
@@ -20,8 +21,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
-  const pageTitle = `${tool1.name} vs ${tool2.name} — Best for Claude Code & AI Agents?`
-  const pageDescription = `Compare ${tool1.name} and ${tool2.name} for direct AI automation. Which API is better for connecting to Claude Code or other AI agents without middleware?`
+  const subject = `${tool1.name} vs ${tool2.name}`
+  const pageTitle = generateSeoTitle(subject, "vs")
+  const pageDescription = generateSeoDescription(subject, "vs")
   const pageUrl = `https://salestools.club/vs/${slugs}`
 
   return {

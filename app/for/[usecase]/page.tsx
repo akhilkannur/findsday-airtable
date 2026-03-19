@@ -9,6 +9,7 @@ import {
   getToolsForUseCase,
   getAllUseCases,
 } from "@/lib/usecases"
+import { generateSeoTitle, generateSeoDescription } from "@/lib/seo"
 
 export async function generateStaticParams() {
   return getUseCaseSlugs().map((usecase) => ({ usecase }))
@@ -29,8 +30,8 @@ export async function generateMetadata({
     }
   }
 
-  const pageTitle = `${uc.title} (2026) | Salestools Club`
-  const pageDescription = uc.metaDescription
+  const pageTitle = generateSeoTitle(uc.title, "capability") // Use case is similar to capability
+  const pageDescription = uc.metaDescription || generateSeoDescription(uc.title, "capability")
   const pageUrl = `https://salestools.club/for/${uc.slug}`
 
   return {

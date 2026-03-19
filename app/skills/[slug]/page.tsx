@@ -6,6 +6,7 @@ import { getToolBySlug } from "@/lib/tools"
 import { CopyButton } from "@/components/ui/CopyButton"
 import { ArrowRight } from "lucide-react"
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
+import { generateSeoTitle, generateSeoDescription } from "@/lib/seo"
 
 export async function generateStaticParams() {
   return getSkillSlugs().map((slug) => ({ slug }))
@@ -27,8 +28,8 @@ export async function generateMetadata({
     }
   }
 
-  const pageTitle = `${skill.name} — Agent Skill | Salestools Club`
-  const pageDescription = skill.description
+  const pageTitle = generateSeoTitle(`${skill.name} Agent Skill`, "guide")
+  const pageDescription = skill.description || generateSeoDescription(skill.name, "guide")
   const pageUrl = `https://salestools.club/skills/${skill.slug}`
 
   return {
