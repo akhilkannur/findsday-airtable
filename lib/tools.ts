@@ -7,7 +7,16 @@ import type { SalesTool, ToolCategory, CategoryMeta } from "./types"
 
 export async function getAllTools(): Promise<SalesTool[]> {
   const withDocs = tools.filter((t) => "docsUrl" in t && t.docsUrl && t.docsUrl !== "") as SalesTool[]
-  return withDocs
+  return withDocs.sort((a, b) => {
+    if (a.addedAt && b.addedAt) {
+      return b.addedAt.localeCompare(a.addedAt)
+    } else if (a.addedAt) {
+      return -1
+    } else if (b.addedAt) {
+      return 1
+    }
+    return a.name.localeCompare(b.name)
+  })
 }
 
 export async function getFeaturedTools(): Promise<SalesTool[]> {
