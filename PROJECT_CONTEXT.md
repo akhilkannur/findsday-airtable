@@ -59,7 +59,8 @@
 
 ### Indexing Progress
 - **Script:** `scripts/index-all-tools.mjs` - Automatically batches 500+ tool pages for Google Indexing.
-- **Status (March 14, 2026):** ~180/527 URLs submitted. ~340 remaining to be batched over the next 2-3 days (daily quota is 200).
+- **Queue/Notes:** See `INDEXING_NOTES.md` for fixed 404s and high-priority URLs.
+- **Status (March 16, 2026):** ~200/527 URLs submitted. ~327 remaining. Fixed 404/redirect issues for 60+ tools; prioritized for re-submission on March 17, 2026.
 
 ## Important Conventions
 1. **New tools go at the END of data.ts** - This makes them appear first on homepage due to reverse() in getAllTools()

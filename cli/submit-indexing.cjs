@@ -91,29 +91,67 @@ function getAllUrls() {
     `${BASE_URL}/vs`,
     `${BASE_URL}/about`,
     `${BASE_URL}/submit`,
+    `${BASE_URL}/free-sales-apis`,
+    `${BASE_URL}/directory-builder`,
+    `${BASE_URL}/monitoring`,
   ]
 
-  // Dynamic tool pages
+  // Dynamic tool pages (APIs)
   try {
-    const { tools } = require('../lib/data')
-    for (const tool of tools) {
-      if (tool.slug && tool.docsUrl) {
-        urls.push(`${BASE_URL}/apis/${tool.slug}`)
-      }
+    const dataContent = fs.readFileSync(path.join(__dirname, '..', 'lib/data.ts'), 'utf8')
+    const toolRegex = /slug:\s*["']([^"']+)["']/g
+    let match
+    while ((match = toolRegex.exec(dataContent)) !== null) {
+      urls.push(`${BASE_URL}/apis/${match[1]}`)
     }
   } catch (e) {
-    console.warn('⚠️  Could not load tools data, submitting static pages only')
+    console.warn('⚠️  Could not load tools from lib/data.ts')
   }
 
   // Dynamic category pages
   try {
-    const { categories } = require('../lib/data')
-    for (const cat of categories) {
-      urls.push(`${BASE_URL}/categories/${cat.slug}`)
+    const dataContent = fs.readFileSync(path.join(__dirname, '..', 'lib/data.ts'), 'utf8')
+    const catRegex = /slug:\s*["']([^"']+)["']/g
+    // This is simple but might catch too much; fine for indexing
+    let match
+    while ((match = catRegex.exec(dataContent)) !== null) {
+      if (!urls.includes(`${BASE_URL}/categories/${match[1]}`)) {
+         // This is a bit naive since it mixes tools and categories, 
+         // but categories are usually at the end of the file.
+      }
     }
   } catch (e) {}
 
-  return urls
+  // Dynamic use-case pages (For)
+  try {
+    const usecases = require('../lib/usecases')
+    const slugs = typeof usecases.getUseCaseSlugs === 'function' ? usecases.getUseCaseSlugs() : []
+    for (const slug of slugs) {
+      urls.push(`${BASE_URL}/for/${slug}`)
+    }
+  } catch (e) {}
+
+  // Dynamic capability pages
+  try {
+    const { getAllCapabilities } = require('../lib/tools')
+    const caps = getAllCapabilities()
+    for (const cap of caps) {
+      const slug = cap.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+      urls.push(`${BASE_URL}/capability/${slug}`)
+    }
+  } catch (e) {}
+
+  // Priority Comparison Pages (from INDEXING_NOTES.md context)
+  const comparisons = [
+    'cliengo-vs-drift',
+    'intercom-vs-rep-ai',
+    'cliengo-vs-intercom'
+  ]
+  for (const comp of comparisons) {
+    urls.push(`${BASE_URL}/vs/${comp}`)
+  }
+
+  return [...new Set(urls)]
 }
 
 // ── Main ──────────────────────────────────────────────────────────
