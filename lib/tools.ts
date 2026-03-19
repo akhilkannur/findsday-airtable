@@ -272,6 +272,20 @@ export async function filterTools(options: {
 
         return 0
       })
+  } else {
+    // Sort by addedAt (newest first), then alphabetically
+    filtered.sort((a, b) => {
+      if (a.addedAt && b.addedAt) {
+        if (a.addedAt !== b.addedAt) {
+          return b.addedAt.localeCompare(a.addedAt)
+        }
+      } else if (a.addedAt) {
+        return -1
+      } else if (b.addedAt) {
+        return 1
+      }
+      return a.name.localeCompare(b.name)
+    })
   }
 
   return filtered

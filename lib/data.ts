@@ -11406,6 +11406,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     isFeatured: false,
     alternativeTo: ["Badger Maps", "Spotio", "Route4Me"],
     integrations: [],
+    addedAt: "2026-03-19",
   },
   {
     slug: "apparound",
@@ -11427,6 +11428,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     isFeatured: false,
     alternativeTo: ["Conga CPQ", "Salesforce CPQ", "PROS"],
     integrations: [],
+    addedAt: "2026-03-19",
   },
   {
     slug: "attentive",
@@ -11448,6 +11450,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     isFeatured: false,
     alternativeTo: ["Klaviyo", "Postscript", "Braze"],
     integrations: [],
+    addedAt: "2026-03-19",
   },
   {
     slug: "badger-maps",
@@ -11467,29 +11470,9 @@ export const tools: (SalesTool | MinimalTool)[] = [
     starterPrompt: "",
     mcpReady: false,
     isFeatured: false,
-    alternativeTo: ["Route4Me", "Spotio", "Google Maps"],
+alternativeTo: ["Route4Me", "Spotio", "Google Maps"],
     integrations: [],
-  },
-  {
-    slug: "fliptop",
-    name: "Fliptop",
-    oneLiner: "People identity and data enrichment platform.",
-    description: "Fliptop provides people identity resolution and data enrichment APIs. The platform socializes applications by turning email addresses, URLs, and social IDs into complete digital identities. Fliptop's API enables developers to enrich lead data with comprehensive social and professional profile information.",
-    category: "Sales Intelligence",
-    websiteUrl: "https://www.fliptop.com",
-    docsUrl: "https://developer.fliptop.com/",
-    pricingUrl: "https://www.fliptop.com",
-    apiType: ["REST"],
-    authMethod: ["API Key"],
-    hasFreeTier: false,
-    sdkLanguages: ["JavaScript"],
-    hasWebhooks: false,
-    aiCapabilities: ["People Identity", "Data Enrichment", "Social Profile Lookup"],
-    starterPrompt: "",
-    mcpReady: false,
-    isFeatured: false,
-    alternativeTo: ["FullContact", "Clearbit", "Pipl"],
-    integrations: [],
+    addedAt: "2026-03-19",
   },
   {
     slug: "balto",
@@ -11511,6 +11494,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     isFeatured: false,
     alternativeTo: ["Gong", "Clari", "ExecVision"],
     integrations: [],
+    addedAt: "2026-03-19",
   },
   {
     slug: "clari",
@@ -11532,6 +11516,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     isFeatured: false,
     alternativeTo: ["Gong", "Salesforce Einstein", "InsightSquared"],
     integrations: [],
+    addedAt: "2026-03-19",
   },
   {
     slug: "cloze",
@@ -11553,6 +11538,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     isFeatured: false,
     alternativeTo: ["HubSpot", "Pipedrive", "Close"],
     integrations: [],
+    addedAt: "2026-03-19",
   },
   {
     slug: "spiro",
@@ -11574,6 +11560,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     isFeatured: false,
     alternativeTo: ["HubSpot", "Salesforce", "Pipedrive"],
     integrations: [],
+    addedAt: "2026-03-19",
   },
   {
     slug: "connectwise",
@@ -11595,6 +11582,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     isFeatured: false,
     alternativeTo: ["Autotask", "Datto", "Kaseya"],
     integrations: [],
+    addedAt: "2026-03-19",
   },
   {
     slug: "crazycall",
@@ -11616,6 +11604,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     isFeatured: false,
     alternativeTo: ["Aircall", "Dialpad", "Grasshopper"],
     integrations: [],
+    addedAt: "2026-03-19",
   },
   {
     slug: "dealcloud",
@@ -11637,6 +11626,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     isFeatured: false,
     alternativeTo: ["Salesforce", "HubSpot", "Pipedrive"],
     integrations: [],
+    addedAt: "2026-03-19",
   },
   {
     slug: "guru",
@@ -11658,6 +11648,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     isFeatured: false,
     alternativeTo: ["Confluence", "Notion", "Slite"],
     integrations: [],
+    addedAt: "2026-03-19",
   },
   {
     slug: "loopio",
@@ -11679,6 +11670,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     isFeatured: false,
     alternativeTo: ["RFPIO", "Uploft", "Proposify"],
     integrations: [],
+    addedAt: "2026-03-19",
   },
   {
     slug: "mediaradar",
@@ -11700,6 +11692,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     isFeatured: false,
     alternativeTo: ["Spotio", "Gong", "LinkedIn Sales Navigator"],
     integrations: [],
+    addedAt: "2026-03-19",
   },
   {
     slug: "pros",
@@ -11721,6 +11714,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     isFeatured: false,
     alternativeTo: ["Conga CPQ", "Salesforce CPQ", "SAP CPQ"],
     integrations: [],
+    addedAt: "2026-03-19",
   },
   {
     slug: "quotewerks",
@@ -11742,6 +11736,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     isFeatured: false,
     alternativeTo: ["Qwilr", "Proposify", "PandaDoc"],
     integrations: [],
+    addedAt: "2026-03-19",
   },
   {
     slug: "salespad",
@@ -11763,6 +11758,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     isFeatured: false,
     alternativeTo: ["Dynamics GP", "SAP", "NetSuite"],
     integrations: [],
+    addedAt: "2026-03-19",
   },
   {
     slug: "tacton",
@@ -11784,6 +11780,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     isFeatured: false,
     alternativeTo: ["Conga CPQ", "SAP CPQ", "PROS"],
     integrations: [],
+    addedAt: "2026-03-19",
   },
   {
     slug: "vainu",
@@ -11805,6 +11802,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     isFeatured: false,
     alternativeTo: ["LinkedIn Sales Navigator", "ZoomInfo", "Clearbit"],
     integrations: [],
+    addedAt: "2026-03-19",
   },
 ]
 

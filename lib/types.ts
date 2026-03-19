@@ -51,6 +51,7 @@ export interface SalesTool {
 
   isFeatured: boolean
   alternativeTo?: string[]
+  addedAt?: string
 }
 
 export interface CategoryMeta {
