@@ -35,6 +35,7 @@ export async function generateMetadata({
     }
   }
 
+  const typedTool = tool as NonNullable<typeof tool>
   const pageTitle = generateSeoTitle(typedTool.name, "tool")
   const pageUrl = `https://salestools.club/apis/${typedTool.slug}`
   const pageDescription = generateSeoDescription(typedTool.name, "tool")
@@ -66,20 +67,20 @@ function JsonLd({ tool, alternatives }: { tool: SalesTool; alternatives: SalesTo
   const softwareSchema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    name: typedTool.name,
-    description: typedTool.oneLiner,
-    url: typedTool.websiteUrl,
+    name: tool.name,
+    description: tool.oneLiner,
+    url: tool.websiteUrl,
     applicationCategory: "SalesSoftware",
-    applicationSubCategory: typedTool.category,
+    applicationSubCategory: tool.category,
     operatingSystem: "Cloud, Web, API",
     offers: {
       "@type": "Offer",
-      price: typedTool.hasFreeTier ? "0" : undefined,
+      price: tool.hasFreeTier ? "0" : undefined,
       priceCurrency: "USD",
       availability: "https://schema.org/InStock",
     },
-    featureList: typedTool.aiCapabilities?.join(", "),
-    screenshot: `https://salestools.club/apis/${typedTool.slug}/opengraph-image`,
+    featureList: tool.aiCapabilities?.join(", "),
+    screenshot: `https://salestools.club/apis/${tool.slug}/opengraph-image`,
   }
 
   const faqSchema = {
@@ -88,38 +89,38 @@ function JsonLd({ tool, alternatives }: { tool: SalesTool; alternatives: SalesTo
     mainEntity: [
       {
         "@type": "Question",
-        name: `What does ${typedTool.name} do?`,
+        name: `What does ${tool.name} do?`,
         acceptedAnswer: {
           "@type": "Answer",
-          text: `${typedTool.name} is a ${typedTool.category.toLowerCase()} tool that provides ${typedTool.oneLiner}`,
+          text: `${tool.name} is a ${tool.category.toLowerCase()} tool that provides ${tool.oneLiner}`,
         },
       },
       {
         "@type": "Question",
-        name: `How do I use ${typedTool.name} with AI agents?`,
+        name: `How do I use ${tool.name} with AI agents?`,
         acceptedAnswer: {
           "@type": "Answer",
-          text: `Connect ${typedTool.name} to agents like Claude Code or Cowork by using its ${typedTool.apiType?.join(' or ') || 'API'} and your ${typedTool.authMethod?.join(' or ') || 'authentication'} keys. This allows your agent to perform ${typedTool.aiCapabilities?.slice(0, 2).join(' and ') || 'tasks'} directly without needing extra software.`,
+          text: `Connect ${tool.name} to agents like Claude Code or Cowork by using its ${tool.apiType?.join(' or ') || 'API'} and your ${tool.authMethod?.join(' or ') || 'authentication'} keys. This allows your agent to perform ${tool.aiCapabilities?.slice(0, 2).join(' and ') || 'tasks'} directly without needing extra software.`,
         },
       },
       {
         "@type": "Question",
-        name: `Is ${typedTool.name} API free?`,
+        name: `Is ${tool.name} API free?`,
         acceptedAnswer: {
           "@type": "Answer",
-          text: typedTool.hasFreeTier 
-            ? `Yes, ${typedTool.name} offers a free tier for its API.` 
-            : `No, ${typedTool.name} is a paid service, but you can check their website for current trial offers.`,
+          text: tool.hasFreeTier 
+            ? `Yes, ${tool.name} offers a free tier for its API.` 
+            : `No, ${tool.name} is a paid service, but you can check their website for current trial offers.`,
         },
       },
       {
         "@type": "Question",
-        name: `What are the best alternatives to ${typedTool.name}?`,
+        name: `What are the best alternatives to ${tool.name}?`,
         acceptedAnswer: {
           "@type": "Answer",
           text: alternatives.length > 0 
-            ? `The best alternatives to ${typedTool.name} include ${alternatives.map(a => a.name).join(", ")}.`
-            : `Top alternatives in the ${typedTool.category} category include similar tools listed in our directory.`,
+            ? `The best alternatives to ${tool.name} include ${alternatives.map(a => a.name).join(", ")}.`
+            : `Top alternatives in the ${tool.category} category include similar tools listed in our directory.`,
         },
       },
     ],
@@ -142,19 +143,19 @@ function JsonLd({ tool, alternatives }: { tool: SalesTool; alternatives: SalesTo
 function ToolCard({ tool }: { tool: SalesTool }) {
   return (
     <Link
-      href={`/apis/${typedTool.slug}`}
+      href={`/apis/${tool.slug}`}
       className="tool-card group flex flex-col h-full"
     >
       <div className="flex justify-between items-start mb-6">
         <div className="w-12 h-12 bg-ink text-paper flex items-center justify-center font-serif font-bold text-xl [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]">
-          {typedTool.name.charAt(0)}
+          {tool.name.charAt(0)}
         </div>
       </div>
       
       <div className="flex-grow">
-        <h3 className="text-xl font-semibold mb-2">{typedTool.name}</h3>
+        <h3 className="text-xl font-semibold mb-2">{tool.name}</h3>
         <p className="text-[0.9rem] text-ink-fade leading-relaxed line-clamp-2">
-          {typedTool.oneLiner}
+          {tool.oneLiner}
         </p>
       </div>
 
