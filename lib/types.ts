@@ -40,6 +40,7 @@ export interface SalesTool {
   sdkLanguages: string[]
   snippetLanguages?: string[]
   hasWebhooks: boolean
+  hasPublicApi: boolean // false if tool has no public REST/GraphQL API
 
   // AI-Native Operator Specifics
   aiCapabilities: string[] // e.g. ["Search Leads", "Update CRM", "Record Meetings"]
