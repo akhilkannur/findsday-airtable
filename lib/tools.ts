@@ -165,12 +165,55 @@ export async function getToolsByAlternativeTo(toolName: string): Promise<SalesTo
   )
 }
 
+export const CANONICAL_CAPABILITIES = [
+  "Lead Generation",
+  "Email Verification",
+  "Cold Email Outreach",
+  "LinkedIn Automation",
+  "AI SDR & Agents",
+  "Conversation Intelligence",
+  "CRM Automation",
+  "Sales Automation",
+  "B2B Data Enrichment",
+  "Sales Enablement",
+  "Revenue Intelligence",
+  "Meeting Scheduling",
+  "Personalized Outreach",
+  "AI Voice & Dialers",
+  "CPQ & Closing",
+  "Web Scraping",
+  "Intent Intelligence",
+  "ABM Automation",
+  "Sales Coaching",
+  "Lead Management & Scoring",
+  "Customer Success",
+  "Data Privacy",
+]
+
+export function getAllCapabilities(): string[] {
+  return [...CANONICAL_CAPABILITIES].sort()
+}
+
 export async function getToolsByCapability(capabilitySlug: string): Promise<SalesTool[]> {
   const all = await getAllTools()
   const target = capabilitySlug.replace(/-/g, " ").toLowerCase()
-  return all.filter((t) => 
-    t.aiCapabilities.some(cap => cap.toLowerCase().replace(/-/g, " ").includes(target))
+  
+  // Find the canonical name if the slug matches one
+  const canonicalName = CANONICAL_CAPABILITIES.find(
+    (cap) => cap.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") === capabilitySlug
   )
+
+  return all.filter((t) => {
+    const toolCaps = t.aiCapabilities.map(c => c.toLowerCase())
+    
+    // 1. Direct match with canonical name
+    if (canonicalName && toolCaps.includes(canonicalName.toLowerCase())) {
+      return true
+    }
+    
+    // 2. Fallback: match the target string in any of the tool's capabilities
+    return toolCaps.some(cap => cap.includes(target) || target.includes(cap))
+  })
 }
 
 export async function getFreeTierTools(): Promise<SalesTool[]> {
@@ -194,16 +237,6 @@ export function getAllSdkLanguages(): string[] {
     }
   })
   return Array.from(langs).sort()
-}
-
-export function getAllCapabilities(): string[] {
-  const caps = new Set<string>()
-  tools.forEach(t => {
-    if (t.docsUrl && t.docsUrl !== "" && "aiCapabilities" in t) {
-      t.aiCapabilities.forEach(c => caps.add(c))
-    }
-  })
-  return Array.from(caps).sort()
 }
 
 export function getAllAuthMethods(): string[] {
