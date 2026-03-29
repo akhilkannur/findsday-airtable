@@ -26,6 +26,7 @@ function fetchSitemap() {
 const PRIORITY_PREFIXES = [
   "/guides/",
   "/skills/",
+  "/apis/",
   "/stacks/",
   "/for/",
   "/vs/",
@@ -40,8 +41,6 @@ function getPriority(url) {
   for (let i = 0; i < PRIORITY_PREFIXES.length; i++) {
     if (url.includes(PRIORITY_PREFIXES[i])) return i
   }
-  // Tool pages get medium priority
-  if (url.includes("/apis/")) return PRIORITY_PREFIXES.length
   return PRIORITY_PREFIXES.length + 1
 }
 

@@ -42,11 +42,25 @@ async function getGscData(days = 7, limit = 50, sortMetric = "clicks") {
       endDate: endDate.toISOString().split('T')[0],
       dimensions: ["query"],
       rowLimit: limit,
-      dataState: "all" // CRITICAL: Includes "fresh" data (last 24-48 hours)
+      dataState: "all" 
     }
   })
 
-  let output = `### GSC Performance (${targetSite.siteUrl}) — Fresh Data Included\n`
+  // GET TOTALS
+  const totalsRes = await searchconsole.searchanalytics.query({
+    siteUrl: targetSite.siteUrl,
+    requestBody: {
+      startDate: startDate.toISOString().split('T')[0],
+      endDate: endDate.toISOString().split('T')[0],
+      dataState: "all"
+    }
+  })
+
+  const totals = totalsRes.data.rows ? totalsRes.data.rows[0] : { clicks: 0, impressions: 0, ctr: 0, position: 0 }
+
+  let output = `### GSC Performance Summary (${targetSite.siteUrl})\n`
+  output += `**Total Clicks:** ${totals.clicks} | **Total Impressions:** ${totals.impressions} | **Avg Position:** ${totals.position.toFixed(1)}\n\n`
+  output += `Range: ${startDate.toISOString().split('T')[0]} to ${endDate.toISOString().split('T')[0]} (Fresh Data Included)\n`
   if (res.data.rows) {
     let rows = res.data.rows;
     if (sortMetric === "impressions") {
@@ -62,6 +76,29 @@ async function getGscData(days = 7, limit = 50, sortMetric = "clicks") {
     rows.forEach(row => {
       output += `| ${row.keys[0]} | ${row.clicks} | ${row.impressions} | ${(row.ctr * 100).toFixed(1)}% | ${row.position.toFixed(1)} |\n`
     })
+
+    // GET TOP PAGES
+    const pagesRes = await searchconsole.searchanalytics.query({
+      siteUrl: targetSite.siteUrl,
+      requestBody: {
+        startDate: startDate.toISOString().split('T')[0],
+        endDate: endDate.toISOString().split('T')[0],
+        dimensions: ["page"],
+        rowLimit: 10,
+        dataState: "all"
+      }
+    })
+
+    if (pagesRes.data.rows) {
+      output += "\n### Top Pages (by Impressions)\n"
+      output += "| Page URL | Clicks | Impressions | Position |\n"
+      output += "| :--- | :--- | :--- | :--- |\n"
+      pagesRes.data.rows
+        .sort((a, b) => b.impressions - a.impressions)
+        .forEach(row => {
+          output += `| ${row.keys[0].replace(targetSite.siteUrl, "/")} | ${row.clicks} | ${row.impressions} | ${row.position.toFixed(1)} |\n`
+        })
+    }
   } else {
     output += "No data found for this period."
   }

@@ -233,6 +233,7 @@ export default async function RootLayout({
                 <Link href="/monitoring" className="hover:line-through">Monitoring</Link>
                 <Link href="/about" className="hover:line-through">About</Link>
                 <Link href="/privacy" className="hover:line-through">Privacy</Link>
+                <Link href="/rss.xml" className="hover:line-through">RSS Feed</Link>
                 <Link href="/submit" className="hover:line-through">Submit Tool</Link>
               </div>
 

@@ -102,6 +102,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.5,
     },
+    {
+      url: `${baseUrl}/rss.xml`,
+      lastModified: lastModified,
+      changeFrequency: "weekly",
+      priority: 0.5,
+    },
   ]
 
   // Dynamic tool pages
