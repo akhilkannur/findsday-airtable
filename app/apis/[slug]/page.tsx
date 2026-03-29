@@ -36,9 +36,16 @@ export async function generateMetadata({
   }
 
   const typedTool = tool as NonNullable<typeof tool>
-  const pageTitle = generateSeoTitle(typedTool.name, "tool")
+  
+  // Determine API status for SEO metadata
+  let apiStatus: "verified" | "no-api" | "monitoring" = "verified"
+  if (!typedTool.docsUrl) {
+    apiStatus = typedTool.hasPublicApi === false ? "no-api" : "monitoring"
+  }
+
+  const pageTitle = generateSeoTitle(typedTool.name, "tool", apiStatus)
   const pageUrl = `https://salestools.club/apis/${typedTool.slug}`
-  const pageDescription = generateSeoDescription(typedTool.name, "tool")
+  const pageDescription = generateSeoDescription(typedTool.name, "tool", undefined, apiStatus)
 
   return {
     title: pageTitle,

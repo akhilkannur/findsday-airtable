@@ -25,7 +25,11 @@ export function formatAcronyms(text: string): string {
   return formatted
 }
 
-export function generateSeoTitle(subject: string, type: "capability" | "category" | "tool" | "guide" | "vs"): string {
+export function generateSeoTitle(
+  subject: string, 
+  type: "capability" | "category" | "tool" | "guide" | "vs",
+  status?: "verified" | "no-api" | "monitoring"
+): string {
   const formattedSubject = formatAcronyms(subject)
   
   switch (type) {
@@ -34,6 +38,9 @@ export function generateSeoTitle(subject: string, type: "capability" | "category
     case "category":
       return `${formattedSubject} APIs & Developer Tools | Salestools Club`
     case "tool":
+      if (status === "no-api" || status === "monitoring") {
+        return `${formattedSubject} Technical Details & Status | Salestools Club`
+      }
       return `${formattedSubject} API Documentation & MCP Config | Salestools Club`
     case "guide":
       return `${formattedSubject} | Salestools Club`
@@ -44,7 +51,12 @@ export function generateSeoTitle(subject: string, type: "capability" | "category
   }
 }
 
-export function generateSeoDescription(subject: string, type: "capability" | "category" | "tool" | "guide" | "vs", count?: number): string {
+export function generateSeoDescription(
+  subject: string, 
+  type: "capability" | "category" | "tool" | "guide" | "vs", 
+  count?: number,
+  status?: "verified" | "no-api" | "monitoring"
+): string {
   const formattedSubject = formatAcronyms(subject)
   
   switch (type) {
@@ -53,6 +65,12 @@ export function generateSeoDescription(subject: string, type: "capability" | "ca
     case "category":
       return `Explore the top ${formattedSubject} APIs for sales automation. Technical documentation, authentication methods, and MCP servers for AI builders.`
     case "tool":
+      if (status === "no-api") {
+        return `Technical details for ${formattedSubject}. Note: No public REST/GraphQL API currently found. Explore monitored status and top AI-native alternatives for automation.`
+      }
+      if (status === "monitoring") {
+        return `We are currently monitoring ${formattedSubject} for public API documentation. See the latest technical status and discovery progress for AI operators.`
+      }
       return `Official API documentation and MCP configuration for ${formattedSubject}. Use our starter prompts to connect ${formattedSubject} to your AI sales agent.`
     case "guide":
       return `Master ${formattedSubject} with our technical deep-dive. Learn how to implement agentic workflows using verified sales APIs.`
