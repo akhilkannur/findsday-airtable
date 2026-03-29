@@ -319,7 +319,7 @@ export default async function ToolDetailPage({
             </div>
           )}
 
-          {typedTool.starterPrompt && (
+          {typedTool.docsUrl && typedTool.starterPrompt && (
             <div className="p-8 md:p-16 bg-paper border border-dashed border-ink relative group">
               <div className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-widest text-ink-fade mb-6 md:mb-10">How to use this tool</div>
               <div className="font-serif italic text-xl md:text-2xl text-ink leading-relaxed">
@@ -338,14 +338,32 @@ export default async function ToolDetailPage({
             </div>
           </div>
 
-          <div className="p-6 md:p-10 lg:p-16 bg-paper-dark/20 border-l-4 border-ink space-y-6 md:space-y-8">
-            <h3 className="font-mono text-[0.8rem] md:text-[0.85rem] uppercase font-bold tracking-widest text-ink">Direct Agent Workflow for {typedTool.name}</h3>
-            <div className="font-serif text-lg md:text-xl leading-relaxed text-ink-fade max-w-2xl italic space-y-4">
-              <p>• <strong>Connect:</strong> Give your {typedTool.name} {typedTool.authMethod?.join(' or ') || 'API Key'} to <strong>Claude Code, Cowork, or your favorite AI agent.</strong></p>
-              <p>• <strong>Automate:</strong> Your agent handles {typedTool.aiCapabilities?.slice(0, 2).join(' and ') || 'tasks'} directly.</p>
-              <p>• <strong>Execute:</strong> No extra software or middleware required for {typedTool.category} automation.</p>
+          {typedTool.docsUrl ? (
+            <div className="p-6 md:p-10 lg:p-16 bg-paper-dark/20 border-l-4 border-ink space-y-6 md:space-y-8">
+              <h3 className="font-mono text-[0.8rem] md:text-[0.85rem] uppercase font-bold tracking-widest text-ink">Direct Agent Workflow for {typedTool.name}</h3>
+              <div className="font-serif text-lg md:text-xl leading-relaxed text-ink-fade max-w-2xl italic space-y-4">
+                <p>• <strong>Connect:</strong> Give your {typedTool.name} {typedTool.authMethod?.join(' or ') || 'API Key'} to <strong>Claude Code, Cowork, or your favorite AI agent.</strong></p>
+                <p>• <strong>Automate:</strong> Your agent handles {typedTool.aiCapabilities?.slice(0, 2).join(' and ') || 'tasks'} directly.</p>
+                <p>• <strong>Execute:</strong> No extra software or middleware required for {typedTool.category} automation.</p>
+              </div>
             </div>
-          </div>
+          ) : typedTool.hasPublicApi === false ? (
+            <div className="p-6 md:p-10 lg:p-16 bg-paper-dark/10 border-l-4 border-red-900/20 space-y-6 md:space-y-8 opacity-80">
+              <h3 className="font-mono text-[0.8rem] md:text-[0.85rem] uppercase font-bold tracking-widest text-ink">Status: No Public API Found</h3>
+              <div className="font-serif text-lg md:text-xl leading-relaxed text-ink-fade max-w-2xl italic space-y-4">
+                <p>We have manually verified that {typedTool.name} does not currently offer a public REST or GraphQL API for external developers.</p>
+                <p><strong>Note:</strong> While this tool is excellent for human use, it cannot be directly controlled by AI agents like Claude Code or Gemini CLI at this time.</p>
+              </div>
+            </div>
+          ) : (
+            <div className="p-6 md:p-10 lg:p-16 bg-paper-dark/10 border-l-4 border-ink/20 space-y-6 md:space-y-8">
+              <h3 className="font-mono text-[0.8rem] md:text-[0.85rem] uppercase font-bold tracking-widest text-ink">Status: Monitoring for API</h3>
+              <div className="font-serif text-lg md:text-xl leading-relaxed text-ink-fade max-w-2xl italic space-y-4">
+                <p>We are currently monitoring {typedTool.name} for the release of public API documentation.</p>
+                <p>Know an API we missed? Email <strong>akhil@salestools.club</strong> to help us keep this directory updated for the AI operator community.</p>
+              </div>
+            </div>
+          )}
 
           {getSkillsForTool(typedTool.slug).length > 0 && (
             <div>
