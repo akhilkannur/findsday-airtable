@@ -1,7 +1,7 @@
-import { getToolsByCapability, getAllCapabilities, getAllCategories } from "@/lib/tools"
+import { getToolsByCapability, getAllCapabilities, getAllCategories, CANONICAL_CAPABILITIES } from "@/lib/tools"
 import Link from "next/link"
 import type { Metadata } from "next"
-import { notFound } from "next/navigation"
+import { notFound, permanentRedirect } from "next/navigation"
 import { ProgrammaticFilterBar } from "@/components/ProgrammaticFilterBar"
 import { FaqSection } from "@/components/FaqSection"
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
@@ -11,16 +11,27 @@ export const dynamic = "force-dynamic"
 
 export async function generateStaticParams() {
   const capabilities = getAllCapabilities()
-  return capabilities.slice(0, 20).map((cap) => ({
-    action: cap.toLowerCase().replace(/\s+/g, "-"),
+  return capabilities.map((cap) => ({
+    action: cap.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""),
   }))
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ action: string }> }): Promise<Metadata> {
   const { action } = await params
-  const tools = await getToolsByCapability(action)
-  const hasTools = tools.length > 0
+  
+  // Check if it's a canonical capability
+  const isCanonical = CANONICAL_CAPABILITIES.some(
+    (cap) => cap.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") === action
+  )
 
+  if (!isCanonical) {
+    return {
+      title: "Capability Not Found | Salestools Club",
+      robots: { index: false, follow: false },
+    }
+  }
+
+  const tools = await getToolsByCapability(action)
   const actionDisplay = formatAcronyms(action)
 
   return {
@@ -29,9 +40,6 @@ export async function generateMetadata({ params }: { params: Promise<{ action: s
     alternates: {
       canonical: `https://salestools.club/capability/${action}`,
     },
-    ...(!hasTools && {
-      robots: { index: false, follow: true },
-    }),
   }
 }
 
@@ -44,6 +52,15 @@ export default async function CapabilityPage({
 }) {
   const { action } = await params
   const { category: categorySlug } = await searchParams
+
+  // Strict check for canonical capabilities
+  const isCanonical = CANONICAL_CAPABILITIES.some(
+    (cap) => cap.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") === action
+  )
+
+  if (!isCanonical) {
+    permanentRedirect("/api")
+  }
   
   let tools = await getToolsByCapability(action)
   const categories = getAllCategories()
