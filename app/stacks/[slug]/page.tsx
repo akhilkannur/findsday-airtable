@@ -106,12 +106,44 @@ export default async function StackDetailPage({
 
           <div className="max-w-4xl">
             <div className="circled font-mono text-[0.65rem] md:text-[0.75rem] font-bold uppercase mb-4 md:mb-6">
-              {stack.toolSlugs.length}-Tool Stack
+              {stack.expert ? "Expert Recommendation" : `${stack.toolSlugs.length}-Tool Stack`}
             </div>
-            <h1 className="type-display uppercase mb-8 md:mb-12 text-3xl md:text-5xl lg:text-7xl">{stack.name}</h1>
-            <p className="font-serif italic text-xl md:text-2xl text-ink-fade leading-relaxed max-w-2xl border-l-2 border-ink pl-4 md:pl-6">
-              {stack.description}
+            <h1 className="type-display uppercase mb-8 md:mb-12 text-3xl md:text-5xl lg:text-7xl leading-tight">{stack.name}</h1>
+            <p className="font-serif italic text-xl md:text-2xl text-ink-fade leading-relaxed max-w-2xl border-l-2 border-ink pl-4 md:pl-6 mb-12">
+              {stack.tagline}
             </p>
+
+            {stack.expert && (
+              <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start bg-paper p-8 md:p-12 border border-ink shadow-[8px_8px_0px_0px_rgba(26,25,23,1)]">
+                <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden grayscale border-2 border-ink shrink-0 shadow-[4px_4px_0px_0px_rgba(26,25,23,1)]">
+                  <img
+                    src={stack.expert.image}
+                    alt={stack.expert.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="flex flex-col gap-6">
+                  <div>
+                    <h3 className="text-xl md:text-2xl font-bold uppercase mb-1">{stack.expert.name}</h3>
+                    <div className="flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade">
+                      <span>{stack.expert.role} @</span>
+                      <Link href={stack.expert.companyUrl} target="_blank" className="underline hover:line-through">
+                        {stack.expert.company}
+                      </Link>
+                    </div>
+                  </div>
+
+                  {stack.expertQuote && (
+                    <div className="relative">
+                      <span className="absolute -top-4 -left-4 text-6xl font-serif text-ink/10 select-none">"</span>
+                      <p className="font-serif text-lg md:text-xl text-ink leading-relaxed relative z-10 italic">
+                        {stack.expertQuote}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>

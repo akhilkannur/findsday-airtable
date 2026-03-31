@@ -7,6 +7,14 @@ export interface WorkflowStep {
   description: string
 }
 
+export interface Expert {
+  name: string
+  role: string
+  company: string
+  companyUrl: string
+  image: string
+}
+
 export interface Stack {
   slug: string
   name: string
@@ -14,9 +22,48 @@ export interface Stack {
   description: string
   toolSlugs: string[]
   workflow: WorkflowStep[]
+  expert?: Expert
+  expertQuote?: string
 }
 
 const stacks: Stack[] = [
+  {
+    slug: "context-first-gtm-stack",
+    name: "Context-First GTM Stack",
+    tagline: "The modern outbound engine: context OS, automated reporting, and AI note-taking.",
+    description:
+      "This stack focuses on deep product context and automated operations. Use Octave as your product's context OS to qualify and personalize at scale, Stripe for effortless revenue reporting via API, and Day AI to turn call transcripts into actionable CRM data.",
+    toolSlugs: ["octave-hq", "stripe", "day-ai"],
+    workflow: [
+      {
+        step: "Build your context OS",
+        toolSlug: "octave-hq",
+        description:
+          "Centralize product info, personas, and case studies. Use it to qualify prospects and generate hyper-personalized copy.",
+      },
+      {
+        step: "Automate revenue reporting",
+        toolSlug: "stripe",
+        description:
+          "Pull summaries of MRR and ARR directly into your workspace every two weeks to keep pulse on growth.",
+      },
+      {
+        step: "Sync call context",
+        toolSlug: "day-ai",
+        description:
+          "Push call transcripts to LLMs for summarization, then pull insights into Slack, Notion, or your CRM automatically.",
+      },
+    ],
+    expert: {
+      name: "Jorge Macías",
+      role: "Founder",
+      company: "The GTM Engineering Company",
+      companyUrl: "https://www.gtm-engineering.io/",
+      image: "/experts/jorge-macias.jpg",
+    },
+    expertQuote:
+      "Octave is kind of like my context OS... it can help me qualify customers, but also qualify people, and also write email/linkedin copy. Stripe API keeps me on track with finances without manual work. And Day AI is super powerful as a CRM/notetaker for pushing and pulling call transcripts.",
+  },
   {
     slug: "cold-outreach-stack",
     name: "The Cold Outreach Stack",

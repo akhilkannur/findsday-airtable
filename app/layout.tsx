@@ -184,10 +184,10 @@ export default async function RootLayout({
               <div className="flex flex-col gap-4">
                 <h4 className="font-mono text-[0.7rem] font-bold uppercase tracking-widest text-ink/40">Outcomes</h4>
                 <div className="flex flex-col gap-2 font-mono text-[0.75rem] uppercase">
-                  <Link href="/capability/lead-enrichment" className="hover:line-through">Lead Enrichment</Link>
+                  <Link href="/capability/b2b-data-enrichment" className="hover:line-through">Lead Enrichment</Link>
                   <Link href="/capability/email-verification" className="hover:line-through">Email Verification</Link>
-                  <Link href="/capability/ai-search" className="hover:line-through">AI Search</Link>
-                  <Link href="/capability/meeting-recording" className="hover:line-through">Meeting Recording</Link>
+                  <Link href="/capability/lead-generation" className="hover:line-through">Lead Generation</Link>
+                  <Link href="/capability/conversation-intelligence" className="hover:line-through">Meeting Recording</Link>
                   <Link href="/credit-audit" className="hover:line-through font-bold">Credit Policy Guide</Link>
                   <Link href="/free-sales-apis" className="hover:line-through text-ink font-bold">Free Sales APIs</Link>
                 </div>
