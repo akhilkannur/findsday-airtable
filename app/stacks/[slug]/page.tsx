@@ -244,17 +244,26 @@ export default async function StackDetailPage({
       <section className="py-12 md:py-20 bg-paper">
         <div className="layout-container">
           <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start md:items-center justify-between">
-            <div>
-              <h2 className="font-serif italic text-xl md:text-2xl mb-3 md:mb-4">Missing a tool in this stack?</h2>
-              <p className="text-ink-fade text-base md:text-[1rem]">
-                Know a tool that would fit this workflow? Submit it to the directory.
-              </p>
-            </div>
+            {stack.expert ? (
+              <div>
+                <h2 className="font-serif italic text-xl md:text-2xl mb-3 md:mb-4">Are you a GTM expert?</h2>
+                <p className="text-ink-fade text-base md:text-[1rem]">
+                  Share your favorite 3 APIs and get featured in our experts directory.
+                </p>
+              </div>
+            ) : (
+              <div>
+                <h2 className="font-serif italic text-xl md:text-2xl mb-3 md:mb-4">Missing a tool in this stack?</h2>
+                <p className="text-ink-fade text-base md:text-[1rem]">
+                  Know a tool that would fit this workflow? Submit it to the directory.
+                </p>
+              </div>
+            )}
             <Link
               href="/submit"
               className="w-full md:w-auto text-center font-mono text-[0.7rem] md:text-[0.75rem] uppercase tracking-widest border border-ink px-6 py-3 md:px-8 md:py-4 hover:bg-ink hover:text-paper transition-all"
             >
-              Submit a Tool →
+              {stack.expert ? "Submit Your Stack →" : "Submit a Tool →"}
             </Link>
           </div>
 
