@@ -38,17 +38,20 @@ const stacks: Stack[] = [
       {
         step: "Octave",
         toolSlug: "octave-hq",
-        description: "Qualify prospects and generate hyper-personalized copy using a 'Context OS' of your product and personas.",
+        description:
+          "In terms of APIs, my favorite one is Octave. For sure, it's kind of like my context OS of information about my product, services, personas that I sell into, use cases, segments, reference customers, case studies everything. It can help me qualify customers, but also qualify people, and also write email/linkedin copy. So that's one that I've been using a lot.",
       },
       {
         step: "Stripe",
         toolSlug: "stripe",
-        description: "Automated MRR and ARR reporting summaries sent to your team every two weeks.",
+        description:
+          "I am not great at managing my finances and keeping track of MRR, ARR, and all that. So I've been using the stripe API a lot to just have like reports being sent out to me every two weeks, every month, summarizing everything together.",
       },
       {
         step: "Day AI",
         toolSlug: "day-ai",
-        description: "An MCP server that acts as a CRM notetaker for pushing and pulling call transcripts into your stack.",
+        description:
+          "And then the other one that I've been using a lot has been the day AI MCP server. they they are my CRM/notaker, so being able to push and pull call trascripts to cloud code, to summarizing something and sending a slack message, or using it for context for a notion, page, or anything like that, it's super powerful. But that one's like a more niche...",
       },
     ],
     expert: {
@@ -58,8 +61,6 @@ const stacks: Stack[] = [
       companyUrl: "https://www.gtm-engineering.io/",
       image: "/experts/jorge-macias.jpg",
     },
-    expertQuote:
-      "In terms of APIs, my favorite one is Octave. For sure, it's kind of like my context OS of information about my product, services, personas that I sell into, use cases, segments, reference customers, case studies everything. It can help me qualify customers, but also qualify people, and also write email/linkedin copy. So that's one that I've been using a lot. I am not great at managing my finances and keeping track of MRR, ARR, and all that. So I've been using the stripe API a lot to just have like reports being sent out to me every two weeks, every month, summarizing everything together. And then the other one that I've been using a lot has been the day AI MCP server. they they are my CRM/notaker, so being able to push and pull call trascripts to cloud code, to summarizing something and sending a slack message, or using it for context for a notion, page, or anything like that, it's super powerful. But that one's like a more niche...",
   },
   {
     slug: "cold-outreach-stack",

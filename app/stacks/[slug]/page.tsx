@@ -111,38 +111,28 @@ export default async function StackDetailPage({
             <h1 className="type-display uppercase mb-8 md:mb-12 text-3xl md:text-5xl lg:text-7xl leading-tight tracking-tighter">
               {stack.name}
             </h1>
-            <p className="font-serif italic text-xl md:text-2xl text-ink-fade leading-relaxed max-w-2xl border-l-2 border-ink pl-4 md:pl-6 mb-12">
+            <p className="font-serif italic text-xl md:text-2xl text-ink-fade leading-relaxed max-w-2xl border-l-2 border-ink pl-4 md:pl-6">
               {stack.tagline}
             </p>
 
             {stack.expert && (
-              <div className="flex flex-col gap-8 bg-paper p-8 md:p-12 border border-ink shadow-[8px_8px_0px_0px_rgba(26,25,23,1)]">
-                <div className="flex items-center gap-6">
-                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden grayscale border-2 border-ink shrink-0 shadow-[4px_4px_0px_0px_rgba(26,25,23,1)]">
-                    <img
-                      src={stack.expert.image}
-                      alt={stack.expert.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold uppercase mb-1 leading-none">{stack.expert.name}</h3>
-                    <div className="flex items-center gap-2 font-mono text-[0.6rem] md:text-[0.7rem] uppercase tracking-widest text-ink-fade">
-                      <span>{stack.expert.role} @</span>
-                      <Link href={stack.expert.companyUrl} target="_blank" className="underline hover:line-through">
-                        {stack.expert.company}
-                      </Link>
-                    </div>
+              <div className="flex items-center gap-6 mt-12 bg-paper-dark p-6 md:p-8 border border-ink/10">
+                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden grayscale border border-ink shrink-0 shadow-[4px_4px_0px_0px_rgba(26,25,23,0.1)]">
+                  <img
+                    src={stack.expert.image}
+                    alt={stack.expert.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold uppercase mb-0.5 leading-none tracking-tight">{stack.expert.name}</h3>
+                  <div className="flex items-center gap-2 font-mono text-[0.6rem] md:text-[0.65rem] uppercase tracking-widest text-ink-fade">
+                    <span>{stack.expert.role} @</span>
+                    <Link href={stack.expert.companyUrl} target="_blank" className="underline hover:line-through">
+                      {stack.expert.company}
+                    </Link>
                   </div>
                 </div>
-
-                {stack.expertQuote && (
-                  <div className="relative">
-                    <p className="font-serif text-xl md:text-3xl text-ink leading-relaxed relative z-10">
-                      &ldquo;{stack.expertQuote}&rdquo;
-                    </p>
-                  </div>
-                )}
               </div>
             )}
           </div>
@@ -151,53 +141,82 @@ export default async function StackDetailPage({
 
       <section className="py-12 md:py-24 border-b border-ink">
         <div className="layout-container">
-          <div className="flex items-center gap-4 md:gap-6 mb-10 md:mb-16">
+          <div className="flex items-center gap-4 md:gap-6 mb-12 md:mb-20">
             <div className="font-mono text-[0.75rem] md:text-[0.8rem] uppercase tracking-wider text-ink">
-              {stack.expert ? "The Breakdown" : "Workflow"}
+              {stack.expert ? "Expert Picks" : "Workflow"}
             </div>
             <div className="h-px flex-grow bg-ink opacity-10"></div>
           </div>
 
-          <div className="max-w-3xl space-y-12">
+          <div className="max-w-4xl space-y-16 md:space-y-32">
             {stack.workflow.map((step, idx) => {
               const tool = stackTools.find((t) => t.slug === step.toolSlug)
 
-              return (
-                <div key={idx} className="relative group">
-                  <div className="flex gap-6 md:gap-12">
-                    <div className="flex flex-col items-center">
-                      <div className="w-10 h-10 md:w-12 md:h-12 bg-ink text-paper flex items-center justify-center font-mono text-[0.6rem] md:text-xs font-bold shrink-0 [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]">
-                        {tool ? tool.name.charAt(0) : String(idx + 1).padStart(2, "0")}
-                      </div>
-                    </div>
-
-                    <div className="flex flex-col">
-                      <div className="flex items-baseline gap-3 mb-2">
-                        <h3 className="text-xl md:text-2xl font-bold uppercase">
+              if (stack.expert) {
+                return (
+                  <div key={idx} className="relative group">
+                    <div className="flex flex-col gap-6 md:gap-8">
+                      <div className="flex items-center gap-4">
+                        <div className="w-8 h-8 bg-ink text-paper flex items-center justify-center font-mono text-[0.6rem] font-bold shrink-0 [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]">
+                          {tool ? tool.name.charAt(0) : idx + 1}
+                        </div>
+                        <h3 className="text-xl md:text-2xl font-bold uppercase tracking-tight">
                           {step.step}
                         </h3>
-                        {tool && (
-                          <span className="font-mono text-[0.7rem] text-ink-fade">
-                            &mdash; {tool.category}
-                          </span>
-                        )}
                       </div>
 
-                      <div className="flex items-start gap-4 mb-4">
-                        <ArrowRight className="h-4 w-4 shrink-0 mt-1.5 text-ink-fade opacity-30 group-hover:opacity-100 transition-opacity" />
-                        <p className="text-lg md:text-xl text-ink leading-relaxed max-w-2xl font-serif italic text-ink-fade">
-                          {step.description}
+                      <div className="relative">
+                        <p className="font-serif text-2xl md:text-4xl text-ink leading-snug md:leading-tight">
+                          &ldquo;{step.description}&rdquo;
                         </p>
                       </div>
 
                       {tool && (
+                        <div className="flex items-center gap-4 pt-4">
+                          <ArrowRight className="h-5 w-5 text-ink-fade" />
+                          <Link
+                            href={`/apis/${tool.slug}`}
+                            className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase underline underline-offset-4 hover:line-through decoration-ink/30 hover:decoration-ink transition-all"
+                          >
+                            Explore {tool.name} API &rarr;
+                          </Link>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )
+              }
+
+              return (
+                <div key={idx} className="relative">
+                  <div className="flex gap-6 md:gap-12">
+                    <div className="flex flex-col items-center">
+                      <div className="w-10 h-10 md:w-12 md:h-12 bg-ink text-paper flex items-center justify-center font-mono text-xs md:text-sm font-bold shrink-0 [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]">
+                        {String(idx + 1).padStart(2, "0")}
+                      </div>
+                      {idx < stack.workflow.length - 1 && (
+                        <div className="w-px h-full bg-ink/20 min-h-[30px] md:min-h-[40px]"></div>
+                      )}
+                    </div>
+
+                    <div className="pb-8 md:pb-12">
+                      <div className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-widest text-ink-fade mb-1 md:mb-2">
+                        Step {idx + 1}
+                      </div>
+                      <h3 className="text-lg md:text-xl font-bold uppercase mb-2">
+                        {step.step}
+                      </h3>
+                      {tool && (
                         <Link
                           href={`/apis/${tool.slug}`}
-                          className="w-fit font-mono text-[0.7rem] md:text-[0.75rem] uppercase border-b border-ink/20 hover:border-ink pb-1 transition-all"
+                          className="inline-block font-mono text-[0.7rem] md:text-[0.75rem] uppercase underline underline-offset-4 hover:line-through transition-all mb-3 md:mb-4"
                         >
-                          View {tool.name} Details &rarr;
+                          {tool.name} →
                         </Link>
                       )}
+                      <p className="text-base md:text-[1rem] text-ink-fade leading-relaxed max-w-xl">
+                        {step.description}
+                      </p>
                     </div>
                   </div>
                 </div>
