@@ -28,30 +28,30 @@ export interface Stack {
 
 const stacks: Stack[] = [
   {
-    slug: "context-first-gtm-stack",
-    name: "Context-First GTM Stack",
-    tagline: "The modern outbound engine: context OS, automated reporting, and AI note-taking.",
+    slug: "jorge-macias-favorite-apis",
+    name: "Jorge Macías's Favorite APIs",
+    tagline: "A collection of battle-tested APIs for product context, financial reporting, and CRM automation.",
     description:
-      "This stack focuses on deep product context and automated operations. Use Octave as your product's context OS to qualify and personalize at scale, Stripe for effortless revenue reporting via API, and Day AI to turn call transcripts into actionable CRM data.",
+      "Jorge Macías shares his top three API picks that help him manage product context, automate financial reporting, and streamline meeting notes.",
     toolSlugs: ["octave-hq", "stripe", "day-ai"],
     workflow: [
       {
-        step: "Build your context OS",
+        step: "Favorite #1: Octave",
         toolSlug: "octave-hq",
         description:
-          "Centralize product info, personas, and case studies. Use it to qualify prospects and generate hyper-personalized copy.",
+          "In terms of APIs, my favorite one is Octave. For sure, it's kind of like my context OS of information about my product, services, personas that I sell into, use cases, segments, reference customers, case studies everything. It can help me qualify customers, but also qualify people, and also write email/linkedin copy. So that's one that I've been using a lot.",
       },
       {
-        step: "Automate revenue reporting",
+        step: "Favorite #2: Stripe",
         toolSlug: "stripe",
         description:
-          "Pull summaries of MRR and ARR directly into your workspace every two weeks to keep pulse on growth.",
+          "I am not great at managing my finances and keeping track of MRR, ARR, and all that. So I've been using the stripe API a lot to just have like reports being sent out to me every two weeks, every month, summarizing everything together.",
       },
       {
-        step: "Sync call context",
+        step: "Favorite #3: Day AI",
         toolSlug: "day-ai",
         description:
-          "Push call transcripts to LLMs for summarization, then pull insights into Slack, Notion, or your CRM automatically.",
+          "And then the other one that I've been using a lot has been the day AI MCP server. they they are my CRM/notaker, so being able to push and pull call trascripts to cloud code, to summarizing something and sending a slack message, or using it for context for a notion, page, or anything like that, it's super powerful. But that one's like a more niche...",
       },
     ],
     expert: {
@@ -62,7 +62,7 @@ const stacks: Stack[] = [
       image: "/experts/jorge-macias.jpg",
     },
     expertQuote:
-      "Octave is kind of like my context OS... it can help me qualify customers, but also qualify people, and also write email/linkedin copy. Stripe API keeps me on track with finances without manual work. And Day AI is super powerful as a CRM/notetaker for pushing and pulling call transcripts.",
+      "In terms of APIs, my favorite one is Octave. For sure, it's kind of like my context OS of information about my product, services, personas that I sell into, use cases, segments, reference customers, case studies everything. It can help me qualify customers, but also qualify people, and also write email/linkedin copy. So that's one that I've been using a lot. I am not great at managing my finances and keeping track of MRR, ARR, and all that. So I've been using the stripe API a lot to just have like reports being sent out to me every two weeks, every month, summarizing everything together. And then the other one that I've been using a lot has been the day AI MCP server. they they are my CRM/notaker, so being able to push and pull call trascripts to cloud code, to summarizing something and sending a slack message, or using it for context for a notion, page, or anything like that, it's super powerful. But that one's like a more niche...",
   },
   {
     slug: "cold-outreach-stack",

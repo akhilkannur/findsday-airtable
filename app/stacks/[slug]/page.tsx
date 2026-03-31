@@ -151,7 +151,9 @@ export default async function StackDetailPage({
       <section className="py-12 md:py-20 border-b border-ink">
         <div className="layout-container">
           <div className="flex items-center gap-4 md:gap-6 mb-10 md:mb-16">
-            <div className="font-mono text-[0.75rem] md:text-[0.8rem] uppercase tracking-wider text-ink">Workflow</div>
+            <div className="font-mono text-[0.75rem] md:text-[0.8rem] uppercase tracking-wider text-ink">
+              {stack.expert ? "Expert Picks" : "Workflow"}
+            </div>
             <div className="h-px flex-grow bg-ink opacity-10"></div>
           </div>
 
@@ -173,7 +175,7 @@ export default async function StackDetailPage({
 
                     <div className="pb-8 md:pb-12">
                       <div className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-widest text-ink-fade mb-1 md:mb-2">
-                        Step {idx + 1}
+                        {stack.expert ? "Pick" : "Step"} {idx + 1}
                       </div>
                       <h3 className="text-lg md:text-xl font-bold uppercase mb-2">
                         {step.step}
