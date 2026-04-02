@@ -2,6 +2,7 @@ import { getFreeTierTools, getAllCategories } from "@/lib/tools"
 import Link from "next/link"
 import type { Metadata } from "next"
 import { ProgrammaticFilterBar } from "@/components/ProgrammaticFilterBar"
+import { ToolLogo } from "@/components/ToolLogo"
 import { FaqSection } from "@/components/FaqSection"
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
 
@@ -84,9 +85,7 @@ export default async function FreeTierPage({
                   className="tool-card group flex flex-col h-full"
                 >
                   <div className="flex justify-between items-start mb-6">
-                    <div className="w-12 h-12 bg-ink text-paper flex items-center justify-center font-serif font-bold text-xl [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]">
-                      {t.name.charAt(0)}
-                    </div>
+                    <ToolLogo name={t.name} websiteUrl={t.websiteUrl} />
                     <div className="flex flex-col gap-2 items-end">
                       {t.mcpReady && (
                         <div className="tag-mcp">MCP READY</div>

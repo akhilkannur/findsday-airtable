@@ -8,6 +8,7 @@ import {
   getAllCategories,
 } from "@/lib/tools"
 import { ArrowRight } from "lucide-react"
+import { ToolLogo } from "@/components/ToolLogo"
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
 import { generateSeoTitle, generateSeoDescription } from "@/lib/seo"
 
@@ -56,9 +57,7 @@ function ToolCard({ tool }: { tool: any }) {
       className="tool-card group flex flex-col h-full"
     >
       <div className="flex justify-between items-start mb-6">
-        <div className="w-12 h-12 bg-ink text-paper flex items-center justify-center font-serif font-bold text-xl [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]">
-          {tool.name.charAt(0)}
-        </div>
+        <ToolLogo name={tool.name} websiteUrl={tool.websiteUrl} />
       </div>
       
       <div className="flex-grow">

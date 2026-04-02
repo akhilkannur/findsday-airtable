@@ -3,6 +3,7 @@ import Link from "next/link"
 import { getAllTools, filterTools, getAllCategories } from "@/lib/tools"
 import { ArrowRight } from "lucide-react"
 import { ApiFilterBar } from "@/components/ApiFilterBar"
+import { ToolLogo } from "@/components/ToolLogo"
 
 export const dynamic = "force-dynamic"
 
@@ -113,9 +114,7 @@ export default async function APIPage({
                   className="tool-card group flex flex-col h-full"
                 >
                   <div className="flex justify-between items-start mb-6">
-                    <div className="w-12 h-12 bg-ink text-paper flex items-center justify-center font-serif font-bold text-xl [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]">
-                      {tool.name.charAt(0)}
-                    </div>
+                    <ToolLogo name={tool.name} websiteUrl={tool.websiteUrl} />
                     {tool.mcpReady && (
                       <div className="tag-mcp">MCP READY</div>
                     )}
@@ -145,9 +144,7 @@ export default async function APIPage({
                   href={`/apis/${tool.slug}`}
                   className="group flex flex-col md:flex-row md:items-center gap-4 md:gap-6 p-6 md:p-8 border-b border-ink/10 hover:bg-paper-dark/30 transition-all"
                 >
-                  <div className="w-10 h-10 bg-ink text-paper flex-shrink-0 flex items-center justify-center font-serif font-bold text-lg [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]">
-                    {tool.name.charAt(0)}
-                  </div>
+                  <ToolLogo name={tool.name} websiteUrl={tool.websiteUrl} size="sm" />
                   
                   <div className="flex-grow">
                     <div className="flex items-center gap-3 md:gap-4 mb-1">

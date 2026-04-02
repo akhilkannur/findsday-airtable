@@ -3,6 +3,7 @@ import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { getStackBySlug, getStackSlugs, getToolsForStack } from "@/lib/stacks"
 import type { SalesTool } from "@/lib/types"
+import { ToolLogo } from "@/components/ToolLogo"
 import { ArrowRight } from "lucide-react"
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
 
@@ -55,9 +56,7 @@ function ToolCard({ tool }: { tool: SalesTool }) {
       className="tool-card group flex flex-col h-full"
     >
       <div className="flex justify-between items-start mb-6">
-        <div className="w-12 h-12 bg-ink text-paper flex items-center justify-center font-serif font-bold text-xl [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]">
-          {tool.name.charAt(0)}
-        </div>
+        <ToolLogo name={tool.name} websiteUrl={tool.websiteUrl} />
       </div>
 
       <div className="flex-grow">
@@ -157,9 +156,13 @@ export default async function StackDetailPage({
                   <div key={idx} className="relative group">
                     <div className="flex flex-col gap-6 md:gap-8">
                       <div className="flex items-center gap-4">
-                        <div className="w-8 h-8 bg-ink text-paper flex items-center justify-center font-mono text-[0.6rem] font-bold shrink-0 [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]">
-                          {tool ? tool.name.charAt(0) : idx + 1}
-                        </div>
+                        {tool ? (
+                          <ToolLogo name={tool.name} websiteUrl={tool.websiteUrl} size="sm" />
+                        ) : (
+                          <div className="w-8 h-8 bg-ink text-paper flex items-center justify-center font-mono text-[0.6rem] font-bold shrink-0 [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]">
+                            {idx + 1}
+                          </div>
+                        )}
                         <h3 className="text-xl md:text-2xl font-bold uppercase tracking-tight">
                           {step.step}
                         </h3>

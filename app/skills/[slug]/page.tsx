@@ -3,6 +3,7 @@ import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { getSkillBySlug, getSkillSlugs } from "@/lib/skills"
 import { getToolBySlug } from "@/lib/tools"
+import { ToolLogo } from "@/components/ToolLogo"
 import { CopyButton } from "@/components/ui/CopyButton"
 import { ArrowRight } from "lucide-react"
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
@@ -219,9 +220,7 @@ export default async function SkillDetailPage({
                     className="tool-card group flex flex-col h-full"
                   >
                     <div className="flex justify-between items-start mb-4 md:mb-6">
-                      <div className="w-10 h-10 md:w-12 md:h-12 bg-ink text-paper flex items-center justify-center font-serif font-bold text-lg md:text-xl [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]">
-                        {tool!.name.charAt(0)}
-                      </div>
+                      <ToolLogo name={tool!.name} websiteUrl={tool!.websiteUrl} />
                     </div>
                     <div className="flex-grow">
                       <h3 className="text-lg md:text-xl font-semibold mb-2">

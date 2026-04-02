@@ -3,6 +3,7 @@ import Link from "next/link"
 import type { Metadata } from "next"
 import { notFound, permanentRedirect } from "next/navigation"
 import { ProgrammaticFilterBar } from "@/components/ProgrammaticFilterBar"
+import { ToolLogo } from "@/components/ToolLogo"
 import { FaqSection } from "@/components/FaqSection"
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
 import { generateSeoTitle, generateSeoDescription, formatAcronyms } from "@/lib/seo"
@@ -132,9 +133,7 @@ export default async function CapabilityPage({
                 <div key={t.slug} className="tool-card flex flex-col h-full bg-paper">
                   <Link href={`/apis/${t.slug}`} className="group block mb-4 md:mb-6">
                     <div className="flex justify-between items-start mb-4 md:mb-6">
-                      <div className="w-10 h-10 md:w-12 md:h-12 bg-ink text-paper flex items-center justify-center font-serif font-bold text-lg md:text-xl [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]">
-                        {t.name.charAt(0)}
-                      </div>
+                      <ToolLogo name={t.name} websiteUrl={t.websiteUrl} />
                       {t.mcpReady && (
                         <div className="tag-mcp">MCP READY</div>
                       )}

@@ -12,6 +12,7 @@ import {
 import { CopyButton } from "@/components/ui/CopyButton"
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
 import { getUseCasesForTool } from "@/lib/usecases"
+import { ToolLogo } from "@/components/ToolLogo"
 import { generateSeoTitle, generateSeoDescription } from "@/lib/seo"
 
 export async function generateStaticParams() {
@@ -154,9 +155,7 @@ function ToolCard({ tool }: { tool: SalesTool }) {
       className="tool-card group flex flex-col h-full"
     >
       <div className="flex justify-between items-start mb-6">
-        <div className="w-12 h-12 bg-ink text-paper flex items-center justify-center font-serif font-bold text-xl [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]">
-          {tool.name.charAt(0)}
-        </div>
+        <ToolLogo name={tool.name} websiteUrl={tool.websiteUrl} />
       </div>
       
       <div className="flex-grow">
@@ -267,9 +266,7 @@ export default async function ToolDetailPage({
           <div className="flex flex-col gap-8 md:gap-12 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-4xl">
               <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
-                <div className="w-16 h-16 md:w-24 md:h-24 flex items-center justify-center bg-ink text-paper text-3xl md:text-5xl font-bold [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]">
-                  {typedTool.name.charAt(0)}
-                </div>
+                <ToolLogo name={typedTool.name} websiteUrl={typedTool.websiteUrl} size="lg" />
                 <div className="space-y-2 md:space-y-4">
                   <div className="circled font-mono text-[0.65rem] md:text-[0.75rem] font-bold uppercase">{typedTool.category}</div>
                   <h1 className="type-display uppercase text-3xl md:text-4xl lg:text-5xl">{typedTool.name}</h1>

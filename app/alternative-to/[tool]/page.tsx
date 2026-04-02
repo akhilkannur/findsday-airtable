@@ -3,6 +3,7 @@ import Link from "next/link"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { FaqSection } from "@/components/FaqSection"
+import { ToolLogo } from "@/components/ToolLogo"
 
 export const dynamic = "force-static"
 
@@ -105,9 +106,7 @@ export default async function AlternativeToPage({ params }: { params: Promise<{ 
                 className="tool-card group flex flex-col h-full"
               >
                 <div className="flex justify-between items-start mb-6">
-                  <div className="w-12 h-12 bg-ink text-paper flex items-center justify-center font-serif font-bold text-xl [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]">
-                    {t.name.charAt(0)}
-                  </div>
+                  <ToolLogo name={t.name} websiteUrl={t.websiteUrl} />
                   {t.mcpReady && (
                     <div className="tag-mcp">MCP READY</div>
                   )}

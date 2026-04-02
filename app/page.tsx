@@ -5,6 +5,7 @@ import { getAllCategories, getAllTools } from "@/lib/tools"
 import { getAllGuides } from "@/lib/guides"
 import type { Metadata } from "next"
 import { NewsletterForm } from "@/components/NewsletterForm"
+import { ToolLogo } from "@/components/ToolLogo"
 
 export const metadata: Metadata = {
   title: "Salestools Club — Sales APIs & MCP Configs for AI Agents",
@@ -80,9 +81,7 @@ function ToolCard({ tool }: { tool: any }) {
       className="tool-card group flex flex-col h-full"
     >
       <div className="flex justify-between items-start mb-6">
-        <div className="w-12 h-12 bg-ink text-paper flex items-center justify-center font-serif font-bold text-xl [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]">
-          {tool.name.charAt(0)}
-        </div>
+        <ToolLogo name={tool.name} websiteUrl={tool.websiteUrl} />
         {tool.mcpReady && (
           <div className="tag-mcp">MCP READY</div>
         )}
@@ -162,7 +161,7 @@ export default async function Home() {
             Works with:
           </p>
           <div className="flex flex-wrap gap-x-6 gap-y-2">
-            {["Claude Code", "Gemini CLI", "Claude Cowork", "ChatGPT Operator", "Any Agentic Tools"].map(
+            {["Claude Code", "Gemini CLI", "Claude Cowork", "Replit", "Any Agentic Tools"].map(
               (agent) => (
                 <span
                   key={agent}

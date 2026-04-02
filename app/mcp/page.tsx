@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { ArrowRight, Zap, Brain, Check } from "lucide-react"
+import { ToolLogo } from "@/components/ToolLogo"
 import { getMcpTools } from "@/lib/tools"
 import type { Metadata } from "next"
 
@@ -40,9 +41,7 @@ function ToolCard({ tool }: { tool: any }) {
       className="tool-card group flex flex-col h-full"
     >
       <div className="flex justify-between items-start mb-6">
-        <div className="w-12 h-12 bg-ink text-paper flex items-center justify-center font-serif font-bold text-xl [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]">
-          {tool.name.charAt(0)}
-        </div>
+        <ToolLogo name={tool.name} websiteUrl={tool.websiteUrl} />
         <div className="w-8 h-8 bg-ink text-paper flex items-center justify-center [clip-path:polygon(10%_0%,90%_0%,100%_100%,0%_100%)]">
           <Zap className="w-4 h-4 fill-current" />
         </div>

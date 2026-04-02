@@ -3,6 +3,7 @@ import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { getToolsForComparison, getAllSlugs } from "@/lib/tools"
 import { Zap, Check, X, ArrowRight } from "lucide-react"
+import { ToolLogo } from "@/components/ToolLogo"
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
 import { generateSeoTitle, generateSeoDescription } from "@/lib/seo"
 
@@ -113,9 +114,7 @@ export default async function ComparisonPage({ params }: Props) {
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] items-start lg:items-center gap-8 md:gap-24">
             {/* Tool 1 */}
             <div className="flex flex-col items-start gap-4 md:gap-8">
-              <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center bg-ink text-paper [clip-path:polygon(0%_0%,100%_5%,95%_100%,5%_95%)] text-2xl md:text-4xl font-bold">
-                {tool1.name.charAt(0)}
-              </div>
+              <ToolLogo name={tool1.name} websiteUrl={tool1.websiteUrl} size="lg" />
               <h1 className="type-display uppercase text-3xl md:text-4xl lg:text-5xl">{tool1.name}</h1>
               <p className="font-serif italic text-lg md:text-xl text-ink-fade max-w-sm border-l-2 border-black pl-4">{tool1.oneLiner}</p>
             </div>
@@ -131,9 +130,7 @@ export default async function ComparisonPage({ params }: Props) {
 
             {/* Tool 2 */}
             <div className="flex flex-col items-start lg:items-end gap-4 md:gap-8 lg:text-right">
-              <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center bg-ink text-paper [clip-path:polygon(5%_5%,95%_0%,100%_95%,0%_100%)] text-2xl md:text-4xl font-bold">
-                {tool2.name.charAt(0)}
-              </div>
+              <ToolLogo name={tool2.name} websiteUrl={tool2.websiteUrl} size="lg" />
               <h1 className="type-display uppercase text-3xl md:text-4xl lg:text-5xl">{tool2.name}</h1>
               <p className="font-serif italic text-lg md:text-xl text-ink-fade max-w-sm lg:border-r-2 border-black lg:pr-4">{tool2.oneLiner}</p>
             </div>

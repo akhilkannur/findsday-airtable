@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { getAllTools } from "@/lib/tools"
 import { ArrowRight, Zap, Scale, Cpu } from "lucide-react"
+import { ToolLogo } from "@/components/ToolLogo"
 
 export const metadata: Metadata = {
   title: "API Comparisons | Salestools Club",
@@ -71,9 +72,9 @@ export default async function VsIndexPage() {
                 >
                   <div className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase text-ink-fade group-hover:text-black transition-colors italic">{pair.label}</div>
                   <div className="flex items-center justify-between gap-4">
-                    <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-ink text-paper [clip-path:polygon(0%_0%,100%_5%,95%_100%,5%_95%)] text-lg md:text-xl font-bold">{t1.name.charAt(0)}</div>
+                    <ToolLogo name={t1.name} websiteUrl={t1.websiteUrl} />
                     <div className="font-mono text-[0.65rem] md:text-[0.7rem] font-bold text-black/20 group-hover:text-black transition-colors">VS</div>
-                    <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-ink text-paper [clip-path:polygon(5%_5%,95%_0%,100%_95%,0%_100%)] text-lg md:text-xl font-bold">{t2.name.charAt(0)}</div>
+                    <ToolLogo name={t2.name} websiteUrl={t2.websiteUrl} />
                   </div>
                   <h3 className="text-lg md:text-xl font-bold uppercase leading-tight group-hover:underline decoration-black decoration-2 underline-offset-8 transition-all">
                     {t1.name} <br/><span className="opacity-20 italic">vs</span><br/> {t2.name}

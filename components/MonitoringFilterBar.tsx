@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Search } from "lucide-react"
+import { ToolLogo } from "@/components/ToolLogo"
 
 export function MonitoringFilterBar({ tools }: { tools: { slug: string; name: string }[] }) {
   const [search, setSearch] = useState("")
@@ -41,9 +42,7 @@ export function MonitoringFilterBar({ tools }: { tools: { slug: string; name: st
                   key={tool.slug}
                   className="flex items-center gap-3 p-4 bg-paper-dark/40 border border-ink/10 hover:border-ink/30 transition-colors"
                 >
-                  <div className="w-8 h-8 bg-ink text-paper flex items-center justify-center font-serif font-bold text-sm [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]">
-                    {tool.name.charAt(0)}
-                  </div>
+                  <ToolLogo name={tool.name} websiteUrl={tool.websiteUrl} size="sm" />
                   <span className="font-medium text-sm">{tool.name}</span>
                 </div>
               ))}
