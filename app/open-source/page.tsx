@@ -3,6 +3,7 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { getOpenSourceTools } from "@/lib/tools"
 import { ToolLogo } from "@/components/ToolLogo"
+import { GitHubStars } from "@/components/GitHubStars"
 
 export const metadata: Metadata = {
   title: "Open Source Sales Tools | Salestools Club",
@@ -35,11 +36,7 @@ function ToolCard({ tool }: { tool: any }) {
         <span className="font-mono text-[0.7rem] uppercase tracking-wider text-ink-fade group-hover:text-black transition-colors">
           {tool.category}
         </span>
-        {tool.githubUrl && (
-          <span className="font-mono text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 border border-ink/20 rounded-full group-hover:border-ink transition-colors">
-            GitHub ↗
-          </span>
-        )}
+        {tool.githubUrl && <GitHubStars githubUrl={tool.githubUrl} />}
       </div>
     </Link>
   )

@@ -13,6 +13,7 @@ import { CopyButton } from "@/components/ui/CopyButton"
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
 import { getUseCasesForTool } from "@/lib/usecases"
 import { ToolLogo } from "@/components/ToolLogo"
+import { GitHubStars } from "@/components/GitHubStars"
 import { generateSeoTitle, generateSeoDescription } from "@/lib/seo"
 
 export async function generateStaticParams() {
@@ -434,6 +435,7 @@ export default async function ToolDetailPage({
                     <div className="font-mono font-bold text-[0.75rem] md:text-[0.85rem] uppercase tracking-widest">{spec.value}</div>
                   </div>
                 ))}
+                {typedTool.githubUrl && <GitHubStars githubUrl={typedTool.githubUrl} variant="detail" />}
               </div>
             </div>
 

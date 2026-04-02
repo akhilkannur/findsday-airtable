@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { Check, X, Filter } from "lucide-react"
 import type { SalesTool } from "@/lib/types"
+import { ToolLogo } from "@/components/ToolLogo"
 
 function ApiBadge({ children, variant = "default" }: { children: React.ReactNode; variant?: "default" | "success" | "warning" }) {
   const variants = {
@@ -78,10 +79,13 @@ export function GuideToolTable({ tools }: { tools: SalesTool[] }) {
             {filteredTools.map((tool) => (
               <tr key={tool.slug} className="border-b border-ink/20 hover:bg-ink/[0.04] transition-colors last:border-0">
                 <td className="py-5 px-6">
-                  <Link href={`/apis/${tool.slug}`} className="hover:underline font-bold text-lg block uppercase">
-                    {tool.name}
+                  <Link href={`/apis/${tool.slug}`} className="flex items-center gap-3 hover:underline">
+                    <ToolLogo name={tool.name} websiteUrl={tool.websiteUrl} size="sm" />
+                    <div>
+                      <span className="font-bold text-lg block uppercase">{tool.name}</span>
+                      <p className="text-sm text-ink-fade mt-1 line-clamp-1 max-w-[250px]">{tool.oneLiner}</p>
+                    </div>
                   </Link>
-                  <p className="text-sm text-ink-fade mt-1 line-clamp-1 max-w-[250px]">{tool.oneLiner}</p>
                 </td>
                 <td className="py-5 px-6">
                   <div className="flex flex-wrap gap-1.5">
