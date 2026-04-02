@@ -87,7 +87,8 @@ export default async function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable} ${GeistMono.variable}`}>
       <head>
-        <link rel="icon" href="/favicon.png" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon.png" type="image/png" />
         <link rel="apple-touch-icon" href="/icon.png" />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-9LGNFH00R7"
@@ -256,7 +257,7 @@ export default async function RootLayout({
               </div>
               <div className="font-mono text-[0.6rem] uppercase tracking-[0.2em] opacity-75 flex flex-col gap-2">
                 <p>Found: {toolsWithDocs} APIs with docs • Monitoring {toolsWithoutDocs} for documentation</p>
-                <p>© {new Date().getFullYear()} Salestools Club</p>
+                <p>© {new Date().getFullYear()} Salestools Club • <a href="https://logo.dev" target="_blank" rel="noopener">Logos provided by Logo.dev</a></p>
               </div>
             </div>
           </div>

@@ -141,19 +141,35 @@ export default async function ComparisonPage({ params }: Props) {
       {/* Comparison Grid */}
       <section className="py-8 md:py-12">
         <div className="layout-container">
-          <div className="border border-ink/20 bg-white/40 overflow-x-auto">
-            <div className="min-w-[600px] md:min-w-0">
-              <div className="grid grid-cols-[1.2fr_1fr_1fr] gap-4 md:gap-6 bg-paper-dark/50 border-b border-ink/20 text-[0.65rem] md:text-[0.7rem] font-mono font-bold uppercase tracking-widest px-4 md:px-8 py-4 md:py-6 text-ink-fade">
+          <div className="border border-ink/20 bg-white/40">
+            {/* Mobile: stacked cards */}
+            <div className="md:hidden">
+              <div className="grid grid-cols-2 gap-px bg-paper-dark/50 border-b border-ink/20 text-[0.65rem] font-mono font-bold uppercase tracking-widest px-4 py-4 text-ink-fade">
+                <div className="text-black">{tool1.name}</div>
+                <div className="text-black">{tool2.name}</div>
+              </div>
+              {specs.map((spec) => (
+                <div key={spec.label} className="px-4 py-4 border-b border-ink/10">
+                  <div className="font-mono text-[0.65rem] uppercase tracking-widest font-bold text-ink/70 mb-2">{spec.label}</div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className={spec.label === "Capabilities" ? "font-serif text-sm leading-relaxed" : "font-serif text-sm font-bold uppercase"}>{spec.val1}</div>
+                    <div className={spec.label === "Capabilities" ? "font-serif text-sm leading-relaxed" : "font-serif text-sm font-bold uppercase"}>{spec.val2}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            {/* Desktop: 3-column grid */}
+            <div className="hidden md:block">
+              <div className="grid grid-cols-[1.2fr_1fr_1fr] gap-6 bg-paper-dark/50 border-b border-ink/20 text-[0.7rem] font-mono font-bold uppercase tracking-widest px-8 py-6 text-ink-fade">
                 <div></div>
                 <div className="text-black">{tool1.name}</div>
                 <div className="text-black">{tool2.name}</div>
               </div>
-              
               {specs.map((spec) => (
-                <div key={spec.label} className="grid grid-cols-[1.2fr_1fr_1fr] gap-4 md:gap-6 px-4 md:px-8 py-4 md:py-6 border-b border-ink/10 hover:bg-[var(--highlight)] transition-colors group">
-                  <div className="font-mono text-[0.75rem] md:text-[0.85rem] uppercase tracking-widest font-bold text-ink/70">{spec.label}</div>
-                  <div className={spec.label === "Capabilities" ? "font-serif text-sm md:text-[0.95rem] leading-relaxed pr-2 md:pr-4" : "font-serif text-base md:text-[1.2rem] font-bold uppercase"}>{spec.val1}</div>
-                  <div className={spec.label === "Capabilities" ? "font-serif text-sm md:text-[0.95rem] leading-relaxed" : "font-serif text-base md:text-[1.2rem] font-bold uppercase"}>{spec.val2}</div>
+                <div key={spec.label} className="grid grid-cols-[1.2fr_1fr_1fr] gap-6 px-8 py-6 border-b border-ink/10 hover:bg-[var(--highlight)] transition-colors group">
+                  <div className="font-mono text-[0.85rem] uppercase tracking-widest font-bold text-ink/70">{spec.label}</div>
+                  <div className={spec.label === "Capabilities" ? "font-serif text-[0.95rem] leading-relaxed pr-4" : "font-serif text-[1.2rem] font-bold uppercase"}>{spec.val1}</div>
+                  <div className={spec.label === "Capabilities" ? "font-serif text-[0.95rem] leading-relaxed" : "font-serif text-[1.2rem] font-bold uppercase"}>{spec.val2}</div>
                 </div>
               ))}
             </div>

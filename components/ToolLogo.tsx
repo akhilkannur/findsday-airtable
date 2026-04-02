@@ -36,11 +36,11 @@ export function ToolLogo({ name, websiteUrl, size = "md" }: ToolLogoProps) {
   }
 
   return (
-    <div className={`${classes} flex items-center justify-center overflow-hidden rounded-lg bg-white border border-ink/10`}>
+    <div className={`${classes} flex items-center justify-center overflow-hidden`}>
       <img
         src={`https://img.logo.dev/${domain}?token=pk_cI8SBpmJQJG67HoLPuFNgw&size=64&format=png`}
         alt={`${name} logo`}
-        className="w-full h-full object-contain p-1"
+        className="w-full h-full object-contain"
         onError={() => setFailed(true)}
         loading="lazy"
       />

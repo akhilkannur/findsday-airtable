@@ -228,7 +228,7 @@ export default async function Home() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
             <Link href="/api" className="group flex flex-col gap-4">
               <span className="font-mono text-[0.75rem] text-ink-fade tracking-widest">01</span>
               <h3 className="text-2xl font-bold uppercase underline decoration-transparent group-hover:decoration-ink transition-all underline-offset-8">
@@ -288,7 +288,7 @@ export default async function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
             {guides.map((guide) => (
               <Link 
                 key={guide.slug} 
