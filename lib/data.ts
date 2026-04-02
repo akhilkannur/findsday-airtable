@@ -2,6 +2,33 @@ import type { SalesTool, CategoryMeta, MinimalTool } from "./types"
 
 export const tools: (SalesTool | MinimalTool)[] = [
   {
+    slug: "day-ai",
+    name: "Day AI",
+    oneLiner: "AI-native CRM that captures conversations and updates itself automatically.",
+    description: "Day AI is a CRM reimagined for the AI era. It automatically captures meetings, emails, and conversations, then updates your CRM records with remarkable precision. Features a full MCP-based API and TypeScript SDK so AI agents can search contacts, create opportunities, pull meeting transcripts, and send notifications. Think of it as a CRM that reasons — it understands your business context and acts on it.",
+    category: "CRM & RevOps",
+    websiteUrl: "https://day.ai",
+    docsUrl: "https://github.com/day-ai/day-ai-sdk",
+    pricingUrl: "https://day.ai",
+    apiType: ["REST"],
+    authMethod: ["OAuth2"],
+    hasFreeTier: true,
+    sdkLanguages: ["JavaScript"],
+    hasWebhooks: false,
+    aiCapabilities: ["Search Contacts", "Create Opportunities", "Meeting Transcripts", "Send Notifications", "Pipeline Analysis"],
+    starterPrompt: "Claude, search my Day AI CRM for all contacts at acme.com and summarize our last meeting with them.",
+    mcpReady: true,
+    integrations: [
+      {
+        platform: "MCP",
+        url: "https://github.com/day-ai/day-ai-sdk",
+        label: "Official MCP Server",
+      },
+    ],
+    isFeatured: false,
+    githubUrl: "https://github.com/day-ai/day-ai-sdk",
+  },
+  {
     slug: "stripe",
     name: "Stripe",
     oneLiner: "Financial infrastructure for the internet.",
@@ -21,7 +48,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     integrations: [
       {
         platform: "MCP",
-        url: "https://github.com/day-ai/mcp-server",
+        url: "https://github.com/stripe/ai",
         label: "Official MCP Server",
       },
     ],
