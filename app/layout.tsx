@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Inter, Playfair_Display } from "next/font/google"
+import { Inter, Playfair_Display, Crimson_Pro, JetBrains_Mono } from "next/font/google"
 import { GeistMono } from 'geist/font/mono'
 import "./globals.css"
 import Link from "next/link"
@@ -17,6 +17,16 @@ const inter = Inter({
 const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair",
+})
+
+const crimson = Crimson_Pro({
+  subsets: ["latin"],
+  variable: "--font-crimson",
+})
+
+const jetbrains = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains",
 })
 
 export const metadata: Metadata = {
@@ -85,7 +95,7 @@ export default async function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable} ${GeistMono.variable}`}>
+    <html lang="en" className={`${playfair.variable} ${inter.variable} ${crimson.variable} ${jetbrains.variable} ${GeistMono.variable}`}>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/favicon.png" type="image/png" />

@@ -11,12 +11,10 @@
   --scribble-w: 2px;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap');
-
 body {
   background-color: var(--paper);
   color: var(--ink);
-  font-family: 'Crimson Pro', serif;
+  font-family: var(--font-crimson), serif;
   font-size: 18px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;

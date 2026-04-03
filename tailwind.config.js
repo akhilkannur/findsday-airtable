@@ -18,9 +18,10 @@ module.exports = {
         'blob-bg': '#D1D4C4',
       },
       fontFamily: {
-        sans: ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
-        mono: ['Courier New', 'Courier', 'monospace'],
+        sans: ['var(--font-inter)', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+        mono: ['var(--font-geist-mono)', 'Courier New', 'Courier', 'monospace'],
         playfair: ['var(--font-playfair)', 'serif'],
+        crimson: ['var(--font-crimson)', 'serif'],
       },
     },
   },
