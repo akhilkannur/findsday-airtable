@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
@@ -116,10 +117,13 @@ export default async function StackDetailPage({
 
             {stack.expert && (
               <div className="flex items-center gap-6 mt-12 bg-paper-dark p-6 md:p-8 border border-ink/10">
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border border-ink shrink-0 shadow-[4px_4px_0px_0px_rgba(26,25,23,0.1)]">
-                  <img
+                <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border border-ink shrink-0 shadow-[4px_4px_0px_0px_rgba(26,25,23,0.1)]">
+                  <Image
                     src={stack.expert.image}
                     alt={stack.expert.name}
+                    width={160}
+                    height={160}
+                    quality={95}
                     className="w-full h-full object-cover"
                   />
                 </div>

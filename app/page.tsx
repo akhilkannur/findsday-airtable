@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, Cpu, Zap, Brain, Mail, Sparkles, ChevronRight } from "lucide-react"
 import * as LucideIcons from "lucide-react"
@@ -189,10 +190,13 @@ export default async function Home() {
             >
               <div className="relative w-8 h-8 rounded-full overflow-hidden border border-ink/10 flex-shrink-0 bg-paper-dark">
                 {latestExpertStack.expert?.image && (
-                  <img 
+                  <Image 
                     src={latestExpertStack.expert.image} 
                     alt={latestExpertStack.expert.name}
-                    className="object-cover w-full h-full grayscale group-hover:grayscale-0 transition-all"
+                    width={80}
+                    height={80}
+                    quality={90}
+                    className="object-cover w-full h-full grayscale group-hover:grayscale-0 transition-all duration-300"
                   />
                 )}
               </div>
