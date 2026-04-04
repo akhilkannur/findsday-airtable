@@ -196,7 +196,7 @@ export default async function Home() {
                     width={80}
                     height={80}
                     quality={90}
-                    className="object-cover w-full h-full grayscale group-hover:grayscale-0 transition-all duration-300"
+                    className="object-cover w-full h-full transition-all duration-300"
                   />
                 )}
               </div>

@@ -30,6 +30,36 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/capability/crm-automation',
+        destination: '/categories/crm-and-revops',
+        permanent: true,
+      },
+      {
+        source: '/capability/ai-voice-dialers',
+        destination: '/categories/phone-and-dialers',
+        permanent: true,
+      },
+      {
+        source: '/capability/revenue-intelligence',
+        destination: '/categories/revenue-intelligence',
+        permanent: true,
+      },
+      {
+        source: '/capability/sales-enablement',
+        destination: '/categories/sales-enablement',
+        permanent: true,
+      },
+      {
+        source: '/capability/meeting-scheduling',
+        destination: '/categories/closing-and-scheduling',
+        permanent: true,
+      },
+      {
+        source: '/capability/cpq-closing',
+        destination: '/categories/closing-and-scheduling',
+        permanent: true,
+      },
+      {
         source: '/open-source',
         destination: '/open-source-sales-tools',
         permanent: true,

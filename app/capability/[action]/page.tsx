@@ -54,6 +54,20 @@ export default async function CapabilityPage({
   const { action } = await params
   const { category: categorySlug } = await searchParams
 
+  // Consolidation Map: Capability Slug -> Category Slug
+  const CONSOLIDATION_MAP: Record<string, string> = {
+    "crm-automation": "crm-and-revops",
+    "ai-voice-dialers": "phone-and-dialers",
+    "revenue-intelligence": "revenue-intelligence",
+    "sales-enablement": "sales-enablement",
+    "meeting-scheduling": "closing-and-scheduling",
+    "cpq-closing": "closing-and-scheduling",
+  }
+
+  if (CONSOLIDATION_MAP[action]) {
+    permanentRedirect(`/categories/${CONSOLIDATION_MAP[action]}`)
+  }
+
   // Strict check for canonical capabilities
   const isCanonical = CANONICAL_CAPABILITIES.some(
     (cap) => cap.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") === action
@@ -131,7 +145,7 @@ export default async function CapabilityPage({
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {tools.map((t) => (
                 <div key={t.slug} className="tool-card flex flex-col h-full bg-paper">
-                  <Link href={`/apis/${t.slug}`} className="group block mb-4 md:mb-6">
+                  <Link href={t.isOpenSource ? `/open-source-sales-tools/${t.slug}` : `/apis/${t.slug}`} className="group block mb-4 md:mb-6">
                     <div className="flex justify-between items-start mb-4 md:mb-6">
                       <ToolLogo name={t.name} websiteUrl={t.websiteUrl} />
                       {t.mcpReady && (
@@ -153,7 +167,7 @@ export default async function CapabilityPage({
 
                   <div className="mt-auto flex flex-wrap gap-2 items-center pt-4 border-t border-ink/5">
                     <span className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-wider text-ink-fade">{t.category}</span>
-                    <Link href={`/apis/${t.slug}`} className="ml-auto font-mono text-[0.65rem] md:text-[0.7rem] uppercase underline hover:no-underline">View API</Link>
+                    <Link href={t.isOpenSource ? `/open-source-sales-tools/${t.slug}` : `/apis/${t.slug}`} className="ml-auto font-mono text-[0.65rem] md:text-[0.7rem] uppercase underline hover:no-underline">View API</Link>
                   </div>
                 </div>
               ))}
