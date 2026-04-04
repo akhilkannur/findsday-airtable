@@ -175,11 +175,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }))
 
   // Dynamic use case pages (for /for/[slug])
+  const consolidatedUseCaseSlugs = new Set([
+    "crm-automation",
+    "sales-engagement",
+    "voice-and-calling",
+    "sales-enablement",
+    "sales-analytics",
+  ])
+
   const usecases = getAllUseCases()
   const uniqueUseCaseSlugs = new Set<string>()
   const usecasePages: MetadataRoute.Sitemap = usecases
     .filter((usecase) => {
-      if (!usecase.slug || uniqueUseCaseSlugs.has(usecase.slug)) return false
+      if (!usecase.slug || uniqueUseCaseSlugs.has(usecase.slug) || consolidatedUseCaseSlugs.has(usecase.slug)) return false
       uniqueUseCaseSlugs.add(usecase.slug)
       return true
     })

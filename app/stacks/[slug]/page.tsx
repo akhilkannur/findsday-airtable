@@ -288,7 +288,7 @@ export default async function StackDetailPage({
               Prospecting Tools
             </Link>
             <Link
-              href="/for/crm-automation"
+              href="/categories/crm-and-revops"
               className="font-mono text-[0.7rem] uppercase underline underline-offset-4 hover:line-through transition-all"
             >
               CRM Automation

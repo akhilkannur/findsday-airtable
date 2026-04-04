@@ -33,16 +33,6 @@ const usecases: UseCase[] = [
     capabilityKeywords: ["Enrich", "Enrichment", "Verified Email", "Firmographic", "Contact Data", "Data Enrichment"],
   },
   {
-    slug: "crm-automation",
-    title: "AI Tools for CRM Automation",
-    metaDescription:
-      "Automate your CRM with AI-native APIs and MCP servers. Sync contacts, update deals, and manage pipelines programmatically from Claude Code, Gemini CLI, or your own agents.",
-    intro:
-      "Nobody wants to spend their day updating CRM fields. These tools expose APIs that let your AI agent create contacts, move deals through stages, log activities, and keep your pipeline clean — all without you opening Salesforce.",
-    categories: ["CRM & RevOps"],
-    capabilityKeywords: ["CRM", "Pipeline", "Deal", "Contact Management"],
-  },
-  {
     slug: "meeting-booking",
     title: "AI Tools for Meeting Booking & Scheduling",
     metaDescription:
@@ -61,15 +51,6 @@ const usecases: UseCase[] = [
       "Prospecting is where pipeline begins. These APIs give your AI agent access to massive B2B databases, LinkedIn extractors, and company search engines so you can build targeted lead lists in seconds instead of hours.",
     categories: ["Sales Intelligence"],
     capabilityKeywords: ["Prospect", "Lead Discovery", "Search", "Contact", "Find", "Lead List", "B2B"],
-  },
-  {
-    slug: "sales-engagement",
-    title: "AI Sales Engagement Platforms",
-    metaDescription:
-      "AI sales engagement platforms with APIs for multichannel outreach. Automate email sequences, calls, LinkedIn touches, and follow-ups from your AI agent.",
-    intro:
-      "Sales engagement platforms are the command center for outbound. These tools offer APIs for orchestrating email, phone, LinkedIn, and SMS touches in automated sequences — letting your AI agent run full campaigns end to end.",
-    categories: ["Sales Engagement"],
   },
   {
     slug: "conversation-intelligence",
@@ -92,26 +73,6 @@ const usecases: UseCase[] = [
     capabilityKeywords: ["Proposal", "Quote", "Document", "Contract", "Signature", "CPQ", "Sales Room"],
   },
   {
-    slug: "sales-analytics",
-    title: "Sales Analytics Tools for AI Agents",
-    metaDescription:
-      "Sales analytics APIs for AI agents. Track pipeline health, forecast revenue, analyze rep performance, and surface deal risks automatically.",
-    intro:
-      "You can't fix what you can't measure. These analytics APIs let your AI agent pull pipeline metrics, forecast revenue, flag at-risk deals, and generate performance reports — giving you a real-time view of your sales engine without building dashboards from scratch.",
-    categories: ["Revenue Intelligence"],
-    capabilityKeywords: ["Analytics", "Forecast", "Pipeline", "Revenue", "Report", "Dashboard"],
-  },
-  {
-    slug: "voice-and-calling",
-    title: "AI Voice & Calling Tools",
-    metaDescription:
-      "AI voice and calling tools with APIs for sales teams. Power dialers, AI voice agents, call recording, and SMS automation for outbound sales.",
-    intro:
-      "The phone is still the fastest way to close. These APIs give your AI agent access to power dialers, AI voice bots, call recording, and SMS campaigns — so you can scale outbound calling without hiring more SDRs.",
-    categories: ["Phone & Dialers"],
-    capabilityKeywords: ["Call", "Dial", "Voice", "Phone", "SMS"],
-  },
-  {
     slug: "workflow-automation",
     title: "Sales Workflow Automation Tools",
     metaDescription:
@@ -120,15 +81,6 @@ const usecases: UseCase[] = [
       "Manual processes are the silent killer of sales velocity. These automation APIs let your AI agent connect tools, sync data between systems, trigger workflows based on events, and eliminate the repetitive ops work that slows your team down.",
     categories: ["CRM & RevOps"],
     capabilityKeywords: ["Automate", "Workflow", "Sync", "Integration", "Ops", "Automation"],
-  },
-  {
-    slug: "sales-enablement",
-    title: "Sales Enablement Tools for AI Agents",
-    metaDescription:
-      "Sales enablement APIs for AI agents. Manage content, automate coaching, deliver training, and equip reps with the right resources at the right time.",
-    intro:
-      "Your reps are only as good as the resources they have access to. These enablement APIs let your AI agent serve up the right content, deliver coaching prompts, track training completion, and ensure your team always has what they need to close.",
-    categories: ["Sales Enablement"],
   },
 ]
 

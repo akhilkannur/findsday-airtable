@@ -54,9 +54,10 @@ export async function generateMetadata({
 }
 
 function ToolCard({ tool }: { tool: any }) {
+  const href = tool.isOpenSource ? `/open-source-sales-tools/${tool.slug}` : `/apis/${tool.slug}`
   return (
     <Link
-      href={`/apis/${tool.slug}`}
+      href={href}
       className="tool-card group flex flex-col h-full"
     >
       <div className="flex justify-between items-start mb-6">
@@ -89,6 +90,21 @@ export default async function UseCaseDetailPage({
   params: Promise<{ usecase: string }>
 }) {
   const { usecase } = await params
+  
+  // Consolidation Map: Use Case Slug -> Category Slug
+  const CONSOLIDATION_MAP: Record<string, string> = {
+    "crm-automation": "crm-and-revops",
+    "sales-engagement": "sales-engagement",
+    "voice-and-calling": "phone-and-dialers",
+    "sales-enablement": "sales-enablement",
+    "sales-analytics": "revenue-intelligence",
+  }
+
+  if (CONSOLIDATION_MAP[usecase]) {
+    const { permanentRedirect } = await import("next/navigation")
+    permanentRedirect(`/categories/${CONSOLIDATION_MAP[usecase]}`)
+  }
+
   const uc = getUseCaseBySlug(usecase)
 
   if (!uc) {

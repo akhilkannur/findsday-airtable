@@ -31,7 +31,7 @@ const AUDIT_URLS = [
   "https://salestools.club/guides/best-lead-enrichment-apis",
   "https://salestools.club/apis/suitecrm",
   "https://salestools.club/capability/ai-sales-agents",
-  "https://salestools.club/capability/crm-automation",
+  "https://salestools.club/categories/crm-and-revops",
   "https://salestools.club/capability/company-enrichment",
   "https://salestools.club/capability/automated-outreach",
   "https://salestools.club/capability/ai-sales-agent",
