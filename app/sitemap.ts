@@ -261,13 +261,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }))
 
   // Capability pages
+  const consolidatedSlugs = new Set([
+    "crm-automation",
+    "ai-voice-dialers",
+    "revenue-intelligence",
+    "sales-enablement",
+    "meeting-scheduling",
+    "cpq-closing",
+  ])
+
   const capabilities = getAllCapabilities()
-  const capabilityPages: MetadataRoute.Sitemap = capabilities.map((cap) => ({
-    url: `${baseUrl}/capability/${cap.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}`,
-    lastModified: lastModified,
-    changeFrequency: "weekly" as const,
-    priority: 0.6,
-  }))
+  const capabilityPages: MetadataRoute.Sitemap = capabilities
+    .map((cap) => {
+      const slug = cap.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")
+      return { cap, slug }
+    })
+    .filter(({ slug }) => !consolidatedSlugs.has(slug))
+    .map(({ slug }) => ({
+      url: `${baseUrl}/capability/${slug}`,
+      lastModified: lastModified,
+      changeFrequency: "weekly" as const,
+      priority: 0.6,
+    }))
 
   // Alternative pages
   const topAlternativeSlugs = ["hubspot", "salesforce", "apollo", "zoominfo", "pipedrive", "lusha", "clearbit", "hunter"]
