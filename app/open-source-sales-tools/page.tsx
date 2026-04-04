@@ -10,14 +10,14 @@ export const metadata: Metadata = {
   description:
     "Open source sales tools and APIs you can self-host, fork, and inspect. Build your sales stack on transparent foundations.",
   alternates: {
-    canonical: "https://salestools.club/open-source",
+    canonical: "https://salestools.club/open-source-sales-tools",
   },
 }
 
 function ToolCard({ tool }: { tool: any }) {
   return (
     <Link
-      href={`/apis/${tool.slug}`}
+      href={`/open-source-sales-tools/${tool.slug}`}
       className="tool-card group flex flex-col h-full"
     >
       <div className="flex justify-between items-start mb-6">

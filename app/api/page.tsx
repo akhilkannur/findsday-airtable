@@ -110,7 +110,7 @@ export default async function APIPage({
               {tools.map((tool) => (
                 <Link
                   key={tool.slug}
-                  href={`/apis/${tool.slug}`}
+                  href={tool.isOpenSource ? `/open-source-sales-tools/${tool.slug}` : `/apis/${tool.slug}`}
                   className="tool-card group flex flex-col h-full"
                 >
                   <div className="flex justify-between items-start mb-6">
@@ -141,7 +141,7 @@ export default async function APIPage({
               {tools.map((tool) => (
                 <Link
                   key={tool.slug}
-                  href={`/apis/${tool.slug}`}
+                  href={tool.isOpenSource ? `/open-source-sales-tools/${tool.slug}` : `/apis/${tool.slug}`}
                   className="group flex flex-col md:flex-row md:items-center gap-4 md:gap-6 p-6 md:p-8 border-b border-ink/10 hover:bg-paper-dark/30 transition-all"
                 >
                   <ToolLogo name={tool.name} websiteUrl={tool.websiteUrl} size="sm" />

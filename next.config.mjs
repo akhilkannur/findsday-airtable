@@ -30,6 +30,46 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/open-source',
+        destination: '/open-source-sales-tools',
+        permanent: true,
+      },
+      {
+        source: '/open-source/:slug',
+        destination: '/open-source-sales-tools/:slug',
+        permanent: true,
+      },
+      {
+        source: '/apis/suitecrm',
+        destination: '/open-source-sales-tools/suitecrm',
+        permanent: true,
+      },
+      {
+        source: '/apis/espocrm',
+        destination: '/open-source-sales-tools/espocrm',
+        permanent: true,
+      },
+      {
+        source: '/apis/twenty',
+        destination: '/open-source-sales-tools/twenty',
+        permanent: true,
+      },
+      {
+        source: '/apis/mautic',
+        destination: '/open-source-sales-tools/mautic',
+        permanent: true,
+      },
+      {
+        source: '/apis/erxes',
+        destination: '/open-source-sales-tools/erxes',
+        permanent: true,
+      },
+      {
+        source: '/apis/civicrm',
+        destination: '/open-source-sales-tools/civicrm',
+        permanent: true,
+      },
+      {
         source: '/tools/:slug',
         destination: '/apis/:slug',
         permanent: true,

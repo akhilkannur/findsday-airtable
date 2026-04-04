@@ -243,6 +243,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     isFeatured: false,
     alternativeTo: ["Salesforce", "Pipedrive"],
     integrations: [],
+    isOpenSource: true,
   },
 
   {
@@ -2452,6 +2453,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     isFeatured: false,
     alternativeTo: ["Salesforce", "HubSpot"],
     integrations: [],
+    isOpenSource: true,
   },
   {
     slug: "espocrm",

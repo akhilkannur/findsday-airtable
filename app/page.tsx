@@ -3,6 +3,7 @@ import { ArrowRight, Cpu, Zap, Brain, Mail, Sparkles, ChevronRight } from "lucid
 import * as LucideIcons from "lucide-react"
 import { getAllCategories, getAllTools } from "@/lib/tools"
 import { getAllGuides } from "@/lib/guides"
+import { getAllStacks } from "@/lib/stacks"
 import type { Metadata } from "next"
 import { NewsletterForm } from "@/components/NewsletterForm"
 import { ToolLogo } from "@/components/ToolLogo"
@@ -110,6 +111,9 @@ export default async function Home() {
   const categories = getAllCategories()
   const guides = getAllGuides().slice(0, 3)
 
+  const allStacks = getAllStacks()
+  const latestExpertStack = [...allStacks].reverse().find((s) => s.expert)
+
   return (
     <div className="flex flex-col">
       <script
@@ -174,6 +178,37 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      {/* -- Expert Stack Bar ----------------------- */}
+      {latestExpertStack && (
+        <section className="py-4 border-b border-ink/5 bg-paper">
+          <div className="layout-container">
+            <Link 
+              href={`/stacks/${latestExpertStack.slug}`}
+              className="group flex items-center gap-3 hover:opacity-80 transition-opacity"
+            >
+              <div className="relative w-8 h-8 rounded-full overflow-hidden border border-ink/10 flex-shrink-0 bg-paper-dark">
+                {latestExpertStack.expert?.image && (
+                  <img 
+                    src={latestExpertStack.expert.image} 
+                    alt={latestExpertStack.expert.name}
+                    className="object-cover w-full h-full grayscale group-hover:grayscale-0 transition-all"
+                  />
+                )}
+              </div>
+              <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-3">
+                <span className="font-mono text-[0.65rem] uppercase tracking-widest text-ink-fade">
+                  Latest Expert Stack:
+                </span>
+                <span className="font-serif italic text-sm md:text-base border-b border-ink/20 group-hover:border-ink transition-colors">
+                  {latestExpertStack.name}
+                </span>
+              </div>
+              <ArrowRight className="ml-auto w-4 h-4 text-ink-fade group-hover:text-ink transition-colors" />
+            </Link>
+          </div>
+        </section>
+      )}
 
       {/* -- Directory Header ---------------- */}
       <section className="py-10 md:py-16 border-t border-ink">

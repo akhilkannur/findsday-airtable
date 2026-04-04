@@ -57,7 +57,7 @@ const navLinks = [
   { href: "/skills", label: "Skills" },
   { href: "/stacks", label: "Stacks" },
   { href: "/categories", label: "Categories" },
-  { href: "/open-source", label: "Open Source" },
+  { href: "/open-source-sales-tools", label: "Open Source" },
   { href: "/submit", label: "Submit" },
 ]
 

@@ -55,7 +55,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/open-source`,
+      url: `${baseUrl}/open-source-sales-tools`,
       lastModified: lastModified,
       changeFrequency: "weekly",
       priority: 0.7,
@@ -120,7 +120,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       return true
     })
     .map((tool) => ({
-      url: `${baseUrl}/apis/${tool.slug}`,
+      url: `${baseUrl}/${tool.isOpenSource ? "open-source-sales-tools" : "apis"}/${tool.slug}`,
       lastModified: lastModified,
       changeFrequency: "weekly" as const,
       priority: 0.7,

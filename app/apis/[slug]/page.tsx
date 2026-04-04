@@ -150,9 +150,10 @@ function JsonLd({ tool, alternatives }: { tool: SalesTool; alternatives: SalesTo
 }
 
 function ToolCard({ tool }: { tool: SalesTool }) {
+  const href = tool.isOpenSource ? `/open-source-sales-tools/${tool.slug}` : `/apis/${tool.slug}`
   return (
     <Link
-      href={`/apis/${tool.slug}`}
+      href={href}
       className="tool-card group flex flex-col h-full"
     >
       <div className="flex justify-between items-start mb-6">
@@ -181,6 +182,12 @@ export default async function ToolDetailPage({
 }) {
   const { slug } = await params
   let tool = await getToolBySlug(slug)
+
+  // If it's an open source tool, redirect to the open source sales tools path
+  if (tool?.isOpenSource) {
+    const { permanentRedirect } = await import("next/navigation")
+    permanentRedirect(`/open-source-sales-tools/${tool.slug}`)
+  }
 
   // Handle legacy slugs that might have been renamed to include -ai
   if (!tool && !slug.endsWith("-ai")) {

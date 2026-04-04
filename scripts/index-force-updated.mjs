@@ -24,6 +24,7 @@ function fetchSitemap() {
 
 // URLs from the audit that have high impressions but low CTR
 const AUDIT_URLS = [
+  "https://salestools.club/stacks/jorge-macias-favorite-apis",
   "https://salestools.club/api",
   "https://salestools.club/capability/data-enrichment",
   "https://salestools.club/apis/similartech",

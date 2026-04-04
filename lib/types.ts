@@ -53,6 +53,7 @@ export interface SalesTool {
   isFeatured: boolean
   alternativeTo?: string[]
   addedAt?: string
+  isOpenSource?: boolean
 }
 
 export interface CategoryMeta {

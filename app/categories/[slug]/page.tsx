@@ -51,9 +51,10 @@ export async function generateMetadata({
 }
 
 function ToolCard({ tool }: { tool: any }) {
+  const href = tool.isOpenSource ? `/open-source-sales-tools/${tool.slug}` : `/apis/${tool.slug}`
   return (
     <Link
-      href={`/apis/${tool.slug}`}
+      href={href}
       className="tool-card group flex flex-col h-full"
     >
       <div className="flex justify-between items-start mb-6">
