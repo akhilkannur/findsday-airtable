@@ -1,6 +1,6 @@
 {
   "name": "@salestoolsclub/mcp",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "MCP server for Salestools Club - Search sales APIs and tools",
   "type": "module",
   "main": "index.js",
