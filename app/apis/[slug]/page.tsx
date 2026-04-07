@@ -342,11 +342,21 @@ export default async function ToolDetailPage({
 
           <div className="max-w-4xl">
             <div className="flex items-center gap-4 md:gap-6 mb-8 md:mb-12">
-              <div className="font-mono text-[0.75rem] md:text-[0.8rem] uppercase tracking-wider text-ink">About {typedTool.name}</div>
+              <div className="font-mono text-[0.75rem] md:text-[0.8rem] uppercase tracking-wider text-ink">Technical Feature Analysis</div>
               <div className="h-px flex-grow bg-ink opacity-10"></div>
             </div>
-            <div className="font-serif text-lg md:text-xl leading-relaxed text-ink-fade whitespace-pre-line max-w-3xl">
-              {typedTool.description}
+            <div className="prose prose-ink max-w-none font-serif text-lg md:text-xl leading-relaxed text-ink-fade space-y-8">
+              <p>
+                {typedTool.name} is built for <strong>AI-first teams</strong>, specifically for workflows where you want an AI agent to handle your <em>{typedTool.category}</em> tasks. Instead of manual data entry, {typedTool.name} lets your AI "see" and "act" on your data directly through its {typedTool.apiType?.join(' or ') || 'API'}.
+              </p>
+              
+              <div className="p-8 bg-paper border-y border-ink/10 italic">
+                {typedTool.description}
+              </div>
+
+              <p>
+                The biggest win with {typedTool.name} is the ability to move from **Chat-to-Action**. By connecting it to your AI agent, you can automate {typedTool.aiCapabilities?.slice(0, 3).join(', ')} without having to build a custom tech stack or hire a developer.
+              </p>
             </div>
           </div>
 

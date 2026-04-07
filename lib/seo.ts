@@ -34,9 +34,9 @@ export function generateSeoTitle(
   
   switch (type) {
     case "capability":
-      return `${formattedSubject} APIs & MCP Configs for AI Agents | Salestools Club`
+      return `Top ${formattedSubject} AI Features & APIs | Salestools Club`
     case "category":
-      return `${formattedSubject} APIs & Developer Tools | Salestools Club`
+      return `Top ${formattedSubject} APIs & AI Tools | Salestools Club`
     case "tool":
       if (status === "no-api" || status === "monitoring") {
         return `${formattedSubject} Technical Details & Status | Salestools Club`
@@ -61,9 +61,9 @@ export function generateSeoDescription(
   
   switch (type) {
     case "capability":
-      return `Connect your AI agent to the best ${formattedSubject} APIs. Access verified ${count ? `${count} ` : ""}MCP configs and starter prompts for Claude Code and Gemini.`
+      return `Compare top ${formattedSubject} AI features and APIs. Access verified ${count ? `${count} ` : ""}MCP configs and technical analysis for AI-native sales operators.`
     case "category":
-      return `Explore the top ${formattedSubject} APIs for sales automation. Technical documentation, authentication methods, and MCP servers for AI builders.`
+      return `Technical breakdown of the best ${formattedSubject} APIs for sales. Compare AI features, MCP support, and pricing for your agentic sales stack.`
     case "tool":
       if (status === "no-api") {
         return `Technical details for ${formattedSubject}. Note: No public REST/GraphQL API currently found. Explore monitored status and top AI-native alternatives for automation.`

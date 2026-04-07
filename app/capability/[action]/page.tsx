@@ -1,4 +1,4 @@
-import { getToolsByCapability, getAllCapabilities, getAllCategories, CANONICAL_CAPABILITIES } from "@/lib/tools"
+import { getToolsByCapability, getAllCapabilities, getAllCategories, CANONICAL_CAPABILITIES, getTopCapabilities } from "@/lib/tools"
 import Link from "next/link"
 import type { Metadata } from "next"
 import { notFound, permanentRedirect } from "next/navigation"
@@ -93,14 +93,15 @@ export default async function CapabilityPage({
   }
 
   const actionDisplay = formatAcronyms(action)
+  const topFeatures = getTopCapabilities(tools, 8)
 
   const faqItems = [
     {
-      question: `What is ${actionDisplay} in the context of sales AI?`,
-      answer: `${actionDisplay} involves using AI agents and APIs to automate tasks like lead research, data cleaning, or outreach personalization. It allows your sales team to focus on closing deals while the AI handles the repetitive data work.`
+      question: `What are the core ${actionDisplay} AI features to look for?`,
+      answer: `When evaluating ${actionDisplay} tools for AI automation, look for ${topFeatures.slice(0, 3).join(', ')}. These features ensure your AI agents can perform ${actionDisplay.toLowerCase()} tasks with high precision and minimal manual intervention.`
     },
     {
-      question: `How can I automate ${actionDisplay} with Claude or Gemini?`,
+      question: `How do I automate ${actionDisplay} with Claude or Gemini?`,
       answer: `You can connect these tools to your AI agent using their APIs or MCP servers. Simply provide the agent with the "Starter Prompt" shown above, and it will use the tool's capabilities to perform the ${actionDisplay.toLowerCase()} task for you.`
     },
     {
@@ -117,25 +118,78 @@ export default async function CapabilityPage({
       ]} />
 
       <nav className="layout-container py-4 md:py-6 flex flex-wrap items-center gap-2 text-[0.65rem] md:text-[0.7rem] font-mono uppercase tracking-widest text-ink-fade">
-        <Link href="/" className="hover:text-ink hover:underline">Home</Link>
+        <Link href="/" className="hover:text-ink hover:underline transition-all">Home</Link>
         <span className="opacity-30">/</span>
         <span className="opacity-30 uppercase">Capabilities</span>
         <span className="opacity-30">/</span>
         <span className="text-ink font-bold">{actionDisplay}</span>
       </nav>
 
-      <section className="px-4 md:px-8 py-12 md:py-16 border-b border-ink">
+      <section className="px-4 md:px-8 py-12 md:py-16 border-b border-ink bg-paper-dark/30">
         <div className="layout-container">
-          <p className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-widest text-ink-fade mb-3 md:mb-4">Capability Hub</p>
-          <h1 className="type-display mb-4 md:mb-6 text-3xl md:text-5xl lg:text-7xl">{actionDisplay} APIs</h1>
-          <p className="max-w-2xl font-serif italic text-xl md:text-2xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
-            APIs and tools for {actionDisplay.toLowerCase()}. Connect these to your AI agent to automate your prospecting and sales tasks.
+          <p className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-widest text-ink-fade mb-3 md:mb-4">Commercial Intent Analysis</p>
+          <h1 className="type-display mb-4 md:mb-6 text-3xl md:text-5xl lg:text-7xl">Top {actionDisplay} AI Features</h1>
+          <p className="max-w-2xl font-serif italic text-xl md:text-2xl text-ink leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
+            Compare verified {actionDisplay.toLowerCase()} APIs and MCP configurations. Build your agentic sales stack by connecting these high-intent tools directly to your AI operator.
           </p>
         </div>
       </section>
 
-      <section className="py-8 md:py-12">
+      <section className="py-12 md:py-20 border-b border-ink">
+        <div className="layout-container grid grid-cols-1 lg:grid-cols-[1fr_350px] gap-12 lg:gap-20">
+          <div>
+            <div className="flex items-center gap-4 md:gap-6 mb-8 md:mb-12">
+              <div className="font-mono text-[0.75rem] md:text-[0.8rem] uppercase tracking-wider text-ink">Feature Comparison Matrix</div>
+              <div className="h-px flex-grow bg-ink opacity-10"></div>
+            </div>
+            
+            <div className="prose prose-ink max-w-none font-serif text-lg md:text-xl text-ink-fade leading-relaxed space-y-8">
+              <p>
+                For founders and sales operators building with AI, <strong>{actionDisplay}</strong> has moved beyond manual dashboards. The goal now is "Chat-to-Action"—where your AI agent doesn't just find data, but actually performs the work for you. To build a stack that actually works, you need tools that prioritize AI-ready data over pretty charts.
+              </p>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 not-prose">
+                {topFeatures.map((feat) => (
+                  <div key={feat} className="p-4 bg-paper border border-ink/10 font-mono text-[0.7rem] md:text-[0.75rem] uppercase flex items-center gap-3">
+                    <div className="w-1.5 h-1.5 bg-black rounded-full"></div>
+                    {feat}
+                  </div>
+                ))}
+              </div>
+
+              <p>
+                The secret to <strong>{actionDisplay.toLowerCase()}</strong> automation is how fast your agent (like Claude or Gemini) can "read" the tool. We prioritize tools with verified MCP servers and clean APIs because they allow your AI to work 10x faster, skipping the messy CSV exports and manual data cleaning.
+              </p>
+            </div>
+          </div>
+
+          <div className="p-8 bg-paper border border-ink space-y-8">
+            <h3 className="font-mono text-[0.8rem] uppercase font-bold tracking-widest">Technical Status</h3>
+            <div className="space-y-6">
+              <div className="group">
+                <div className="font-mono text-[0.65rem] uppercase text-ink-fade italic mb-1">Tools Verified</div>
+                <div className="font-mono font-bold text-xl">{tools.length}</div>
+              </div>
+              <div className="group">
+                <div className="font-mono text-[0.65rem] uppercase text-ink-fade italic mb-1">MCP Support</div>
+                <div className="font-mono font-bold text-xl">{tools.filter(t => t.mcpReady).length} Official</div>
+              </div>
+              <div className="group">
+                <div className="font-mono text-[0.65rem] uppercase text-ink-fade italic mb-1">Primary Format</div>
+                <div className="font-mono font-bold text-xl">JSON / REST API</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12 md:py-20">
         <div className="layout-container">
+          <div className="flex items-center gap-4 md:gap-6 mb-8 md:mb-12">
+            <h2 className="font-mono text-[0.75rem] md:text-[0.8rem] uppercase tracking-wider text-ink">Verified {actionDisplay} Tools</h2>
+            <div className="h-px flex-grow bg-ink opacity-10"></div>
+          </div>
+
           <ProgrammaticFilterBar 
             categories={categories.map(c => ({ slug: c.slug, name: c.name }))} 
             baseUrl={`/capability/${action}`}
@@ -167,7 +221,7 @@ export default async function CapabilityPage({
 
                   <div className="mt-auto flex flex-wrap gap-2 items-center pt-4 border-t border-ink/5">
                     <span className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-wider text-ink-fade">{t.category}</span>
-                    <Link href={t.isOpenSource ? `/open-source-sales-tools/${t.slug}` : `/apis/${t.slug}`} className="ml-auto font-mono text-[0.65rem] md:text-[0.7rem] uppercase underline hover:no-underline">View API</Link>
+                    <Link href={t.isOpenSource ? `/open-source-sales-tools/${t.slug}` : `/apis/${t.slug}`} className="ml-auto font-mono text-[0.65rem] md:text-[0.7rem] uppercase underline hover:no-underline transition-all">View API Docs</Link>
                   </div>
                 </div>
               ))}
@@ -181,7 +235,7 @@ export default async function CapabilityPage({
         </div>
       </section>
 
-      <FaqSection items={faqItems} title={`${actionDisplay} FAQ`} />
+      <FaqSection items={faqItems} title={`${actionDisplay} Technical FAQ`} />
     </div>
   )
 }

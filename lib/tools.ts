@@ -1,5 +1,6 @@
 import { tools, categories } from "./data"
 import type { SalesTool, ToolCategory, CategoryMeta } from "./types"
+import { formatAcronyms } from "./seo"
 
 // In "Terminal-First" mode, I use the local data.ts as the source of truth.
 // We keep the functions async so the UI doesn't need to change, and it allows
@@ -163,6 +164,21 @@ export async function getToolsByAlternativeTo(toolName: string): Promise<SalesTo
     t.alternativeTo?.some(alt => alt.toLowerCase().includes(searchName)) ||
     t.name.toLowerCase().includes(searchName)
   )
+}
+
+export function getTopCapabilities(tools: SalesTool[], limit = 10): string[] {
+  const capCounts: Record<string, number> = {}
+  tools.forEach(t => {
+    t.aiCapabilities.forEach(cap => {
+      const normalized = formatAcronyms(cap)
+      capCounts[normalized] = (capCounts[normalized] || 0) + 1
+    })
+  })
+  
+  return Object.entries(capCounts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, limit)
+    .map(([cap]) => cap)
 }
 
 export const CANONICAL_CAPABILITIES = [
