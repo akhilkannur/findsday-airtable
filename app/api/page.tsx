@@ -36,11 +36,20 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
       description: pageDescription,
       type: "website",
       url: "https://salestools.club/api",
+      images: [
+        {
+          url: "https://salestools.club/opengraph-image",
+          width: 1200,
+          height: 630,
+          alt: "Salestools Club",
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: pageTitle,
       description: pageDescription,
+      images: ["https://salestools.club/opengraph-image"],
     },
   }
 }

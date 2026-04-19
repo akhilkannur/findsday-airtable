@@ -15,11 +15,20 @@ export const metadata: Metadata = {
     description: "Browse AI sales tools organized by use case — cold outreach, lead enrichment, CRM automation, prospecting, and more. Find the right APIs for what you're building.",
     type: "website",
     url: "https://salestools.club/for",
+    images: [
+      {
+        url: "https://salestools.club/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Salestools Club",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Sales AI Use Cases | Salestools Club",
     description: "Browse AI sales tools organized by use case — cold outreach, lead enrichment, CRM automation, prospecting, and more. Find the right APIs for what you're building.",
+    images: ["https://salestools.club/opengraph-image"],
   },
 }
 

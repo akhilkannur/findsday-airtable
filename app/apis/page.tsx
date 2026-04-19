@@ -20,11 +20,20 @@ export function generateMetadata({ searchParams }: { searchParams: Promise<{ [ke
       description: "A comprehensive database of sales APIs and tools for people building with Claude Code and Gemini CLI.",
       type: "website",
       url: "https://salestools.club/api",
+      images: [
+        {
+          url: "https://salestools.club/opengraph-image",
+          width: 1200,
+          height: 630,
+          alt: "Salestools Club",
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: "Sales APIs | Salestools Club",
       description: "A comprehensive database of sales APIs and tools for people building with Claude Code and Gemini CLI.",
+      images: ["https://salestools.club/opengraph-image"],
     },
   })
 }

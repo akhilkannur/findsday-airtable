@@ -42,12 +42,30 @@ export const metadata: Metadata = {
       "The sales API directory for builders. Find MCP servers, CRM APIs, and agentic tools for Claude Code and other agentic platforms.",
     type: "website",
     url: "https://salestools.club",
+    images: [
+      {
+        url: "https://salestools.club/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Salestools Club",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Salestools Club — Sales APIs & MCP Servers for AI Tinkerers",
     description:
       "Find the APIs, SDKs, and MCP servers that plug your sales stack into Claude Code and other agent-native platforms.",
+    images: ["https://salestools.club/opengraph-image"],
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.png", type: "image/png" },
+    ],
+    apple: [
+      { url: "/icon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
 }
 
@@ -97,9 +115,6 @@ export default async function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable} ${crimson.variable} ${jetbrains.variable} ${GeistMono.variable}`}>
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/favicon.png" type="image/png" />
-        <link rel="apple-touch-icon" href="/icon.png" />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-9LGNFH00R7"
           strategy="afterInteractive"

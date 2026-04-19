@@ -15,11 +15,20 @@ export const metadata: Metadata = {
     description: "Technical head-to-head comparisons of the best sales APIs, SDKs, and MCP servers for AI agents.",
     type: "website",
     url: "https://salestools.club/vs",
+    images: [
+      {
+        url: "https://salestools.club/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Salestools Club",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "API Comparisons | Salestools Club",
     description: "Technical head-to-head comparisons of the best sales APIs, SDKs, and MCP servers for AI agents.",
+    images: ["https://salestools.club/opengraph-image"],
   },
 }
 

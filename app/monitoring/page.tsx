@@ -18,11 +18,20 @@ export const metadata: Metadata = {
     description: "Tools we're monitoring for API documentation. If you know any of these tools have public APIs, let us know!",
     type: "website",
     url: "https://salestools.club/monitoring",
+    images: [
+      {
+        url: "https://salestools.club/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Salestools Club",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Monitoring | Salestools Club",
     description: "Tools we're monitoring for API documentation. If you know any of these tools have public APIs, let us know!",
+    images: ["https://salestools.club/opengraph-image"],
   },
 }
 

@@ -14,11 +14,20 @@ export const metadata: Metadata = {
     description: "Curated tool combinations for specific sales workflows. Pre-built stacks of APIs that chain together — from prospecting to close.",
     type: "website",
     url: "https://salestools.club/stacks",
+    images: [
+      {
+        url: "https://salestools.club/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Salestools Club",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Sales Tool Stacks | Salestools Club",
     description: "Curated tool combinations for specific sales workflows. Pre-built stacks of APIs that chain together — from prospecting to close.",
+    images: ["https://salestools.club/opengraph-image"],
   },
 }
 

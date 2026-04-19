@@ -6,6 +6,29 @@ export const metadata: Metadata = {
   title: "API Guides for AI Agents | Salestools Club",
   description:
     "Deep-dive guides to sales APIs for AI agents. Compare CRM, cold email, enrichment, and more, including API specs, SDKs, and MCP readiness.",
+  alternates: {
+    canonical: "https://salestools.club/guides",
+  },
+  openGraph: {
+    title: "API Guides for AI Agents | Salestools Club",
+    description: "Deep-dive guides to sales APIs for AI agents. Compare CRM, cold email, enrichment, and more, including API specs, SDKs, and MCP readiness.",
+    type: "website",
+    url: "https://salestools.club/guides",
+    images: [
+      {
+        url: "https://salestools.club/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Salestools Club",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "API Guides for AI Agents | Salestools Club",
+    description: "Deep-dive guides to sales APIs for AI agents. Compare CRM, cold email, enrichment, and more, including API specs, SDKs, and MCP readiness.",
+    images: ["https://salestools.club/opengraph-image"],
+  },
 }
 
 export default function GuidesPage() {

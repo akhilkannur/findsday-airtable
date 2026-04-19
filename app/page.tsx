@@ -28,6 +28,24 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://salestools.club",
   },
+  openGraph: {
+    title: "Salestools Club — Sales APIs & MCP Configs for AI Agents",
+    description: "The technical directory for AI-native sales stacks. Access 500+ verified APIs, MCP configs, and agent skills.",
+    images: [
+      {
+        url: "https://salestools.club/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Salestools Club",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Salestools Club — Sales APIs & MCP Configs for AI Agents",
+    description: "The technical directory for AI-native sales stacks. Access 500+ verified APIs, MCP configs, and agent skills.",
+    images: ["https://salestools.club/opengraph-image"],
+  },
 }
 
 const faqItems = [

@@ -16,11 +16,20 @@ export const metadata: Metadata = {
     description: "Find sales APIs by category — prospecting, CRM, enrichment, outreach, and more.",
     type: "website",
     url: "https://salestools.club/categories",
+    images: [
+      {
+        url: "https://salestools.club/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Salestools Club",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Categories | Salestools Club",
     description: "Find sales APIs by category — prospecting, CRM, enrichment, outreach, and more.",
+    images: ["https://salestools.club/opengraph-image"],
   },
 }
 

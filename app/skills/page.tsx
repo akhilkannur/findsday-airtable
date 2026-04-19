@@ -21,11 +21,20 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
       description: "Direct-to-agent instruction files for Claude Code, Gemini CLI, and other AI agents. Teach your agent how to write cold emails, qualify leads, and update CRMs without middleware.",
       type: "website",
       url: "https://salestools.club/skills",
+      images: [
+        {
+          url: "https://salestools.club/opengraph-image",
+          width: 1200,
+          height: 630,
+          alt: "Salestools Club",
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image" as const,
       title: "AI Agent Skills for Sales & GTM | Salestools Club",
       description: "Direct-to-agent instruction files for Claude Code, Gemini CLI, and other AI agents. Teach your agent how to write cold emails, qualify leads, and update CRMs without middleware.",
+      images: ["https://salestools.club/opengraph-image"],
     },
   }
 }
