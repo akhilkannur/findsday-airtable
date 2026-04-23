@@ -126,7 +126,7 @@ function ToolCard({ tool }: { tool: any }) {
 
 export default async function Home() {
   const allTools = await getAllTools()
-  const exploreTools = allTools.slice(0, 12)
+  const exploreTools = allTools.slice(0, 9)
   const categories = getAllCategories()
   const guides = getAllGuides().slice(0, 3)
 
