@@ -116,7 +116,7 @@ export default async function McpPage({
           </div>
           <h1 className="type-display mb-4 md:mb-6 uppercase text-3xl md:text-5xl lg:text-7xl">MCP Servers</h1>
           <p className="max-w-3xl font-serif italic text-lg md:text-xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
-            The fastest way to give your AI "hands". Plug these servers into Claude Code or Gemini CLI to update your CRM and search leads via chat.
+            The fastest way to give your AI "hands". Plug these servers into Claude Code and Gemini CLI to update your CRM and search leads via chat.
           </p>
         </div>
       </section>
