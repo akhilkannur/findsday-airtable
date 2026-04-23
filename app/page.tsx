@@ -57,7 +57,7 @@ const faqItems = [
   {
     question: "What is an MCP Server?",
     answer:
-      "An MCP is a standardized connector that plugs tools into AI agents like Claude Code or other AI agents. While an API is the pipe, an MCP is the universal plug that makes the pipe work instantly. Instead of building complex bridges, you just paste a small piece of configuration and your agent can immediately use that tool.",
+      "An MCP is a standardized connector that plugs tools into AI agents like Claude Code and other AI agents. While an API is the pipe, an MCP is the universal plug that makes the pipe work instantly. Instead of building complex bridges, you just paste a small piece of configuration and your agent can immediately use that tool.",
   },
   {
     question: "What is a 'Skill'?",
@@ -67,7 +67,7 @@ const faqItems = [
   {
     question: "Do I need to be a developer?",
     answer:
-      "No. This site is built for founders, sales managers, and revenue ops professionals. If you know how to use Claude Code or other AI agents, you can use these building blocks with simple copy-and-paste setup.",
+      "No. This site is built for founders, sales managers, and revenue ops professionals. If you know how to use Claude Code and other AI agents, you can use these building blocks with simple copy-and-paste setup.",
   },
   {
     question: "What does AI-Native mean?",
@@ -159,7 +159,7 @@ export default async function Home() {
             </h1>
             
             <div className="font-serif italic text-lg md:text-2xl text-ink-fade max-w-2xl pl-4 md:pl-6 border-l-2 border-ink mb-6 md:mb-8 leading-relaxed">
-              A handpicked collection of APIs, Skills, and MCP servers that plug directly into Claude Code or other AI agents. Build your GTM machine in hours, not weeks.
+              A handpicked collection of APIs, Skills, and MCP servers that plug directly into Claude Code and other AI agents. Build your GTM machine in hours, not weeks.
             </div>
 
             <div className="max-w-xl">
@@ -292,7 +292,7 @@ export default async function Home() {
                 Sales APIs
               </h3>
               <p className="text-[1rem] text-ink-fade leading-relaxed">
-                Programmable access to your CRM, outreach tools, enrichment databases, and calling platforms. These let Claude Code or other AI agents read and write to your sales stack directly.
+                Programmable access to your CRM, outreach tools, enrichment databases, and calling platforms. These let Claude Code and other AI agents read and write to your sales stack directly.
               </p>
               <span className="mt-auto font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade group-hover:text-ink transition-colors">
                 Browse APIs →
@@ -305,7 +305,7 @@ export default async function Home() {
                 MCP Servers
               </h3>
               <p className="text-[1rem] text-ink-fade leading-relaxed">
-                Ready-made connectors that plug sales tools into Claude Code or other AI agents. No glue code. Copy the config, paste it, go.
+                Ready-made connectors that plug sales tools into Claude Code and other AI agents. No glue code. Copy the config, paste it, go.
               </p>
               <span className="mt-auto font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade group-hover:text-ink transition-colors">
                 Browse MCP Servers →
@@ -318,7 +318,7 @@ export default async function Home() {
                 Agent Skills
               </h3>
               <p className="text-[1rem] text-ink-fade leading-relaxed">
-                Pre-configured instruction files that teach your agent how to perform complex sales tasks. One-click install for Claude Code or other AI agents.
+                Pre-configured instruction files that teach your agent how to perform complex sales tasks. One-click install for Claude Code and other AI agents.
               </p>
               <span className="mt-auto font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade group-hover:text-ink transition-colors">
                 Browse Skills →
