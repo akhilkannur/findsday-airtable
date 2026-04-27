@@ -12,7 +12,8 @@ import { ToolLogo } from "@/components/ToolLogo"
 export async function generateMetadata(): Promise<Metadata> {
   const allTools = await getAllTools()
   const toolCount = allTools.length
-  const roundedCount = Math.round(toolCount / 10) * 10
+  const roundedCount = Math.max(10, Math.round(toolCount / 10) * 10)
+  const ogImageUrl = "https://salestools.club/opengraph-image"
 
   return {
     title: "Salestools Club — Sales APIs & MCP Configs for AI Agents",
@@ -36,20 +37,26 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       title: "Salestools Club — Sales APIs & MCP Configs for AI Agents",
       description: `The technical directory for AI-native sales stacks. Access ${roundedCount}+ verified APIs, MCP configs, and agent skills.`,
+      url: "https://salestools.club",
+      siteName: "Salestools Club",
       images: [
         {
-          url: "https://salestools.club/opengraph-image",
+          url: ogImageUrl,
           width: 1200,
           height: 630,
           alt: "Salestools Club",
         },
       ],
+      locale: "en_US",
+      type: "website",
     },
     twitter: {
       card: "summary_large_image",
+      site: "@salestoolsclub",
+      creator: "@salestoolsclub",
       title: "Salestools Club — Sales APIs & MCP Configs for AI Agents",
       description: `The technical directory for AI-native sales stacks. Access ${roundedCount}+ verified APIs, MCP configs, and agent skills.`,
-      images: ["https://salestools.club/opengraph-image"],
+      images: [ogImageUrl],
     },
   }
 }

@@ -36,6 +36,8 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
     },
     twitter: {
       card: "summary_large_image",
+      site: "@salestoolsclub",
+      creator: "@salestoolsclub",
       title: pageTitle,
       description: pageDescription,
       images: ["https://salestools.club/opengraph-image"],

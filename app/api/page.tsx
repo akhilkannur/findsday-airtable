@@ -16,7 +16,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
   const hasFilters = !!(sp.q || sp.category || sp.mcp || sp.free || sp.official || sp.view)
   const allTools = await getAllTools()
   const toolCount = allTools.length
-  const roundedCount = Math.round(toolCount / 10) * 10
+  const roundedCount = Math.max(10, Math.round(toolCount / 10) * 10)
 
   const pageTitle = `${roundedCount}+ Sales APIs & MCP Configs for AI Agents | Salestools Club`
   const pageDescription = `Access ${toolCount}+ verified sales APIs and MCP configs. The technical directory for builders connecting CRM, enrichment, and outreach tools to AI agents.`
@@ -48,6 +48,8 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
     },
     twitter: {
       card: "summary_large_image",
+      site: "@salestoolsclub",
+      creator: "@salestoolsclub",
       title: pageTitle,
       description: pageDescription,
       images: ["https://salestools.club/opengraph-image"],

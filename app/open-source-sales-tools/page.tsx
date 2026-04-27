@@ -12,6 +12,28 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://salestools.club/open-source-sales-tools",
   },
+  openGraph: {
+    title: "Open Source Sales Tools | Salestools Club",
+    description: "Open source sales tools and APIs you can self-host, fork, and inspect. Build your sales stack on transparent foundations.",
+    type: "website",
+    url: "https://salestools.club/open-source-sales-tools",
+    images: [
+      {
+        url: "https://salestools.club/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Salestools Club",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@salestoolsclub",
+    creator: "@salestoolsclub",
+    title: "Open Source Sales Tools | Salestools Club",
+    description: "Open source sales tools and APIs you can self-host, fork, and inspect. Build your sales stack on transparent foundations.",
+    images: ["https://salestools.club/opengraph-image"],
+  },
 }
 
 function ToolCard({ tool }: { tool: any }) {
