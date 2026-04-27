@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight, Info, AlertTriangle, CheckCircle2, ShieldCheck, Zap } from "lucide-react"
+import { ArrowRight, Info, AlertTriangle, CheckCircle2, ShieldCheck, Zap, ExternalLink } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Sales API Credit Policy Comparison Guide (2026) | Salestools Club",
@@ -10,28 +10,68 @@ export const metadata: Metadata = {
   },
 }
 
+const sources = {
+  findymail: "https://www.findymail.com/pricing/",
+  prospeo: "https://prospeo.io/s/prospeo-pricing",
+  clay: "https://docs.clay.com/en/collections/9964379-credits-plans-billing",
+  "full-enrich": "https://www.fullenrich.com/pricing",
+  "better-contact": "https://bettercontact.rocks/pricing/",
+  dropcontact: "https://www.dropcontact.com/pricing",
+  getprospect: "https://getpulsesignal.com/pricing/getprospect",
+  smartlead: "https://smartlead.io/pricing",
+  uplead: "https://www.uplead.com/pricing/",
+  instantly: "https://www.instantly.ai/pricing",
+  hunter: "https://hunter.io/pricing",
+  snovio: "https://snov.io/pricing",
+  kaspr: "https://www.kaspr.io/pricing",
+  apollo: "https://www.apollo.io/pricing/about-credits",
+  leadiq: "https://www.leadiq.com/pricing",
+  rocketreach: "https://www.rocketreach.co/pricing",
+  lusha: "https://www.lusha.com/pricing",
+  pipl: "https://www.saasworthy.com/product/pipl/pricing",
+  cognism: "https://www.cognism.com/pricing",
+  clearbit: "https://www.hubspot.com/products/crm/breeze-intelligence",
+}
+
 const auditData = [
   { name: "Findymail", slug: "findymail", rollover: "Yes (2x Limit)", charging: "Success-only", catchAll: "Free (if verified)", mobile: "10 Credits", bestFor: "Bulk Email & Success-based" },
   { name: "Prospeo", slug: "prospeo", rollover: "No (Monthly)", charging: "Success-only", catchAll: "1 Credit", mobile: "10 Credits", bestFor: "High Accuracy Email" },
   { name: "Clay", slug: "clay", rollover: "Yes (Data 2x)", charging: "Success-only", catchAll: "Varies", mobile: "Varies", bestFor: "AI Orchestration" },
   { name: "FullEnrich", slug: "full-enrich", rollover: "Yes (3 Months)", charging: "Success-only", catchAll: "Free (if risky)", mobile: "10 Credits", bestFor: "Waterfall Enrichment" },
   { name: "BetterContact", slug: "better-contact", rollover: "Yes (2x Limit)", charging: "Success-only", catchAll: "1 Extra Credit", mobile: "10 Credits", bestFor: "Waterfall Mobile" },
-  { name: "Dropcontact", slug: "dropcontact", rollover: "Yes (Plan only)", charging: "Success-only", catchAll: "Free", mobile: "N/A", bestFor: "GDPR Enrichment" },
+  { name: "Dropcontact", slug: "dropcontact", rollover: "Yes (add-on)", charging: "Success-only", catchAll: "Free", mobile: "N/A", bestFor: "GDPR Enrichment" },
   { name: "GetProspect", slug: "getprospect", rollover: "Yes (1 Month)", charging: "Success-only", catchAll: "Free", mobile: "N/A", bestFor: "LinkedIn Prospecting" },
   { name: "Smartlead", slug: "smartlead", rollover: "No", charging: "Success-only", catchAll: "Free", mobile: "N/A", bestFor: "Outreach & Search" },
-  { name: "UpLead", slug: "uplead", rollover: "Yes (Annual)", charging: "95% Guarantee", catchAll: "Free (if invalid)", mobile: "1 Credit", bestFor: "Verified Lists" },
-  { name: "Instantly", slug: "instantly", rollover: "Yes (60 Days)", charging: "Per Reveal", catchAll: "Paid (Risky)", mobile: "1-2 Credits", bestFor: "Search & Outreach" },
+  { name: "UpLead", slug: "uplead", rollover: "No (Annual upfront)", charging: "95% Guarantee", catchAll: "Free (if invalid)", mobile: "1 Credit", bestFor: "Verified Lists" },
+  { name: "Instantly", slug: "instantly", rollover: "Yes (2 Months)", charging: "Per Reveal", catchAll: "Paid (Risky)", mobile: "1-2 Credits", bestFor: "Search & Outreach" },
   { name: "Hunter.io", slug: "hunter", rollover: "No (Monthly)", charging: "Per Request", catchAll: "0.5 Credits", mobile: "N/A", bestFor: "Domain Search" },
-  { name: "Snov.io", slug: "snovio", rollover: "Yes (Active)", charging: "Per Request", catchAll: "Paid (Verifier)", mobile: "N/A", bestFor: "Cold Outreach" },
-  { name: "Kaspr", slug: "kaspr", rollover: "Yes (Plan only)", charging: "Per Reveal", catchAll: "Paid", mobile: "1 Credit", bestFor: "Direct Mobiles" },
+  { name: "Snov.io", slug: "snovio", rollover: "No", charging: "Per Request", catchAll: "Paid (Verifier)", mobile: "N/A", bestFor: "Cold Outreach" },
+  { name: "Kaspr", slug: "kaspr", rollover: "Yes (Starter+)", charging: "Per Reveal", catchAll: "Paid", mobile: "1 Credit", bestFor: "Direct Mobiles" },
   { name: "Apollo.io", slug: "apollo", rollover: "No", charging: "Per Reveal", catchAll: "Paid", mobile: "8 Credits", bestFor: "Large Scale Database" },
   { name: "LeadIQ", slug: "leadiq", rollover: "No", charging: "Per Reveal", catchAll: "Paid", mobile: "10 Credits", bestFor: "Enterprise Teams" },
   { name: "RocketReach", slug: "rocketreach", rollover: "No", charging: "Per Reveal", catchAll: "Paid", mobile: "1 Credit", bestFor: "Broad Search" },
-  { name: "Lusha", slug: "lusha", rollover: "No", charging: "Per Reveal", catchAll: "Paid", mobile: "1 Credit", bestFor: "Individual Lookups" },
+  { name: "Lusha", slug: "lusha", rollover: "Yes (2x Limit)", charging: "Per Reveal", catchAll: "Paid", mobile: "1 Credit", bestFor: "Individual Lookups" },
   { name: "Pipl", slug: "pipl", rollover: "No (Annual)", charging: "Per Reveal", catchAll: "Paid", mobile: "1 Credit", bestFor: "Identity Discovery" },
   { name: "Cognism", slug: "cognism", rollover: "No (Fair Use)", charging: "License-based", catchAll: "N/A", mobile: "1 Credit", bestFor: "European Data" },
   { name: "Clearbit", slug: "clearbit", rollover: "No", charging: "Per Request", catchAll: "Paid", mobile: "N/A", bestFor: "Company Enrichment" },
 ]
+
+function SourceLink({ slug }: { slug: string }) {
+  const url = sources[slug as keyof typeof sources]
+  if (!url) return null
+  return (
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-1 text-[0.65rem] text-ink-fade hover:text-ink ml-2"
+      title="View source"
+    >
+      <ExternalLink className="h-3 w-3" />
+      <span>[src]</span>
+    </a>
+  )
+}
 
 export default function CreditAuditPage() {
   return (
@@ -61,7 +101,7 @@ export default function CreditAuditPage() {
         <div className="layout-container">
           <div className="mb-12">
             <h2 className="font-mono text-[0.8rem] uppercase tracking-widest font-bold text-ink mb-4">Comparison Matrix</h2>
-            <p className="font-serif italic text-lg text-ink-fade">A side-by-side look at rollover policies and charging models.</p>
+            <p className="font-serif italic text-lg text-ink-fade">A side-by-side look at rollover policies and charging models. Click [src] to verify each claim.</p>
           </div>
 
           <div className="overflow-x-auto border border-ink">
@@ -84,7 +124,10 @@ export default function CreditAuditPage() {
                         {tool.name} <ArrowRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-all" />
                       </Link>
                     </td>
-                    <td className="p-4 border-r border-ink">{tool.rollover}</td>
+                    <td className="p-4 border-r border-ink">
+                      {tool.rollover}
+                      <SourceLink slug={tool.slug} />
+                    </td>
                     <td className="p-4 border-r border-ink">{tool.charging}</td>
                     <td className="p-4 border-r border-ink">{tool.catchAll}</td>
                     <td className="p-4 border-r border-ink">{tool.mobile}</td>
@@ -94,6 +137,10 @@ export default function CreditAuditPage() {
               </tbody>
             </table>
           </div>
+
+          <p className="mt-6 text-sm text-ink-fade font-mono">
+            Sources: Official pricing pages. Last verified: April 2026.
+          </p>
         </div>
       </section>
 

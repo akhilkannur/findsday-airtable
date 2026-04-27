@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #fdfdfd;
+        font-family: 'Inter', sans-serif;
+        color: #111;
+        perspective: 2000px; /* For 3D effects */
+      }
+      
+      .vignette {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        box-shadow: inset 0 0 300px rgba(0,0,0,0.05);
+        pointer-events: none;
+        z-index: 100;
+      }
+
+      /* The "Camera" wraps everything for continuous motion */
+      .camera {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform-style: preserve-3d;
+      }
+
+      /* Layer 1: Fast Intercuts */
+      .intercut-layer {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #111;
+        color: #fff;
+        z-index: 50;
+        opacity: 0; /* Hidden initially */
+      }
+      .flash-text {
+        font-size: 150px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: -5px;
+        position: absolute;
+        opacity: 0;
+      }
+
+      /* Layer 2: The Agent (Focus Pull) */
+      .agent-layer {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 60px;
+        z-index: 20;
+      }
+
+      .orb {
+        width: 160px;
+        height: 160px;
+        background: linear-gradient(135deg, #ff8a00, #e52e71, #9b51e0);
+        border-radius: 50%;
+        filter: blur(20px);
+      }
+
+      .bubble {
+        background: #ffffff;
+        border-radius: 40px;
+        padding: 60px 80px;
+        box-shadow: 0 30px 100px rgba(0,0,0,0.08);
+        max-width: 900px;
+        font-size: 64px;
+        line-height: 1.2;
+        font-weight: 500;
+        text-align: center;
+        border: 1px solid rgba(0,0,0,0.03);
+        position: absolute;
+        top: 60%;
+        opacity: 0;
+      }
+
+      /* Layer 3: 3D UI Reveal */
+      .ui-layer {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 30;
+        opacity: 0;
+        transform-style: preserve-3d;
+      }
+
+      .ui-card {
+        width: 900px;
+        height: 1200px;
+        background: #fff;
+        border-radius: 60px;
+        box-shadow: 0 50px 150px rgba(0,0,0,0.15);
+        border: 1px solid #eee;
+        overflow: hidden;
+      }
+      
+      .ui-header {
+        height: 120px;
+        background: #fafafa;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        align-items: center;
+        padding: 0 50px;
+      }
+      .ui-dot { width: 16px; height: 16px; border-radius: 50%; background: #ddd; margin-right: 12px; }
+      
+      .ui-content { padding: 80px; }
+      .ui-block { width: 100%; height: 200px; background: #f8f8f8; border-radius: 30px; margin-bottom: 40px; border: 1px solid #f0f0f0; }
+      .ui-highlight { border-color: #e52e71; background: rgba(229, 46, 113, 0.05); }
+
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="15"
+      data-width="1080"
+      data-height="1920"
+    >
+      <div class="vignette"></div>
+
+      <!-- The Continuous "Camera" Drift -->
+      <div id="camera" class="clip camera" data-start="0" data-duration="15" data-track-index="0">
+
+        <!-- 1. The Intercut Layer (0 - 1.5s) -->
+        <div id="intercuts" class="clip intercut-layer" data-start="0" data-duration="1.5" data-track-index="50">
+          <div id="f1" class="flash-text">MANUAL</div>
+          <div id="f2" class="flash-text">SLOW</div>
+          <div id="f3" class="flash-text" style="color: #e52e71;">DEAD.</div>
+        </div>
+
+        <!-- 2. The Agent Layer (1.5 - 7s) -->
+        <div id="agent-scene" class="clip agent-layer" data-start="1.5" data-duration="5.5" data-track-index="20">
+          <div id="orb" class="orb"></div>
+          <div id="b1" class="bubble">I found the bottleneck in your Salesloft flows.</div>
+        </div>
+
+        <!-- 3. The 3D UI B-Roll (7 - 12s) -->
+        <div id="ui-scene" class="clip ui-layer" data-start="7" data-duration="5" data-track-index="30">
+          <div id="ui-card" class="ui-card">
+            <div class="ui-header">
+              <div class="ui-dot"></div><div class="ui-dot"></div><div class="ui-dot"></div>
+            </div>
+            <div class="ui-content" id="ui-scroll">
+              <div class="ui-block"></div>
+              <div class="ui-block"></div>
+              <div class="ui-block ui-highlight" style="display:flex; align-items:center; padding: 40px; font-size: 40px; font-weight:700; color:#e52e71;">
+                Automated Intent Trigger
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. The Agent Return (12 - 15s) -->
+        <div id="agent-scene-2" class="clip agent-layer" data-start="12" data-duration="3" data-track-index="40">
+          <div id="orb-2" class="orb"></div>
+          <div id="b2" class="bubble" style="top:50%;">Let's automate it.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // --- CINEMATIC TECHNIQUE 1: Continuous Camera Drift ---
+      // Slowly scales and moves the entire scene over 15 seconds to simulate a dolly shot
+      tl.to("#camera", { scale: 1.15, x: -30, y: 30, rotationZ: 1, duration: 15, ease: "none" }, 0);
+
+      // --- CINEMATIC TECHNIQUE 2: Hard Intercuts (0s - 1.5s) ---
+      // Flashes text rapidly like a thriller movie trailer
+      tl.set("#intercuts", { opacity: 1 }, 0);
+      
+      tl.set("#f1", { opacity: 1, scale: 1.5 }, 0.1);
+      tl.set("#f1", { opacity: 0 }, 0.4);
+      
+      tl.set("#f2", { opacity: 1, scale: 0.8 }, 0.5);
+      tl.set("#f2", { opacity: 0 }, 0.8);
+      
+      tl.set("#f3", { opacity: 1, scale: 1.2 }, 0.9);
+      tl.set("#f3", { opacity: 0 }, 1.4);
+
+      tl.to("#intercuts", { opacity: 0, duration: 0.1 }, 1.4); // Quick fade out
+
+      // --- CINEMATIC TECHNIQUE 3: Focus Pull & Impact (1.5s - 7s) ---
+      // Simulates a camera lens snapping into focus on the Orb
+      tl.fromTo("#orb", 
+        { filter: "blur(60px)", scale: 2 }, 
+        { filter: "blur(20px)", scale: 1, duration: 1.5, ease: "expo.out" }, 
+        1.5
+      );
+      // Orb breathing
+      tl.to("#orb", { scale: 1.1, duration: 2, repeat: 2, yoyo: true, ease: "sine.inOut" }, 1.5);
+
+      // Bubble hits with a "Camera Shake" impact
+      tl.from("#b1", { y: 100, opacity: 0, duration: 0.8, ease: "back.out(1.5)" }, 2.5);
+      tl.to("#camera", { y: "+=15", duration: 0.05, yoyo: true, repeat: 1 }, 2.5); // Screen shake
+
+      // --- CINEMATIC TECHNIQUE 4: 3D B-Roll Cut (7s - 12s) ---
+      // Hard cut to a 3D perspective of the UI, slowly drifting
+      tl.set("#agent-scene", { opacity: 0 }, 7); // Hard cut
+      
+      tl.fromTo("#ui-scene", 
+        { opacity: 0, rotationX: 45, rotationY: -30, z: -800, scale: 1.2 },
+        { opacity: 1, rotationX: 10, rotationY: -10, z: 0, scale: 1, duration: 4, ease: "power2.out" },
+        7
+      );
+      // Scroll the inside of the UI to show the highlight
+      tl.to("#ui-scroll", { y: -300, duration: 4, ease: "power2.inOut" }, 7.5);
+
+      // --- CINEMATIC TECHNIQUE 5: Smash Cut Back (12s - 15s) ---
+      tl.set("#ui-scene", { opacity: 0 }, 12); // Hard cut out
+      
+      tl.fromTo("#orb-2", 
+        { filter: "blur(40px)", scale: 0.5 }, 
+        { filter: "blur(20px)", scale: 1, duration: 1, ease: "elastic.out(1, 0.3)" }, 
+        12
+      );
+      tl.from("#b2", { scale: 0.8, opacity: 0, duration: 0.5, ease: "back.out(2)" }, 12.5);
+      tl.to("#camera", { y: "+=10", duration: 0.05, yoyo: true, repeat: 1 }, 12.5); // Final small shake
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

@@ -231,6 +231,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     category: "CRM & RevOps",
     websiteUrl: "https://twenty.com",
     docsUrl: "https://docs.twenty.com",
+    githubUrl: "https://github.com/twentyhq/twenty",
     pricingUrl: "https://twenty.com/pricing",
     apiType: ["REST", "GraphQL"],
     authMethod: ["API Key"],
@@ -2482,6 +2483,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     isFeatured: false,
     alternativeTo: ["Salesforce", "HubSpot", "Pipedrive"],
     integrations: [],
+    isOpenSource: true,
   },
   {
     slug: "qrev",
@@ -2504,6 +2506,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     isFeatured: false,
     alternativeTo: ["Salesforce"],
     integrations: [],
+    isOpenSource: true,
   },
   {
     slug: "radiant-ai-crm",
@@ -2526,6 +2529,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     isFeatured: false,
     alternativeTo: ["Salesforce", "HubSpot"],
     integrations: [],
+    isOpenSource: true,
   },
   {
     slug: "leadgengpt",
@@ -2543,6 +2547,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     isFeatured: false,
     alternativeTo: ["Apollo", "Hunter", "Smartlead"],
     integrations: [],
+    isOpenSource: true,
   },
   {
     slug: "coldr",
@@ -2565,6 +2570,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     isFeatured: false,
     alternativeTo: ["Mailchimp", "ConvertKit"],
     integrations: [],
+    isOpenSource: true,
   },
 
   // ── CRM & RevOps ──────────────────────────────────────────────
@@ -3816,6 +3822,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     category: "CRM & RevOps",
     websiteUrl: "https://www.nango.dev",
     docsUrl: "https://nango.dev/docs",
+    githubUrl: "https://github.com/NangoHQ/nango",
     pricingUrl: "https://www.nango.dev/pricing",
     apiType: ["REST"],
     authMethod: ["API Key", "OAuth2"],
@@ -3828,6 +3835,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     isFeatured: false,
     alternativeTo: [],
     integrations: [],
+    isOpenSource: true,
   },
   {
     slug: "neuralead",
@@ -4281,8 +4289,8 @@ export const tools: (SalesTool | MinimalTool)[] = [
   {
     slug: "salesforce",
     name: "Salesforce",
-    oneLiner: "The world's #1 AI-powered CRM and customer success platform.",
-    description: "Salesforce provides a massive ecosystem of APIs (REST, SOAP, Bulk, etc.) that give developers complete control over their CRM data and business processes. It is the gold standard for revenue operations, offering deep capabilities for AI-driven insights, automation, and customer relationship management. Salesforce's extensive API support allows it to act as the central source of truth for every other tool in the sales stack.",
+    oneLiner: "The world's #1 AI-powered CRM and programmable 'Headless 360' ecosystem.",
+    description: "Salesforce has evolved into a 'Headless 360' platform, decoupling its massive business logic from the traditional UI to become a programmable API-first ecosystem. With 60+ native MCP tools and Agentforce, developers can now access the full Salesforce 'System of Work' directly from AI clients and IDEs. It provides unified governance, React-native support, and deep contextual data access, acting as the intelligent nervous system for modern AI-native sales organizations.",
     category: "CRM & RevOps",
     websiteUrl: "https://www.salesforce.com",
     docsUrl: "https://developer.salesforce.com/docs/ai/agentforce/guide/agent-api-get-started.html",
@@ -4293,17 +4301,26 @@ export const tools: (SalesTool | MinimalTool)[] = [
     sdkLanguages: ["iOS", "Android", "Node.js", "Java"],
     snippetLanguages: ["Apex", "cURL", "JavaScript", "Python", "PHP", "Java", "Go"],
     hasWebhooks: true,
-    aiCapabilities: ["Lead Enrichment", "AI Search", "Intent Signals", "Automated Outreach", "B2B Data Enrichment", "Intent Intelligence", "Cold Email Outreach"],
-    starterPrompt: "Claude, use Salesforce API to find all new leads created today and enrich their details.",
+    aiCapabilities: [
+      "Headless 360 APIs",
+      "Agentforce Orchestration",
+      "60+ Native MCP Tools",
+      "Unified Governance",
+      "Lead Enrichment",
+      "Intent Intelligence",
+      "Automated Outreach",
+      "CRM Automation"
+    ],
+    starterPrompt: "Claude, use the Salesforce Headless 360 MCP to summarize the relationship history for this account and trigger an 'At-Risk' workflow in Slack.",
     mcpReady: true,
-    isFeatured: false,
+    isFeatured: true,
     alternativeTo: [],
     integrations: [
       {
         platform: "MCP",
-        url: "https://developer.salesforce.com/blogs/2025/10/salesforce-hosted-mcp-servers-are-in-beta-today",
-        label: "Official MCP Server (Beta)",
-  },
+        url: "https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_mcp_server.htm",
+        label: "Official Headless 360 MCP Server",
+      },
     ],
   },
   {
@@ -4409,11 +4426,12 @@ export const tools: (SalesTool | MinimalTool)[] = [
   {
     slug: "cal-com",
     name: "Cal.com",
-    oneLiner: "Open-source scheduling infrastructure with a full API.",
-    description: "Cal.com is the open-source alternative to Calendly, offering a REST API for managing event types, bookings, availability, and users programmatically. Embed scheduling into your product, sync calendars, and automate booking workflows. As an open-source project, Cal.com gives you full control over your scheduling infrastructure, with options to self-host or use the managed cloud platform.",
+    oneLiner: "Enterprise-grade scheduling infrastructure with a full API.",
+    description: "Cal.com is a leading scheduling platform offering a robust REST API for managing bookings, availability, and workflows. Formerly open-source (AGPLv3), the commercial codebase moved to a proprietary model in April 2026 to enhance security against AI-driven threats. A community version, Cal.diy, remains available under the MIT license for core scheduling needs.",
     category: "Closing & Scheduling",
     websiteUrl: "https://cal.com",
     docsUrl: "https://cal.com/docs/api-reference",
+    githubUrl: "https://github.com/calcom/cal.com",
     pricingUrl: "https://cal.com/pricing",
     apiType: ["REST"],
     authMethod: ["API Key", "OAuth2"],
@@ -4430,7 +4448,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
         platform: "MCP",
         url: "https://github.com/Danielpeter-99/calcom-mcp",
         label: "Community MCP Server",
-  },
+      },
     ],
   },
   {
@@ -9703,6 +9721,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     category: "CRM & RevOps",
     websiteUrl: "https://n8n.io",
     docsUrl: "https://docs.n8n.io/advanced-ai/accessing-n8n-mcp-server/",
+    githubUrl: "https://github.com/n8n-io/n8n",
     pricingUrl: "https://n8n.io/pricing",
     apiType: ["REST"],
     authMethod: ["API Key", "Basic Auth"],
@@ -9719,8 +9738,9 @@ export const tools: (SalesTool | MinimalTool)[] = [
         platform: "MCP",
         url: "https://docs.n8n.io/advanced-ai/accessing-n8n-mcp-server/",
         label: "Official MCP Server",
-  },
+      },
     ],
+    isOpenSource: true,
   },
   {
     slug: "tldv",
@@ -9901,9 +9921,9 @@ export const tools: (SalesTool | MinimalTool)[] = [
     integrations: [
       {
         platform: "MCP",
-        url: "https://github.com/clay-inc/clay-mcp",
-        label: "Community MCP Server",
-  },
+        url: "https://www.clay.com/mcp",
+        label: "Official MCP Server",
+      },
     ],
   },
   {
@@ -9936,6 +9956,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     category: "Sales Intelligence",
     websiteUrl: "https://crawl4ai.com",
     docsUrl: "https://docs.crawl4ai.com/",
+    githubUrl: "https://github.com/unclecode/crawl4ai",
     pricingUrl: "https://github.com/unclecode/crawl4ai",
     apiType: ["REST"],
     authMethod: ["None"],
@@ -9948,6 +9969,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     isFeatured: false,
     alternativeTo: ["Firecrawl", "Jina Reader", "Scrapy"],
     integrations: [],
+    isOpenSource: true,
   },
   {
     slug: "exa-ai",

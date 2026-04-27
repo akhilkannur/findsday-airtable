@@ -9,43 +9,49 @@ import type { Metadata } from "next"
 import { NewsletterForm } from "@/components/NewsletterForm"
 import { ToolLogo } from "@/components/ToolLogo"
 
-export const metadata: Metadata = {
-  title: "Salestools Club — Sales APIs & MCP Configs for AI Agents",
-  description:
-    "The technical directory for AI-native sales stacks. Access 500+ verified APIs, MCP configs, and agent skills for building with Claude Code, Gemini, and custom AI agents.",
-  keywords: [
-    "sales API directory",
-    "MCP server for sales",
-    "CRM API marketplace",
-    "build AI sales agent",
-    "Claude Code sales tools",
-    "agentic tools sales",
-    "agentic sales stack",
-    "sales automation API",
-    "AI agent sales integrations",
-    "sales tools for AI agents",
-  ],
-  alternates: {
-    canonical: "https://salestools.club",
-  },
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  const allTools = await getAllTools()
+  const toolCount = allTools.length
+  const roundedCount = Math.round(toolCount / 10) * 10
+
+  return {
     title: "Salestools Club — Sales APIs & MCP Configs for AI Agents",
-    description: "The technical directory for AI-native sales stacks. Access 500+ verified APIs, MCP configs, and agent skills.",
-    images: [
-      {
-        url: "https://salestools.club/opengraph-image",
-        width: 1200,
-        height: 630,
-        alt: "Salestools Club",
-      },
+    description:
+      `The technical directory for AI-native sales stacks. Access ${roundedCount}+ verified APIs, MCP configs, and agent skills for building with Claude Code, Gemini, and custom AI agents.`,
+    keywords: [
+      "sales API directory",
+      "MCP server for sales",
+      "CRM API marketplace",
+      "build AI sales agent",
+      "Claude Code sales tools",
+      "agentic tools sales",
+      "agentic sales stack",
+      "sales automation API",
+      "AI agent sales integrations",
+      "sales tools for AI agents",
     ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Salestools Club — Sales APIs & MCP Configs for AI Agents",
-    description: "The technical directory for AI-native sales stacks. Access 500+ verified APIs, MCP configs, and agent skills.",
-    images: ["https://salestools.club/opengraph-image"],
-  },
+    alternates: {
+      canonical: "https://salestools.club",
+    },
+    openGraph: {
+      title: "Salestools Club — Sales APIs & MCP Configs for AI Agents",
+      description: `The technical directory for AI-native sales stacks. Access ${roundedCount}+ verified APIs, MCP configs, and agent skills.`,
+      images: [
+        {
+          url: "https://salestools.club/opengraph-image",
+          width: 1200,
+          height: 630,
+          alt: "Salestools Club",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Salestools Club — Sales APIs & MCP Configs for AI Agents",
+      description: `The technical directory for AI-native sales stacks. Access ${roundedCount}+ verified APIs, MCP configs, and agent skills.`,
+      images: ["https://salestools.club/opengraph-image"],
+    },
+  }
 }
 
 const faqItems = [
