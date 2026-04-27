@@ -12222,6 +12222,7 @@ alternativeTo: ["Route4Me", "Spotio", "Google Maps"],
     alternativeTo: ["Clay", "Apollo", "Outreach"],
     integrations: [],
     isOpenSource: true,
+    addedAt: "2026-04-27",
   },
 ]
 
