@@ -251,7 +251,7 @@ export default async function OpenSourceDetailPage({
                     <div className="font-mono font-bold text-[0.75rem] md:text-[0.85rem] uppercase tracking-widest">{spec.value}</div>
                   </div>
                 ))}
-                {typedTool.githubUrl && <GitHubStars githubUrl={typedTool.githubUrl} variant="detail" />}
+                {typedTool.githubUrl && <GitHubStars githubUrl={typedTool.githubUrl} githubStars={typedTool.githubStars} variant="detail" />}
               </div>
             </div>
           </div>

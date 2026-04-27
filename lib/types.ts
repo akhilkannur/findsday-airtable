@@ -33,6 +33,7 @@ export interface SalesTool {
   docsUrl: string
   pricingUrl: string
   githubUrl?: string
+  githubStars?: number
 
   apiType: ApiType[]
   authMethod: AuthMethod[]

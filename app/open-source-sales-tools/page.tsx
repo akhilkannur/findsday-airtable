@@ -58,7 +58,7 @@ function ToolCard({ tool }: { tool: any }) {
         <span className="font-mono text-[0.7rem] uppercase tracking-wider text-ink-fade group-hover:text-black transition-colors">
           {tool.category}
         </span>
-        {tool.githubUrl && <GitHubStars githubUrl={tool.githubUrl} />}
+        {tool.githubUrl && <GitHubStars githubUrl={tool.githubUrl} githubStars={tool.githubStars} />}
       </div>
     </Link>
   )
