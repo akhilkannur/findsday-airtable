@@ -75,7 +75,7 @@ export function generateSeoDescription(
     case "guide":
       return `Master ${formattedSubject} with our technical deep-dive. Learn how to implement agentic workflows using verified sales APIs.`
     case "vs":
-      return `Compare ${formattedSubject} APIs and features. A technical breakdown for AI operators choosing the best tool for their sales stack.`
+      return `Compare ${formattedSubject} APIs, MCP servers, and AI agent compatibility. Side-by-side breakdown of SDKs, webhooks, and starter prompts for your agentic sales stack.`
     default:
       return `Verified APIs and MCP configs for ${formattedSubject}. Build your AI-native sales stack with Salestools Club.`
   }

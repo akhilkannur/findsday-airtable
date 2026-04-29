@@ -216,7 +216,88 @@ const guides: Guide[] = [
       "Lead enrichment APIs for AI agents. Compare data providers, email verification, firmographics, and MCP servers for real-time enrichment.",
     intro:
       "Stop working with bad data. These enrichment APIs let your agent pull verified emails, company info, and intent signals in real time, so every lead is worth reaching.",
+    content: `
+<h2>What Are Enrichment APIs?</h2>
+<p>An enrichment API takes a small piece of data you already have — like an email address or a company domain — and returns a full profile: job title, company size, tech stack, funding history, and verified phone numbers. Instead of your reps spending 10 minutes researching each lead on LinkedIn, your AI agent does it in under a second.</p>
+
+<h3>Enrichment vs. Prospecting</h3>
+<p><strong>Prospecting</strong> is finding new leads you don't have yet. <strong>Enrichment</strong> is filling in the blanks on leads you already have. Most modern tools do both, but the API endpoints are different. When you're connecting to Claude or Cursor, you want the enrichment endpoints — they take an input (email, domain, LinkedIn URL) and return structured data your agent can act on.</p>
+
+<h2>How AI Agents Use Enrichment Data</h2>
+<p>The real power isn't just getting data — it's what your agent does with it automatically:</p>
+<ul>
+  <li><strong>Lead Scoring:</strong> Your agent checks company size, funding, and tech stack against your ICP, then tags leads as "Hot," "Warm," or "Skip."</li>
+  <li><strong>Personalized Outreach:</strong> Feed enriched data into your email tool so Claude can write a message mentioning the prospect's specific role, recent funding round, or tech they use.</li>
+  <li><strong>CRM Hygiene:</strong> Run your entire contact list through an enrichment API to fill missing fields, fix outdated job titles, and flag people who've changed companies.</li>
+  <li><strong>Waterfall Strategy:</strong> If Apollo doesn't have a phone number, your script automatically tries Proxycurl, then People Data Labs. You chain providers until you get the data.</li>
+</ul>
+
+<h2>Top Enrichment APIs Compared (2026)</h2>
+<p>These are the best "Lego blocks" for plugging enrichment into your AI agent stack:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>API Provider</th>
+      <th>Best For</th>
+      <th>Key Differentiator</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="/apis/apollo"><strong>Apollo.io</strong></a></td>
+      <td>All-in-one prospecting + enrichment</td>
+      <td>700M+ contacts with built-in AI scoring. Free tier available.</td>
+    </tr>
+    <tr>
+      <td><a href="/apis/proxycurl"><strong>Proxycurl</strong></a></td>
+      <td>LinkedIn profile enrichment</td>
+      <td>Pulls structured data from LinkedIn profiles via API. Great for AI agents.</td>
+    </tr>
+    <tr>
+      <td><a href="/apis/people-data-labs"><strong>People Data Labs</strong></a></td>
+      <td>Bulk enrichment at scale</td>
+      <td>1.5B+ person records. Pay-per-record pricing ideal for waterfall setups.</td>
+    </tr>
+    <tr>
+      <td><a href="/apis/uplead"><strong>UpLead</strong></a></td>
+      <td>Verified contact data</td>
+      <td>95% email accuracy guarantee. Real-time verification on every lookup.</td>
+    </tr>
+    <tr>
+      <td><a href="/apis/full-enrich"><strong>FullEnrich</strong></a></td>
+      <td>Waterfall enrichment</td>
+      <td>Aggregates 15+ data providers in one API call. Built for the waterfall approach.</td>
+    </tr>
+    <tr>
+      <td><a href="/apis/zoominfo"><strong>ZoomInfo</strong></a></td>
+      <td>Enterprise-grade accuracy</td>
+      <td>The gold standard for large sales teams. Deep firmographic and intent data.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Claude Code Workflow: Enrich a Lead List</h2>
+<p>You don't need to write code from scratch. Here's the 3-step approach:</p>
+<ol>
+  <li><strong>Pick your provider:</strong> Grab the API docs link for your enrichment tool (e.g., <a href="/apis/proxycurl">Proxycurl's API reference</a>).</li>
+  <li><strong>Feed it to Claude:</strong> Paste the docs URL and your CSV of leads into Claude Code or Cursor.</li>
+  <li><strong>The Prompt:</strong> <em>"Claude, here are the Proxycurl API docs. Write a script that takes my CSV of LinkedIn URLs, enriches each one with job title, company name, and employee count, and saves the results to a new CSV. Add a 1-second delay between requests to respect rate limits."</em></li>
+</ol>
+
+<h3>MCP Configuration (for tools that support it)</h3>
+<p>Some enrichment providers have MCP servers, which means Claude can call them directly without you writing any code. Check each tool's page in our directory for the <strong>⚡ MCP Ready</strong> badge and copy-paste config.</p>
+
+<h2>FAQ</h2>
+<p><strong>Q: What's a "waterfall" enrichment strategy?</strong><br>A: It means chaining multiple data providers. If Provider A doesn't have the email, your script tries Provider B, then C. Tools like <strong><a href="/apis/full-enrich">FullEnrich</a></strong> do this automatically in a single API call.</p>
+<p><strong>Q: How much does enrichment cost?</strong><br>A: Most providers charge per record — anywhere from $0.01 to $0.50 per lookup depending on the data depth. <strong><a href="/apis/apollo">Apollo</a></strong> has a generous free tier. <strong><a href="/apis/people-data-labs">People Data Labs</a></strong> offers pay-as-you-go pricing.</p>
+<p><strong>Q: Is it legal to use enrichment APIs?</strong><br>A: Yes. Reputable providers source data from public records, business filings, and opt-in directories. For GDPR-sensitive markets (Europe), check that the provider has compliance certifications.</p>
+
+<h2>Conclusion</h2>
+<p>Enrichment APIs are the foundation of any AI-powered sales stack. They turn incomplete contact lists into actionable intelligence your agents can use to score, personalize, and close. Explore our <a href="/categories/sales-intelligence">Sales Intelligence category</a> to find the right data provider for your workflow.</p>
+    `,
     categories: ["Sales Intelligence"],
+    keywords: ["enrichment", "waterfall", "contact data", "b2b data", "firmographics", "email verification"],
   },
   {
     slug: "best-lead-enrichment-apis",
@@ -327,7 +408,93 @@ const guides: Guide[] = [
       "Phone and calling APIs for AI agents. Compare dialers, voice APIs, recording, transcription, and MCP servers for outbound calling.",
     intro:
       "Scale your outbound without hiring more SDRs. These APIs give your agent access to power dialers, voice bots, call recording, and SMS automation.",
+    content: `
+<h2>What Are Phone & Calling APIs?</h2>
+<p>A phone API lets your software make, receive, and manage phone calls programmatically. In 2026, this means your AI agent can dial prospects, run voice bots that sound human, record conversations, and transcribe everything — without a human touching a phone. These APIs range from simple click-to-dial tools to full AI voice agents that handle entire sales conversations autonomously.</p>
+
+<h3>Power Dialers vs. AI Voice Agents</h3>
+<p>There's a big difference between these two categories:</p>
+<ul>
+  <li><strong>Power Dialers</strong> (like <a href="/apis/phoneburner"><strong>PhoneBurner</strong></a> and <a href="/apis/orum"><strong>Orum</strong></a>) dial numbers faster so your human reps spend less time waiting. They handle parallel dialing, voicemail drops, and call logging.</li>
+  <li><strong>AI Voice Agents</strong> (like <a href="/apis/retell-ai"><strong>Retell AI</strong></a> and <a href="/apis/bland-ai"><strong>Bland AI</strong></a>) replace the human entirely for certain calls. They use LLMs to have natural conversations, qualify leads, and book meetings — 24/7.</li>
+</ul>
+
+<h2>What Your AI Agent Can Do With These APIs</h2>
+<p>Here's how "AI-Native Operators" are plugging phone APIs into their sales stacks:</p>
+<ul>
+  <li><strong>Automated Lead Qualification:</strong> Your AI voice agent calls a lead list, asks qualifying questions, and logs results directly into your CRM.</li>
+  <li><strong>Parallel Dialing:</strong> Tools like <a href="/apis/orum"><strong>Orum</strong></a> and <a href="/apis/nooks"><strong>Nooks</strong></a> dial 5-10 numbers simultaneously and only connect your rep when a human picks up.</li>
+  <li><strong>Call Recording & Transcription:</strong> Every call is recorded, transcribed, and analyzed. Your agent can extract action items, objections, and next steps automatically.</li>
+  <li><strong>Voicemail Drops:</strong> Pre-record a message and your dialer drops it instantly when it detects voicemail — no waiting.</li>
+</ul>
+
+<h2>Top Phone & Calling APIs Compared (2026)</h2>
+<p>The best options for connecting phone capabilities to your AI agent stack:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>API Provider</th>
+      <th>Type</th>
+      <th>Key Differentiator</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="/apis/retell-ai"><strong>Retell AI</strong></a></td>
+      <td>AI Voice Agent</td>
+      <td>Build human-sounding voice agents with LLM backends. Sub-second latency.</td>
+    </tr>
+    <tr>
+      <td><a href="/apis/bland-ai"><strong>Bland AI</strong></a></td>
+      <td>AI Voice Agent</td>
+      <td>Enterprise AI phone calls at scale. Handles inbound and outbound autonomously.</td>
+    </tr>
+    <tr>
+      <td><a href="/apis/orum"><strong>Orum</strong></a></td>
+      <td>AI Power Dialer</td>
+      <td>AI-powered parallel dialer with live conversation intelligence for sales teams.</td>
+    </tr>
+    <tr>
+      <td><a href="/apis/nooks"><strong>Nooks</strong></a></td>
+      <td>AI Power Dialer</td>
+      <td>AI dialer + virtual salesfloor. Combines parallel dialing with team collaboration.</td>
+    </tr>
+    <tr>
+      <td><a href="/apis/phoneburner"><strong>PhoneBurner</strong></a></td>
+      <td>Power Dialer</td>
+      <td>No-pause dialer with CRM integration. Great for teams moving from manual dialing.</td>
+    </tr>
+    <tr>
+      <td><a href="/apis/five9"><strong>Five9</strong></a></td>
+      <td>Contact Center</td>
+      <td>Enterprise cloud contact center with AI-assisted agent workflows and IVR.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Claude Code Workflow: Build an AI Calling Agent</h2>
+<p>Here's how to get a voice agent running with Claude:</p>
+<ol>
+  <li><strong>Pick your voice API:</strong> Grab the docs for <a href="/apis/retell-ai">Retell AI</a> or <a href="/apis/bland-ai">Bland AI</a> — both have well-documented REST APIs.</li>
+  <li><strong>Define the conversation flow:</strong> Write out what the AI should say, what questions to ask, and when to book a meeting.</li>
+  <li><strong>The Prompt:</strong> <em>"Claude, here are the Retell AI API docs. Build me a voice agent that calls leads from my CRM, asks if they're interested in a demo, and books a meeting on my Calendly link if they say yes. Log the call outcome back to HubSpot."</em></li>
+</ol>
+
+<h3>For Power Dialers (Non-AI Calls)</h3>
+<p>If you want human reps on the calls but want AI to handle the logistics:</p>
+<p><em>"Claude, write a script using the PhoneBurner API that imports my lead list, creates a dial session, and after each call, updates the lead status in my CRM based on the call disposition."</em></p>
+
+<h2>FAQ</h2>
+<p><strong>Q: Can AI voice agents really replace human SDRs?</strong><br>A: For qualification and appointment-setting calls, yes. Tools like <a href="/apis/bland-ai"><strong>Bland AI</strong></a> handle simple conversations well. For complex discovery calls, you still want a human — but the AI can do the first touch and book the meeting.</p>
+<p><strong>Q: What about call recording laws?</strong><br>A: Most providers handle compliance by playing an automated disclosure at the start of the call. Check your state/country's consent laws (one-party vs. two-party consent) and configure your API accordingly.</p>
+<p><strong>Q: How do parallel dialers work with AI?</strong><br>A: Tools like <a href="/apis/orum"><strong>Orum</strong></a> use AI to detect voicemail, busy signals, and live pickups. They only connect your rep when a real person answers, so reps spend 3x more time in actual conversations.</p>
+
+<h2>Conclusion</h2>
+<p>Phone APIs are the fastest way to scale outbound without scaling headcount. Whether you want full AI voice agents or AI-assisted power dialing, these tools plug directly into your existing sales stack. Browse our <a href="/categories/phone-and-dialers">Phone & Dialers category</a> to find the right fit.</p>
+    `,
     categories: ["Phone & Dialers"],
+    keywords: ["dialer", "voice agent", "call recording", "transcription", "outbound calling", "AI voice"],
   },
   {
     slug: "revenue-intelligence-apis",
@@ -336,7 +503,86 @@ const guides: Guide[] = [
       "Revenue intelligence APIs for AI agents. Compare conversation intelligence, analytics, forecasting, and deal health monitoring.",
     intro:
       "Every call and deal tells a story. These APIs let your agent analyze conversations, track deal health, and forecast revenue automatically.",
+    content: `
+<h2>What Are Revenue Intelligence APIs?</h2>
+<p>Revenue intelligence APIs capture data from sales calls, emails, and deals, then use AI to analyze it. They answer the questions your VP of Sales asks every Monday: "Which deals are at risk? What are buyers actually saying? Are reps following the playbook?" Instead of relying on reps to self-report in the CRM, these APIs pull the truth directly from conversations.</p>
+
+<h3>Conversation Intelligence vs. Revenue Forecasting</h3>
+<p>These tools fall into two buckets:</p>
+<ul>
+  <li><strong>Conversation Intelligence</strong> records and transcribes sales calls, then uses AI to extract topics, objections, competitor mentions, and action items. Tools like <a href="/apis/gong"><strong>Gong</strong></a> and <a href="/apis/fireflies"><strong>Fireflies.ai</strong></a> do this.</li>
+  <li><strong>Revenue Forecasting</strong> analyzes deal activity (emails sent, meetings booked, CRM updates) to predict which deals will close and flag the ones going cold.</li>
+</ul>
+
+<h2>What Your AI Agent Can Do With These APIs</h2>
+<p>Revenue intelligence APIs turn passive call recordings into active sales intelligence:</p>
+<ul>
+  <li><strong>Auto-fill CRM Notes:</strong> After every call, your agent extracts the summary, next steps, and deal stage from the transcript and writes it to HubSpot or Salesforce — no rep input needed.</li>
+  <li><strong>Competitor Tracking:</strong> Your agent monitors all calls for competitor mentions and builds a real-time dashboard of which competitors come up most often and what buyers say about them.</li>
+  <li><strong>Deal Risk Alerts:</strong> If a deal hasn't had activity in 7 days, or the buyer mentioned "budget freeze" on the last call, your agent flags it automatically.</li>
+  <li><strong>Coaching Insights:</strong> Analyze talk-to-listen ratios, question counts, and monologue lengths across your team to spot coaching opportunities.</li>
+</ul>
+
+<h2>Top Revenue Intelligence APIs Compared (2026)</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>API Provider</th>
+      <th>Focus</th>
+      <th>Key Differentiator</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="/apis/gong"><strong>Gong</strong></a></td>
+      <td>Conversation + Deal Intelligence</td>
+      <td>The market leader. Deep call analytics, deal boards, and forecasting in one platform.</td>
+    </tr>
+    <tr>
+      <td><a href="/apis/fireflies"><strong>Fireflies.ai</strong></a></td>
+      <td>Meeting Transcription + AI</td>
+      <td>Auto-joins meetings, transcribes, and provides searchable AI summaries. Developer-friendly API.</td>
+    </tr>
+    <tr>
+      <td><a href="/apis/attention-tech"><strong>Attention</strong></a></td>
+      <td>Real-time Meeting Guidance</td>
+      <td>AI listens live and surfaces talk tracks, objection handles, and competitive intel during the call.</td>
+    </tr>
+    <tr>
+      <td><a href="/apis/modjo"><strong>Modjo</strong></a></td>
+      <td>Conversation Intelligence</td>
+      <td>Strong in European markets. Call analysis with CRM sync and coaching workflows.</td>
+    </tr>
+    <tr>
+      <td><a href="/apis/jiminny"><strong>Jiminny</strong></a></td>
+      <td>Conversation Intelligence</td>
+      <td>Call and video recording with AI coaching. Good for mid-market teams.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Claude Code Workflow: Automate Deal Intelligence</h2>
+<p>Here's how to plug revenue intelligence into your AI workflow:</p>
+<ol>
+  <li><strong>Connect your recording tool:</strong> Set up <a href="/apis/fireflies">Fireflies</a> or <a href="/apis/gong">Gong</a> to record all sales calls and expose transcripts via their API.</li>
+  <li><strong>Feed transcripts to Claude:</strong> Use the API to pull recent call transcripts into your agent's context.</li>
+  <li><strong>The Prompt:</strong> <em>"Claude, here's the Fireflies API. After each sales call, pull the transcript, extract the buyer's main objections, next steps, and any competitor mentions. Write a summary to the deal record in HubSpot and flag the deal as 'at risk' if the buyer mentioned budget concerns."</em></li>
+</ol>
+
+<h3>Bonus: Weekly Pipeline Review</h3>
+<p><em>"Claude, pull all call transcripts from this week via the Gong API. Create a summary of the top 3 objections across all calls, which competitors were mentioned most, and which deals had no activity in the last 5 days."</em></p>
+
+<h2>FAQ</h2>
+<p><strong>Q: Do I need to record calls to use revenue intelligence?</strong><br>A: Yes. These tools work by analyzing call recordings and transcripts. Most integrate with Zoom, Google Meet, and Microsoft Teams to auto-record. <a href="/apis/fireflies"><strong>Fireflies</strong></a> can join meetings as a bot — no install needed.</p>
+<p><strong>Q: What's the difference between Gong and Fireflies?</strong><br>A: <a href="/apis/gong"><strong>Gong</strong></a> is an all-in-one revenue platform (calls + deals + forecasting) built for large sales teams. <a href="/apis/fireflies"><strong>Fireflies</strong></a> is lighter and more developer-friendly — great for teams that just want transcripts and AI summaries via API.</p>
+<p><strong>Q: Can my AI agent listen to calls in real time?</strong><br>A: <a href="/apis/attention-tech"><strong>Attention</strong></a> does this — it provides real-time guidance to reps during live calls. Most other tools process recordings after the call ends.</p>
+
+<h2>Conclusion</h2>
+<p>Revenue intelligence APIs turn your sales calls from forgotten recordings into a structured data source your AI agents can mine for insights. Stop guessing which deals will close — let the data tell you. Explore our <a href="/categories/revenue-intelligence">Revenue Intelligence category</a> to find the right tool.</p>
+    `,
     categories: ["Revenue Intelligence"],
+    keywords: ["conversation intelligence", "call recording", "deal intelligence", "forecasting", "sales coaching"],
   },
   {
     slug: "scheduling-apis",
@@ -345,7 +591,71 @@ const guides: Guide[] = [
       "Meeting scheduling APIs for AI agents. Compare calendar APIs, booking, availability, and MCP servers for automated scheduling.",
     intro:
       "Never lose a warm lead to calendar friction. These APIs let your agent check availability, book meetings, and handle rescheduling automatically.",
+    content: `
+<h2>What Are Scheduling APIs?</h2>
+<p>A scheduling API lets your software check calendar availability, create bookings, and manage meetings programmatically. For sales teams, this means your AI agent can book a demo the moment a lead says "yes" — no back-and-forth emails, no "Does Tuesday work?" Instead of sending a booking link and hoping, your agent handles the entire flow: check availability, propose a time, confirm, and send calendar invites.</p>
+
+<h3>Scheduling Links vs. Scheduling APIs</h3>
+<p>Most people know <strong>Calendly links</strong> — you paste them in emails and let prospects pick a time. A scheduling <strong>API</strong> goes further: your AI agent can query available slots, create events, assign the right rep based on territory or round-robin rules, and handle rescheduling — all without the prospect ever seeing a booking page.</p>
+
+<h2>What Your AI Agent Can Do With These APIs</h2>
+<ul>
+  <li><strong>Instant Booking After Qualification:</strong> Your AI SDR qualifies a lead via email or chat, then immediately books a meeting on the right rep's calendar using the API — zero friction.</li>
+  <li><strong>Smart Routing:</strong> Tools like <a href="/apis/chili-piper"><strong>Chili Piper</strong></a> route meetings to the right rep based on territory, deal size, or round-robin rules — all via API.</li>
+  <li><strong>Rescheduling & Reminders:</strong> Your agent monitors for cancellations and automatically proposes new times, reducing no-show rates.</li>
+  <li><strong>CRM Sync:</strong> Every booked meeting is logged to your CRM with the lead's details, so reps walk into calls prepared.</li>
+</ul>
+
+<h2>Top Scheduling APIs Compared (2026)</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>API Provider</th>
+      <th>Best For</th>
+      <th>Key Differentiator</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="/apis/cal-com"><strong>Cal.com</strong></a></td>
+      <td>Open-source scheduling</td>
+      <td>Fully open-source with a powerful API. Self-host or use cloud. Great for custom AI integrations.</td>
+    </tr>
+    <tr>
+      <td><a href="/apis/calendly"><strong>Calendly</strong></a></td>
+      <td>Simple team scheduling</td>
+      <td>The most widely adopted scheduling tool. Clean API for availability checks and event creation.</td>
+    </tr>
+    <tr>
+      <td><a href="/apis/chili-piper"><strong>Chili Piper</strong></a></td>
+      <td>Inbound lead routing</td>
+      <td>Built for sales teams. Routes inbound leads to the right rep and books instantly from web forms.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Claude Code Workflow: Auto-Book Meetings</h2>
+<p>Here's how to connect scheduling to your AI sales flow:</p>
+<ol>
+  <li><strong>Pick your scheduling API:</strong> <a href="/apis/cal-com">Cal.com</a> is the best choice if you want full control (open-source). <a href="/apis/calendly">Calendly</a> if you want simplicity.</li>
+  <li><strong>Connect it to your lead flow:</strong> Your AI agent needs access to both the scheduling API and your lead source (CRM, enrichment tool, or email tool).</li>
+  <li><strong>The Prompt:</strong> <em>"Claude, here are the Cal.com API docs. When a lead replies 'yes' to my outreach email, check my calendar for the next available 30-minute slot, book the meeting, send the lead a Google Meet invite, and log the meeting to HubSpot with the lead's enriched profile."</em></li>
+</ol>
+
+<h3>MCP Integration</h3>
+<p><a href="/apis/cal-com"><strong>Cal.com</strong></a> has an MCP server, which means Claude can interact with your calendar directly — check availability, create events, and manage bookings — without you writing any integration code. Just add the MCP config and start prompting.</p>
+
+<h2>FAQ</h2>
+<p><strong>Q: Should I use Cal.com or Calendly?</strong><br>A: <a href="/apis/cal-com"><strong>Cal.com</strong></a> if you want open-source, self-hosting, and maximum API flexibility — ideal for AI agent builders. <a href="/apis/calendly"><strong>Calendly</strong></a> if your team already uses it and you want a quick integration.</p>
+<p><strong>Q: What is "lead routing" in scheduling?</strong><br>A: It's automatically assigning incoming meeting requests to the right sales rep based on rules — territory, company size, round-robin, etc. <a href="/apis/chili-piper"><strong>Chili Piper</strong></a> specializes in this.</p>
+<p><strong>Q: Can my AI agent reschedule meetings?</strong><br>A: Yes. All three APIs support updating and canceling events programmatically. Your agent can detect a cancellation, propose 3 new times, and rebook — all without human involvement.</p>
+
+<h2>Conclusion</h2>
+<p>Scheduling is the last mile of sales — the moment a "maybe" becomes a booked demo. Don't lose it to email tag. Connect a scheduling API to your AI agent and book meetings the instant a lead is ready. Browse our <a href="/categories/closing-and-scheduling">Closing & Scheduling category</a> to explore all options.</p>
+    `,
     categories: ["Closing & Scheduling"],
+    keywords: ["calendar", "booking", "scheduling", "meeting", "availability", "round-robin"],
   },
   {
     slug: "sales-enablement-apis",
@@ -354,7 +664,89 @@ const guides: Guide[] = [
       "Sales enablement APIs for AI agents. Compare content management, proposals, e-signatures, and document automation.",
     intro:
       "Your reps need the right content at the right time. These APIs let your agent serve up proposals, track engagement, and manage e-signatures automatically.",
+    content: `
+<h2>What Are Sales Enablement APIs?</h2>
+<p>Sales enablement APIs handle everything that happens between "the prospect is interested" and "the deal is signed." They cover proposals, contracts, e-signatures, content libraries, and training materials. Instead of your reps digging through Google Drive for the right case study or manually building proposals in Word, your AI agent pulls the right content, generates documents, sends them for signature, and tracks engagement — automatically.</p>
+
+<h3>Document Automation vs. Content Management</h3>
+<ul>
+  <li><strong>Document Automation</strong> (proposals, contracts, e-signatures): Tools like <a href="/apis/pandadoc"><strong>PandaDoc</strong></a> and <a href="/apis/docusign"><strong>DocuSign</strong></a> let your agent create, send, and track documents programmatically.</li>
+  <li><strong>Content Management</strong> (sales collateral, battle cards, playbooks): Tools like <a href="/apis/highspot"><strong>Highspot</strong></a> and <a href="/apis/guru"><strong>Guru</strong></a> organize your sales content so your agent can surface the right piece at the right moment.</li>
+</ul>
+
+<h2>What Your AI Agent Can Do With These APIs</h2>
+<ul>
+  <li><strong>Auto-Generate Proposals:</strong> Your agent pulls deal data from your CRM, populates a PandaDoc template, and sends a personalized proposal — in seconds, not hours.</li>
+  <li><strong>E-Signature Workflows:</strong> Once a proposal is accepted, your agent triggers a DocuSign envelope with the contract, routes it for approval, and notifies your team when it's signed.</li>
+  <li><strong>Content Recommendations:</strong> During a deal, your agent checks the prospect's industry and deal stage, then recommends the right case study or one-pager from your content library.</li>
+  <li><strong>Engagement Tracking:</strong> Know exactly which pages of your proposal the buyer read, how long they spent on pricing, and whether they forwarded it to their boss.</li>
+</ul>
+
+<h2>Top Sales Enablement APIs Compared (2026)</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>API Provider</th>
+      <th>Focus</th>
+      <th>Key Differentiator</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="/apis/pandadoc"><strong>PandaDoc</strong></a></td>
+      <td>Proposals & E-Signatures</td>
+      <td>All-in-one document automation. Templates, e-signatures, and analytics. Has an MCP server.</td>
+    </tr>
+    <tr>
+      <td><a href="/apis/docusign"><strong>DocuSign</strong></a></td>
+      <td>E-Signatures & CLM</td>
+      <td>The industry standard for e-signatures. Powerful API for envelope management and contract lifecycle.</td>
+    </tr>
+    <tr>
+      <td><a href="/apis/highspot"><strong>Highspot</strong></a></td>
+      <td>Content Management</td>
+      <td>AI-powered content management. Surfaces the right sales collateral based on deal context.</td>
+    </tr>
+    <tr>
+      <td><a href="/apis/guru"><strong>Guru</strong></a></td>
+      <td>Knowledge Management</td>
+      <td>AI-powered knowledge base for sales teams. Surfaces answers and playbooks in real time.</td>
+    </tr>
+    <tr>
+      <td><a href="/apis/sharpsell"><strong>SharpSell</strong></a></td>
+      <td>Sales Playbooks</td>
+      <td>AI-driven sales playbook automation with guided selling and dynamic content.</td>
+    </tr>
+    <tr>
+      <td><a href="/apis/spekit"><strong>Spekit</strong></a></td>
+      <td>Just-in-Time Enablement</td>
+      <td>Surfaces training and playbooks inside the tools reps already use (Salesforce, Slack, etc.).</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Claude Code Workflow: Automate Proposals</h2>
+<p>Here's how to build an AI-powered proposal workflow:</p>
+<ol>
+  <li><strong>Set up your templates:</strong> Create proposal templates in <a href="/apis/pandadoc">PandaDoc</a> with merge fields for company name, deal value, and custom terms.</li>
+  <li><strong>Connect to your CRM:</strong> Your agent needs read access to deal records (HubSpot, Salesforce, etc.) to pull the data.</li>
+  <li><strong>The Prompt:</strong> <em>"Claude, here are the PandaDoc API docs. When a deal in HubSpot moves to 'Proposal Sent' stage, create a new document from my 'Enterprise Proposal' template, fill in the company name, deal amount, and contact info from the deal record, and send it to the primary contact for e-signature."</em></li>
+</ol>
+
+<h3>MCP Integration</h3>
+<p><a href="/apis/pandadoc"><strong>PandaDoc</strong></a> has an MCP server — Claude can create documents, check signing status, and manage templates directly. No code needed, just add the MCP config to your Claude setup.</p>
+
+<h2>FAQ</h2>
+<p><strong>Q: What's the difference between PandaDoc and DocuSign?</strong><br>A: <a href="/apis/pandadoc"><strong>PandaDoc</strong></a> is an all-in-one tool for creating proposals, quotes, and contracts with built-in e-signatures. <a href="/apis/docusign"><strong>DocuSign</strong></a> is more focused on e-signatures and contract lifecycle management — best if you already create documents elsewhere and just need signing.</p>
+<p><strong>Q: Can my AI agent track if a prospect read my proposal?</strong><br>A: Yes. Both PandaDoc and DocuSign provide document analytics via API — page views, time spent, and whether the document was forwarded. Your agent can trigger follow-up actions based on this engagement data.</p>
+<p><strong>Q: How do content management tools help AI agents?</strong><br>A: Tools like <a href="/apis/highspot"><strong>Highspot</strong></a> and <a href="/apis/guru"><strong>Guru</strong></a> organize your battle cards, case studies, and playbooks with metadata. Your AI agent can query them by industry, competitor, or deal stage to surface exactly the right content during a sales conversation.</p>
+
+<h2>Conclusion</h2>
+<p>Sales enablement APIs close the gap between "interested" and "signed." By automating proposals, e-signatures, and content delivery, your AI agents keep deals moving without reps spending hours on document admin. Explore our <a href="/categories/sales-enablement">Sales Enablement category</a> for all available tools.</p>
+    `,
     categories: ["Sales Enablement"],
+    keywords: ["proposals", "e-signatures", "content management", "document automation", "sales collateral"],
   },
 ]
 

@@ -5,6 +5,7 @@ import { getToolsForComparison, getAllSlugs } from "@/lib/tools"
 import { Zap, Check, X, ArrowRight } from "lucide-react"
 import { ToolLogo } from "@/components/ToolLogo"
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
+import { FaqSection } from "@/components/FaqSection"
 import { generateSeoTitle, generateSeoDescription } from "@/lib/seo"
 
 interface Props {
@@ -176,6 +177,68 @@ export default async function ComparisonPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {/* API Analysis */}
+      <section className="py-12 md:py-20 border-t border-ink/10">
+        <div className="layout-container">
+          <div className="flex items-center gap-4 md:gap-6 mb-8 md:mb-12">
+            <h2 className="font-mono text-[0.75rem] md:text-[0.8rem] uppercase tracking-wider text-ink">API & MCP Analysis</h2>
+            <div className="h-px flex-grow bg-ink opacity-10"></div>
+          </div>
+          <div className="prose prose-ink max-w-none font-serif text-lg md:text-xl text-ink-fade leading-relaxed space-y-6">
+            <p>
+              For AI-native operators choosing between <strong>{tool1.name}</strong> and <strong>{tool2.name}</strong>, the decision comes down to API accessibility and how easily your agent can interface with each tool.
+            </p>
+            {tool1.mcpReady || tool2.mcpReady ? (
+              <p>
+                {tool1.mcpReady && tool2.mcpReady
+                  ? `Both ${tool1.name} and ${tool2.name} support MCP (Model Context Protocol), meaning you can connect either directly to Claude, Cursor, or other AI agents without writing custom integration code.`
+                  : tool1.mcpReady
+                  ? `${tool1.name} has the edge here with an official MCP server, letting you connect it directly to Claude or Cursor. ${tool2.name} requires a REST API integration, which means your agent needs the API docs to build the connection.`
+                  : `${tool2.name} has the edge here with an official MCP server, letting you connect it directly to Claude or Cursor. ${tool1.name} requires a REST API integration, which means your agent needs the API docs to build the connection.`}
+              </p>
+            ) : (
+              <p>
+                Neither tool currently offers an official MCP server, so you&apos;ll need to use their REST APIs directly. Provide the API documentation to your AI agent and let it build the integration for you.
+              </p>
+            )}
+            {(tool1.starterPrompt || tool2.starterPrompt) && (
+              <div className="not-prose grid grid-cols-1 md:grid-cols-2 gap-6">
+                {tool1.starterPrompt && (
+                  <div className="p-4 md:p-6 bg-paper-dark/50 border border-ink/10">
+                    <div className="font-mono text-[0.65rem] uppercase tracking-widest text-ink-fade mb-3">{tool1.name} Starter Prompt</div>
+                    <p className="font-mono text-[0.75rem] italic text-ink-fade leading-relaxed">&quot;{tool1.starterPrompt}&quot;</p>
+                  </div>
+                )}
+                {tool2.starterPrompt && (
+                  <div className="p-4 md:p-6 bg-paper-dark/50 border border-ink/10">
+                    <div className="font-mono text-[0.65rem] uppercase tracking-widest text-ink-fade mb-3">{tool2.name} Starter Prompt</div>
+                    <p className="font-mono text-[0.75rem] italic text-ink-fade leading-relaxed">&quot;{tool2.starterPrompt}&quot;</p>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      <FaqSection 
+        items={[
+          {
+            question: `Which has a better API for AI agents — ${tool1.name} or ${tool2.name}?`,
+            answer: `${tool1.mcpReady ? tool1.name + ' offers an MCP server for direct AI agent integration.' : tool1.name + ' provides a ' + (tool1.apiType || []).join('/') + ' API.'} ${tool2.mcpReady ? tool2.name + ' also offers an MCP server.' : tool2.name + ' provides a ' + (tool2.apiType || []).join('/') + ' API.'} Check the comparison table above for a full breakdown of SDKs, webhooks, and capabilities.`
+          },
+          {
+            question: `Can I connect ${tool1.name} or ${tool2.name} to Claude or Cursor?`,
+            answer: `${tool1.mcpReady && tool2.mcpReady ? 'Yes, both tools have MCP servers that work with Claude, Cursor, and other AI coding agents.' : tool1.mcpReady ? `${tool1.name} has an official MCP server for direct connection. For ${tool2.name}, you can use the REST API docs with your AI agent.` : tool2.mcpReady ? `${tool2.name} has an official MCP server for direct connection. For ${tool1.name}, you can use the REST API docs with your AI agent.` : `Neither has an official MCP server yet, but both have REST APIs. Paste the API docs into your agent and ask it to build the integration.`}`
+          },
+          {
+            question: `${tool1.name} vs ${tool2.name} — which is better for sales automation?`,
+            answer: `It depends on your stack. ${tool1.name} is "${tool1.oneLiner}" while ${tool2.name} is "${tool2.oneLiner}". Compare their API capabilities, MCP support, and pricing above to find the right fit for your workflow.`
+          },
+        ]} 
+        title={`${tool1.name} vs ${tool2.name} FAQ`} 
+      />
 
       {/* Footer Call to Action */}
       <section className="py-32 text-center">
