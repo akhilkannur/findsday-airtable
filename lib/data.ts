@@ -2740,6 +2740,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     mcpReady: false,
     isFeatured: false,
     alternativeTo: ["BetterContact", "FullEnrich", "Clay"],
+    addedAt: "2026-05-04",
     integrations: [],
   },
   {
@@ -10627,6 +10628,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     mcpReady: true,
     isFeatured: false,
     alternativeTo: ["Clearbit", "ZoomInfo", "Datagma"],
+    addedAt: "2026-05-04",
     integrations: [],
   },
   {
@@ -10648,6 +10650,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     mcpReady: true,
     isFeatured: false,
     alternativeTo: ["Crayon", "Klue", "Competition"],
+    addedAt: "2026-05-04",
     integrations: [],
   },
   {
@@ -10669,6 +10672,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     mcpReady: true,
     isFeatured: false,
     alternativeTo: ["Clearbit", "FullContact", "Apollo"],
+    addedAt: "2026-05-04",
     integrations: [],
   },
   {
@@ -10690,6 +10694,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     mcpReady: true,
     isFeatured: false,
     alternativeTo: ["HubSpot", "Salesforce", "Pipedrive"],
+    addedAt: "2026-05-04",
     integrations: [],
   },
   {
@@ -10711,6 +10716,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     mcpReady: true,
     isFeatured: false,
     alternativeTo: ["Pimcore", "Akeneo", "Informatica"],
+    addedAt: "2026-05-04",
     integrations: [],
   },
   {
@@ -10732,6 +10738,7 @@ export const tools: (SalesTool | MinimalTool)[] = [
     mcpReady: false,
     isFeatured: false,
     alternativeTo: ["Wappalyzer", "BuiltWith", "Datagma"],
+    addedAt: "2026-05-04",
     integrations: [],
   },
   {
