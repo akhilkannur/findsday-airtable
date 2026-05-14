@@ -46,6 +46,7 @@ export interface SalesTool {
   aiCapabilities: string[] // e.g. ["Search Leads", "Update CRM", "Record Meetings"]
   starterPrompt?: string // "Claude, use this tool to..."
   mcpReady: boolean
+  logoUrl?: string
 
   // Agent integrations — all the ways to connect this tool to an AI agent
   integrations: AgentIntegration[]

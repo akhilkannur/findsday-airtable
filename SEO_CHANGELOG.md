@@ -34,3 +34,28 @@ Inspired by the **Edward Show Podcast (David Quaid & Edward Strom)** regarding E
 ### Notes for Next Review (Expected 2026-04-14)
 - Check if "Top [Keyword] AI Features" starts appearing in GSC search queries.
 - Monitor "Consensus Score" in Perplexity: Ask "What are the best CRM sales automation APIs?" and see if Salestools.club is cited.
+
+## [2026-05-14] - The "Rising Star vs. Incumbent" VS Pivot
+
+### Strategy Origin
+Double down on the high-performing "Comparison" and "MCP" clusters. Identified high-growth "Rising Stars" (Day AI, Claygent, Firecrawl, SiftHub, Nexuscale) and paired them against legacy incumbents to capture search volume for "alternatives" and "head-to-head" audits.
+
+### Changes Implemented
+1.  **Added New Tools to `lib/data.ts`:**
+    - **SiftHub:** AI RFP/Deal orchestration.
+    - **Nexuscale AI:** Autonomous SDR platform.
+2.  **Featured Comparison Expansion (`app/vs/page.tsx`):**
+    - Added 5 high-intent pairs to the "Comparison Registry":
+        - `Day AI vs Salesforce (Agentforce)`
+        - `Clay vs Apollo` (Optimization for "Claygent" trend)
+        - `Firecrawl vs Browse AI`
+        - `SiftHub vs Gong`
+        - `Nexuscale vs Instantly`
+3.  **Data Enrichment:**
+    - Verified MCP readiness for all new pairs.
+    - Added "Starter Prompts" to help with GEO (Generative Engine Optimization) citation.
+
+### Target Goals
+- Capture traffic for `Day AI vs Salesforce` and `SiftHub vs Gong` as users seek AI-native alternatives.
+- Dominate the `Firecrawl vs Browse AI` developer-focused scraping niche.
+- Improve average position further from 18.8 by targeting low-competition, high-relevance keywords.

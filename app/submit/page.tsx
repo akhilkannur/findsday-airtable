@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Send, CheckCircle2, AlertCircle } from "lucide-react"
+import { Send, CheckCircle2, AlertCircle, Copy, Check, Zap, Globe, ShieldCheck } from "lucide-react"
 
 const CATEGORIES = [
   "Sales Intelligence",
@@ -27,6 +27,8 @@ export default function SubmitPage() {
 
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState("")
+  const [slug, setSlug] = useState("")
+  const [copied, setCopied] = useState<'dark'|'light'|null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -64,6 +66,23 @@ export default function SubmitPage() {
       setStatus('error')
       setErrorMessage(err.message || "Something went wrong. Please try again.")
     }
+  }
+
+  const SITE_URL = 'https://salestools.club'
+
+  function makeBadgeEmbed(variant: 'dark' | 'light', toolSlug: string) {
+    const fileName = variant === 'dark' ? 'badge-dark.svg' : 'badge-light.svg'
+    const targetUrl = toolSlug 
+      ? `${SITE_URL}/tools/${toolSlug}?utm_source=badge&utm_medium=embed` 
+      : `${SITE_URL}?utm_source=badge&utm_medium=embed`
+    return `<a href="${targetUrl}" target="_blank" rel="noopener noreferrer"><img src="${SITE_URL}/images/${fileName}" alt="Listed on Salestools Club" width="220" height="50" /></a>`
+  }
+
+  const handleCopy = async (variant: 'dark' | 'light') => {
+    const cleanSlug = slug.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '')
+    await navigator.clipboard.writeText(makeBadgeEmbed(variant, cleanSlug))
+    setCopied(variant)
+    setTimeout(() => setCopied(null), 2000)
   }
 
   const inputClasses =
@@ -251,6 +270,81 @@ export default function SubmitPage() {
                 </p>
               </div>
             </form>
+          </div>
+        </div>
+
+        {/* Benefits */}
+        <div className="layout-container mt-16 md:mt-24">
+          <h2 className="type-display text-2xl md:text-4xl mb-8">Why list your tool</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="border border-dashed border-ink/30 p-6 bg-white/20">
+              <Zap className="w-5 h-5 mb-3 text-ink" />
+              <h3 className="font-mono text-sm uppercase tracking-widest mb-2">Discovery</h3>
+              <p className="font-serif italic text-ink-fade text-sm">Get found by founders and ops teams building AI sales workflows.</p>
+            </div>
+            <div className="border border-dashed border-ink/30 p-6 bg-white/20">
+              <Globe className="w-5 h-5 mb-3 text-ink" />
+              <h3 className="font-mono text-sm uppercase tracking-widest mb-2">SEO Backlink</h3>
+              <p className="font-serif italic text-ink-fade text-sm">Permanent do-follow backlink from a niche sales tech directory.</p>
+            </div>
+            <div className="border border-dashed border-ink/30 p-6 bg-white/20">
+              <ShieldCheck className="w-5 h-5 mb-3 text-ink" />
+              <h3 className="font-mono text-sm uppercase tracking-widest mb-2">Trust Signal</h3>
+              <p className="font-serif italic text-ink-fade text-sm">Embed our badge and show users you are part of a curated directory.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Badge Embed */}
+        <div className="layout-container mt-16 md:mt-24">
+          <h2 className="type-display text-2xl md:text-4xl mb-4">Embed your badge</h2>
+          <p className="font-serif italic text-lg text-ink-fade mb-8 max-w-xl">
+            Add the badge to your site. Tools with a badge get priority review.
+          </p>
+          
+          <div className="max-w-2xl mx-auto mb-8">
+            <label className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-1 block">
+              Your tool slug (optional)
+            </label>
+            <input
+              type="text"
+              placeholder="e.g. apollo, hubspot..."
+              className={inputClasses}
+              value={slug}
+              onChange={(e) => setSlug(e.target.value)}
+            />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+            {/* Dark Badge */}
+            <div className="border border-dashed border-ink/30 p-6 bg-white/20">
+              <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-ink mb-4">Dark</p>
+              <div className="flex items-center justify-center py-4 bg-black/90 rounded-sm mb-4">
+                <img src="/images/badge-dark.svg" alt="Listed on Salestools Club - Dark" width="220" height="50" />
+              </div>
+              <button
+                type="button"
+                onClick={() => handleCopy('dark')}
+                className="w-full py-3 font-mono text-xs uppercase tracking-widest border border-ink/30 hover:bg-black hover:text-white transition-all flex items-center justify-center gap-2"
+              >
+                {copied === 'dark' ? <><Check className="w-3 h-3" /> Copied</> : <><Copy className="w-3 h-3" /> Copy Embed Code</>}
+              </button>
+            </div>
+
+            {/* Light Badge */}
+            <div className="border border-dashed border-ink/30 p-6 bg-white/20">
+              <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-ink mb-4">Light</p>
+              <div className="flex items-center justify-center py-4 bg-white rounded-sm mb-4">
+                <img src="/images/badge-light.svg" alt="Listed on Salestools Club - Light" width="220" height="50" />
+              </div>
+              <button
+                type="button"
+                onClick={() => handleCopy('light')}
+                className="w-full py-3 font-mono text-xs uppercase tracking-widest border border-ink/30 hover:bg-black hover:text-white transition-all flex items-center justify-center gap-2"
+              >
+                {copied === 'light' ? <><Check className="w-3 h-3" /> Copied</> : <><Copy className="w-3 h-3" /> Copy Embed Code</>}
+              </button>
+            </div>
           </div>
         </div>
       </section>

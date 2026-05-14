@@ -37,7 +37,11 @@ export default async function VsIndexPage() {
   
   // High-value featured pairs for SEO
   const featuredPairs = [
-    { s1: "apollo", s2: "clay", label: "Best for Enrichment" },
+    { s1: "day-ai", s2: "salesforce", label: "AI CRM Nodes" },
+    { s1: "clay", s2: "apollo", label: "Best for Enrichment" },
+    { s1: "firecrawl", s2: "browse-ai", label: "Autonomous Web Scraping" },
+    { s1: "sifthub", s2: "gong", label: "Deal Execution Stack" },
+    { s1: "nexuscale", s2: "instantly", label: "Autonomous Outbound" },
     { s1: "apollo", s2: "zoominfo", label: "Massive Data Head-to-Head" },
     { s1: "hubspot", s2: "salesforce", label: "The CRM Giants" },
     { s1: "instantly", s2: "smartlead", label: "Cold Email Infrastructure" },
