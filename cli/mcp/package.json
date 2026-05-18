@@ -4,6 +4,14 @@
   "description": "MCP server for Salestools Club - Search sales APIs and tools",
   "type": "module",
   "main": "index.js",
+  "homepage": "https://salestools.club",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akhilkannur/salestools-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/akhilkannur/salestools-mcp/issues"
+  },
   "bin": {
     "salestools-mcp": "index.js"
   },
