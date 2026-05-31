@@ -55,7 +55,7 @@ export async function generateMetadata({
     alternates: {
       canonical: pageUrl,
     },
-    ...(!typedTool.docsUrl && {
+    ...(typedTool.hasPublicApi === false && {
       robots: { index: false, follow: true },
     }),
     openGraph: {

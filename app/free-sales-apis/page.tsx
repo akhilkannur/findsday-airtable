@@ -9,7 +9,7 @@ import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
 export const dynamic = "force-dynamic"
 
 export const metadata: Metadata = {
-  title: "Free Sales APIs for AI Agents | Salestools Club",
+  title: "Free Sales APIs (2026) — 50+ Tools with Free Tiers | Salestools Club",
   description: "A handpicked list of sales APIs and tools with free tiers. Build and test your autonomous sales workflows without a credit card.",
   alternates: {
     canonical: "https://salestools.club/free-sales-apis",

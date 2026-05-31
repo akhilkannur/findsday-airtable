@@ -43,9 +43,9 @@ export function generateSeoTitle(
       }
       return `${formattedSubject} API Documentation & MCP Config | Salestools Club`
     case "guide":
-      return `${formattedSubject} | Salestools Club`
+      return `Best ${formattedSubject} Compared | Salestools Club`
     case "vs":
-      return `${formattedSubject} Comparison & API Analysis | Salestools Club`
+      return `${formattedSubject} Comparison (2026) | Salestools Club`
     default:
       return `${formattedSubject} | Salestools Club`
   }
@@ -73,7 +73,7 @@ export function generateSeoDescription(
       }
       return `Official API documentation and MCP configuration for ${formattedSubject}. Use our starter prompts to connect ${formattedSubject} to your AI sales agent.`
     case "guide":
-      return `Master ${formattedSubject} with our technical deep-dive. Learn how to implement agentic workflows using verified sales APIs.`
+      return `Compare the best ${formattedSubject}. Side-by-side breakdown of features, APIs, MCP support, and pricing for your sales stack.`
     case "vs":
       return `Compare ${formattedSubject} APIs, MCP servers, and AI agent compatibility. Side-by-side breakdown of SDKs, webhooks, and starter prompts for your agentic sales stack.`
     default:

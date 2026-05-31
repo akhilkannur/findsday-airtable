@@ -59,3 +59,40 @@ Double down on the high-performing "Comparison" and "MCP" clusters. Identified h
 - Capture traffic for `Day AI vs Salesforce` and `SiftHub vs Gong` as users seek AI-native alternatives.
 - Dominate the `Firecrawl vs Browse AI` developer-focused scraping niche.
 - Improve average position further from 18.8 by targeting low-competition, high-relevance keywords.
+
+## [2026-05-31] — Title Optimization & Noindex Fix
+
+### Context
+GSC data showed top queries getting 0 CTR (phoneburner vs nooks: 2.5K impressions, 0 clicks). Titles had intent mismatch — "Comparison & API Analysis" for comparison queries, "for AI Agents" narrowing free APIs page. Many tool pages were invisible to Google due to overly aggressive noindex logic.
+
+### Changes Implemented
+1.  **Vs Page Titles (`lib/seo.ts:48`):**
+    - `"Comparison & API Analysis"` → `"Comparison (2026)"`
+    - Goal: Match searcher intent for tool comparisons (e.g., "phoneburner vs nooks for agencies")
+2.  **Guide Page Titles (`lib/seo.ts:46`):**
+    - `"{Subject} | SC"` → `"Best {Subject} Compared | SC"`
+    - Goal: Match "best of" listicle format that ranks for enrichment queries
+3.  **Guide Meta Descriptions (`lib/seo.ts:76`):**
+    - `"Master...technical deep-dive"` → `"Compare the best..."`
+    - Goal: Better snippet for guide pages
+4.  **Free Sales APIs Page Title (`app/free-sales-apis/page.tsx:12`):**
+    - `"Free Sales APIs for AI Agents"` → `"Free Sales APIs (2026) — 50+ Tools with Free Tiers"`
+    - Goal: Broader appeal beyond AI operators, match "list of free APIs" searchers
+5.  **Noindex Logic (`app/apis/[slug]/page.tsx:58-60`):**
+    - Was: `noindex` if no `docsUrl`
+    - Now: `noindex` only if `hasPublicApi === false`
+    - Goal: Let Google index tool pages even when docs URL isn't documented yet
+
+### Baseline Metrics (as of 2026-05-31)
+| Metric | Value |
+| :--- | :--- |
+| Total clicks (28d) | 85 |
+| Total impressions (28d) | 23.5K |
+| Average CTR | 0.4% |
+| Average position | 24.8 |
+
+### Notes for Next Review (Expected 2026-06-14)
+- Check if CTR improves on top comparison queries (phoneburner vs nooks, clearbit vs fullcontact, etc.)
+- Monitor if newly indexed tool pages appear in GSC
+- Check if guide pages rank for "best X" queries
+- Re-assess free-sales-apis page CTR
