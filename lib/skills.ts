@@ -108,6 +108,18 @@ const skills: Skill[] = [
     sourceUrl: "https://github.com/VoltAgent/awesome-openclaw-skills",
     installCommand: "git clone https://github.com/VoltAgent/awesome-openclaw-skills.git ~/.claude/skills/openclaw",
   },
+  {
+    slug: "agent-gtm-skills",
+    name: "Agent GTM Skills",
+    description: "18 AI agent skills for go-to-market across strategy, outbound, inbound, paid, retention, and operations. 9,800+ lines covering positioning, ICP, pricing, cold outreach, AI SDR, lead enrichment, SEO, UGC ads, launches, and more. 2025-2026 benchmarks.",
+    category: "Operations",
+    difficulty: "Intermediate",
+    worksWithTools: [],
+    promptContent: "",
+    source: "chadboyda",
+    sourceUrl: "https://github.com/chadboyda/agent-gtm-skills",
+    installCommand: "npx add-skill chadboyda/agent-gtm-skills",
+  },
 ]
 
 export function getAllSkills(): Skill[] {
