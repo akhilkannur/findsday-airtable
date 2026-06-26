@@ -38,6 +38,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const months = [
+  { slug: "june-2026", name: "June 2026", count: 13 },
   { slug: "may-2026", name: "May 2026", count: 7 },
   { slug: "april-2026", name: "April 2026", count: 14 },
 ]
