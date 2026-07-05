@@ -13511,6 +13511,513 @@ export const tools: (SalesTool | MinimalTool)[] = [
     addedAt: "2026-06-26",
     integrations: [],
   },
+  {
+    slug: "vendo-ai",
+    name: "Vendo AI",
+    oneLiner: "Full API and MCP for autonomous AI sales agents — create agents, build audiences, launch campaigns.",
+    description: "Vendo AI is an autonomous sales platform with a full public API and 96 MCP tools. It lets you create AI sales agents, build audiences, launch multi-channel campaigns (email, LinkedIn, calls), read analytics, and manage billing — all programmatically. The SDR module provides 9 AI hunters that scan the web for buying signals, discover prospects, and launch outreach. REST API at api.vendo-ai.com with Streamable HTTP MCP transport. Launched June 2026 with full platform coverage across agents, campaigns, audiences, SDR pipeline, and billing.",
+    category: "Sales Engagement",
+    websiteUrl: "https://vendo-ai.com",
+    docsUrl: "https://vendo-ai.com/api-mcp/",
+    pricingUrl: "https://vendo-ai.com",
+    apiType: ["REST"],
+    authMethod: ["API Key"],
+    hasFreeTier: false,
+    hasPublicApi: true,
+    sdkLanguages: ["TypeScript"],
+    hasWebhooks: true,
+    aiCapabilities: ["AI Agent Creation", "Multi-Channel Campaign Management", "Audience Building", "Signal-Driven Prospecting", "Autonomous SDR Pipeline", "Analytics and Billing", "Content Generation"],
+    starterPrompt: "Claude, use Vendo AI to create an AI sales agent for fintech prospects, build an audience of decision-makers, and launch a multi-channel outreach campaign.",
+    mcpReady: true,
+    isFeatured: false,
+    alternativeTo: ["Outreach", "Salesloft", "Apollo.io"],
+    addedAt: "2026-07-05",
+    integrations: [
+      {
+        platform: "MCP",
+        url: "https://vendo-ai.com/api-mcp/",
+        label: "Official MCP Server (Streamable HTTP at api.vendo-ai.com/mcp)",
+        mcpConfig: `{
+  "mcpServers": {
+    "vendo": {
+      "url": "https://api.vendo-ai.com/mcp",
+      "headers": {
+        "Authorization": "Bearer your_api_key"
+      }
+    }
+  }
+}`,
+      },
+    ],
+  },
+  {
+    slug: "sanka",
+    name: "Sanka",
+    oneLiner: "Unified sales API for deals, contacts, billing, outreach, and proposals — with MCP and SDKs.",
+    description: "Sanka provides a unified API surface for the entire sales lifecycle — deals, contacts, billing, outreach, proposals, invoices, expenses, and inventory. One API key gives access to Data Management (CRUD on CRM records), Data Enrichment (company data from web evidence), Prospecting (company discovery), and Data Scoring (deterministic company and deal scoring). Ships with a hosted MCP server (mcp.sanka.com), Node.js and Python SDKs, and a CLI. Bi-directional sync with HubSpot, Salesforce, and Stripe.",
+    category: "CRM & RevOps",
+    websiteUrl: "https://sanka.com",
+    docsUrl: "https://sanka.com/docs/developers/",
+    pricingUrl: "https://sanka.com",
+    apiType: ["REST"],
+    authMethod: ["Bearer Token", "OAuth2"],
+    hasFreeTier: false,
+    hasPublicApi: true,
+    sdkLanguages: ["Node.js", "Python"],
+    hasWebhooks: false,
+    aiCapabilities: ["Deal Management", "Contact Management", "Company Enrichment", "Prospecting and Discovery", "Data Scoring", "Invoice and Billing", "Approval Workflows", "Inventory Management"],
+    starterPrompt: "Claude, use Sanka to create a deal for Acme Corp in the discovery stage, enrich the company record, and send a follow-up outreach email.",
+    mcpReady: true,
+    isFeatured: false,
+    alternativeTo: ["HubSpot", "Salesforce", "Pipedrive"],
+    addedAt: "2026-07-05",
+    integrations: [
+      {
+        platform: "MCP",
+        url: "https://sanka.com/docs/developers/mcp/",
+        label: "Official MCP Server (hosted at mcp.sanka.com/mcp)",
+        mcpConfig: `{
+  "mcpServers": {
+    "sanka": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://mcp.sanka.com/mcp",
+        "--resource",
+        "https://mcp.sanka.com/mcp"
+      ]
+    }
+  }
+}`,
+      },
+    ],
+  },
+  {
+    slug: "signaliz",
+    name: "Signaliz",
+    oneLiner: "GTM data quality and enrichment platform with REST API, MCP, CLI, and SDK for AI agents.",
+    description: "Signaliz is a B2B data quality, enrichment, and agentic GTM platform for go-to-market teams and AI agents. It provides email finding and verification, company signal enrichment, B2B professional discovery, campaign building, and GTM operations workflows. Exposes 60+ API capabilities through REST API, hosted MCP server (npx -y @signaliz/mcp-server), CLI (npm install -g @signaliz/cli), and TypeScript SDK. Includes async bulk operations for email finding (up to 5,000 records), email verification, and company enrichment.",
+    category: "Sales Intelligence",
+    websiteUrl: "https://signaliz.com",
+    docsUrl: "https://signaliz.com/api-docs",
+    pricingUrl: "https://signaliz.com",
+    apiType: ["REST"],
+    authMethod: ["API Key"],
+    hasFreeTier: true,
+    hasPublicApi: true,
+    sdkLanguages: ["TypeScript"],
+    hasWebhooks: true,
+    aiCapabilities: ["Email Finding", "Email Verification", "Company Signal Enrichment", "B2B People Discovery", "Campaign Building", "GTM Operations", "Lead Generation", "Data Quality"],
+    starterPrompt: "Claude, use Signaliz to find and verify emails for decision-makers at my target accounts, enrich them with recent buying signals, and build a prospect list.",
+    mcpReady: true,
+    isFeatured: false,
+    alternativeTo: ["Clearbit", "Hunter.io", "Apollo.io", "Lusha"],
+    addedAt: "2026-07-05",
+    integrations: [
+      {
+        platform: "MCP",
+        url: "https://github.com/signaliz/signaliz-mcp",
+        label: "Official MCP Server (npx -y @signaliz/mcp-server)",
+        mcpConfig: `{
+  "mcpServers": {
+    "signaliz": {
+      "command": "npx",
+      "args": ["-y", "@signaliz/mcp-server"],
+      "env": {
+        "SIGNALIZ_API_KEY": "sk_your_key_here"
+      }
+    }
+  }
+}`,
+      },
+    ],
+  },
+  {
+    slug: "leadmagic",
+    name: "LeadMagic",
+    oneLiner: "Lead enrichment and account intelligence API with hosted MCP server and 30+ tools for AI agents.",
+    description: "LeadMagic provides a lead enrichment and account intelligence API with a hosted MCP server. It offers 30+ tools including account intelligence (company profiles, funding, competitors), contact enrichment (email and phone), email finding and validation, company research, job discovery, decision-maker identification, and bulk enrichment. The hosted MCP endpoint at mcp.leadmagic.io/mcp uses OAuth for authentication. Credit-based pricing with a free trial.",
+    category: "Sales Intelligence",
+    websiteUrl: "https://leadmagic.io",
+    docsUrl: "https://leadmagic.io/docs/mcp/introduction",
+    pricingUrl: "https://leadmagic.io",
+    apiType: ["REST"],
+    authMethod: ["OAuth2", "API Key"],
+    hasFreeTier: true,
+    hasPublicApi: true,
+    sdkLanguages: [],
+    hasWebhooks: false,
+    aiCapabilities: ["Account Intelligence", "Contact Enrichment", "Email Finding and Validation", "Company Research", "Job Discovery", "Decision Maker Identification", "Bulk Enrichment", "Lead Scoring"],
+    starterPrompt: "Claude, use LeadMagic to research Acme Corp, find the VP of Sales, validate their email, and enrich their full profile.",
+    mcpReady: true,
+    isFeatured: false,
+    alternativeTo: ["Apollo.io", "ZoomInfo", "Clearbit", "Lusha"],
+    addedAt: "2026-07-05",
+    integrations: [
+      {
+        platform: "MCP",
+        url: "https://leadmagic.io/docs/mcp/introduction",
+        label: "Official MCP Server (hosted at mcp.leadmagic.io/mcp)",
+        mcpConfig: `{
+  "mcpServers": {
+    "leadmagic": {
+      "url": "https://mcp.leadmagic.io/mcp"
+    }
+  }
+}`,
+      },
+    ],
+  },
+  {
+    slug: "datalayer",
+    name: "DataLayer",
+    oneLiner: "B2B enrichment API with MCP — 60M companies, 300M contacts, intent signals, and technographics.",
+    description: "DataLayer is a B2B data enrichment API that provides access to 60M+ companies and 300M+ verified contacts. Its MCP server gives AI agents tools for person and company enrichment, people and company search, technographics (16 categories), intent signals (web traffic, ad spend, hiring velocity, funding, employee growth), and job discovery. Credit-based pricing with email reverification every 90 days. Works with Claude, Cursor, Windsurf, and any MCP-compatible client.",
+    category: "Sales Intelligence",
+    websiteUrl: "https://datalayer.sh",
+    docsUrl: "https://www.npmjs.com/package/@datalayer-sh/mcp",
+    pricingUrl: "https://datalayer.sh",
+    apiType: ["REST"],
+    authMethod: ["API Key"],
+    hasFreeTier: false,
+    hasPublicApi: true,
+    sdkLanguages: [],
+    hasWebhooks: false,
+    aiCapabilities: ["Person Enrichment", "Company Enrichment", "People Search", "Company Search", "Technographics Analysis", "Intent Signal Detection", "Job Discovery", "Lead List Building"],
+    starterPrompt: "Claude, use DataLayer to find CTOs at SaaS companies with 50-500 employees using AWS and enrich their contact data with verified emails and phone numbers.",
+    mcpReady: true,
+    isFeatured: false,
+    alternativeTo: ["Clearbit", "Apollo.io", "ZoomInfo", "People Data Labs"],
+    addedAt: "2026-07-05",
+    integrations: [
+      {
+        platform: "MCP",
+        url: "https://www.npmjs.com/package/@datalayer-sh/mcp",
+        label: "Official MCP Server",
+        mcpConfig: `{
+  "mcpServers": {
+    "datalayer": {
+      "command": "npx",
+      "args": ["-y", "@datalayer-sh/mcp"],
+      "env": {
+        "DATALAYER_API_KEY": "your_key_here"
+      }
+    }
+  }
+}`,
+      },
+    ],
+  },
+  {
+    slug: "bytemine",
+    name: "Bytemine",
+    oneLiner: "B2B data platform with 25 MCP tools for people search, company enrichment, funding signals, and proposals.",
+    description: "Bytemine is a B2B data platform that exposes 25 tools through its MCP server for sales prospecting, RevOps, and GTM workflows. Tools include people search, company enrichment, contact enrichment, funding signal monitoring, proposal generation, and meeting preparation. Pay-per-result pricing with no seats or contracts. Works with Claude, Cursor, Windsurf, and any MCP-compatible client.",
+    category: "Sales Intelligence",
+    websiteUrl: "https://www.bytemine.ai",
+    docsUrl: "https://www.bytemine.ai/mcp-server",
+    pricingUrl: "https://www.bytemine.ai",
+    apiType: ["REST"],
+    authMethod: ["API Key"],
+    hasFreeTier: false,
+    hasPublicApi: true,
+    sdkLanguages: [],
+    hasWebhooks: false,
+    aiCapabilities: ["People Search", "Company Enrichment", "Contact Enrichment", "Funding Signal Monitoring", "Proposal Generation", "Meeting Preparation", "Sales Prospecting"],
+    starterPrompt: "Claude, use Bytemine to search for decision-makers at fintech companies, enrich their profiles with verified contact data, and generate a sales proposal.",
+    mcpReady: true,
+    isFeatured: false,
+    alternativeTo: ["Apollo.io", "ZoomInfo", "Clearbit"],
+    addedAt: "2026-07-05",
+    integrations: [
+      {
+        platform: "MCP",
+        url: "https://www.bytemine.ai/mcp-server",
+        label: "Official MCP Server",
+        mcpConfig: `{
+  "mcpServers": {
+    "bytemine": {
+      "command": "npx",
+      "args": ["-y", "@bytemine/mcp-server"],
+      "env": {
+        "BYTEMINE_API_KEY": "your_key_here"
+      }
+    }
+  }
+}`,
+      },
+    ],
+  },
+  {
+    slug: "leadpipe",
+    name: "Leadpipe",
+    oneLiner: "Person-level intent data API across 20,000+ B2B/B2C topics with 18 REST endpoints and ICP filtering.",
+    description: "Leadpipe Orbit API provides person-level intent data across 20,000+ B2B and B2C topics. Unlike company-level intent providers, it returns the specific people researching topics — with name, email, phone, LinkedIn, job title, company, and intent score (1-100). Features 18 REST endpoints for topic discovery, trend analytics, audience building, and CSV export. Includes 16 ICP filters (seniority, company size, industry, revenue, location, etc.). Usage-based pricing starting at $147/month with 500 free leads.",
+    category: "Sales Intelligence",
+    websiteUrl: "https://www.leadpipe.com",
+    docsUrl: "https://www.leadpipe.com/docs/api",
+    pricingUrl: "https://www.leadpipe.com/pricing",
+    apiType: ["REST"],
+    authMethod: ["API Key"],
+    hasFreeTier: true,
+    hasPublicApi: true,
+    sdkLanguages: [],
+    hasWebhooks: false,
+    aiCapabilities: ["Person-Level Intent Data", "Buyer Intent Scoring", "Topic Discovery (20K+ topics)", "ICP Filtering", "Audience Building", "Competitive Intelligence", "Trend Analytics", "CSV Export"],
+    starterPrompt: "Claude, use Leadpipe Intent API to find VPs of Marketing at mid-market SaaS companies actively researching CRM software and marketing automation platforms.",
+    mcpReady: false,
+    isFeatured: false,
+    alternativeTo: ["Bombora", "6sense", "G2", "Demandbase"],
+    addedAt: "2026-07-05",
+    integrations: [],
+  },
+  {
+    slug: "stackswap",
+    name: "StackSwap",
+    oneLiner: "Lead enrichment and buyer model training API with free MCP server (32 GTM intelligence tools).",
+    description: "StackSwap is a lead enrichment and buyer model training platform for B2B GTM. It reads a target company's tech stack from job posts and signals, infers monthly spend, and scores each lead (0-100) against your specific ICP. The buyer model retrains monthly on your win/loss outcomes. Offers a REST API (Starter $49/mo) for enrichment, scoring, and outcome tagging, plus a free MCP server with 32 GTM-intelligence tools covering stack analysis, vendor comparison, revops benchmarks, pipeline analysis, and revenue modeling.",
+    category: "Sales Intelligence",
+    websiteUrl: "https://stackswap.ai",
+    docsUrl: "https://stackswap.ai/apis-and-mcps",
+    pricingUrl: "https://stackswap.ai/stackswap-os/pricing",
+    apiType: ["REST"],
+    authMethod: ["Bearer Token"],
+    hasFreeTier: true,
+    hasPublicApi: true,
+    sdkLanguages: [],
+    hasWebhooks: false,
+    aiCapabilities: ["Lead Enrichment", "Tech Stack Detection", "ICP Fit Scoring", "Buyer Model Training", "GTM Stack Intelligence", "Vendor Comparison", "Pipeline Analysis", "Revenue Analysis", "Win/Loss Analysis"],
+    starterPrompt: "Claude, use StackSwap to enrich a batch of leads, score them against my ICP, and rank them by fit for my outbound sequence.",
+    mcpReady: true,
+    isFeatured: false,
+    alternativeTo: ["Clay", "Clearbit", "Apollo.io"],
+    addedAt: "2026-07-05",
+    integrations: [
+      {
+        platform: "MCP",
+        url: "https://stackswap.ai/apis-and-mcps",
+        label: "Free MCP Server (32 tools, no API key needed)",
+        mcpConfig: `{
+  "mcpServers": {
+    "stackswap": {
+      "url": "https://stackswap.ai/api/mcp",
+      "transport": "http"
+    }
+  }
+}`,
+      },
+    ],
+  },
+  {
+    slug: "clodo",
+    name: "Clodo",
+    oneLiner: "Agentic People Search API with natural language queries, deep signal capture, and MCP server.",
+    description: "Clodo is an agentic People Search API that supports natural-language people discovery, deep signal and intent capture (funding moves, hiring momentum, tool evaluation across 50+ data points), and contact enrichment (email and phone with sub-one month freshness). Ships with an MCP server, skills for Claude and Cursor, and an OpenAPI spec for any agent to consume. Designed for apps, AI agents, and enterprises needing planet-scale people discovery.",
+    category: "Sales Intelligence",
+    websiteUrl: "https://clodo.ai",
+    docsUrl: "https://clodo.ai/api",
+    pricingUrl: "https://clodo.ai",
+    apiType: ["REST"],
+    authMethod: ["API Key"],
+    hasFreeTier: false,
+    hasPublicApi: true,
+    sdkLanguages: [],
+    hasWebhooks: false,
+    aiCapabilities: ["Natural Language People Search", "Contact Enrichment", "Intent Signal Capture", "Profile Enrichment", "Deep People Discovery", "Decision Maker Identification"],
+    starterPrompt: "Claude, use Clodo to find senior product managers at fintech companies in London who have recently changed jobs.",
+    mcpReady: true,
+    isFeatured: false,
+    alternativeTo: ["People Data Labs", "Cognism", "Apollo.io"],
+    addedAt: "2026-07-05",
+    integrations: [
+      {
+        platform: "MCP",
+        url: "https://clodo.ai/api",
+        label: "Official MCP Server",
+        mcpConfig: `{
+  "mcpServers": {
+    "clodo": {
+      "url": "https://mcp.clodo.ai/mcp",
+      "headers": {
+        "X-API-Key": "your_key_here"
+      }
+    }
+  }
+}`,
+      },
+    ],
+  },
+  {
+    slug: "coresignal",
+    name: "Coresignal",
+    oneLiner: "B2B data API with Agentic Search — natural language queries for companies, employees, and jobs.",
+    description: "Coresignal provides structured B2B data on companies, employees, and job postings. Its new Agentic Search API (launched April 2026) lets you describe data needs in plain language and get structured results back. Features a /fast endpoint optimized for speed and cost that accepts natural-language prompts and returns results in seconds. Traditional REST endpoints also available for company, employee, and job data with advanced filtering. Used for sales prospecting, recruitment, and HR tech platforms.",
+    category: "Sales Intelligence",
+    websiteUrl: "https://coresignal.com",
+    docsUrl: "https://coresignal.com/docs",
+    pricingUrl: "https://coresignal.com/pricing",
+    apiType: ["REST"],
+    authMethod: ["API Key"],
+    hasFreeTier: false,
+    hasPublicApi: true,
+    sdkLanguages: [],
+    hasWebhooks: false,
+    aiCapabilities: ["Agentic B2B Search", "Company Data", "Employee Data", "Job Data", "Natural Language Querying", "Company Enrichment"],
+    starterPrompt: "Claude, use Coresignal Agentic Search API to find founders or co-founders who previously held engineering roles at Google, Meta, Apple, or Amazon.",
+    mcpReady: false,
+    isFeatured: false,
+    alternativeTo: ["People Data Labs", "Clearbit", "Cognism"],
+    addedAt: "2026-07-05",
+    integrations: [],
+  },
+  {
+    slug: "data-reaktor",
+    name: "Data Reaktor",
+    oneLiner: "Agentic B2B intelligence factory with REST API and MCP for lead scoring, research, and outreach.",
+    description: "Data Reaktor is an agentic B2B intelligence factory consumable by both humans (web UI) and AI agents (REST API, MCP server, A2A discovery). Provides native skills including lead scoring, prospect research, personalized email generation, LinkedIn message writing, cold call script creation, outreach sequence building, ABM content briefs, and contact lookup. Credit-based pricing with 60 req/min rate limit. Ships with self-describing OpenAPI 3.1 spec, capabilities catalog, and MCP endpoint for Claude Desktop and Cursor.",
+    category: "Sales Intelligence",
+    websiteUrl: "https://www.datareaktor.ai",
+    docsUrl: "https://www.datareaktor.ai/agents",
+    pricingUrl: "https://www.datareaktor.ai",
+    apiType: ["REST"],
+    authMethod: ["API Key"],
+    hasFreeTier: false,
+    hasPublicApi: true,
+    sdkLanguages: [],
+    hasWebhooks: true,
+    aiCapabilities: ["Lead Scoring", "Prospect Research", "Personalized Email Generation", "LinkedIn Message Writing", "Cold Call Script Creation", "Outreach Sequence Building", "ABM Content Briefs", "Contact Lookup"],
+    starterPrompt: "Claude, use Data Reaktor to score this list of prospects, research the top accounts, and generate personalized cold email outreach for each one.",
+    mcpReady: true,
+    isFeatured: false,
+    alternativeTo: ["Clay", "Apollo.io", "ZoomInfo"],
+    addedAt: "2026-07-05",
+    integrations: [
+      {
+        platform: "MCP",
+        url: "https://www.datareaktor.ai/agents",
+        label: "Official MCP Server (Streamable HTTP)",
+        mcpConfig: `{
+  "mcpServers": {
+    "datareaktor": {
+      "url": "https://mcp.datareaktor.ai/mcp",
+      "headers": {
+        "X-API-Key": "your_key_here"
+      }
+    }
+  }
+}`,
+      },
+    ],
+  },
+  {
+    slug: "grinfi",
+    name: "Grinfi",
+    oneLiner: "All-in-one LinkedIn and email outreach platform with REST API for automations and messaging.",
+    description: "Grinfi is an all-in-one LinkedIn and email outreach platform with a public REST API. It provides CRM features (contacts, companies, lists, tags, pipeline stages), outreach automations (multi-step flows), messaging (LinkedIn messages, emails), and webhooks. The API supports contact search and upsert, LinkedIn messaging via sender profiles, email sending, automation flow management, and custom fields. JWT token authentication with 3-hour token expiry.",
+    category: "Sales Engagement",
+    websiteUrl: "https://grinfi.io",
+    docsUrl: "https://api.grinfi.io",
+    pricingUrl: "https://grinfi.io",
+    apiType: ["REST"],
+    authMethod: ["Bearer Token"],
+    hasFreeTier: false,
+    hasPublicApi: true,
+    sdkLanguages: [],
+    hasWebhooks: true,
+    aiCapabilities: ["Contact Management", "LinkedIn Outreach", "Email Outreach", "Multi-Channel Automation", "Pipeline Management", "Custom Fields", "Sender Profile Management"],
+    starterPrompt: "Claude, use Grinfi to create a LinkedIn outreach automation targeting my prospect list and send personalized connection requests with follow-ups.",
+    mcpReady: false,
+    isFeatured: false,
+    alternativeTo: ["Instantly", "Lemlist", "Outplay", "Reply.io"],
+    addedAt: "2026-07-05",
+    integrations: [],
+  },
+  {
+    slug: "clarky",
+    name: "Clarky",
+    oneLiner: "AI voice sales sequences API — trigger multilingual phone outreach from your backend in seconds.",
+    description: "Clarky provides an API for triggering AI-powered voice sales sequences. The /api/v1/sequences/start endpoint lets you kick off a multi-step outreach sequence from your backend with one call — including AI-generated personalized scripts in the recipient's language. Features include auto-approve for fast-path calls (35-100 seconds wall-clock to phone ringing), multilingual personalization, smart contact upsert, idempotent retries, channel choice driven by templates, and status polling. Built for inbound lead automation and form-submitted callbacks.",
+    category: "Sales Engagement",
+    websiteUrl: "https://clarky.ai",
+    docsUrl: "https://clarky.ai",
+    pricingUrl: "https://clarky.ai",
+    apiType: ["REST"],
+    authMethod: ["API Key"],
+    hasFreeTier: false,
+    hasPublicApi: true,
+    sdkLanguages: [],
+    hasWebhooks: true,
+    aiCapabilities: ["AI Voice Sequences", "Multilingual Outreach", "Call Automation", "Sequence Management", "Contact Upsert", "Inbound Lead Automation", "Personalized Script Generation"],
+    starterPrompt: "Claude, use Clarky to trigger a voice sequence for a new inbound lead. Generate a personalized call script in Spanish and auto-approve for immediate dialing.",
+    mcpReady: false,
+    isFeatured: false,
+    alternativeTo: ["Outreach", "Salesloft", "Aircall", "Kixie"],
+    addedAt: "2026-07-05",
+    integrations: [],
+  },
+  {
+    slug: "outboundy",
+    name: "Outboundy",
+    oneLiner: "Cold email outreach platform with REST API for agencies — unlimited accounts, flat pricing.",
+    description: "Outboundy is a cold email outreach platform designed for agencies with a flat-rate pricing model and unlimited client accounts. The REST API provides endpoints for leads, contacts, companies, campaigns, deals, and deal stages. Features include AI-powered email personalization (writes based on the client's product and prospect's company), batch operations (up to 500 records per request), product knowledge per workspace, and campaign performance reporting. OpenAPI 3.0 spec, 100 req/min rate limit.",
+    category: "Sales Engagement",
+    websiteUrl: "https://outboundy.io",
+    docsUrl: "https://outboundy.io/outboundy-api/",
+    pricingUrl: "https://outboundy.io",
+    apiType: ["REST"],
+    authMethod: ["API Key"],
+    hasFreeTier: false,
+    hasPublicApi: true,
+    sdkLanguages: [],
+    hasWebhooks: false,
+    aiCapabilities: ["Lead Management", "Campaign Management", "Contact Management", "Deal Management", "AI Email Personalization", "Bulk Operations", "Campaign Reporting"],
+    starterPrompt: "Claude, use Outboundy to create a cold email campaign for a new client, upload their prospect list, and launch with AI-personalized emails.",
+    mcpReady: false,
+    isFeatured: false,
+    alternativeTo: ["Instantly", "Lemlist", "Smartlead", "Reply.io"],
+    addedAt: "2026-07-05",
+    integrations: [],
+  },
+  {
+    slug: "spider-api",
+    name: "Spider API",
+    oneLiner: "AI web crawling and scraping API with 22 MCP tools — extract live web data for sales intelligence.",
+    description: "Spider API is a high-performance web crawling and scraping API designed for AI agents, with a hosted MCP server (22 tools). It provides endpoints for scraping, crawling, web search, links extraction, screenshots, and cloud browser automation. Features include automatic anti-bot bypass, rotating residential proxies across 199+ countries, markdown output (60-80% fewer tokens than HTML), sub-second response times, and AI-powered extraction. Open-source Rust engine (2.5k GitHub stars). Pay-as-you-go pricing ($0.03/1K pages). Use cases include detecting buying signals from web data, enriching CRM records, building prospect lists, and automating competitive battlecards.",
+    category: "Sales Intelligence",
+    websiteUrl: "https://spider.cloud",
+    docsUrl: "https://spider.cloud/docs/api",
+    pricingUrl: "https://spider.cloud/pricing",
+    apiType: ["REST"],
+    authMethod: ["Bearer Token"],
+    hasFreeTier: true,
+    hasPublicApi: true,
+    sdkLanguages: ["Python", "JavaScript", "Rust"],
+    hasWebhooks: true,
+    aiCapabilities: ["Web Scraping", "Web Crawling", "Web Search", "Browser Automation", "AI-Powered Extraction", "Screenshot Capture", "Anti-Bot Bypass", "Proxy Rotation", "Structured Data Extraction", "Competitive Intelligence"],
+    starterPrompt: "Claude, use Spider API to scrape competitor websites and extract pricing, tech stack, and buying signals for my prospect list.",
+    mcpReady: true,
+    isFeatured: false,
+    alternativeTo: ["Firecrawl", "ScrapingBee", "ScraperAPI", "Bright Data"],
+    addedAt: "2026-07-05",
+    integrations: [
+      {
+        platform: "MCP",
+        url: "https://spider.cloud/mcp/",
+        label: "Official MCP Server (22 tools, hosted at mcp.spider.cloud/mcp)",
+        mcpConfig: `{
+  "mcpServers": {
+    "spider": {
+      "url": "https://mcp.spider.cloud/mcp",
+      "headers": {
+        "Authorization": "Bearer your_api_key"
+      }
+    }
+  }
+}`,
+      },
+    ],
+  },
 ]
 
 export const categories: CategoryMeta[] = [
@@ -13519,14 +14026,14 @@ export const categories: CategoryMeta[] = [
     name: "Sales Intelligence",
     description: "Find prospects and enrich lead lists with real-time B2B contact data and technographic signals.",
     icon: "Search",
-    toolCount: 100,
+    toolCount: 110,
   },
   {
     slug: "sales-engagement",
     name: "Sales Engagement",
     description: "Orchestrate automated multichannel outreach across email, LinkedIn, and social media platforms.",
     icon: "Zap",
-    toolCount: 77,
+    toolCount: 81,
   },
   {
     slug: "phone-and-dialers",
@@ -13540,7 +14047,7 @@ export const categories: CategoryMeta[] = [
     name: "CRM & RevOps",
     description: "Manage customer relationships and automate the revenue operations lifecycle with modern sales infrastructure and CRM automation.",
     icon: "Users",
-    toolCount: 50,
+    toolCount: 51,
   },
   {
     slug: "revenue-intelligence",
