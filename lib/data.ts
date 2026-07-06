@@ -14018,6 +14018,136 @@ export const tools: (SalesTool | MinimalTool)[] = [
       },
     ],
   },
+  {
+    slug: "crustdata",
+    name: "Crustdata",
+    oneLiner: "Real-time B2B data API for people and company enrichment with native MCP.",
+    description: "Crustdata is a B2B data provider offering real-time company and people datasets via REST API. It provides company enrichment, person enrichment, job listings, social post monitoring, web content retrieval, and real-time signals. With a first-party MCP server, AI agents can search companies, enrich people profiles, discover jobs, and monitor live signals. Covers 12M+ companies and 250M+ people profiles. YC-backed.",
+    category: "Sales Intelligence",
+    websiteUrl: "https://crustdata.com",
+    docsUrl: "https://docs.crustdata.com",
+    pricingUrl: "https://crustdata.com/pricing",
+    apiType: ["REST"],
+    authMethod: ["API Key"],
+    hasFreeTier: true,
+    hasPublicApi: true,
+    sdkLanguages: [],
+    hasWebhooks: true,
+    aiCapabilities: ["Company Enrichment", "Person Enrichment", "Company Search", "Person Search", "Job Discovery", "Social Post Monitoring", "Web Content Retrieval", "Real-time Signals"],
+    starterPrompt: "Claude, use Crustdata to find 20 Series A SaaS companies in Austin with headcount growth over 20% and enrich their CEO's contact info.",
+    mcpReady: true,
+    isFeatured: false,
+    alternativeTo: ["Clearbit", "People Data Labs", "Bright Data", "Coresignal"],
+    addedAt: "2026-07-06",
+    integrations: [
+      {
+        platform: "MCP",
+        url: "https://docs.crustdata.com",
+        label: "Official MCP Server",
+      },
+    ],
+  },
+  {
+    slug: "harmonic",
+    name: "Harmonic",
+    oneLiner: "Startup discovery API and MCP for company intelligence, founder research, and deal sourcing.",
+    description: "Harmonic provides the complete startup database with REST and GraphQL API access to millions of companies and the people behind them. Search for companies using natural language, enrich profiles with funding, team, and traction data, and access your team's network mapping. Purpose-built for venture capital, GTM teams, and anyone who needs to discover and research startups at scale. Features a purpose-built MCP server for AI agent integration.",
+    category: "Sales Intelligence",
+    websiteUrl: "https://harmonic.ai",
+    docsUrl: "https://console.harmonic.ai/docs/api-reference/introduction",
+    pricingUrl: "https://harmonic.ai/pricing",
+    apiType: ["REST", "GraphQL"],
+    authMethod: ["API Key"],
+    hasFreeTier: false,
+    hasPublicApi: true,
+    sdkLanguages: [],
+    hasWebhooks: false,
+    aiCapabilities: ["Company Discovery", "Company Enrichment", "Person Enrichment", "Investor Intelligence", "Network Mapping", "Market Analysis", "Natural Language Search"],
+    starterPrompt: "Claude, use Harmonic to find startups in the AI infrastructure space founded by engineers from Google and Meta with less than $100M in total funding.",
+    mcpReady: true,
+    isFeatured: false,
+    alternativeTo: ["Crunchbase", "PitchBook"],
+    addedAt: "2026-07-06",
+    integrations: [
+      {
+        platform: "MCP",
+        url: "https://mcp.api.harmonic.ai",
+        label: "Official MCP Server (23 tools)",
+        mcpConfig: `{
+  "mcpServers": {
+    "harmonic": {
+      "url": "https://mcp.api.harmonic.ai"
+    }
+  }
+}`,
+      },
+    ],
+  },
+  {
+    slug: "oxygen",
+    name: "OXYGEN",
+    oneLiner: "GTM CLI for Claude Code, Codex & MCP agents — run outbound orchestration from your terminal.",
+    description: "Oxygen is an AI-native GTM workspace purpose-built for GTM engineers who orchestrate outbound from the terminal. It provides a live database of your market, waterfall enrichment across multiple providers, multichannel sequences, and a CRM that keeps itself clean. Run your entire outbound from Claude Code, Codex, or any MCP client. Integrates with BlitzAPI, Crustdata, Hunter, Prospeo, BetterContact, Instantly, Smartlead, HeyReach, Lemlist, Attio, HubSpot, and more.",
+    category: "Sales Engagement",
+    websiteUrl: "https://oxygen-agent.com",
+    docsUrl: "https://oxygen-agent.com/docs",
+    pricingUrl: "https://oxygen-agent.com",
+    apiType: ["REST"],
+    authMethod: ["OAuth2"],
+    hasFreeTier: true,
+    hasPublicApi: true,
+    sdkLanguages: ["TypeScript"],
+    hasWebhooks: true,
+    aiCapabilities: ["Waterfall Enrichment", "Multichannel Sequences", "CRM Sync", "TAM Building", "Signal Monitoring", "Outbound Orchestration", "Workflow Automation"],
+    starterPrompt: "Claude, use Oxygen to build a TAM of 500 enterprise SaaS companies in the US, waterfall enrich their email contacts, and enroll them in a 6-step cold email sequence.",
+    mcpReady: true,
+    isFeatured: false,
+    alternativeTo: ["Clay", "n8n", "Instantly"],
+    addedAt: "2026-07-06",
+    integrations: [
+      {
+        platform: "MCP",
+        url: "https://oxygen-agent.com/docs",
+        label: "Oxygen MCP Server",
+      },
+    ],
+  },
+  {
+    slug: "monaco",
+    name: "Monaco",
+    oneLiner: "AI-native revenue platform combining CRM, outbound, and pipeline management with MCP.",
+    description: "Monaco is an AI-native sales platform that replaces legacy CRM and disparate sales point solutions. It builds your TAM, runs outbound, captures every interaction, and manages pipeline in one place. With its official MCP server and REST API, AI agents can search contacts, manage opportunities, run pipeline hygiene, and execute sales workflows from Claude, ChatGPT, or any MCP client. Founded by Sam Blond (former Brex CRO) and backed by Founders Fund.",
+    category: "CRM & RevOps",
+    websiteUrl: "https://monaco.com",
+    docsUrl: "https://docs.monaco.com/mcp/overview",
+    pricingUrl: "https://monaco.com",
+    apiType: ["REST"],
+    authMethod: ["OAuth2"],
+    hasFreeTier: true,
+    hasPublicApi: true,
+    sdkLanguages: [],
+    hasWebhooks: false,
+    aiCapabilities: ["CRM Management", "Pipeline Tracking", "TAM Building", "Outbound Sequences", "Account Scoring", "Revenue Analytics", "Pipeline Hygiene", "Meeting Capture"],
+    starterPrompt: "Claude, use Monaco to find all deals with slipped close dates in Q3, update their stage, and draft a follow-up sequence for each account.",
+    mcpReady: true,
+    isFeatured: false,
+    alternativeTo: ["Salesforce", "HubSpot", "Apollo.io"],
+    addedAt: "2026-07-06",
+    integrations: [
+      {
+        platform: "MCP",
+        url: "https://docs.monaco.com/mcp/overview",
+        label: "Official MCP Server (hosted at mcp.monaco.com/mcp)",
+        mcpConfig: `{
+  "mcpServers": {
+    "monaco": {
+      "url": "https://mcp.monaco.com/mcp"
+    }
+  }
+}`,
+      },
+    ],
+  },
 ]
 
 export const categories: CategoryMeta[] = [
