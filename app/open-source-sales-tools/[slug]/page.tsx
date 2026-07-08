@@ -172,7 +172,7 @@ export default async function OpenSourceDetailPage({
                   key={link.label}
                   href={link.href}
                   target="_blank"
-                  rel="noopener noreferrer"
+                    rel="nofollow noopener noreferrer"
                   className="font-serif italic text-lg md:text-xl border-b border-ink hover:opacity-60 transition-opacity py-2 flex justify-between items-center group min-w-full md:min-w-[240px]"
                 >
                   {link.label} <span className="opacity-40 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">↗</span>

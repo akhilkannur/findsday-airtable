@@ -309,7 +309,7 @@ export default async function ToolDetailPage({
                     key={link.label}
                     href={link.href}
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="nofollow noopener noreferrer"
                     className="font-serif italic text-lg md:text-xl border-b border-ink hover:opacity-60 transition-opacity py-2 flex justify-between items-center group min-w-full md:min-w-[240px]"
                   >
                     {link.label} <span className="opacity-40 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">↗</span>
@@ -470,14 +470,42 @@ export default async function ToolDetailPage({
                   {typedTool.integrations.find(i => i.platform === "MCP")?.mcpConfig}
                 </pre>
                 <div className="flex justify-center">
-                  <CopyButton 
-                    text={typedTool.integrations.find(i => i.platform === "MCP")?.mcpConfig || ""} 
+                  <CopyButton
+                    text={typedTool.integrations.find(i => i.platform === "MCP")?.mcpConfig || ""}
                     label="Copy Config"
+                    eventName="mcp_config_copied"
+                    eventParams={{ tool_slug: typedTool.slug, tool_name: typedTool.name }}
                     className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase border border-white/20 px-3 py-1.5 md:px-4 md:py-2 hover:bg-white hover:text-black transition-all"
                   />
                 </div>
               </div>
             )}
+
+            <div className="border-t border-ink/10 pt-8 md:pt-12">
+              <div className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-widest text-ink-fade mb-4 md:mb-6">
+                Badge
+              </div>
+              <div className="flex items-center justify-center py-4 bg-white border border-ink/20 rounded-sm mb-4">
+                <img src="/images/badge-light.svg" alt="Listed on Salestools Club" width="180" height="41" />
+              </div>
+              <p className="font-serif italic text-xs text-ink-fade mb-4">
+                Add this badge to your site for a do-follow backlink.
+              </p>
+              <div className="relative">
+                <pre className="font-mono text-[10px] whitespace-pre-wrap overflow-x-auto p-4 border border-ink/20 bg-white/5 text-ink/80 leading-relaxed mb-3">
+{`<a href="https://salestools.club/apis/${typedTool.slug}?utm_source=badge&utm_medium=embed" target="_blank" rel="noopener noreferrer"><img src="https://salestools.club/images/badge-light.svg" alt="Listed on Salestools Club" width="220" height="50" /></a>`}
+                </pre>
+                <div className="flex justify-center">
+                  <CopyButton
+                    text={`<a href="https://salestools.club/apis/${typedTool.slug}?utm_source=badge&utm_medium=embed" target="_blank" rel="noopener noreferrer"><img src="https://salestools.club/images/badge-light.svg" alt="Listed on Salestools Club" width="220" height="50" /></a>`}
+                    label="Copy Badge"
+                    eventName="badge_copied"
+                    eventParams={{ tool_slug: typedTool.slug }}
+                    className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase border border-ink/30 px-3 py-1.5 md:px-4 md:py-2 hover:bg-ink hover:text-paper transition-all"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
