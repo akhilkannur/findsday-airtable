@@ -4,51 +4,50 @@ Track all SEO changes here. Check back after 2-4 weeks to measure impact via GSC
 
 ---
 
-## 2026-04-29 — VS, Guides & Meta Description Overhaul
+## 2026-07-09 — Comprehensive On-Page SEO Overhaul
 
-**Data source:** GSC (28-day) + DataForSEO ranked_keywords (111 keywords tracked)
-
-### Baseline Metrics (April 2026)
-- Total ranked keywords: 111
-- Homepage: 370 impressions, 2 clicks, avg pos 14.4
-- Brand query "salestools": 187 imp, 1 click, pos 9.9
-- Top clicking queries: nooks mcp (#3), hockeystack mcp (#3.2), attentive mcp (#5.7), captivateiq (#5)
+**Data source:** None yet — baseline to be measured against prior state
 
 ### Changes Made
 
-**1. VS comparison pages — added rich content (`app/vs/[slugs]/page.tsx`)**
-- Added "API & MCP Analysis" prose section (dynamic based on tool data)
-- Added FAQ section with FaqSchema (3 questions per page)
-- Added starter prompt display when available
-- Target queries:
-  - `crawl4ai vs firecrawl` — vol:880, rank #57
-  - `instantly vs smartlead` — vol:170, rank #50
-  - `people-data-labs vs zoominfo` — vol:720, rank #82
-  - `firecrawl vs jina-reader` — vol:110, rank #70
-  - `apify vs outscraper` — 33 imp, rank 31.1
-  - `gong vs modjo` — 7 imp, rank 4.1
+**1. Fixed H1-H2 heading hierarchy across all page types**
+- VS pages (`app/vs/[slugs]/page.tsx`): Fixed critical bug — had **two H1s** (tool1.name + tool2.name). Changed both to H2, added a proper H1 for "Compare" label. Previously violated Google's "one H1 per page" requirement.
+- Tool detail pages (`app/apis/[slug]/page.tsx`): Converted section labels ("Key Features", "Technical Feature Analysis", "AI Agent Skills", "Use {tool} for", "Compare {tool}") from decorated divs to proper H2 elements for correct heading hierarchy. Also fixed sub-card headings H4→H3.
+- Capability pages (`app/capability/[action]/page.tsx`): "Feature Comparison Matrix" div → H2, "Technical Status" H3 → H2 for proper H1→H2→H3 flow.
 
-**2. Filled 5 empty guide pages (`lib/guides.ts`)**
-- `enrichment-apis` — Apollo, Proxycurl, PDL, UpLead, FullEnrich, ZoomInfo
-- `phone-apis` — Retell AI, Bland AI, Orum, Nooks, PhoneBurner, Five9
-- `revenue-intelligence-apis` — Gong, Fireflies, Attention, Modjo, Jiminny
-- `scheduling-apis` — Cal.com, Calendly, Chili Piper
-- `sales-enablement-apis` — PandaDoc, DocuSign, Highspot, Guru, SharpSell, Spekit
-- Each has: comparison table, Claude Code workflow, FAQ, category link
-- Target queries:
-  - `best lead enrichment apis` — vol:70, rank #98
-  - `phone apis` — vol:50, rank #93
-  - `crm-apis` guide already ranking (136 imp, rank 26.7)
+**2. Added meta keywords to all dynamic page types**
+- New `generateSeoKeywords()` function in `lib/seo.ts` generates keyword arrays per page type (tool, category, guide, vs, capability, auth, sdk, alternative)
+- Added `keywords` metadata to: `apis/[slug]`, `categories/[slug]`, `guides/[slug]`, `vs/[slugs]`, `capability/[action]`, `auth/[type]`, `sdk/[language]`, `alternative-to/[tool]`
+- Previously only the homepage had keywords defined
 
-**3. Updated VS meta descriptions (`lib/seo.ts`)**
-- Old: "Compare X APIs and features. A technical breakdown for AI operators..."
-- New: "Compare X APIs, MCP servers, and AI agent compatibility. Side-by-side breakdown of SDKs, webhooks, and starter prompts..."
+**3. Improved SEO title patterns (`lib/seo.ts`)**
+- Capability: `"Top {name} AI Features & APIs | Salestools Club"` → `"{name} APIs & AI Features for Sales Agents | Salestools Club"`
+- Category: `"Top {name} APIs & AI Tools | Salestools Club"` → `"{name} APIs & MCP Servers for AI Sales Agents | Salestools Club"`
+- Guide: `"Best {name} Compared | Salestools Club"` → `"Best {name} APIs Compared (2026) | Salestools Club"`
+- VS: `"{name} Comparison (2026) | Salestools Club"` → `"{name}: Compare APIs & MCP Support (2026) | Salestools Club"`
+- Tool (no-api): `"{name} Technical Details & Status | Salestools Club"` → `"{name} Technical Details & API Status | Salestools Club"`
+- All patterns now front-load the primary keyword and add "for AI Sales Agents" / "for Sales Agents" context
 
-### What to Check (late May 2026)
-- [ ] VS pages: did rank improve for crawl4ai-vs-firecrawl, instantly-vs-smartlead, pdl-vs-zoominfo?
-- [ ] Guide pages: are enrichment-apis, phone-apis, revenue-intelligence-apis getting impressions?
-- [ ] VS CTR: did the new meta descriptions improve click-through rates?
-- [ ] FAQ rich results: are FAQ snippets showing in SERPs for VS pages?
+**4. Improved meta descriptions (`lib/seo.ts`)**
+- Rewrote all description templates to be more compelling and action-oriented
+- Tool: Now includes "Learn how to connect {tool} to Claude Code, Gemini, and other AI agents for automated sales workflows"
+- Category: Now says "Browse the best {name} APIs for AI-native sales stacks. Compare features, MCP support, pricing, and SDKs..."
+- Guide: Now ends with "to build your AI-native {name} stack"
+- VS: Now focuses on "MCP support, SDKs, webhooks, authentication" as decision factors
+
+**5. Added Open Graph + Twitter Card metadata to all page types**
+- Added OG images + twitter cards to: `guides/[slug]`, `for/[usecase]`, `capability/[action]`, `auth/[type]`, `sdk/[language]`, `alternative-to/[tool]`
+- Previously these pages had no or partial OG tags, meaning social previews were blank
+
+**6. Added canonical URLs to alternative-to pages**
+- `app/alternative-to/[tool]/page.tsx` was missing canonical URL in generateMetadata
+
+### What to Check (late July 2026)
+- [ ] Did position changes occur on VS pages (especially crawl4ai-vs-firecrawl, instantly-vs-smartlead, pdl-vs-zoominfo)?
+- [ ] Did title tag updates improve CTR in GSC?
+- [ ] Are social previews rendering correctly on Twitter/LinkedIn for guides, capabilities, auth pages?
+- [ ] Did FAQ rich results show in SERPs for tool detail pages?
+- [ ] Are guide pages now ranking for "best {keyword} apis compared 2026" queries?
 
 ### How to Re-check
 ```bash

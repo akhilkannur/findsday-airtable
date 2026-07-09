@@ -44,11 +44,14 @@ export async function generateMetadata({
       description: pageDescription,
       type: "website",
       url: pageUrl,
+      images: [{ url: "https://salestools.club/opengraph-image", width: 1200, height: 630, alt: pageTitle }],
     },
     twitter: {
-      card: "summary_large_image" as const,
+      card: "summary_large_image",
+      site: "@salestoolsclub",
       title: pageTitle,
       description: pageDescription,
+      images: ["https://salestools.club/opengraph-image"],
     },
   }
 }

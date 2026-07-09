@@ -14,7 +14,7 @@ import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
 import { getUseCasesForTool } from "@/lib/usecases"
 import { ToolLogo } from "@/components/ToolLogo"
 import { GitHubStars } from "@/components/GitHubStars"
-import { generateSeoTitle, generateSeoDescription } from "@/lib/seo"
+import { generateSeoTitle, generateSeoDescription, generateSeoKeywords } from "@/lib/seo"
 
 export async function generateStaticParams() {
   const slugs = await getAllSlugs()
@@ -49,9 +49,12 @@ export async function generateMetadata({
   const pageUrl = `https://salestools.club/apis/${typedTool.slug}`
   const pageDescription = generateSeoDescription(typedTool.name, "tool", undefined, apiStatus)
 
+  const pageKeywords = generateSeoKeywords(typedTool.name, "tool", [typedTool.category, typedTool.apiType?.join(", ") || ""].filter(Boolean))
+
   return {
     title: pageTitle,
     description: pageDescription,
+    keywords: pageKeywords,
     alternates: {
       canonical: pageUrl,
     },
@@ -325,10 +328,10 @@ export default async function ToolDetailPage({
         <div className="p-6 md:p-10 lg:p-20 space-y-16 md:space-y-32 lg:border-r border-ink">
           {typedTool.aiCapabilities && typedTool.aiCapabilities.length > 0 && (
             <div>
-              <div className="flex items-center gap-4 md:gap-6 mb-8 md:mb-12">
-                <div className="font-mono text-[0.75rem] md:text-[0.8rem] uppercase tracking-wider text-ink">Key Features</div>
+              <h2 className="flex items-center gap-4 md:gap-6 mb-8 md:mb-12 font-mono text-[0.75rem] md:text-[0.8rem] uppercase tracking-wider text-ink">
+                Key Features
                 <div className="h-px flex-grow bg-ink opacity-10"></div>
-              </div>
+              </h2>
               <div className="grid grid-cols-1 gap-4 md:gap-8 sm:grid-cols-2">
                 {typedTool.aiCapabilities.map((cap) => (
                   <div key={cap} className="tool-card group">
@@ -352,10 +355,10 @@ export default async function ToolDetailPage({
           )}
 
           <div className="max-w-4xl">
-            <div className="flex items-center gap-4 md:gap-6 mb-8 md:mb-12">
-              <div className="font-mono text-[0.75rem] md:text-[0.8rem] uppercase tracking-wider text-ink">Technical Feature Analysis</div>
+            <h2 className="flex items-center gap-4 md:gap-6 mb-8 md:mb-12 font-mono text-[0.75rem] md:text-[0.8rem] uppercase tracking-wider text-ink">
+              Technical Feature Analysis
               <div className="h-px flex-grow bg-ink opacity-10"></div>
-            </div>
+            </h2>
             <div className="prose prose-ink max-w-none font-serif text-lg md:text-xl leading-relaxed text-ink-fade">
               <p>
                 {typedTool.name} provides {typedTool.aiCapabilities?.slice(0, 3).join(', ')} through its {typedTool.apiType?.join(' or ') || 'API'}. 
@@ -366,7 +369,7 @@ export default async function ToolDetailPage({
 
           {typedTool.docsUrl ? (
             <div className="p-6 md:p-10 lg:p-16 bg-paper-dark/20 border-l-4 border-ink space-y-6 md:space-y-8">
-              <h3 className="font-mono text-[0.8rem] md:text-[0.85rem] uppercase font-bold tracking-widest text-ink">Direct Agent Workflow for {typedTool.name}</h3>
+              <h2 className="font-mono text-[0.8rem] md:text-[0.85rem] uppercase font-bold tracking-widest text-ink">Direct Agent Workflow for {typedTool.name}</h2>
               <div className="font-serif text-lg md:text-xl leading-relaxed text-ink-fade max-w-2xl italic space-y-4">
                 <p>• <strong>Connect:</strong> Give your {typedTool.name} {typedTool.authMethod?.join(' or ') || 'API Key'} to <strong>Claude Code, Cowork, or your favorite AI agent.</strong></p>
                 <p>• <strong>Automate:</strong> Your agent handles {typedTool.aiCapabilities?.slice(0, 2).join(' and ') || 'tasks'} directly.</p>
@@ -375,7 +378,7 @@ export default async function ToolDetailPage({
             </div>
           ) : typedTool.hasPublicApi === false ? (
             <div className="p-6 md:p-10 lg:p-16 bg-paper-dark/10 border-l-4 border-red-900/20 space-y-6 md:space-y-8 opacity-80">
-              <h3 className="font-mono text-[0.8rem] md:text-[0.85rem] uppercase font-bold tracking-widest text-ink">Status: No Public API Found</h3>
+              <h2 className="font-mono text-[0.8rem] md:text-[0.85rem] uppercase font-bold tracking-widest text-ink">Status: No Public API Found</h2>
               <div className="font-serif text-lg md:text-xl leading-relaxed text-ink-fade max-w-2xl italic space-y-4">
                 <p>We have manually verified that {typedTool.name} does not currently offer a public REST or GraphQL API for external developers.</p>
                 <p><strong>Note:</strong> While this tool is excellent for human use, it cannot be directly controlled by AI agents like Claude Code or Gemini CLI at this time.</p>
@@ -383,7 +386,7 @@ export default async function ToolDetailPage({
             </div>
           ) : (
             <div className="p-6 md:p-10 lg:p-16 bg-paper-dark/10 border-l-4 border-ink/20 space-y-6 md:space-y-8">
-              <h3 className="font-mono text-[0.8rem] md:text-[0.85rem] uppercase font-bold tracking-widest text-ink">Status: Monitoring for API</h3>
+              <h2 className="font-mono text-[0.8rem] md:text-[0.85rem] uppercase font-bold tracking-widest text-ink">Status: Monitoring for API</h2>
               <div className="font-serif text-lg md:text-xl leading-relaxed text-ink-fade max-w-2xl italic space-y-4">
                 <p>We are currently monitoring {typedTool.name} for the release of public API documentation.</p>
                 <p>Know an API we missed? Email <strong>akhil@salestools.club</strong> to help us keep this directory updated for the AI operator community.</p>
@@ -393,10 +396,10 @@ export default async function ToolDetailPage({
 
           {getSkillsForTool(typedTool.slug).length > 0 && (
             <div>
-              <div className="flex items-center gap-6 mb-12">
-                <div className="font-mono text-[0.8rem] uppercase tracking-wider text-ink">AI Agent Skills</div>
+              <h2 className="flex items-center gap-6 mb-12 font-mono text-[0.8rem] uppercase tracking-wider text-ink">
+                AI Agent Skills
                 <div className="h-px flex-grow bg-ink opacity-10"></div>
-              </div>
+              </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {getSkillsForTool(typedTool.slug).map((skill) => (
                   <Link
@@ -405,7 +408,7 @@ export default async function ToolDetailPage({
                     className="tool-card group flex flex-col h-full bg-paper border border-ink/20 p-8 hover:bg-ink hover:text-paper transition-all"
                   >
                     <div className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade group-hover:text-paper/60 mb-4">{skill.category}</div>
-                    <h4 className="font-serif italic text-xl mb-4">{skill.name}</h4>
+                    <h3 className="font-serif italic text-xl mb-4">{skill.name}</h3>
                     <p className="text-[0.85rem] leading-relaxed opacity-70 group-hover:opacity-90">{skill.description}</p>
                     <div className="mt-8 pt-6 border-t border-ink/10 group-hover:border-paper/20 flex items-center justify-between">
                       <span className="font-mono text-[0.7rem] uppercase">Get Skill</span>
@@ -419,10 +422,10 @@ export default async function ToolDetailPage({
 
           {matchingUseCases.length > 0 && (
             <div>
-              <div className="flex items-center gap-6 mb-12">
-                <div className="font-mono text-[0.8rem] uppercase tracking-wider text-ink">Use {typedTool.name} for</div>
+              <h2 className="flex items-center gap-6 mb-12 font-mono text-[0.8rem] uppercase tracking-wider text-ink">
+                Use {typedTool.name} for
                 <div className="h-px flex-grow bg-ink opacity-10"></div>
-              </div>
+              </h2>
               <div className="flex flex-wrap gap-4">
                 {matchingUseCases.map((uc) => (
                   <Link
@@ -513,7 +516,7 @@ export default async function ToolDetailPage({
       <section className="py-16 md:py-24 bg-paper border-t border-ink">
         <div className="layout-container">
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-serif italic text-2xl md:text-3xl mb-8 md:mb-12 text-center">Frequently Asked Questions</h2>
+            <h2 className="font-serif italic text-2xl md:text-3xl mb-8 md:mb-12 text-center">Frequently Asked Questions about {typedTool.name}</h2>
             <div className="space-y-8 md:space-y-12">
               <div className="group border-b border-ink/10 pb-6 md:pb-8">
                 <h3 className="font-serif text-lg md:text-xl font-bold mb-3 md:mb-4 group-hover:text-ink transition-colors">What does {typedTool.name} do?</h3>
@@ -556,10 +559,10 @@ export default async function ToolDetailPage({
         <div className="layout-container">
           {alternatives.length > 0 && (
             <div className="mb-12 md:mb-20">
-              <div className="flex items-center gap-4 md:gap-6 mb-8 md:mb-12">
-                <h2 className="font-mono text-[0.75rem] md:text-[0.8rem] uppercase tracking-wider text-ink">Compare {typedTool.name}</h2>
-                <div className="h-px flex-grow bg-ink opacity-10"></div>
-              </div>
+              <h2 className="flex items-center gap-4 md:gap-6 mb-8 md:mb-12">
+                <span className="font-mono text-[0.75rem] md:text-[0.8rem] uppercase tracking-wider text-ink">Compare {typedTool.name}</span>
+                <span className="h-px flex-grow bg-ink opacity-10"></span>
+              </h2>
               <div className="flex flex-wrap gap-3 md:gap-4">
                 {alternatives.map((alt) => (
                   <Link

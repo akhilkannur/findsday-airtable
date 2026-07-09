@@ -4,6 +4,7 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { FaqSection } from "@/components/FaqSection"
 import { ToolLogo } from "@/components/ToolLogo"
+import { generateSeoKeywords } from "@/lib/seo"
 
 export const dynamic = "force-static"
 
@@ -20,11 +21,28 @@ export async function generateMetadata({ params }: { params: Promise<{ tool: str
   const { tool } = await params
   const toolDisplay = tool.charAt(0).toUpperCase() + tool.slice(1)
   
+  const pageKeywords = generateSeoKeywords(toolDisplay, "alternative")
+
   return {
     title: `Best ${toolDisplay} Alternatives for AI Agents | Salestools Club`,
     description: `Compare the top alternatives to ${toolDisplay} for autonomous sales workflows. Find AI-native tools with better APIs and MCP support.`,
+    keywords: pageKeywords,
     alternates: {
       canonical: `https://salestools.club/alternative-to/${tool}`,
+    },
+    openGraph: {
+      title: `Best ${toolDisplay} Alternatives for AI Agents | Salestools Club`,
+      description: `Compare the top alternatives to ${toolDisplay} for autonomous sales workflows.`,
+      type: "website",
+      url: `https://salestools.club/alternative-to/${tool}`,
+      images: [{ url: "https://salestools.club/opengraph-image", width: 1200, height: 630, alt: `Best ${toolDisplay} Alternatives` }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      site: "@salestoolsclub",
+      title: `Best ${toolDisplay} Alternatives for AI Agents | Salestools Club`,
+      description: `Compare the top alternatives to ${toolDisplay} for autonomous sales workflows.`,
+      images: ["https://salestools.club/opengraph-image"],
     },
   }
 }

@@ -6,7 +6,7 @@ import { Check, X } from "lucide-react"
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
 import { GuideToolTable } from "@/components/GuideToolTable"
 import { FaqSection } from "@/components/FaqSection"
-import { generateSeoTitle, generateSeoDescription } from "@/lib/seo"
+import { generateSeoTitle, generateSeoDescription, generateSeoKeywords } from "@/lib/seo"
 
 export async function generateStaticParams() {
   return getGuideSlugs().map((slug) => ({ slug }))
@@ -28,15 +28,26 @@ export async function generateMetadata({
   const pageTitle = generateSeoTitle(guide.title, "guide")
   const pageDescription = guide.metaDescription || generateSeoDescription(guide.title, "guide")
 
+  const pageKeywords = generateSeoKeywords(guide.title, "guide")
+
   return {
     title: pageTitle,
     description: pageDescription,
+    keywords: pageKeywords,
     alternates: { canonical: pageUrl },
     openGraph: {
       title: pageTitle,
       description: pageDescription,
       type: "website",
       url: pageUrl,
+      images: [{ url: "https://salestools.club/opengraph-image", width: 1200, height: 630, alt: pageTitle }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      site: "@salestoolsclub",
+      title: pageTitle,
+      description: pageDescription,
+      images: ["https://salestools.club/opengraph-image"],
     },
   }
 }

@@ -6,6 +6,7 @@ import { ProgrammaticFilterBar } from "@/components/ProgrammaticFilterBar"
 import { ToolLogo } from "@/components/ToolLogo"
 import { FaqSection } from "@/components/FaqSection"
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
+import { generateSeoKeywords } from "@/lib/seo"
 
 export const dynamic = "force-dynamic"
 
@@ -23,11 +24,28 @@ export async function generateMetadata({ params }: { params: Promise<{ language:
   const tools = await getToolsBySdkLanguage(language)
   const hasTools = tools.length > 0
 
-  return {
+  const pageKeywords = generateSeoKeywords(langDisplay, "sdk")
+
+return {
     title: `Sales APIs with ${langDisplay} SDKs | Salestools Club`,
     description: `Browse the best sales tools and APIs with official ${langDisplay} SDK packages. Ideal for building AI agents with Claude and Gemini.`,
+    keywords: pageKeywords,
     alternates: {
       canonical: `https://salestools.club/sdk/${language}`,
+    },
+    openGraph: {
+      title: `Sales APIs with ${langDisplay} SDKs | Salestools Club`,
+      description: `Browse the best sales tools and APIs with official ${langDisplay} SDK packages.`,
+      type: "website",
+      url: `https://salestools.club/sdk/${language}`,
+      images: [{ url: "https://salestools.club/opengraph-image", width: 1200, height: 630, alt: `${langDisplay} Sales SDKs` }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      site: "@salestoolsclub",
+      title: `Sales APIs with ${langDisplay} SDKs | Salestools Club`,
+      description: `Browse the best sales tools and APIs with official ${langDisplay} SDK packages.`,
+      images: ["https://salestools.club/opengraph-image"],
     },
     ...(!hasTools && {
       robots: { index: false, follow: true },

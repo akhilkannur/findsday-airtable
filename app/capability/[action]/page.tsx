@@ -6,7 +6,7 @@ import { ProgrammaticFilterBar } from "@/components/ProgrammaticFilterBar"
 import { ToolLogo } from "@/components/ToolLogo"
 import { FaqSection } from "@/components/FaqSection"
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
-import { generateSeoTitle, generateSeoDescription, formatAcronyms } from "@/lib/seo"
+import { generateSeoTitle, generateSeoDescription, formatAcronyms, generateSeoKeywords } from "@/lib/seo"
 
 export const dynamic = "force-dynamic"
 
@@ -35,11 +35,28 @@ export async function generateMetadata({ params }: { params: Promise<{ action: s
   const tools = await getToolsByCapability(action)
   const actionDisplay = formatAcronyms(action)
 
+  const pageKeywords = generateSeoKeywords(actionDisplay, "capability")
+
   return {
     title: generateSeoTitle(actionDisplay, "capability"),
     description: generateSeoDescription(actionDisplay, "capability", tools.length),
+    keywords: pageKeywords,
     alternates: {
       canonical: `https://salestools.club/capability/${action}`,
+    },
+    openGraph: {
+      title: generateSeoTitle(actionDisplay, "capability"),
+      description: generateSeoDescription(actionDisplay, "capability", tools.length),
+      type: "website",
+      url: `https://salestools.club/capability/${action}`,
+      images: [{ url: "https://salestools.club/opengraph-image", width: 1200, height: 630, alt: `${actionDisplay} APIs` }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      site: "@salestoolsclub",
+      title: generateSeoTitle(actionDisplay, "capability"),
+      description: generateSeoDescription(actionDisplay, "capability", tools.length),
+      images: ["https://salestools.club/opengraph-image"],
     },
   }
 }
@@ -138,10 +155,10 @@ export default async function CapabilityPage({
       <section className="py-12 md:py-20 border-b border-ink">
         <div className="layout-container grid grid-cols-1 lg:grid-cols-[1fr_350px] gap-12 lg:gap-20">
           <div>
-            <div className="flex items-center gap-4 md:gap-6 mb-8 md:mb-12">
-              <div className="font-mono text-[0.75rem] md:text-[0.8rem] uppercase tracking-wider text-ink">Feature Comparison Matrix</div>
+            <h2 className="flex items-center gap-4 md:gap-6 mb-8 md:mb-12 font-mono text-[0.75rem] md:text-[0.8rem] uppercase tracking-wider text-ink">
+              Feature Comparison Matrix
               <div className="h-px flex-grow bg-ink opacity-10"></div>
-            </div>
+            </h2>
             
             <div className="prose prose-ink max-w-none font-serif text-lg md:text-xl text-ink-fade leading-relaxed space-y-8">
               <p>
@@ -164,7 +181,7 @@ export default async function CapabilityPage({
           </div>
 
           <div className="p-8 bg-paper border border-ink space-y-8">
-            <h3 className="font-mono text-[0.8rem] uppercase font-bold tracking-widest">Technical Status</h3>
+            <h2 className="font-mono text-[0.8rem] uppercase font-bold tracking-widest">Technical Status</h2>
             <div className="space-y-6">
               <div className="group">
                 <div className="font-mono text-[0.65rem] uppercase text-ink-fade italic mb-1">Tools Verified</div>

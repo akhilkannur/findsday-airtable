@@ -10,7 +10,7 @@ import {
 import { ArrowRight } from "lucide-react"
 import { ToolLogo } from "@/components/ToolLogo"
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
-import { generateSeoTitle, generateSeoDescription } from "@/lib/seo"
+import { generateSeoTitle, generateSeoDescription, generateSeoKeywords } from "@/lib/seo"
 
 export async function generateStaticParams() {
   return getAllCategorySlugs().map((slug) => ({ slug }))
@@ -32,9 +32,12 @@ export async function generateMetadata({
   const pageDescription = generateSeoDescription(category.name, "category", category.toolCount)
   const pageUrl = `https://salestools.club/categories/${slug}`
 
+  const pageKeywords = generateSeoKeywords(category.name, "category")
+
   return {
     title: pageTitle,
     description: pageDescription,
+    keywords: pageKeywords,
     alternates: { canonical: pageUrl },
     openGraph: {
       title: pageTitle,

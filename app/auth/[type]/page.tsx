@@ -6,6 +6,7 @@ import { ProgrammaticFilterBar } from "@/components/ProgrammaticFilterBar"
 import { ToolLogo } from "@/components/ToolLogo"
 import { FaqSection } from "@/components/FaqSection"
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
+import { generateSeoKeywords } from "@/lib/seo"
 
 export const dynamic = "force-dynamic"
 
@@ -23,11 +24,28 @@ export async function generateMetadata({ params }: { params: Promise<{ type: str
   const tools = await getToolsByAuthMethod(type)
   const hasTools = tools.length > 0
 
+  const pageKeywords = generateSeoKeywords(typeDisplay, "auth")
+
   return {
     title: `Sales APIs with ${typeDisplay} Auth | Salestools Club`,
     description: `Browse all sales tools and APIs that support ${typeDisplay} authentication. Find the easiest tools to connect to your AI agent.`,
+    keywords: pageKeywords,
     alternates: {
       canonical: `https://salestools.club/auth/${type}`,
+    },
+    openGraph: {
+      title: `Sales APIs with ${typeDisplay} Auth | Salestools Club`,
+      description: `Browse all sales tools and APIs that support ${typeDisplay} authentication.`,
+      type: "website",
+      url: `https://salestools.club/auth/${type}`,
+      images: [{ url: "https://salestools.club/opengraph-image", width: 1200, height: 630, alt: `${typeDisplay} Auth APIs` }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      site: "@salestoolsclub",
+      title: `Sales APIs with ${typeDisplay} Auth | Salestools Club`,
+      description: `Browse all sales tools and APIs that support ${typeDisplay} authentication.`,
+      images: ["https://salestools.club/opengraph-image"],
     },
     ...(!hasTools && {
       robots: { index: false, follow: true },

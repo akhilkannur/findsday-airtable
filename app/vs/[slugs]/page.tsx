@@ -6,7 +6,7 @@ import { Zap, Check, X, ArrowRight } from "lucide-react"
 import { ToolLogo } from "@/components/ToolLogo"
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
 import { FaqSection } from "@/components/FaqSection"
-import { generateSeoTitle, generateSeoDescription } from "@/lib/seo"
+import { generateSeoTitle, generateSeoDescription, generateSeoKeywords } from "@/lib/seo"
 
 interface Props {
   params: Promise<{ slugs: string }>
@@ -28,9 +28,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const pageDescription = generateSeoDescription(subject, "vs")
   const pageUrl = `https://salestools.club/vs/${slugs}`
 
+  const pageKeywords = generateSeoKeywords(subject, "vs")
+
   return {
     title: pageTitle,
     description: pageDescription,
+    keywords: pageKeywords,
     alternates: { canonical: pageUrl },
     openGraph: {
       title: pageTitle,
@@ -106,17 +109,17 @@ export default async function ComparisonPage({ params }: Props) {
       {/* Header */}
       <section className="px-4 py-12 md:px-8 md:py-24 border-b border-ink bg-paper-dark/30 relative overflow-hidden">
         <div className="layout-container">
-          <div className="font-mono text-[0.65rem] md:text-[0.75rem] uppercase tracking-[0.2em] mb-8 md:mb-16 flex items-center gap-4 text-ink-fade">
+          <h1 className="font-mono text-[0.65rem] md:text-[0.75rem] uppercase tracking-[0.2em] mb-8 md:mb-16 flex items-center gap-4 text-ink-fade">
             <span className="circled font-bold text-black italic">Compare</span>
             <div className="w-1.5 h-1.5 bg-black rounded-full animate-status-blink"></div>
             <span>Side-by-Side Comparison</span>
-          </div>
+          </h1>
 
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] items-start lg:items-center gap-8 md:gap-24">
             {/* Tool 1 */}
             <div className="flex flex-col items-start gap-4 md:gap-8">
               <ToolLogo name={tool1.name} websiteUrl={tool1.websiteUrl} size="lg" />
-              <h1 className="type-display uppercase text-3xl md:text-4xl lg:text-5xl">{tool1.name}</h1>
+              <h2 className="type-display uppercase text-3xl md:text-4xl lg:text-5xl">{tool1.name}</h2>
               <p className="font-serif italic text-lg md:text-xl text-ink-fade max-w-sm border-l-2 border-black pl-4">{tool1.oneLiner}</p>
             </div>
 
@@ -132,7 +135,7 @@ export default async function ComparisonPage({ params }: Props) {
             {/* Tool 2 */}
             <div className="flex flex-col items-start lg:items-end gap-4 md:gap-8 lg:text-right">
               <ToolLogo name={tool2.name} websiteUrl={tool2.websiteUrl} size="lg" />
-              <h1 className="type-display uppercase text-3xl md:text-4xl lg:text-5xl">{tool2.name}</h1>
+              <h2 className="type-display uppercase text-3xl md:text-4xl lg:text-5xl">{tool2.name}</h2>
               <p className="font-serif italic text-lg md:text-xl text-ink-fade max-w-sm lg:border-r-2 border-black lg:pr-4">{tool2.oneLiner}</p>
             </div>
           </div>
