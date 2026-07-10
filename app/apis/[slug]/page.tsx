@@ -1,17 +1,18 @@
 import Link from "next/link"
-import { notFound } from "next/navigation"
 import type { Metadata } from "next"
-import { getToolBySlug, getAllSlugs, getToolsByCategory, getAllTools, getAllCategories } from "@/lib/tools"
+import { getToolBySlug, getAllSlugs, getAllTools, getAllCategories } from "@/lib/tools"
 import type { SalesTool } from "@/lib/types"
-import { getSkillsForTool } from "@/lib/skills"
 import {
-  ExternalLink,
-  Zap,
   ArrowRight,
+  Check,
+  Code2,
+  ExternalLink,
+  ShieldCheck,
+  Webhook,
+  Zap,
 } from "lucide-react"
 import { CopyButton } from "@/components/ui/CopyButton"
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
-import { getUseCasesForTool } from "@/lib/usecases"
 import { ToolLogo } from "@/components/ToolLogo"
 import { GitHubStars } from "@/components/GitHubStars"
 import { generateSeoTitle, generateSeoDescription, generateSeoKeywords } from "@/lib/seo"
@@ -86,7 +87,7 @@ export async function generateMetadata({
   }
 }
 
-function JsonLd({ tool, alternatives }: { tool: SalesTool; alternatives: SalesTool[] }) {
+function JsonLd({ tool }: { tool: SalesTool }) {
   const softwareSchema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -95,7 +96,6 @@ function JsonLd({ tool, alternatives }: { tool: SalesTool; alternatives: SalesTo
     url: tool.websiteUrl,
     applicationCategory: "SalesSoftware",
     applicationSubCategory: tool.category,
-    operatingSystem: "Cloud, Web, API",
     offers: {
       "@type": "Offer",
       price: tool.hasFreeTier ? "0" : undefined,
@@ -106,60 +106,11 @@ function JsonLd({ tool, alternatives }: { tool: SalesTool; alternatives: SalesTo
     screenshot: `https://salestools.club/apis/${tool.slug}/opengraph-image`,
   }
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: `What does ${tool.name} do?`,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: `${tool.name} is a ${tool.category.toLowerCase()} tool that provides ${tool.oneLiner}`,
-        },
-      },
-      {
-        "@type": "Question",
-        name: `How do I use ${tool.name} with AI agents?`,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: `Connect ${tool.name} to agents like Claude Code or Cowork by using its ${tool.apiType?.join(' or ') || 'API'} and your ${tool.authMethod?.join(' or ') || 'authentication'} keys. This allows your agent to perform ${tool.aiCapabilities?.slice(0, 2).join(' and ') || 'tasks'} directly without needing extra software.`,
-        },
-      },
-      {
-        "@type": "Question",
-        name: `Is ${tool.name} API free?`,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: tool.hasFreeTier 
-            ? `Yes, ${tool.name} offers a free tier for its API.` 
-            : `No, ${tool.name} is a paid service, but you can check their website for current trial offers.`,
-        },
-      },
-      {
-        "@type": "Question",
-        name: `What are the best alternatives to ${tool.name}?`,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: alternatives.length > 0 
-            ? `The best alternatives to ${tool.name} include ${alternatives.map(a => a.name).join(", ")}.`
-            : `Top alternatives in the ${tool.category} category include similar tools listed in our directory.`,
-        },
-      },
-    ],
-  }
-
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-    </>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+    />
   )
 }
 
@@ -220,14 +171,6 @@ export default async function ToolDetailPage({
   // tool is guaranteed to be defined after the redirect check above
   const typedTool = tool as NonNullable<typeof tool>
 
-  const actionLinks = [
-    ...(typedTool.docsUrl ? [{ label: "Documentation", href: typedTool.docsUrl }] : []),
-    ...(!typedTool.docsUrl && typedTool.hasPublicApi === false ? [{ label: "No Public API", href: typedTool.websiteUrl, isDisabled: true }] : []),
-    { label: "Website", href: typedTool.websiteUrl },
-    { label: "Pricing", href: typedTool.pricingUrl },
-  ].filter(link => link.href && link.href !== "")
-
-  const matchingUseCases = getUseCasesForTool(typedTool)
   const categoryMeta = getAllCategories().find(c => c.name === typedTool.category)
 
   // Find alternatives – score by relevance so each tool gets unique, meaningful matches
@@ -254,9 +197,73 @@ export default async function ToolDetailPage({
     .slice(0, 4)
     .map(({ tool }) => tool)
 
+  const mcpIntegration = typedTool.integrations.find(i => i.platform === "MCP")
+  const mcpConfig = mcpIntegration?.mcpConfig
+  const apiStatus = typedTool.hasPublicApi === false
+    ? "unavailable"
+    : typedTool.hasPublicApi === true || Boolean(typedTool.docsUrl)
+      ? "available"
+      : "unknown"
+  const hasPublicApi = apiStatus === "available"
+  const hasMcp = Boolean(typedTool.mcpReady || mcpIntegration)
+  const mcpSetupUrl = mcpIntegration?.url
+  const setupUrl = mcpSetupUrl || typedTool.docsUrl
+  const primaryUrl = setupUrl || typedTool.websiteUrl
+  const primaryLabel = mcpIntegration?.url
+    ? "Connect to an agent"
+    : hasPublicApi
+      ? "Open API docs"
+      : "Visit website"
+  const readiness = mcpConfig
+    ? "Beginner-friendly"
+    : hasMcp
+      ? "Some setup"
+      : hasPublicApi
+        ? "Technical"
+        : apiStatus === "unknown"
+          ? "Not verified"
+          : "Not agent-ready"
+  const readinessDescription = mcpConfig
+    ? "A ready-to-copy MCP configuration is available below."
+    : hasMcp
+      ? mcpSetupUrl
+        ? "An MCP integration is listed. Follow the linked integration instructions to complete setup."
+        : "An MCP integration is listed, but no specific MCP setup link is currently available."
+      : hasPublicApi
+        ? "A coding agent will need to build the connection using the API documentation."
+        : apiStatus === "unknown"
+          ? "No public API documentation or MCP integration is currently listed."
+          : "This tool is listed as having no public API or MCP integration."
+  const uniqueCapabilities = typedTool.aiCapabilities.filter(
+    (capability, index, capabilities) =>
+      capabilities.findIndex(candidate => candidate.toLowerCase() === capability.toLowerCase()) === index,
+  )
+  const facts = [
+    { label: "Public API", value: hasPublicApi ? "Available" : apiStatus === "unknown" ? "Not verified" : "Not available" },
+    { label: "MCP", value: mcpIntegration?.label || (typedTool.mcpReady ? "Available" : "Not available") },
+    { label: "Authentication", value: hasPublicApi ? (typedTool.authMethod.join(" / ") || "Not listed") : hasMcp ? "See integration setup" : "Not applicable" },
+    { label: "API type", value: hasPublicApi ? (typedTool.apiType.join(" / ") || "Not listed") : "Not applicable" },
+    { label: "Free tier", value: typedTool.hasFreeTier ? "Available" : "No free tier listed" },
+    { label: "Webhooks", value: typedTool.hasWebhooks ? "Supported" : "Not listed" },
+    { label: "SDKs", value: hasPublicApi ? (typedTool.sdkLanguages.join(", ") || "None listed") : "Not applicable" },
+  ]
+  const setupSteps = mcpSetupUrl
+    ? [
+        ["01", "Open the integration", mcpIntegration?.label || "Use the provider’s MCP documentation to begin."],
+        ["02", "Authenticate", "Complete the integration’s authentication flow."],
+        ["03", "Give your agent a task", "Copy the starter prompt below and adjust it for your workflow."],
+      ]
+    : hasPublicApi
+      ? [
+          ["01", "Open the API docs", "Give the documentation link to Claude Code, Cursor, or another coding agent."],
+          ["02", "Authenticate", `Configure ${typedTool.authMethod.join(" or ") || "the required credentials"} without pasting secrets into chat.`],
+          ["03", "Build the first workflow", "Use the starter prompt below as a brief for your coding agent."],
+        ]
+      : []
+
   return (
     <div className="flex flex-col min-h-screen">
-      <JsonLd tool={typedTool} alternatives={alternatives} />
+      <JsonLd tool={typedTool} />
       <BreadcrumbJsonLd items={[
         { name: "APIs", url: "https://salestools.club/api" },
         { name: typedTool.name, url: `https://salestools.club/apis/${typedTool.slug}` },
@@ -276,320 +283,273 @@ export default async function ToolDetailPage({
         <span className="text-ink font-bold">{typedTool.name}</span>
       </nav>
 
-      <section className="px-4 py-12 md:px-8 md:py-24 border-b border-ink bg-paper-dark/30">
-        <div className="layout-container">
-          <Link
-            href="/api"
-            className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase underline hover:line-through transition-all mb-8 md:mb-16 inline-flex items-center gap-2 group/back"
-          >
-            <span className="group-hover/back:-translate-x-1 transition-transform">←</span> Back to Directory
-          </Link>
-
-          <div className="flex flex-col gap-8 md:gap-12 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-4xl">
-              <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
-                <ToolLogo name={typedTool.name} websiteUrl={typedTool.websiteUrl} size="lg" />
-                <div className="space-y-2 md:space-y-4">
-                  <div className="circled font-mono text-[0.65rem] md:text-[0.75rem] font-bold uppercase">{typedTool.category}</div>
-                  <h1 className="type-display uppercase text-3xl md:text-4xl lg:text-5xl">{typedTool.name}</h1>
+      <header className="border-y border-ink bg-white/35">
+        <div className="layout-container grid gap-10 py-12 lg:grid-cols-[1fr_auto] lg:items-end lg:py-16">
+          <div className="max-w-4xl">
+            <div className="mb-7 flex items-center gap-6">
+              <ToolLogo name={typedTool.name} websiteUrl={typedTool.websiteUrl} size="lg" />
+              <div>
+                <div className="mb-2 font-mono text-[0.68rem] font-bold uppercase tracking-widest text-ink-fade">
+                  {typedTool.category}
                 </div>
+                <h1 className="type-display uppercase">{typedTool.name}</h1>
               </div>
-              <p className="mt-8 md:mt-12 font-serif italic text-xl md:text-2xl text-ink-fade leading-relaxed max-w-2xl border-l-2 border-ink pl-4 md:pl-6">{typedTool.oneLiner}</p>
             </div>
-
-            {actionLinks.length > 0 && <div className="flex flex-col gap-3 md:gap-4">
-              <div className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-widest text-ink-fade mb-1 md:mb-2">Important Links</div>
-              {actionLinks.map((link) => (
-                link.isDisabled ? (
-                  <div
-                    key={link.label}
-                    className="font-serif italic text-lg md:text-xl border-b border-ink/40 text-ink-fade py-2 flex justify-between items-center group min-w-full md:min-w-[240px] cursor-not-allowed"
-                  >
-                    {link.label} <span className="opacity-30">⊘</span>
-                  </div>
-                ) : (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    target="_blank"
-                    rel="nofollow noopener noreferrer"
-                    className="font-serif italic text-lg md:text-xl border-b border-ink hover:opacity-60 transition-opacity py-2 flex justify-between items-center group min-w-full md:min-w-[240px]"
-                  >
-                    {link.label} <span className="opacity-40 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">↗</span>
-                  </a>
-                )
-              ))}
-            </div>}
+            <p className="max-w-3xl font-serif text-2xl leading-snug text-ink-fade md:text-3xl">
+              {typedTool.oneLiner}
+            </p>
           </div>
+
+          <div className="flex flex-wrap gap-3 lg:max-w-[400px] lg:justify-end">
+            <a
+              href={primaryUrl}
+              target="_blank"
+              rel="nofollow noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-ink px-5 py-3 font-mono text-[0.72rem] font-bold uppercase tracking-wider text-paper transition-opacity hover:opacity-75"
+            >
+              {primaryLabel} <ArrowRight className="h-4 w-4" />
+            </a>
+            {typedTool.docsUrl && typedTool.docsUrl !== primaryUrl && (
+              <a
+                href={typedTool.docsUrl}
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                className="inline-flex items-center gap-2 border border-ink px-5 py-3 font-mono text-[0.72rem] font-bold uppercase tracking-wider hover:bg-ink hover:text-paper"
+              >
+                Documentation <ExternalLink className="h-3.5 w-3.5" />
+              </a>
+            )}
+          </div>
+        </div>
+      </header>
+
+      <section className="border-b border-ink">
+        <div className="layout-container grid grid-cols-2 md:grid-cols-4">
+          {[
+            ["Agent setup", readiness],
+            ["Public API", hasPublicApi ? "Available" : apiStatus === "unknown" ? "Not verified" : "Not available"],
+            ["MCP", hasMcp ? "Available" : "Not available"],
+            ["Free tier", typedTool.hasFreeTier ? "Available" : "No free tier listed"],
+          ].map(([label, value], index) => (
+            <div
+              key={label}
+              className={`p-5 md:p-7 ${index < 3 ? "border-r border-ink" : ""} ${index === 1 ? "max-md:border-r-0" : ""} ${index > 1 ? "max-md:border-t" : ""}`}
+            >
+              <div className="mb-2 font-mono text-[0.62rem] uppercase tracking-widest text-ink-fade">{label}</div>
+              <div className="font-mono text-xs font-bold uppercase tracking-wide md:text-sm">{value}</div>
+            </div>
+          ))}
         </div>
       </section>
 
-      <div className="layout-container grid grid-cols-1 lg:grid-cols-[1fr_400px] md:border-x border-ink bg-white/40">
-        <div className="p-6 md:p-10 lg:p-20 space-y-16 md:space-y-32 lg:border-r border-ink">
-          {typedTool.aiCapabilities && typedTool.aiCapabilities.length > 0 && (
-            <div>
-              <h2 className="flex items-center gap-4 md:gap-6 mb-8 md:mb-12 font-mono text-[0.75rem] md:text-[0.8rem] uppercase tracking-wider text-ink">
-                Key Features
-                <div className="h-px flex-grow bg-ink opacity-10"></div>
-              </h2>
-              <div className="grid grid-cols-1 gap-4 md:gap-8 sm:grid-cols-2">
-                {typedTool.aiCapabilities.map((cap) => (
-                  <div key={cap} className="tool-card group">
-                    <div className="flex items-start gap-3 md:gap-4">
-                      <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-black rounded-full mt-2"></div>
-                      <span className="font-mono text-[0.75rem] md:text-[0.85rem] uppercase tracking-tight">{cap}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
+      <div className="layout-container grid lg:grid-cols-[minmax(0,1fr)_360px] lg:border-x lg:border-ink">
+        <main className="space-y-16 py-12 lg:border-r lg:border-ink lg:px-12 lg:py-16 xl:px-16">
+          <section>
+            <div className="mb-7 flex items-center gap-4">
+              <Zap className="h-5 w-5" />
+              <h2 className="font-mono text-sm font-bold uppercase tracking-widest">Agent readiness</h2>
             </div>
-          )}
-
-          {typedTool.docsUrl && typedTool.starterPrompt && (
-            <div className="p-8 md:p-16 bg-paper border border-dashed border-ink relative group">
-              <div className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-widest text-ink-fade mb-6 md:mb-10">How to use this tool</div>
-              <div className="font-serif italic text-xl md:text-2xl text-ink leading-relaxed">
-                &quot;{typedTool.starterPrompt}&quot;
+            <div className="border border-ink bg-ink p-7 text-paper md:p-9">
+              <div className="mb-3 flex items-center gap-3">
+                <span className={`h-2.5 w-2.5 rounded-full ${hasPublicApi || hasMcp ? "bg-lime-300" : "bg-amber-300"}`} />
+                <span className="font-mono text-xs font-bold uppercase tracking-widest">{readiness}</span>
               </div>
-            </div>
-          )}
-
-          <div className="max-w-4xl">
-            <h2 className="flex items-center gap-4 md:gap-6 mb-8 md:mb-12 font-mono text-[0.75rem] md:text-[0.8rem] uppercase tracking-wider text-ink">
-              Technical Feature Analysis
-              <div className="h-px flex-grow bg-ink opacity-10"></div>
-            </h2>
-            <div className="prose prose-ink max-w-none font-serif text-lg md:text-xl leading-relaxed text-ink-fade">
-              <p>
-                {typedTool.name} provides {typedTool.aiCapabilities?.slice(0, 3).join(', ')} through its {typedTool.apiType?.join(' or ') || 'API'}. 
-                {typedTool.mcpReady && ' Features an official MCP server for direct AI agent integration.'}
+              <p className="max-w-2xl font-serif text-xl leading-relaxed text-paper/75 md:text-2xl">
+                {readinessDescription}
               </p>
             </div>
-          </div>
+          </section>
 
-          {typedTool.docsUrl ? (
-            <div className="p-6 md:p-10 lg:p-16 bg-paper-dark/20 border-l-4 border-ink space-y-6 md:space-y-8">
-              <h2 className="font-mono text-[0.8rem] md:text-[0.85rem] uppercase font-bold tracking-widest text-ink">Direct Agent Workflow for {typedTool.name}</h2>
-              <div className="font-serif text-lg md:text-xl leading-relaxed text-ink-fade max-w-2xl italic space-y-4">
-                <p>• <strong>Connect:</strong> Give your {typedTool.name} {typedTool.authMethod?.join(' or ') || 'API Key'} to <strong>Claude Code, Cowork, or your favorite AI agent.</strong></p>
-                <p>• <strong>Automate:</strong> Your agent handles {typedTool.aiCapabilities?.slice(0, 2).join(' and ') || 'tasks'} directly.</p>
-                <p>• <strong>Execute:</strong> No extra software or middleware required for {typedTool.category} automation.</p>
+          {uniqueCapabilities.length > 0 && (
+            <section>
+              <div className="mb-7 flex items-center gap-4">
+                <Check className="h-5 w-5" />
+                <h2 className="font-mono text-sm font-bold uppercase tracking-widest">
+                  {hasPublicApi || hasMcp ? "What your agent can do" : "Listed product capabilities"}
+                </h2>
               </div>
-            </div>
-          ) : typedTool.hasPublicApi === false ? (
-            <div className="p-6 md:p-10 lg:p-16 bg-paper-dark/10 border-l-4 border-red-900/20 space-y-6 md:space-y-8 opacity-80">
-              <h2 className="font-mono text-[0.8rem] md:text-[0.85rem] uppercase font-bold tracking-widest text-ink">Status: No Public API Found</h2>
-              <div className="font-serif text-lg md:text-xl leading-relaxed text-ink-fade max-w-2xl italic space-y-4">
-                <p>We have manually verified that {typedTool.name} does not currently offer a public REST or GraphQL API for external developers.</p>
-                <p><strong>Note:</strong> While this tool is excellent for human use, it cannot be directly controlled by AI agents like Claude Code or Gemini CLI at this time.</p>
-              </div>
-            </div>
-          ) : (
-            <div className="p-6 md:p-10 lg:p-16 bg-paper-dark/10 border-l-4 border-ink/20 space-y-6 md:space-y-8">
-              <h2 className="font-mono text-[0.8rem] md:text-[0.85rem] uppercase font-bold tracking-widest text-ink">Status: Monitoring for API</h2>
-              <div className="font-serif text-lg md:text-xl leading-relaxed text-ink-fade max-w-2xl italic space-y-4">
-                <p>We are currently monitoring {typedTool.name} for the release of public API documentation.</p>
-                <p>Know an API we missed? Email <strong>akhil@salestools.club</strong> to help us keep this directory updated for the AI operator community.</p>
-              </div>
-            </div>
-          )}
-
-          {getSkillsForTool(typedTool.slug).length > 0 && (
-            <div>
-              <h2 className="flex items-center gap-6 mb-12 font-mono text-[0.8rem] uppercase tracking-wider text-ink">
-                AI Agent Skills
-                <div className="h-px flex-grow bg-ink opacity-10"></div>
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {getSkillsForTool(typedTool.slug).map((skill) => (
-                  <Link
-                    key={skill.slug}
-                    href={`/skills/${skill.slug}`}
-                    className="tool-card group flex flex-col h-full bg-paper border border-ink/20 p-8 hover:bg-ink hover:text-paper transition-all"
-                  >
-                    <div className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade group-hover:text-paper/60 mb-4">{skill.category}</div>
-                    <h3 className="font-serif italic text-xl mb-4">{skill.name}</h3>
-                    <p className="text-[0.85rem] leading-relaxed opacity-70 group-hover:opacity-90">{skill.description}</p>
-                    <div className="mt-8 pt-6 border-t border-ink/10 group-hover:border-paper/20 flex items-center justify-between">
-                      <span className="font-mono text-[0.7rem] uppercase">Get Skill</span>
-                      <ArrowRight className="h-3 w-3" />
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {matchingUseCases.length > 0 && (
-            <div>
-              <h2 className="flex items-center gap-6 mb-12 font-mono text-[0.8rem] uppercase tracking-wider text-ink">
-                Use {typedTool.name} for
-                <div className="h-px flex-grow bg-ink opacity-10"></div>
-              </h2>
-              <div className="flex flex-wrap gap-4">
-                {matchingUseCases.map((uc) => (
-                  <Link
-                    key={uc.slug}
-                    href={`/for/${uc.slug}`}
-                    className="font-mono text-[0.8rem] uppercase tracking-wide px-4 py-2 border border-ink/20 hover:border-ink hover:bg-ink hover:text-paper transition-all"
-                  >
-                    {uc.title}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-
-        <div className="p-6 md:p-10 lg:p-20 bg-paper-dark/30">
-          <div className="lg:sticky lg:top-[120px] space-y-12 md:space-y-20">
-            <div>
-              <div className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase tracking-widest text-ink-fade mb-8 md:mb-12">Technical Details</div>
-              
-              <div className="space-y-8 md:space-y-12">
-                {[
-                  { label: "API Type", value: (typedTool.apiType || []).join(' / ') },
-                  { label: "Authentication", value: (typedTool.authMethod || []).join(' / ') },
-                  { label: "Pricing Tier", value: typedTool.hasFreeTier ? "Free Tier Available" : "Paid Only" },
-                  { label: "SDK Languages", value: (typedTool.sdkLanguages || []).join(', ') || "N/A" },
-                  { label: "Webhooks", value: typedTool.hasWebhooks ? "Yes" : "No" },
-                ].map((spec) => (
-                  <div key={spec.label} className="group border-b border-ink/10 pb-6 md:pb-8">
-                    <div className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-widest text-ink-fade mb-2 md:mb-3 group-hover:text-ink transition-colors italic">{spec.label}</div>
-                    <div className="font-mono font-bold text-[0.75rem] md:text-[0.85rem] uppercase tracking-widest">{spec.value}</div>
+              <div className="grid sm:grid-cols-2">
+                {uniqueCapabilities.map((capability, index) => (
+                  <div key={capability} className="-mt-px flex min-h-28 gap-5 border border-ink/20 p-5 sm:odd:-mr-px">
+                    <span className="font-mono text-xs text-ink-fade">{String(index + 1).padStart(2, "0")}</span>
+                    <span className="font-serif text-xl leading-snug">{capability}</span>
                   </div>
                 ))}
-                {typedTool.githubUrl && <GitHubStars githubUrl={typedTool.githubUrl} githubStars={typedTool.githubStars} variant="detail" />}
               </div>
-            </div>
+            </section>
+          )}
 
-            {typedTool.integrations.find(i => i.platform === "MCP" && i.mcpConfig) && (
-              <div className="tool-card group bg-black text-paper">
-                <div className="flex items-center justify-between mb-8 md:mb-10">
-                  <div className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-widest text-paper opacity-60">MCP Setup</div>
-                  <div className="w-2 h-2 bg-white rounded-full animate-status-blink"></div>
+          <section>
+            <div className="mb-7 flex items-center gap-4">
+              <Code2 className="h-5 w-5" />
+              <h2 className="font-mono text-sm font-bold uppercase tracking-widest">Connect {typedTool.name}</h2>
+            </div>
+            {setupSteps.length > 0 ? (
+              <>
+                <div className="border border-ink">
+                  {setupSteps.map(([number, title, description]) => (
+                    <div key={number} className="grid gap-3 border-b border-ink/20 p-6 last:border-b-0 md:grid-cols-[48px_180px_1fr] md:items-start">
+                      <span className="font-mono text-xs text-ink-fade">{number}</span>
+                      <strong className="font-mono text-xs uppercase tracking-wider">{title}</strong>
+                      <span className="text-base leading-relaxed text-ink-fade">{description}</span>
+                    </div>
+                  ))}
                 </div>
-                <pre className="font-mono text-[10px] md:text-[11px] whitespace-pre-wrap overflow-x-auto p-6 md:p-8 border border-white/10 bg-white/5 text-white/80 leading-relaxed mb-6 md:mb-8">
-                  {typedTool.integrations.find(i => i.platform === "MCP")?.mcpConfig}
-                </pre>
-                <div className="flex justify-center">
-                  <CopyButton
-                    text={typedTool.integrations.find(i => i.platform === "MCP")?.mcpConfig || ""}
-                    label="Copy Config"
-                    eventName="mcp_config_copied"
-                    eventParams={{ tool_slug: typedTool.slug, tool_name: typedTool.name }}
-                    className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase border border-white/20 px-3 py-1.5 md:px-4 md:py-2 hover:bg-white hover:text-black transition-all"
-                  />
-                </div>
+                <a
+                  href={primaryUrl}
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
+                  className="mt-5 inline-flex items-center gap-2 border-b border-ink pb-1 font-mono text-xs font-bold uppercase tracking-wider"
+                >
+                  {mcpSetupUrl ? "Open integration setup" : "Open API documentation"}
+                  <ExternalLink className="h-3.5 w-3.5" />
+                </a>
+              </>
+            ) : (
+              <div className="border border-ink/20 bg-paper-dark/50 p-7 text-lg text-ink-fade">
+                {hasMcp
+                  ? "An MCP integration is listed, but no setup link is currently available."
+                  : apiStatus === "unknown"
+                    ? "No public API documentation or MCP setup is currently listed."
+                    : "There is no public API or MCP setup to connect at this time."}
               </div>
             )}
+          </section>
 
-            <div className="border-t border-ink/10 pt-8 md:pt-12">
-              <div className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-widest text-ink-fade mb-4 md:mb-6">
-                Badge
-              </div>
-              <div className="flex items-center justify-center py-4 bg-white border border-ink/20 rounded-sm mb-4">
-                <img src="/images/badge-light.svg" alt="Listed on Salestools Club" width="180" height="41" />
-              </div>
-              <p className="font-serif italic text-xs text-ink-fade mb-4">
-                Add this badge to your site for a do-follow backlink.
-              </p>
-              <div className="relative">
-                <pre className="font-mono text-[10px] whitespace-pre-wrap overflow-x-auto p-4 border border-ink/20 bg-white/5 text-ink/80 leading-relaxed mb-3">
-{`<a href="https://salestools.club/apis/${typedTool.slug}?utm_source=badge&utm_medium=embed" target="_blank" rel="noopener noreferrer"><img src="https://salestools.club/images/badge-light.svg" alt="Listed on Salestools Club" width="220" height="50" /></a>`}
+          {mcpConfig && (
+            <section>
+              <h2 className="mb-7 font-mono text-sm font-bold uppercase tracking-widest">MCP configuration</h2>
+              <div className="border border-ink bg-black p-6 text-paper md:p-8">
+                <pre className="mb-6 overflow-x-auto whitespace-pre-wrap font-mono text-[11px] leading-relaxed text-white/80">
+                  {mcpConfig}
                 </pre>
-                <div className="flex justify-center">
-                  <CopyButton
-                    text={`<a href="https://salestools.club/apis/${typedTool.slug}?utm_source=badge&utm_medium=embed" target="_blank" rel="noopener noreferrer"><img src="https://salestools.club/images/badge-light.svg" alt="Listed on Salestools Club" width="220" height="50" /></a>`}
-                    label="Copy Badge"
-                    eventName="badge_copied"
-                    eventParams={{ tool_slug: typedTool.slug }}
-                    className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase border border-ink/30 px-3 py-1.5 md:px-4 md:py-2 hover:bg-ink hover:text-paper transition-all"
-                  />
-                </div>
+                <CopyButton
+                  text={mcpConfig}
+                  label="Copy config"
+                  eventName="mcp_config_copied"
+                  eventParams={{ tool_slug: typedTool.slug, tool_name: typedTool.name }}
+                  className="border border-white/30 px-4 py-2 font-mono text-[0.68rem] font-bold uppercase tracking-wider hover:bg-white hover:text-black"
+                />
               </div>
+            </section>
+          )}
+
+          {typedTool.starterPrompt && setupSteps.length > 0 && (
+            <section>
+              <div className="mb-7 flex items-center justify-between gap-4">
+                <div className="flex items-center gap-4">
+                  <Zap className="h-5 w-5" />
+                  <h2 className="font-mono text-sm font-bold uppercase tracking-widest">Starter prompt</h2>
+                </div>
+                <span className="hidden font-mono text-[0.62rem] uppercase tracking-widest text-ink-fade sm:block">Paste into your agent</span>
+              </div>
+              <div className="border border-dashed border-ink bg-white/45 p-7 md:p-10">
+                <p className="mb-8 font-serif text-2xl italic leading-relaxed md:text-3xl">
+                  “{typedTool.starterPrompt}”
+                </p>
+                <CopyButton
+                  text={typedTool.starterPrompt}
+                  label="Copy prompt"
+                  eventName="starter_prompt_copied"
+                  eventParams={{ tool_slug: typedTool.slug, tool_name: typedTool.name }}
+                  className="border border-ink bg-ink px-4 py-2 font-mono text-[0.68rem] font-bold uppercase tracking-wider text-paper hover:bg-transparent hover:text-ink"
+                />
+              </div>
+            </section>
+          )}
+
+          <section>
+            <h2 className="mb-6 font-mono text-sm font-bold uppercase tracking-widest">About {typedTool.name}</h2>
+            <p className="max-w-4xl font-serif text-xl leading-relaxed text-ink-fade md:text-2xl">
+              {typedTool.description}
+            </p>
+          </section>
+        </main>
+
+        <aside className="space-y-12 py-12 lg:px-8 lg:py-16">
+          <section>
+            <h2 className="mb-6 font-mono text-xs font-bold uppercase tracking-widest">Technical facts</h2>
+            <dl>
+              {facts.map((fact) => (
+                <div key={fact.label} className="border-b border-ink/15 py-4 first:border-t">
+                  <dt className="mb-1 font-mono text-[0.62rem] uppercase tracking-widest text-ink-fade">{fact.label}</dt>
+                  <dd className="font-mono text-xs font-bold uppercase leading-relaxed tracking-wide">{fact.value}</dd>
+                </div>
+              ))}
+            </dl>
+            {typedTool.githubUrl && <GitHubStars githubUrl={typedTool.githubUrl} variant="detail" />}
+          </section>
+
+          <section className="border border-ink/20 bg-paper-dark/50 p-6">
+            <div className="mb-4 flex items-center gap-3">
+              <ShieldCheck className="h-4 w-4" />
+              <h2 className="font-mono text-xs font-bold uppercase tracking-widest">Before you start</h2>
             </div>
-          </div>
-        </div>
+            <ul className="space-y-4 text-base leading-relaxed text-ink-fade">
+              {!mcpConfig && mcpSetupUrl && <li>• Follow the linked integration instructions to complete MCP setup.</li>}
+              {!mcpSetupUrl && hasMcp && <li>• No specific MCP setup link is currently listed.</li>}
+              {hasPublicApi && <li>• Authentication uses {typedTool.authMethod.join(" or ") || "provider credentials"}.</li>}
+              <li>• {typedTool.hasWebhooks ? "Webhooks are available for event-driven workflows." : "No webhook support is listed."}</li>
+              <li>• Features and limits may depend on your provider plan.</li>
+            </ul>
+          </section>
+
+          <section className="space-y-3">
+            {typedTool.docsUrl && (
+              <a
+                href={typedTool.docsUrl}
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                className="flex items-center justify-between border-b border-ink py-3 font-mono text-xs font-bold uppercase tracking-wider"
+              >
+                Documentation <ExternalLink className="h-3.5 w-3.5" />
+              </a>
+            )}
+            {typedTool.pricingUrl && (
+              <a
+                href={typedTool.pricingUrl}
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                className="flex items-center justify-between border-b border-ink py-3 font-mono text-xs font-bold uppercase tracking-wider"
+              >
+                Pricing <ExternalLink className="h-3.5 w-3.5" />
+              </a>
+            )}
+            <a
+              href={typedTool.websiteUrl}
+              target="_blank"
+              rel="nofollow noopener noreferrer"
+              className="flex items-center justify-between border-b border-ink py-3 font-mono text-xs font-bold uppercase tracking-wider"
+            >
+              Website <ExternalLink className="h-3.5 w-3.5" />
+            </a>
+            <div className="flex items-center gap-2 pt-3 font-mono text-[0.62rem] uppercase tracking-widest text-ink-fade">
+              <Webhook className="h-3.5 w-3.5" /> Structured listing data
+            </div>
+          </section>
+        </aside>
       </div>
 
-      <section className="py-16 md:py-24 bg-paper border-t border-ink">
-        <div className="layout-container">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="font-serif italic text-2xl md:text-3xl mb-8 md:mb-12 text-center">Frequently Asked Questions about {typedTool.name}</h2>
-            <div className="space-y-8 md:space-y-12">
-              <div className="group border-b border-ink/10 pb-6 md:pb-8">
-                <h3 className="font-serif text-lg md:text-xl font-bold mb-3 md:mb-4 group-hover:text-ink transition-colors">What does {typedTool.name} do?</h3>
-                <p className="text-ink-fade text-base md:text-lg leading-relaxed">{typedTool.name} is a {typedTool.category.toLowerCase()} tool that provides {typedTool.oneLiner}</p>
+      {alternatives.length > 0 && (
+        <section className="border-t border-ink bg-white/30 py-12 md:py-16">
+          <div className="layout-container">
+            <div className="mb-8 flex items-end justify-between gap-4">
+              <div>
+                <div className="mb-2 font-mono text-[0.65rem] uppercase tracking-widest text-ink-fade">Related options</div>
+                <h2 className="font-serif text-3xl italic">Similar tools</h2>
               </div>
-              <div className="group border-b border-ink/10 pb-6 md:pb-8">
-                <h3 className="font-serif text-lg md:text-xl font-bold mb-3 md:mb-4 group-hover:text-ink transition-colors">How do I use {typedTool.name} with AI agents?</h3>
-                <p className="text-ink-fade text-base md:text-lg leading-relaxed">
-                  Connect {typedTool.name} to agents like Claude Code or Cowork by using its {typedTool.apiType?.join(' or ') || 'API'} and your {typedTool.authMethod?.join(' or ') || 'authentication'} keys. This allows your agent to perform {typedTool.aiCapabilities?.slice(0, 2).join(' and ') || 'tasks'} directly without needing extra software.
-                </p>
-              </div>
-              <div className="group border-b border-ink/10 pb-6 md:pb-8">
-                <h3 className="font-serif text-lg md:text-xl font-bold mb-3 md:mb-4 group-hover:text-ink transition-colors">Is {typedTool.name} API free?</h3>
-                <p className="text-ink-fade text-base md:text-lg leading-relaxed">
-                  {typedTool.hasFreeTier 
-                    ? `Yes, ${typedTool.name} offers a free tier for its API, making it accessible for testing and small-scale projects.` 
-                    : `No, ${typedTool.name} is a premium service. You can view their full pricing details at their official website.`
-                  }
-                </p>
-              </div>
-              {alternatives.length > 0 && (
-                <div className="group border-b border-ink/10 pb-6 md:pb-8">
-                  <h3 className="font-serif text-lg md:text-xl font-bold mb-3 md:mb-4 group-hover:text-ink transition-colors">What are the best alternatives to {typedTool.name}?</h3>
-                  <p className="text-ink-fade text-base md:text-lg leading-relaxed">
-                    Based on features and use cases, the top alternatives to {typedTool.name} are {alternatives.map((a, i) => (
-                      <span key={a.slug}>
-                        <Link href={`/apis/${a.slug}`} className="font-bold hover:underline">{a.name}</Link>
-                        {i === alternatives.length - 1 ? '.' : i === alternatives.length - 2 ? ' and ' : ', '}
-                      </span>
-                    ))}
-                  </p>
-                </div>
-              )}
+              <Link href="/api" className="font-mono text-xs font-bold uppercase tracking-wider hover:underline">
+                Browse all
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+              {alternatives.map((alternative) => (
+                <ToolCard key={alternative.slug} tool={alternative} />
+              ))}
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="py-16 md:py-32 bg-paper border-t border-ink">
-        <div className="layout-container">
-          {alternatives.length > 0 && (
-            <div className="mb-12 md:mb-20">
-              <h2 className="flex items-center gap-4 md:gap-6 mb-8 md:mb-12">
-                <span className="font-mono text-[0.75rem] md:text-[0.8rem] uppercase tracking-wider text-ink">Compare {typedTool.name}</span>
-                <span className="h-px flex-grow bg-ink opacity-10"></span>
-              </h2>
-              <div className="flex flex-wrap gap-3 md:gap-4">
-                {alternatives.map((alt) => (
-                  <Link
-                    key={alt.slug}
-                    href={`/vs/${[typedTool.slug, alt.slug].sort().join('-vs-')}`}
-                    className="font-mono text-[0.7rem] md:text-[0.8rem] uppercase tracking-wide px-3 py-1.5 md:px-4 md:py-2 border border-ink/20 hover:border-ink hover:bg-ink hover:text-paper transition-all"
-                  >
-                    {typedTool.name} vs {alt.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          )}
-          {alternatives.length > 0 && (
-            <>
-              <div className="flex items-center gap-4 md:gap-6 mb-12 md:mb-20">
-                <h2 className="font-serif italic text-2xl md:text-3xl">Alternatives to {typedTool.name}</h2>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-12">
-                {alternatives.map((alt) => (
-                  <ToolCard key={alt.slug} tool={alt} />
-                ))}
-              </div>
-            </>
-          )}
-        </div>
-      </section>
+        </section>
+      )}
     </div>
   )
 }
