@@ -120,6 +120,18 @@ const skills: Skill[] = [
     sourceUrl: "https://github.com/chadboyda/agent-gtm-skills",
     installCommand: "npx add-skill chadboyda/agent-gtm-skills",
   },
+  {
+    slug: "lemlist-claude-skills",
+    name: "Lemlist Claude Skills",
+    description: "38 GTM, outbound, and revenue-ops skills for Claude Code — covering ICP definition, persona research, company analysis, competitor mapping, trigger-finding, list building, campaign design, copywriting (first-touch, follow-up, IC/manager/VP sequences), LinkedIn outreach, cold call scripts, pipeline analysis, reply handling, CRM dedup, n8n workflow building, and more. Built on empirical data from 244K+ campaigns and 249M+ emails.",
+    category: "Operations",
+    difficulty: "Intermediate",
+    worksWithTools: [],
+    promptContent: "",
+    source: "l3mpire",
+    sourceUrl: "https://github.com/l3mpire/claude-skills",
+    installCommand: "npx github:l3mpire/claude-skills",
+  },
 ]
 
 export function getAllSkills(): Skill[] {

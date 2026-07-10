@@ -143,6 +143,8 @@ export default async function SkillDetailPage({
                 <CopyButton
                   text={`npx salestools add ${skill.slug}`}
                   label="Copy Command"
+                  eventName="command_copied"
+                  eventParams={{ skill_slug: skill.slug }}
                   className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase border border-white/20 px-3 py-1.5 md:px-4 md:py-2 hover:bg-white hover:text-black transition-all"
                 />
               </div>
@@ -184,6 +186,8 @@ export default async function SkillDetailPage({
                 <CopyButton
                   text={skill.promptContent}
                   label="Copy Instructions"
+                  eventName="prompt_copied"
+                  eventParams={{ skill_slug: skill.slug }}
                   className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase border border-white/20 px-3 py-1.5 md:px-4 md:py-2 hover:bg-white hover:text-black transition-all"
                 />
               </div>

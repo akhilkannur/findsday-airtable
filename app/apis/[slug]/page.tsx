@@ -215,25 +215,15 @@ export default async function ToolDetailPage({
       ? "Open API docs"
       : "Visit website"
   const readiness = mcpConfig
-    ? "Beginner-friendly"
-    : hasMcp
-      ? "Some setup"
-      : hasPublicApi
-        ? "Technical"
-        : apiStatus === "unknown"
-          ? "Not verified"
-          : "Not agent-ready"
+    ? "Plug & play"
+    : hasPublicApi
+      ? "API ready"
+      : "Not available"
   const readinessDescription = mcpConfig
     ? "A ready-to-copy MCP configuration is available below."
-    : hasMcp
-      ? mcpSetupUrl
-        ? "An MCP integration is listed. Follow the linked integration instructions to complete setup."
-        : "An MCP integration is listed, but no specific MCP setup link is currently available."
-      : hasPublicApi
-        ? "A coding agent will need to build the connection using the API documentation."
-        : apiStatus === "unknown"
-          ? "No public API documentation or MCP integration is currently listed."
-          : "This tool is listed as having no public API or MCP integration."
+    : hasPublicApi
+      ? "Give a coding agent the API docs and it can connect."
+      : "No public API or MCP integration is listed."
   const uniqueCapabilities = typedTool.aiCapabilities.filter(
     (capability, index, capabilities) =>
       capabilities.findIndex(candidate => candidate.toLowerCase() === capability.toLowerCase()) === index,

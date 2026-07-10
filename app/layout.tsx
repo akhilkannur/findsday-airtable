@@ -265,7 +265,7 @@ export default async function RootLayout({
 
               <div className="flex items-center gap-4 font-mono text-[0.85rem] uppercase tracking-widest flex-wrap justify-center py-6 px-10 border-2 border-ink bg-paper shadow-[8px_8px_0px_rgba(26,25,23,0.15)] transition-transform hover:translate-x-[-2px] hover:translate-y-[-2px]">
                 <span className="opacity-60 text-[0.7rem]">Built by</span>
-                <a href="https://akhilhaving.fun" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:opacity-80 transition-opacity group">
+                <a href="https://akhilneeds.space" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:opacity-80 transition-opacity group">
                   <Image 
                     src="/dp.jpg" 
                     alt="Akhil" 
@@ -274,10 +274,6 @@ export default async function RootLayout({
                     className="rounded-full grayscale border-2 border-ink/40 group-hover:grayscale-0 transition-all"
                   />
                   <span className="font-black border-b-2 border-ink pb-0.5">Akhil</span>
-                </a>
-                <span className="opacity-60 text-[0.7rem]">with</span>
-                <a href="http://realaiexamples.com/" target="_blank" rel="noopener noreferrer" className="font-black border-b-2 border-ink pb-0.5 hover:opacity-80 transition-opacity">
-                  realaiexamples.com
                 </a>
               </div>
               <div className="font-mono text-[0.6rem] uppercase tracking-[0.2em] opacity-75 flex flex-col gap-2">
