@@ -74,7 +74,7 @@ const navLinks = [
   { href: "/mcp", label: "MCP Servers" },
   { href: "/skills", label: "Skills" },
   { href: "/stacks", label: "Stacks" },
-  { href: "/categories", label: "Categories" },
+
   { href: "/open-source-sales-tools", label: "Open Source" },
   { href: "/submit", label: "Submit" },
 ]
@@ -254,6 +254,7 @@ export default async function RootLayout({
 
             <div className="text-center flex flex-col items-center gap-10">
               <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 font-mono text-[0.7rem] uppercase tracking-widest border-b border-ink/10 pb-8 w-full max-w-2xl opacity-80">
+                <Link href="/categories" className="hover:line-through">Categories</Link>
                 <Link href="/guides" className="hover:line-through">Guides</Link>
                 <Link href="/for" className="hover:line-through">Use Cases</Link>
                 <Link href="/monitoring" className="hover:line-through">Monitoring</Link>
