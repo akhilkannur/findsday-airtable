@@ -14295,4 +14295,11 @@ export const categories: CategoryMeta[] = [
     icon: "Calendar",
     toolCount: 10,
   },
+  {
+    slug: "claude-plugins",
+    name: "Claude Plugins",
+    description: "Claude Code plugin collections and skill packs that turn AI agents into GTM specialists — sales, marketing, ABM, and RevOps plugins installable with one command.",
+    icon: "Zap",
+    toolCount: 0,
+  },
 ]

@@ -8,6 +8,7 @@ export type ToolCategory =
   | "Revenue Intelligence"
   | "Sales Enablement"
   | "Closing & Scheduling"
+  | "Claude Plugins"
 
 
 export interface MinimalTool {
