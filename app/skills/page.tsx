@@ -46,6 +46,7 @@ const CATEGORIES: Skill["category"][] = [
   "Analytics",
   "Operations",
   "Enablement",
+  "Claude Plugins",
 ]
 
 const difficultyColor: Record<Skill["difficulty"], string> = {
