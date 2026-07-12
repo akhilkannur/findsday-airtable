@@ -32,17 +32,17 @@ export function GuideToolTable({ tools }: { tools: SalesTool[] }) {
   return (
     <div className="space-y-6">
       {/* Table Filters */}
-      <div className="flex flex-wrap items-center gap-6 p-4 bg-paper border border-ink/10 rounded-lg">
-        <div className="flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-widest text-ink/40 mr-4">
+      <div className="panel flex flex-wrap items-center gap-6 p-4">
+        <div className="mr-4 flex items-center gap-2 font-mono text-[0.68rem] uppercase tracking-[0.18em] text-ink/45">
           <Filter className="h-3 w-3" />
           <span>Quick Filters:</span>
         </div>
         
         <button 
           onClick={() => setMcpOnly(!mcpOnly)}
-          className={`flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-widest transition-all ${mcpOnly ? 'text-purple-700 font-bold' : 'text-ink-fade hover:text-ink'}`}
+          className={`flex items-center gap-2 font-mono text-[0.68rem] uppercase tracking-[0.16em] transition-colors ${mcpOnly ? 'text-ink font-semibold' : 'text-ink-fade hover:text-ink'}`}
         >
-          <div className={`w-3.5 h-3.5 border border-ink/20 flex items-center justify-center rounded-sm ${mcpOnly ? 'bg-purple-600 border-purple-600' : ''}`}>
+          <div className={`flex h-3.5 w-3.5 items-center justify-center rounded-sm border border-ink/15 ${mcpOnly ? 'bg-ink text-paper' : ''}`}>
             {mcpOnly && <Check className="h-2.5 w-2.5 text-white" />}
           </div>
           MCP Ready
@@ -50,51 +50,51 @@ export function GuideToolTable({ tools }: { tools: SalesTool[] }) {
 
         <button 
           onClick={() => setFreeOnly(!freeOnly)}
-          className={`flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-widest transition-all ${freeOnly ? 'text-green-700 font-bold' : 'text-ink-fade hover:text-ink'}`}
+          className={`flex items-center gap-2 font-mono text-[0.68rem] uppercase tracking-[0.16em] transition-colors ${freeOnly ? 'text-ink font-semibold' : 'text-ink-fade hover:text-ink'}`}
         >
-          <div className={`w-3.5 h-3.5 border border-ink/20 flex items-center justify-center rounded-sm ${freeOnly ? 'bg-green-600 border-green-600' : ''}`}>
+          <div className={`flex h-3.5 w-3.5 items-center justify-center rounded-sm border border-ink/15 ${freeOnly ? 'bg-ink text-paper' : ''}`}>
             {freeOnly && <Check className="h-2.5 w-2.5 text-white" />}
           </div>
           Free Tier
         </button>
 
-        <div className="ml-auto font-mono text-[0.65rem] text-ink/30 uppercase">
+        <div className="ml-auto font-mono text-[0.65rem] uppercase tracking-[0.18em] text-ink/40">
           Showing {filteredTools.length} of {tools.length} Tools
         </div>
       </div>
 
       {/* The Table */}
-      <div className="overflow-x-auto bg-paper border border-ink/20 rounded-xl shadow-sm">
+      <div className="panel overflow-x-auto">
         <table className="w-full text-base">
           <thead>
-            <tr className="border-b border-ink/30 bg-ink/[0.03]">
-              <th className="text-left py-5 px-6 font-mono text-[0.85rem] uppercase tracking-wider text-ink font-bold">Tool</th>
-              <th className="text-left py-5 px-6 font-mono text-[0.85rem] uppercase tracking-wider text-ink font-bold">Auth</th>
-              <th className="text-left py-5 px-6 font-mono text-[0.85rem] uppercase tracking-wider text-ink font-bold">SDKs</th>
-              <th className="text-center py-5 px-6 font-mono text-[0.85rem] uppercase tracking-wider text-ink font-bold">Free</th>
-              <th className="text-center py-5 px-6 font-mono text-[0.85rem] uppercase tracking-wider text-ink font-bold">MCP</th>
+            <tr className="border-b border-ink/10 bg-ink/[0.03]">
+              <th className="px-6 py-4 text-left font-mono text-[0.72rem] uppercase tracking-[0.16em] text-ink font-semibold">Tool</th>
+              <th className="px-6 py-4 text-left font-mono text-[0.72rem] uppercase tracking-[0.16em] text-ink font-semibold">Auth</th>
+              <th className="px-6 py-4 text-left font-mono text-[0.72rem] uppercase tracking-[0.16em] text-ink font-semibold">SDKs</th>
+              <th className="px-6 py-4 text-center font-mono text-[0.72rem] uppercase tracking-[0.16em] text-ink font-semibold">Free</th>
+              <th className="px-6 py-4 text-center font-mono text-[0.72rem] uppercase tracking-[0.16em] text-ink font-semibold">MCP</th>
             </tr>
           </thead>
           <tbody>
             {filteredTools.map((tool) => (
-              <tr key={tool.slug} className="border-b border-ink/20 hover:bg-ink/[0.04] transition-colors last:border-0">
-                <td className="py-5 px-6">
+              <tr key={tool.slug} className="border-b border-ink/10 transition-colors hover:bg-ink/[0.02] last:border-0">
+                <td className="px-6 py-5">
                   <Link href={`/apis/${tool.slug}`} className="flex items-center gap-3 hover:underline">
                     <ToolLogo name={tool.name} websiteUrl={tool.websiteUrl} size="sm" />
                     <div>
-                      <span className="font-bold text-lg block uppercase">{tool.name}</span>
-                      <p className="text-sm text-ink-fade mt-1 line-clamp-1 max-w-[250px]">{tool.oneLiner}</p>
+                      <span className="block text-base font-semibold">{tool.name}</span>
+                      <p className="mt-1 max-w-[250px] line-clamp-1 text-sm text-ink-fade">{tool.oneLiner}</p>
                     </div>
                   </Link>
                 </td>
-                <td className="py-5 px-6">
+                <td className="px-6 py-5">
                   <div className="flex flex-wrap gap-1.5">
                     {tool.authMethod.map((auth) => (
                       <ApiBadge key={auth} variant="warning">{auth}</ApiBadge>
                     ))}
                   </div>
                 </td>
-                <td className="py-5 px-6">
+                <td className="px-6 py-5">
                   {tool.sdkLanguages.length > 0 ? (
                     <div className="flex flex-wrap gap-1.5">
                       {tool.sdkLanguages.slice(0, 2).map((sdk) => (
@@ -108,16 +108,16 @@ export function GuideToolTable({ tools }: { tools: SalesTool[] }) {
                     <span className="text-ink-fade text-xs opacity-40 uppercase font-mono">None</span>
                   )}
                 </td>
-                <td className="py-5 px-6 text-center">
+                <td className="px-6 py-5 text-center">
                   {tool.hasFreeTier ? (
-                    <div className="flex justify-center"><Check className="text-green-600 h-5 w-5" /></div>
+                    <div className="flex justify-center"><Check className="h-5 w-5 text-emerald-700" /></div>
                   ) : (
                     <div className="flex justify-center"><X className="text-ink-fade/20 h-5 w-5" /></div>
                   )}
                 </td>
-                <td className="py-5 px-6 text-center">
+                <td className="px-6 py-5 text-center">
                   {tool.mcpReady ? (
-                    <span className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-mono uppercase tracking-wider border rounded-full bg-purple-500/10 text-purple-700 border-purple-500/20 font-bold">
+                    <span className="inline-flex items-center gap-1 rounded-md border border-emerald-700/15 bg-emerald-500/10 px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-emerald-800">
                       MCP
                     </span>
                   ) : (
@@ -129,12 +129,12 @@ export function GuideToolTable({ tools }: { tools: SalesTool[] }) {
           </tbody>
         </table>
         
-        {filteredTools.length === 0 && (
-          <div className="py-20 text-center">
-            <p className="font-serif italic text-xl text-ink-fade">No tools match your active filters.</p>
+      {filteredTools.length === 0 && (
+        <div className="py-20 text-center">
+            <p className="text-xl text-ink-fade">No tools match your active filters.</p>
             <button 
               onClick={() => { setMcpOnly(false); setFreeOnly(false); }}
-              className="mt-4 font-mono text-[0.7rem] uppercase underline"
+              className="mt-4 font-mono text-[0.7rem] uppercase tracking-[0.16em] underline"
             >
               Reset Filters
             </button>

@@ -57,25 +57,25 @@ export function ApiFilterBar({ categories }: { categories: CategoryOption[] }) {
   }
 
   return (
-    <div className="border-b border-ink bg-paper-dark/20 py-4">
+    <div className="border-b border-ink/10 bg-white/50 py-4">
       <div className="layout-container flex flex-col gap-4">
         {/* Row 1: Search + Category */}
         <div className="flex flex-col md:flex-row md:items-center gap-3">
-          <form onSubmit={handleSearch} className="relative flex-1 max-w-full md:max-w-2xl">
+          <form onSubmit={handleSearch} className="panel relative flex-1 max-w-full md:max-w-2xl">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-ink-fade" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search tools..."
-              className="w-full bg-transparent border border-ink/20 py-2 pl-9 pr-3 font-mono text-[0.75rem] placeholder-ink-fade/50 focus:outline-none focus:border-ink transition-all"
+              className="w-full bg-transparent py-3 pl-9 pr-3 font-mono text-[0.72rem] uppercase tracking-[0.12em] placeholder:text-ink-fade/45 focus:outline-none"
             />
           </form>
 
           <select
             value={category}
             onChange={(e) => router.push(buildUrl({ category: e.target.value || undefined }))}
-            className="w-full md:w-auto bg-transparent border border-ink/20 py-2 px-3 font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade focus:outline-none focus:border-ink cursor-pointer transition-all"
+            className="panel w-full cursor-pointer bg-white px-3 py-3 font-mono text-[0.72rem] uppercase tracking-[0.12em] text-ink-fade focus:outline-none md:w-auto"
           >
             <option value="">All Categories</option>
             {categories.map((cat) => (
@@ -97,10 +97,10 @@ export function ApiFilterBar({ categories }: { categories: CategoryOption[] }) {
               <button
                 key={key}
                 onClick={() => toggleFilter(key, active)}
-                className={`flex items-center gap-1.5 font-mono text-[0.65rem] uppercase tracking-widest transition-all ${active ? "text-black font-bold" : "text-ink-fade hover:text-black"}`}
+                className={`flex items-center gap-1.5 font-mono text-[0.65rem] uppercase tracking-[0.16em] transition-colors ${active ? "text-ink font-semibold" : "text-ink-fade hover:text-ink"}`}
               >
                 <div
-                  className={`w-3 h-3 border border-black flex items-center justify-center ${active ? "bg-black" : ""}`}
+                  className={`flex h-3.5 w-3.5 items-center justify-center rounded-sm border border-ink/15 ${active ? "bg-ink text-paper" : "bg-transparent"}`}
                 >
                   {active && <Check className="w-2 h-2 text-white" />}
                 </div>
@@ -109,17 +109,17 @@ export function ApiFilterBar({ categories }: { categories: CategoryOption[] }) {
             ))}
           </div>
 
-          <div className="flex items-center border border-ink/20 p-0.5 self-start md:self-auto">
+          <div className="panel flex items-center p-1 self-start md:self-auto">
             <button
               onClick={() => router.push(buildUrl({ view: undefined }))}
-              className={`p-1.5 transition-all ${view === "grid" ? "bg-ink text-paper" : "text-ink-fade hover:text-ink"}`}
+              className={`rounded-md p-1.5 transition-colors ${view === "grid" ? "bg-ink text-paper" : "text-ink-fade hover:text-ink"}`}
               title="Grid View"
             >
               <LayoutGrid className="h-3.5 w-3.5" />
             </button>
             <button
               onClick={() => router.push(buildUrl({ view: "list" }))}
-              className={`p-1.5 transition-all ${view === "list" ? "bg-ink text-paper" : "text-ink-fade hover:text-ink"}`}
+              className={`rounded-md p-1.5 transition-colors ${view === "list" ? "bg-ink text-paper" : "text-ink-fade hover:text-ink"}`}
               title="List View"
             >
               <List className="h-3.5 w-3.5" />

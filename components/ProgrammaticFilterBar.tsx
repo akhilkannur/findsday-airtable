@@ -31,14 +31,14 @@ export function ProgrammaticFilterBar({ categories, baseUrl }: { categories: Cat
   return (
     <div className="border-b border-ink/10 py-6 mb-8">
       <div className="flex flex-col gap-4">
-        <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-ink/40">Filter by Category</p>
+        <p className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-ink/40">Filter by Category</p>
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => handleCategoryChange("")}
-            className={`px-4 py-1.5 font-mono text-[0.7rem] uppercase tracking-widest border transition-all ${
+            className={`rounded-md border px-3.5 py-2 font-mono text-[0.68rem] uppercase tracking-[0.16em] transition-colors ${
               currentCategory === "" 
-                ? "bg-ink text-paper border-ink" 
-                : "bg-transparent border-ink/20 text-ink-fade hover:border-ink hover:text-ink"
+                ? "border-ink bg-ink text-paper" 
+                : "border-ink/10 bg-white text-ink-fade hover:border-ink/20 hover:text-ink"
             }`}
           >
             All
@@ -47,11 +47,11 @@ export function ProgrammaticFilterBar({ categories, baseUrl }: { categories: Cat
             <button
               key={cat.slug}
               onClick={() => handleCategoryChange(cat.slug)}
-              className={`px-4 py-1.5 font-mono text-[0.7rem] uppercase tracking-widest border transition-all ${
+              className={`rounded-md border px-3.5 py-2 font-mono text-[0.68rem] uppercase tracking-[0.16em] transition-colors ${
                 currentCategory === cat.slug 
-                  ? "bg-ink text-paper border-ink" 
-                  : "bg-transparent border-ink/20 text-ink-fade hover:border-ink hover:text-ink"
-              } ${isPending ? "opacity-50 cursor-not-allowed" : ""}`}
+                  ? "border-ink bg-ink text-paper" 
+                  : "border-ink/10 bg-white text-ink-fade hover:border-ink/20 hover:text-ink"
+              } ${isPending ? "cursor-not-allowed opacity-50" : ""}`}
             >
               {cat.name}
             </button>

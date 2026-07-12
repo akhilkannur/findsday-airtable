@@ -56,13 +56,13 @@ export default async function ClaudePluginsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <section className="border-b border-ink px-4 py-12 md:px-8 md:py-16">
+      <section className="border-b border-ink/10 px-4 py-12 md:px-8 md:py-16">
         <div className="layout-container">
-          <div className="mb-5 flex items-center gap-3 font-mono text-[0.7rem] font-bold uppercase tracking-widest text-ink-fade">
+          <div className="mb-5 flex items-center gap-3 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-ink-fade">
             <PlugZap className="h-4 w-4" /> Claude Code Marketplace
           </div>
           <h1 className="type-display mb-4 text-3xl md:mb-6 md:text-5xl lg:text-7xl">Claude Plugins</h1>
-          <p className="max-w-3xl border-l-2 border-ink pl-4 font-serif text-lg italic leading-relaxed text-ink-fade md:pl-6 md:text-xl">
+          <p className="max-w-3xl border-l border-ink/10 pl-4 text-lg leading-relaxed text-ink-fade md:pl-6 md:text-xl">
             Installable plugins and skill packs that turn Claude into a sales, marketing, and RevOps operator. Pick a plugin, open the page, and follow the setup steps.
           </p>
         </div>
@@ -70,26 +70,26 @@ export default async function ClaudePluginsPage() {
 
       <section className="py-8 md:py-12">
         <div className="layout-container">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
             {plugins.map((plugin) => (
               <Link
                 key={plugin.slug}
                 href={getToolHref(plugin)}
                 className="tool-card group flex h-full flex-col"
               >
-                <div className="mb-6 flex items-start justify-between">
-                  <ToolLogo name={plugin.name} websiteUrl={plugin.websiteUrl} />
-                  <span className="font-mono text-[9px] font-bold uppercase tracking-widest border border-ink px-2 py-1">
+                <div className="mb-4 flex items-start justify-between gap-3">
+                  <ToolLogo name={plugin.name} websiteUrl={plugin.websiteUrl} size="sm" />
+                  <span className="rounded-md border border-ink/10 bg-ink/[0.03] px-2 py-1 font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-ink-fade">
                     Claude Plugin
                   </span>
                 </div>
                 <div className="flex-grow">
-                  <h2 className="mb-2 text-xl font-semibold md:text-2xl">{plugin.name}</h2>
-                  <p className="mb-6 line-clamp-3 text-[0.95rem] leading-relaxed text-ink-fade">
+                  <h2 className="mb-2 text-[1rem] font-semibold leading-tight md:text-[1.05rem]">{plugin.name}</h2>
+                  <p className="mb-4 line-clamp-3 text-[0.9rem] leading-relaxed text-ink-fade">
                     {plugin.oneLiner}
                   </p>
                 </div>
-                <div className="flex items-center justify-between border-t border-dashed border-ink/20 pt-4 font-mono text-[0.65rem] font-bold uppercase tracking-wider">
+                <div className="flex items-center justify-between border-t border-ink/10 pt-4 font-mono text-[0.65rem] font-semibold uppercase tracking-[0.16em]">
                   <span>{plugin.hasFreeTier ? "Free" : "Paid"}</span>
                   <span className="flex items-center gap-2">Open details <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" /></span>
                 </div>

@@ -49,8 +49,8 @@ export function GitHubStars({
     return (
       <div className="space-y-8">
         <div className="group border-b border-ink/10 pb-6 md:pb-8">
-          <div className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-widest text-ink-fade mb-2 md:mb-3 group-hover:text-ink transition-colors italic">GitHub Stars</div>
-          <div className="font-mono font-bold text-[0.75rem] md:text-[0.85rem] uppercase tracking-widest flex items-center gap-2">
+          <div className="mb-2 font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.18em] text-ink-fade transition-colors group-hover:text-ink">GitHub Stars</div>
+          <div className="flex items-center gap-2 font-mono text-[0.75rem] font-semibold uppercase tracking-[0.18em] md:text-[0.85rem]">
             <Star className="w-3.5 h-3.5 fill-current text-amber-500" />
             {formatCount(stars)}
           </div>
@@ -60,7 +60,7 @@ export function GitHubStars({
   }
 
   return (
-    <span className="inline-flex items-center gap-1 font-mono text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 border border-ink/20 rounded-full">
+    <span className="inline-flex items-center gap-1 rounded-md border border-ink/10 px-2 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-ink-fade">
       <Star className="w-2.5 h-2.5 fill-current text-amber-500" />
       {formatCount(stars)}
     </span>

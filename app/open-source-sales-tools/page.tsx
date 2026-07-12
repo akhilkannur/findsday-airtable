@@ -1,6 +1,5 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
 import { getOpenSourceTools } from "@/lib/tools"
 import { ToolLogo } from "@/components/ToolLogo"
 import { GitHubStars } from "@/components/GitHubStars"
@@ -40,22 +39,22 @@ function ToolCard({ tool }: { tool: any }) {
   return (
     <Link
       href={`/open-source-sales-tools/${tool.slug}`}
-      className="tool-card group flex flex-col h-full"
+      className="tool-card group flex h-full flex-col"
     >
-      <div className="flex justify-between items-start mb-6">
-        <ToolLogo name={tool.name} websiteUrl={tool.websiteUrl} />
+      <div className="mb-4 flex items-start justify-between gap-3">
+        <ToolLogo name={tool.name} websiteUrl={tool.websiteUrl} size="sm" />
         {tool.mcpReady && <div className="tag-mcp">MCP READY</div>}
       </div>
 
       <div className="flex-grow">
-        <h3 className="text-xl font-semibold mb-2">{tool.name}</h3>
-        <p className="text-[0.9rem] text-ink-fade leading-relaxed line-clamp-3 mb-4">
+        <h3 className="mb-2 text-[1rem] font-semibold leading-tight">{tool.name}</h3>
+        <p className="mb-4 line-clamp-3 text-[0.9rem] leading-relaxed text-ink-fade">
           {tool.oneLiner}
         </p>
       </div>
 
-      <div className="mt-auto flex flex-wrap gap-2 items-center border-t border-dashed border-black/10 pt-4">
-        <span className="font-mono text-[0.7rem] uppercase tracking-wider text-ink-fade group-hover:text-black transition-colors">
+      <div className="mt-auto flex flex-wrap items-center gap-2 border-t border-ink/10 pt-4">
+        <span className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-ink-fade transition-colors group-hover:text-ink">
           {tool.category}
         </span>
         {tool.githubUrl && <GitHubStars githubUrl={tool.githubUrl} githubStars={tool.githubStars} />}
@@ -68,11 +67,11 @@ export default async function OpenSourcePage() {
   const tools = await getOpenSourceTools()
 
   return (
-    <div className="flex flex-col min-h-screen bg-paper">
-      <section className="px-4 md:px-8 py-12 md:py-16 border-b border-ink">
+    <div className="flex min-h-screen flex-col bg-paper">
+      <section className="border-b border-ink/10 px-4 py-12 md:px-8 md:py-16">
         <div className="layout-container">
-          <h1 className="type-display mb-4 md:mb-6 text-3xl md:text-5xl lg:text-7xl">Open Source</h1>
-          <p className="max-w-2xl font-serif italic text-lg md:text-xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
+          <h1 className="type-display mb-4 text-3xl md:mb-6 md:text-5xl lg:text-7xl">Open Source</h1>
+          <p className="max-w-2xl border-l border-ink/10 pl-4 text-lg leading-relaxed text-ink-fade md:pl-6 md:text-xl">
             Sales tools you can self-host, fork, and inspect. Build your AI sales stack on transparent, open-source foundations.
           </p>
 
@@ -83,12 +82,12 @@ export default async function OpenSourcePage() {
       <section className="py-8 md:py-12">
         <div className="layout-container">
           {tools.length < 5 && (
-            <div className="mb-8 md:mb-12 p-6 md:p-8 border border-dashed border-ink/30 bg-paper-dark/20">
-              <p className="font-serif italic text-base md:text-lg text-ink-fade">
+            <div className="mb-8 rounded-xl border border-ink/10 bg-white p-6 md:mb-12 md:p-8">
+              <p className="text-base leading-relaxed text-ink-fade md:text-lg">
                 We&apos;re still building out this collection.{" "}
                 <Link
                   href="/submit"
-                  className="underline hover:line-through transition-all text-ink"
+                  className="text-ink underline decoration-ink/30 underline-offset-4 transition-colors hover:decoration-ink/60"
                 >
                   Submit an open-source tool
                 </Link>{" "}
@@ -97,38 +96,38 @@ export default async function OpenSourcePage() {
             </div>
           )}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-12">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {tools.map((tool) => (
               <ToolCard key={tool.slug} tool={tool} />
             ))}
           </div>
 
           {tools.length === 0 && (
-            <div className="text-center py-20 md:py-32 opacity-60 font-serif italic text-xl md:text-2xl">
+            <div className="py-20 text-center opacity-60 text-xl md:py-32 md:text-2xl">
               No open-source tools indexed yet.
             </div>
           )}
         </div>
       </section>
 
-      <section className="py-12 md:py-24 bg-paper-dark/50 border-t border-ink">
+      <section className="border-t border-ink/10 bg-white/45 py-12 md:py-24">
         <div className="layout-container">
-          <div className="flex flex-wrap gap-4 md:gap-6 pt-8 border-t border-dashed border-ink/20">
+          <div className="flex flex-wrap gap-3 border-t border-ink/10 pt-8 md:gap-4">
             <Link
               href="/api"
-              className="font-mono text-[0.75rem] uppercase underline hover:line-through transition-all"
+              className="rounded-md border border-ink/10 bg-white px-3 py-2 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-ink-fade transition-colors hover:text-ink"
             >
               All Tools
             </Link>
             <Link
               href="/mcp"
-              className="font-mono text-[0.75rem] uppercase underline hover:line-through transition-all"
+              className="rounded-md border border-ink/10 bg-white px-3 py-2 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-ink-fade transition-colors hover:text-ink"
             >
               MCP Servers
             </Link>
             <Link
               href="/submit"
-              className="font-mono text-[0.75rem] uppercase underline hover:line-through transition-all"
+              className="rounded-md border border-ink/10 bg-white px-3 py-2 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-ink-fade transition-colors hover:text-ink"
             >
               Submit a Tool
             </Link>

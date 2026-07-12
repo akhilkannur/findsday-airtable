@@ -209,58 +209,58 @@ export default async function RootLayout({
               <div className="flex flex-col gap-4">
                 <h4 className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-ink/50">Outcomes</h4>
                 <div className="flex flex-col gap-2 font-mono text-[0.72rem] uppercase tracking-[0.16em]">
-                  <Link href="/categories/sales-intelligence" className="hover:line-through">Lead Enrichment</Link>
-                  <Link href="/categories/sales-engagement" className="hover:line-through">Outreach Automation</Link>
-                  <Link href="/categories/phone-and-dialers" className="hover:line-through">AI Voice Agents</Link>
-                  <Link href="/categories/revenue-intelligence" className="hover:line-through">Meeting Recording</Link>
-                  <Link href="/credit-audit" className="hover:line-through font-bold">Credit Policy Guide</Link>
-                  <Link href="/free-sales-apis" className="hover:line-through text-ink font-bold">Free Sales APIs</Link>
+                  <Link href="/categories/sales-intelligence" className="transition-colors hover:text-ink">Lead Enrichment</Link>
+                  <Link href="/categories/sales-engagement" className="transition-colors hover:text-ink">Outreach Automation</Link>
+                  <Link href="/categories/phone-and-dialers" className="transition-colors hover:text-ink">AI Voice Agents</Link>
+                  <Link href="/categories/revenue-intelligence" className="transition-colors hover:text-ink">Meeting Recording</Link>
+                  <Link href="/credit-audit" className="font-semibold transition-colors hover:text-ink">Credit Policy Guide</Link>
+                  <Link href="/free-sales-apis" className="font-semibold text-ink transition-colors hover:text-ink">Free Sales APIs</Link>
                 </div>
               </div>
 
               <div className="flex flex-col gap-4">
                 <h4 className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-ink/50">Alternatives</h4>
                 <div className="flex flex-col gap-2 font-mono text-[0.72rem] uppercase tracking-[0.16em]">
-                  <Link href="/alternative-to/hubspot" className="hover:line-through">HubSpot</Link>
-                  <Link href="/alternative-to/salesforce" className="hover:line-through">Salesforce</Link>
-                  <Link href="/alternative-to/apollo" className="hover:line-through">Apollo</Link>
-                  <Link href="/alternative-to/zoominfo" className="hover:line-through">ZoomInfo</Link>
-                  <Link href="/alternative-to/clearbit" className="hover:line-through">Clearbit</Link>
+                  <Link href="/alternative-to/hubspot" className="transition-colors hover:text-ink">HubSpot</Link>
+                  <Link href="/alternative-to/salesforce" className="transition-colors hover:text-ink">Salesforce</Link>
+                  <Link href="/alternative-to/apollo" className="transition-colors hover:text-ink">Apollo</Link>
+                  <Link href="/alternative-to/zoominfo" className="transition-colors hover:text-ink">ZoomInfo</Link>
+                  <Link href="/alternative-to/clearbit" className="transition-colors hover:text-ink">Clearbit</Link>
                 </div>
               </div>
 
               <div className="flex flex-col gap-4">
                 <h4 className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-ink/50">Auth Types</h4>
                 <div className="flex flex-col gap-2 font-mono text-[0.72rem] uppercase tracking-[0.16em]">
-                  <Link href="/auth/api-key" className="hover:line-through">API Key</Link>
-                  <Link href="/auth/oauth2" className="hover:line-through">OAuth2</Link>
-                  <Link href="/auth/bearer-token" className="hover:line-through">Bearer Token</Link>
-                  <Link href="/auth/basic-auth" className="hover:line-through">Basic Auth</Link>
+                  <Link href="/auth/api-key" className="transition-colors hover:text-ink">API Key</Link>
+                  <Link href="/auth/oauth2" className="transition-colors hover:text-ink">OAuth2</Link>
+                  <Link href="/auth/bearer-token" className="transition-colors hover:text-ink">Bearer Token</Link>
+                  <Link href="/auth/basic-auth" className="transition-colors hover:text-ink">Basic Auth</Link>
                 </div>
               </div>
 
               <div className="flex flex-col gap-4">
                 <h4 className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-ink/50">Developer SDKs</h4>
                 <div className="flex flex-col gap-2 font-mono text-[0.72rem] uppercase tracking-[0.16em]">
-                  <Link href="/sdk/python" className="hover:line-through">Python</Link>
-                  <Link href="/sdk/node.js" className="hover:line-through">Node.js</Link>
-                  <Link href="/sdk/ruby" className="hover:line-through">Ruby</Link>
-                  <Link href="/sdk/php" className="hover:line-through">PHP</Link>
-                  <Link href="/sdk/go" className="hover:line-through">Go</Link>
+                  <Link href="/sdk/python" className="transition-colors hover:text-ink">Python</Link>
+                  <Link href="/sdk/node.js" className="transition-colors hover:text-ink">Node.js</Link>
+                  <Link href="/sdk/ruby" className="transition-colors hover:text-ink">Ruby</Link>
+                  <Link href="/sdk/php" className="transition-colors hover:text-ink">PHP</Link>
+                  <Link href="/sdk/go" className="transition-colors hover:text-ink">Go</Link>
                 </div>
               </div>
             </div>
 
             <div className="flex flex-col items-center gap-10 text-center">
               <div className="flex w-full max-w-2xl flex-wrap justify-center gap-x-8 gap-y-4 border-b border-ink/10 pb-8 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-ink/75">
-                <Link href="/categories" className="hover:line-through">Categories</Link>
-                <Link href="/guides" className="hover:line-through">Guides</Link>
-                <Link href="/for" className="hover:line-through">Use Cases</Link>
-                <Link href="/monitoring" className="hover:line-through">Monitoring</Link>
-                <Link href="/about" className="hover:line-through">About</Link>
-                <Link href="/privacy" className="hover:line-through">Privacy</Link>
-                <Link href="/rss.xml" className="hover:line-through">RSS Feed</Link>
-                <Link href="/submit" className="hover:line-through">Submit Tool</Link>
+                <Link href="/categories" className="transition-colors hover:text-ink">Categories</Link>
+                <Link href="/guides" className="transition-colors hover:text-ink">Guides</Link>
+                <Link href="/for" className="transition-colors hover:text-ink">Use Cases</Link>
+                <Link href="/monitoring" className="transition-colors hover:text-ink">Monitoring</Link>
+                <Link href="/about" className="transition-colors hover:text-ink">About</Link>
+                <Link href="/privacy" className="transition-colors hover:text-ink">Privacy</Link>
+                <Link href="/rss.xml" className="transition-colors hover:text-ink">RSS Feed</Link>
+                <Link href="/submit" className="transition-colors hover:text-ink">Submit Tool</Link>
               </div>
 
               <div className="panel flex flex-wrap items-center justify-center gap-4 px-6 py-5 font-mono text-[0.78rem] uppercase tracking-[0.16em]">

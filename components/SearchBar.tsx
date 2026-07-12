@@ -18,20 +18,20 @@ export function SearchBar() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="relative w-full group py-8">
-      <div className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center gap-3 pointer-events-none">
-        <Search className="h-5 w-5 text-black opacity-40 group-focus-within:opacity-100 transition-all" />
+    <form onSubmit={handleSubmit} className="panel relative w-full group px-4 py-3">
+      <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-3 pointer-events-none">
+        <Search className="h-5 w-5 text-ink-fade transition-colors group-focus-within:text-ink" />
       </div>
       <input
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Search tools..."
-        className="w-full bg-transparent border-b-2 border-ink py-4 pl-12 pr-10 text-[1.2rem] font-serif italic text-black placeholder-black/20 transition-all focus:outline-none focus:bg-white/40"
+        className="w-full bg-transparent py-2 pl-12 pr-10 text-[1rem] font-medium text-ink placeholder:text-ink-fade/45 focus:outline-none"
       />
       <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden md:flex items-center gap-2 opacity-40 group-focus-within:opacity-100 transition-opacity">
-        <span className="font-mono text-[0.7rem] uppercase tracking-widest text-black">Press Enter</span>
-        <div className="w-1.5 h-1.5 bg-black rounded-full animate-status-blink"></div>
+        <span className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-ink-fade">Press Enter</span>
+        <div className="h-1.5 w-1.5 rounded-full bg-ink animate-status-blink"></div>
       </div>
     </form>
   )

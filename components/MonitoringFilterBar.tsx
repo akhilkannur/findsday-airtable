@@ -13,37 +13,37 @@ export function MonitoringFilterBar({ tools }: { tools: { slug: string; name: st
 
   return (
     <>
-      <div className="border-b border-ink bg-paper-dark/20 py-4">
+      <div className="border-b border-ink/10 bg-white/50 py-4">
         <div className="layout-container flex items-center gap-4">
-          <div className="relative flex-1 max-w-md">
+          <div className="panel relative flex-1 max-w-md">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-ink-fade" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search monitored tools..."
-              className="w-full bg-transparent border border-ink/20 py-2 pl-9 pr-3 font-mono text-[0.75rem] placeholder-ink-fade/50 focus:outline-none focus:border-ink transition-all"
+              className="w-full bg-transparent py-3 pl-9 pr-3 font-mono text-[0.72rem] uppercase tracking-[0.12em] placeholder:text-ink-fade/45 focus:outline-none"
             />
           </div>
-          <span className="font-mono text-[0.7rem] text-ink-fade uppercase tracking-widest">
+          <span className="font-mono text-[0.68rem] text-ink-fade uppercase tracking-[0.16em]">
             {filtered.length} tools
           </span>
         </div>
       </div>
 
-      <section className="px-8 py-16">
+      <section className="px-4 py-12 md:px-8 md:py-16">
         <div className="layout-container">
           {filtered.length === 0 ? (
-            <p className="text-ink-fade font-serif italic text-lg">No tools match your search.</p>
+            <p className="text-lg text-ink-fade">No tools match your search.</p>
           ) : (
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-4 lg:grid-cols-6">
               {filtered.map((tool) => (
                 <div
                   key={tool.slug}
-                  className="flex items-center gap-3 p-4 bg-paper-dark/40 border border-ink/10 hover:border-ink/30 transition-colors"
+                  className="flex items-center gap-3 rounded-xl border border-ink/10 bg-white p-4 transition-colors hover:border-ink/20"
                 >
                   <ToolLogo name={tool.name} websiteUrl={tool.websiteUrl} size="sm" />
-                  <span className="font-medium text-sm">{tool.name}</span>
+                  <span className="text-sm font-medium leading-tight">{tool.name}</span>
                 </div>
               ))}
             </div>
