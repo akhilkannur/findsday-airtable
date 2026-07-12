@@ -237,6 +237,23 @@ export default async function ToolDetailPage({
     : hasPublicApi
           ? "Give docs to Claude"
           : "No connection found"
+  const connectionAction = isClaudePlugin
+    ? setupUrl
+      ? { url: setupUrl, label: "Open setup guide" }
+      : null
+    : mcpConfig
+      ? typedTool.docsUrl
+        ? { url: typedTool.docsUrl, label: "Open API docs" }
+        : null
+    : mcpIntegration
+      ? integrationSetupUrl
+        ? { url: integrationSetupUrl, label: "Open MCP setup guide" }
+        : null
+    : hasPublicApi
+      ? typedTool.docsUrl
+        ? { url: typedTool.docsUrl, label: "Open API docs" }
+        : null
+      : null
   const readinessDescription = isClaudePlugin
     ? "Open the installation guide, add the plugin to Claude Code, then use the starter prompt below."
     : mcpConfig
@@ -398,9 +415,16 @@ export default async function ToolDetailPage({
                 <span className={`h-2.5 w-2.5 rounded-full ${hasPublicApi || hasMcp || hasAgentSetup ? "bg-lime-300" : "bg-amber-300"}`} />
                 <span className="font-mono text-xs font-bold uppercase tracking-widest">{readiness}</span>
               </div>
-              <p className="max-w-2xl font-serif text-xl leading-relaxed text-paper/75 md:text-2xl">
-                {readinessDescription}
-              </p>
+              {connectionAction && (
+                <a
+                  href={connectionAction.url}
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
+                  className="inline-flex items-center gap-2 border border-paper/30 px-4 py-2.5 font-mono text-xs font-bold uppercase tracking-wider text-paper transition-colors hover:bg-paper hover:text-ink"
+                >
+                  {connectionAction.label} <ExternalLink className="h-3.5 w-3.5" />
+                </a>
+              )}
             </div>
           </section>
 
