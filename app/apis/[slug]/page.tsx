@@ -208,49 +208,77 @@ export default async function ToolDetailPage({
     .map(({ tool }) => tool)
 
   const mcpIntegration = typedTool.integrations.find(i => i.platform === "MCP")
+  const claudeSkillIntegration = typedTool.integrations.find(i => i.platform === "Claude Skill")
+  const setupIntegration = isClaudePlugin
+    ? mcpIntegration || claudeSkillIntegration
+    : mcpIntegration
   const mcpConfig = mcpIntegration?.mcpConfig
-  const apiStatus = typedTool.hasPublicApi === false
+  const apiStatus = isClaudePlugin || typedTool.hasPublicApi === false
     ? "unavailable"
     : typedTool.hasPublicApi === true || Boolean(typedTool.docsUrl)
       ? "available"
       : "unknown"
   const hasPublicApi = apiStatus === "available"
   const hasMcp = Boolean(typedTool.mcpReady || mcpIntegration)
-  const mcpSetupUrl = mcpIntegration?.url
-  const setupUrl = mcpSetupUrl || typedTool.docsUrl
+  const integrationSetupUrl = setupIntegration?.url
+  const setupUrl = integrationSetupUrl || typedTool.docsUrl
   const primaryUrl = setupUrl || typedTool.websiteUrl
-  const primaryLabel = mcpIntegration?.url
+  const primaryLabel = isClaudePlugin
+    ? "Open plugin setup"
+    : mcpIntegration?.url
     ? "Connect to an agent"
     : hasPublicApi
       ? "Open API docs"
       : "Visit website"
-  const readiness = mcpConfig
-    ? "Plug & play"
+  const readiness = isClaudePlugin
+    ? "Install in Claude"
+    : mcpConfig
+    ? "Paste the config"
+    : mcpIntegration
+      ? "Follow MCP setup"
+      : hasMcp
+        ? "Setup guide missing"
     : hasPublicApi
-      ? "API ready"
-      : "Not available"
-  const readinessDescription = mcpConfig
-    ? "A ready-to-copy MCP configuration is available below."
+          ? "Give docs to Claude"
+          : "No connection found"
+  const readinessDescription = isClaudePlugin
+    ? "Open the installation guide, add the plugin to Claude Code, then use the starter prompt below."
+    : mcpConfig
+    ? "Copy the configuration below into Claude Code or your AI client, then connect your account."
+    : mcpIntegration
+      ? "Open the provider’s MCP guide, follow its authentication steps, then use the starter prompt below."
+      : hasMcp
+        ? "The tool claims MCP support, but we have not found a specific setup guide yet."
     : hasPublicApi
-      ? "Give a coding agent the API docs and it can connect."
-      : "No public API or MCP integration is listed."
+          ? "Share the API documentation link with Claude Code and ask it to build the connection—you do not need to write the code yourself."
+          : "We have not found a public API, MCP server, or plugin that an AI agent can connect to."
+  const hasAgentSetup = Boolean(setupIntegration || mcpConfig)
+  const pluginFormat = mcpIntegration ? "MCP plugin" : claudeSkillIntegration ? "Claude skill" : "Claude plugin"
   const uniqueCapabilities = typedTool.aiCapabilities.filter(
     (capability, index, capabilities) =>
       capabilities.findIndex(candidate => candidate.toLowerCase() === capability.toLowerCase()) === index,
   )
-  const facts = [
-    { label: "Public API", value: hasPublicApi ? "Available" : apiStatus === "unknown" ? "Not verified" : "Not available" },
-    { label: "MCP", value: mcpIntegration?.label || (typedTool.mcpReady ? "Available" : "Not available") },
-    { label: "Authentication", value: hasPublicApi ? (typedTool.authMethod.join(" / ") || "Not listed") : hasMcp ? "See integration setup" : "Not applicable" },
-    { label: "API type", value: hasPublicApi ? (typedTool.apiType.join(" / ") || "Not listed") : "Not applicable" },
-    { label: "Free tier", value: typedTool.hasFreeTier ? "Available" : "No free tier listed" },
-    { label: "Webhooks", value: typedTool.hasWebhooks ? "Supported" : "Not listed" },
-    { label: "SDKs", value: hasPublicApi ? (typedTool.sdkLanguages.join(", ") || "None listed") : "Not applicable" },
-  ]
-  const setupSteps = mcpSetupUrl
+  const facts = isClaudePlugin
     ? [
-        ["01", "Open the integration", mcpIntegration?.label || "Use the provider’s MCP documentation to begin."],
-        ["02", "Authenticate", "Complete the integration’s authentication flow."],
+        { label: "Format", value: pluginFormat },
+        { label: "Installation", value: integrationSetupUrl ? "Setup available" : "See documentation" },
+        { label: "MCP", value: mcpIntegration?.label || (typedTool.mcpReady ? "Available" : "Not required") },
+        { label: "Authentication", value: typedTool.authMethod.join(" / ") || "See plugin setup" },
+        { label: "Free tier", value: typedTool.hasFreeTier ? "Available" : "No free tier listed" },
+      ]
+    : [
+        { label: "Public API", value: hasPublicApi ? "Available" : apiStatus === "unknown" ? "Not verified" : "Not available" },
+        { label: "MCP", value: mcpIntegration?.label || (typedTool.mcpReady ? "Available" : "Not available") },
+        { label: "Authentication", value: hasPublicApi ? (typedTool.authMethod.join(" / ") || "Not listed") : hasMcp ? "See integration setup" : "Not applicable" },
+        { label: "API type", value: hasPublicApi ? (typedTool.apiType.join(" / ") || "Not listed") : "Not applicable" },
+        { label: "Free tier", value: typedTool.hasFreeTier ? "Available" : "No free tier listed" },
+        { label: "Webhooks", value: typedTool.hasWebhooks ? "Supported" : "Not listed" },
+        { label: "SDKs", value: hasPublicApi ? (typedTool.sdkLanguages.join(", ") || "None listed") : "Not applicable" },
+      ]
+  const setupSteps = integrationSetupUrl
+    ? [
+        ["01", isClaudePlugin ? "Open the plugin setup" : "Open the integration", setupIntegration?.label || "Use the provider’s setup documentation to begin."],
+        ["02", isClaudePlugin ? "Install and connect" : "Authenticate", isClaudePlugin ? "Follow the installation instructions and connect any services the plugin needs." : "Complete the integration’s authentication flow."],
         ["03", "Give your agent a task", "Copy the starter prompt below and adjust it for your workflow."],
       ]
     : hasPublicApi
@@ -325,12 +353,19 @@ export default async function ToolDetailPage({
 
       <section className="border-b border-ink">
         <div className="layout-container grid grid-cols-2 md:grid-cols-4">
-          {[
-            ["Agent setup", readiness],
-            ["Public API", hasPublicApi ? "Available" : apiStatus === "unknown" ? "Not verified" : "Not available"],
-            ["MCP", hasMcp ? "Available" : "Not available"],
-            ["Free tier", typedTool.hasFreeTier ? "Available" : "No free tier listed"],
-          ].map(([label, value], index) => (
+          {(isClaudePlugin
+            ? [
+                ["Connect with AI", readiness],
+                ["Format", pluginFormat],
+                ["Installation", integrationSetupUrl ? "Setup available" : "See documentation"],
+                ["Free tier", typedTool.hasFreeTier ? "Available" : "No free tier listed"],
+              ]
+            : [
+                ["Connect with AI", readiness],
+                ["Public API", hasPublicApi ? "Available" : apiStatus === "unknown" ? "Not verified" : "Not available"],
+                ["MCP", hasMcp ? "Available" : "Not available"],
+                ["Free tier", typedTool.hasFreeTier ? "Available" : "No free tier listed"],
+              ]).map(([label, value], index) => (
             <div
               key={label}
               className={`p-5 md:p-7 ${index < 3 ? "border-r border-ink" : ""} ${index === 1 ? "max-md:border-r-0" : ""} ${index > 1 ? "max-md:border-t" : ""}`}
@@ -347,11 +382,11 @@ export default async function ToolDetailPage({
           <section>
             <div className="mb-7 flex items-center gap-4">
               <Zap className="h-5 w-5" />
-              <h2 className="font-mono text-sm font-bold uppercase tracking-widest">Agent readiness</h2>
+              <h2 className="font-mono text-sm font-bold uppercase tracking-widest">How to connect</h2>
             </div>
             <div className="border border-ink bg-ink p-7 text-paper md:p-9">
               <div className="mb-3 flex items-center gap-3">
-                <span className={`h-2.5 w-2.5 rounded-full ${hasPublicApi || hasMcp ? "bg-lime-300" : "bg-amber-300"}`} />
+                <span className={`h-2.5 w-2.5 rounded-full ${hasPublicApi || hasMcp || hasAgentSetup ? "bg-lime-300" : "bg-amber-300"}`} />
                 <span className="font-mono text-xs font-bold uppercase tracking-widest">{readiness}</span>
               </div>
               <p className="max-w-2xl font-serif text-xl leading-relaxed text-paper/75 md:text-2xl">
@@ -401,7 +436,7 @@ export default async function ToolDetailPage({
                   rel="nofollow noopener noreferrer"
                   className="mt-5 inline-flex items-center gap-2 border-b border-ink pb-1 font-mono text-xs font-bold uppercase tracking-wider"
                 >
-                  {mcpSetupUrl ? "Open integration setup" : "Open API documentation"}
+                  {isClaudePlugin ? "Open plugin setup" : integrationSetupUrl ? "Open integration setup" : "Open API documentation"}
                   <ExternalLink className="h-3.5 w-3.5" />
                 </a>
               </>
@@ -486,10 +521,11 @@ export default async function ToolDetailPage({
               <h2 className="font-mono text-xs font-bold uppercase tracking-widest">Before you start</h2>
             </div>
             <ul className="space-y-4 text-base leading-relaxed text-ink-fade">
-              {!mcpConfig && mcpSetupUrl && <li>• Follow the linked integration instructions to complete MCP setup.</li>}
-              {!mcpSetupUrl && hasMcp && <li>• No specific MCP setup link is currently listed.</li>}
+              {isClaudePlugin && <li>• Follow the linked installation instructions before using the starter prompt.</li>}
+              {!isClaudePlugin && !mcpConfig && integrationSetupUrl && <li>• Follow the linked integration instructions to complete MCP setup.</li>}
+              {!isClaudePlugin && !integrationSetupUrl && hasMcp && <li>• No specific MCP setup link is currently listed.</li>}
               {hasPublicApi && <li>• Authentication uses {typedTool.authMethod.join(" or ") || "provider credentials"}.</li>}
-              <li>• {typedTool.hasWebhooks ? "Webhooks are available for event-driven workflows." : "No webhook support is listed."}</li>
+              {!isClaudePlugin && <li>• {typedTool.hasWebhooks ? "Webhooks are available for event-driven workflows." : "No webhook support is listed."}</li>}
               <li>• Features and limits may depend on your provider plan.</li>
             </ul>
           </section>
