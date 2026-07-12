@@ -1,4 +1,4 @@
-import { getToolsByAlternativeTo, getAllTools } from "@/lib/tools"
+import { getToolsByAlternativeTo, getAllTools, getToolHref } from "@/lib/tools"
 import Link from "next/link"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
@@ -120,7 +120,7 @@ export default async function AlternativeToPage({ params }: { params: Promise<{ 
             {tools.map((t) => (
               <Link
                 key={t.slug}
-                href={`/apis/${t.slug}`}
+                href={getToolHref(t)}
                 className="tool-card group flex flex-col h-full"
               >
                 <div className="flex justify-between items-start mb-6">

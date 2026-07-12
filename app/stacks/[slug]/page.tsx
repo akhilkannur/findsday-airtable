@@ -5,6 +5,7 @@ import type { Metadata } from "next"
 import { getStackBySlug, getStackSlugs, getToolsForStack } from "@/lib/stacks"
 import type { SalesTool } from "@/lib/types"
 import { ToolLogo } from "@/components/ToolLogo"
+import { getToolHref } from "@/lib/tools"
 import { ArrowRight } from "lucide-react"
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
 
@@ -53,7 +54,7 @@ export async function generateMetadata({
 function ToolCard({ tool }: { tool: SalesTool }) {
   return (
     <Link
-      href={`/apis/${tool.slug}`}
+      href={getToolHref(tool)}
       className="tool-card group flex flex-col h-full"
     >
       <div className="flex justify-between items-start mb-6">
@@ -182,10 +183,10 @@ export default async function StackDetailPage({
                         <div className="flex items-center gap-4 pt-4">
                           <ArrowRight className="h-5 w-5 text-ink-fade" />
                           <Link
-                            href={`/apis/${tool.slug}`}
+                            href={getToolHref(tool)}
                             className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase underline underline-offset-4 transition-colors hover:text-ink-fade"
                           >
-                            Explore {tool.name} API &rarr;
+                            Explore {tool.name} &rarr;
                           </Link>
                         </div>
                       )}
@@ -215,7 +216,7 @@ export default async function StackDetailPage({
                       </h3>
                       {tool && (
                         <Link
-                          href={`/apis/${tool.slug}`}
+                          href={getToolHref(tool)}
                           className="inline-block font-mono text-[0.7rem] md:text-[0.75rem] uppercase underline underline-offset-4 transition-colors hover:text-ink-fade mb-3 md:mb-4"
                         >
                           {tool.name} →

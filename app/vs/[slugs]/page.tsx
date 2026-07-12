@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
-import { getToolsForComparison, getAllSlugs } from "@/lib/tools"
+import { getToolsForComparison, getAllSlugs, getToolHref } from "@/lib/tools"
 import { Zap, Check, X, ArrowRight } from "lucide-react"
 import { ToolLogo } from "@/components/ToolLogo"
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd"
@@ -248,8 +248,8 @@ export default async function ComparisonPage({ params }: Props) {
         <div className="layout-container">
           <h2 className="text-3xl mb-12">Ready to pick your tool?</h2>
           <div className="flex flex-col md:flex-row gap-12 justify-center items-center">
-            <Link href={`/apis/${tool1.slug}`} className="font-mono font-bold uppercase underline hover:text-ink-fade transition-colors">View {tool1.name}</Link>
-            <Link href={`/apis/${tool2.slug}`} className="font-mono font-bold uppercase underline hover:text-ink-fade transition-colors">View {tool2.name}</Link>
+            <Link href={getToolHref(tool1)} className="font-mono font-bold uppercase underline hover:text-ink-fade transition-colors">View {tool1.name}</Link>
+            <Link href={getToolHref(tool2)} className="font-mono font-bold uppercase underline hover:text-ink-fade transition-colors">View {tool2.name}</Link>
             <Link href="/api" className="circled font-mono font-bold uppercase px-8 py-3">Browse All Tools</Link>
           </div>
         </div>

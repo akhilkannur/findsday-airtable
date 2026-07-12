@@ -2,7 +2,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { getSkillBySlug, getSkillSlugs } from "@/lib/skills"
-import { getToolBySlug } from "@/lib/tools"
+import { getToolBySlug, getToolHref } from "@/lib/tools"
 import { ToolLogo } from "@/components/ToolLogo"
 import { CopyButton } from "@/components/ui/CopyButton"
 import { ArrowRight } from "lucide-react"
@@ -220,7 +220,7 @@ export default async function SkillDetailPage({
                 {linkedTools.map((tool) => (
                   <Link
                     key={tool!.slug}
-                    href={`/apis/${tool!.slug}`}
+                    href={getToolHref(tool!)}
                     className="tool-card group flex flex-col h-full"
                   >
                     <div className="flex justify-between items-start mb-4 md:mb-6">

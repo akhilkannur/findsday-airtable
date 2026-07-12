@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { ArrowRight, Zap, Brain, Check } from "lucide-react"
 import { ToolLogo } from "@/components/ToolLogo"
-import { getMcpTools } from "@/lib/tools"
+import { getMcpTools, getToolHref } from "@/lib/tools"
 import type { Metadata } from "next"
 
 export async function generateMetadata({ searchParams }: { searchParams: Promise<{ official?: string }> }): Promise<Metadata> {
@@ -48,7 +48,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
 function ToolCard({ tool }: { tool: any }) {
   return (
     <Link
-      href={`/apis/${tool.slug}`}
+      href={getToolHref(tool)}
       className="tool-card group flex flex-col h-full"
     >
       <div className="flex justify-between items-start mb-6">

@@ -1,4 +1,4 @@
-import { getFreeTierTools, getAllCategories } from "@/lib/tools"
+import { getFreeTierTools, getAllCategories, getToolHref } from "@/lib/tools"
 import Link from "next/link"
 import type { Metadata } from "next"
 import { ProgrammaticFilterBar } from "@/components/ProgrammaticFilterBar"
@@ -81,7 +81,7 @@ export default async function FreeTierPage({
               {tools.map((t) => (
                 <Link
                   key={t.slug}
-                  href={`/apis/${t.slug}`}
+                  href={getToolHref(t)}
                   className="tool-card group flex flex-col h-full"
                 >
                   <div className="flex justify-between items-start mb-6">

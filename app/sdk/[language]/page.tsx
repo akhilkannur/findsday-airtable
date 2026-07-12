@@ -1,4 +1,4 @@
-import { getToolsBySdkLanguage, getAllSdkLanguages, getAllCategories } from "@/lib/tools"
+import { getToolsBySdkLanguage, getAllSdkLanguages, getAllCategories, getToolHref } from "@/lib/tools"
 import Link from "next/link"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
@@ -133,7 +133,7 @@ export default async function SdkLanguagePage({
               {tools.map((tool) => (
                 <Link
                   key={tool.slug}
-                  href={`/apis/${tool.slug}`}
+                  href={getToolHref(tool)}
                   className="tool-card group flex flex-col h-full"
                 >
                   <div className="flex justify-between items-start mb-6">

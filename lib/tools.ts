@@ -41,7 +41,7 @@ export async function getClaudePlugins(): Promise<SalesTool[]> {
 }
 
 export async function getAllApiTools(): Promise<SalesTool[]> {
-  return (await getAllTools()).filter((tool) => tool.category !== "Claude Plugins")
+  return (await getAllTools()).filter((tool) => tool.category !== "Claude Plugins" && !tool.isOpenSource)
 }
 
 export async function getToolsByCategory(category: ToolCategory): Promise<SalesTool[]> {
@@ -49,7 +49,7 @@ export async function getToolsByCategory(category: ToolCategory): Promise<SalesT
 }
 
 export async function getMcpTools(): Promise<SalesTool[]> {
-  return tools.filter((t) => t.docsUrl && t.docsUrl !== "" && t.mcpReady)
+  return tools.filter((t) => t.docsUrl && t.docsUrl !== "" && t.mcpReady && !t.isOpenSource)
 }
 
 export async function getToolsWithIntegrations(): Promise<SalesTool[]> {
@@ -297,7 +297,7 @@ export async function filterTools(options: {
   officialOnly?: boolean
 }): Promise<SalesTool[]> {
   let filtered = tools.filter(
-    (t) => t.docsUrl && t.docsUrl !== "" && t.category !== "Claude Plugins"
+    (t) => t.docsUrl && t.docsUrl !== "" && t.category !== "Claude Plugins" && !t.isOpenSource
   )
 
   if (options.category && options.category !== "All") {
