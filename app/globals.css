@@ -81,7 +81,7 @@ h1, h2, h3, h4 {
   }
 
   .tag-mcp {
-    @apply inline-flex items-center rounded-md border border-emerald-700/15 bg-emerald-500/8 px-2 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-emerald-800;
+    @apply inline-flex items-center rounded-md border border-emerald-700/15 bg-emerald-500/10 px-2 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-emerald-800;
   }
 
   .type-display {
