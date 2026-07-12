@@ -9,9 +9,9 @@ interface ToolLogoProps {
 }
 
 const sizeClasses = {
-  sm: "w-8 h-8 text-sm",
-  md: "w-12 h-12 text-xl",
-  lg: "w-16 h-16 md:w-24 md:h-24 text-3xl md:text-5xl",
+  sm: "h-8 w-8 text-sm",
+  md: "h-12 w-12 text-xl",
+  lg: "h-16 w-16 md:h-24 md:w-24 text-3xl md:text-5xl",
 }
 
 function getDomain(url: string): string {
@@ -29,18 +29,18 @@ export function ToolLogo({ name, websiteUrl, size = "md" }: ToolLogoProps) {
 
   if (failed || !domain) {
     return (
-      <div className={`${classes} bg-ink text-paper flex items-center justify-center font-serif font-bold [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]`}>
+      <div className={`${classes} flex items-center justify-center rounded-xl border border-ink/10 bg-ink text-paper font-mono font-semibold`}>
         {name.charAt(0)}
       </div>
     )
   }
 
   return (
-    <div className={`${classes} flex items-center justify-center overflow-hidden`}>
+    <div className={`${classes} overflow-hidden rounded-xl border border-ink/10 bg-white`}>
       <img
         src={`https://img.logo.dev/${domain}?token=pk_cI8SBpmJQJG67HoLPuFNgw&size=64&format=png`}
         alt={`${name} logo`}
-        className="w-full h-full object-contain"
+        className="h-full w-full object-contain p-1"
         onError={() => setFailed(true)}
         loading="lazy"
       />

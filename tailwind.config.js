@@ -2,20 +2,20 @@
 module.exports = {
   content: ["./app/**/*.{js,ts,jsx,tsx,mdx}", "./pages/**/*.{js,ts,jsx,tsx,mdx}", "./components/**/*.{js,ts,jsx,tsx,mdx}", "*.{js,ts,jsx,tsx,mdx}"],
   theme: {
-          extend: {
+      extend: {
             animation: {
               'spin-slow': 'spin 12s linear infinite',
             },
             colors: {
-        'paper': '#f4f1ea',
-        'paper-dark': '#e8e4da',
-        'ink': '#1a1917',
-        'ink-fade': '#66635c',
-        'sage-bg': '#DCDFCF', 
-        'ink-black': '#121212',
-        'accent-blue': '#B5C0FF',
-        'accent-orange': '#FF4D00',
-        'blob-bg': '#D1D4C4',
+        'paper': '#f7f5f2',
+        'paper-dark': '#eeebe4',
+        'ink': '#111111',
+        'ink-fade': '#5e5a55',
+        'sage-bg': '#d9dfd8',
+        'ink-black': '#0f1115',
+        'accent-blue': '#94a3b8',
+        'accent-orange': '#c56f3f',
+        'blob-bg': '#e4e0d8',
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],

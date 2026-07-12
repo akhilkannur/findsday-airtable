@@ -158,7 +158,7 @@ export default async function RootLayout({
         />
       </head>
       <body className="antialiased min-h-screen">
-        <nav className="border-b border-ink py-4 sticky top-0 bg-paper z-[100]">
+        <nav className="sticky top-0 z-[100] border-b border-ink/10 bg-paper/90 py-4 backdrop-blur-md">
           <div className="layout-container flex justify-between items-center">
             <Link href="/" className="flex items-center gap-3 group">
               <Image 
@@ -168,28 +168,27 @@ export default async function RootLayout({
                 height={32} 
                 className="group-hover:rotate-[15deg] group-hover:scale-110 transition-all duration-300"
               />
-              <span className="font-mono font-black text-xl tracking-tighter hover:line-through transition-all uppercase">
+              <span className="font-mono text-[0.82rem] font-semibold uppercase tracking-[0.22em] text-ink">
                 SALESTOOLS.CLUB
               </span>
             </Link>
             
-            <div className="hidden md:flex gap-10 items-center font-mono text-[0.8rem] uppercase tracking-wider">
+            <div className="hidden md:flex items-center gap-2">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="hover:line-through transition-all hover:text-black text-ink-fade relative group"
+                  className="rounded-md px-3 py-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-ink-fade transition-colors hover:bg-ink/[0.04] hover:text-ink"
                 >
                   {link.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-black transition-all group-hover:w-full md:hidden lg:block"></span>
                 </Link>
               ))}
             </div>
 
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-3">
               <a 
                 href="mailto:akhil@salestools.club" 
-                className="hidden lg:block font-mono text-[0.75rem] uppercase hover:line-through transition-all"
+                className="hidden lg:inline-flex rounded-md border border-ink/10 bg-white px-3 py-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-ink-fade transition-colors hover:text-ink"
               >
                 Contact
               </a>
@@ -203,13 +202,13 @@ export default async function RootLayout({
           {children}
         </main>
         
-        <footer className="border-t border-ink p-8 md:p-12 mt-12 md:mt-20 bg-paper">
+        <footer className="mt-12 border-t border-ink/10 bg-white/65 p-8 md:mt-20 md:p-12">
           <div className="layout-container">
             {/* Programmatic Directory Columns */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-12 md:mb-16 pb-12 md:pb-16 border-b border-ink/10 text-left">
+            <div className="mb-12 grid grid-cols-1 gap-8 border-b border-ink/10 pb-12 text-left sm:grid-cols-2 md:mb-16 md:gap-12 md:pb-16 md:grid-cols-4">
               <div className="flex flex-col gap-4">
-                <h4 className="font-mono text-[0.7rem] font-bold uppercase tracking-widest text-ink/40">Outcomes</h4>
-                <div className="flex flex-col gap-2 font-mono text-[0.75rem] uppercase">
+                <h4 className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-ink/50">Outcomes</h4>
+                <div className="flex flex-col gap-2 font-mono text-[0.72rem] uppercase tracking-[0.16em]">
                   <Link href="/categories/sales-intelligence" className="hover:line-through">Lead Enrichment</Link>
                   <Link href="/categories/sales-engagement" className="hover:line-through">Outreach Automation</Link>
                   <Link href="/categories/phone-and-dialers" className="hover:line-through">AI Voice Agents</Link>
@@ -220,8 +219,8 @@ export default async function RootLayout({
               </div>
 
               <div className="flex flex-col gap-4">
-                <h4 className="font-mono text-[0.7rem] font-bold uppercase tracking-widest text-ink/40">Alternatives</h4>
-                <div className="flex flex-col gap-2 font-mono text-[0.75rem] uppercase">
+                <h4 className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-ink/50">Alternatives</h4>
+                <div className="flex flex-col gap-2 font-mono text-[0.72rem] uppercase tracking-[0.16em]">
                   <Link href="/alternative-to/hubspot" className="hover:line-through">HubSpot</Link>
                   <Link href="/alternative-to/salesforce" className="hover:line-through">Salesforce</Link>
                   <Link href="/alternative-to/apollo" className="hover:line-through">Apollo</Link>
@@ -231,8 +230,8 @@ export default async function RootLayout({
               </div>
 
               <div className="flex flex-col gap-4">
-                <h4 className="font-mono text-[0.7rem] font-bold uppercase tracking-widest text-ink/40">Auth Types</h4>
-                <div className="flex flex-col gap-2 font-mono text-[0.75rem] uppercase">
+                <h4 className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-ink/50">Auth Types</h4>
+                <div className="flex flex-col gap-2 font-mono text-[0.72rem] uppercase tracking-[0.16em]">
                   <Link href="/auth/api-key" className="hover:line-through">API Key</Link>
                   <Link href="/auth/oauth2" className="hover:line-through">OAuth2</Link>
                   <Link href="/auth/bearer-token" className="hover:line-through">Bearer Token</Link>
@@ -241,8 +240,8 @@ export default async function RootLayout({
               </div>
 
               <div className="flex flex-col gap-4">
-                <h4 className="font-mono text-[0.7rem] font-bold uppercase tracking-widest text-ink/40">Developer SDKs</h4>
-                <div className="flex flex-col gap-2 font-mono text-[0.75rem] uppercase">
+                <h4 className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-ink/50">Developer SDKs</h4>
+                <div className="flex flex-col gap-2 font-mono text-[0.72rem] uppercase tracking-[0.16em]">
                   <Link href="/sdk/python" className="hover:line-through">Python</Link>
                   <Link href="/sdk/node.js" className="hover:line-through">Node.js</Link>
                   <Link href="/sdk/ruby" className="hover:line-through">Ruby</Link>
@@ -252,8 +251,8 @@ export default async function RootLayout({
               </div>
             </div>
 
-            <div className="text-center flex flex-col items-center gap-10">
-              <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 font-mono text-[0.7rem] uppercase tracking-widest border-b border-ink/10 pb-8 w-full max-w-2xl opacity-80">
+            <div className="flex flex-col items-center gap-10 text-center">
+              <div className="flex w-full max-w-2xl flex-wrap justify-center gap-x-8 gap-y-4 border-b border-ink/10 pb-8 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-ink/75">
                 <Link href="/categories" className="hover:line-through">Categories</Link>
                 <Link href="/guides" className="hover:line-through">Guides</Link>
                 <Link href="/for" className="hover:line-through">Use Cases</Link>
@@ -264,7 +263,7 @@ export default async function RootLayout({
                 <Link href="/submit" className="hover:line-through">Submit Tool</Link>
               </div>
 
-              <div className="flex items-center gap-4 font-mono text-[0.85rem] uppercase tracking-widest flex-wrap justify-center py-6 px-10 border-2 border-ink bg-paper shadow-[8px_8px_0px_rgba(26,25,23,0.15)] transition-transform hover:translate-x-[-2px] hover:translate-y-[-2px]">
+              <div className="panel flex flex-wrap items-center justify-center gap-4 px-6 py-5 font-mono text-[0.78rem] uppercase tracking-[0.16em]">
                 <span className="opacity-60 text-[0.7rem]">Built by</span>
                 <a href="https://akhilneeds.space" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:opacity-80 transition-opacity group">
                   <Image 
@@ -272,12 +271,12 @@ export default async function RootLayout({
                     alt="Akhil" 
                     width={32}
                     height={32}
-                    className="rounded-full grayscale border-2 border-ink/40 group-hover:grayscale-0 transition-all"
+                    className="rounded-full border border-ink/10 grayscale transition-all group-hover:grayscale-0"
                   />
-                  <span className="font-black border-b-2 border-ink pb-0.5">Akhil</span>
+                  <span className="font-semibold">Akhil</span>
                 </a>
               </div>
-              <div className="font-mono text-[0.6rem] uppercase tracking-[0.2em] opacity-75 flex flex-col gap-2">
+              <div className="flex flex-col gap-2 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-ink/60">
                 <p>Found: {toolsWithDocs} APIs with docs • Monitoring {toolsWithoutDocs} for documentation</p>
                 <p>© {new Date().getFullYear()} Salestools Club • <a href="https://logo.dev" target="_blank" rel="noopener">Logos provided by Logo.dev</a></p>
               </div>

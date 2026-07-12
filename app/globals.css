@@ -3,81 +3,98 @@
 @tailwind utilities;
 
 :root {
-  --paper: #f4f1ea;
-  --paper-dark: #e8e4da;
-  --ink: #1a1917;
-  --ink-fade: #66635c;
-  --highlight: rgba(255, 240, 0, 0.15);
-  --scribble-w: 2px;
+  --paper: #f7f5f2;
+  --paper-dark: #eeebe4;
+  --ink: #111111;
+  --ink-fade: #5e5a55;
+  --highlight: rgba(17, 17, 17, 0.06);
+  --scribble-w: 1px;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background-color: var(--paper);
+  background:
+    radial-gradient(circle at top, rgba(17, 17, 17, 0.03), transparent 42%),
+    linear-gradient(180deg, #fbfaf8 0%, var(--paper) 45%, #f4f1eb 100%);
   color: var(--ink);
-  font-family: var(--font-crimson), serif;
-  font-size: 18px;
-  line-height: 1.5;
+  font-family: var(--font-inter), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+}
+
+::selection {
+  background: rgba(17, 17, 17, 0.12);
+  color: var(--ink);
+}
+
+a {
+  @apply text-inherit no-underline;
+}
+
+h1, h2, h3, h4 {
+  @apply text-ink tracking-tight;
+}
+
+/* Keep the site contemporary and avoid the editorial serif look as a default. */
+.font-serif {
+  font-family: var(--font-inter), "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 @layer components {
   .layout-container {
-    @apply max-w-[1400px] mx-auto px-4 md:px-8;
+    @apply mx-auto w-full max-w-[1240px] px-4 sm:px-6 lg:px-8;
   }
 
-  .circled {
-    @apply relative inline-block px-3 z-[1] whitespace-nowrap;
-  }
-  
-  .circled::before {
-    content: '';
-    @apply absolute -inset-1 border-2 border-current pointer-events-none transition-all duration-300;
-    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
-    transform: rotate(-1deg);
-  }
-  
-  .circled:hover::before {
-    @apply rotate-[1deg] scale-[1.05];
-    box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+  .surface {
+    @apply rounded-xl border border-ink/10 bg-white/85 backdrop-blur-sm;
+    box-shadow: 0 1px 2px rgba(17, 17, 17, 0.03);
   }
 
   .tool-card {
-    @apply relative p-4 md:p-6 transition-all duration-300 cursor-pointer bg-paper-dark/60;
-    border: 1px solid rgba(26, 25, 23, 0.15); /* Ink color #1a1917 at 15% opacity */
-  }
-  
-  .tool-card::after {
-    content: '';
-    @apply absolute inset-0 border border-ink opacity-0 transition-opacity duration-200 pointer-events-none bg-white/80 -z-[1];
+    @apply surface relative flex flex-col p-5 md:p-6 transition-all duration-150;
   }
 
-  .tool-card:hover::after {
-    @apply opacity-100;
-    box-shadow: 12px 12px 0 var(--ink);
-  }
-  
   .tool-card:hover {
-    @apply -translate-x-2 -translate-y-2;
+    @apply -translate-y-0.5 border-ink/15;
+    box-shadow: 0 8px 24px rgba(17, 17, 17, 0.06);
+  }
+
+  .circled {
+    @apply relative inline-flex items-center whitespace-nowrap;
+    padding-bottom: 0.1em;
+  }
+
+  .circled::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.05em;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.3;
   }
 
   .tag-mcp {
-    @apply relative font-bold font-mono text-[10px] px-2;
-  }
-
-  .tag-mcp::before {
-    content: '';
-    @apply absolute -inset-x-1.5 -inset-y-0.5 border border-ink pointer-events-none;
-    border-radius: 20px 200px 30px 150px / 180px 20px 160px 20px;
+    @apply inline-flex items-center rounded-md border border-emerald-700/15 bg-emerald-500/8 px-2 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-emerald-800;
   }
 
   .type-display {
-    @apply font-serif text-[clamp(2.25rem,6vw,5.5rem)] font-normal leading-[1.1] tracking-tight;
+    @apply font-sans text-[clamp(2.4rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-[-0.05em];
   }
 
   .type-mono {
-    @apply font-mono text-[0.85rem] uppercase tracking-wider;
+    @apply font-mono text-[0.75rem] uppercase tracking-[0.18em] text-ink-fade;
+  }
+
+  .panel {
+    @apply rounded-xl border border-ink/10 bg-white/80;
+    box-shadow: 0 1px 2px rgba(17, 17, 17, 0.03);
   }
 }
 
@@ -91,30 +108,29 @@ body {
   animation: blink 2s infinite;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--paper); }
-::-webkit-scrollbar-thumb { background: var(--ink-fade); border-radius: 0; }
-::-webkit-scrollbar-thumb:hover { background: var(--ink); }
-
-h1, h2, h3, h4 { @apply text-ink; }
-a { @apply text-inherit no-underline; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: rgba(17, 17, 17, 0.03); }
+::-webkit-scrollbar-thumb {
+  background: rgba(17, 17, 17, 0.22);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(17, 17, 17, 0.34); }
 
 /* Prose Table Overrides */
 .prose table {
-  @apply border-collapse border border-ink/20 rounded-lg overflow-hidden my-12 text-base !important;
+  @apply my-10 w-full overflow-hidden rounded-xl border border-ink/10 border-collapse bg-white text-base !important;
 }
 
 .prose thead {
-  @apply bg-ink/[0.03] border-b border-ink/30 !important;
+  @apply border-b border-ink/10 bg-ink/[0.03] !important;
 }
 
 .prose th {
-  @apply py-4 px-6 text-ink font-bold font-mono text-[0.85rem] uppercase tracking-wider !important;
+  @apply px-5 py-4 text-left font-mono text-[0.72rem] uppercase tracking-[0.16em] text-ink !important;
 }
 
 .prose td {
-  @apply py-4 px-6 border-b border-ink/10 text-ink/80 !important;
+  @apply border-b border-ink/10 px-5 py-4 text-ink/80 !important;
 }
 
 .prose tr:last-child td {

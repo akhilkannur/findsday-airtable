@@ -33,20 +33,20 @@ export function NewsletterForm() {
 
   if (status === 'success') {
     return (
-      <div className="flex items-center gap-3 text-green-600 mb-6 md:mb-8">
+      <div className="panel mb-6 flex items-center gap-3 px-4 py-3 text-emerald-700 md:mb-8">
         <CheckCircle2 className="w-5 h-5" />
-        <span className="font-mono text-lg">Welcome to the Club!</span>
+        <span className="font-mono text-sm uppercase tracking-[0.18em]">Welcome to the Club!</span>
       </div>
     )
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-end mb-6 md:mb-8">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-3 sm:flex-row sm:items-end mb-6 md:mb-8">
       <div className="flex-grow">
         <input
           type="email"
           placeholder="enter your email..."
-          className="w-full bg-transparent border-b-2 border-ink font-mono text-lg py-2 focus:outline-none placeholder:italic placeholder:text-ink-fade"
+          className="panel w-full bg-white px-4 py-3 font-mono text-sm uppercase tracking-[0.12em] placeholder:text-ink-fade/45 focus:outline-none"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -56,12 +56,12 @@ export function NewsletterForm() {
       <button 
         type="submit" 
         disabled={status === 'submitting'}
-        className="bg-ink text-paper px-8 py-3 font-mono font-bold uppercase text-[0.9rem] hover:bg-ink/90 transition-all whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
+        className="rounded-lg bg-ink px-5 py-3 font-mono text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-paper transition-colors hover:bg-ink/90 whitespace-nowrap disabled:cursor-not-allowed disabled:opacity-50"
       >
         {status === 'submitting' ? 'Joining...' : 'Join the Club'}
       </button>
       {status === 'error' && (
-        <div className="flex items-center gap-2 text-red-600 text-sm font-mono">
+        <div className="flex items-center gap-2 text-sm font-mono text-red-700">
           <AlertCircle className="w-4 h-4" />
           Failed. Try again.
         </div>

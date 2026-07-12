@@ -15,30 +15,30 @@ export function MobileNav({ links }: MobileNavProps) {
     <div className="md:hidden">
       <button
         onClick={() => setOpen(!open)}
-        className="text-gray-400 transition-colors hover:text-white"
+        className="rounded-md border border-ink/10 bg-white p-2 text-ink-fade transition-colors hover:text-ink"
         aria-label="Toggle menu"
       >
         {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
       </button>
 
       {open && (
-        <nav className="fixed inset-0 top-[60px] z-[999] bg-paper px-6 py-12 animate-in fade-in slide-in-from-top-2 duration-300">
-          <div className="flex flex-col gap-6">
+        <nav className="fixed inset-0 top-[68px] z-[999] border-t border-ink/10 bg-paper/96 px-4 py-6 backdrop-blur-md">
+          <div className="panel mx-auto flex max-w-md flex-col gap-2 p-4 shadow-none">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="text-3xl font-bold tracking-tighter hover:line-through transition-all uppercase"
+                className="rounded-lg px-4 py-3 text-lg font-semibold tracking-tight text-ink transition-colors hover:bg-ink/[0.04]"
               >
                 {link.label}
               </Link>
             ))}
-            <div className="h-px bg-ink my-4 opacity-10" />
+            <div className="my-2 h-px bg-ink/10" />
             <Link 
               href="/submit" 
               onClick={() => setOpen(false)}
-              className="text-xl font-mono uppercase font-bold opacity-40 hover:opacity-100 transition-opacity"
+              className="rounded-lg px-4 py-3 font-mono text-[0.75rem] uppercase tracking-[0.18em] text-ink-fade transition-colors hover:bg-ink/[0.04] hover:text-ink"
             >
               Submit Entry
             </Link>
