@@ -107,10 +107,10 @@ export default async function ComparisonPage({ params }: Props) {
         { name: `${tool1.name} vs ${tool2.name}`, url: `https://salestools.club/vs/${slugs}` },
       ]} />
       {/* Header */}
-      <section className="px-4 py-12 md:px-8 md:py-24 border-b border-ink bg-paper-dark/30 relative overflow-hidden">
+      <section className="px-4 py-12 md:px-8 md:py-24 border-b border-ink relative overflow-hidden">
         <div className="layout-container">
           <h1 className="font-mono text-[0.65rem] md:text-[0.75rem] uppercase tracking-[0.2em] mb-8 md:mb-16 flex items-center gap-4 text-ink-fade">
-            <span className="circled font-bold text-black italic">Compare</span>
+            <span className="circled font-bold text-black">Compare</span>
             <div className="w-1.5 h-1.5 bg-black rounded-full animate-status-blink"></div>
             <span>Side-by-Side Comparison</span>
           </h1>
@@ -120,7 +120,7 @@ export default async function ComparisonPage({ params }: Props) {
             <div className="flex flex-col items-start gap-4 md:gap-8">
               <ToolLogo name={tool1.name} websiteUrl={tool1.websiteUrl} size="lg" />
               <h2 className="type-display uppercase text-3xl md:text-4xl lg:text-5xl">{tool1.name}</h2>
-              <p className="font-serif italic text-lg md:text-xl text-ink-fade max-w-sm border-l-2 border-black pl-4">{tool1.oneLiner}</p>
+              <p className="text-lg md:text-xl text-ink-fade max-w-sm border-l border-ink/10 pl-4">{tool1.oneLiner}</p>
             </div>
 
             {/* VS */}
@@ -136,7 +136,7 @@ export default async function ComparisonPage({ params }: Props) {
             <div className="flex flex-col items-start lg:items-end gap-4 md:gap-8 lg:text-right">
               <ToolLogo name={tool2.name} websiteUrl={tool2.websiteUrl} size="lg" />
               <h2 className="type-display uppercase text-3xl md:text-4xl lg:text-5xl">{tool2.name}</h2>
-              <p className="font-serif italic text-lg md:text-xl text-ink-fade max-w-sm lg:border-r-2 border-black lg:pr-4">{tool2.oneLiner}</p>
+              <p className="text-lg md:text-xl text-ink-fade max-w-sm lg:border-r border-ink/10 lg:pr-4">{tool2.oneLiner}</p>
             </div>
           </div>
         </div>
@@ -148,32 +148,32 @@ export default async function ComparisonPage({ params }: Props) {
           <div className="border border-ink/20 bg-white/40">
             {/* Mobile: stacked cards */}
             <div className="md:hidden">
-              <div className="grid grid-cols-2 gap-px bg-paper-dark/50 border-b border-ink/20 text-[0.65rem] font-mono font-bold uppercase tracking-widest px-4 py-4 text-ink-fade">
+              <div className="grid grid-cols-2 gap-px bg-paper-dark/50 border-b border-ink/20 text-[0.65rem] font-mono font-bold uppercase tracking-[0.16em] px-4 py-4 text-ink-fade">
                 <div className="text-black">{tool1.name}</div>
                 <div className="text-black">{tool2.name}</div>
               </div>
               {specs.map((spec) => (
                 <div key={spec.label} className="px-4 py-4 border-b border-ink/10">
-                  <div className="font-mono text-[0.65rem] uppercase tracking-widest font-bold text-ink/70 mb-2">{spec.label}</div>
+                  <div className="font-mono text-[0.65rem] uppercase tracking-[0.16em] font-bold text-ink/70 mb-2">{spec.label}</div>
                   <div className="grid grid-cols-2 gap-4">
-                    <div className={spec.label === "Capabilities" ? "font-serif text-sm leading-relaxed" : "font-serif text-sm font-bold uppercase"}>{spec.val1}</div>
-                    <div className={spec.label === "Capabilities" ? "font-serif text-sm leading-relaxed" : "font-serif text-sm font-bold uppercase"}>{spec.val2}</div>
+                    <div className={spec.label === "Capabilities" ? "text-sm leading-relaxed" : "text-sm font-bold uppercase"}>{spec.val1}</div>
+                    <div className={spec.label === "Capabilities" ? "text-sm leading-relaxed" : "text-sm font-bold uppercase"}>{spec.val2}</div>
                   </div>
                 </div>
               ))}
             </div>
             {/* Desktop: 3-column grid */}
             <div className="hidden md:block">
-              <div className="grid grid-cols-[1.2fr_1fr_1fr] gap-6 bg-paper-dark/50 border-b border-ink/20 text-[0.7rem] font-mono font-bold uppercase tracking-widest px-8 py-6 text-ink-fade">
+              <div className="grid grid-cols-[1.2fr_1fr_1fr] gap-6 bg-paper-dark/50 border-b border-ink/20 text-[0.7rem] font-mono font-bold uppercase tracking-[0.16em] px-8 py-6 text-ink-fade">
                 <div></div>
                 <div className="text-black">{tool1.name}</div>
                 <div className="text-black">{tool2.name}</div>
               </div>
               {specs.map((spec) => (
                 <div key={spec.label} className="grid grid-cols-[1.2fr_1fr_1fr] gap-6 px-8 py-6 border-b border-ink/10 hover:bg-[var(--highlight)] transition-colors group">
-                  <div className="font-mono text-[0.85rem] uppercase tracking-widest font-bold text-ink/70">{spec.label}</div>
-                  <div className={spec.label === "Capabilities" ? "font-serif text-[0.95rem] leading-relaxed pr-4" : "font-serif text-[1.2rem] font-bold uppercase"}>{spec.val1}</div>
-                  <div className={spec.label === "Capabilities" ? "font-serif text-[0.95rem] leading-relaxed" : "font-serif text-[1.2rem] font-bold uppercase"}>{spec.val2}</div>
+                  <div className="font-mono text-[0.85rem] uppercase tracking-[0.16em] font-bold text-ink/70">{spec.label}</div>
+                  <div className={spec.label === "Capabilities" ? "text-[0.95rem] leading-relaxed pr-4" : "text-[1.2rem] font-bold uppercase"}>{spec.val1}</div>
+                  <div className={spec.label === "Capabilities" ? "text-[0.95rem] leading-relaxed" : "text-[1.2rem] font-bold uppercase"}>{spec.val2}</div>
                 </div>
               ))}
             </div>
@@ -188,7 +188,7 @@ export default async function ComparisonPage({ params }: Props) {
             <h2 className="font-mono text-[0.75rem] md:text-[0.8rem] uppercase tracking-wider text-ink">API & MCP Analysis</h2>
             <div className="h-px flex-grow bg-ink opacity-10"></div>
           </div>
-          <div className="prose prose-ink max-w-none font-serif text-lg md:text-xl text-ink-fade leading-relaxed space-y-6">
+          <div className="prose prose-ink max-w-none text-lg md:text-xl text-ink-fade leading-relaxed space-y-6">
             <p>
               For AI-native operators choosing between <strong>{tool1.name}</strong> and <strong>{tool2.name}</strong>, the decision comes down to API accessibility and how easily your agent can interface with each tool.
             </p>
@@ -209,13 +209,13 @@ export default async function ComparisonPage({ params }: Props) {
               <div className="not-prose grid grid-cols-1 md:grid-cols-2 gap-6">
                 {tool1.starterPrompt && (
                   <div className="p-4 md:p-6 bg-paper-dark/50 border border-ink/10">
-                    <div className="font-mono text-[0.65rem] uppercase tracking-widest text-ink-fade mb-3">{tool1.name} Starter Prompt</div>
+                    <div className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-ink-fade mb-3">{tool1.name} Starter Prompt</div>
                     <p className="font-mono text-[0.75rem] italic text-ink-fade leading-relaxed">&quot;{tool1.starterPrompt}&quot;</p>
                   </div>
                 )}
                 {tool2.starterPrompt && (
                   <div className="p-4 md:p-6 bg-paper-dark/50 border border-ink/10">
-                    <div className="font-mono text-[0.65rem] uppercase tracking-widest text-ink-fade mb-3">{tool2.name} Starter Prompt</div>
+                    <div className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-ink-fade mb-3">{tool2.name} Starter Prompt</div>
                     <p className="font-mono text-[0.75rem] italic text-ink-fade leading-relaxed">&quot;{tool2.starterPrompt}&quot;</p>
                   </div>
                 )}
@@ -246,10 +246,10 @@ export default async function ComparisonPage({ params }: Props) {
       {/* Footer Call to Action */}
       <section className="py-32 text-center">
         <div className="layout-container">
-          <h2 className="font-serif italic text-3xl mb-12">Ready to pick your tool?</h2>
+          <h2 className="text-3xl mb-12">Ready to pick your tool?</h2>
           <div className="flex flex-col md:flex-row gap-12 justify-center items-center">
-            <Link href={`/apis/${tool1.slug}`} className="font-mono font-bold uppercase underline hover:line-through">View {tool1.name}</Link>
-            <Link href={`/apis/${tool2.slug}`} className="font-mono font-bold uppercase underline hover:line-through">View {tool2.name}</Link>
+            <Link href={`/apis/${tool1.slug}`} className="font-mono font-bold uppercase underline hover:text-ink-fade transition-colors">View {tool1.name}</Link>
+            <Link href={`/apis/${tool2.slug}`} className="font-mono font-bold uppercase underline hover:text-ink-fade transition-colors">View {tool2.name}</Link>
             <Link href="/api" className="circled font-mono font-bold uppercase px-8 py-3">Browse All Tools</Link>
           </div>
         </div>

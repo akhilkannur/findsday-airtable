@@ -62,7 +62,7 @@ export default function SubmitStackPage() {
       <div className="flex flex-col min-h-screen bg-paper items-center justify-center text-center px-8">
         <CheckCircle2 className="w-20 h-20 text-green-600 mb-8" />
         <h1 className="type-display mb-4 text-4xl">Stack Submitted</h1>
-        <p className="max-w-md font-serif italic text-2xl text-ink-fade leading-relaxed mb-12">
+        <p className="max-w-md text-2xl text-ink-fade leading-relaxed mb-12">
           Thanks for sharing your workflow. We&apos;ll review and feature the best ones.
         </p>
         <button
@@ -77,10 +77,10 @@ export default function SubmitStackPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-paper">
-      <section className="px-4 md:px-8 py-12 md:py-24 border-b border-ink bg-paper-dark/30">
+      <section className="px-4 md:px-8 py-12 md:py-24 border-b border-ink">
         <div className="layout-container">
           <h1 className="type-display mb-6 md:mb-8 text-3xl md:text-5xl lg:text-7xl">Share Your Stack</h1>
-          <p className="max-w-2xl font-serif italic text-xl md:text-2xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
+          <p className="max-w-2xl text-xl md:text-2xl text-ink-fade leading-relaxed border-l border-ink/10 pl-4 md:pl-6">
             Show the community your top 3 API building blocks. The best stacks get featured.
           </p>
         </div>
@@ -217,7 +217,7 @@ export default function SubmitStackPage() {
                 >
                   {status === 'submitting' ? 'Submitting...' : 'Submit Stack'} <span>{'>'}</span>
                 </button>
-                <p className="mt-6 md:mt-8 font-serif italic text-base md:text-lg text-ink-fade text-center opacity-60">
+                <p className="mt-6 md:mt-8 text-base md:text-lg text-ink-fade text-center opacity-60">
                   We&apos;ll review your submission and get back to you.
                 </p>
               </div>

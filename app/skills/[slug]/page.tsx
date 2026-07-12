@@ -86,11 +86,11 @@ export default async function SkillDetailPage({
         { name: "Skills", url: "https://salestools.club/skills" },
         { name: skill.name, url: `https://salestools.club/skills/${skill.slug}` },
       ]} />
-      <section className="px-4 md:px-8 py-10 md:py-14 border-b border-ink bg-paper-dark/30">
+      <section className="px-4 md:px-8 py-10 md:py-14 border-b border-ink">
         <div className="layout-container">
           <Link
             href="/skills"
-            className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase underline hover:line-through transition-all mb-6 md:mb-10 inline-block"
+            className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase underline transition-colors hover:text-ink mb-6 md:mb-10 inline-block"
           >
             &lt;- Back to Skills
           </Link>
@@ -103,11 +103,11 @@ export default async function SkillDetailPage({
               <h1 className="type-display uppercase text-3xl md:text-5xl lg:text-7xl">{skill.name}</h1>
             </div>
             
-            <div className="mt-6 md:mt-8 p-3 md:p-4 border border-ink/10 bg-paper-dark/20 inline-flex items-center gap-2">
-              <p className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-widest text-ink-fade">
+            <div className="mt-6 md:mt-8 p-3 md:p-4 border border-ink/10 bg-white inline-flex items-center gap-2 rounded-lg">
+              <p className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.18em] text-ink-fade">
                 Curated by Salestools Club • Created by{" "}
                 {skill.sourceUrl ? (
-                  <a href={skill.sourceUrl} target="_blank" rel="noopener noreferrer" className="text-ink font-bold underline hover:line-through transition-all">
+                  <a href={skill.sourceUrl} target="_blank" rel="noopener noreferrer" className="text-ink font-bold underline hover:text-ink-fade transition-colors">
                     {skill.source} ↗
                   </a>
                 ) : (
@@ -116,7 +116,7 @@ export default async function SkillDetailPage({
               </p>
             </div>
 
-            <p className="mt-8 md:mt-12 font-serif italic text-xl md:text-2xl text-ink-fade leading-relaxed max-w-2xl border-l-2 border-ink pl-4 md:pl-6">
+            <p className="mt-8 md:mt-12 text-xl md:text-2xl text-ink-fade leading-relaxed max-w-2xl border-l border-ink/10 pl-4 md:pl-6">
               {skill.description}
             </p>
           </div>
@@ -212,7 +212,7 @@ export default async function SkillDetailPage({
                 <div className="h-px flex-grow bg-ink opacity-10"></div>
               </div>
               
-              <p className="mb-6 md:mb-8 font-serif italic text-base md:text-lg text-ink-fade">
+              <p className="mb-6 md:mb-8 text-base md:text-lg text-ink-fade">
                 This skill requires the following tools to be connected to your agent via API or MCP:
               </p>
 
@@ -255,24 +255,24 @@ export default async function SkillDetailPage({
               <div className="h-px flex-grow bg-ink opacity-10"></div>
             </div>
 
-            <div className="p-8 md:p-16 bg-paper border border-dashed border-ink">
-              <div className="font-serif text-lg md:text-xl leading-relaxed text-ink-fade space-y-6 md:space-y-8">
+            <div className="p-8 md:p-16 bg-white border border-ink/10 rounded-2xl">
+              <div className="text-lg md:text-xl leading-relaxed text-ink-fade space-y-6 md:space-y-8">
                 <div className="space-y-3 md:space-y-4">
                   <p>
-                    <strong className="font-mono text-[0.75rem] md:text-[0.85rem] uppercase text-ink">Method 1: One-Click (Recommended)</strong><br />
+                    <strong className="font-mono text-[0.75rem] md:text-[0.85rem] uppercase tracking-[0.18em] text-ink">Method 1: One-Click (Recommended)</strong><br />
                     Copy the <code className="font-mono text-[0.75rem] md:text-[0.85rem] bg-paper-dark/60 px-1.5 md:px-2 py-0.5">npx salestools add</code> command above and paste it into your terminal. Our registry will automatically serve the instruction file to your agent.
                   </p>
                 </div>
                 
                 <div className="space-y-3 md:space-y-4">
                   <p>
-                    <strong className="font-mono text-[0.75rem] md:text-[0.85rem] uppercase text-ink">Method 2: Manual Copy</strong><br />
+                    <strong className="font-mono text-[0.75rem] md:text-[0.85rem] uppercase tracking-[0.18em] text-ink">Method 2: Manual Copy</strong><br />
                     Copy the "Agent Instructions" block above and paste it directly into your agent's system prompt or custom instructions window.
                   </p>
                 </div>
 
                 <div className="mt-8 md:mt-12 pt-6 md:pt-8 border-t border-ink/10">
-                  <p className="text-[0.85rem] md:text-[0.9rem] italic opacity-60 text-ink-fade">
+                  <p className="text-[0.85rem] md:text-[0.9rem] opacity-60 text-ink-fade">
                     Curated and served via the Salestools.club registry. Original credit belongs to <strong>{skill.source}</strong>.
                   </p>
                 </div>
@@ -282,10 +282,10 @@ export default async function SkillDetailPage({
         </div>
 
         {/* Right sidebar */}
-        <div className="p-6 md:p-10 lg:p-20 bg-paper-dark/30">
+        <div className="p-6 md:p-10 lg:p-20 bg-paper/50">
           <div className="lg:sticky lg:top-[120px] space-y-12 md:space-y-20">
             <div>
-              <div className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase tracking-widest text-ink-fade mb-8 md:mb-12">
+              <div className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase tracking-[0.18em] text-ink-fade mb-8 md:mb-12">
                 Skill Details
               </div>
 
@@ -302,21 +302,21 @@ export default async function SkillDetailPage({
                     key={spec.label}
                     className="group border-b border-ink/10 pb-6 md:pb-8"
                   >
-                    <div className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-widest text-ink-fade mb-2 md:mb-3 group-hover:text-ink transition-colors italic">
+                    <div className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.18em] text-ink-fade mb-2 md:mb-3 group-hover:text-ink transition-colors">
                       {spec.label}
                     </div>
-                    <div className="font-mono font-bold text-[0.75rem] md:text-[0.85rem] uppercase tracking-widest">
+                    <div className="font-mono font-bold text-[0.75rem] md:text-[0.85rem] uppercase tracking-[0.12em]">
                       {spec.value}
                     </div>
                   </div>
                 ))}
                 <div className="group border-b border-ink/10 pb-6 md:pb-8">
-                  <div className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-widest text-ink-fade mb-2 md:mb-3 group-hover:text-ink transition-colors italic">
+                  <div className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.18em] text-ink-fade mb-2 md:mb-3 group-hover:text-ink transition-colors">
                     Creator
                   </div>
-                  <div className="font-mono font-bold text-[0.75rem] md:text-[0.85rem] uppercase tracking-widest">
+                  <div className="font-mono font-bold text-[0.75rem] md:text-[0.85rem] uppercase tracking-[0.12em]">
                     {skill.sourceUrl ? (
-                      <a href={skill.sourceUrl} target="_blank" rel="noopener noreferrer" className="underline hover:line-through transition-all">
+                      <a href={skill.sourceUrl} target="_blank" rel="noopener noreferrer" className="underline hover:text-ink-fade transition-colors">
                         {skill.source} ↗
                       </a>
                     ) : (
@@ -328,19 +328,19 @@ export default async function SkillDetailPage({
             </div>
 
             <div>
-              <div className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase tracking-widest text-ink-fade mb-8 md:mb-12">
+              <div className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase tracking-[0.18em] text-ink-fade mb-8 md:mb-12">
                 Related Pages
               </div>
               <div className="space-y-3 md:space-y-4">
                 <Link
                   href="/api"
-                  className="font-mono text-[0.75rem] md:text-[0.8rem] uppercase tracking-wide px-3 md:px-4 py-2 border border-ink/20 hover:border-ink hover:bg-ink hover:text-paper transition-all block text-center"
+                  className="font-mono text-[0.75rem] md:text-[0.8rem] uppercase tracking-[0.14em] px-3 md:px-4 py-2 border border-ink/20 hover:border-ink hover:bg-ink hover:text-paper transition-all block text-center rounded-full"
                 >
                   Browse All Tools
                 </Link>
                 <Link
                   href="/for"
-                  className="font-mono text-[0.75rem] md:text-[0.8rem] uppercase tracking-wide px-3 md:px-4 py-2 border border-ink/20 hover:border-ink hover:bg-ink hover:text-paper transition-all block text-center"
+                  className="font-mono text-[0.75rem] md:text-[0.8rem] uppercase tracking-[0.14em] px-3 md:px-4 py-2 border border-ink/20 hover:border-ink hover:bg-ink hover:text-paper transition-all block text-center rounded-full"
                 >
                   Use Cases
                 </Link>

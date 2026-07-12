@@ -77,11 +77,11 @@ export default function CreditAuditPage() {
   return (
     <div className="flex flex-col min-h-screen bg-paper">
       {/* Hero Section */}
-      <section className="px-4 py-12 md:px-8 md:py-24 border-b border-ink bg-paper-dark/30">
+      <section className="px-4 py-12 md:px-8 md:py-24 border-b border-ink">
         <div className="layout-container">
           <Link
             href="/api"
-            className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase underline hover:line-through transition-all mb-8 md:mb-12 inline-block"
+            className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase underline transition-colors hover:text-ink mb-8 md:mb-12 inline-block"
           >
             &lt;- Back to APIs
           </Link>
@@ -90,7 +90,7 @@ export default function CreditAuditPage() {
             The 2026 Credit <br className="hidden md:block" />
             <span className="circled">Policy Guide.</span>
           </h1>
-          <p className="max-w-2xl font-serif italic text-xl md:text-2xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
+          <p className="max-w-2xl text-xl md:text-2xl text-ink-fade leading-relaxed border-l border-ink/10 pl-4 md:pl-6">
             Most sales tools handle credits differently. Some allow rollovers, while others charge for every request, regardless of whether a verified email is found. This guide breaks down the fine print for 20 industry leaders.
           </p>
         </div>
@@ -100,14 +100,14 @@ export default function CreditAuditPage() {
       <section className="py-12 md:py-24 border-b border-ink">
         <div className="layout-container">
           <div className="mb-12">
-            <h2 className="font-mono text-[0.8rem] uppercase tracking-widest font-bold text-ink mb-4">Comparison Matrix</h2>
-            <p className="font-serif italic text-lg text-ink-fade">A side-by-side look at rollover policies and charging models. Click [src] to verify each claim.</p>
+            <h2 className="font-mono text-[0.8rem] uppercase tracking-[0.16em] font-bold text-ink mb-4">Comparison Matrix</h2>
+            <p className="text-lg text-ink-fade">A side-by-side look at rollover policies and charging models. Click [src] to verify each claim.</p>
           </div>
 
           <div className="overflow-x-auto border border-ink">
             <table className="w-full text-left font-mono text-[0.75rem] md:text-[0.8rem]">
               <thead>
-                <tr className="bg-ink text-paper uppercase tracking-widest">
+                <tr className="bg-ink text-paper uppercase tracking-[0.16em]">
                   <th className="p-4 border-r border-paper/20">Tool</th>
                   <th className="p-4 border-r border-paper/20">Rollover?</th>
                   <th className="p-4 border-r border-paper/20">Charging Model</th>
@@ -148,14 +148,14 @@ export default function CreditAuditPage() {
       <section className="py-12 md:py-24 border-b border-ink bg-white/40">
         <div className="layout-container grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
           <div>
-            <h2 className="font-mono text-[0.8rem] uppercase tracking-widest font-bold text-ink mb-8 md:mb-12">Operator Nuances</h2>
+            <h2 className="font-mono text-[0.8rem] uppercase tracking-[0.16em] font-bold text-ink mb-8 md:mb-12">Operator Nuances</h2>
             <div className="space-y-12 md:space-y-16">
               <div className="space-y-4">
                 <div className="flex items-center gap-3 text-ink">
                   <Zap className="h-5 w-5" />
-                  <h3 className="font-serif text-xl md:text-2xl font-bold">The Annual Bucket</h3>
+                  <h3 className="text-xl md:text-2xl font-bold">The Annual Bucket</h3>
                 </div>
-                <p className="text-lg text-ink-fade leading-relaxed font-serif italic">
+                <p className="text-lg text-ink-fade leading-relaxed">
                   Annual plans for tools like <strong>Hunter.io</strong>, <strong>Instantly</strong>, or <strong>UpLead</strong> provide a 12-month lump sum of credits. This removes the monthly "use-it-or-lose-it" pressure, effectively solving the rollover problem for power users who have fluctuating volume.
                 </p>
               </div>
@@ -163,9 +163,9 @@ export default function CreditAuditPage() {
               <div className="space-y-4">
                 <div className="flex items-center gap-3 text-ink">
                   <AlertTriangle className="h-5 w-5" />
-                  <h3 className="font-serif text-xl md:text-2xl font-bold">The "Guessed" Credit Leak</h3>
+                  <h3 className="text-xl md:text-2xl font-bold">The "Guessed" Credit Leak</h3>
                 </div>
-                <p className="text-lg text-ink-fade leading-relaxed font-serif italic">
+                <p className="text-lg text-ink-fade leading-relaxed">
                   Legacy providers like <strong>Apollo.io</strong> often charge for "extrapolated" or "guessed" emails. These have a significantly higher bounce rate. Most tools refuse to refund credits for these contacts, even if the data is 100% incorrect.
                 </p>
               </div>
@@ -173,9 +173,9 @@ export default function CreditAuditPage() {
               <div className="space-y-4">
                 <div className="flex items-center gap-3 text-ink">
                   <Info className="h-5 w-5" />
-                  <h3 className="font-serif text-xl md:text-2xl font-bold">Actions vs. Data (Clay)</h3>
+                  <h3 className="text-xl md:text-2xl font-bold">Actions vs. Data (Clay)</h3>
                 </div>
-                <p className="text-lg text-ink-fade leading-relaxed font-serif italic">
+                <p className="text-lg text-ink-fade leading-relaxed">
                   In <strong>Clay</strong>, your <strong>Data Credits</strong> (finding emails) roll over up to a 2x cap, but your <strong>Actions</strong> (the platform compute steps) reset every month. Don&apos;t hoard data credits only to find you&apos;ve run out of "Actions" to actually use them.
                 </p>
               </div>
@@ -183,14 +183,14 @@ export default function CreditAuditPage() {
           </div>
 
           <div className="p-8 md:p-12 border-2 border-ink bg-paper shadow-[12px_12px_0px_rgba(26,25,23,0.1)]">
-            <h2 className="font-mono text-[0.8rem] uppercase tracking-widest font-bold text-ink mb-8 md:mb-10">Why it matters for AI</h2>
+            <h2 className="font-mono text-[0.8rem] uppercase tracking-[0.16em] font-bold text-ink mb-8 md:mb-10">Why it matters for AI</h2>
             <div className="space-y-8">
-              <p className="font-serif text-xl leading-relaxed italic">
+              <p className="text-xl leading-relaxed">
                 &quot;When building with <strong>Claude Code</strong> or <strong>Cowork</strong>, an agent can pull data much faster than a human operator. If you&apos;re on a 'Pay-per-Request' or 'No Rollover' plan, an agent can burn your entire monthly budget in minutes on low-quality data.&quot;
               </p>
               <div className="h-px bg-ink/10 w-full"></div>
               <div className="space-y-6">
-                <h4 className="font-mono text-[0.7rem] uppercase font-bold tracking-widest text-ink/40 text-center">Operator Checklist</h4>
+                <h4 className="font-mono text-[0.7rem] uppercase font-bold tracking-[0.16em] text-ink/40 text-center">Operator Checklist</h4>
                 <ul className="space-y-4 font-mono text-sm">
                   <li className="flex gap-4">
                     <CheckCircle2 className="h-5 w-5 shrink-0 text-ink" />
@@ -215,8 +215,8 @@ export default function CreditAuditPage() {
       <section className="py-16 md:py-32 bg-ink text-paper text-center">
         <div className="layout-container max-w-3xl">
           <h2 className="type-display text-3xl md:text-5xl mb-8">Build your <span className="underline decoration-paper/30 underline-offset-8">AI-Native</span> Sales Stack.</h2>
-          <p className="font-serif italic text-xl md:text-2xl opacity-70 mb-12">Stop paying for dead data. Use the APIs that respect your budget.</p>
-          <Link href="/api" className="circled font-mono font-bold uppercase tracking-widest hover:bg-paper hover:text-ink transition-all">
+          <p className="text-xl md:text-2xl opacity-70 mb-12">Stop paying for dead data. Use the APIs that respect your budget.</p>
+          <Link href="/api" className="circled font-mono font-bold uppercase tracking-[0.16em] hover:bg-paper hover:text-ink transition-all">
             Browse All APIs
           </Link>
         </div>

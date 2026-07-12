@@ -113,17 +113,17 @@ export default async function GuidePage({
         { name: guide.title, url: `https://salestools.club/guides/${slug}` },
       ]} />
 
-      <section className="px-4 py-12 md:px-8 md:py-24 border-b border-ink bg-paper-dark/30">
+      <section className="px-4 py-12 md:px-8 md:py-24 border-b border-ink">
         <div className="layout-container">
           <Link
             href="/guides"
-            className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase underline hover:line-through transition-all mb-8 md:mb-12 inline-block"
+            className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase underline transition-colors hover:text-ink mb-8 md:mb-12 inline-block"
           >
             &lt;- Back to Guides
           </Link>
 
           <h1 className="type-display mb-6 md:mb-8 text-3xl md:text-5xl lg:text-7xl">{guide.title}</h1>
-          <p className="max-w-2xl font-serif italic text-xl md:text-2xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
+          <p className="max-w-2xl text-xl md:text-2xl text-ink-fade leading-relaxed border-l border-ink/10 pl-4 md:pl-6">
             {guide.intro}
           </p>
         </div>
@@ -143,7 +143,7 @@ export default async function GuidePage({
           <GuideToolTable tools={tools} />
 
           {tools.length === 0 && (
-            <div className="text-center py-20 md:py-32 opacity-60 font-serif italic text-xl md:text-2xl">
+            <div className="text-center py-20 md:py-32 opacity-60 text-xl md:text-2xl">
               No tools indexed in this guide.
             </div>
           )}

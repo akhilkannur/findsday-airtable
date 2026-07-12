@@ -134,7 +134,7 @@ export default async function CapabilityPage({
         { name: actionDisplay, url: `https://salestools.club/capability/${action}` },
       ]} />
 
-      <nav className="layout-container py-4 md:py-6 flex flex-wrap items-center gap-2 text-[0.65rem] md:text-[0.7rem] font-mono uppercase tracking-widest text-ink-fade">
+      <nav className="layout-container py-4 md:py-6 flex flex-wrap items-center gap-2 text-[0.65rem] md:text-[0.7rem] font-mono uppercase tracking-[0.16em] text-ink-fade">
         <Link href="/" className="hover:text-ink hover:underline transition-all">Home</Link>
         <span className="opacity-30">/</span>
         <span className="opacity-30 uppercase">Capabilities</span>
@@ -142,11 +142,11 @@ export default async function CapabilityPage({
         <span className="text-ink font-bold">{actionDisplay}</span>
       </nav>
 
-      <section className="px-4 md:px-8 py-12 md:py-16 border-b border-ink bg-paper-dark/30">
+      <section className="px-4 md:px-8 py-12 md:py-16 border-b border-ink">
         <div className="layout-container">
-          <p className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-widest text-ink-fade mb-3 md:mb-4">Commercial Intent Analysis</p>
+          <p className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.16em] text-ink-fade mb-3 md:mb-4">Commercial Intent Analysis</p>
           <h1 className="type-display mb-4 md:mb-6 text-3xl md:text-5xl lg:text-7xl">Top {actionDisplay} AI Features</h1>
-          <p className="max-w-2xl font-serif italic text-xl md:text-2xl text-ink leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
+          <p className="max-w-2xl text-xl md:text-2xl text-ink leading-relaxed border-l border-ink/10 pl-4 md:pl-6">
             Compare verified {actionDisplay.toLowerCase()} APIs and MCP configurations. Build your agentic sales stack by connecting these high-intent tools directly to your AI operator.
           </p>
         </div>
@@ -160,7 +160,7 @@ export default async function CapabilityPage({
               <div className="h-px flex-grow bg-ink opacity-10"></div>
             </h2>
             
-            <div className="prose prose-ink max-w-none font-serif text-lg md:text-xl text-ink-fade leading-relaxed space-y-8">
+            <div className="prose prose-ink max-w-none text-lg md:text-xl text-ink-fade leading-relaxed space-y-8">
               <p>
                 For founders and sales operators building with AI, <strong>{actionDisplay}</strong> has moved beyond manual dashboards. The goal now is "Chat-to-Action"—where your AI agent doesn't just find data, but actually performs the work for you. To build a stack that actually works, you need tools that prioritize AI-ready data over pretty charts.
               </p>
@@ -181,7 +181,7 @@ export default async function CapabilityPage({
           </div>
 
           <div className="p-8 bg-paper border border-ink space-y-8">
-            <h2 className="font-mono text-[0.8rem] uppercase font-bold tracking-widest">Technical Status</h2>
+            <h2 className="font-mono text-[0.8rem] uppercase font-bold tracking-[0.16em]">Technical Status</h2>
             <div className="space-y-6">
               <div className="group">
                 <div className="font-mono text-[0.65rem] uppercase text-ink-fade italic mb-1">Tools Verified</div>
@@ -245,7 +245,7 @@ export default async function CapabilityPage({
             </div>
           ) : (
             <div className="py-16 md:py-20 text-center border-2 border-dashed border-ink/10">
-              <p className="font-serif italic text-lg md:text-xl text-ink-fade">No tools found in this category for {actionDisplay.toLowerCase()}.</p>
+              <p className="text-lg md:text-xl text-ink-fade">No tools found in this category for {actionDisplay.toLowerCase()}.</p>
               <Link href={`/capability/${action}`} className="mt-4 inline-block font-mono text-[0.7rem] uppercase underline">Clear Category Filter</Link>
             </div>
           )}

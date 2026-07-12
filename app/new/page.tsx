@@ -48,11 +48,11 @@ export default function NewPage() {
     <main className="py-10 md:py-16">
       <div className="layout-container">
         <header className="mb-12 md:mb-20">
-          <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade mb-6 flex items-center gap-2">
+          <p className="font-mono text-[0.7rem] uppercase tracking-[0.16em] text-ink-fade mb-6 flex items-center gap-2">
             <Calendar className="w-4 h-4" />
             Directory Updates
           </p>
-          <h1 className="font-serif text-4xl md:text-5xl mb-6">
+          <h1 className="text-4xl md:text-5xl mb-6">
             New Sales Tools Added
           </h1>
           <p className="text-lg text-ink-fade max-w-2xl">
@@ -73,7 +73,7 @@ export default function NewPage() {
                 </div>
                 <ArrowRight className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
-              <h3 className="font-serif text-xl mb-2 group-hover:underline">{month.name}</h3>
+              <h3 className="text-xl mb-2 group-hover:underline">{month.name}</h3>
               <p className="text-sm text-ink-fade">{month.count} new tools</p>
             </Link>
           ))}

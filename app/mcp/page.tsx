@@ -60,7 +60,7 @@ function ToolCard({ tool }: { tool: any }) {
       
       <div className="flex-grow">
         <h3 className="text-xl font-semibold mb-1">{tool.name}</h3>
-        <div className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade mb-4 italic">{tool.category}</div>
+        <div className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-ink-fade mb-4">{tool.category}</div>
         <p className="text-[0.9rem] text-ink-fade leading-relaxed line-clamp-3">
           {tool.oneLiner}
         </p>
@@ -70,7 +70,7 @@ function ToolCard({ tool }: { tool: any }) {
         <div className="font-mono text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 border border-ink/20 rounded-full group-hover:border-ink transition-colors">
           {tool.hasFreeTier ? "Free" : "Paid"}
         </div>
-        <div className="font-mono text-[0.7rem] uppercase underline group-hover:line-through transition-all">
+        <div className="font-mono text-[0.7rem] uppercase underline transition-colors group-hover:text-ink">
           View Tool ↗
         </div>
       </div>
@@ -117,18 +117,18 @@ export default async function McpPage({
             MCP Directory
           </div>
           <h1 className="type-display mb-4 md:mb-6 uppercase text-3xl md:text-5xl lg:text-7xl">MCP Servers</h1>
-          <p className="max-w-3xl font-serif italic text-lg md:text-xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
+          <p className="max-w-3xl text-lg md:text-xl text-ink-fade leading-relaxed border-l border-ink/10 pl-4 md:pl-6">
             The fastest way to give your AI "hands". Plug these servers into Claude Code and Gemini CLI to update your CRM and search leads via chat.
           </p>
         </div>
       </section>
 
-      <div className="border-b border-ink bg-paper-dark/20 py-4 md:py-6">
+      <div className="border-b border-ink/10 bg-white py-4 md:py-6">
         <div className="layout-container flex items-center">
           <div className="flex items-center gap-4 md:gap-6">
             <Link 
               href={officialOnly ? "/mcp" : "/mcp?official=true"}
-              className={`flex items-center gap-2 font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-widest transition-all ${officialOnly ? 'text-black font-bold' : 'text-ink-fade hover:text-black'}`}
+              className={`flex items-center gap-2 font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.18em] transition-all ${officialOnly ? 'text-black font-bold' : 'text-ink-fade hover:text-black'}`}
             >
               <div className={`w-3 h-3 border border-black flex items-center justify-center ${officialOnly ? 'bg-black' : ''}`}>
                 {officialOnly && <Check className="w-2 h-2 text-white" />}
@@ -151,8 +151,8 @@ export default async function McpPage({
 
       <section className="pb-16 md:pb-32">
         <div className="layout-container">
-          <div className="p-8 md:p-16 text-center border-2 border-dashed border-ink/20 bg-white/20">
-            <p className="font-serif italic text-xl md:text-2xl mb-8 md:mb-10 text-ink-fade">
+          <div className="p-8 md:p-16 text-center border border-dashed border-ink/20 bg-white rounded-2xl">
+            <p className="text-xl md:text-2xl mb-8 md:mb-10 text-ink-fade">
               Know an MCP server we're missing?
             </p>
             <Link

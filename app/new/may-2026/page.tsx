@@ -44,12 +44,12 @@ export default function May2026Page() {
         <header className="mb-12 md:mb-20">
           <Link
             href="/new"
-            className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade mb-6 inline-flex items-center gap-2"
+            className="font-mono text-[0.7rem] uppercase tracking-[0.16em] text-ink-fade mb-6 inline-flex items-center gap-2"
           >
             <Calendar className="w-4 h-4" />
             Directory Updates
           </Link>
-          <h1 className="font-serif text-4xl md:text-5xl mb-6">
+          <h1 className="text-4xl md:text-5xl mb-6">
             New Sales Tools Added in May 2026
           </h1>
           <p className="text-lg text-ink-fade max-w-2xl">
@@ -64,7 +64,7 @@ export default function May2026Page() {
         <div className="mt-16 flex justify-center">
           <Link
             href="/new/april-2026"
-            className="inline-flex items-center gap-2 font-serif italic text-xl border-b border-black hover:opacity-60 transition-opacity pb-1"
+            className="inline-flex items-center gap-2 text-xl border-b border-black hover:opacity-60 transition-opacity pb-1"
           >
             April 2026 <ArrowRight className="w-4 h-4" />
           </Link>

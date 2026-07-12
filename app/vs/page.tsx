@@ -54,14 +54,14 @@ export default async function VsIndexPage() {
   return (
     <div className="flex flex-col min-h-screen bg-paper">
       {/* Hero */}
-      <section className="px-4 md:px-8 py-12 md:py-16 border-b border-ink bg-paper-dark/30">
+      <section className="px-4 md:px-8 py-12 md:py-16 border-b border-ink">
         <div className="layout-container">
           <div className="font-mono text-[0.7rem] md:text-[0.85rem] uppercase tracking-[0.2em] text-ink-fade mb-4 md:mb-6 flex items-center gap-3">
             <Scale className="h-4 w-4" />
             Comparison Registry
           </div>
           <h1 className="type-display mb-4 md:mb-6 uppercase text-3xl md:text-5xl lg:text-7xl">Technical Audits.</h1>
-          <p className="max-w-2xl font-serif italic text-lg md:text-xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
+          <p className="max-w-2xl text-lg md:text-xl text-ink-fade leading-relaxed border-l border-ink/10 pl-4 md:pl-6">
             We compare sales modules based on their <strong>programmability</strong>, <strong>AI-readiness</strong>, and <strong>MCP support</strong>. Choose the right node for your agentic stack.
           </p>
         </div>
@@ -80,7 +80,7 @@ export default async function VsIndexPage() {
                 <Link 
                   key={`${pair.s1}-vs-${pair.s2}`}
                   href={`/vs/${[pair.s1, pair.s2].sort().join('-vs-')}`}
-                  className="group flex flex-col h-full gap-6 md:gap-8 p-6 md:p-8 bg-paper-dark/60 transition-all"
+                  className="group flex flex-col h-full gap-6 md:gap-8 p-6 md:p-8 bg-white/60 border border-ink/10 hover:border-ink/30 transition-all"
                   style={{ border: '1px solid rgba(26, 25, 23, 0.15)' }}
                 >
                   <div className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase text-ink-fade group-hover:text-black transition-colors italic">{pair.label}</div>
@@ -93,7 +93,7 @@ export default async function VsIndexPage() {
                     {t1.name} <br/><span className="opacity-20 italic">vs</span><br/> {t2.name}
                   </h3>
                   <div className="mt-auto pt-6 md:pt-8 flex items-center justify-between opacity-40 group-hover:opacity-100 transition-all border-t border-dashed border-black/10">
-                    <span className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-widest">Run Audit</span>
+                    <span className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.16em]">Run Audit</span>
                     <ArrowRight className="h-4 w-4 text-black" />
                   </div>
                 </Link>
@@ -104,7 +104,7 @@ export default async function VsIndexPage() {
       </section>
 
       {/* Directory of all comparisons */}
-      <section className="py-16 md:py-24 bg-paper-dark/50 border-t border-ink">
+      <section className="py-16 md:py-24 bg-white/40 border-t border-ink">
         <div className="layout-container">
           <div className="mb-8 md:mb-16">
             <h2 className="font-mono text-[0.75rem] md:text-[0.8rem] uppercase tracking-[0.2em] text-ink-fade border-b border-black/10 pb-4 inline-block italic">Full Cross-Reference Index</h2>
@@ -118,7 +118,7 @@ export default async function VsIndexPage() {
                   <Link 
                     key={`${t.slug}-vs-${altTool.slug}`}
                     href={`/vs/${[t.slug, altTool.slug].sort().join('-vs-')}`}
-                    className="font-serif text-[1.1rem] text-ink-fade hover:text-black transition-all italic hover:underline"
+                    className="text-[1.1rem] text-ink-fade hover:text-black transition-all hover:underline"
                   >
                     {t.name} vs {altTool.name}
                   </Link>

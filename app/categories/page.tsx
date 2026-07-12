@@ -46,7 +46,7 @@ export default function CategoriesPage() {
       <section className="px-4 md:px-8 py-12 md:py-16 border-b border-ink">
         <div className="layout-container">
           <h1 className="type-display mb-4 md:mb-6 text-3xl md:text-5xl lg:text-7xl">Categories</h1>
-          <p className="max-w-2xl font-serif italic text-lg md:text-xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
+          <p className="max-w-2xl text-lg md:text-xl text-ink-fade leading-relaxed border-l border-ink/10 pl-4 md:pl-6">
             Find the building blocks for every part of your automated sales engine. From prospecting data to outreach APIs.
           </p>
         </div>
@@ -62,9 +62,8 @@ export default function CategoriesPage() {
                 <Link
                   key={cat.slug}
                   href={cat.name === "Claude Plugins" ? "/claude-plugins" : `/categories/${cat.slug}`}
-                  className="group flex flex-col h-full gap-6 md:gap-8 p-6 md:p-8 bg-paper-dark/60 hover:translate-y-[-4px] transition-all"
-                  style={{ border: '1px solid rgba(26, 25, 23, 0.15)' }}
-                >
+                  className="group flex flex-col h-full gap-6 md:gap-8 p-6 md:p-8 bg-white border border-ink/10 hover:border-ink/25 hover:-translate-y-1 transition-all rounded-2xl"
+                  >
                   <div className="flex items-center justify-between">
                     <div className="w-12 h-12 flex items-center justify-center bg-ink text-paper [clip-path:polygon(0%_0%,100%_5%,95%_100%,5%_95%)]">
                       <Icon className="w-6 h-6" />
@@ -81,10 +80,10 @@ export default function CategoriesPage() {
                   </div>
 
                   <div className="mt-auto pt-8 flex items-center justify-between opacity-40 group-hover:opacity-100 transition-all border-t border-dashed border-ink/20">
-                    <div className="font-mono text-[0.7rem] uppercase">
+                    <div className="font-mono text-[0.7rem] uppercase tracking-[0.14em]">
                       {cat.toolCount} Tools
                     </div>
-                    <div className="font-mono text-[0.7rem] uppercase tracking-widest">Open {'>'}</div>
+                    <div className="font-mono text-[0.7rem] uppercase tracking-[0.14em]">Open {'>'}</div>
                   </div>
                 </Link>
               )

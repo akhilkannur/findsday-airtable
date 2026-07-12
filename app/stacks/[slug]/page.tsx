@@ -95,11 +95,11 @@ export default async function StackDetailPage({
         { name: "Stacks", url: "https://salestools.club/stacks" },
         { name: stack.name, url: `https://salestools.club/stacks/${stack.slug}` },
       ]} />
-      <section className="px-4 py-12 md:px-8 md:py-24 border-b border-ink bg-paper-dark/30">
+      <section className="px-4 py-12 md:px-8 md:py-24 border-b border-ink">
         <div className="layout-container">
           <Link
             href="/stacks"
-            className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase underline hover:line-through transition-all mb-8 md:mb-12 inline-block"
+            className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase underline transition-colors hover:text-ink mb-8 md:mb-12 inline-block"
           >
             &lt;- Back to Stacks
           </Link>
@@ -111,7 +111,7 @@ export default async function StackDetailPage({
             <h1 className="type-display uppercase mb-8 md:mb-12 text-3xl md:text-5xl lg:text-7xl leading-tight tracking-tighter">
               {stack.name}
             </h1>
-            <p className="font-serif italic text-xl md:text-2xl text-ink-fade leading-relaxed max-w-2xl border-l-2 border-ink pl-4 md:pl-6">
+            <p className="text-xl md:text-2xl text-ink-fade leading-relaxed max-w-2xl border-l border-ink/10 pl-4 md:pl-6">
               {stack.tagline}
             </p>
 
@@ -129,9 +129,9 @@ export default async function StackDetailPage({
                 </div>
                 <div>
                   <h3 className="text-lg font-bold uppercase mb-0.5 leading-none tracking-tight">{stack.expert.name}</h3>
-                  <div className="flex items-center gap-2 font-mono text-[0.6rem] md:text-[0.65rem] uppercase tracking-widest text-ink-fade">
+                  <div className="flex items-center gap-2 font-mono text-[0.6rem] md:text-[0.65rem] uppercase tracking-[0.16em] text-ink-fade">
                     <span>{stack.expert.role} @</span>
-                    <Link href={stack.expert.companyUrl} target="_blank" className="underline hover:line-through">
+                    <Link href={stack.expert.companyUrl} target="_blank" className="underline hover:text-ink-fade transition-colors">
                       {stack.expert.company}
                     </Link>
                   </div>
@@ -173,7 +173,7 @@ export default async function StackDetailPage({
                       </div>
 
                       <div className="relative">
-                        <p className="font-serif text-2xl md:text-4xl text-ink leading-snug md:leading-tight">
+                        <p className="text-2xl md:text-4xl text-ink leading-snug md:leading-tight">
                           &ldquo;{step.description}&rdquo;
                         </p>
                       </div>
@@ -183,7 +183,7 @@ export default async function StackDetailPage({
                           <ArrowRight className="h-5 w-5 text-ink-fade" />
                           <Link
                             href={`/apis/${tool.slug}`}
-                            className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase underline underline-offset-4 hover:line-through decoration-ink/30 hover:decoration-ink transition-all"
+                            className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase underline underline-offset-4 transition-colors hover:text-ink-fade"
                           >
                             Explore {tool.name} API &rarr;
                           </Link>
@@ -207,7 +207,7 @@ export default async function StackDetailPage({
                     </div>
 
                     <div className="pb-8 md:pb-12">
-                      <div className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-widest text-ink-fade mb-1 md:mb-2">
+                      <div className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.16em] text-ink-fade mb-1 md:mb-2">
                         Step {idx + 1}
                       </div>
                       <h3 className="text-lg md:text-xl font-bold uppercase mb-2">
@@ -216,7 +216,7 @@ export default async function StackDetailPage({
                       {tool && (
                         <Link
                           href={`/apis/${tool.slug}`}
-                          className="inline-block font-mono text-[0.7rem] md:text-[0.75rem] uppercase underline underline-offset-4 hover:line-through transition-all mb-3 md:mb-4"
+                          className="inline-block font-mono text-[0.7rem] md:text-[0.75rem] uppercase underline underline-offset-4 transition-colors hover:text-ink-fade mb-3 md:mb-4"
                         >
                           {tool.name} →
                         </Link>
@@ -253,14 +253,14 @@ export default async function StackDetailPage({
           <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start md:items-center justify-between">
             {stack.expert ? (
               <div>
-                <h2 className="font-serif italic text-xl md:text-2xl mb-3 md:mb-4">Are you a GTM expert?</h2>
+                <h2 className="text-xl md:text-2xl mb-3 md:mb-4">Are you a GTM expert?</h2>
                 <p className="text-ink-fade text-base md:text-[1rem]">
                   Share your favorite 3 APIs and get featured in our experts directory.
                 </p>
               </div>
             ) : (
               <div>
-                <h2 className="font-serif italic text-xl md:text-2xl mb-3 md:mb-4">Missing a tool in this stack?</h2>
+                <h2 className="text-xl md:text-2xl mb-3 md:mb-4">Missing a tool in this stack?</h2>
                 <p className="text-ink-fade text-base md:text-[1rem]">
                   Know a tool that would fit this workflow? Submit it to the directory.
                 </p>
@@ -268,7 +268,7 @@ export default async function StackDetailPage({
             )}
             <Link
               href="/submit"
-              className="w-full md:w-auto text-center font-mono text-[0.7rem] md:text-[0.75rem] uppercase tracking-widest border border-ink px-6 py-3 md:px-8 md:py-4 hover:bg-ink hover:text-paper transition-all"
+              className="w-full md:w-auto text-center font-mono text-[0.7rem] md:text-[0.75rem] uppercase tracking-[0.16em] border border-ink px-6 py-3 md:px-8 md:py-4 hover:bg-ink hover:text-paper transition-all"
             >
               {stack.expert ? "Submit Your Stack →" : "Submit a Tool →"}
             </Link>
@@ -277,25 +277,25 @@ export default async function StackDetailPage({
           <div className="mt-12 md:mt-16 pt-12 md:pt-16 border-t border-dashed border-ink/20 flex flex-wrap gap-4 md:gap-6">
             <Link
               href="/for/cold-outreach"
-              className="font-mono text-[0.7rem] uppercase underline underline-offset-4 hover:line-through transition-all"
+              className="font-mono text-[0.7rem] uppercase underline underline-offset-4 transition-colors hover:text-ink-fade"
             >
               Cold Outreach Tools
             </Link>
             <Link
               href="/for/prospecting"
-              className="font-mono text-[0.7rem] uppercase underline underline-offset-4 hover:line-through transition-all"
+              className="font-mono text-[0.7rem] uppercase underline underline-offset-4 transition-colors hover:text-ink-fade"
             >
               Prospecting Tools
             </Link>
             <Link
               href="/categories/crm-and-revops"
-              className="font-mono text-[0.7rem] uppercase underline underline-offset-4 hover:line-through transition-all"
+              className="font-mono text-[0.7rem] uppercase underline underline-offset-4 transition-colors hover:text-ink-fade"
             >
               CRM Automation
             </Link>
             <Link
               href="/api"
-              className="font-mono text-[0.7rem] uppercase underline underline-offset-4 hover:line-through transition-all"
+              className="font-mono text-[0.7rem] uppercase underline underline-offset-4 transition-colors hover:text-ink-fade"
             >
               Full Directory
             </Link>

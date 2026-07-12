@@ -212,7 +212,7 @@ export default async function RootLayout({
                   <Link href="/categories/sales-intelligence" className="transition-colors hover:text-ink">Lead Enrichment</Link>
                   <Link href="/categories/sales-engagement" className="transition-colors hover:text-ink">Outreach Automation</Link>
                   <Link href="/categories/phone-and-dialers" className="transition-colors hover:text-ink">AI Voice Agents</Link>
-                  <Link href="/categories/revenue-intelligence" className="transition-colors hover:text-ink">Meeting Recording</Link>
+                  <Link href="/categories/revenue-intelligence" className="transition-colors hover:text-ink">Calls &amp; Meetings</Link>
                   <Link href="/credit-audit" className="font-semibold transition-colors hover:text-ink">Credit Policy Guide</Link>
                   <Link href="/free-sales-apis" className="font-semibold text-ink transition-colors hover:text-ink">Free Sales APIs</Link>
                 </div>
@@ -266,13 +266,15 @@ export default async function RootLayout({
               <div className="panel flex flex-wrap items-center justify-center gap-4 px-6 py-5 font-mono text-[0.78rem] uppercase tracking-[0.16em]">
                 <span className="opacity-60 text-[0.7rem]">Built by</span>
                 <a href="https://akhilneeds.space" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:opacity-80 transition-opacity group">
-                  <Image 
-                    src="/dp.jpg" 
-                    alt="Akhil" 
-                    width={32}
-                    height={32}
-                    className="rounded-full border border-ink/10 grayscale transition-all group-hover:grayscale-0"
-                  />
+                  <span className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full border border-ink/10 bg-white">
+                    <Image 
+                      src="/dp.jpg" 
+                      alt="Akhil" 
+                      width={32}
+                      height={32}
+                      className="h-full w-full object-cover grayscale transition-all group-hover:grayscale-0"
+                    />
+                  </span>
                   <span className="font-semibold">Akhil</span>
                 </a>
               </div>

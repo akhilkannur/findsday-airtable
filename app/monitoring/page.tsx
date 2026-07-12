@@ -43,7 +43,7 @@ export default async function MonitoringPage() {
       <section className="px-4 md:px-8 py-12 md:py-16 border-b border-ink">
         <div className="layout-container">
           <h1 className="type-display mb-4 md:mb-6 text-3xl md:text-5xl lg:text-7xl">Monitoring</h1>
-          <p className="max-w-2xl font-serif italic text-lg md:text-xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
+          <p className="max-w-2xl text-lg md:text-xl text-ink-fade leading-relaxed border-l border-ink/10 pl-4 md:pl-6">
             We're actively monitoring tools in the sales automation space to verify API availability. These tools exist but we haven't yet confirmed public API documentation.
           </p>
         </div>

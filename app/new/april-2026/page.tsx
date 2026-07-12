@@ -66,7 +66,7 @@ function ToolCard({ tool }: { tool: typeof aprilTools[0] }) {
         <ToolLogo name={tool.name} websiteUrl={`/apis/${tool.slug}`} />
         <ArrowRight className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity" />
       </div>
-      <h3 className="font-serif text-xl mb-3 group-hover:underline">{tool.name}</h3>
+      <h3 className="text-xl mb-3 group-hover:underline">{tool.name}</h3>
       <p className="text-sm text-ink-fade leading-relaxed">{tool.oneLiner}</p>
     </Link>
   )
@@ -81,12 +81,12 @@ export default function April2026Page() {
         <header className="mb-12 md:mb-20">
           <Link
             href="/new"
-            className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade mb-6 inline-flex items-center gap-2"
+            className="font-mono text-[0.7rem] uppercase tracking-[0.16em] text-ink-fade mb-6 inline-flex items-center gap-2"
           >
             <Calendar className="w-4 h-4" />
             Directory Updates
           </Link>
-          <h1 className="font-serif text-4xl md:text-5xl mb-6">
+          <h1 className="text-4xl md:text-5xl mb-6">
             New Sales Tools Added in April 2026
           </h1>
           <p className="text-lg text-ink-fade max-w-2xl">
@@ -103,7 +103,7 @@ export default function April2026Page() {
         <div className="mt-16 flex justify-center">
           <Link
             href="/new/may-2026"
-            className="inline-flex items-center gap-2 font-serif italic text-xl border-b border-black hover:opacity-60 transition-opacity pb-1"
+            className="inline-flex items-center gap-2 text-xl border-b border-black hover:opacity-60 transition-opacity pb-1"
           >
             May 2026 <ArrowRight className="w-4 h-4" />
           </Link>

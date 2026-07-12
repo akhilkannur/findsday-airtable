@@ -103,7 +103,7 @@ export default async function AuthMethodPage({
         { name: typeDisplay, url: `https://salestools.club/auth/${type}` },
       ]} />
 
-      <nav className="layout-container py-4 md:py-6 flex flex-wrap items-center gap-2 text-[0.65rem] md:text-[0.7rem] font-mono uppercase tracking-widest text-ink-fade">
+      <nav className="layout-container py-4 md:py-6 flex flex-wrap items-center gap-2 text-[0.65rem] md:text-[0.7rem] font-mono uppercase tracking-[0.16em] text-ink-fade">
         <Link href="/" className="hover:text-ink hover:underline">Home</Link>
         <span className="opacity-30">/</span>
         <span className="opacity-30 uppercase">Auth</span>
@@ -113,9 +113,9 @@ export default async function AuthMethodPage({
 
       <section className="px-4 md:px-8 py-12 md:py-16 border-b border-ink">
         <div className="layout-container">
-          <p className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-widest text-ink-fade mb-3 md:mb-4">Auth Directory</p>
+          <p className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.16em] text-ink-fade mb-3 md:mb-4">Auth Directory</p>
           <h1 className="type-display mb-4 md:mb-6 text-3xl md:text-5xl lg:text-7xl">{typeDisplay} APIs</h1>
-          <p className="max-w-2xl font-serif italic text-xl md:text-2xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
+          <p className="max-w-2xl text-xl md:text-2xl text-ink-fade leading-relaxed border-l border-ink/10 pl-4 md:pl-6">
             Connecting your AI agent? These tools use {typeDisplay} auth, making them easy to use with Claude Code and Gemini CLI.
           </p>
         </div>
@@ -162,9 +162,9 @@ export default async function AuthMethodPage({
               ))}
             </div>
           ) : (
-            <div className="py-16 md:py-20 text-center border-2 border-dashed border-ink/10">
-              <p className="font-serif italic text-lg md:text-xl text-ink-fade">No tools found in this category with {typeDisplay} auth.</p>
-              <Link href={`/auth/${type}`} className="mt-4 inline-block font-mono text-[0.7rem] uppercase underline">Clear Category Filter</Link>
+            <div className="py-16 md:py-20 text-center border border-dashed border-ink/10 rounded-2xl bg-white">
+              <p className="text-lg md:text-xl text-ink-fade">No tools found in this category with {typeDisplay} auth.</p>
+              <Link href={`/auth/${type}`} className="mt-4 inline-block font-mono text-[0.7rem] uppercase underline hover:text-ink transition-colors">Clear Category Filter</Link>
             </div>
           )}
         </div>

@@ -85,7 +85,7 @@ export default async function APIPage({
       <section className="px-4 md:px-8 py-12 md:py-16 border-b border-ink">
         <div className="layout-container">
           <h1 className="type-display mb-4 md:mb-6 text-3xl md:text-5xl lg:text-7xl">Sales APIs</h1>
-          <p className="max-w-2xl font-serif italic text-lg md:text-xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
+          <p className="max-w-2xl text-lg md:text-xl text-ink-fade leading-relaxed border-l border-ink/10 pl-4 md:pl-6">
             Browse the tools by outcome. Open a card to see what it does, then check the setup steps, pricing, and limits on the tool page.
           </p>
         </div>
@@ -108,9 +108,9 @@ export default async function APIPage({
       <ApiFilterBar categories={categories.map(c => ({ slug: c.slug, name: c.name }))} />
 
       {(q || category || mcpOnly || freeOnly || officialOnly) && (
-        <div className="py-4 md:py-6 border-b border-ink bg-paper-dark/40">
+        <div className="py-4 md:py-6 border-b border-ink bg-white/40">
           <div className="layout-container flex items-center justify-end">
-            <Link href="/api" className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase underline hover:line-through transition-all">Reset All Filters</Link>
+            <Link href="/api" className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase underline transition-colors hover:text-ink-fade">Reset All Filters</Link>
           </div>
         </div>
       )}
@@ -157,7 +157,7 @@ export default async function APIPage({
                 <Link
                   key={tool.slug}
                   href={getToolHref(tool)}
-                  className="group flex flex-col md:flex-row md:items-center gap-4 md:gap-6 p-6 md:p-8 border-b border-ink/10 hover:bg-paper-dark/30 transition-all"
+                  className="group flex flex-col md:flex-row md:items-center gap-4 md:gap-6 p-6 md:p-8 border-b border-ink/10 hover:bg-white/60 transition-all"
                 >
                   <ToolLogo name={tool.name} websiteUrl={tool.websiteUrl} size="sm" />
                   
@@ -186,7 +186,7 @@ export default async function APIPage({
 
           {tools.length === 0 && (
             <div className="text-center py-32 opacity-60">
-              <p className="font-serif italic text-2xl mb-8">No tools found matching your criteria.</p>
+              <p className="text-2xl mb-8">No tools found matching your criteria.</p>
               <Link href="/api" className="circled font-mono font-bold">Clear All Filters</Link>
             </div>
           )}

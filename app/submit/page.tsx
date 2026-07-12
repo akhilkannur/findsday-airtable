@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { useState } from "react"
 import { Send, CheckCircle2, AlertCircle, Copy, Check, Zap, Globe, ShieldCheck } from "lucide-react"
 
@@ -93,7 +94,7 @@ export default function SubmitPage() {
       <div className="flex flex-col min-h-screen bg-paper items-center justify-center text-center px-8">
         <CheckCircle2 className="w-20 h-20 text-green-600 mb-8" />
         <h1 className="type-display mb-4 text-4xl">Submission Received</h1>
-        <p className="max-w-md font-serif italic text-2xl text-ink-fade leading-relaxed mb-12">
+        <p className="max-w-md text-2xl text-ink-fade leading-relaxed mb-12">
           Your tool has been submitted. We'll review it within 72 hours.
         </p>
         <button
@@ -108,10 +109,10 @@ export default function SubmitPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-paper">
-      <section className="px-4 md:px-8 py-12 md:py-24 border-b border-ink bg-paper-dark/30">
+      <section className="px-4 md:px-8 py-12 md:py-24 border-b border-ink">
         <div className="layout-container">
           <h1 className="type-display mb-6 md:mb-8 text-3xl md:text-5xl lg:text-7xl">Submit Tool</h1>
-          <p className="max-w-2xl font-serif italic text-xl md:text-2xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
+          <p className="max-w-2xl text-xl md:text-2xl text-ink-fade leading-relaxed border-l border-ink/10 pl-4 md:pl-6">
             Know a sales API or MCP server we&apos;re missing? Add it to the club.
           </p>
         </div>
@@ -232,7 +233,7 @@ export default function SubmitPage() {
                     />
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity font-bold text-xs md:text-sm">✓</div>
                   </div>
-                  <span className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase tracking-widest text-ink-fade group-hover:text-black transition-colors">MCP READY</span>
+                  <span className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase tracking-[0.16em] text-ink-fade group-hover:text-black transition-colors">MCP READY</span>
                 </label>
 
                 <label className="flex items-center gap-3 md:gap-4 cursor-pointer group">
@@ -245,7 +246,7 @@ export default function SubmitPage() {
                     />
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity font-bold text-xs md:text-sm">✓</div>
                   </div>
-                  <span className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase tracking-widest text-ink-fade group-hover:text-black transition-colors">AGENT SKILLS</span>
+                  <span className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase tracking-[0.16em] text-ink-fade group-hover:text-black transition-colors">AGENT SKILLS</span>
                 </label>
               </div>
 
@@ -265,7 +266,7 @@ export default function SubmitPage() {
                 >
                   {status === 'submitting' ? 'Submitting...' : 'Submit Tool'} <span>{'>'}</span>
                 </button>
-                <p className="mt-6 md:mt-8 font-serif italic text-base md:text-lg text-ink-fade text-center opacity-60">
+                <p className="mt-6 md:mt-8 text-base md:text-lg text-ink-fade text-center opacity-60">
                   We'll review your submission and get back to you.
                 </p>
               </div>
@@ -279,18 +280,18 @@ export default function SubmitPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             <div className="border border-dashed border-ink/30 p-6 bg-white/20">
               <Zap className="w-5 h-5 mb-3 text-ink" />
-              <h3 className="font-mono text-sm uppercase tracking-widest mb-2">Discovery</h3>
-              <p className="font-serif italic text-ink-fade text-sm">Get found by founders and ops teams building AI sales workflows.</p>
+              <h3 className="font-mono text-sm uppercase tracking-[0.16em] mb-2">Discovery</h3>
+              <p className="text-ink-fade text-sm">Get found by founders and ops teams building AI sales workflows.</p>
             </div>
             <div className="border border-dashed border-ink/30 p-6 bg-white/20">
               <Globe className="w-5 h-5 mb-3 text-ink" />
-              <h3 className="font-mono text-sm uppercase tracking-widest mb-2">SEO Backlink</h3>
-              <p className="font-serif italic text-ink-fade text-sm">Permanent do-follow backlink from a niche sales tech directory.</p>
+              <h3 className="font-mono text-sm uppercase tracking-[0.16em] mb-2">SEO Backlink</h3>
+              <p className="text-ink-fade text-sm">Permanent do-follow backlink from a niche sales tech directory.</p>
             </div>
             <div className="border border-dashed border-ink/30 p-6 bg-white/20">
               <ShieldCheck className="w-5 h-5 mb-3 text-ink" />
-              <h3 className="font-mono text-sm uppercase tracking-widest mb-2">Trust Signal</h3>
-              <p className="font-serif italic text-ink-fade text-sm">Embed our badge and show users you are part of a curated directory.</p>
+              <h3 className="font-mono text-sm uppercase tracking-[0.16em] mb-2">Trust Signal</h3>
+              <p className="text-ink-fade text-sm">Embed our badge and show users you are part of a curated directory.</p>
             </div>
           </div>
         </div>
@@ -298,7 +299,7 @@ export default function SubmitPage() {
         {/* Badge Embed */}
         <div className="layout-container mt-16 md:mt-24">
           <h2 className="type-display text-2xl md:text-4xl mb-4">Embed your badge</h2>
-          <p className="font-serif italic text-lg text-ink-fade mb-8 max-w-xl">
+          <p className="text-lg text-ink-fade mb-8 max-w-xl">
             Add the badge to your site. Tools with a badge get priority review.
           </p>
           
@@ -317,30 +318,30 @@ export default function SubmitPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
             {/* Dark Badge */}
-            <div className="border border-dashed border-ink/30 p-6 bg-white/20">
+            <div className="border border-dashed border-ink/10 p-6 bg-white/60 rounded-xl">
               <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-ink mb-4">Dark</p>
-              <div className="flex items-center justify-center py-4 bg-black/90 rounded-sm mb-4">
-                <img src="/images/badge-dark.svg" alt="Listed on Salestools Club - Dark" width="220" height="50" />
+              <div className="flex items-center justify-center rounded-lg border border-ink/10 bg-black/90 py-5 mb-4">
+                <Image src="/images/badge-dark.svg" alt="Listed on Salestools Club - Dark" width={220} height={50} className="h-auto w-[220px] max-w-full object-contain" />
               </div>
               <button
                 type="button"
                 onClick={() => handleCopy('dark')}
-                className="w-full py-3 font-mono text-xs uppercase tracking-widest border border-ink/30 hover:bg-black hover:text-white transition-all flex items-center justify-center gap-2"
+                className="w-full py-3 font-mono text-xs uppercase tracking-[0.16em] border border-ink/30 hover:bg-black hover:text-white transition-all flex items-center justify-center gap-2"
               >
                 {copied === 'dark' ? <><Check className="w-3 h-3" /> Copied</> : <><Copy className="w-3 h-3" /> Copy Embed Code</>}
               </button>
             </div>
 
             {/* Light Badge */}
-            <div className="border border-dashed border-ink/30 p-6 bg-white/20">
+            <div className="border border-dashed border-ink/10 p-6 bg-white/60 rounded-xl">
               <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-ink mb-4">Light</p>
-              <div className="flex items-center justify-center py-4 bg-white rounded-sm mb-4">
-                <img src="/images/badge-light.svg" alt="Listed on Salestools Club - Light" width="220" height="50" />
+              <div className="flex items-center justify-center rounded-lg border border-ink/10 bg-white py-5 mb-4">
+                <Image src="/images/badge-light.svg" alt="Listed on Salestools Club - Light" width={220} height={50} className="h-auto w-[220px] max-w-full object-contain" />
               </div>
               <button
                 type="button"
                 onClick={() => handleCopy('light')}
-                className="w-full py-3 font-mono text-xs uppercase tracking-widest border border-ink/30 hover:bg-black hover:text-white transition-all flex items-center justify-center gap-2"
+                className="w-full py-3 font-mono text-xs uppercase tracking-[0.16em] border border-ink/30 hover:bg-black hover:text-white transition-all flex items-center justify-center gap-2"
               >
                 {copied === 'light' ? <><Check className="w-3 h-3" /> Copied</> : <><Copy className="w-3 h-3" /> Copy Embed Code</>}
               </button>

@@ -145,7 +145,7 @@ function SectionHeader({
   eyebrow: string
   title: string
   href: string
-  actionLabel: string
+  actionLabel?: string
 }) {
   return (
     <div className="mb-6 flex items-end justify-between gap-4 md:mb-8">
@@ -157,12 +157,14 @@ function SectionHeader({
           {title}
         </h2>
       </div>
-      <Link
-        href={href}
-        className="hidden rounded-md border border-ink/10 bg-white px-3 py-2 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-ink-fade transition-colors hover:border-ink/20 hover:text-ink sm:inline-flex"
-      >
-        {actionLabel}
-      </Link>
+      {actionLabel ? (
+        <Link
+          href={href}
+          className="hidden rounded-md border border-ink/10 bg-white px-3 py-2 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-ink-fade transition-colors hover:border-ink/20 hover:text-ink sm:inline-flex"
+        >
+          {actionLabel}
+        </Link>
+      ) : null}
     </div>
   )
 }
@@ -299,7 +301,6 @@ export default async function Home() {
             eyebrow="Recently Added"
             title="Latest tools"
             href="/api"
-            actionLabel="Browse all APIs"
           />
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
             {recentTools.map((tool) => (

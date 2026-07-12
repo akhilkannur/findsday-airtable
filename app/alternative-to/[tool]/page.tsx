@@ -106,9 +106,9 @@ export default async function AlternativeToPage({ params }: { params: Promise<{ 
       
       <section className="px-4 md:px-8 py-12 md:py-16 border-b border-ink">
         <div className="layout-container">
-          <p className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-widest text-ink-fade mb-3 md:mb-4">Competitor Comparison</p>
+          <p className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.16em] text-ink-fade mb-3 md:mb-4">Competitor Comparison</p>
           <h1 className="type-display mb-4 md:mb-6 text-3xl md:text-5xl lg:text-7xl">Best {toolDisplay} Alternatives</h1>
-          <p className="max-w-2xl font-serif italic text-xl md:text-2xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
+          <p className="max-w-2xl text-xl md:text-2xl text-ink-fade leading-relaxed border-l border-ink/10 pl-4 md:pl-6">
             Looking for a different option than {toolDisplay}? These tools provide APIs and MCP servers built for AI-native workflows.
           </p>
         </div>
@@ -139,7 +139,7 @@ export default async function AlternativeToPage({ params }: { params: Promise<{ 
 
                 <div className="mt-auto flex flex-wrap gap-2 items-center">
                   <span className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-wider text-ink-fade">{t.category}</span>
-                  <span className="ml-auto font-mono text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 border border-ink/20 rounded-full">
+                  <span className="ml-auto font-mono text-[9px] font-bold uppercase tracking-[0.16em] px-2 py-0.5 border border-ink/20 rounded-full">
                     {t.hasFreeTier ? "Free" : "Paid"}
                   </span>
                 </div>

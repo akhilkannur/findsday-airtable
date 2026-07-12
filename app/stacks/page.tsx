@@ -39,7 +39,7 @@ export default function StacksPage() {
       <section className="px-4 md:px-8 py-12 md:py-16 border-b border-ink">
         <div className="layout-container">
           <h1 className="type-display mb-4 md:mb-6 text-3xl md:text-5xl lg:text-7xl">Stacks</h1>
-          <p className="max-w-2xl font-serif italic text-lg md:text-xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
+          <p className="max-w-2xl text-lg md:text-xl text-ink-fade leading-relaxed border-l border-ink/10 pl-4 md:pl-6">
             Real stacks from real experts. We asked GTM engineers, sales ops leaders, and outbound specialists for their favorite 3 APIs. These are their battle-tested workflows.
           </p>
         </div>
@@ -55,18 +55,17 @@ export default function StacksPage() {
                 <Link
                   key={stack.slug}
                   href={`/stacks/${stack.slug}`}
-                  className="group flex flex-col h-full gap-6 md:gap-8 p-6 md:p-8 bg-paper-dark/60 hover:translate-y-[-4px] transition-all"
-                  style={{ border: "1px solid rgba(26, 25, 23, 0.15)" }}
+                  className="group flex flex-col h-full gap-6 md:gap-8 p-6 md:p-8 bg-white/60 border border-ink/10 hover:border-ink/30 hover:-translate-y-0.5 transition-all"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-fade">
+                    <span className="font-mono text-[0.7rem] uppercase tracking-[0.16em] text-ink-fade">
                       {stack.expert ? "Expert Stack" : String(idx + 1).padStart(2, "0")}
                     </span>
                     <div className="flex -space-x-1">
                       {stackTools.map((tool) => (
                         <div
                           key={tool.slug}
-                          className="w-8 h-8 bg-ink text-paper flex items-center justify-center font-serif font-bold text-[0.6rem] [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]"
+                          className="w-8 h-8 bg-ink text-paper flex items-center justify-center font-bold text-[0.6rem] [clip-path:polygon(0%_0%,100%_2%,98%_100%,2%_98%)]"
                         >
                           {tool.name.substring(0, 1)}
                         </div>
@@ -105,7 +104,7 @@ export default function StacksPage() {
                     <div className="font-mono text-[0.7rem] uppercase">
                       {stack.toolSlugs.length} Tools
                     </div>
-                    <div className="font-mono text-[0.7rem] uppercase tracking-widest">
+                    <div className="font-mono text-[0.7rem] uppercase tracking-[0.16em]">
                       View Stack -&gt;
                     </div>
                   </div>

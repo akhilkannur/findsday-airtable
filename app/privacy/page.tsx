@@ -16,7 +16,7 @@ export default function PrivacyPage() {
         <div className="layout-container">
           <Link
             href="/"
-            className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase underline hover:line-through transition-all mb-8 md:mb-12 inline-block"
+            className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase underline transition-colors hover:text-ink mb-8 md:mb-12 inline-block"
           >
             &lt;- Back to System
           </Link>
@@ -29,41 +29,41 @@ export default function PrivacyPage() {
       
       <div className="layout-container py-12 md:py-24 space-y-12 md:space-y-24 max-w-4xl">
         <section>
-          <div className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase tracking-widest text-ink-fade mb-4 md:mb-6 italic">01. Introduction</div>
-          <p className="text-lg md:text-xl font-serif italic text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
+          <div className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase tracking-[0.16em] text-ink-fade mb-4 md:mb-6">01. Introduction</div>
+          <p className="text-lg md:text-xl text-ink-fade leading-relaxed border-l border-ink/10 pl-4 md:pl-6">
             Salestools Club ("I") respects your privacy. This policy explains how I handle information when you visit my module directory.
           </p>
         </section>
 
         <section>
-          <div className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase tracking-widest text-ink-fade mb-4 md:mb-6 italic">02. Data Collection</div>
-          <p className="text-lg md:text-xl font-serif italic text-ink-fade leading-relaxed mb-6 md:mb-8">
+          <div className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase tracking-[0.16em] text-ink-fade mb-4 md:mb-6">02. Data Collection</div>
+          <p className="text-lg md:text-xl text-ink-fade leading-relaxed mb-6 md:mb-8">
             I collect minimal protocol data to provide my service:
           </p>
-          <ul className="list-disc pl-6 md:pl-8 font-serif text-lg md:text-xl italic text-ink-fade space-y-4 md:space-y-6">
+          <ul className="list-disc pl-6 md:pl-8 text-lg md:text-xl text-ink-fade space-y-4 md:space-y-6">
             <li><strong>Usage Data:</strong> I use Google Analytics 4 (GA4) to understand how nodes interact with the site. This includes anonymized IP addresses and page view behavior.</li>
             <li><strong>Email:</strong> If you join my list, I store your email address solely for sending you the newsletter packet.</li>
           </ul>
         </section>
 
         <section>
-          <div className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase tracking-widest text-ink-fade mb-4 md:mb-6 italic">03. External Nodes</div>
-          <p className="text-lg md:text-xl font-serif italic text-ink-fade leading-relaxed">
+          <div className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase tracking-[0.16em] text-ink-fade mb-4 md:mb-6">03. External Nodes</div>
+          <p className="text-lg md:text-xl text-ink-fade leading-relaxed">
             I link to many third-party sales tools. I am not responsible for the privacy practices of those external nodes. Please check their respective protocols.
           </p>
         </section>
 
         <section>
-          <div className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase tracking-widest text-ink-fade mb-4 md:mb-6 italic">04. Primary Contact</div>
-          <p className="text-lg md:text-xl font-serif italic text-ink-fade leading-relaxed mb-6 md:mb-8">
+          <div className="font-mono text-[0.7rem] md:text-[0.75rem] uppercase tracking-[0.16em] text-ink-fade mb-4 md:mb-6">04. Primary Contact</div>
+          <p className="text-lg md:text-xl text-ink-fade leading-relaxed mb-6 md:mb-8">
             For any questions about your data, contact:
           </p>
           <p className="text-xl md:text-2xl font-bold underline underline-offset-8">
-            <a href="mailto:akhil@salestools.club" className="hover:line-through transition-all break-all">akhil@salestools.club</a>
+            <a href="mailto:akhil@salestools.club" className="transition-all break-all">akhil@salestools.club</a>
           </p>
         </section>
 
-        <div className="pt-12 md:pt-24 border-t border-ink/10 font-mono text-[0.65rem] md:text-[0.75rem] uppercase tracking-widest text-ink-fade italic">
+        <div className="pt-12 md:pt-24 border-t border-ink/10 font-mono text-[0.65rem] md:text-[0.75rem] uppercase tracking-[0.16em] text-ink-fade">
           Last Revision: February 19, 2026
         </div>
       </div>

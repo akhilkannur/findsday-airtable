@@ -36,10 +36,10 @@ export default function GuidesPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-paper">
-      <section className="px-4 md:px-8 py-12 md:py-16 border-b border-ink bg-paper-dark/30">
+      <section className="px-4 md:px-8 py-12 md:py-16 border-b border-ink">
         <div className="layout-container">
           <h1 className="type-display mb-4 md:mb-6 text-3xl md:text-5xl lg:text-7xl">API Guides for AI Agents</h1>
-          <p className="max-w-2xl font-serif italic text-lg md:text-xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
+          <p className="max-w-2xl text-lg md:text-xl text-ink-fade leading-relaxed border-l border-ink/10 pl-4 md:pl-6">
             Deep-dive guides to sales APIs. Compare API types, auth methods, SDKs, webhooks, and MCP readiness. Here are all the specs you need to build AI agents.
           </p>
         </div>
@@ -62,7 +62,7 @@ export default function GuidesPage() {
                     {guide.intro}
                   </p>
                 </div>
-                <div className="mt-6 md:mt-8 font-mono text-[0.7rem] md:text-[0.75rem] uppercase tracking-widest text-ink-fade group-hover:text-ink transition-colors">
+                <div className="mt-6 md:mt-8 font-mono text-[0.7rem] md:text-[0.75rem] uppercase tracking-[0.16em] text-ink-fade group-hover:text-ink transition-colors">
                   View Guide →
                 </div>
               </Link>
