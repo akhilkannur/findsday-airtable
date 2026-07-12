@@ -49,6 +49,8 @@ export const tools: (SalesTool | MinimalTool)[] = [
     logoUrl: "https://images.ctfassets.net/7hi678wn0rrz/71iV9I0qV8rE8S693XkR8K/95a289069d64e9e9a4f4d2f00e9b9861/stripe-logo-blue.png",
     integrations: [
       {
+        platform: "MCP",
+        url: "https://docs.stripe.com/api",
         label: "Official MCP Server",
       },
     ],

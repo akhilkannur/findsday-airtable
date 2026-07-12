@@ -152,8 +152,13 @@ export async function getToolsForComparison(slugs: string): Promise<{ tool1: Sal
 export async function getOpenSourceTools(): Promise<SalesTool[]> {
   const openSourceTools = tools.filter((t) => t.isOpenSource === true) as SalesTool[]
   
-  openSourceTools.reverse()
-  
+  openSourceTools.sort((a, b) => {
+    if (a.addedAt && b.addedAt) return b.addedAt.localeCompare(a.addedAt)
+    if (a.addedAt) return -1
+    if (b.addedAt) return 1
+    return a.name.localeCompare(b.name)
+  })
+
   return openSourceTools
 }
 

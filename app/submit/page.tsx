@@ -74,7 +74,7 @@ export default function SubmitPage() {
   function makeBadgeEmbed(variant: 'dark' | 'light', toolSlug: string) {
     const fileName = variant === 'dark' ? 'badge-dark.svg' : 'badge-light.svg'
     const targetUrl = toolSlug 
-      ? `${SITE_URL}/apis/${toolSlug}?utm_source=badge&utm_medium=embed` 
+      ? `${SITE_URL}/api?utm_source=badge&utm_medium=embed` 
       : `${SITE_URL}?utm_source=badge&utm_medium=embed`
     return `<a href="${targetUrl}" target="_blank" rel="noopener noreferrer"><img src="${SITE_URL}/images/${fileName}" alt="Listed on Salestools Club" width="220" height="50" /></a>`
   }

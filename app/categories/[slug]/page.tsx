@@ -120,7 +120,7 @@ export default async function CategoryDetailPage({
       "@type": "ListItem",
       "position": i + 1,
       "name": tool.name,
-      "url": `https://salestools.club/apis/${tool.slug}`,
+      "url": `https://salestools.club${getToolHref(tool)}`,
       "description": tool.oneLiner,
     })),
   }

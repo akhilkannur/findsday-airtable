@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import { permanentRedirect } from "next/navigation"
-import { getClaudePlugins, getToolBySlug } from "@/lib/tools"
+import { getClaudePlugins, getToolBySlug, getToolHref } from "@/lib/tools"
 import ToolDetailPage from "@/app/apis/[slug]/page"
 
 export async function generateStaticParams() {
@@ -43,7 +43,7 @@ export default async function ClaudePluginDetailPage({
   const plugin = await getToolBySlug(slug)
 
   if (!plugin || plugin.category !== "Claude Plugins") {
-    permanentRedirect(plugin ? `/apis/${plugin.slug}` : "/claude-plugins")
+    permanentRedirect(plugin ? getToolHref(plugin) : "/claude-plugins")
   }
 
   return ToolDetailPage({ params })

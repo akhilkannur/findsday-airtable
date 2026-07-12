@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { notFound, permanentRedirect } from "next/navigation"
 import type { Metadata } from "next"
-import { getToolBySlug, getAllTools, getAllCategories, getOpenSourceTools } from "@/lib/tools"
+import { getToolBySlug, getAllTools, getAllCategories, getOpenSourceTools, getToolHref } from "@/lib/tools"
 import type { SalesTool } from "@/lib/types"
 import { getSkillsForTool } from "@/lib/skills"
 import {
@@ -65,7 +65,7 @@ export async function generateMetadata({
 }
 
 function ToolCard({ tool }: { tool: SalesTool }) {
-  const href = tool.isOpenSource ? `/open-source-sales-tools/${tool.slug}` : `/apis/${tool.slug}`
+  const href = getToolHref(tool)
   return (
     <Link
       href={href}
@@ -103,7 +103,7 @@ export default async function OpenSourceDetailPage({
   }
 
   if (!tool.isOpenSource) {
-    permanentRedirect(`/apis/${slug}`)
+    permanentRedirect(getToolHref(tool))
   }
 
   const typedTool = tool as SalesTool

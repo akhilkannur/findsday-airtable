@@ -63,7 +63,7 @@ export default async function ComparisonPage({ params }: Props) {
     // One tool missing, go to the one that exists permanently
     const existingTool = tool1 || tool2
     const { permanentRedirect } = await import("next/navigation")
-    permanentRedirect(`/apis/${existingTool!.slug}`)
+    permanentRedirect(getToolHref(existingTool!))
   }
 
   const specs = [
@@ -86,14 +86,14 @@ export default async function ComparisonPage({ params }: Props) {
         "@type": "ListItem",
         "position": 1,
         "name": tool1.name,
-        "url": `https://salestools.club/apis/${tool1.slug}`,
+        "url": `https://salestools.club${getToolHref(tool1)}`,
         "description": tool1.oneLiner,
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": tool2.name,
-        "url": `https://salestools.club/apis/${tool2.slug}`,
+        "url": `https://salestools.club${getToolHref(tool2)}`,
         "description": tool2.oneLiner,
       },
     ],
