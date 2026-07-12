@@ -86,7 +86,7 @@ export default async function APIPage({
         <div className="layout-container">
           <h1 className="type-display mb-4 md:mb-6 text-3xl md:text-5xl lg:text-7xl">Sales APIs</h1>
           <p className="max-w-2xl font-serif italic text-lg md:text-xl text-ink-fade leading-relaxed border-l-2 border-ink pl-4 md:pl-6">
-            A comprehensive database of sales APIs and MCP servers. These are the building blocks for the next generation of AI-native sales systems.
+            Browse the tools by outcome. Open a card to see what it does, then check the setup steps, pricing, and limits on the tool page.
           </p>
         </div>
       </section>
@@ -96,7 +96,7 @@ export default async function APIPage({
           <div className="flex items-center gap-3">
             <span className="bg-paper text-ink font-mono text-[0.6rem] px-1.5 py-0.5 font-bold uppercase shrink-0">Operator Tip</span>
             <p className="font-mono text-[0.7rem] uppercase tracking-wider">
-              Compare credit rollover and refund policies for 20+ sales APIs
+              Start with the use case, then compare setup effort and pricing.
             </p>
           </div>
           <Link href="/credit-audit" className="font-mono text-[0.7rem] uppercase border-b border-paper hover:opacity-70 transition-opacity w-fit">
@@ -141,6 +141,9 @@ export default async function APIPage({
 
                   <div className="mt-auto flex flex-wrap gap-2 items-center">
                     <span className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-wider text-ink-fade group-hover:text-black transition-colors">{tool.category}</span>
+                    <span className="font-mono text-[9px] uppercase tracking-widest text-ink-fade">
+                      Open details
+                    </span>
                     <span className="ml-auto font-mono text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 border border-ink/20 rounded-full group-hover:border-ink transition-colors">
                       {tool.hasFreeTier ? "Free" : "Paid"}
                     </span>
@@ -170,6 +173,7 @@ export default async function APIPage({
 
                   <div className="flex items-center gap-4 md:gap-6 flex-shrink-0">
                     <span className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-wider text-ink-fade">{tool.category}</span>
+                    <span className="font-mono text-[9px] uppercase tracking-widest text-ink-fade">Open details</span>
                     <span className="font-mono text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 border border-ink/20 rounded-full w-14 md:w-16 text-center">
                       {tool.hasFreeTier ? "Free" : "Paid"}
                     </span>

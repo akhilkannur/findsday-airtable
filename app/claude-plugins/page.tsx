@@ -7,7 +7,7 @@ import { getClaudePlugins, getToolHref } from "@/lib/tools"
 export const metadata: Metadata = {
   title: "Claude Plugins for Sales & GTM | Salestools Club",
   description:
-    "Discover Claude Code plugins for sales, marketing, RevOps, prospect research, outreach, and pipeline analysis. Copy the install command and put Claude to work.",
+    "Discover Claude Code plugins for sales, marketing, RevOps, prospect research, outreach, and pipeline analysis. Open a plugin to see the install steps and starter prompt.",
   keywords: [
     "Claude plugins",
     "Claude Code plugins",
@@ -63,7 +63,7 @@ export default async function ClaudePluginsPage() {
           </div>
           <h1 className="type-display mb-4 text-3xl md:mb-6 md:text-5xl lg:text-7xl">Claude Plugins</h1>
           <p className="max-w-3xl border-l-2 border-ink pl-4 font-serif text-lg italic leading-relaxed text-ink-fade md:pl-6 md:text-xl">
-            Installable plugins and skill packs that turn Claude into a sales, marketing, and RevOps operator. Pick a plugin, copy the setup, and give Claude an outcome.
+            Installable plugins and skill packs that turn Claude into a sales, marketing, and RevOps operator. Pick a plugin, open the page, and follow the setup steps.
           </p>
         </div>
       </section>
@@ -91,7 +91,7 @@ export default async function ClaudePluginsPage() {
                 </div>
                 <div className="flex items-center justify-between border-t border-dashed border-ink/20 pt-4 font-mono text-[0.65rem] font-bold uppercase tracking-wider">
                   <span>{plugin.hasFreeTier ? "Free" : "Paid"}</span>
-                  <span className="flex items-center gap-2">View plugin <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" /></span>
+                  <span className="flex items-center gap-2">Open details <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" /></span>
                 </div>
               </Link>
             ))}
