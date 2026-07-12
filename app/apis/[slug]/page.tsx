@@ -222,14 +222,10 @@ export default async function ToolDetailPage({
   const hasMcp = Boolean(typedTool.mcpReady || mcpIntegration)
   const integrationSetupUrl = setupIntegration?.url
   const setupUrl = integrationSetupUrl || typedTool.docsUrl
-  const primaryUrl = setupUrl || typedTool.websiteUrl
-  const primaryLabel = isClaudePlugin
-    ? "Open plugin setup"
-    : mcpIntegration?.url
-    ? "Connect to an agent"
-    : hasPublicApi
-      ? "Open API docs"
-      : "Visit website"
+  const primaryUrl = isClaudePlugin
+    ? (setupUrl || typedTool.websiteUrl)
+    : typedTool.websiteUrl
+  const primaryLabel = "Visit website"
   const readiness = isClaudePlugin
     ? "Install in Claude"
     : mcpConfig
@@ -246,11 +242,22 @@ export default async function ToolDetailPage({
     : mcpConfig
     ? "Copy the configuration below into Claude Code or your AI client, then connect your account."
     : mcpIntegration
-      ? "Open the provider’s MCP guide, follow its authentication steps, then use the starter prompt below."
+      ? "Open the provider's MCP guide, follow its authentication steps, then use the starter prompt below."
       : hasMcp
         ? "The tool claims MCP support, but we have not found a specific setup guide yet."
     : hasPublicApi
-          ? "Share the API documentation link with Claude Code and ask it to build the connection—you do not need to write the code yourself."
+          ? (() => {
+              const caps = typedTool.aiCapabilities
+              const primary = caps[0] || ""
+              const secondary = caps[1] || ""
+              if (primary && secondary) {
+                return `Ask your agent to ${primary.toLowerCase()} and ${secondary.toLowerCase()} using the ${typedTool.name} API. Pass the docs link and let it build the integration.`
+              }
+              if (primary) {
+                return `Have your agent ${primary.toLowerCase()} through the ${typedTool.name} API. Give it the docs and it will handle the rest.`
+              }
+              return `Let your AI agent read the ${typedTool.name} API docs and connect the tool to your stack. No manual wiring needed.`
+            })()
           : "We have not found a public API, MCP server, or plugin that an AI agent can connect to."
   const hasAgentSetup = Boolean(setupIntegration || mcpConfig)
   const pluginFormat = mcpIntegration ? "MCP plugin" : claudeSkillIntegration ? "Claude skill" : "Claude plugin"
@@ -283,7 +290,9 @@ export default async function ToolDetailPage({
       ]
     : hasPublicApi
       ? [
-          ["01", "Open the API docs", "Give the documentation link to Claude Code, Cursor, or another coding agent."],
+          ["01", "Open the API docs", typedTool.apiType.length > 0
+            ? `Give the ${typedTool.apiType.join("/")} documentation to Claude Code or Cursor${typedTool.sdkLanguages.length > 0 ? ` — an ${typedTool.sdkLanguages[0]} SDK is available` : ""}.`
+            : "Give the API documentation link to Claude Code, Cursor, or another coding agent."],
           ["02", "Authenticate", `Configure ${typedTool.authMethod.join(" or ") || "the required credentials"} without pasting secrets into chat.`],
           ["03", "Build the first workflow", "Use the starter prompt below as a brief for your coding agent."],
         ]
