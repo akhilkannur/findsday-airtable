@@ -1,10 +1,9 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Cpu, Zap, Brain, Mail, Sparkles, ChevronRight } from "lucide-react"
-import * as LucideIcons from "lucide-react"
-import { getAllCategories, getAllTools, getToolHref } from "@/lib/tools"
-import { getAllGuides } from "@/lib/guides"
+import { ArrowRight } from "lucide-react"
+import { getAllCategories, getAllTools, getOpenSourceTools, getToolHref } from "@/lib/tools"
 import { getAllStacks } from "@/lib/stacks"
+import { getAllSkills } from "@/lib/skills"
 import type { Metadata } from "next"
 import { NewsletterForm } from "@/components/NewsletterForm"
 import { ToolLogo } from "@/components/ToolLogo"
@@ -111,25 +110,25 @@ function ToolCard({ tool }: { tool: any }) {
   return (
     <Link
       href={getToolHref(tool)}
-      className="tool-card group flex flex-col h-full"
+      className="tool-card group flex h-full flex-col"
     >
-      <div className="flex justify-between items-start mb-6">
-        <ToolLogo name={tool.name} websiteUrl={tool.websiteUrl} />
+      <div className="mb-4 flex items-start justify-between gap-3">
+        <ToolLogo name={tool.name} websiteUrl={tool.websiteUrl} size="sm" />
         {tool.mcpReady && (
           <div className="tag-mcp">MCP READY</div>
         )}
       </div>
       
       <div className="flex-grow">
-        <h3 className="text-xl md:text-2xl font-semibold mb-2 group-hover:underline underline-offset-4">{tool.name}</h3>
-        <p className="text-[0.95rem] md:text-[1rem] text-ink-fade leading-relaxed line-clamp-3 mb-6">
+        <h3 className="mb-2 text-[1rem] font-semibold leading-tight group-hover:underline underline-offset-4 md:text-[1.05rem]">{tool.name}</h3>
+        <p className="mb-4 line-clamp-2 text-[0.88rem] leading-relaxed text-ink-fade md:line-clamp-3">
           {tool.oneLiner}
         </p>
       </div>
 
-      <div className="mt-auto flex flex-wrap gap-2 items-center">
-        <span className="font-mono text-[0.75rem] uppercase tracking-wider text-ink-fade">{tool.category}</span>
-        <span className="ml-auto font-mono text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 border border-ink/20 rounded-full">
+      <div className="mt-auto flex flex-wrap items-center gap-2">
+        <span className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-ink-fade">{tool.category}</span>
+        <span className="ml-auto rounded-md border border-ink/10 px-2 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-ink-fade">
           {tool.hasFreeTier ? "Free Tier" : "Paid"}
         </span>
       </div>
@@ -137,14 +136,66 @@ function ToolCard({ tool }: { tool: any }) {
   )
 }
 
+function SectionHeader({
+  eyebrow,
+  title,
+  href,
+  actionLabel,
+}: {
+  eyebrow: string
+  title: string
+  href: string
+  actionLabel: string
+}) {
+  return (
+    <div className="mb-6 flex items-end justify-between gap-4 md:mb-8">
+      <div>
+        <p className="mb-2 font-mono text-[0.68rem] uppercase tracking-[0.18em] text-ink-fade">
+          {eyebrow}
+        </p>
+        <h2 className="text-2xl font-semibold leading-tight md:text-3xl">
+          {title}
+        </h2>
+      </div>
+      <Link
+        href={href}
+        className="hidden rounded-md border border-ink/10 bg-white px-3 py-2 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-ink-fade transition-colors hover:border-ink/20 hover:text-ink sm:inline-flex"
+      >
+        {actionLabel}
+      </Link>
+    </div>
+  )
+}
+
 export default async function Home() {
   const allTools = await getAllTools()
-  const exploreTools = allTools.slice(0, 9)
+  const allSkills = getAllSkills()
   const categories = getAllCategories()
-  const guides = getAllGuides().slice(0, 3)
 
   const allStacks = getAllStacks()
   const latestExpertStack = [...allStacks].reverse().find((s) => s.expert)
+
+  const sortedByPriority = (tools: typeof allTools) =>
+    [...tools].sort((a, b) => {
+      const featured = Number(Boolean(b.isFeatured)) - Number(Boolean(a.isFeatured))
+      if (featured !== 0) return featured
+
+      const aDate = a.addedAt ?? ""
+      const bDate = b.addedAt ?? ""
+      if (aDate !== bDate) return bDate.localeCompare(aDate)
+
+      return a.name.localeCompare(b.name)
+    })
+
+  const recentTools = allTools.slice(0, 6)
+  const apiTools = sortedByPriority(
+    allTools.filter((tool) => !tool.isOpenSource && tool.category !== "Claude Plugins")
+  ).slice(0, 6)
+  const mcpTools = sortedByPriority(
+    allTools.filter((tool) => tool.mcpReady && !tool.isOpenSource && tool.category !== "Claude Plugins")
+  ).slice(0, 6)
+  const skillTools = allSkills.slice(0, 6)
+  const openSourceTools = (await getOpenSourceTools()).slice(0, 3)
 
   return (
     <div className="flex flex-col">
@@ -242,134 +293,124 @@ export default async function Home() {
         </section>
       )}
 
-      {/* -- Directory Header ---------------- */}
-      <section className="border-t border-ink/10 py-10 md:py-16">
+      <section className="border-t border-ink/10 py-10 md:py-14">
         <div className="layout-container">
-          <div className="mb-8 md:mb-12">
-            <p className="font-mono text-[0.68rem] uppercase tracking-[0.18em] text-ink-fade mb-4">
-              Recently Added
-            </p>
-            <h2 className="text-3xl font-semibold leading-tight md:text-4xl">
-              Sales APIs & MCP Servers
-            </h2>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-            {exploreTools.map((tool) => (
+          <SectionHeader
+            eyebrow="Recently Added"
+            title="Latest tools"
+            href="/api"
+            actionLabel="Browse all APIs"
+          />
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {recentTools.map((tool) => (
               <ToolCard key={tool.slug} tool={tool} />
             ))}
           </div>
+        </div>
+      </section>
 
-          <div className="mt-12 text-center md:mt-16">
-            <Link href="/api" className="inline-flex items-center gap-2 rounded-md border border-ink/10 bg-white px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-ink/20">
-              Browse All APIs {'>'}
-            </Link>
-          </div>
-
-          {/* CLI Search CTA */}
-          <div className="mt-16 max-w-2xl mx-auto">
-            <div className="panel p-6 md:p-8">
-              <p className="font-mono text-[0.68rem] uppercase tracking-[0.18em] text-ink-fade mb-3 text-center">
-                Search and configure agents from your terminal
-              </p>
-              <p className="font-mono text-sm mb-4 text-center">
-                Run: <code className="rounded-md bg-ink px-3 py-1.5 text-paper">npx salestools search &quot;lead enrichment&quot;</code>
-              </p>
-              <p className="font-mono text-[0.68rem] text-center text-ink-fade">
-                Ideal for Claude Code and other agent-native users. Find the right API building blocks without leaving your workflow.
-              </p>
-            </div>
+      <section className="border-b border-ink/10 bg-white/35 py-10 md:py-14">
+        <div className="layout-container">
+          <SectionHeader
+            eyebrow="APIs"
+            title="Top API tools"
+            href="/api"
+            actionLabel="View all APIs"
+          />
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {apiTools.map((tool) => (
+              <ToolCard key={tool.slug} tool={tool} />
+            ))}
           </div>
         </div>
       </section>
 
-      {/* -- What's Inside ----------------------------------- */}
-      <section className="border-y border-ink/10 bg-white/45 py-10 md:py-16">
+      <section className="border-b border-ink/10 py-10 md:py-14">
         <div className="layout-container">
-          <div className="mb-8 md:mb-12">
-            <p className="font-mono text-[0.68rem] uppercase tracking-[0.18em] text-ink-fade mb-4">
-              What&apos;s Inside
-            </p>
-            <h2 className="text-3xl font-semibold leading-tight md:text-4xl">
-              Three things you&apos;ll find here
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 md:gap-8">
-            <Link href="/api" className="panel group flex flex-col gap-4 p-6 transition-colors hover:border-ink/15">
-              <span className="font-mono text-[0.68rem] text-ink-fade tracking-[0.18em]">01</span>
-              <h3 className="text-xl font-semibold underline decoration-transparent underline-offset-8 transition-all group-hover:decoration-ink/30">
-                Sales APIs
-              </h3>
-              <p className="text-[1rem] leading-relaxed text-ink-fade">
-                Programmable access to your CRM, outreach tools, enrichment databases, and calling platforms. These let Claude Code and other AI agents read and write to your sales stack directly.
-              </p>
-              <span className="mt-auto font-mono text-[0.68rem] uppercase tracking-[0.18em] text-ink-fade transition-colors group-hover:text-ink">
-                Browse APIs →
-              </span>
-            </Link>
-
-            <Link href="/mcp" className="panel group flex flex-col gap-4 p-6 transition-colors hover:border-ink/15">
-              <span className="font-mono text-[0.68rem] text-ink-fade tracking-[0.18em]">02</span>
-              <h3 className="text-xl font-semibold underline decoration-transparent underline-offset-8 transition-all group-hover:decoration-ink/30">
-                MCP Servers
-              </h3>
-              <p className="text-[1rem] leading-relaxed text-ink-fade">
-                Ready-made connectors that plug sales tools into Claude Code and other AI agents. No glue code. Copy the config, paste it, go.
-              </p>
-              <span className="mt-auto font-mono text-[0.68rem] uppercase tracking-[0.18em] text-ink-fade transition-colors group-hover:text-ink">
-                Browse MCP Servers →
-              </span>
-            </Link>
-
-            <Link href="/skills" className="panel group flex flex-col gap-4 p-6 transition-colors hover:border-ink/15">
-              <span className="font-mono text-[0.68rem] text-ink-fade tracking-[0.18em]">03</span>
-              <h3 className="text-xl font-semibold underline decoration-transparent underline-offset-8 transition-all group-hover:decoration-ink/30">
-                Agent Skills
-              </h3>
-              <p className="text-[1rem] leading-relaxed text-ink-fade">
-                Pre-configured instruction files that teach your agent how to perform complex sales tasks. One-click install for Claude Code and other AI agents.
-              </p>
-              <span className="mt-auto font-mono text-[0.68rem] uppercase tracking-[0.18em] text-ink-fade transition-colors group-hover:text-ink">
-                Browse Skills →
-              </span>
-            </Link>
+          <SectionHeader
+            eyebrow="MCP"
+            title="Ready-to-paste connectors"
+            href="/mcp"
+            actionLabel="View MCP servers"
+          />
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {mcpTools.map((tool) => (
+              <ToolCard key={tool.slug} tool={tool} />
+            ))}
           </div>
         </div>
       </section>
 
-      {/* -- Featured Guides ---------------- */}
-      <section className="border-b border-ink/10 py-16 md:py-24">
+      <section className="border-b border-ink/10 bg-white/35 py-10 md:py-14">
         <div className="layout-container">
-          <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
-            <div className="max-w-2xl">
-              <p className="font-mono text-[0.68rem] uppercase tracking-[0.18em] text-ink-fade mb-4">
-                Operator Deep Dives
-              </p>
-              <h2 className="type-display text-4xl md:text-5xl leading-tight">
-                Master the <span className="circled">Sales Stack.</span>
-              </h2>
-            </div>
-            <Link href="/guides" className="inline-flex items-center gap-2 rounded-md border border-ink/10 bg-white px-4 py-2 text-sm font-medium transition-colors hover:border-ink/20">
-              View All Guides →
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 md:gap-8">
-            {guides.map((guide) => (
-              <Link 
-                key={guide.slug} 
-                href={`/guides/${guide.slug}`}
-                className="panel group flex flex-col p-6 transition-colors hover:border-ink/15"
+          <SectionHeader
+            eyebrow="Skills"
+            title="Copy-paste agent skills"
+            href="/skills"
+            actionLabel="View all skills"
+          />
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {skillTools.map((skill) => (
+              <Link
+                key={skill.slug}
+                href={`/skills/${skill.slug}`}
+                className="tool-card group flex h-full flex-col"
               >
-                <h3 className="mb-4 text-xl font-semibold underline decoration-transparent underline-offset-4 transition-all group-hover:decoration-ink/30">
-                  {guide.title}
-                </h3>
-                <p className="mb-6 line-clamp-3 text-[1rem] leading-relaxed text-ink-fade">
-                  {guide.metaDescription}
-                </p>
-                <div className="mt-auto font-mono text-[0.68rem] uppercase tracking-[0.18em] font-semibold">
-                  Read Guide →
+                <div className="mb-4 flex items-start justify-between gap-3">
+                  <span className="rounded-md border border-ink/10 bg-ink/[0.03] px-2 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-ink-fade">
+                    {skill.difficulty}
+                  </span>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-fade">
+                    {skill.category}
+                  </span>
+                </div>
+                <div className="flex-grow">
+                  <h3 className="mb-2 text-[1rem] font-semibold leading-tight group-hover:underline underline-offset-4">
+                    {skill.name}
+                  </h3>
+                  <p className="mb-4 line-clamp-3 text-[0.88rem] leading-relaxed text-ink-fade">
+                    {skill.description}
+                  </p>
+                </div>
+                <div className="mt-auto font-mono text-[0.65rem] uppercase tracking-[0.16em] text-ink-fade">
+                  {skill.worksWithTools.length > 0 ? `Works with ${skill.worksWithTools.length} tools` : "Standalone skill"}
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-ink/10 py-10 md:py-14">
+        <div className="layout-container">
+          <SectionHeader
+            eyebrow="Open Source"
+            title="Self-hostable tools"
+            href="/open-source-sales-tools"
+            actionLabel="View all open source"
+          />
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {openSourceTools.map((tool) => (
+              <Link
+                key={tool.slug}
+                href={`/open-source-sales-tools/${tool.slug}`}
+                className="tool-card group flex h-full flex-col"
+              >
+                <div className="mb-4 flex items-start justify-between gap-3">
+                  <ToolLogo name={tool.name} websiteUrl={tool.websiteUrl} size="sm" />
+                  <div className="tag-mcp">OPEN SOURCE</div>
+                </div>
+                <div className="flex-grow">
+                  <h3 className="mb-2 text-[1rem] font-semibold leading-tight group-hover:underline underline-offset-4">
+                    {tool.name}
+                  </h3>
+                  <p className="mb-4 line-clamp-3 text-[0.88rem] leading-relaxed text-ink-fade">
+                    {tool.oneLiner}
+                  </p>
+                </div>
+                <div className="mt-auto flex items-center justify-between gap-2 font-mono text-[0.65rem] uppercase tracking-[0.16em] text-ink-fade">
+                  <span>{tool.githubStars ? `${tool.githubStars} stars` : "Open source"}</span>
+                  {tool.githubUrl && <span>GitHub</span>}
                 </div>
               </Link>
             ))}
