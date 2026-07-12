@@ -11,6 +11,7 @@ import {
   getAllUseCases,
 } from "@/lib/usecases"
 import { generateSeoTitle, generateSeoDescription } from "@/lib/seo"
+import { getToolHref } from "@/lib/tools"
 
 export async function generateStaticParams() {
   return getUseCaseSlugs().map((usecase) => ({ usecase }))
@@ -57,7 +58,7 @@ export async function generateMetadata({
 }
 
 function ToolCard({ tool }: { tool: any }) {
-  const href = tool.isOpenSource ? `/open-source-sales-tools/${tool.slug}` : `/apis/${tool.slug}`
+  const href = getToolHref(tool)
   return (
     <Link
       href={href}

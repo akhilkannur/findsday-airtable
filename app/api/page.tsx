@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { getAllTools, filterTools, getAllCategories } from "@/lib/tools"
+import { getAllApiTools, filterTools, getAllCategories, getToolHref } from "@/lib/tools"
 import { ArrowRight } from "lucide-react"
 import { ApiFilterBar } from "@/components/ApiFilterBar"
 import { ToolLogo } from "@/components/ToolLogo"
@@ -14,7 +14,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ searchParams }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }): Promise<Metadata> {
   const sp = await searchParams
   const hasFilters = !!(sp.q || sp.category || sp.mcp || sp.free || sp.official || sp.view)
-  const allTools = await getAllTools()
+  const allTools = await getAllApiTools()
   const toolCount = allTools.length
   const roundedCount = Math.max(10, Math.round(toolCount / 10) * 10)
 
@@ -78,7 +78,7 @@ export default async function APIPage({
     officialOnly
   })
 
-  const categories = getAllCategories()
+  const categories = getAllCategories().filter((item) => item.name !== "Claude Plugins")
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -122,7 +122,7 @@ export default async function APIPage({
               {tools.map((tool) => (
                 <Link
                   key={tool.slug}
-                  href={tool.isOpenSource ? `/open-source-sales-tools/${tool.slug}` : `/apis/${tool.slug}`}
+                  href={getToolHref(tool)}
                   className="tool-card group flex flex-col h-full"
                 >
                   <div className="flex justify-between items-start mb-6">
@@ -153,7 +153,7 @@ export default async function APIPage({
               {tools.map((tool) => (
                 <Link
                   key={tool.slug}
-                  href={tool.isOpenSource ? `/open-source-sales-tools/${tool.slug}` : `/apis/${tool.slug}`}
+                  href={getToolHref(tool)}
                   className="group flex flex-col md:flex-row md:items-center gap-4 md:gap-6 p-6 md:p-8 border-b border-ink/10 hover:bg-paper-dark/30 transition-all"
                 >
                   <ToolLogo name={tool.name} websiteUrl={tool.websiteUrl} size="sm" />

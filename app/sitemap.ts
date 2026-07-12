@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next"
-import { getAllTools, getAllSdkLanguages, getAllCapabilities, getAllAuthMethods } from "@/lib/tools"
+import { getAllTools, getAllSdkLanguages, getAllCapabilities, getAllAuthMethods, getToolHref } from "@/lib/tools"
 import { getAllSkills } from "@/lib/skills"
 import { getAllStacks } from "@/lib/stacks"
 import { getAllCategories } from "@/lib/tools"
@@ -47,6 +47,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: lastModified,
       changeFrequency: "weekly",
       priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/claude-plugins`,
+      lastModified: lastModified,
+      changeFrequency: "weekly",
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/stacks`,
@@ -120,7 +126,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       return true
     })
     .map((tool) => ({
-      url: `${baseUrl}/${tool.isOpenSource ? "open-source-sales-tools" : "apis"}/${tool.slug}`,
+      url: `${baseUrl}${getToolHref(tool)}`,
       lastModified: lastModified,
       changeFrequency: "weekly" as const,
       priority: 0.7,
@@ -163,6 +169,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const uniqueCategorySlugs = new Set<string>()
   const categoryPages: MetadataRoute.Sitemap = categories
     .filter((category) => {
+      if (category.name === "Claude Plugins") return false
       if (!category.slug || uniqueCategorySlugs.has(category.slug)) return false
       uniqueCategorySlugs.add(category.slug)
       return true

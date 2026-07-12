@@ -73,7 +73,7 @@ const navLinks = [
   { href: "/api", label: "APIs" },
   { href: "/mcp", label: "MCP Servers" },
   { href: "/skills", label: "Skills" },
-  { href: "/stacks", label: "Stacks" },
+  { href: "/claude-plugins", label: "Claude Plugins" },
 
   { href: "/open-source-sales-tools", label: "Open Source" },
   { href: "/submit", label: "Submit" },

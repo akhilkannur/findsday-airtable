@@ -125,6 +125,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/apis/:slug(anthropic-sales-plugin|apollo-mcp-plugin|zoominfo-mcp-plugin|leadmagic-gtm-skills|amplitude-builder-skills|growth-skills-engineer|zapier-gtm-cheat-codes)',
+        destination: '/claude-plugins/:slug',
+        permanent: true,
+      },
+      {
         source: '/tools/:slug',
         destination: '/apis/:slug',
         permanent: true,

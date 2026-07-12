@@ -1,11 +1,12 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { notFound } from "next/navigation"
+import { notFound, permanentRedirect } from "next/navigation"
 import {
   getCategoryBySlug,
   getToolsByCategory,
   getAllCategorySlugs,
   getAllCategories,
+  getToolHref,
 } from "@/lib/tools"
 import { ArrowRight } from "lucide-react"
 import { ToolLogo } from "@/components/ToolLogo"
@@ -65,7 +66,7 @@ export async function generateMetadata({
 }
 
 function ToolCard({ tool }: { tool: any }) {
-  const href = tool.isOpenSource ? `/open-source-sales-tools/${tool.slug}` : `/apis/${tool.slug}`
+  const href = getToolHref(tool)
   return (
     <Link
       href={href}
@@ -101,6 +102,10 @@ export default async function CategoryDetailPage({
 
   if (!category) {
     notFound()
+  }
+
+  if (category.name === "Claude Plugins") {
+    permanentRedirect("/claude-plugins")
   }
 
   const tools = await getToolsByCategory(category.name)

@@ -1,6 +1,6 @@
 import Link from "next/link"
 import type { Metadata } from "next"
-import { getToolBySlug, getAllSlugs, getAllTools, getAllCategories } from "@/lib/tools"
+import { getToolBySlug, getAllSlugs, getAllTools, getAllCategories, getToolHref } from "@/lib/tools"
 import type { SalesTool } from "@/lib/types"
 import {
   ArrowRight,
@@ -46,9 +46,14 @@ export async function generateMetadata({
     apiStatus = typedTool.hasPublicApi === false ? "no-api" : "monitoring"
   }
 
-  const pageTitle = generateSeoTitle(typedTool.name, "tool", apiStatus)
-  const pageUrl = `https://salestools.club/apis/${typedTool.slug}`
-  const pageDescription = generateSeoDescription(typedTool.name, "tool", undefined, apiStatus)
+  const isClaudePlugin = typedTool.category === "Claude Plugins"
+  const pageTitle = isClaudePlugin
+    ? `${typedTool.name} — Claude Code Plugin | Salestools Club`
+    : generateSeoTitle(typedTool.name, "tool", apiStatus)
+  const pageUrl = `https://salestools.club${isClaudePlugin ? `/claude-plugins/${typedTool.slug}` : `/apis/${typedTool.slug}`}`
+  const pageDescription = isClaudePlugin
+    ? `${typedTool.oneLiner} See capabilities, setup resources, and a ready-to-copy starter prompt.`
+    : generateSeoDescription(typedTool.name, "tool", undefined, apiStatus)
 
   const pageKeywords = generateSeoKeywords(typedTool.name, "tool", [typedTool.category, typedTool.apiType?.join(", ") || ""].filter(Boolean))
 
@@ -88,6 +93,7 @@ export async function generateMetadata({
 }
 
 function JsonLd({ tool }: { tool: SalesTool }) {
+  const toolUrl = `https://salestools.club${getToolHref(tool)}`
   const softwareSchema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -103,7 +109,7 @@ function JsonLd({ tool }: { tool: SalesTool }) {
       availability: "https://schema.org/InStock",
     },
     featureList: tool.aiCapabilities?.join(", "),
-    screenshot: `https://salestools.club/apis/${tool.slug}/opengraph-image`,
+    screenshot: `${toolUrl}/opengraph-image`,
   }
 
   return (
@@ -115,7 +121,7 @@ function JsonLd({ tool }: { tool: SalesTool }) {
 }
 
 function ToolCard({ tool }: { tool: SalesTool }) {
-  const href = tool.isOpenSource ? `/open-source-sales-tools/${tool.slug}` : `/apis/${tool.slug}`
+  const href = getToolHref(tool)
   return (
     <Link
       href={href}
@@ -159,7 +165,7 @@ export default async function ToolDetailPage({
     const aiTool = await getToolBySlug(`${slug}-ai`)
     if (aiTool) {
       const { permanentRedirect } = await import("next/navigation")
-      permanentRedirect(`/apis/${aiTool.slug}`)
+      permanentRedirect(getToolHref(aiTool))
     }
   }
 
@@ -172,6 +178,10 @@ export default async function ToolDetailPage({
   const typedTool = tool as NonNullable<typeof tool>
 
   const categoryMeta = getAllCategories().find(c => c.name === typedTool.category)
+  const isClaudePlugin = typedTool.category === "Claude Plugins"
+  const sectionHref = isClaudePlugin ? "/claude-plugins" : "/api"
+  const sectionName = isClaudePlugin ? "Claude Plugins" : "APIs"
+  const canonicalUrl = `https://salestools.club${getToolHref(typedTool)}`
 
   // Find alternatives – score by relevance so each tool gets unique, meaningful matches
   const allTools = await getAllTools()
@@ -255,16 +265,16 @@ export default async function ToolDetailPage({
     <div className="flex flex-col min-h-screen">
       <JsonLd tool={typedTool} />
       <BreadcrumbJsonLd items={[
-        { name: "APIs", url: "https://salestools.club/api" },
-        { name: typedTool.name, url: `https://salestools.club/apis/${typedTool.slug}` },
+        { name: sectionName, url: `https://salestools.club${sectionHref}` },
+        { name: typedTool.name, url: canonicalUrl },
       ]} />
 
       <nav className="layout-container py-4 md:py-8 flex flex-wrap items-center gap-2 text-[0.65rem] md:text-[0.75rem] font-mono uppercase tracking-widest text-ink-fade">
         <Link href="/" className="hover:text-ink hover:underline hover:line-through transition-all">Home</Link>
         <span className="opacity-30">/</span>
-        <Link href="/api" className="hover:text-ink hover:underline hover:line-through transition-all">APIs</Link>
+        <Link href={sectionHref} className="hover:text-ink hover:underline hover:line-through transition-all">{sectionName}</Link>
         <span className="opacity-30">/</span>
-        {categoryMeta && (
+        {categoryMeta && !isClaudePlugin && (
           <>
             <Link href={`/categories/${categoryMeta.slug}`} className="hover:text-ink hover:underline hover:line-through transition-all">{typedTool.category}</Link>
             <span className="opacity-30">/</span>
@@ -528,7 +538,7 @@ export default async function ToolDetailPage({
                 <div className="mb-2 font-mono text-[0.65rem] uppercase tracking-widest text-ink-fade">Related options</div>
                 <h2 className="font-serif text-3xl italic">Similar tools</h2>
               </div>
-              <Link href="/api" className="font-mono text-xs font-bold uppercase tracking-wider hover:underline">
+              <Link href={sectionHref} className="font-mono text-xs font-bold uppercase tracking-wider hover:underline">
                 Browse all
               </Link>
             </div>

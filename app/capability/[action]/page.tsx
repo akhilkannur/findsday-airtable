@@ -1,4 +1,4 @@
-import { getToolsByCapability, getAllCapabilities, getAllCategories, CANONICAL_CAPABILITIES, getTopCapabilities } from "@/lib/tools"
+import { getToolsByCapability, getAllCapabilities, getAllCategories, CANONICAL_CAPABILITIES, getTopCapabilities, getToolHref } from "@/lib/tools"
 import Link from "next/link"
 import type { Metadata } from "next"
 import { notFound, permanentRedirect } from "next/navigation"
@@ -216,7 +216,7 @@ export default async function CapabilityPage({
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {tools.map((t) => (
                 <div key={t.slug} className="tool-card flex flex-col h-full bg-paper">
-                  <Link href={t.isOpenSource ? `/open-source-sales-tools/${t.slug}` : `/apis/${t.slug}`} className="group block mb-4 md:mb-6">
+                  <Link href={getToolHref(t)} className="group block mb-4 md:mb-6">
                     <div className="flex justify-between items-start mb-4 md:mb-6">
                       <ToolLogo name={t.name} websiteUrl={t.websiteUrl} />
                       {t.mcpReady && (
@@ -238,7 +238,7 @@ export default async function CapabilityPage({
 
                   <div className="mt-auto flex flex-wrap gap-2 items-center pt-4 border-t border-ink/5">
                     <span className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-wider text-ink-fade">{t.category}</span>
-                    <Link href={t.isOpenSource ? `/open-source-sales-tools/${t.slug}` : `/apis/${t.slug}`} className="ml-auto font-mono text-[0.65rem] md:text-[0.7rem] uppercase underline hover:no-underline transition-all">View API Docs</Link>
+                    <Link href={getToolHref(t)} className="ml-auto font-mono text-[0.65rem] md:text-[0.7rem] uppercase underline hover:no-underline transition-all">View Details</Link>
                   </div>
                 </div>
               ))}

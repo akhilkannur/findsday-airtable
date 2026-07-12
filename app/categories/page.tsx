@@ -61,7 +61,7 @@ export default function CategoriesPage() {
               return (
                 <Link
                   key={cat.slug}
-                  href={`/categories/${cat.slug}`}
+                  href={cat.name === "Claude Plugins" ? "/claude-plugins" : `/categories/${cat.slug}`}
                   className="group flex flex-col h-full gap-6 md:gap-8 p-6 md:p-8 bg-paper-dark/60 hover:translate-y-[-4px] transition-all"
                   style={{ border: '1px solid rgba(26, 25, 23, 0.15)' }}
                 >

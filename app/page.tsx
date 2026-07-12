@@ -2,7 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, Cpu, Zap, Brain, Mail, Sparkles, ChevronRight } from "lucide-react"
 import * as LucideIcons from "lucide-react"
-import { getAllCategories, getAllTools } from "@/lib/tools"
+import { getAllCategories, getAllTools, getToolHref } from "@/lib/tools"
 import { getAllGuides } from "@/lib/guides"
 import { getAllStacks } from "@/lib/stacks"
 import type { Metadata } from "next"
@@ -110,7 +110,7 @@ const faqJsonLd = {
 function ToolCard({ tool }: { tool: any }) {
   return (
     <Link
-      href={`/apis/${tool.slug}`}
+      href={getToolHref(tool)}
       className="tool-card group flex flex-col h-full"
     >
       <div className="flex justify-between items-start mb-6">
@@ -197,7 +197,7 @@ export default async function Home() {
             Works with:
           </p>
           <div className="flex flex-wrap gap-x-6 gap-y-2">
-            {["Claude Code", "Gemini CLI", "Claude Cowork", "Replit", "Any Agentic Tools"].map(
+            {["Claude Code", "Antigravity", "Claude Cowork", "Replit", "Any Agentic Tools"].map(
               (agent) => (
                 <span
                   key={agent}
@@ -394,7 +394,7 @@ export default async function Home() {
             {categories.slice(0, 8).map((cat, idx) => (
               <Link
                 key={cat.slug}
-                href={`/categories/${cat.slug}`}
+                href={cat.name === "Claude Plugins" ? "/claude-plugins" : `/categories/${cat.slug}`}
                 className="group flex flex-col h-full gap-6 p-6 md:p-8 bg-paper-dark/60 hover:translate-y-[-4px] transition-all"
                 style={{ border: '1px solid rgba(26, 25, 23, 0.15)' }}
               >

@@ -28,6 +28,22 @@ export async function getToolBySlug(slug: string): Promise<SalesTool | undefined
   return tools.find((t) => t.slug === slug)
 }
 
+export function getToolHref(tool: Pick<SalesTool, "slug" | "category" | "isOpenSource">): string {
+  if (tool.category === "Claude Plugins") return `/claude-plugins/${tool.slug}`
+  if (tool.isOpenSource) return `/open-source-sales-tools/${tool.slug}`
+  return `/apis/${tool.slug}`
+}
+
+export async function getClaudePlugins(): Promise<SalesTool[]> {
+  return tools
+    .filter((tool) => tool.category === "Claude Plugins" && tool.docsUrl)
+    .sort((a, b) => (b.addedAt ?? "").localeCompare(a.addedAt ?? "")) as SalesTool[]
+}
+
+export async function getAllApiTools(): Promise<SalesTool[]> {
+  return (await getAllTools()).filter((tool) => tool.category !== "Claude Plugins")
+}
+
 export async function getToolsByCategory(category: ToolCategory): Promise<SalesTool[]> {
   return tools.filter((t) => t.docsUrl && t.docsUrl !== "" && t.category === category)
 }
@@ -280,7 +296,9 @@ export async function filterTools(options: {
   freeOnly?: boolean
   officialOnly?: boolean
 }): Promise<SalesTool[]> {
-  let filtered = tools.filter((t) => t.docsUrl && t.docsUrl !== "")
+  let filtered = tools.filter(
+    (t) => t.docsUrl && t.docsUrl !== "" && t.category !== "Claude Plugins"
+  )
 
   if (options.category && options.category !== "All") {
     const resolved = resolveCategoryName(options.category)
