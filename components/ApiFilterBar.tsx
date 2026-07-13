@@ -97,12 +97,12 @@ export function ApiFilterBar({ categories }: { categories: CategoryOption[] }) {
               <button
                 key={key}
                 onClick={() => toggleFilter(key, active)}
-                className={`flex items-center gap-1.5 font-mono text-[0.65rem] uppercase tracking-[0.16em] transition-colors ${active ? "text-ink font-semibold" : "text-ink-fade hover:text-ink"}`}
+                className={`flex min-h-[44px] items-center gap-1.5 px-2 font-mono text-[0.65rem] uppercase tracking-[0.16em] transition-colors ${active ? "text-ink font-semibold" : "text-ink-fade hover:text-ink"}`}
               >
                 <div
-                  className={`flex h-3.5 w-3.5 items-center justify-center rounded-sm border border-ink/15 ${active ? "bg-ink text-paper" : "bg-transparent"}`}
+                  className={`flex h-4 w-4 items-center justify-center rounded-sm border border-ink/15 ${active ? "bg-ink text-paper" : "bg-transparent"}`}
                 >
-                  {active && <Check className="w-2 h-2 text-white" />}
+                  {active && <Check className="w-2.5 h-2.5 text-white" />}
                 </div>
                 {label}
               </button>

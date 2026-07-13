@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Inter, Playfair_Display, Crimson_Pro, JetBrains_Mono } from "next/font/google"
 import { GeistMono } from 'geist/font/mono'
 import "./globals.css"
@@ -28,6 +28,12 @@ const jetbrains = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains",
 })
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#f7f5f2",
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://salestools.club"),

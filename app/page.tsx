@@ -160,7 +160,7 @@ function SectionHeader({
       {actionLabel ? (
         <Link
           href={href}
-          className="hidden rounded-md border border-ink/10 bg-white px-3 py-2 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-ink-fade transition-colors hover:border-ink/20 hover:text-ink sm:inline-flex"
+          className="rounded-md border border-ink/10 bg-white px-3 py-2 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-ink-fade transition-colors hover:border-ink/20 hover:text-ink"
         >
           {actionLabel}
         </Link>
@@ -209,7 +209,7 @@ export default async function Home() {
       {/* -- Hero -------------------------------------------- */}
       <section className="hero relative overflow-hidden border-b border-ink/10 py-12 md:py-20">
         <div className="layout-container">
-          <svg className="connections-layer absolute inset-0 z-0 h-full w-full pointer-events-none opacity-15" viewBox="0 0 1400 600" preserveAspectRatio="none">
+          <svg className="connections-layer absolute inset-0 z-0 h-full w-full pointer-events-none opacity-15 hidden md:block" viewBox="0 0 1400 600" preserveAspectRatio="none">
             <path className="connector-line fill-none stroke-ink stroke-1 [stroke-dasharray:600] [stroke-dashoffset:600] animate-[drawLine_2s_ease_forwards_0.5s]" d="M 400,120 Q 600,180 750,140" />
             <path className="connector-line fill-none stroke-ink stroke-1 [stroke-dasharray:600] [stroke-dashoffset:600] animate-[drawLine_2s_ease_forwards_1s]" d="M 850,150 Q 800,300 350,450" />
           </svg>
