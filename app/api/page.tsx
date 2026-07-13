@@ -91,17 +91,6 @@ export default async function APIPage({
         </div>
       </section>
 
-      <div className="bg-ink text-paper py-3 border-b border-ink">
-        <div className="layout-container flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-4">
-          <div className="flex items-center gap-3">
-            <span className="bg-paper text-ink font-mono text-[0.6rem] px-1.5 py-0.5 font-bold uppercase shrink-0">Operator Tip</span>
-            <p className="font-mono text-[0.7rem] uppercase tracking-wider">
-              Start with the use case, then compare setup effort and pricing.
-            </p>
-          </div>
-
-        </div>
-      </div>
 
       <ApiFilterBar categories={categories.map(c => ({ slug: c.slug, name: c.name }))} />
 
