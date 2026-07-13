@@ -211,7 +211,7 @@ export default async function RootLayout({
         <footer className="mt-12 border-t border-ink/10 bg-white/65 p-8 md:mt-20 md:p-12">
           <div className="layout-container">
             {/* Programmatic Directory Columns */}
-            <div className="mb-12 grid grid-cols-1 gap-8 border-b border-ink/10 pb-12 text-left sm:grid-cols-2 md:mb-16 md:gap-12 md:pb-16 md:grid-cols-4">
+            <div className="mb-12 grid grid-cols-1 gap-8 border-b border-ink/10 pb-12 text-left sm:grid-cols-2 md:mb-16 md:gap-12 md:pb-16 md:grid-cols-2 md:justify-items-center">
               <div className="flex flex-col gap-4">
                 <h4 className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-ink/50">Outcomes</h4>
                 <div className="flex flex-col gap-2 font-mono text-[0.72rem] uppercase tracking-[0.16em]">
