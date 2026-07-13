@@ -219,7 +219,6 @@ export default async function RootLayout({
                   <Link href="/categories/sales-engagement" className="transition-colors hover:text-ink">Outreach Automation</Link>
                   <Link href="/categories/phone-and-dialers" className="transition-colors hover:text-ink">AI Voice Agents</Link>
                   <Link href="/categories/revenue-intelligence" className="transition-colors hover:text-ink">Calls &amp; Meetings</Link>
-                  <Link href="/credit-audit" className="font-semibold transition-colors hover:text-ink">Credit Policy Guide</Link>
                   <Link href="/free-sales-apis" className="font-semibold text-ink transition-colors hover:text-ink">Free Sales APIs</Link>
                 </div>
               </div>
@@ -235,26 +234,6 @@ export default async function RootLayout({
                 </div>
               </div>
 
-              <div className="flex flex-col gap-4">
-                <h4 className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-ink/50">Auth Types</h4>
-                <div className="flex flex-col gap-2 font-mono text-[0.72rem] uppercase tracking-[0.16em]">
-                  <Link href="/auth/api-key" className="transition-colors hover:text-ink">API Key</Link>
-                  <Link href="/auth/oauth2" className="transition-colors hover:text-ink">OAuth2</Link>
-                  <Link href="/auth/bearer-token" className="transition-colors hover:text-ink">Bearer Token</Link>
-                  <Link href="/auth/basic-auth" className="transition-colors hover:text-ink">Basic Auth</Link>
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-4">
-                <h4 className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-ink/50">Developer SDKs</h4>
-                <div className="flex flex-col gap-2 font-mono text-[0.72rem] uppercase tracking-[0.16em]">
-                  <Link href="/sdk/python" className="transition-colors hover:text-ink">Python</Link>
-                  <Link href="/sdk/node.js" className="transition-colors hover:text-ink">Node.js</Link>
-                  <Link href="/sdk/ruby" className="transition-colors hover:text-ink">Ruby</Link>
-                  <Link href="/sdk/php" className="transition-colors hover:text-ink">PHP</Link>
-                  <Link href="/sdk/go" className="transition-colors hover:text-ink">Go</Link>
-                </div>
-              </div>
             </div>
 
             <div className="flex flex-col items-center gap-10 text-center">

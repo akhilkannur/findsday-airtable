@@ -233,6 +233,26 @@ const nextConfig = {
         source: '/skills/lead-qualifier',
         destination: '/skills',
         permanent: true,
+      },
+      {
+        source: '/credit-audit',
+        destination: '/api',
+        permanent: true,
+      },
+      {
+        source: '/auth/:path*',
+        destination: '/api',
+        permanent: true,
+      },
+      {
+        source: '/sdk/:path*',
+        destination: '/api',
+        permanent: true,
+      },
+      {
+        source: '/new/:path*',
+        destination: '/api',
+        permanent: true,
       }
     ]
   },

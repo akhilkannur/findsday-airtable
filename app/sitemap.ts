@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next"
-import { getAllTools, getAllSdkLanguages, getAllCapabilities, getAllAuthMethods, getToolHref } from "@/lib/tools"
+import { getAllTools, getAllCapabilities, getToolHref } from "@/lib/tools"
 import { getAllSkills } from "@/lib/skills"
 import { getAllStacks } from "@/lib/stacks"
 import { getAllCategories } from "@/lib/tools"
@@ -257,24 +257,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }))
 
-  // SDK pages
-  const sdkLanguages = getAllSdkLanguages()
-  const sdkPages: MetadataRoute.Sitemap = sdkLanguages.map((lang) => ({
-    url: `${baseUrl}/sdk/${lang.toLowerCase()}`,
-    lastModified: lastModified,
-    changeFrequency: "weekly" as const,
-    priority: 0.6,
-  }))
-
-  // Auth pages
-  const authMethods = getAllAuthMethods()
-  const authPages: MetadataRoute.Sitemap = authMethods.map((m) => ({
-    url: `${baseUrl}/auth/${m.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}`,
-    lastModified: lastModified,
-    changeFrequency: "weekly" as const,
-    priority: 0.6,
-  }))
-
   // Capability pages
   const consolidatedSlugs = new Set([
     "crm-automation",
@@ -317,8 +299,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...usecasePages,
     ...guidePages,
     ...vsPages,
-    ...sdkPages,
-    ...authPages,
     ...capabilityPages,
     ...alternativePages,
   ]

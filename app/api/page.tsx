@@ -99,9 +99,7 @@ export default async function APIPage({
               Start with the use case, then compare setup effort and pricing.
             </p>
           </div>
-          <Link href="/credit-audit" className="font-mono text-[0.7rem] uppercase border-b border-paper hover:opacity-70 transition-opacity w-fit">
-            View Credit Audit -&gt;
-          </Link>
+
         </div>
       </div>
 
