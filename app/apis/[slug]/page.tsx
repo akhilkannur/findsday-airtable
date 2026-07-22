@@ -207,6 +207,11 @@ export default async function ToolDetailPage({
     .slice(0, 4)
     .map(({ tool }) => tool)
 
+  const comparisonLinks = (typedTool.alternativeTo ?? [])
+    .map(name => allTools.find(t => t.name.toLowerCase() === name.toLowerCase()))
+    .filter((alternative): alternative is SalesTool => Boolean(alternative))
+    .slice(0, 3)
+
   const mcpIntegration = typedTool.integrations.find(i => i.platform === "MCP")
   const claudeSkillIntegration = typedTool.integrations.find(i => i.platform === "Claude Skill")
   const setupIntegration = isClaudePlugin
@@ -616,6 +621,19 @@ export default async function ToolDetailPage({
                 <ToolCard key={alternative.slug} tool={alternative} />
               ))}
             </div>
+            {comparisonLinks.length > 0 && (
+              <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 border-t border-ink/15 pt-6">
+                {comparisonLinks.map((alternative) => (
+                  <Link
+                    key={alternative.slug}
+                    href={`/vs/${[typedTool.slug, alternative.slug].sort().join("-vs-")}`}
+                    className="font-mono text-xs font-bold uppercase tracking-wider underline decoration-ink/30 underline-offset-4 hover:decoration-ink"
+                  >
+                    Compare {typedTool.name} vs {alternative.name}
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
         </section>
       )}

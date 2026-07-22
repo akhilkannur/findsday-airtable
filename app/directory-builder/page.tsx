@@ -5,6 +5,7 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "AI Directory Builder | Salestools Club",
   description: "The exact machine used to build Salestools.club. Build and maintain your own AI-native directory autonomously.",
+  alternates: { canonical: "https://salestools.club/directory-builder" },
 }
 
 export default function DirectoryBuilderPage() {

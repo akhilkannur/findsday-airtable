@@ -55,11 +55,13 @@ export async function generateMetadata({
       description: pageDescription,
       type: "website",
       url: pageUrl,
+      images: ["https://salestools.club/opengraph-image"],
     },
     twitter: {
       card: "summary_large_image",
       title: pageTitle,
       description: pageDescription,
+      images: ["https://salestools.club/opengraph-image"],
     },
   }
 }

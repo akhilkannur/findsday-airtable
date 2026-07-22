@@ -5776,8 +5776,8 @@ export const tools: (SalesTool | MinimalTool)[] = [
   {
     slug: "trestle-iq",
     name: "Trestle IQ",
-    oneLiner: "Phone verification and reverse phone lookup API for lead validation.",
-    description: "Trestle IQ provides phone verification and identity data APIs that help businesses validate phone numbers and identify owners across 100+ countries. The Real Contact API verifies phone numbers with name matches, determines line type (mobile, VoIP, landline), and provides contact grades (A-F) to prioritize leads. Trestle offers 479M+ identities and 1B+ phone-name linkages with 99.99% uptime. Key features include phone activity scores, VoIP detection, prepaid phone identification, and litigious number checks for TCPA compliance. Essential for outbound sales teams, lead validation, and fraud prevention.",
+    oneLiner: "Trestle IQ reverse phone lookup API verifies phone owners, line type, activity, and lead quality.",
+    description: "Trestle IQ provides reverse phone lookup, phone verification, and identity data APIs across 100+ countries. The Real Contact API matches a phone number to a name, identifies whether the line is mobile, VoIP, or landline, and returns an A-F contact grade to help teams prioritize leads. The linked Trestle IQ API documentation is the source for current endpoint URLs, authentication, and request fields. Trestle offers 479M+ identities and 1B+ phone-name linkages, plus phone activity scores, prepaid phone detection, and litigious-number checks for TCPA compliance.",
     category: "Sales Intelligence",
     websiteUrl: "https://trestleiq.com",
     docsUrl: "https://trestleiq.com/docs",
@@ -10674,8 +10674,8 @@ export const tools: (SalesTool | MinimalTool)[] = [
   {
     slug: "moltsets",
     name: "MoltSets",
-    oneLiner: "Unlimited contact data API with 20+ vendor waterfall — verified emails, phones, and company data.",
-    description: "MoltSets is a contact data API that aggregates 20+ vendor sources to deliver 100% verified business emails, personal emails, and mobile phone numbers. It provides company and people search, reverse email lookup, and an MCP server for Clay, Claude Code, and Codex. The entire database refreshes every 7 days. Popular use cases include building email waterfalls for enrichment platforms and getting verified contact data from LinkedIn URLs. MoltSets is currently in closed beta with unlimited usage plans.",
+    oneLiner: "MoltSets contact data API combines 20+ providers to find verified emails, mobile numbers, and company data.",
+    description: "MoltSets is a contact data API that runs each lookup through a waterfall of 20+ data providers to find verified business emails, personal emails, and mobile phone numbers. Its API supports company search, people search, reverse email lookup, and contact enrichment from LinkedIn URLs. An official MCP guide connects MoltSets to Clay, Claude Code, and Codex, while the underlying database refreshes every 7 days. MoltSets is currently in closed beta with unlimited-usage plans.",
     category: "Sales Intelligence",
     websiteUrl: "https://moltsets.com",
     docsUrl: "https://developer.moltsets.com",
@@ -14393,8 +14393,8 @@ export const tools: (SalesTool | MinimalTool)[] = [
   {
     slug: "frappe-crm",
     name: "Frappe CRM",
-    oneLiner: "Simple, affordable, open-source CRM for modern sales teams with unlimited users.",
-    description: "Frappe CRM is an open-source CRM built on the Frappe Framework, designed for modern sales teams. It features lead and deal management with Kanban views, customizable pipelines, built-in email templates, call logging via Twilio/Exotel, WhatsApp messaging, and ERPNext integration for invoicing and accounting. The REST API and Frappe Framework allow custom fields, automation scripts, and deep extensibility. Self-hosted or on Frappe Cloud with no per-user pricing.",
+    oneLiner: "Frappe CRM is an open-source, self-hostable CRM with unlimited users, sales pipelines, and a REST API.",
+    description: "Frappe CRM is an open-source CRM for sales teams that can be self-hosted or run on Frappe Cloud without per-user pricing. It includes lead and deal management, Kanban views, customizable pipelines, email templates, Twilio and Exotel call logging, WhatsApp messaging, and ERPNext integration for invoicing and accounting. Its REST API and Frappe Framework support custom fields, automation scripts, and deeper workflow customization.",
     category: "CRM & RevOps",
     websiteUrl: "https://frappe.io/crm",
     docsUrl: "https://docs.frappe.io/crm",
@@ -14676,7 +14676,7 @@ export const categories: CategoryMeta[] = [
   {
     slug: "sales-intelligence",
     name: "Sales Intelligence",
-    description: "Find prospects and enrich lead lists with real-time B2B contact data and technographic signals.",
+    description: "Compare AI sales intelligence APIs for prospect search, B2B contact enrichment, company data, buying signals, and technographic research.",
     icon: "Search",
     toolCount: 110,
   },

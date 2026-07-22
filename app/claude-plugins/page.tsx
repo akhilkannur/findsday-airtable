@@ -21,11 +21,13 @@ export const metadata: Metadata = {
     description: "Claude Code plugins that turn AI agents into sales, marketing, and RevOps specialists.",
     type: "website",
     url: "https://salestools.club/claude-plugins",
+    images: ["https://salestools.club/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Claude Plugins for Sales & GTM",
     description: "Claude Code plugins for sales, marketing, and RevOps workflows.",
+    images: ["https://salestools.club/opengraph-image"],
   },
 }
 

@@ -109,10 +109,13 @@ export default async function ComparisonPage({ params }: Props) {
       {/* Header */}
       <section className="px-4 py-12 md:px-8 md:py-24 border-b border-ink relative overflow-hidden">
         <div className="layout-container">
-          <h1 className="font-mono text-[0.65rem] md:text-[0.75rem] uppercase tracking-[0.2em] mb-8 md:mb-16 flex items-center gap-4 text-ink-fade">
+          <div className="font-mono text-[0.65rem] md:text-[0.75rem] uppercase tracking-[0.2em] mb-6 flex items-center gap-4 text-ink-fade">
             <span className="circled font-bold text-black">Compare</span>
             <div className="w-1.5 h-1.5 bg-black rounded-full animate-status-blink"></div>
             <span>Side-by-Side Comparison</span>
+          </div>
+          <h1 className="type-display mb-10 text-4xl md:mb-16 md:text-6xl">
+            {tool1.name} vs {tool2.name}
           </h1>
 
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] items-start lg:items-center gap-8 md:gap-24">

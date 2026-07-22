@@ -45,7 +45,7 @@ export function generateSeoTitle(
     case "guide":
       return `Best ${formattedSubject} APIs Compared (2026) | Salestools Club`
     case "vs":
-      return `${formattedSubject}: Compare APIs & MCP Support (2026) | Salestools Club`
+      return `${formattedSubject.replace(/\bVs\b/g, "vs")}: Compare APIs & MCP Support (2026) | Salestools Club`
     default:
       return `${formattedSubject} | Salestools Club`
   }
