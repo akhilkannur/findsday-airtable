@@ -122,6 +122,12 @@ export default async function RootLayout({
     <html lang="en" className={`${playfair.variable} ${inter.variable} ${crimson.variable} ${jetbrains.variable} ${GeistMono.variable}`}>
       <head>
         <Script
+          src="https://cdn.apitiny.net/scripts/v2.0/main.js"
+          data-site-id="6a64eb1e4916864cc8fb7788"
+          data-test-mode="false"
+          strategy="afterInteractive"
+        />
+        <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-9LGNFH00R7"
           strategy="afterInteractive"
         />
