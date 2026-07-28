@@ -18,8 +18,8 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
   const toolCount = allTools.length
   const roundedCount = Math.max(10, Math.round(toolCount / 10) * 10)
 
-  const pageTitle = `${roundedCount}+ Sales APIs & MCP Configs for AI Agents | Salestools Club`
-  const pageDescription = `Access ${toolCount}+ verified sales APIs and MCP configs. The technical directory for builders connecting CRM, enrichment, and outreach tools to AI agents.`
+  const pageTitle = `Sales API Directory — ${roundedCount}+ APIs & MCP Configs for AI Agents (2026) | Salestools Club`
+  const pageDescription = `The sales API directory for AI-native sales stacks. Access ${toolCount}+ verified sales APIs for CRM, enrichment, outreach, and calling — with MCP configs, auth details, and copy-paste starter prompts.`
 
   return {
     title: pageTitle,

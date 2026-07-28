@@ -8,8 +8,8 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
   const sp = await searchParams
   const hasFilters = !!(sp.official && sp.official === "true")
 
-  const pageTitle = "Sales MCP Servers for AI Agents | Salestools Club"
-  const pageDescription = "Find verified sales tools with MCP (Model Context Protocol) support. Connect your CRM and outreach tools directly to Claude Code and Gemini CLI."
+  const pageTitle = "MCP Servers for Sales — 90+ Tools with MCP Support (2026) | Salestools Club"
+  const pageDescription = "Browse 90+ verified sales MCP servers. Connect your CRM, enrichment, outreach, and calling tools to Claude Code, Cursor, and Gemini CLI with copy-paste MCP configs."
 
   return {
     title: pageTitle,

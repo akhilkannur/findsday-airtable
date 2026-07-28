@@ -748,6 +748,133 @@ const guides: Guide[] = [
     categories: ["Sales Enablement"],
     keywords: ["proposals", "e-signatures", "content management", "document automation", "sales collateral"],
   },
+  {
+    slug: "mcp-servers-comparison",
+    title: "Best Sales MCP Servers Compared (2026)",
+    metaDescription:
+      "Compare the best MCP servers for sales. Side-by-side breakdown of tool coverage, auth methods, free tiers, and setup for Apollo, HubSpot, Salesforce, ZoomInfo, and more.",
+    intro:
+      "MCP (Model Context Protocol) lets your AI agent talk directly to your sales tools. Instead of pasting CSVs into Claude, your agent can search your CRM, enrich contacts, and manage sequences from the chat. Here is how the top MCP servers compare.",
+    content: `
+<h2>What Makes a Sales MCP Server Useful</h2>
+<p>An MCP server is a connector that gives your AI agent read and write access to a sales tool. The useful ones cover the full workflow: find prospects, enrich them, build sequences, and enroll them. Many only handle one slice.</p>
+<p>We maintain a <a href="/mcp">directory of 90+ sales MCP servers</a>. This guide compares the ones that cover the most ground.</p>
+
+<h2>Top Sales MCP Servers Compared</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Server</th>
+      <th>Category</th>
+      <th>Auth</th>
+      <th>Free Tier</th>
+      <th>Best For</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="/apis/apollo"><strong>Apollo.io</strong></a></td>
+      <td>Sales Intelligence</td>
+      <td>API Key</td>
+      <td>Yes</td>
+      <td>Full prospecting + sequence enrollment in one server</td>
+    </tr>
+    <tr>
+      <td><a href="/apis/hubspot"><strong>HubSpot</strong></a></td>
+      <td>CRM & RevOps</td>
+      <td>OAuth2</td>
+      <td>Yes</td>
+      <td>CRM reads, writes, and deal management</td>
+    </tr>
+    <tr>
+      <td><a href="/apis/salesforce"><strong>Salesforce</strong></a></td>
+      <td>CRM & RevOps</td>
+      <td>OAuth2</td>
+      <td>No</td>
+      <td>CRM operations, admin workflows, object access</td>
+    </tr>
+    <tr>
+      <td><a href="/apis/zoominfo"><strong>ZoomInfo</strong></a></td>
+      <td>Sales Intelligence</td>
+      <td>OAuth2</td>
+      <td>No</td>
+      <td>Enterprise B2B data queries through chat</td>
+    </tr>
+    <tr>
+      <td><a href="/apis/outreach"><strong>Outreach</strong></a></td>
+      <td>Sales Engagement</td>
+      <td>OAuth2</td>
+      <td>No</td>
+      <td>Sequence management and engagement analytics</td>
+    </tr>
+    <tr>
+      <td><a href="/apis/pandadoc"><strong>PandaDoc</strong></a></td>
+      <td>Sales Enablement</td>
+      <td>API Key</td>
+      <td>No</td>
+      <td>Create, send, and track documents via chat</td>
+    </tr>
+    <tr>
+      <td><a href="/apis/instantly"><strong>Instantly</strong></a></td>
+      <td>Sales Engagement</td>
+      <td>API Key</td>
+      <td>No</td>
+      <td>Cold email campaign management from chat</td>
+    </tr>
+    <tr>
+      <td><a href="/apis/day-ai"><strong>Day AI</strong></a></td>
+      <td>CRM & RevOps</td>
+      <td>OAuth2</td>
+      <td>Yes</td>
+      <td>AI-native CRM with MCP-first architecture</td>
+    </tr>
+    <tr>
+      <td><a href="/apis/stripe"><strong>Stripe</strong></a></td>
+      <td>CRM & RevOps</td>
+      <td>API Key</td>
+      <td>No</td>
+      <td>Payment and subscription data queries</td>
+    </tr>
+    <tr>
+      <td><a href="/apis/amplemarket"><strong>Amplemarket</strong></a></td>
+      <td>Sales Engagement</td>
+      <td>API Key</td>
+      <td>Yes</td>
+      <td>Complete outbound workflow from search to send</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>How to Choose</h2>
+<p>Pick the server that matches your bottleneck:</p>
+<ul>
+  <li><strong>Need prospect data?</strong> Apollo or ZoomInfo — broad databases with search and enrichment tools.</li>
+  <li><strong>Need CRM context?</strong> HubSpot or Salesforce — read and write deals, contacts, and custom objects.</li>
+  <li><strong>Need to run outreach?</strong> Amplemarket, Outreach, or Instantly — build sequences and enroll contacts.</li>
+  <li><strong>Need documents?</strong> PandaDoc — generate proposals and track signatures.</li>
+</ul>
+<p>You can connect multiple MCP servers to the same AI client. The tradeoff is context window: each server adds tool definitions that consume space. A smaller set of capable servers usually outperforms a long list.</p>
+
+<h2>Setup</h2>
+<p>Most sales MCP servers use one of two connection methods:</p>
+<ul>
+  <li><strong>URL-based:</strong> Copy a server URL into your AI client's MCP settings. Used by HubSpot, ZoomInfo, and others.</li>
+  <li><strong>stdio (npx):</strong> Run a command like <code>npx -y @hubspot/mcp-server</code>. Used by Apollo, Stripe, and others.</li>
+</ul>
+<p>Each tool page in our <a href="/mcp">MCP directory</a> shows the exact config to copy-paste.</p>
+
+<h2>FAQ</h2>
+<p><strong>Q: Can one MCP server do everything?</strong><br>A: No single server covers the full sales stack yet. Amplemarket and Apollo come closest — they cover search, enrichment, and sequence enrollment. Most servers specialize: CRM servers read/write records, data servers search/enrich, engagement servers manage sequences.</p>
+<p><strong>Q: Read-only or read-write?</strong><br>A: Most CRM MCP servers (HubSpot, Salesforce) support both reads and writes. Data servers (ZoomInfo, Apollo search) are primarily read-only. Check each tool page for details.</p>
+<p><strong>Q: Do I need to code?</strong><br>A: No. URL-based servers need just a paste. npx-based servers need one terminal command. Both take under a minute.</p>
+
+<h2>See the Full List</h2>
+<p>Browse our <a href="/mcp">complete MCP directory</a> for all 90+ sales MCP servers with setup instructions, auth details, and starter prompts.</p>
+    `,
+    categories: ["CRM & RevOps", "Sales Engagement", "Sales Intelligence", "Phone & Dialers", "Revenue Intelligence", "Sales Enablement"],
+    keywords: ["MCP", "model context protocol", "sales agent", "AI agent", "automation"],
+  },
 ]
 
 export function getAllGuides(): Guide[] {

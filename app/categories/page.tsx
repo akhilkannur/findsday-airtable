@@ -5,15 +5,15 @@ import { getAllCategories } from "@/lib/tools"
 import type { LucideIcon } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Categories | Salestools Club",
+  title: "Sales API Categories — Browse 400+ Tools by Use Case | Salestools Club",
   description:
-    "Find sales APIs by category — prospecting, CRM, enrichment, outreach, and more.",
+    "Browse 400+ sales APIs and MCP servers by category — Sales Intelligence, CRM & RevOps, Sales Engagement, Phone & Dialers, Revenue Intelligence, Sales Enablement, and Closing & Scheduling.",
   alternates: {
     canonical: "https://salestools.club/categories",
   },
   openGraph: {
-    title: "Categories | Salestools Club",
-    description: "Find sales APIs by category — prospecting, CRM, enrichment, outreach, and more.",
+    title: "Sales API Categories — Browse 400+ Tools by Use Case | Salestools Club",
+    description: "Browse 400+ sales APIs and MCP servers by category — Sales Intelligence, CRM & RevOps, Sales Engagement, Phone & Dialers, Revenue Intelligence, Sales Enablement, and Closing & Scheduling.",
     type: "website",
     url: "https://salestools.club/categories",
     images: [
@@ -27,8 +27,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Categories | Salestools Club",
-    description: "Find sales APIs by category — prospecting, CRM, enrichment, outreach, and more.",
+    title: "Sales API Categories — Browse 400+ Tools by Use Case | Salestools Club",
+    description: "Browse 400+ sales APIs and MCP servers by category — Sales Intelligence, CRM & RevOps, Sales Engagement, Phone & Dialers, Revenue Intelligence, Sales Enablement, and Closing & Scheduling.",
     images: ["https://salestools.club/opengraph-image"],
   },
 }
