@@ -71,6 +71,29 @@ const nonToolPages = [
   "/vs/cal-com-vs-calendly",
   "/vs/firecrawl-vs-jina-reader",
   "/vs/perplexity-vs-tavily",
+
+  // Best-of hub pages
+  "/best",
+  "/best/ai-sdrs",
+  "/best/b2b-data-enrichment",
+  "/best/conversation-intelligence",
+  "/best/revenue-intelligence",
+  "/best/crm-and-revops",
+  "/best/cold-email",
+  "/best/ai-voice-dialers",
+  "/best/sales-intelligence",
+  "/best/sales-enablement",
+  "/best/meeting-scheduling",
+  "/best/intent-intelligence",
+  "/best/abm-automation",
+
+  // MCP answer articles
+  "/mcp/what-is-an-mcp-server",
+  "/mcp/best-mcp-servers-for-sales",
+  "/mcp/mcp-vs-api",
+
+  // Methodology trust page
+  "/methodology",
 ]
 
 async function main() {
