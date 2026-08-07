@@ -1,6 +1,7 @@
 import Link from "next/link"
 import type { Metadata } from "next"
 import { getToolBySlug, getAllSlugs, getAllTools, getAllCategories, getToolHref } from "@/lib/tools"
+import { getHubsForTool } from "@/lib/best"
 import type { SalesTool } from "@/lib/types"
 import {
   ArrowRight,
@@ -211,6 +212,8 @@ export default async function ToolDetailPage({
     .map(name => allTools.find(t => t.name.toLowerCase() === name.toLowerCase()))
     .filter((alternative): alternative is SalesTool => Boolean(alternative))
     .slice(0, 3)
+
+  const bestHubLinks = getHubsForTool(typedTool).slice(0, 4)
 
   const mcpIntegration = typedTool.integrations.find(i => i.platform === "MCP")
   const claudeSkillIntegration = typedTool.integrations.find(i => i.platform === "Claude Skill")
@@ -630,6 +633,22 @@ export default async function ToolDetailPage({
                     className="font-mono text-xs font-bold uppercase tracking-wider underline decoration-ink/30 underline-offset-4 hover:decoration-ink"
                   >
                     Compare {typedTool.name} vs {alternative.name}
+                  </Link>
+                ))}
+              </div>
+            )}
+            {bestHubLinks.length > 0 && (
+              <div className="mt-6 flex flex-wrap gap-x-8 gap-y-3 border-t border-ink/15 pt-6">
+                <span className="font-mono text-xs font-bold uppercase tracking-wider text-ink-fade">
+                  Best-of guides
+                </span>
+                {bestHubLinks.map((hub) => (
+                  <Link
+                    key={hub.slug}
+                    href={`/best/${hub.slug}`}
+                    className="font-mono text-xs font-bold uppercase tracking-wider underline decoration-ink/30 underline-offset-4 hover:decoration-ink"
+                  >
+                    {hub.keyword}
                   </Link>
                 ))}
               </div>

@@ -1,0 +1,1956 @@
+{
+  "generatedAt": "2026-08-07T05:34:57.499Z",
+  "renderJs": false,
+  "total": 79,
+  "alive": [
+    {
+      "slug": "emailable",
+      "name": "Emailable",
+      "checkedAt": "2026-08-07T05:31:24.006Z",
+      "httpVerdict": "ERROR",
+      "url": "https://emailable.com",
+      "checks": [
+        {
+          "url": "https://emailable.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1460
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "meridian-crm",
+      "name": "Meridian CRM",
+      "checkedAt": "2026-08-07T05:31:26.014Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://www.meridian-ai.com/docs/overview",
+      "checks": [
+        {
+          "url": "https://www.meridian-ai.com/docs/overview",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1302
+        },
+        {
+          "url": "https://www.meridian-ai.com/",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1663
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "bigtincan",
+      "name": "Bigtincan",
+      "checkedAt": "2026-08-07T05:31:28.306Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://datacollection.bigtincan.com/api-docs/index.html",
+      "checks": [
+        {
+          "url": "https://datacollection.bigtincan.com/api-docs/index.html",
+          "key": "docs",
+          "fetchOk": false,
+          "error": {
+            "code": "FETCH_ERROR",
+            "details": [],
+            "message": "An error occurred while fetching the URL"
+          }
+        },
+        {
+          "url": "https://www.bigtincan.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 697
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "bitrix24",
+      "name": "Bitrix24",
+      "checkedAt": "2026-08-07T05:31:30.705Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://apidocs.bitrix24.com/",
+      "checks": [
+        {
+          "url": "https://apidocs.bitrix24.com/",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 962
+        },
+        {
+          "url": "https://www.bitrix24.in/?redirect_from=www.bitrix24.com%2F",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1149
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "relay",
+      "name": "Relay",
+      "checkedAt": "2026-08-07T05:31:35.108Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://docs.relay.app",
+      "checks": [
+        {
+          "url": "https://docs.relay.app",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 646
+        },
+        {
+          "url": "https://relay.app",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1103
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "bardeen",
+      "name": "Bardeen",
+      "checkedAt": "2026-08-07T05:31:36.456Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://www.bardeen.ai/api-reference",
+      "checks": [
+        {
+          "url": "https://www.bardeen.ai/api-reference",
+          "key": "docs",
+          "fetchOk": false,
+          "error": {
+            "code": "FETCH_TARGET_UNREACHABLE",
+            "details": [],
+            "message": "The target URL could not be reached (connection failed or timed out)"
+          }
+        },
+        {
+          "url": "https://www.bardeen.ai/",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1633
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "godmode-hq",
+      "name": "GodmodeHQ",
+      "checkedAt": "2026-08-07T05:31:41.340Z",
+      "httpVerdict": "ERROR",
+      "url": "https://docs.godmode.space/",
+      "checks": [
+        {
+          "url": "https://docs.godmode.space/",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 40
+        },
+        {
+          "url": "https://godmodehq.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 5079
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "qrev",
+      "name": "QRev",
+      "checkedAt": "2026-08-07T05:31:43.272Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://github.com/qrev-ai/qrev",
+      "checks": [
+        {
+          "url": "https://github.com/qrev-ai/qrev",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1203
+        },
+        {
+          "url": "https://qrev.ai",
+          "key": "website",
+          "fetchOk": false,
+          "error": {
+            "code": "FETCH_TARGET_UNREACHABLE",
+            "details": [],
+            "message": "The target URL could not be reached (connection failed or timed out)"
+          }
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "conversica",
+      "name": "Conversica",
+      "checkedAt": "2026-08-07T05:31:46.005Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://help.conversica.com/hc/en-us/articles/360048601712-Conversica-API-Integration-Manual",
+      "checks": [
+        {
+          "url": "https://help.conversica.com/hc/en-us/articles/360048601712-Conversica-API-Integration-Manual",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 3559
+        },
+        {
+          "url": "https://www.conversica.com/",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1019
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "gptbots-ai",
+      "name": "GPTBots.ai",
+      "checkedAt": "2026-08-07T05:31:52.848Z",
+      "httpVerdict": "ERROR",
+      "url": "https://www.gptbots.ai/",
+      "checks": [
+        {
+          "url": "https://www.gptbots.ai/",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1021
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "bland-ai",
+      "name": "Bland AI",
+      "checkedAt": "2026-08-07T05:31:54.641Z",
+      "httpVerdict": "ERROR",
+      "url": "https://docs.bland.ai/mcp",
+      "checks": [
+        {
+          "url": "https://docs.bland.ai/mcp",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 911
+        },
+        {
+          "url": "https://www.bland.ai",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1510
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "batch-service",
+      "name": "BatchService",
+      "checkedAt": "2026-08-07T05:31:57.926Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://developer.batchdata.com",
+      "checks": [
+        {
+          "url": "https://developer.batchdata.com",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 16
+        },
+        {
+          "url": "https://batchdata.io/?utm_source=bs&utm_medium=redirect",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1164
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "appxite",
+      "name": "AppXite",
+      "checkedAt": "2026-08-07T05:31:59.592Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://developer.appxite.com",
+      "checks": [
+        {
+          "url": "https://developer.appxite.com",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 219
+        },
+        {
+          "url": "https://www.appxite.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1639
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "correlated",
+      "name": "Correlated",
+      "checkedAt": "2026-08-07T05:32:00.808Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://docs.getcorrelated.com/docs/getting-started",
+      "checks": [
+        {
+          "url": "https://docs.getcorrelated.com/docs/getting-started",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 506
+        },
+        {
+          "url": "https://getcorrelated.com",
+          "key": "website",
+          "fetchOk": false,
+          "error": {
+            "code": "FETCH_TARGET_UNREACHABLE",
+            "details": [],
+            "message": "The target URL could not be reached (connection failed or timed out)"
+          }
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "finalscout",
+      "name": "FinalScout",
+      "checkedAt": "2026-08-07T05:32:03.787Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://finalscout.com/public/doc/api.html",
+      "checks": [
+        {
+          "url": "https://finalscout.com/public/doc/api.html",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 12
+        },
+        {
+          "url": "https://finalscout.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 353
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "definitive-healthcare",
+      "name": "Definitive Healthcare",
+      "checkedAt": "2026-08-07T05:32:05.593Z",
+      "httpVerdict": "ERROR",
+      "url": "https://api.defhc.com/v4/Documentation",
+      "checks": [
+        {
+          "url": "https://api.defhc.com/v4/Documentation",
+          "key": "docs",
+          "fetchOk": false,
+          "error": {
+            "code": "FETCH_TARGET_UNREACHABLE",
+            "details": [],
+            "message": "The target URL could not be reached (connection failed or timed out)"
+          }
+        },
+        {
+          "url": "https://www.definitivehc.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 2259
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "brainshark",
+      "name": "Brainshark",
+      "checkedAt": "2026-08-07T05:32:20.220Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://www.brainshark.com/brainshark/brainshark.services.integration/link/redirect?targetUrl=http%3A%2F%2Fwww%2Ebrainshark%2Ecom%2Fdeveloper%2F",
+      "checks": [
+        {
+          "url": "https://www.brainshark.com/brainshark/brainshark.services.integration/link/redirect?targetUrl=http%3A%2F%2Fwww%2Ebrainshark%2Ecom%2Fdeveloper%2F",
+          "key": "docs",
+          "fetchOk": false,
+          "error": {
+            "code": "FETCH_ERROR",
+            "details": [],
+            "message": "An error occurred while fetching the URL"
+          }
+        },
+        {
+          "url": "https://www.bigtincan.com/readiness/",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 826
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "salesmonk",
+      "name": "SalesMonk",
+      "checkedAt": "2026-08-07T05:32:21.242Z",
+      "httpVerdict": "ERROR",
+      "url": "https://docs.salesmonk.ai/",
+      "checks": [
+        {
+          "url": "https://docs.salesmonk.ai/",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 652
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "localpipe",
+      "name": "LocalPipe.io",
+      "checkedAt": "2026-08-07T05:32:22.101Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://www.localpipe.io/localpipe-api-docs.md",
+      "checks": [
+        {
+          "url": "https://www.localpipe.io/localpipe-api-docs.md",
+          "key": "docs",
+          "fetchOk": false,
+          "error": {
+            "code": "FETCH_UNSUPPORTED_CONTENT_TYPE",
+            "details": [],
+            "message": "The URL returned an unsupported content type"
+          }
+        },
+        {
+          "url": "https://www.localpipe.io/",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 4838
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "letterdrop",
+      "name": "Letterdrop",
+      "checkedAt": "2026-08-07T05:32:24.529Z",
+      "httpVerdict": "ERROR",
+      "url": "https://letterdrop.com",
+      "checks": [
+        {
+          "url": "https://letterdrop.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 109
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "jina-reader",
+      "name": "Jina Reader",
+      "checkedAt": "2026-08-07T05:32:24.998Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://jina.ai/reader/",
+      "checks": [
+        {
+          "url": "https://jina.ai/reader/",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 4878
+        },
+        {
+          "url": "https://jina.ai/reader/",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 4878
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "nyne",
+      "name": "Nyne.ai",
+      "checkedAt": "2026-08-07T05:32:27.705Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://api.nyne.ai/documentation",
+      "checks": [
+        {
+          "url": "https://api.nyne.ai/documentation",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 440
+        },
+        {
+          "url": "https://nyne.ai",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1223
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "persana",
+      "name": "Persana",
+      "checkedAt": "2026-08-07T05:32:30.806Z",
+      "httpVerdict": "ERROR",
+      "url": "https://persana.ai",
+      "checks": [
+        {
+          "url": "https://persana.ai",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 3045
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "inframail",
+      "name": "Inframail",
+      "checkedAt": "2026-08-07T05:32:31.952Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://help.inframail.io/api-zr0xx",
+      "checks": [
+        {
+          "url": "https://help.inframail.io/api-zr0xx",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 101
+        },
+        {
+          "url": "https://www.inframail.io/",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 2983
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "zapier",
+      "name": "Zapier",
+      "checkedAt": "2026-08-07T05:32:34.103Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://zapier.com/developer-platform/workflow-api",
+      "checks": [
+        {
+          "url": "https://zapier.com/developer-platform/workflow-api",
+          "key": "docs",
+          "fetchOk": false,
+          "error": {
+            "code": "FETCH_TARGET_UNREACHABLE",
+            "details": [],
+            "message": "The target URL could not be reached (connection failed or timed out)"
+          }
+        },
+        {
+          "url": "https://zapier.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1648
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "proxycurl",
+      "name": "Proxycurl",
+      "checkedAt": "2026-08-07T05:32:37.783Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://nubela.co/docs",
+      "checks": [
+        {
+          "url": "https://nubela.co/docs",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 16475
+        },
+        {
+          "url": "https://nubela.co/proxycurl/",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1497
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "pandadoc",
+      "name": "PandaDoc",
+      "checkedAt": "2026-08-07T05:32:41.267Z",
+      "httpVerdict": "ERROR",
+      "url": "https://developers.pandadoc.com/",
+      "checks": [
+        {
+          "url": "https://developers.pandadoc.com/",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 258
+        },
+        {
+          "url": "https://www.pandadoc.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1090
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "enrich-so",
+      "name": "Enrich.so",
+      "checkedAt": "2026-08-07T05:32:48.672Z",
+      "httpVerdict": "ERROR",
+      "url": "https://doc.enrich.so/",
+      "checks": [
+        {
+          "url": "https://doc.enrich.so/",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 883
+        },
+        {
+          "url": "https://enrich.so",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 767
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "koala",
+      "name": "Koala",
+      "checkedAt": "2026-08-07T05:32:56.901Z",
+      "httpVerdict": "ERROR",
+      "url": "https://getkoala.com/docs",
+      "checks": [
+        {
+          "url": "https://getkoala.com/docs",
+          "key": "docs",
+          "fetchOk": false,
+          "error": {
+            "code": "FETCH_TARGET_UNREACHABLE",
+            "details": [],
+            "message": "The target URL could not be reached (connection failed or timed out)"
+          }
+        },
+        {
+          "url": "https://getkoala.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1042
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "pipl",
+      "name": "Pipl",
+      "checkedAt": "2026-08-07T05:33:08.264Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://docs.pipl.com",
+      "checks": [
+        {
+          "url": "https://docs.pipl.com",
+          "key": "docs",
+          "fetchOk": false,
+          "error": {
+            "code": "FETCH_ERROR",
+            "details": [],
+            "message": "An error occurred while fetching the URL"
+          }
+        },
+        {
+          "url": "https://pipl.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1314
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "lagrowthmachine",
+      "name": "La Growth Machine",
+      "checkedAt": "2026-08-07T05:33:10.125Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://documenter.getpostman.com/view/2071164/TVCmSkH2#8c9d579b-8ff2-472d-9815-9edf936d5b1d",
+      "checks": [
+        {
+          "url": "https://documenter.getpostman.com/view/2071164/TVCmSkH2#8c9d579b-8ff2-472d-9815-9edf936d5b1d",
+          "key": "docs",
+          "fetchOk": false,
+          "error": {
+            "code": "FETCH_TARGET_UNREACHABLE",
+            "details": [],
+            "message": "The target URL could not be reached (connection failed or timed out)"
+          }
+        },
+        {
+          "url": "https://lagrowthmachine.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1452
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "leadmagic",
+      "name": "LeadMagic",
+      "checkedAt": "2026-08-07T05:33:13.196Z",
+      "httpVerdict": "ERROR",
+      "url": "https://leadmagic.io",
+      "checks": [
+        {
+          "url": "https://leadmagic.io",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 841
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "clodura",
+      "name": "Clodura",
+      "checkedAt": "2026-08-07T05:33:13.901Z",
+      "httpVerdict": "ERROR",
+      "url": "https://www.clodura.ai/",
+      "checks": [
+        {
+          "url": "https://www.clodura.ai/",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 2396
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "outplay",
+      "name": "Outplay",
+      "checkedAt": "2026-08-07T05:33:15.069Z",
+      "httpVerdict": "ERROR",
+      "url": "https://outplay.ai/",
+      "checks": [
+        {
+          "url": "https://outplay.ai/",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1106
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "verse",
+      "name": "Verse",
+      "checkedAt": "2026-08-07T05:33:16.502Z",
+      "httpVerdict": "ERROR",
+      "url": "https://verse.ai",
+      "checks": [
+        {
+          "url": "https://verse.ai",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1634
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "warmly",
+      "name": "Warmly",
+      "checkedAt": "2026-08-07T05:33:17.518Z",
+      "httpVerdict": "ERROR",
+      "url": "https://www.warmly.ai/",
+      "checks": [
+        {
+          "url": "https://www.warmly.ai/",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 961
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "similartech",
+      "name": "SimilarTech",
+      "checkedAt": "2026-08-07T05:33:18.264Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://developers.similarweb.com/docs/similarweb-web-traffic-api",
+      "checks": [
+        {
+          "url": "https://developers.similarweb.com/docs/similarweb-web-traffic-api",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 837
+        },
+        {
+          "url": "https://similartech.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 621
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "copyfactory",
+      "name": "CopyFactory",
+      "checkedAt": "2026-08-07T05:33:19.328Z",
+      "httpVerdict": "ERROR",
+      "url": "https://developers.copyfactory.io/",
+      "checks": [
+        {
+          "url": "https://developers.copyfactory.io/",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 71
+        },
+        {
+          "url": "https://copyfactory.io",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1052
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "jiminny",
+      "name": "Jiminny",
+      "checkedAt": "2026-08-07T05:33:20.532Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://jiminny.github.io/customer-api-docs/",
+      "checks": [
+        {
+          "url": "https://jiminny.github.io/customer-api-docs/",
+          "key": "docs",
+          "fetchOk": false,
+          "error": {
+            "code": "FETCH_ERROR",
+            "details": [],
+            "message": "An error occurred while fetching the URL"
+          }
+        },
+        {
+          "url": "https://jiminny.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1490
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "salescaptain",
+      "name": "Salescaptain",
+      "checkedAt": "2026-08-07T05:33:21.619Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://docs.salescaptain.com/",
+      "checks": [
+        {
+          "url": "https://docs.salescaptain.com/",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 360
+        },
+        {
+          "url": "https://www.salescaptain.io/",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1370
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "showpad",
+      "name": "Showpad",
+      "checkedAt": "2026-08-07T05:33:22.770Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://developer.showpad.com",
+      "checks": [
+        {
+          "url": "https://developer.showpad.com",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 289
+        },
+        {
+          "url": "https://www.showpad.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 715
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "supersend",
+      "name": "Super Send",
+      "checkedAt": "2026-08-07T05:33:23.894Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://supersend.io/api-docs",
+      "checks": [
+        {
+          "url": "https://supersend.io/api-docs",
+          "key": "docs",
+          "fetchOk": false,
+          "error": {
+            "code": "FETCH_TARGET_UNREACHABLE",
+            "details": [],
+            "message": "The target URL could not be reached (connection failed or timed out)"
+          }
+        },
+        {
+          "url": "https://supersend.io",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 877
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "scout",
+      "name": "Scout",
+      "checkedAt": "2026-08-07T05:33:27.687Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://scoutv2.docs.apiary.io/",
+      "checks": [
+        {
+          "url": "https://scoutv2.docs.apiary.io/",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 6
+        },
+        {
+          "url": "https://www.tryscout.ai",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 784
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "warmbox",
+      "name": "Warmbox",
+      "checkedAt": "2026-08-07T05:33:46.396Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://warmbox.readme.io/reference",
+      "checks": [
+        {
+          "url": "https://warmbox.readme.io/reference",
+          "key": "docs",
+          "fetchOk": false,
+          "error": {
+            "code": "FETCH_TARGET_UNREACHABLE",
+            "details": [],
+            "message": "The target URL could not be reached (connection failed or timed out)"
+          }
+        },
+        {
+          "url": "https://www.warmbox.ai/",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1181
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "zoominfo",
+      "name": "ZoomInfo",
+      "checkedAt": "2026-08-07T05:33:48.660Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://docs.zoominfo.com/docs/zi-api-mcp-overview",
+      "checks": [
+        {
+          "url": "https://docs.zoominfo.com/docs/zi-api-mcp-overview",
+          "key": "docs",
+          "fetchOk": false,
+          "error": {
+            "code": "FETCH_TARGET_UNREACHABLE",
+            "details": [],
+            "message": "The target URL could not be reached (connection failed or timed out)"
+          }
+        },
+        {
+          "url": "https://www.zoominfo.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 2254
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "tomba",
+      "name": "Tomba",
+      "checkedAt": "2026-08-07T05:33:52.189Z",
+      "httpVerdict": "ERROR",
+      "url": "https://tomba.io",
+      "checks": [
+        {
+          "url": "https://tomba.io",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 2517
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "intellizence",
+      "name": "Intellizence",
+      "checkedAt": "2026-08-07T05:33:53.017Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://docs.intellizence.com",
+      "checks": [
+        {
+          "url": "https://docs.intellizence.com",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 419
+        },
+        {
+          "url": "https://intellizence.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 829
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "journey",
+      "name": "Journey.io",
+      "checkedAt": "2026-08-07T05:33:54.863Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://journey.io/developers",
+      "checks": [
+        {
+          "url": "https://journey.io/developers",
+          "key": "docs",
+          "fetchOk": false,
+          "error": {
+            "code": "FETCH_TARGET_UNREACHABLE",
+            "details": [],
+            "message": "The target URL could not be reached (connection failed or timed out)"
+          }
+        },
+        {
+          "url": "https://journey.io",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 808
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "linkedin-sales-navigator",
+      "name": "LinkedIn Sales Navigator",
+      "checkedAt": "2026-08-07T05:33:56.631Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://developer.linkedin.com/docs",
+      "checks": [
+        {
+          "url": "https://developer.linkedin.com/docs",
+          "key": "docs",
+          "fetchOk": false,
+          "error": {
+            "code": "FETCH_TARGET_UNREACHABLE",
+            "details": [],
+            "message": "The target URL could not be reached (connection failed or timed out)"
+          }
+        },
+        {
+          "url": "https://business.linkedin.com/sell/sales-navigator",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 3251
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "voyage-ai",
+      "name": "Voyage AI",
+      "checkedAt": "2026-08-07T05:33:59.228Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://docs.voyageai.com/docs/introduction",
+      "checks": [
+        {
+          "url": "https://docs.voyageai.com/docs/introduction",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 433
+        },
+        {
+          "url": "https://www.voyageai.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 450
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "replyify",
+      "name": "Replyify",
+      "checkedAt": "2026-08-07T05:34:00.765Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://replyify.com/api/docs/index.html",
+      "checks": [
+        {
+          "url": "https://replyify.com/api/docs/index.html",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1172
+        },
+        {
+          "url": "https://replyify.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 744
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "saber",
+      "name": "Saber",
+      "checkedAt": "2026-08-07T05:34:01.955Z",
+      "httpVerdict": "ERROR",
+      "url": "https://www.saber.app",
+      "checks": [
+        {
+          "url": "https://www.saber.app",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 958
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "reachkit",
+      "name": "ReachKit",
+      "checkedAt": "2026-08-07T05:34:02.477Z",
+      "httpVerdict": "ERROR",
+      "url": "https://reachkit.ai/help/articles/api-documentation",
+      "checks": [
+        {
+          "url": "https://reachkit.ai/help/articles/api-documentation",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 5311
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "persistiq",
+      "name": "PersistIQ",
+      "checkedAt": "2026-08-07T05:34:03.711Z",
+      "httpVerdict": "ERROR",
+      "url": "https://www.persistq.com/docs",
+      "checks": [
+        {
+          "url": "https://www.persistq.com/docs",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 164
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "mailcheck",
+      "name": "Mailcheck",
+      "checkedAt": "2026-08-07T05:34:04.666Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://docs.usercheck.com/",
+      "checks": [
+        {
+          "url": "https://docs.usercheck.com/",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 470
+        },
+        {
+          "url": "https://mailcheck.co",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1424
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "browse-ai",
+      "name": "Browse AI",
+      "checkedAt": "2026-08-07T05:34:05.686Z",
+      "httpVerdict": "ERROR",
+      "url": "https://docs.browse.ai/api/",
+      "checks": [
+        {
+          "url": "https://docs.browse.ai/api/",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 510
+        },
+        {
+          "url": "https://www.browse.ai/",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 6996
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "playbook-ai",
+      "name": "Playbook",
+      "checkedAt": "2026-08-07T05:34:07.171Z",
+      "httpVerdict": "ERROR",
+      "url": "https://playbook-docs.pages.dev/docs/api/",
+      "checks": [
+        {
+          "url": "https://playbook-docs.pages.dev/docs/api/",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 147
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "reachinbox",
+      "name": "ReachInbox",
+      "checkedAt": "2026-08-07T05:34:07.557Z",
+      "httpVerdict": "ERROR",
+      "url": "https://docs.reachinbox.ai/",
+      "checks": [
+        {
+          "url": "https://docs.reachinbox.ai/",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 122
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "badger-maps",
+      "name": "Badger Maps",
+      "checkedAt": "2026-08-07T05:34:07.898Z",
+      "httpVerdict": "ERROR",
+      "url": "https://www.badgermapping.com",
+      "checks": [
+        {
+          "url": "https://www.badgermapping.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1832
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "clari",
+      "name": "Clari",
+      "checkedAt": "2026-08-07T05:34:09.075Z",
+      "httpVerdict": "ERROR",
+      "url": "https://www.clari.com/",
+      "checks": [
+        {
+          "url": "https://www.clari.com/",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 906
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "pipeliner-crm",
+      "name": "Pipeliner CRM",
+      "checkedAt": "2026-08-07T05:34:10.025Z",
+      "httpVerdict": "ERROR",
+      "url": "https://developers.pipelinersales.com/api-docs",
+      "checks": [
+        {
+          "url": "https://developers.pipelinersales.com/api-docs",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 240
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "scrupp",
+      "name": "Scrupp",
+      "checkedAt": "2026-08-07T05:34:10.681Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://scrupp.com/docs/api/linkedin",
+      "checks": [
+        {
+          "url": "https://scrupp.com/docs/api/linkedin",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1187
+        },
+        {
+          "url": "https://scrupp.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 3634
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "crazycall",
+      "name": "CrazyCall",
+      "checkedAt": "2026-08-07T05:34:11.795Z",
+      "httpVerdict": "ERROR",
+      "url": "https://www.channels.app/",
+      "checks": [
+        {
+          "url": "https://www.channels.app/",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 681
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "enrow",
+      "name": "Enrow",
+      "checkedAt": "2026-08-07T05:34:12.191Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://enrow.readme.io/reference/verify-single-email",
+      "checks": [
+        {
+          "url": "https://enrow.readme.io/reference/verify-single-email",
+          "key": "docs",
+          "fetchOk": false,
+          "error": {
+            "code": "FETCH_TARGET_UNREACHABLE",
+            "details": [],
+            "message": "The target URL could not be reached (connection failed or timed out)"
+          }
+        },
+        {
+          "url": "https://enrow.io/en",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1143
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "mutiny",
+      "name": "Mutiny",
+      "checkedAt": "2026-08-07T05:34:15.094Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://help.mutinyhq.com/articles/5947474042-setting-up-the-mutiny-mcp",
+      "checks": [
+        {
+          "url": "https://help.mutinyhq.com/articles/5947474042-setting-up-the-mutiny-mcp",
+          "key": "docs",
+          "fetchOk": false,
+          "error": {
+            "code": "FETCH_TARGET_UNREACHABLE",
+            "details": [],
+            "message": "The target URL could not be reached (connection failed or timed out)"
+          }
+        },
+        {
+          "url": "https://www.mutinyhq.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1549
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "salespad",
+      "name": "SalesPad",
+      "checkedAt": "2026-08-07T05:34:30.202Z",
+      "httpVerdict": "ERROR",
+      "url": "https://www.cavallo.com/",
+      "checks": [
+        {
+          "url": "https://www.cavallo.com/",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1018
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "interseller",
+      "name": "Interseller",
+      "checkedAt": "2026-08-07T05:34:31.219Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://interseller.readme.io/reference/overview",
+      "checks": [
+        {
+          "url": "https://interseller.readme.io/reference/overview",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 362
+        },
+        {
+          "url": "https://www.interseller.io/",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 583
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "ringover",
+      "name": "RingOver",
+      "checkedAt": "2026-08-07T05:34:32.252Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://developer.ringover.com/",
+      "checks": [
+        {
+          "url": "https://developer.ringover.com/",
+          "key": "docs",
+          "fetchOk": false,
+          "error": {
+            "code": "FETCH_ERROR",
+            "details": [],
+            "message": "An error occurred while fetching the URL"
+          }
+        },
+        {
+          "url": "https://www.ringover.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 2277
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "dynamics-365-sales",
+      "name": "Dynamics 365 Sales",
+      "checkedAt": "2026-08-07T05:34:33.719Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/sales/connect-agents-to-model-context-protocol",
+      "checks": [
+        {
+          "url": "https://learn.microsoft.com/en-us/dynamics365/sales/connect-agents-to-model-context-protocol",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 739
+        },
+        {
+          "url": "https://www.microsoft.com/en-us/dynamics-365/sales",
+          "key": "website",
+          "fetchOk": false,
+          "error": {
+            "code": "FETCH_TARGET_UNREACHABLE",
+            "details": [],
+            "message": "The target URL could not be reached (connection failed or timed out)"
+          }
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "stackswap",
+      "name": "StackSwap",
+      "checkedAt": "2026-08-07T05:34:37.276Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://stackswap.ai/apis-and-mcps",
+      "checks": [
+        {
+          "url": "https://stackswap.ai/apis-and-mcps",
+          "key": "docs",
+          "fetchOk": false,
+          "error": {
+            "code": "FETCH_TARGET_UNREACHABLE",
+            "details": [],
+            "message": "The target URL could not be reached (connection failed or timed out)"
+          }
+        },
+        {
+          "url": "https://stackswap.ai",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 342
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "coresignal",
+      "name": "Coresignal",
+      "checkedAt": "2026-08-07T05:34:45.855Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://coresignal.com/docs/",
+      "checks": [
+        {
+          "url": "https://coresignal.com/docs/",
+          "key": "docs",
+          "fetchOk": false,
+          "error": {
+            "code": "FETCH_TARGET_UNREACHABLE",
+            "details": [],
+            "message": "The target URL could not be reached (connection failed or timed out)"
+          }
+        },
+        {
+          "url": "https://coresignal.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1497
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "leadpipe",
+      "name": "Leadpipe",
+      "checkedAt": "2026-08-07T05:34:49.732Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://www.leadpipe.com/docs/api/",
+      "checks": [
+        {
+          "url": "https://www.leadpipe.com/docs/api/",
+          "key": "docs",
+          "fetchOk": false,
+          "error": {
+            "code": "FETCH_TARGET_UNREACHABLE",
+            "details": [],
+            "message": "The target URL could not be reached (connection failed or timed out)"
+          }
+        },
+        {
+          "url": "https://www.leadpipe.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 3394
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "coldiq",
+      "name": "ColdIQ",
+      "checkedAt": "2026-08-07T05:34:53.420Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://coldiq.com/marketplace/apis",
+      "checks": [
+        {
+          "url": "https://coldiq.com/marketplace/apis",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1098
+        },
+        {
+          "url": "https://coldiq.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1253
+        }
+      ],
+      "verdict": "ALIVE"
+    }
+  ],
+  "dead": [
+    {
+      "slug": "coldr",
+      "name": "coldr",
+      "checkedAt": "2026-08-07T05:31:39.088Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://github.com/jmoyson/coldr",
+      "checks": [
+        {
+          "url": "https://github.com/jmoyson/coldr",
+          "key": "docs",
+          "fetchOk": false,
+          "error": {
+            "code": "FETCH_TARGET_UNREACHABLE",
+            "details": [],
+            "message": "The target URL could not be reached (connection failed or timed out)"
+          }
+        }
+      ],
+      "verdict": "DEAD",
+      "reason": "fetch error ([object Object])"
+    },
+    {
+      "slug": "growth-skills-engineer",
+      "name": "Growth Skills (Growth Engineer)",
+      "checkedAt": "2026-08-07T05:34:40.043Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://github.com/pfoy/growth-skills",
+      "checks": [
+        {
+          "url": "https://github.com/pfoy/growth-skills",
+          "key": "docs",
+          "fetchOk": false,
+          "error": {
+            "code": "FETCH_TARGET_UNREACHABLE",
+            "details": [],
+            "message": "The target URL could not be reached (connection failed or timed out)"
+          }
+        },
+        {
+          "url": "https://github.com/pfoy/growth-skills",
+          "key": "website",
+          "fetchOk": false,
+          "error": {
+            "code": "FETCH_TARGET_UNREACHABLE",
+            "details": [],
+            "message": "The target URL could not be reached (connection failed or timed out)"
+          }
+        }
+      ],
+      "verdict": "DEAD",
+      "reason": "fetch error ([object Object]); fetch error ([object Object])"
+    }
+  ],
+  "unverifiable": [
+    {
+      "slug": "exactbuyer",
+      "name": "ExactBuyer",
+      "checkedAt": "2026-08-07T05:32:56.898Z",
+      "httpVerdict": "ERROR",
+      "url": "",
+      "verdict": "UNVERIFIABLE",
+      "detail": "no URL to deep-check"
+    },
+    {
+      "slug": "meetz-ai",
+      "name": "Meetz",
+      "checkedAt": "2026-08-07T05:33:17.518Z",
+      "httpVerdict": "ERROR",
+      "url": "",
+      "verdict": "UNVERIFIABLE",
+      "detail": "no URL to deep-check"
+    },
+    {
+      "slug": "orbitly",
+      "name": "Orbitly",
+      "checkedAt": "2026-08-07T05:33:59.228Z",
+      "httpVerdict": "ERROR",
+      "url": "",
+      "verdict": "UNVERIFIABLE",
+      "detail": "no URL to deep-check"
+    },
+    {
+      "slug": "outboundy",
+      "name": "Outboundy",
+      "checkedAt": "2026-08-07T05:34:40.043Z",
+      "httpVerdict": "ERROR",
+      "url": "",
+      "verdict": "UNVERIFIABLE",
+      "detail": "no URL to deep-check"
+    }
+  ],
+  "deadSlugs": [
+    "coldr",
+    "growth-skills-engineer"
+  ],
+  "aliveSlugs": [
+    "emailable",
+    "meridian-crm",
+    "bigtincan",
+    "bitrix24",
+    "relay",
+    "bardeen",
+    "godmode-hq",
+    "qrev",
+    "conversica",
+    "gptbots-ai",
+    "bland-ai",
+    "batch-service",
+    "appxite",
+    "correlated",
+    "finalscout",
+    "definitive-healthcare",
+    "brainshark",
+    "salesmonk",
+    "localpipe",
+    "letterdrop",
+    "jina-reader",
+    "nyne",
+    "persana",
+    "inframail",
+    "zapier",
+    "proxycurl",
+    "pandadoc",
+    "enrich-so",
+    "koala",
+    "pipl",
+    "lagrowthmachine",
+    "leadmagic",
+    "clodura",
+    "outplay",
+    "verse",
+    "warmly",
+    "similartech",
+    "copyfactory",
+    "jiminny",
+    "salescaptain",
+    "showpad",
+    "supersend",
+    "scout",
+    "warmbox",
+    "zoominfo",
+    "tomba",
+    "intellizence",
+    "journey",
+    "linkedin-sales-navigator",
+    "voyage-ai",
+    "replyify",
+    "saber",
+    "reachkit",
+    "persistiq",
+    "mailcheck",
+    "browse-ai",
+    "playbook-ai",
+    "reachinbox",
+    "badger-maps",
+    "clari",
+    "pipeliner-crm",
+    "scrupp",
+    "crazycall",
+    "enrow",
+    "mutiny",
+    "salespad",
+    "interseller",
+    "ringover",
+    "dynamics-365-sales",
+    "stackswap",
+    "coresignal",
+    "leadpipe",
+    "coldiq"
+  ]
+}

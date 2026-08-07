@@ -5,6 +5,8 @@ import { getAllStacks } from "@/lib/stacks"
 import { getAllCategories } from "@/lib/tools"
 import { getAllUseCases } from "@/lib/usecases"
 import { getAllGuides } from "@/lib/guides"
+import { getAllBestHubs, getAllBestHubSlugs } from "@/lib/best"
+import { getAllAnswerSlugs } from "@/lib/answers"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://salestools.club"
@@ -85,6 +87,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.4,
     },
     {
+      url: `${baseUrl}/methodology`,
+      lastModified: lastModified,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    {
       url: `${baseUrl}/privacy`,
       lastModified: lastModified,
       changeFrequency: "monthly",
@@ -95,6 +103,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: lastModified,
       changeFrequency: "weekly",
       priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/best`,
+      lastModified: lastModified,
+      changeFrequency: "weekly",
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/guides`,
@@ -250,6 +264,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     vsUrlSet.add(`${baseUrl}/vs/${pair}`)
   }
 
+  // Include anchor-vs pairs linked from /best hub pages
+  for (const hub of getAllBestHubs()) {
+    const [a, b] = hub.anchorTools.slice(0, 2)
+    if (!a || !b) continue
+    vsUrlSet.add(`${baseUrl}/vs/${[a, b].sort().join("-vs-")}`)
+  }
+
   const vsPages: MetadataRoute.Sitemap = Array.from(vsUrlSet).map((url) => ({
     url,
     lastModified: lastModified,
@@ -290,6 +311,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }))
 
+  // Dynamic best hub pages
+  const bestHubPages: MetadataRoute.Sitemap = getAllBestHubSlugs().map((slug) => ({
+    url: `${baseUrl}/best/${slug}`,
+    lastModified: lastModified,
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }))
+
+  // MCP definitional answer pages
+  const answerPages: MetadataRoute.Sitemap = getAllAnswerSlugs().map((slug) => ({
+    url: `${baseUrl}/mcp/${slug}`,
+    lastModified: lastModified,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }))
+
   const allPages = [
     ...staticPages,
     ...toolPages,
@@ -301,6 +338,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...vsPages,
     ...capabilityPages,
     ...alternativePages,
+    ...bestHubPages,
+    ...answerPages,
   ]
 
   // Final deduplication by URL and XML escaping to be absolutely sure

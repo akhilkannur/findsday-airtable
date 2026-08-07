@@ -1,0 +1,100 @@
+name: Verify Tool Links
+
+on:
+  schedule:
+    # Weekly: Monday 03:30 UTC
+    - cron: "30 3 * * 1"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: link-verify
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install deps
+        run: npm ci --ignore-scripts
+
+      - name: Run HTTP link verification
+        id: verify
+        run: node scripts/verify-links.mjs
+        continue-on-error: true
+
+      - name: Linkup deep-check of failures
+        id: linkup
+        env:
+          LINKUP_API_KEY: ${{ secrets.LINKUP_API_KEY }}
+        run: |
+          if [ -f verification/link-report.json ] && [ "$(node -e "const r=require('./verification/link-report.json');process.stdout.write(r.failedSlugs.length>0?'yes':'no')")" = "yes" ]; then
+            printf 'LINKUP_API_KEY=%s\n' "$LINKUP_API_KEY" > .env.local
+            node scripts/verify-linkup.mjs
+          else
+            echo "No failures to deep-check"
+          fi
+        continue-on-error: true
+
+      - name: Commit fresh report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add verification/
+          git diff --cached --quiet || git commit -m "chore: refresh link verification reports"
+          git push
+
+      - name: Open issue on failures
+        if: steps.verify.outcome == 'failure' || steps.linkup.outcome == 'failure'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require("fs")
+            const http = JSON.parse(fs.readFileSync("verification/link-report.json", "utf8"))
+            const deep = fs.existsSync("verification/linkup-report.json")
+              ? JSON.parse(fs.readFileSync("verification/linkup-report.json", "utf8")) : null
+            const httpLines = http.failedSlugs.map((s) => {
+              const t = http.tools.find((x) => x.slug === s)
+              return `- \`${s}\` (${t.name}) — ${t.verdict}`
+            })
+            let body = `## HTTP check (free)\n\n${http.failedSlugs.length} flagged. Deep-check via Linkup: ${deep ? deep.alive.length + " ALIVE (false positives), " + deep.dead.length + " DEAD, " + deep.unverifiable.length + " unverifiable" : "not run"}.\n\n### HTTP-flagged\n${httpLines.join("\n")}`
+            if (deep && deep.dead.length) {
+              body += `\n\n### Confirmed dead (Linkup)\n` + deep.dead.map((d) => `- \`${d.slug}\` (${d.name})`).join("\n")
+            }
+            body += `\n\nFull detail in \`verification/*.json\`. Run \`node scripts/verify-links.mjs\` + \`node scripts/verify-linkup.mjs\` to re-check.`
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: "open",
+              creator: "github-actions[bot]",
+            })
+            const existing = issues.data.find((i) => i.title === "Broken tool links found")
+            if (existing) {
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.number,
+                body,
+              })
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: "Broken tool links found",
+                body,
+              })
+            }

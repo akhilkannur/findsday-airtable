@@ -1,0 +1,44 @@
+cluster,keyword,planner_volume_us,trend_90d,competition,top_bid_min,top_bid_max,priority
+C,revenue intelligence platform,1K-10K,-90%,low,-,-,high
+B,what is an mcp server,1K-10K,+900%,low,-,-,high
+A,ai sdr tools,100-1K,0%,low,2526,9874,high
+A,crm api,100-1K,-90%,medium,826,3780,high
+A,6sense api,10-100,0%,low,2846,15553,high
+A,cold email api,10-100,+inf,high,-,-,high
+A,ai sales enablement platform,10-100,0%,low,-,-,medium
+A,ai sales enablement tools,10-100,0%,low,2381,12808,high
+A,cold email outreach api,10-100,0%,low,-,-,high
+A,ai voice api,10-100,0%,medium,318,1377,medium
+A,meeting scheduling api,10-100,0%,low,-,-,medium
+A,conversation intelligence api,10-100,0%,low,-,-,medium
+A,sales intelligence api,10-100,-100%,low,-,-,high
+A,ai data enrichment,10-100,0%,low,2453,6079,high
+A,rb2b api,10-100,0%,low,-,-,baseline
+A,how to connect claude to salesforce,10-100,+inf,low,265,1680,medium
+A,ai revenue intelligence,10-100,0%,medium,-,-,medium
+A,ai dialer api,no data,0%,medium,-,-,medium
+A,ai lead enrichment api,no data,0%,low,-,-,low
+A,ai-native sales stack,no data,0%,low,-,-,low
+A,b2b data enrichment api,no data,0%,low,-,-,low
+A,intent data api,no data,0%,low,-,-,low
+B,how to build an ai sdr,no data,0%,low,-,-,medium
+B,what are ai sales agents,no data,0%,low,-,-,low
+A,sales automation api,no data,0%,low,-,-,low
+A,buying intent api,no data,0%,low,-,-,low
+BEST,best ai sdr,10-100,900%,low,2366,10501,high
+BEST,best sales intelligence tools,10-100,-90%,low,1900,6994,high
+BEST,top sales tools 2026,no data,0%,low,-,-,low
+BEST,best cold email platform,10-100,0%,medium,1516,5168,medium
+BEST,free sales ai,no data,0%,low,-,-,low
+BEST,best mcp servers,100-1K,-90%,low,238,1227,high
+BEST,best ai tools for sales teams,10-100,-90%,low,1815,6813,low
+BEST,best b2b data enrichment,no data,0%,low,-,-,low
+VS,6sense vs zoominfo,10-100,0%,medium,1923,9049,high
+VS,apollo vs salesforce,10-100,0%,low,1363,4460,medium
+VS,hubspot vs salesforce,1K-10K,0%,medium,529,3121,high
+VS,salesforce alternatives,100-1K,0%,medium,1375,5165,high
+HOWTO,how to automate sales outreach,no data,0%,low,-,-,low
+HOWTO,how to use mcp in sales,no data,0%,low,-,-,low
+HOWTO,model context protocol sales,no data,0%,low,-,-,low
+HOWTO,ai agents for revenue operations,no data,0%,low,-,-,low
+HOWTO,best mcp servers for crm,no data,0%,low,-,-,low
