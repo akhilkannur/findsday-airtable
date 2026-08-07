@@ -29,6 +29,16 @@ const TIMEOUT_MS = 12000
 const MAX_REDIRECTS = 3
 const MAX_TOOLS_FIELD = 60000 // guard: cap report size
 
+// A browser-like UA dramatically reduces false positives from WAF/bot walls
+// (Cloudflare, PerimeterX, Incapsula) that block plain agent-style headers.
+const BROWSER_UA =
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36"
+const REQUEST_HEADERS = {
+  "User-Agent": BROWSER_UA,
+  "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+  "Accept-Language": "en-US,en;q=0.9",
+}
+
 const args = process.argv.slice(2)
 const ONLY_FAILURES = args.includes("--only-failures")
 const LIMIT = (() => {
@@ -117,7 +127,7 @@ async function checkWithTimeout(url, method) {
       method,
       redirect: "manual",
       signal: controller.signal,
-      headers: { "User-Agent": "SalestoolsClub-Verify/1.0 (+https://salestools.club)" },
+      headers: REQUEST_HEADERS,
     })
     return res
   } finally {
@@ -128,30 +138,17 @@ async function checkWithTimeout(url, method) {
 async function checkUrl(url) {
   if (!url) return { status: "SKIP", detail: "no url" }
   let status = null
-  let method = "HEAD"
+  let method = "GET"
   let redirects = []
 
-  // Try HEAD first, fall back to GET on methods that reject HEAD.
+  // GET is the authoritative probe: HEAD is too often rewritten/blocked by
+  // modern WAFs and CDNs, producing false 404/405. We only fall back to HEAD
+  // for servers whose GET response body is enormous or that reject GET.
   let res
   try {
     res = await checkWithTimeout(url, method)
-  } catch {
-    method = "GET"
-    try {
-      res = await checkWithTimeout(url, method)
-    } catch (err) {
-      return { status: "ERROR", detail: err.code === "AbortError" ? "timeout" : "network" }
-    }
-  }
-
-  if (!res || res.status === 405 || res.status === 501 || res.status === 403) {
-    // Retry once with GET for servers that reject HEAD.
-    try {
-      method = "GET"
-      res = await checkWithTimeout(url, method)
-    } catch (err) {
-      return { status: "ERROR", detail: err.code === "AbortError" ? "timeout" : "network" }
-    }
+  } catch (err) {
+    return { status: "ERROR", detail: err.code === "AbortError" ? "timeout" : "network" }
   }
 
   if (!res) return { status: "ERROR", detail: "no response" }
