@@ -28,6 +28,7 @@ export default function SubmitPage() {
 
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState("")
+  const [slug, setSlug] = useState("")
   const [copied, setCopied] = useState<'dark'|'light'|null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -72,7 +73,10 @@ export default function SubmitPage() {
 
   function makeBadgeEmbed(variant: 'dark' | 'light') {
     const fileName = variant === 'dark' ? 'badge-dark.svg' : 'badge-light.svg'
-    return `<a href="${SITE_URL}?utm_source=badge&utm_medium=embed" target="_blank" rel="noopener noreferrer"><img src="${SITE_URL}/images/${fileName}" alt="Featured on Salestools Club" width="220" height="50" /></a>`
+    const targetUrl = slug
+      ? `${SITE_URL}/apis/${slug}?utm_source=badge&utm_medium=embed`
+      : `${SITE_URL}?utm_source=badge&utm_medium=embed`
+    return `<a href="${targetUrl}" target="_blank" rel="noopener noreferrer"><img src="${SITE_URL}/images/${fileName}" alt="Featured on Salestools Club" width="220" height="50" /></a>`
   }
 
   const handleCopy = async (variant: 'dark' | 'light') => {
@@ -295,9 +299,23 @@ export default function SubmitPage() {
         <div className="layout-container mt-16 md:mt-24">
           <h2 className="type-display text-2xl md:text-4xl mb-4">Embed your badge</h2>
           <p className="text-lg text-ink-fade mb-8 max-w-xl">
-            Add the badge to your site. Tools with a badge get priority review.
+            Add the badge to your site. Tools with a badge get priority review. Add your tool slug to link the badge to your listing page.
           </p>
           
+          <div className="max-w-2xl mx-auto mb-8">
+            <label className="font-mono text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.2em] text-ink mb-1 block">
+              Your tool slug (optional)
+            </label>
+            <input
+              type="text"
+              placeholder="e.g. apollo, hubspot..."
+              className={inputClasses}
+              value={slug}
+              onChange={(e) => setSlug(e.target.value)}
+            />
+            <p className="text-sm text-ink-fade mt-2">Badge links to salestools.club/apis/your-slug when filled in.</p>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
             {/* Dark Badge */}
             <div className="border border-dashed border-ink/10 p-6 bg-white/60 rounded-xl">
