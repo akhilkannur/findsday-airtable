@@ -756,6 +756,28 @@ export const tools: (SalesTool | MinimalTool)[] = [
     alternativeTo: ["ZeroBounce", "NeverBounce"],
     integrations: [],
   },
+  {
+    slug: "istempmail",
+    name: "IsTempMail",
+    oneLiner: "Disposable and temporary email detection API for blocking fake signups.",
+    description: "IsTempMail checks email addresses and domains against a 138k-domain blocklist of disposable email providers in real time. Single REST endpoint returns a simple JSON verdict (blocked, or unresolvable), plus a free WordPress plugin. Started as a tool for stopping fake registrations and free trial abuse.",
+    category: "Sales Intelligence",
+    websiteUrl: "https://istempmail.com",
+    docsUrl: "https://www.istempmail.com/docs/api",
+    pricingUrl: "https://istempmail.com/pricing",
+    apiType: ["REST"],
+    authMethod: ["API Key"],
+    hasFreeTier: true,
+    sdkLanguages: ["JavaScript", "PHP"],
+    hasWebhooks: false,
+    aiCapabilities: ["Email Verification", "Disposable Email Detection", "Signup Fraud Prevention"],
+    starterPrompt: "Claude, use IsTempMail to check this list of signup emails and block any from disposable providers.",
+    mcpReady: false,
+    isFeatured: false,
+    alternativeTo: ["Mailcheck", "ZeroBounce", "Debounce"],
+    integrations: [],
+    addedAt: "2026-08-10",
+  },
   // ── Data Enrichment ──────────────────────────────────────────
   // ── LinkedIn Tools ──────────────────────────────────────────
   {
@@ -10242,6 +10264,42 @@ export const tools: (SalesTool | MinimalTool)[] = [
     alternativeTo: ["Demandbase", "6sense", "Terminus"],
     integrations: [],
   },
+  {
+    slug: "sumora",
+    name: "Sumora",
+    oneLiner: "Autonomous outreach agent that finds, warms, and books leads on LinkedIn and Instagram.",
+    description: "Sumora is an autonomous outreach agent. Connect LinkedIn and Instagram, describe your ideal customer in plain English, and Sumora finds and scores ICP-matched leads, runs multi-touch warming sequences (connection request → icebreaker → follow-up), and surfaces every reply in one unified inbox for you to review and approve. Approve-before-send control with safety limits paced to platform quotas. Official MCP server lets Claude and other assistants review pending approvals, read the inbox, and query your business brain.",
+    category: "Sales Engagement",
+    websiteUrl: "https://trysumora.com",
+    docsUrl: "https://trysumora.com/mcp",
+    pricingUrl: "https://trysumora.com/#pricing",
+    apiType: ["REST"],
+    authMethod: ["API Key"],
+    hasFreeTier: true,
+    sdkLanguages: [],
+    hasWebhooks: false,
+    aiCapabilities: ["ICP Matching", "Lead Discovery", "Outreach Automation", "Multi-channel Sequences", "Inbox Management", "Meeting Booking"],
+    starterPrompt: "Claude, connect to Sumora and show me what's waiting in my approvals queue, then summarize this week's replies in my unified inbox.",
+    mcpReady: true,
+    isFeatured: false,
+    alternativeTo: ["Signal", "Overloop", "Outplay"],
+    integrations: [
+      {
+        platform: "MCP",
+        url: "https://mcp.trysumora.com/mcp",
+        label: "Official MCP Server",
+        mcpConfig: `{
+  "mcpServers": {
+    "sumora": {
+      "command": "npx",
+      "args": ["mcp-remote", "https://mcp.trysumora.com/mcp"]
+    }
+  }
+}`,
+      },
+    ],
+    addedAt: "2026-08-10",
+  },
 
   // ── Sales Intelligence ──────────────────────────────────────────────
   {
@@ -12989,9 +13047,23 @@ export const tools: (SalesTool | MinimalTool)[] = [
     hasWebhooks: false,
     aiCapabilities: ["Contact Enrichment", "Email Verification", "Phone Enrichment", "Company Enrichment", "ICP Targeting"],
     starterPrompt: "Claude, use BlitzAPI to enrich my lead list with verified emails and phone numbers.",
-    mcpReady: false,
+    mcpReady: true,
     isFeatured: false,
-    integrations: [],
+    integrations: [
+      {
+        platform: "MCP",
+        url: "https://docs.blitz-api.ai/mcp",
+        label: "Official MCP Server",
+        mcpConfig: `{
+  "mcpServers": {
+    "blitz-api": {
+      "command": "npx",
+      "args": ["mcp-remote", "https://docs.blitz-api.ai/mcp"]
+    }
+  }
+}`,
+      },
+    ],
     addedAt: "2026-04-23",
   },
   {
