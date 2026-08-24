@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-17T04:13:35.812Z",
+  "generatedAt": "2026-08-24T04:15:34.002Z",
   "renderJs": false,
-  "total": 17,
+  "total": 14,
   "alive": [
     {
       "slug": "qrev",
       "name": "QRev",
-      "checkedAt": "2026-08-17T04:12:39.302Z",
+      "checkedAt": "2026-08-24T04:14:44.807Z",
       "httpVerdict": "BROKEN",
       "url": "https://github.com/qrev-ai/qrev",
       "checks": [
@@ -34,7 +34,7 @@
     {
       "slug": "definitive-healthcare",
       "name": "Definitive Healthcare",
-      "checkedAt": "2026-08-17T04:12:41.578Z",
+      "checkedAt": "2026-08-24T04:14:46.890Z",
       "httpVerdict": "ERROR",
       "url": "https://api.defhc.com/v4/Documentation",
       "checks": [
@@ -54,7 +54,7 @@
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 2249
+          "words": 2257
         }
       ],
       "verdict": "ALIVE"
@@ -62,7 +62,7 @@
     {
       "slug": "pandadoc",
       "name": "PandaDoc",
-      "checkedAt": "2026-08-17T04:13:02.609Z",
+      "checkedAt": "2026-08-24T04:15:08.718Z",
       "httpVerdict": "ERROR",
       "url": "https://developers.pandadoc.com/",
       "checks": [
@@ -72,7 +72,7 @@
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 258
+          "words": 270
         },
         {
           "url": "https://www.pandadoc.com",
@@ -88,7 +88,7 @@
     {
       "slug": "enrich-so",
       "name": "Enrich.so",
-      "checkedAt": "2026-08-17T04:13:05.408Z",
+      "checkedAt": "2026-08-24T04:15:14.715Z",
       "httpVerdict": "ERROR",
       "url": "https://doc.enrich.so/",
       "checks": [
@@ -98,7 +98,7 @@
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 883
+          "words": 899
         },
         {
           "url": "https://enrich.so",
@@ -114,7 +114,7 @@
     {
       "slug": "koala",
       "name": "Koala",
-      "checkedAt": "2026-08-17T04:13:19.105Z",
+      "checkedAt": "2026-08-24T04:15:20.343Z",
       "httpVerdict": "ERROR",
       "url": "https://getkoala.com/docs/uploads-and-imports",
       "checks": [
@@ -140,19 +140,19 @@
       "verdict": "ALIVE"
     },
     {
-      "slug": "common-room",
-      "name": "Common Room",
-      "checkedAt": "2026-08-17T04:13:25.330Z",
+      "slug": "salesmonk",
+      "name": "SalesMonk",
+      "checkedAt": "2026-08-24T04:15:26.908Z",
       "httpVerdict": "ERROR",
-      "url": "https://api.commonroom.io/docs/community.html",
+      "url": "https://docs.salesmonk.ai/",
       "checks": [
         {
-          "url": "https://api.commonroom.io/docs/community.html",
+          "url": "https://docs.salesmonk.ai/",
           "key": "docs",
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 3169
+          "words": 652
         }
       ],
       "verdict": "ALIVE"
@@ -160,7 +160,7 @@
     {
       "slug": "copyfactory",
       "name": "CopyFactory",
-      "checkedAt": "2026-08-17T04:13:27.496Z",
+      "checkedAt": "2026-08-24T04:15:27.638Z",
       "httpVerdict": "ERROR",
       "url": "https://developers.copyfactory.io/",
       "checks": [
@@ -184,55 +184,37 @@
       "verdict": "ALIVE"
     },
     {
-      "slug": "salesmonk",
-      "name": "SalesMonk",
-      "checkedAt": "2026-08-17T04:13:28.500Z",
+      "slug": "lagrowthmachine",
+      "name": "La Growth Machine",
+      "checkedAt": "2026-08-24T04:15:28.674Z",
       "httpVerdict": "ERROR",
-      "url": "https://docs.salesmonk.ai/",
+      "url": "https://lagrowthmachine.com",
       "checks": [
         {
-          "url": "https://docs.salesmonk.ai/",
-          "key": "docs",
+          "url": "https://lagrowthmachine.com",
+          "key": "website",
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 652
+          "words": 1452
         }
       ],
       "verdict": "ALIVE"
     },
     {
-      "slug": "ytel",
-      "name": "Ytel",
-      "checkedAt": "2026-08-17T04:13:28.978Z",
+      "slug": "outplay",
+      "name": "Outplay",
+      "checkedAt": "2026-08-24T04:15:29.341Z",
       "httpVerdict": "ERROR",
-      "url": "https://www.ytel.com",
+      "url": "https://outplay.ai/",
       "checks": [
         {
-          "url": "https://www.ytel.com",
+          "url": "https://outplay.ai/",
           "key": "website",
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 815
-        }
-      ],
-      "verdict": "ALIVE"
-    },
-    {
-      "slug": "salesmate",
-      "name": "Salesmate",
-      "checkedAt": "2026-08-17T04:13:29.206Z",
-      "httpVerdict": "ERROR",
-      "url": "https://www.salesmate.io/",
-      "checks": [
-        {
-          "url": "https://www.salesmate.io/",
-          "key": "website",
-          "fetchOk": true,
-          "content": "REAL",
-          "alive": true,
-          "words": 1502
+          "words": 1106
         }
       ],
       "verdict": "ALIVE"
@@ -240,7 +222,7 @@
     {
       "slug": "reachkit",
       "name": "ReachKit",
-      "checkedAt": "2026-08-17T04:13:29.783Z",
+      "checkedAt": "2026-08-24T04:15:30.393Z",
       "httpVerdict": "ERROR",
       "url": "https://reachkit.ai/help/articles/api-documentation",
       "checks": [
@@ -256,27 +238,9 @@
       "verdict": "ALIVE"
     },
     {
-      "slug": "buzzboard",
-      "name": "BuzzBoard",
-      "checkedAt": "2026-08-17T04:13:30.514Z",
-      "httpVerdict": "ERROR",
-      "url": "https://api.buzzboard.com/apidocumentation",
-      "checks": [
-        {
-          "url": "https://api.buzzboard.com/apidocumentation",
-          "key": "docs",
-          "fetchOk": true,
-          "content": "REAL",
-          "alive": true,
-          "words": 10626
-        }
-      ],
-      "verdict": "ALIVE"
-    },
-    {
       "slug": "pipeliner-crm",
       "name": "Pipeliner CRM",
-      "checkedAt": "2026-08-17T04:13:31.904Z",
+      "checkedAt": "2026-08-24T04:15:31.279Z",
       "httpVerdict": "ERROR",
       "url": "https://developers.pipelinersales.com/api-docs",
       "checks": [
@@ -292,9 +256,27 @@
       "verdict": "ALIVE"
     },
     {
+      "slug": "warmer-ai",
+      "name": "Warmer",
+      "checkedAt": "2026-08-24T04:15:31.673Z",
+      "httpVerdict": "ERROR",
+      "url": "https://warmer.ai",
+      "checks": [
+        {
+          "url": "https://warmer.ai",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1051
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
       "slug": "salespad",
       "name": "SalesPad",
-      "checkedAt": "2026-08-17T04:13:32.444Z",
+      "checkedAt": "2026-08-24T04:15:32.829Z",
       "httpVerdict": "ERROR",
       "url": "https://www.cavallo.com/",
       "checks": [
@@ -310,27 +292,9 @@
       "verdict": "ALIVE"
     },
     {
-      "slug": "sales-crusader",
-      "name": "Sales Crusader",
-      "checkedAt": "2026-08-17T04:13:33.410Z",
-      "httpVerdict": "ERROR",
-      "url": "https://salescrusader.com",
-      "checks": [
-        {
-          "url": "https://salescrusader.com",
-          "key": "website",
-          "fetchOk": true,
-          "content": "REAL",
-          "alive": true,
-          "words": 1020
-        }
-      ],
-      "verdict": "ALIVE"
-    },
-    {
       "slug": "reachinbox",
       "name": "ReachInbox",
-      "checkedAt": "2026-08-17T04:13:34.207Z",
+      "checkedAt": "2026-08-24T04:15:33.737Z",
       "httpVerdict": "ERROR",
       "url": "https://docs.reachinbox.ai/",
       "checks": [
@@ -341,32 +305,6 @@
           "content": "REAL",
           "alive": true,
           "words": 122
-        }
-      ],
-      "verdict": "ALIVE"
-    },
-    {
-      "slug": "nuph-ai",
-      "name": "Nuph.ai",
-      "checkedAt": "2026-08-17T04:13:34.603Z",
-      "httpVerdict": "ERROR",
-      "url": "https://nuph.ai/integrations/mcp/",
-      "checks": [
-        {
-          "url": "https://nuph.ai/integrations/mcp/",
-          "key": "docs",
-          "fetchOk": true,
-          "content": "REAL",
-          "alive": true,
-          "words": 648
-        },
-        {
-          "url": "https://nuph.ai",
-          "key": "website",
-          "fetchOk": true,
-          "content": "REAL",
-          "alive": true,
-          "words": 1554
         }
       ],
       "verdict": "ALIVE"
@@ -381,17 +319,14 @@
     "pandadoc",
     "enrich-so",
     "koala",
-    "common-room",
-    "copyfactory",
     "salesmonk",
-    "ytel",
-    "salesmate",
+    "copyfactory",
+    "lagrowthmachine",
+    "outplay",
     "reachkit",
-    "buzzboard",
     "pipeliner-crm",
+    "warmer-ai",
     "salespad",
-    "sales-crusader",
-    "reachinbox",
-    "nuph-ai"
+    "reachinbox"
   ]
 }
