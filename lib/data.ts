@@ -12217,16 +12217,29 @@ export const tools: (SalesTool | MinimalTool)[] = [
     docsUrl: "https://developer.onepagecrm.com/",
     pricingUrl: "https://onepagecrm.com/pricing",
     apiType: ["REST"],
-    authMethod: ["API Key"],
-    hasFreeTier: true,
+    authMethod: ["OAuth2", "API Key"],
+    hasFreeTier: false,
     sdkLanguages: [],
     hasWebhooks: true,
-    aiCapabilities: ["Action Item Generation", "Contact Management", "Deal Tracking"],
-    starterPrompt: "Claude, list my 'Next Actions' from OnePageCRM for this week.",
-    mcpReady: false,
+    aiCapabilities: ["CRM Record Search", "Automated Record Creation & Updates", "Pipeline Management", "Action Stream Management", "Task Automation"],
+    starterPrompt: "Claude, connect to my OnePageCRM via MCP and show me what's on my Action Stream today. Reschedule overdue actions across next week by priority.",
+    mcpReady: true,
     isFeatured: false,
     alternativeTo: ["Pipedrive", "Salesforce"],
-    integrations: [],
+    integrations: [
+      {
+        platform: "MCP",
+        url: "https://developer.onepagecrm.com/mcp/overview/",
+        label: "Official OnePageCRM MCP Server (remote — OAuth 2.1, works with Claude out of the box · Setup guide: https://help.onepagecrm.com/article/1017-mcp)",
+        mcpConfig: `{
+  "mcpServers": {
+    "onepagecrm": {
+      "url": "https://app.onepagecrm.com/mcp"
+    }
+  }
+}`,
+      },
+    ],
   },
   {
     slug: "pipeliner-crm",
