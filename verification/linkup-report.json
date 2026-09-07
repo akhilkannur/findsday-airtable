@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-31T10:01:44.138Z",
+  "generatedAt": "2026-09-07T08:35:33.650Z",
   "renderJs": false,
-  "total": 15,
+  "total": 13,
   "alive": [
     {
       "slug": "bombora",
       "name": "Bombora",
-      "checkedAt": "2026-08-31T10:00:54.193Z",
+      "checkedAt": "2026-09-07T08:34:45.339Z",
       "httpVerdict": "BROKEN",
       "url": "https://bombora-partners.atlassian.net/wiki/spaces/DOC/pages/1212420/Bombora+API",
       "checks": [
@@ -32,7 +32,7 @@
     {
       "slug": "qrev",
       "name": "QRev",
-      "checkedAt": "2026-08-31T10:00:57.026Z",
+      "checkedAt": "2026-09-07T08:34:48.409Z",
       "httpVerdict": "BROKEN",
       "url": "https://github.com/qrev-ai/qrev",
       "checks": [
@@ -60,7 +60,7 @@
     {
       "slug": "definitive-healthcare",
       "name": "Definitive Healthcare",
-      "checkedAt": "2026-08-31T10:00:58.477Z",
+      "checkedAt": "2026-09-07T08:34:49.883Z",
       "httpVerdict": "ERROR",
       "url": "https://api.defhc.com/v4/Documentation",
       "checks": [
@@ -80,7 +80,7 @@
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 2261
+          "words": 2269
         }
       ],
       "verdict": "ALIVE"
@@ -88,7 +88,7 @@
     {
       "slug": "pandadoc",
       "name": "PandaDoc",
-      "checkedAt": "2026-08-31T10:01:14.647Z",
+      "checkedAt": "2026-09-07T08:35:04.444Z",
       "httpVerdict": "ERROR",
       "url": "https://developers.pandadoc.com/",
       "checks": [
@@ -106,7 +106,7 @@
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 1093
+          "words": 1026
         }
       ],
       "verdict": "ALIVE"
@@ -114,7 +114,7 @@
     {
       "slug": "enrich-so",
       "name": "Enrich.so",
-      "checkedAt": "2026-08-31T10:01:19.176Z",
+      "checkedAt": "2026-09-07T08:35:08.668Z",
       "httpVerdict": "ERROR",
       "url": "https://doc.enrich.so/",
       "checks": [
@@ -140,7 +140,7 @@
     {
       "slug": "koala",
       "name": "Koala",
-      "checkedAt": "2026-08-31T10:01:27.515Z",
+      "checkedAt": "2026-09-07T08:35:20.062Z",
       "httpVerdict": "ERROR",
       "url": "https://getkoala.com/docs/uploads-and-imports",
       "checks": [
@@ -168,7 +168,7 @@
     {
       "slug": "salesmonk",
       "name": "SalesMonk",
-      "checkedAt": "2026-08-31T10:01:35.258Z",
+      "checkedAt": "2026-09-07T08:35:29.067Z",
       "httpVerdict": "ERROR",
       "url": "https://docs.salesmonk.ai/",
       "checks": [
@@ -186,7 +186,7 @@
     {
       "slug": "copyfactory",
       "name": "CopyFactory",
-      "checkedAt": "2026-08-31T10:01:35.833Z",
+      "checkedAt": "2026-09-07T08:35:29.582Z",
       "httpVerdict": "ERROR",
       "url": "https://developers.copyfactory.io/",
       "checks": [
@@ -210,63 +210,9 @@
       "verdict": "ALIVE"
     },
     {
-      "slug": "outplay",
-      "name": "Outplay",
-      "checkedAt": "2026-08-31T10:01:36.897Z",
-      "httpVerdict": "ERROR",
-      "url": "https://outplay.ai/",
-      "checks": [
-        {
-          "url": "https://outplay.ai/",
-          "key": "website",
-          "fetchOk": true,
-          "content": "REAL",
-          "alive": true,
-          "words": 1106
-        }
-      ],
-      "verdict": "ALIVE"
-    },
-    {
-      "slug": "salesmate",
-      "name": "Salesmate",
-      "checkedAt": "2026-08-31T10:01:37.865Z",
-      "httpVerdict": "ERROR",
-      "url": "https://www.salesmate.io/",
-      "checks": [
-        {
-          "url": "https://www.salesmate.io/",
-          "key": "website",
-          "fetchOk": true,
-          "content": "REAL",
-          "alive": true,
-          "words": 1502
-        }
-      ],
-      "verdict": "ALIVE"
-    },
-    {
-      "slug": "verse",
-      "name": "Verse",
-      "checkedAt": "2026-08-31T10:01:39.128Z",
-      "httpVerdict": "ERROR",
-      "url": "https://verse.ai",
-      "checks": [
-        {
-          "url": "https://verse.ai",
-          "key": "website",
-          "fetchOk": true,
-          "content": "REAL",
-          "alive": true,
-          "words": 1627
-        }
-      ],
-      "verdict": "ALIVE"
-    },
-    {
       "slug": "reachkit",
       "name": "ReachKit",
-      "checkedAt": "2026-08-31T10:01:39.673Z",
+      "checkedAt": "2026-09-07T08:35:30.759Z",
       "httpVerdict": "ERROR",
       "url": "https://reachkit.ai/help/articles/api-documentation",
       "checks": [
@@ -282,9 +228,27 @@
       "verdict": "ALIVE"
     },
     {
+      "slug": "leandata",
+      "name": "LeanData",
+      "checkedAt": "2026-09-07T08:35:31.662Z",
+      "httpVerdict": "ERROR",
+      "url": "https://www.leandata.com/",
+      "checks": [
+        {
+          "url": "https://www.leandata.com/",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1058
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
       "slug": "pipeliner-crm",
       "name": "Pipeliner CRM",
-      "checkedAt": "2026-08-31T10:01:40.500Z",
+      "checkedAt": "2026-09-07T08:35:32.130Z",
       "httpVerdict": "ERROR",
       "url": "https://developers.pipelinersales.com/api-docs",
       "checks": [
@@ -300,9 +264,27 @@
       "verdict": "ALIVE"
     },
     {
+      "slug": "cognism",
+      "name": "Cognism",
+      "checkedAt": "2026-09-07T08:35:32.697Z",
+      "httpVerdict": "ERROR",
+      "url": "https://www.cognism.com",
+      "checks": [
+        {
+          "url": "https://www.cognism.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1739
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
       "slug": "reachinbox",
       "name": "ReachInbox",
-      "checkedAt": "2026-08-31T10:01:40.821Z",
+      "checkedAt": "2026-09-07T08:35:33.260Z",
       "httpVerdict": "ERROR",
       "url": "https://docs.reachinbox.ai/",
       "checks": [
@@ -313,24 +295,6 @@
           "content": "REAL",
           "alive": true,
           "words": 122
-        }
-      ],
-      "verdict": "ALIVE"
-    },
-    {
-      "slug": "nuph-ai",
-      "name": "Nuph.ai",
-      "checkedAt": "2026-08-31T10:01:41.329Z",
-      "httpVerdict": "ERROR",
-      "url": "https://nuph.ai/integrations/mcp/",
-      "checks": [
-        {
-          "url": "https://nuph.ai/integrations/mcp/",
-          "key": "docs",
-          "fetchOk": true,
-          "content": "REAL",
-          "alive": true,
-          "words": 648
         }
       ],
       "verdict": "ALIVE"
@@ -348,12 +312,10 @@
     "koala",
     "salesmonk",
     "copyfactory",
-    "outplay",
-    "salesmate",
-    "verse",
     "reachkit",
+    "leandata",
     "pipeliner-crm",
-    "reachinbox",
-    "nuph-ai"
+    "cognism",
+    "reachinbox"
   ]
 }
