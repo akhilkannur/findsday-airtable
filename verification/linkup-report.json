@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-07T08:35:33.650Z",
+  "generatedAt": "2026-09-14T09:12:29.822Z",
   "renderJs": false,
-  "total": 13,
+  "total": 16,
   "alive": [
     {
       "slug": "bombora",
       "name": "Bombora",
-      "checkedAt": "2026-09-07T08:34:45.339Z",
+      "checkedAt": "2026-09-14T09:11:43.000Z",
       "httpVerdict": "BROKEN",
       "url": "https://bombora-partners.atlassian.net/wiki/spaces/DOC/pages/1212420/Bombora+API",
       "checks": [
@@ -24,7 +24,7 @@
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 823
+          "words": 826
         }
       ],
       "verdict": "ALIVE"
@@ -32,7 +32,7 @@
     {
       "slug": "qrev",
       "name": "QRev",
-      "checkedAt": "2026-09-07T08:34:48.409Z",
+      "checkedAt": "2026-09-14T09:11:49.781Z",
       "httpVerdict": "BROKEN",
       "url": "https://github.com/qrev-ai/qrev",
       "checks": [
@@ -60,8 +60,8 @@
     {
       "slug": "definitive-healthcare",
       "name": "Definitive Healthcare",
-      "checkedAt": "2026-09-07T08:34:49.883Z",
-      "httpVerdict": "ERROR",
+      "checkedAt": "2026-09-14T09:11:51.217Z",
+      "httpVerdict": "BROKEN",
       "url": "https://api.defhc.com/v4/Documentation",
       "checks": [
         {
@@ -69,9 +69,9 @@
           "key": "docs",
           "fetchOk": false,
           "error": {
-            "code": "FETCH_TARGET_UNREACHABLE",
+            "code": "FETCH_TARGET_NOT_FOUND",
             "details": [],
-            "message": "The target URL could not be reached (connection failed or timed out)"
+            "message": "The target URL was not found"
           }
         },
         {
@@ -80,7 +80,7 @@
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 2269
+          "words": 2301
         }
       ],
       "verdict": "ALIVE"
@@ -88,7 +88,7 @@
     {
       "slug": "pandadoc",
       "name": "PandaDoc",
-      "checkedAt": "2026-09-07T08:35:04.444Z",
+      "checkedAt": "2026-09-14T09:11:52.331Z",
       "httpVerdict": "ERROR",
       "url": "https://developers.pandadoc.com/",
       "checks": [
@@ -106,7 +106,7 @@
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 1026
+          "words": 1034
         }
       ],
       "verdict": "ALIVE"
@@ -114,7 +114,7 @@
     {
       "slug": "enrich-so",
       "name": "Enrich.so",
-      "checkedAt": "2026-09-07T08:35:08.668Z",
+      "checkedAt": "2026-09-14T09:12:00.770Z",
       "httpVerdict": "ERROR",
       "url": "https://doc.enrich.so/",
       "checks": [
@@ -140,7 +140,7 @@
     {
       "slug": "koala",
       "name": "Koala",
-      "checkedAt": "2026-09-07T08:35:20.062Z",
+      "checkedAt": "2026-09-14T09:12:12.057Z",
       "httpVerdict": "ERROR",
       "url": "https://getkoala.com/docs/uploads-and-imports",
       "checks": [
@@ -166,19 +166,27 @@
       "verdict": "ALIVE"
     },
     {
-      "slug": "salesmonk",
-      "name": "SalesMonk",
-      "checkedAt": "2026-09-07T08:35:29.067Z",
+      "slug": "manyreach",
+      "name": "Manyreach",
+      "checkedAt": "2026-09-14T09:12:20.478Z",
       "httpVerdict": "ERROR",
-      "url": "https://docs.salesmonk.ai/",
+      "url": "https://api.manyreach.com/api#v2",
       "checks": [
         {
-          "url": "https://docs.salesmonk.ai/",
+          "url": "https://api.manyreach.com/api#v2",
           "key": "docs",
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 652
+          "words": 21
+        },
+        {
+          "url": "https://www.manyreach.com/",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 2365
         }
       ],
       "verdict": "ALIVE"
@@ -186,7 +194,7 @@
     {
       "slug": "copyfactory",
       "name": "CopyFactory",
-      "checkedAt": "2026-09-07T08:35:29.582Z",
+      "checkedAt": "2026-09-14T09:12:21.339Z",
       "httpVerdict": "ERROR",
       "url": "https://developers.copyfactory.io/",
       "checks": [
@@ -210,9 +218,81 @@
       "verdict": "ALIVE"
     },
     {
+      "slug": "spiff",
+      "name": "Spiff",
+      "checkedAt": "2026-09-14T09:12:22.336Z",
+      "httpVerdict": "ERROR",
+      "url": "https://developer.salesforce.com/docs/sales/spiff/guide",
+      "checks": [
+        {
+          "url": "https://developer.salesforce.com/docs/sales/spiff/guide",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 382
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "salesmonk",
+      "name": "SalesMonk",
+      "checkedAt": "2026-09-14T09:12:23.283Z",
+      "httpVerdict": "ERROR",
+      "url": "https://docs.salesmonk.ai/",
+      "checks": [
+        {
+          "url": "https://docs.salesmonk.ai/",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 652
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "frontspin",
+      "name": "Frontspin",
+      "checkedAt": "2026-09-14T09:12:24.898Z",
+      "httpVerdict": "ERROR",
+      "url": "https://www.frontspin.com/",
+      "checks": [
+        {
+          "url": "https://www.frontspin.com/",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1787
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "verse",
+      "name": "Verse",
+      "checkedAt": "2026-09-14T09:12:25.500Z",
+      "httpVerdict": "ERROR",
+      "url": "https://verse.ai",
+      "checks": [
+        {
+          "url": "https://verse.ai",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1680
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
       "slug": "reachkit",
       "name": "ReachKit",
-      "checkedAt": "2026-09-07T08:35:30.759Z",
+      "checkedAt": "2026-09-14T09:12:26.041Z",
       "httpVerdict": "ERROR",
       "url": "https://reachkit.ai/help/articles/api-documentation",
       "checks": [
@@ -228,27 +308,9 @@
       "verdict": "ALIVE"
     },
     {
-      "slug": "leandata",
-      "name": "LeanData",
-      "checkedAt": "2026-09-07T08:35:31.662Z",
-      "httpVerdict": "ERROR",
-      "url": "https://www.leandata.com/",
-      "checks": [
-        {
-          "url": "https://www.leandata.com/",
-          "key": "website",
-          "fetchOk": true,
-          "content": "REAL",
-          "alive": true,
-          "words": 1058
-        }
-      ],
-      "verdict": "ALIVE"
-    },
-    {
       "slug": "pipeliner-crm",
       "name": "Pipeliner CRM",
-      "checkedAt": "2026-09-07T08:35:32.130Z",
+      "checkedAt": "2026-09-14T09:12:26.857Z",
       "httpVerdict": "ERROR",
       "url": "https://developers.pipelinersales.com/api-docs",
       "checks": [
@@ -264,19 +326,19 @@
       "verdict": "ALIVE"
     },
     {
-      "slug": "cognism",
-      "name": "Cognism",
-      "checkedAt": "2026-09-07T08:35:32.697Z",
+      "slug": "salespad",
+      "name": "SalesPad",
+      "checkedAt": "2026-09-14T09:12:27.418Z",
       "httpVerdict": "ERROR",
-      "url": "https://www.cognism.com",
+      "url": "https://www.cavallo.com/",
       "checks": [
         {
-          "url": "https://www.cognism.com",
+          "url": "https://www.cavallo.com/",
           "key": "website",
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 1739
+          "words": 1018
         }
       ],
       "verdict": "ALIVE"
@@ -284,7 +346,7 @@
     {
       "slug": "reachinbox",
       "name": "ReachInbox",
-      "checkedAt": "2026-09-07T08:35:33.260Z",
+      "checkedAt": "2026-09-14T09:12:28.223Z",
       "httpVerdict": "ERROR",
       "url": "https://docs.reachinbox.ai/",
       "checks": [
@@ -310,12 +372,15 @@
     "pandadoc",
     "enrich-so",
     "koala",
-    "salesmonk",
+    "manyreach",
     "copyfactory",
+    "spiff",
+    "salesmonk",
+    "frontspin",
+    "verse",
     "reachkit",
-    "leandata",
     "pipeliner-crm",
-    "cognism",
+    "salespad",
     "reachinbox"
   ]
 }
