@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-14T09:12:29.822Z",
+  "generatedAt": "2026-09-21T09:15:09.237Z",
   "renderJs": false,
-  "total": 16,
+  "total": 22,
   "alive": [
     {
       "slug": "bombora",
       "name": "Bombora",
-      "checkedAt": "2026-09-14T09:11:43.000Z",
+      "checkedAt": "2026-09-21T09:13:59.562Z",
       "httpVerdict": "BROKEN",
       "url": "https://bombora-partners.atlassian.net/wiki/spaces/DOC/pages/1212420/Bombora+API",
       "checks": [
@@ -32,7 +32,7 @@
     {
       "slug": "qrev",
       "name": "QRev",
-      "checkedAt": "2026-09-14T09:11:49.781Z",
+      "checkedAt": "2026-09-21T09:14:03.253Z",
       "httpVerdict": "BROKEN",
       "url": "https://github.com/qrev-ai/qrev",
       "checks": [
@@ -42,7 +42,7 @@
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 1203
+          "words": 1190
         },
         {
           "url": "https://qrev.ai",
@@ -60,7 +60,7 @@
     {
       "slug": "definitive-healthcare",
       "name": "Definitive Healthcare",
-      "checkedAt": "2026-09-14T09:11:51.217Z",
+      "checkedAt": "2026-09-21T09:14:04.646Z",
       "httpVerdict": "BROKEN",
       "url": "https://api.defhc.com/v4/Documentation",
       "checks": [
@@ -80,7 +80,7 @@
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 2301
+          "words": 2307
         }
       ],
       "verdict": "ALIVE"
@@ -88,7 +88,7 @@
     {
       "slug": "pandadoc",
       "name": "PandaDoc",
-      "checkedAt": "2026-09-14T09:11:52.331Z",
+      "checkedAt": "2026-09-21T09:14:06.273Z",
       "httpVerdict": "ERROR",
       "url": "https://developers.pandadoc.com/",
       "checks": [
@@ -106,7 +106,7 @@
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 1034
+          "words": 1043
         }
       ],
       "verdict": "ALIVE"
@@ -114,7 +114,7 @@
     {
       "slug": "enrich-so",
       "name": "Enrich.so",
-      "checkedAt": "2026-09-14T09:12:00.770Z",
+      "checkedAt": "2026-09-21T09:14:10.127Z",
       "httpVerdict": "ERROR",
       "url": "https://doc.enrich.so/",
       "checks": [
@@ -140,7 +140,7 @@
     {
       "slug": "koala",
       "name": "Koala",
-      "checkedAt": "2026-09-14T09:12:12.057Z",
+      "checkedAt": "2026-09-21T09:14:16.302Z",
       "httpVerdict": "ERROR",
       "url": "https://getkoala.com/docs/uploads-and-imports",
       "checks": [
@@ -166,27 +166,47 @@
       "verdict": "ALIVE"
     },
     {
-      "slug": "manyreach",
-      "name": "Manyreach",
-      "checkedAt": "2026-09-14T09:12:20.478Z",
+      "slug": "primerole",
+      "name": "Primerole",
+      "checkedAt": "2026-09-21T09:14:28.614Z",
       "httpVerdict": "ERROR",
-      "url": "https://api.manyreach.com/api#v2",
+      "url": "https://www.primerole.com/docs/",
       "checks": [
         {
-          "url": "https://api.manyreach.com/api#v2",
+          "url": "https://www.primerole.com/docs/",
           "key": "docs",
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 21
+          "words": 71
         },
         {
-          "url": "https://www.manyreach.com/",
+          "url": "https://www.primerole.com/",
+          "key": "website",
+          "fetchOk": false,
+          "error": {
+            "code": "FETCH_TARGET_UNREACHABLE",
+            "details": [],
+            "message": "The target URL could not be reached (connection failed or timed out)"
+          }
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "koncert",
+      "name": "Koncert",
+      "checkedAt": "2026-09-21T09:14:36.565Z",
+      "httpVerdict": "ERROR",
+      "url": "https://www.koncert.com",
+      "checks": [
+        {
+          "url": "https://www.koncert.com",
           "key": "website",
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 2365
+          "words": 1535
         }
       ],
       "verdict": "ALIVE"
@@ -194,7 +214,7 @@
     {
       "slug": "copyfactory",
       "name": "CopyFactory",
-      "checkedAt": "2026-09-14T09:12:21.339Z",
+      "checkedAt": "2026-09-21T09:14:37.425Z",
       "httpVerdict": "ERROR",
       "url": "https://developers.copyfactory.io/",
       "checks": [
@@ -218,19 +238,115 @@
       "verdict": "ALIVE"
     },
     {
-      "slug": "spiff",
-      "name": "Spiff",
-      "checkedAt": "2026-09-14T09:12:22.336Z",
-      "httpVerdict": "ERROR",
-      "url": "https://developer.salesforce.com/docs/sales/spiff/guide",
+      "slug": "humantic-ai",
+      "name": "Humantic AI",
+      "checkedAt": "2026-09-21T09:14:39.090Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://api.humantic.ai/",
       "checks": [
         {
-          "url": "https://developer.salesforce.com/docs/sales/spiff/guide",
+          "url": "https://api.humantic.ai/",
           "key": "docs",
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 382
+          "words": 6657
+        },
+        {
+          "url": "https://humantic.ai",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 2552
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "ytel",
+      "name": "Ytel",
+      "checkedAt": "2026-09-21T09:14:41.082Z",
+      "httpVerdict": "ERROR",
+      "url": "https://www.ytel.com",
+      "checks": [
+        {
+          "url": "https://www.ytel.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 816
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "ringba",
+      "name": "Ringba",
+      "checkedAt": "2026-09-21T09:14:41.537Z",
+      "httpVerdict": "ERROR",
+      "url": "https://www.ringba.com",
+      "checks": [
+        {
+          "url": "https://www.ringba.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 622
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "qualified",
+      "name": "Qualified",
+      "checkedAt": "2026-09-21T09:14:42.814Z",
+      "httpVerdict": "ERROR",
+      "url": "https://www.qualified.com/developers",
+      "checks": [
+        {
+          "url": "https://www.qualified.com/developers",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 29
+        },
+        {
+          "url": "https://www.qualified.com/",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1510
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "scout",
+      "name": "Scout",
+      "checkedAt": "2026-09-21T09:14:44.644Z",
+      "httpVerdict": "ERROR",
+      "url": "https://scoutv2.docs.apiary.io/",
+      "checks": [
+        {
+          "url": "https://scoutv2.docs.apiary.io/",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 6
+        },
+        {
+          "url": "https://www.tryscout.ai",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 807
         }
       ],
       "verdict": "ALIVE"
@@ -238,7 +354,7 @@
     {
       "slug": "salesmonk",
       "name": "SalesMonk",
-      "checkedAt": "2026-09-14T09:12:23.283Z",
+      "checkedAt": "2026-09-21T09:15:01.556Z",
       "httpVerdict": "ERROR",
       "url": "https://docs.salesmonk.ai/",
       "checks": [
@@ -254,37 +370,37 @@
       "verdict": "ALIVE"
     },
     {
-      "slug": "frontspin",
-      "name": "Frontspin",
-      "checkedAt": "2026-09-14T09:12:24.898Z",
+      "slug": "lagrowthmachine",
+      "name": "La Growth Machine",
+      "checkedAt": "2026-09-21T09:15:02.080Z",
       "httpVerdict": "ERROR",
-      "url": "https://www.frontspin.com/",
+      "url": "https://lagrowthmachine.com",
       "checks": [
         {
-          "url": "https://www.frontspin.com/",
+          "url": "https://lagrowthmachine.com",
           "key": "website",
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 1787
+          "words": 1459
         }
       ],
       "verdict": "ALIVE"
     },
     {
-      "slug": "verse",
-      "name": "Verse",
-      "checkedAt": "2026-09-14T09:12:25.500Z",
+      "slug": "outplay",
+      "name": "Outplay",
+      "checkedAt": "2026-09-21T09:15:02.614Z",
       "httpVerdict": "ERROR",
-      "url": "https://verse.ai",
+      "url": "https://outplay.ai/",
       "checks": [
         {
-          "url": "https://verse.ai",
+          "url": "https://outplay.ai/",
           "key": "website",
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 1680
+          "words": 1106
         }
       ],
       "verdict": "ALIVE"
@@ -292,7 +408,7 @@
     {
       "slug": "reachkit",
       "name": "ReachKit",
-      "checkedAt": "2026-09-14T09:12:26.041Z",
+      "checkedAt": "2026-09-21T09:15:03.709Z",
       "httpVerdict": "ERROR",
       "url": "https://reachkit.ai/help/articles/api-documentation",
       "checks": [
@@ -308,9 +424,27 @@
       "verdict": "ALIVE"
     },
     {
+      "slug": "awarathon",
+      "name": "Awarathon",
+      "checkedAt": "2026-09-21T09:15:04.615Z",
+      "httpVerdict": "ERROR",
+      "url": "https://www.awarathon.com/",
+      "checks": [
+        {
+          "url": "https://www.awarathon.com/",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1228
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
       "slug": "pipeliner-crm",
       "name": "Pipeliner CRM",
-      "checkedAt": "2026-09-14T09:12:26.857Z",
+      "checkedAt": "2026-09-21T09:15:05.436Z",
       "httpVerdict": "ERROR",
       "url": "https://developers.pipelinersales.com/api-docs",
       "checks": [
@@ -326,27 +460,9 @@
       "verdict": "ALIVE"
     },
     {
-      "slug": "salespad",
-      "name": "SalesPad",
-      "checkedAt": "2026-09-14T09:12:27.418Z",
-      "httpVerdict": "ERROR",
-      "url": "https://www.cavallo.com/",
-      "checks": [
-        {
-          "url": "https://www.cavallo.com/",
-          "key": "website",
-          "fetchOk": true,
-          "content": "REAL",
-          "alive": true,
-          "words": 1018
-        }
-      ],
-      "verdict": "ALIVE"
-    },
-    {
       "slug": "reachinbox",
       "name": "ReachInbox",
-      "checkedAt": "2026-09-14T09:12:28.223Z",
+      "checkedAt": "2026-09-21T09:15:06.623Z",
       "httpVerdict": "ERROR",
       "url": "https://docs.reachinbox.ai/",
       "checks": [
@@ -357,6 +473,32 @@
           "content": "REAL",
           "alive": true,
           "words": 122
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "frappe-crm",
+      "name": "Frappe CRM",
+      "checkedAt": "2026-09-21T09:15:06.966Z",
+      "httpVerdict": "ERROR",
+      "url": "https://docs.frappe.io/crm/introduction",
+      "checks": [
+        {
+          "url": "https://docs.frappe.io/crm/introduction",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 867
+        },
+        {
+          "url": "https://frappe.io/crm",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1044
         }
       ],
       "verdict": "ALIVE"
@@ -372,15 +514,21 @@
     "pandadoc",
     "enrich-so",
     "koala",
-    "manyreach",
+    "primerole",
+    "koncert",
     "copyfactory",
-    "spiff",
+    "humantic-ai",
+    "ytel",
+    "ringba",
+    "qualified",
+    "scout",
     "salesmonk",
-    "frontspin",
-    "verse",
+    "lagrowthmachine",
+    "outplay",
     "reachkit",
+    "awarathon",
     "pipeliner-crm",
-    "salespad",
-    "reachinbox"
+    "reachinbox",
+    "frappe-crm"
   ]
 }
