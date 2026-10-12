@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-05T10:47:13.114Z",
+  "generatedAt": "2026-10-12T11:14:43.382Z",
   "renderJs": false,
-  "total": 25,
+  "total": 16,
   "alive": [
     {
       "slug": "bombora",
       "name": "Bombora",
-      "checkedAt": "2026-10-05T10:46:13.050Z",
+      "checkedAt": "2026-10-12T11:13:57.487Z",
       "httpVerdict": "BROKEN",
       "url": "https://bombora-partners.atlassian.net/wiki/spaces/DOC/pages/1212420/Bombora+API",
       "checks": [
@@ -16,7 +16,7 @@
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 329
+          "words": 4
         },
         {
           "url": "https://bombora.com",
@@ -32,7 +32,7 @@
     {
       "slug": "qrev",
       "name": "QRev",
-      "checkedAt": "2026-10-05T10:46:16.646Z",
+      "checkedAt": "2026-10-12T11:13:59.976Z",
       "httpVerdict": "BROKEN",
       "url": "https://github.com/qrev-ai/qrev",
       "checks": [
@@ -42,7 +42,7 @@
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 1190
+          "words": 1125
         },
         {
           "url": "https://qrev.ai",
@@ -60,12 +60,12 @@
     {
       "slug": "definitive-healthcare",
       "name": "Definitive Healthcare",
-      "checkedAt": "2026-10-05T10:46:18.147Z",
+      "checkedAt": "2026-10-12T11:14:00.955Z",
       "httpVerdict": "BROKEN",
-      "url": "https://api.defhc.com/v4/Documentation",
+      "url": "https://api.defhc.com/v5/v4/Documentation",
       "checks": [
         {
-          "url": "https://api.defhc.com/v4/Documentation",
+          "url": "https://api.defhc.com/v5/v4/Documentation",
           "key": "docs",
           "fetchOk": false,
           "error": {
@@ -80,7 +80,33 @@
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 2317
+          "words": 2318
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "pandadoc",
+      "name": "PandaDoc",
+      "checkedAt": "2026-10-12T11:14:01.843Z",
+      "httpVerdict": "ERROR",
+      "url": "https://developers.pandadoc.com/",
+      "checks": [
+        {
+          "url": "https://developers.pandadoc.com/",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 270
+        },
+        {
+          "url": "https://www.pandadoc.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 8397
         }
       ],
       "verdict": "ALIVE"
@@ -88,7 +114,7 @@
     {
       "slug": "inframail",
       "name": "Inframail",
-      "checkedAt": "2026-10-05T10:46:19.366Z",
+      "checkedAt": "2026-10-12T11:14:06.888Z",
       "httpVerdict": "BROKEN",
       "url": "https://help.inframail.io/collections/api-zr0xx",
       "checks": [
@@ -114,61 +140,9 @@
       "verdict": "ALIVE"
     },
     {
-      "slug": "pandadoc",
-      "name": "PandaDoc",
-      "checkedAt": "2026-10-05T10:46:22.024Z",
-      "httpVerdict": "ERROR",
-      "url": "https://developers.pandadoc.com/",
-      "checks": [
-        {
-          "url": "https://developers.pandadoc.com/",
-          "key": "docs",
-          "fetchOk": true,
-          "content": "REAL",
-          "alive": true,
-          "words": 270
-        },
-        {
-          "url": "https://www.pandadoc.com",
-          "key": "website",
-          "fetchOk": true,
-          "content": "REAL",
-          "alive": true,
-          "words": 8373
-        }
-      ],
-      "verdict": "ALIVE"
-    },
-    {
-      "slug": "ytel",
-      "name": "Ytel",
-      "checkedAt": "2026-10-05T10:46:27.490Z",
-      "httpVerdict": "BROKEN",
-      "url": "https://api-docs.ytel.com/",
-      "checks": [
-        {
-          "url": "https://api-docs.ytel.com/",
-          "key": "docs",
-          "fetchOk": true,
-          "content": "REAL",
-          "alive": true,
-          "words": 49
-        },
-        {
-          "url": "https://www.ytel.com",
-          "key": "website",
-          "fetchOk": true,
-          "content": "REAL",
-          "alive": true,
-          "words": 1248
-        }
-      ],
-      "verdict": "ALIVE"
-    },
-    {
       "slug": "enrich-so",
       "name": "Enrich.so",
-      "checkedAt": "2026-10-05T10:46:28.638Z",
+      "checkedAt": "2026-10-12T11:14:08.842Z",
       "httpVerdict": "ERROR",
       "url": "https://doc.enrich.so/",
       "checks": [
@@ -178,7 +152,7 @@
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 947
+          "words": 999
         },
         {
           "url": "https://enrich.so",
@@ -194,7 +168,7 @@
     {
       "slug": "koala",
       "name": "Koala",
-      "checkedAt": "2026-10-05T10:46:39.422Z",
+      "checkedAt": "2026-10-12T11:14:17.008Z",
       "httpVerdict": "ERROR",
       "url": "https://getkoala.com/docs/uploads-and-imports",
       "checks": [
@@ -220,55 +194,19 @@
       "verdict": "ALIVE"
     },
     {
-      "slug": "clado",
-      "name": "Clado",
-      "checkedAt": "2026-10-05T10:46:46.848Z",
+      "slug": "salesmonk",
+      "name": "SalesMonk",
+      "checkedAt": "2026-10-12T11:14:28.330Z",
       "httpVerdict": "ERROR",
-      "url": "https://docs.clado.ai/api-reference/introduction",
+      "url": "https://docs.salesmonk.ai/",
       "checks": [
         {
-          "url": "https://docs.clado.ai/api-reference/introduction",
+          "url": "https://docs.salesmonk.ai/",
           "key": "docs",
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 420
-        },
-        {
-          "url": "https://www.clado.ai/",
-          "key": "website",
-          "fetchOk": false,
-          "error": {
-            "code": "FETCH_TARGET_UNREACHABLE",
-            "details": [],
-            "message": "The target URL could not be reached (connection failed or timed out)"
-          }
-        }
-      ],
-      "verdict": "ALIVE"
-    },
-    {
-      "slug": "humantic-ai",
-      "name": "Humantic AI",
-      "checkedAt": "2026-10-05T10:46:54.934Z",
-      "httpVerdict": "BROKEN",
-      "url": "https://api.humantic.ai/",
-      "checks": [
-        {
-          "url": "https://api.humantic.ai/",
-          "key": "docs",
-          "fetchOk": true,
-          "content": "REAL",
-          "alive": true,
-          "words": 6657
-        },
-        {
-          "url": "https://humantic.ai",
-          "key": "website",
-          "fetchOk": true,
-          "content": "REAL",
-          "alive": true,
-          "words": 2552
+          "words": 652
         }
       ],
       "verdict": "ALIVE"
@@ -276,7 +214,7 @@
     {
       "slug": "copyfactory",
       "name": "CopyFactory",
-      "checkedAt": "2026-10-05T10:47:06.690Z",
+      "checkedAt": "2026-10-12T11:14:29.081Z",
       "httpVerdict": "ERROR",
       "url": "https://developers.copyfactory.io/",
       "checks": [
@@ -300,9 +238,89 @@
       "verdict": "ALIVE"
     },
     {
+      "slug": "humantic-ai",
+      "name": "Humantic AI",
+      "checkedAt": "2026-10-12T11:14:30.442Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://api.humantic.ai/",
+      "checks": [
+        {
+          "url": "https://api.humantic.ai/",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 6657
+        },
+        {
+          "url": "https://humantic.ai",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 2772
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "ytel",
+      "name": "Ytel",
+      "checkedAt": "2026-10-12T11:14:31.891Z",
+      "httpVerdict": "ERROR",
+      "url": "https://www.ytel.com",
+      "checks": [
+        {
+          "url": "https://www.ytel.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1250
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "reachkit",
+      "name": "ReachKit",
+      "checkedAt": "2026-10-12T11:14:32.178Z",
+      "httpVerdict": "ERROR",
+      "url": "https://reachkit.ai/help/articles/api-documentation",
+      "checks": [
+        {
+          "url": "https://reachkit.ai/help/articles/api-documentation",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 5431
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "pipeliner-crm",
+      "name": "Pipeliner CRM",
+      "checkedAt": "2026-10-12T11:14:32.758Z",
+      "httpVerdict": "ERROR",
+      "url": "https://developers.pipelinersales.com/api-docs",
+      "checks": [
+        {
+          "url": "https://developers.pipelinersales.com/api-docs",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 240
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
       "slug": "scout",
       "name": "Scout",
-      "checkedAt": "2026-10-05T10:47:08.178Z",
+      "checkedAt": "2026-10-12T11:14:33.220Z",
       "httpVerdict": "ERROR",
       "url": "https://scoutv2.docs.apiary.io/",
       "checks": [
@@ -320,115 +338,7 @@
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 825
-        }
-      ],
-      "verdict": "ALIVE"
-    },
-    {
-      "slug": "salesmonk",
-      "name": "SalesMonk",
-      "checkedAt": "2026-10-05T10:47:09.263Z",
-      "httpVerdict": "ERROR",
-      "url": "https://docs.salesmonk.ai/",
-      "checks": [
-        {
-          "url": "https://docs.salesmonk.ai/",
-          "key": "docs",
-          "fetchOk": true,
-          "content": "REAL",
-          "alive": true,
-          "words": 652
-        }
-      ],
-      "verdict": "ALIVE"
-    },
-    {
-      "slug": "betterenrich",
-      "name": "BetterEnrich",
-      "checkedAt": "2026-10-05T10:47:09.788Z",
-      "httpVerdict": "ERROR",
-      "url": "https://betterenrich.readme.io/reference/post_api-v1-find-work-email",
-      "checks": [
-        {
-          "url": "https://betterenrich.readme.io/reference/post_api-v1-find-work-email",
-          "key": "docs",
-          "fetchOk": true,
-          "content": "REAL",
-          "alive": true,
-          "words": 345
-        }
-      ],
-      "verdict": "ALIVE"
-    },
-    {
-      "slug": "better-contact",
-      "name": "BetterContact",
-      "checkedAt": "2026-10-05T10:47:10.479Z",
-      "httpVerdict": "ERROR",
-      "url": "https://doc.bettercontact.rocks/quickstart",
-      "checks": [
-        {
-          "url": "https://doc.bettercontact.rocks/quickstart",
-          "key": "docs",
-          "fetchOk": true,
-          "content": "REAL",
-          "alive": true,
-          "words": 1379
-        }
-      ],
-      "verdict": "ALIVE"
-    },
-    {
-      "slug": "reachkit",
-      "name": "ReachKit",
-      "checkedAt": "2026-10-05T10:47:10.895Z",
-      "httpVerdict": "ERROR",
-      "url": "https://reachkit.ai/help/articles/api-documentation",
-      "checks": [
-        {
-          "url": "https://reachkit.ai/help/articles/api-documentation",
-          "key": "docs",
-          "fetchOk": true,
-          "content": "REAL",
-          "alive": true,
-          "words": 5398
-        }
-      ],
-      "verdict": "ALIVE"
-    },
-    {
-      "slug": "pipeliner-crm",
-      "name": "Pipeliner CRM",
-      "checkedAt": "2026-10-05T10:47:11.530Z",
-      "httpVerdict": "ERROR",
-      "url": "https://developers.pipelinersales.com/api-docs",
-      "checks": [
-        {
-          "url": "https://developers.pipelinersales.com/api-docs",
-          "key": "docs",
-          "fetchOk": true,
-          "content": "REAL",
-          "alive": true,
-          "words": 240
-        }
-      ],
-      "verdict": "ALIVE"
-    },
-    {
-      "slug": "apparound",
-      "name": "Apparound",
-      "checkedAt": "2026-10-05T10:47:12.042Z",
-      "httpVerdict": "ERROR",
-      "url": "https://www.apparound.com",
-      "checks": [
-        {
-          "url": "https://www.apparound.com",
-          "key": "website",
-          "fetchOk": true,
-          "content": "REAL",
-          "alive": true,
-          "words": 1283
+          "words": 879
         }
       ],
       "verdict": "ALIVE"
@@ -436,7 +346,7 @@
     {
       "slug": "reachinbox",
       "name": "ReachInbox",
-      "checkedAt": "2026-10-05T10:47:12.346Z",
+      "checkedAt": "2026-10-12T11:14:43.120Z",
       "httpVerdict": "ERROR",
       "url": "https://docs.reachinbox.ai/",
       "checks": [
@@ -450,24 +360,6 @@
         }
       ],
       "verdict": "ALIVE"
-    },
-    {
-      "slug": "loopio",
-      "name": "Loopio",
-      "checkedAt": "2026-10-05T10:47:12.650Z",
-      "httpVerdict": "ERROR",
-      "url": "https://loopio.stoplight.io/",
-      "checks": [
-        {
-          "url": "https://loopio.stoplight.io/",
-          "key": "docs",
-          "fetchOk": true,
-          "content": "REAL",
-          "alive": true,
-          "words": 36
-        }
-      ],
-      "verdict": "ALIVE"
     }
   ],
   "dead": [],
@@ -475,43 +367,7 @@
     {
       "slug": "leadleap",
       "name": "LeadLeap",
-      "checkedAt": "2026-10-05T10:47:10.895Z",
-      "httpVerdict": "ERROR",
-      "url": "",
-      "verdict": "UNVERIFIABLE",
-      "detail": "no URL to deep-check"
-    },
-    {
-      "slug": "doc-sales",
-      "name": "DocSales",
-      "checkedAt": "2026-10-05T10:47:12.042Z",
-      "httpVerdict": "ERROR",
-      "url": "",
-      "verdict": "UNVERIFIABLE",
-      "detail": "no URL to deep-check"
-    },
-    {
-      "slug": "outboundy",
-      "name": "Outboundy",
-      "checkedAt": "2026-10-05T10:47:12.042Z",
-      "httpVerdict": "ERROR",
-      "url": "",
-      "verdict": "UNVERIFIABLE",
-      "detail": "no URL to deep-check"
-    },
-    {
-      "slug": "trestle-iq",
-      "name": "Trestle IQ",
-      "checkedAt": "2026-10-05T10:47:12.346Z",
-      "httpVerdict": "ERROR",
-      "url": "",
-      "verdict": "UNVERIFIABLE",
-      "detail": "no URL to deep-check"
-    },
-    {
-      "slug": "outscraper",
-      "name": "Outscraper",
-      "checkedAt": "2026-10-05T10:47:12.346Z",
+      "checkedAt": "2026-10-12T11:14:32.178Z",
       "httpVerdict": "ERROR",
       "url": "",
       "verdict": "UNVERIFIABLE",
@@ -523,22 +379,17 @@
     "bombora",
     "qrev",
     "definitive-healthcare",
-    "inframail",
     "pandadoc",
-    "ytel",
+    "inframail",
     "enrich-so",
     "koala",
-    "clado",
-    "humantic-ai",
-    "copyfactory",
-    "scout",
     "salesmonk",
-    "betterenrich",
-    "better-contact",
+    "copyfactory",
+    "humantic-ai",
+    "ytel",
     "reachkit",
     "pipeliner-crm",
-    "apparound",
-    "reachinbox",
-    "loopio"
+    "scout",
+    "reachinbox"
   ]
 }
