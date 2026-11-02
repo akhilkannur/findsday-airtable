@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-26T09:17:23.274Z",
+  "generatedAt": "2026-11-02T11:35:19.611Z",
   "renderJs": false,
-  "total": 21,
+  "total": 29,
   "alive": [
     {
       "slug": "attio",
       "name": "Attio",
-      "checkedAt": "2026-10-26T09:16:04.813Z",
+      "checkedAt": "2026-11-02T11:34:28.483Z",
       "httpVerdict": "ERROR",
       "url": "https://attio.com",
       "checks": [
@@ -16,7 +16,7 @@
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 1858
+          "words": 1845
         }
       ],
       "verdict": "ALIVE"
@@ -24,7 +24,7 @@
     {
       "slug": "bombora",
       "name": "Bombora",
-      "checkedAt": "2026-10-26T09:16:05.320Z",
+      "checkedAt": "2026-11-02T11:34:29.399Z",
       "httpVerdict": "BROKEN",
       "url": "https://bombora-partners.atlassian.net/wiki/spaces/DOC/pages/1212420/Bombora+API",
       "checks": [
@@ -50,7 +50,7 @@
     {
       "slug": "qrev",
       "name": "QRev",
-      "checkedAt": "2026-10-26T09:16:08.283Z",
+      "checkedAt": "2026-11-02T11:34:31.533Z",
       "httpVerdict": "BROKEN",
       "url": "https://github.com/qrev-ai/qrev",
       "checks": [
@@ -78,7 +78,7 @@
     {
       "slug": "five9",
       "name": "Five9",
-      "checkedAt": "2026-10-26T09:16:09.432Z",
+      "checkedAt": "2026-11-02T11:34:32.697Z",
       "httpVerdict": "BROKEN",
       "url": "https://www.five9.com/platform/integrations-and-ecosystem/apis-and-sdks",
       "checks": [
@@ -104,7 +104,7 @@
     {
       "slug": "definitive-healthcare",
       "name": "Definitive Healthcare",
-      "checkedAt": "2026-10-26T09:16:09.947Z",
+      "checkedAt": "2026-11-02T11:34:33.341Z",
       "httpVerdict": "BROKEN",
       "url": "https://api.defhc.com/v5/v4/Documentation",
       "checks": [
@@ -113,9 +113,9 @@
           "key": "docs",
           "fetchOk": false,
           "error": {
-            "code": "FETCH_TARGET_UNREACHABLE",
+            "code": "FETCH_TARGET_NOT_FOUND",
             "details": [],
-            "message": "The target URL could not be reached (connection failed or timed out)"
+            "message": "The target URL was not found"
           }
         },
         {
@@ -124,7 +124,7 @@
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 2298
+          "words": 2288
         }
       ],
       "verdict": "ALIVE"
@@ -132,7 +132,7 @@
     {
       "slug": "inframail",
       "name": "Inframail",
-      "checkedAt": "2026-10-26T09:16:29.899Z",
+      "checkedAt": "2026-11-02T11:34:34.271Z",
       "httpVerdict": "BROKEN",
       "url": "https://help.inframail.io/collections/api-zr0xx",
       "checks": [
@@ -158,9 +158,63 @@
       "verdict": "ALIVE"
     },
     {
+      "slug": "get-sales",
+      "name": "GetSales.io",
+      "checkedAt": "2026-11-02T11:34:35.484Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://getsales.io/api",
+      "checks": [
+        {
+          "url": "https://getsales.io/api",
+          "key": "docs",
+          "fetchOk": false,
+          "error": {
+            "code": "FETCH_TARGET_NOT_FOUND",
+            "details": [],
+            "message": "The target URL was not found"
+          }
+        },
+        {
+          "url": "https://getsales.io",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 4143
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "mattermark",
+      "name": "Mattermark",
+      "checkedAt": "2026-11-02T11:34:36.278Z",
+      "httpVerdict": "ERROR",
+      "url": "https://mattermark.com/api/",
+      "checks": [
+        {
+          "url": "https://mattermark.com/api/",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 608
+        },
+        {
+          "url": "https://mattermark.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 584
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
       "slug": "pandadoc",
       "name": "PandaDoc",
-      "checkedAt": "2026-10-26T09:16:31.075Z",
+      "checkedAt": "2026-11-02T11:34:42.662Z",
       "httpVerdict": "ERROR",
       "url": "https://developers.pandadoc.com/",
       "checks": [
@@ -178,7 +232,7 @@
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 7157
+          "words": 895
         }
       ],
       "verdict": "ALIVE"
@@ -186,7 +240,7 @@
     {
       "slug": "ytel",
       "name": "Ytel",
-      "checkedAt": "2026-10-26T09:16:46.808Z",
+      "checkedAt": "2026-11-02T11:34:45.191Z",
       "httpVerdict": "BROKEN",
       "url": "https://api-docs.ytel.com/",
       "checks": [
@@ -204,7 +258,7 @@
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 1261
+          "words": 1263
         }
       ],
       "verdict": "ALIVE"
@@ -212,7 +266,7 @@
     {
       "slug": "enrich-so",
       "name": "Enrich.so",
-      "checkedAt": "2026-10-26T09:16:49.888Z",
+      "checkedAt": "2026-11-02T11:34:46.175Z",
       "httpVerdict": "ERROR",
       "url": "https://doc.enrich.so/",
       "checks": [
@@ -222,7 +276,7 @@
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 1003
+          "words": 1064
         },
         {
           "url": "https://enrich.so",
@@ -238,7 +292,7 @@
     {
       "slug": "koala",
       "name": "Koala",
-      "checkedAt": "2026-10-26T09:16:54.158Z",
+      "checkedAt": "2026-11-02T11:34:52.433Z",
       "httpVerdict": "ERROR",
       "url": "https://getkoala.com/docs/uploads-and-imports",
       "checks": [
@@ -266,7 +320,7 @@
     {
       "slug": "clado",
       "name": "Clado",
-      "checkedAt": "2026-10-26T09:17:02.697Z",
+      "checkedAt": "2026-11-02T11:34:58.537Z",
       "httpVerdict": "ERROR",
       "url": "https://docs.clado.ai/api-reference/introduction",
       "checks": [
@@ -292,27 +346,45 @@
       "verdict": "ALIVE"
     },
     {
-      "slug": "humantic-ai",
-      "name": "Humantic AI",
-      "checkedAt": "2026-10-26T09:17:16.950Z",
-      "httpVerdict": "BROKEN",
-      "url": "https://api.humantic.ai/",
+      "slug": "manyreach",
+      "name": "Manyreach",
+      "checkedAt": "2026-11-02T11:35:07.455Z",
+      "httpVerdict": "ERROR",
+      "url": "https://api.manyreach.com/api#v2",
       "checks": [
         {
-          "url": "https://api.humantic.ai/",
+          "url": "https://api.manyreach.com/api#v2",
           "key": "docs",
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 6657
+          "words": 21
         },
         {
-          "url": "https://humantic.ai",
+          "url": "https://www.manyreach.com/",
           "key": "website",
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 2772
+          "words": 2365
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "salesmonk",
+      "name": "SalesMonk",
+      "checkedAt": "2026-11-02T11:35:08.204Z",
+      "httpVerdict": "ERROR",
+      "url": "https://docs.salesmonk.ai/",
+      "checks": [
+        {
+          "url": "https://docs.salesmonk.ai/",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 646
         }
       ],
       "verdict": "ALIVE"
@@ -320,7 +392,7 @@
     {
       "slug": "copyfactory",
       "name": "CopyFactory",
-      "checkedAt": "2026-10-26T09:17:18.387Z",
+      "checkedAt": "2026-11-02T11:35:08.714Z",
       "httpVerdict": "ERROR",
       "url": "https://developers.copyfactory.io/",
       "checks": [
@@ -344,99 +416,27 @@
       "verdict": "ALIVE"
     },
     {
-      "slug": "perplexity",
-      "name": "Perplexity AI",
-      "checkedAt": "2026-10-26T09:17:19.904Z",
+      "slug": "humantic-ai",
+      "name": "Humantic AI",
+      "checkedAt": "2026-11-02T11:35:10.284Z",
       "httpVerdict": "BROKEN",
-      "url": "https://docs.perplexity.ai/docs/getting-started/overview",
+      "url": "https://api.humantic.ai/",
       "checks": [
         {
-          "url": "https://docs.perplexity.ai/docs/getting-started/overview",
+          "url": "https://api.humantic.ai/",
           "key": "docs",
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 383
+          "words": 6657
         },
         {
-          "url": "https://www.perplexity.ai",
+          "url": "https://humantic.ai",
           "key": "website",
           "fetchOk": true,
           "content": "REAL",
           "alive": true,
-          "words": 18
-        }
-      ],
-      "verdict": "ALIVE"
-    },
-    {
-      "slug": "salesmonk",
-      "name": "SalesMonk",
-      "checkedAt": "2026-10-26T09:17:20.400Z",
-      "httpVerdict": "ERROR",
-      "url": "https://docs.salesmonk.ai/",
-      "checks": [
-        {
-          "url": "https://docs.salesmonk.ai/",
-          "key": "docs",
-          "fetchOk": true,
-          "content": "REAL",
-          "alive": true,
-          "words": 646
-        }
-      ],
-      "verdict": "ALIVE"
-    },
-    {
-      "slug": "reachkit",
-      "name": "ReachKit",
-      "checkedAt": "2026-10-26T09:17:20.718Z",
-      "httpVerdict": "ERROR",
-      "url": "https://reachkit.ai/help/articles/api-documentation",
-      "checks": [
-        {
-          "url": "https://reachkit.ai/help/articles/api-documentation",
-          "key": "docs",
-          "fetchOk": true,
-          "content": "REAL",
-          "alive": true,
-          "words": 5597
-        }
-      ],
-      "verdict": "ALIVE"
-    },
-    {
-      "slug": "predictleads",
-      "name": "PredictLeads",
-      "checkedAt": "2026-10-26T09:17:21.253Z",
-      "httpVerdict": "ERROR",
-      "url": "https://predictleads.com",
-      "checks": [
-        {
-          "url": "https://predictleads.com",
-          "key": "website",
-          "fetchOk": true,
-          "content": "REAL",
-          "alive": true,
-          "words": 3788
-        }
-      ],
-      "verdict": "ALIVE"
-    },
-    {
-      "slug": "pipeliner-crm",
-      "name": "Pipeliner CRM",
-      "checkedAt": "2026-10-26T09:17:21.556Z",
-      "httpVerdict": "ERROR",
-      "url": "https://developers.pipelinersales.com/api-docs",
-      "checks": [
-        {
-          "url": "https://developers.pipelinersales.com/api-docs",
-          "key": "docs",
-          "fetchOk": true,
-          "content": "REAL",
-          "alive": true,
-          "words": 240
+          "words": 2772
         }
       ],
       "verdict": "ALIVE"
@@ -444,7 +444,7 @@
     {
       "slug": "scout",
       "name": "Scout",
-      "checkedAt": "2026-10-26T09:17:22.022Z",
+      "checkedAt": "2026-11-02T11:35:12.027Z",
       "httpVerdict": "ERROR",
       "url": "https://scoutv2.docs.apiary.io/",
       "checks": [
@@ -468,9 +468,185 @@
       "verdict": "ALIVE"
     },
     {
+      "slug": "intellizence",
+      "name": "Intellizence",
+      "checkedAt": "2026-11-02T11:35:12.729Z",
+      "httpVerdict": "ERROR",
+      "url": "https://docs.intellizence.com",
+      "checks": [
+        {
+          "url": "https://docs.intellizence.com",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 428
+        },
+        {
+          "url": "https://intellizence.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 836
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "perplexity",
+      "name": "Perplexity AI",
+      "checkedAt": "2026-11-02T11:35:14.138Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://docs.perplexity.ai/docs/getting-started/overview",
+      "checks": [
+        {
+          "url": "https://docs.perplexity.ai/docs/getting-started/overview",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 398
+        },
+        {
+          "url": "https://www.perplexity.ai",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 18
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "reachkit",
+      "name": "ReachKit",
+      "checkedAt": "2026-11-02T11:35:14.700Z",
+      "httpVerdict": "ERROR",
+      "url": "https://reachkit.ai/help/articles/api-documentation",
+      "checks": [
+        {
+          "url": "https://reachkit.ai/help/articles/api-documentation",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 5597
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "apparound",
+      "name": "Apparound",
+      "checkedAt": "2026-11-02T11:35:15.310Z",
+      "httpVerdict": "ERROR",
+      "url": "https://www.apparound.com",
+      "checks": [
+        {
+          "url": "https://www.apparound.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1283
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "pipeliner-crm",
+      "name": "Pipeliner CRM",
+      "checkedAt": "2026-11-02T11:35:15.631Z",
+      "httpVerdict": "ERROR",
+      "url": "https://developers.coevera.com/get-started/quickstart/",
+      "checks": [
+        {
+          "url": "https://developers.coevera.com/get-started/quickstart/",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1805
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "brandfetch",
+      "name": "Brandfetch",
+      "checkedAt": "2026-11-02T11:35:16.136Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://docs.brandfetch.com/get-started",
+      "checks": [
+        {
+          "url": "https://docs.brandfetch.com/get-started",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 602
+        },
+        {
+          "url": "https://brandfetch.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 1505
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "loopio",
+      "name": "Loopio",
+      "checkedAt": "2026-11-02T11:35:16.900Z",
+      "httpVerdict": "ERROR",
+      "url": "https://loopio.stoplight.io/",
+      "checks": [
+        {
+          "url": "https://loopio.stoplight.io/",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 36
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
+      "slug": "sales-crusader",
+      "name": "Sales Crusader",
+      "checkedAt": "2026-11-02T11:35:17.529Z",
+      "httpVerdict": "BROKEN",
+      "url": "https://salescrusader.com/developers",
+      "checks": [
+        {
+          "url": "https://salescrusader.com/developers",
+          "key": "docs",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 357
+        },
+        {
+          "url": "https://salescrusader.com",
+          "key": "website",
+          "fetchOk": true,
+          "content": "REAL",
+          "alive": true,
+          "words": 574
+        }
+      ],
+      "verdict": "ALIVE"
+    },
+    {
       "slug": "reachinbox",
       "name": "ReachInbox",
-      "checkedAt": "2026-10-26T09:17:22.986Z",
+      "checkedAt": "2026-11-02T11:35:19.288Z",
       "httpVerdict": "ERROR",
       "url": "https://docs.reachinbox.ai/",
       "checks": [
@@ -489,9 +665,18 @@
   "dead": [],
   "unverifiable": [
     {
+      "slug": "trestle-iq",
+      "name": "Trestle IQ",
+      "checkedAt": "2026-11-02T11:34:52.432Z",
+      "httpVerdict": "ERROR",
+      "url": "",
+      "verdict": "UNVERIFIABLE",
+      "detail": "no URL to deep-check"
+    },
+    {
       "slug": "leadleap",
       "name": "LeadLeap",
-      "checkedAt": "2026-10-26T09:17:20.400Z",
+      "checkedAt": "2026-11-02T11:35:14.138Z",
       "httpVerdict": "ERROR",
       "url": "",
       "verdict": "UNVERIFIABLE",
@@ -506,19 +691,26 @@
     "five9",
     "definitive-healthcare",
     "inframail",
+    "get-sales",
+    "mattermark",
     "pandadoc",
     "ytel",
     "enrich-so",
     "koala",
     "clado",
-    "humantic-ai",
-    "copyfactory",
-    "perplexity",
+    "manyreach",
     "salesmonk",
-    "reachkit",
-    "predictleads",
-    "pipeliner-crm",
+    "copyfactory",
+    "humantic-ai",
     "scout",
+    "intellizence",
+    "perplexity",
+    "reachkit",
+    "apparound",
+    "pipeliner-crm",
+    "brandfetch",
+    "loopio",
+    "sales-crusader",
     "reachinbox"
   ]
 }
